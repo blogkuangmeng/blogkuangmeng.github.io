@@ -249,6 +249,7 @@ footer>.container>.row>p>a:hover  {
 	.homelogoback>h1>a {
 		font-size: 22px;
 		font-weight: bold;
+		top: 30%;
 		letter-spacing: 4px;
 	}
 }
