@@ -311,6 +311,11 @@ body {
     margin: 0 0.980392156862745%;
   }
 }
+@media screen and (min-width: 768px) {
+  #main {
+    float: right;
+  }
+}
 .article-date,
 .article-category-link,
 .article-views,
