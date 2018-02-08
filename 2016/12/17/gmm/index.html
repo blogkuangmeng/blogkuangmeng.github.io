@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用em算法优化的gmm | 欢迎来到我的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+  
+  
+  
+  
+  <meta name="description" content="先上代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用EM算法优化的GMM">
+<meta property="og:url" content="http://meng.uno/2016/12/17/gmm/index.html">
+<meta property="og:site_name" content="欢迎来到我的博客！">
+<meta property="og:description" content="先上代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-08T12:02:06.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用EM算法优化的GMM">
+<meta name="twitter:description" content="先上代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+  
+    <link rel="alternate" href="/atom.xml" title="欢迎来到我的博客！" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cv.html">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-gmm" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      使用EM算法优化的GMM
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/12/17/gmm/" class="article-date">
+	  <time datetime="2016-12-17T03:16:53.000Z" itemprop="datePublished">2016-12-17</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先上代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as mat</span><br><span class="line">import matplotlib<span class="selector-class">.mlab</span> as mlab</span><br><span class="line">#EM算法</span><br><span class="line">def EM(dataSet,K):</span><br><span class="line">    (N, M) = np.shape(dataSet)</span><br><span class="line">    W = np.zeros([N, K])</span><br><span class="line">    P= N/K</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(K):</span><br><span class="line">        W[np.floor(k*P):np.floor((k+<span class="number">1</span>)*P), k] = <span class="number">1</span></span><br><span class="line">    A,M,S = Mstep(dataSet,W)</span><br><span class="line">    return W, A, M, S</span><br><span class="line">#M的跨度</span><br><span class="line">def Mstep(data,W):</span><br><span class="line">    (N, M) = np.shape(data)</span><br><span class="line">    K = np.size(W,<span class="number">1</span>) </span><br><span class="line">    Nk = np.sum(W,<span class="number">0</span>)</span><br><span class="line">    A = Nk/np.sum(Nk)</span><br><span class="line">    Mm = data<span class="selector-class">.T</span><span class="selector-class">.dot</span>(W).dot(np.diag(np.reciprocal(Nk)))</span><br><span class="line">    S = np.zeros([M,M,K])</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(K):</span><br><span class="line">        datMean = data<span class="selector-class">.T</span> - Mm[<span class="number">0</span>:,k][None]<span class="selector-class">.T</span><span class="selector-class">.dot</span>(np.ones([<span class="number">1</span>,N]))</span><br><span class="line">        S[:,:,k] = (datMean.dot(np.diag(W[<span class="number">0</span>:,k])).dot(datMean.T))/Nk[k]</span><br><span class="line">    return A,Mm,S</span><br><span class="line">#E的跨度</span><br><span class="line">def Estep(data,A,M,S):</span><br><span class="line">    N = np.size(data,<span class="number">0</span>)</span><br><span class="line">    K = np.size(A)</span><br><span class="line">    W = np.zeros([N,K])</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(K):</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(N):</span><br><span class="line">            W[<span class="selector-tag">i</span>,k] = A[k]*multivariate(data[<span class="selector-tag">i</span>,:][None]<span class="selector-class">.T</span>, \</span><br><span class="line">                     M[:,k][None]<span class="selector-class">.T</span>,S[:,:,k])</span><br><span class="line">    W = W*np.reciprocal(np.sum(W,<span class="number">1</span>)[None].T)</span><br><span class="line">    return W</span><br><span class="line">def multivariate(x, m, s):</span><br><span class="line">    <span class="keyword">if</span> len(x) == len(m) and (len(x), len(x)) == s<span class="selector-class">.shape</span>:</span><br><span class="line">        det = np<span class="selector-class">.linalg</span><span class="selector-class">.det</span>(s)</span><br><span class="line">        const = 1.0/(np.math.pow((2*np.pi), float(len(x))/2) * np.math.pow(det, 1.0/2))</span><br><span class="line">        x_m = np.matrix(x - m)</span><br><span class="line">        inv_ = np<span class="selector-class">.linalg</span><span class="selector-class">.inv</span>(s)</span><br><span class="line">        result = np.math.pow(np.math.e, -0.5 * (x_m.T * inv_ * x_m))</span><br><span class="line">        return const * result</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        return -<span class="number">1</span></span><br><span class="line">#GMM主程序</span><br><span class="line">def GMM():</span><br><span class="line">    # 加载文件</span><br><span class="line">    input_file = open(<span class="string">'points.dat'</span>)</span><br><span class="line">    lines = input_file.readlines()</span><br><span class="line">    Data = np.array([line.strip().split() <span class="keyword">for</span> line <span class="keyword">in</span> lines]).astype(np.<span class="attribute">float</span>)</span><br><span class="line">    (x, y) = np.shape(Data)</span><br><span class="line">    mat.draw()</span><br><span class="line">    mat.pause(<span class="number">0.01</span>)</span><br><span class="line">    mat.subplot(<span class="number">111</span>)</span><br><span class="line">    mat.plot(x, y, <span class="string">'b*'</span>)</span><br><span class="line">    learn = Data[np<span class="selector-class">.math</span><span class="selector-class">.ceil</span>(x*<span class="number">0.8</span>):x, <span class="number">0</span>:]</span><br><span class="line">    train = Data[:np<span class="selector-class">.math</span><span class="selector-class">.floor</span>(x*<span class="number">0.8</span>), <span class="number">0</span>:]</span><br><span class="line">    trainnum = <span class="number">16</span></span><br><span class="line">    (W, Alpha, Mu, Sigma) = EM(train,trainnum)</span><br><span class="line">    m = np.arange(-<span class="number">4.0</span>, <span class="number">4.0</span>, <span class="number">0.1</span>)</span><br><span class="line">    n = np.arange(-<span class="number">4.0</span>, <span class="number">4.0</span>, <span class="number">0.1</span>)</span><br><span class="line">    ax, ay = np.meshgrid(m, n)</span><br><span class="line">    <span class="selector-tag">i</span> = <span class="number">0</span></span><br><span class="line">    prev = -<span class="number">9999</span></span><br><span class="line">    mat.clf()</span><br><span class="line">    while(True):    </span><br><span class="line">        <span class="keyword">if</span>(False):</span><br><span class="line">            SigmaSum = np.sum(Sigma,<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(trainnum):</span><br><span class="line">                Sigma[:,:,k] = SigmaSum</span><br><span class="line">        W = Estep(train,Alpha,Mu,Sigma)</span><br><span class="line">        Alpha,Mu,Sigma = Mstep(train,W)</span><br><span class="line">       # trains = logLike(train,Alpha,Mu,Sigma)</span><br><span class="line">        N,M = np.shape(train)</span><br><span class="line">        P = np.zeros([N,len(Alpha)])</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(len(Alpha)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(N):</span><br><span class="line">                P[j,k] = multivariate(train[j,:][None]<span class="selector-class">.T</span>,Mu[<span class="number">0</span>:,k][None]<span class="selector-class">.T</span>,Sigma[:,:,k])</span><br><span class="line">        trains = np.sum(np.log(P.dot(Alpha)))</span><br><span class="line">        <span class="selector-tag">i</span> = <span class="selector-tag">i</span> + <span class="number">1</span></span><br><span class="line">        #画图，训练和测试样本</span><br><span class="line">        mat.subplot(<span class="number">211</span>)</span><br><span class="line">        mat.scatter(train[<span class="number">0</span>:,<span class="number">0</span>],train[<span class="number">0</span>:,<span class="number">1</span>])</span><br><span class="line">        mat.hold(True)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, trainnum):</span><br><span class="line">            az = mlab.bivariate_normal(ax, ay, Sigma[<span class="number">0</span>, <span class="number">0</span>, k], Sigma[<span class="number">1</span>, \</span><br><span class="line">                <span class="number">1</span>, k], Mu[<span class="number">0</span>,k], Mu[<span class="number">1</span>,k], Sigma[<span class="number">1</span>, <span class="number">0</span>, k])</span><br><span class="line">            try:</span><br><span class="line">                mat.contour(ax, ay, az)</span><br><span class="line">            except:</span><br><span class="line">                continue</span><br><span class="line">        mat.hold(False)</span><br><span class="line">        # Render these</span><br><span class="line">        mat.draw()</span><br><span class="line">        mat.pause(<span class="number">0.01</span>)</span><br><span class="line">        mat.subplot(<span class="number">212</span>)</span><br><span class="line">        mat.scatter(learn[<span class="number">0</span>:,<span class="number">0</span>],learn[<span class="number">0</span>:,<span class="number">1</span>])</span><br><span class="line">        mat.hold(True)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, trainnum):</span><br><span class="line">            az = mlab.bivariate_normal(ax, ay, Sigma[<span class="number">0</span>, <span class="number">0</span>, k], Sigma[<span class="number">1</span>, \</span><br><span class="line">                <span class="number">1</span>, k], Mu[<span class="number">0</span>,k], Mu[<span class="number">1</span>,k], Sigma[<span class="number">1</span>, <span class="number">0</span>, k])</span><br><span class="line">            try:</span><br><span class="line">                mat.contour(ax, ay, az)</span><br><span class="line">            except:</span><br><span class="line">                continue</span><br><span class="line">        mat.hold(False)</span><br><span class="line">        <span class="keyword">if</span>(i&gt;<span class="number">150</span> or abs(trains - prev)&lt; <span class="number">0.01</span>):</span><br><span class="line">            break</span><br><span class="line">        prev = trains</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    GMM()</span><br></pre></td></tr></table></figure>
+<h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>  实现一个混合高斯模型，并且用EM算法估计模型中的参数。</p>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><p>  用混合高斯模型产生k个高斯分布的数据（其中参数自己设定），然后用你实现的EM算法估计参数，看看每次迭代后似然值变化情况，考察EM算法是否可以获得正确的结果（与你设定的结果比较）。<br>           可以UCI上找一个简单问题数据，用你实现的GMM进行聚类。</p>
+<h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><h3 id="GMM算法"><a href="#GMM算法" class="headerlink" title="GMM算法"></a>GMM算法</h3><p>高斯模型就是用高斯概率密度函数（正态分布曲线）精确地量化事物，将一个事物分解为若干的基于高斯概率密度函数（正态分布曲线）形成的模型。</p>
+<p>对图像背景建立高斯模型的原理及过程：图像灰度直方图反映的是图像中某个灰度值出现的频次，也可以认为是图像灰度概率密度的估计。如果图像所包含的目标区域和背景区域相比比较大，且背景区域和目标区域在灰度上有一定的差异，那么该图像的灰度直方图呈现双峰-谷形状，其中一个峰对应于目标，另一个峰对应于背景的中心灰度。对于复杂的图像，尤其是医学图像，一般是多峰的。通过将直方图的多峰特性看作是多个高斯分布的叠加，可以解决图像的分割问题。 在智能监控系统中，对于运动目标的检测是中心内容，而在运动目标检测提取中，背景目标对于目标的识别和跟踪至关重要。而建模正是背景目标提取的一个重要环节。</p>
+<p>我们首先要提起背景和前景的概念，前景是指在假设背景为静止的情况下，任何有意义的运动物体即为前景。建模的基本思想是从当前帧中提取前景，其目的是使背景更接近当前视频帧的背景。即利用当前帧和视频序列中的当前背景帧进行加权平均来更新背景,但是由于光照突变以及其他外界环境的影响，一般的建模后的背景并非十分干净清晰，而高斯混合模型是是建模最为成功的方法之一。</p>
+<p>混合高斯模型使用K（基本为3到5个）个高斯模型来表征图像中各个像素点的特征,在新一帧图像获得后更新混合高斯模型, 用当前图像中的每个像素点与混合高斯模型匹配,如果成功则判定该点为背景点, 否则为前景点。 </p>
+<p>通观整个高斯模型，主要是有方差和均值两个参数决定，对均值和方差的学习，采取不同的学习机制,将直接影响到模型的稳定性、精确性和收敛性 。由于我们是对运动目标的背景提取建模，因此需要对高斯模型中方差和均值两个参数实时更新。为提高模型的学习能力,改进方法对均值和方差的更新采用不同的学习率;为提高在繁忙的场景下,大而慢的运动目标的检测效果,引入权值均值的概念,建立背景图像并实时更新,然后结合权值、权值均值和背景图像对像素点进行前景和背景的分类。</p>
+<p>具体实现过程：</p>
+<ol>
+<li>为图像的每个像素点指定一个初始的均值、标准差以及权重。</li>
+<li>收集N（一般取200以上，否则很难得到像样的结果）帧图像利用在线EM算法得到每个像    素点的均值、标准差以及权重。</li>
+<li>从N+1帧开始检测，检测的方法：<br> 对每个像素点：<ol>
+<li>将所有的高斯核按照 ω / σ 降序排序</li>
+<li>选择满足下式的前M个高斯核：M = arg min(ω / σ &gt; T)</li>
+<li>如果当前像素点的像素值在中有一个满足：就可以认为其为背景点。</li>
+</ol>
+</li>
+<li>更新背景图像，用EM算法。</li>
+</ol>
+<h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM 算法是 Dempster，Laind，Rubin 于 1977 年提出的求参数极大似然估计的一种方法，它可以从非完整数据集中对参数进行 MLE 估计，是一种非常简单实用的学习算法。这种方法可以广泛地应用于处理缺损数据，截尾数据，带有噪声等所谓的不完全数据(incomplete data)。</p>
+<p>最大期望算法经过两个步骤交替进行计算：</p>
+<ul>
+<li>第一步是计算期望（E），利用对隐藏变量的现有估计值，计算其最大似然估计值；</li>
+<li>第二步是最大化（M），最大化在 E 步上求得的最大似然值来计算参数的值。</li>
+</ul>
+<p>M 步上找到的参数估计值被用于下一个 E 步计算中，这个过程不断交替进行。</p>
+<p>通过交替使用这两个步骤，EM算法逐步改进模型的参数，使参数和训练样本的似然概率逐渐增大，最后终止于一个极大点。直观地理解EM算法，它也可被看作为一个逐次逼近算法：事先并不知道模型的参数，可以随机的选择一套参数或者事先粗略地给定某个初始参数λ0 ，确定出对应于这组参数的最可能的状态，计算每个训练样本的可能结果的概率，在当前的状态下再由样本对参数修正，重新估计参数λ，并在新的参数下重新确定模型的状态，这样，通过多次的迭代，循环直至某个收敛条件满足为止，就可以使得模型的参数逐渐逼近真实参数。</p>
+<p>具体实现步骤：</p>
+<ul>
+<li>给出种类数k,初始化每一类高斯分布的均值μk，方差∑k以及每一类的概率πk；</li>
+<li>执行EM；</li>
+<li>计算似然，如果没有达到预期效果，则返回第2步；</li>
+<li>计算每个数据点对于k个高斯分布的似然，选择似然最大的一类作为数据的最终分类。</li>
+</ul>
+<p>其他的混合模型，例如朴素贝叶斯混合模型也是可以使用EM算法推出使用的，这一算法虽然在GMM中作为参数使用，但是其仍然可以单独发挥作用。我觉得EM算法就是相互迭代（毕竟其由E和M两部分组成嘛），求出一个稳定值，而这种相互迭代的方法用的范围挺广的，例如混合模型，K-means等都需要使用。</p>
+<h3 id="与K-means的区别"><a href="#与K-means的区别" class="headerlink" title="与K-means的区别"></a>与K-means的区别</h3><p>在上文我也已经提到了EM算法可以用在K-means等其他需要迭代的方法上的事实，其实，我觉得GMM 和 K-means 很像，只不过后者要简单，而且相对来说实现并不是很高效。不过 GMM 是学习出一些概率密度函数来（所以 GMM 除了用在 clustering 上之外，还经常被用于 density estimation ），简单地说，K-means 的结果是每个数据点被 assign 到其中某一个 cluster 了，而 GMM 则给出这些数据点被 assign 到每个 cluster 的概率，又称作 soft assignment。</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>Spyder 作为Python开发的集成开发环境；<br>    编程语言：Python 3.5；<br>    操作系统：macOS Sierra。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>GMM算法作为EM算法族的一个例子，它指定了各个参与杂合的分布都是高斯分布，即分布参数表现为均值Mu和方差Sigma。通过EM算法作为计算使用的框架，迭代地算出各个高斯分布的参数。</p>
+<h3 id="GMM与K-means的思考"><a href="#GMM与K-means的思考" class="headerlink" title="GMM与K-means的思考"></a>GMM与K-means的思考</h3><p>提到GMM不得不提K-means，总结了网上的资料以及老师上课的课件，我将两者的区别与联系陈述如下：</p>
+<ul>
+<li>两者的联系:</li>
+</ul>
+<p>都是迭代执行的算法，且迭代的策略也相同：算法开始执行时先对需要计算的参数赋初值，然后交替执行两个步骤，一个步骤是对数据的估计（k-means是估计每个点所属簇；GMM是计算隐含变量的期望）；第二步是用上一步算出的估计值重新计算参数值，更新目标参数（k-means是计算簇心位置；GMM是计算各个高斯分布的中心位置和协方差矩阵）</p>
+<ul>
+<li>两者的区别:</li>
+</ul>
+<p>首先，两者需要计算的参数不同：K-means是簇心位置；GMM是各个高斯分布的参数；其次，两者计算目标参数的方法不同：K-means是计算当前簇中所有元素的位置的均值；GMM是基于概率的算法，是通过计算似然函数的最大值实现分布参数的求解的。</p>
+<h3 id="关于GMM引发的过拟合的思考"><a href="#关于GMM引发的过拟合的思考" class="headerlink" title="关于GMM引发的过拟合的思考"></a>关于GMM引发的过拟合的思考</h3><p>首先我想提到这样的一个“人辨认其他生物（例如鱼）”的例子。当我们被告知水里游的那个生物是鱼之后，我们会使用“在同样的地方生活的是同一种东西”这类似的假设，归纳出“在水里游的都是鱼”这样一个结论。当然这个过程是完全“本能”的，如果不仔细去想，我们也不会了解自己是怎样“认识鱼”的。另一个值得注意的地方是这样的假设并不总是完全正确的，甚至可以说总是会有这样那样的缺陷的，因为我们有可能会把虾、龟、甚至是潜水员当做鱼。也许你觉得可以通过修改前提假设来解决这个问题，例如，基于“生活在同样的地方并且穿着同样衣服的是同一种东西”这个假设，你得出结论：在水里有并且身上长有鳞片的是鱼。可是这样还是有问题，因为有些没有长鳞片的鱼现在又被你排除在外了。</p>
+<p>机器在识别方面面临着和人一样的问题，在机器学习中，一个学习算法也会有一个前提假设，这里被称作“归纳偏执”。例如线性回归，目的是要找一个函数尽可能好地拟合给定的数据点，它的归纳偏执就是“满足要求的函数必须是线性函数”。一个没有归纳偏执的学习算法从某种意义上来说毫无用处，就像一个完全没有归纳能力的人一样，在第一次看到鱼的时候有人告诉他那是鱼，下次看到另一条鱼了，他并不知道那也是鱼，因为两条鱼总有一些地方不一样的，或者就算是同一条鱼，在河里不同的地方看到，或者只是看到的时间不一样，也会被他认为是不同的，因为他无法归纳，无法提取主要矛盾、忽略次要因素，只好要求所有的条件都完全一样──然而哲学家已经告诉过我们了：世界上不会有任何样东西是完全一样的，所以这个人即使是有无比强悍的记忆力，也绝学不到任何一点知识。</p>
+<p>于是有了上面的铺垫，我们就可以引出论题——“过拟合 ”，就像前面的回归的问题，如果去掉“线性函数”这个归纳偏执，因为对于 N 个点，我们总是可以构造一个 N-1 次多项式函数，让它完美地穿过所有的这 N 个点，或者如果我用任何大于 N-1 次的多项式函数的话，我们甚至可以构造出无穷多个满足条件的函数出来。如果假定特定领域里的问题所给定的数据个数总是有个上限的话，我可以取一个足够大的 N ，从而得到一个（或者无穷多个）“超级函数”，能够拟合这个领域内所有的问题。</p>
+<p>没有归纳偏执或者归纳偏执太宽泛会导致过拟合 ，然而另一个极端──限制过大的归纳偏执也是有问题的：如果数据本身并不是线性的，强行用线性函数去做回归通常并不能得到好结果（例如我在“实验一：多项式拟合曲线”中就做过相应的测试）。难点正在于在这之间寻找一个临界点。不过我们在这里相对于机器来说有一个很大的优势：人通常不会孤立地用某一个独立的系统和模型去处理问题，一个人每天都会从各个来源获取大量的信息，并且通过各种手段进行整合处理，归纳所得的所有知识最终得以统一地存储起来，并能有机地组合起来去解决特定的问题。</p>
+<p>以上就是我关于“过拟合”的一点不全面的思考！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'kuangmeng';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/17/pca/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          主成分分析（PCA）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/16/androidnews/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Android新闻软件编写</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">1.</span> <span class="nav-text">实验要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验目标"><span class="nav-number">1.1.</span> <span class="nav-text">实验目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程"><span class="nav-number">1.2.</span> <span class="nav-text">实验过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法原理"><span class="nav-number">2.</span> <span class="nav-text">算法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GMM算法"><span class="nav-number">2.1.</span> <span class="nav-text">GMM算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">2.2.</span> <span class="nav-text">EM算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与K-means的区别"><span class="nav-number">2.3.</span> <span class="nav-text">与K-means的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验环境"><span class="nav-number">3.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GMM与K-means的思考"><span class="nav-number">4.1.</span> <span class="nav-text">GMM与K-means的思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于GMM引发的过拟合的思考"><span class="nav-number">4.2.</span> <span class="nav-text">关于GMM引发的过拟合的思考</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2018.02.08 - 2018.02.08 <a href="http://meng.uno/">匡盟盟</a> All Rights Reserved.</p>
+
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cv.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            欢迎来到我的博客！
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 匡盟盟 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

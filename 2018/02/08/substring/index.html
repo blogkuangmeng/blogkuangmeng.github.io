@@ -11,20 +11,20 @@
   
   
   
-  <meta name="description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？代码:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(origi">
+  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途代码: 123String origin = &quot;asdfg&quot;; origin = origin.substring(1,3);System.out.println(origin); 输出: 1sd 我们发现它">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Substring() 的实现">
 <meta property="og:url" content="http://meng.uno/2018/02/08/substring/index.html">
 <meta property="og:site_name" content="欢迎来到我的博客！">
-<meta property="og:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？代码:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(origi">
+<meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途代码: 123String origin = &quot;asdfg&quot;; origin = origin.substring(1,3);System.out.println(origin); 输出: 1sd 我们发现它">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.meng.uno/images/substring_jdk.png">
 <meta property="og:image" content="http://www.meng.uno/images/substring_jdk7.png">
-<meta property="og:updated_time" content="2018-02-08T11:10:15.739Z">
+<meta property="og:updated_time" content="2018-02-08T11:19:45.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Substring() 的实现">
-<meta name="twitter:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？代码:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(origi">
+<meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途代码: 123String origin = &quot;asdfg&quot;; origin = origin.substring(1,3);System.out.println(origin); 输出: 1sd 我们发现它">
 <meta name="twitter:image" content="http://www.meng.uno/images/substring_jdk.png">
   
     <link rel="alternate" href="/atom.xml" title="欢迎来到我的博客！" type="application/atom+xml">
@@ -64,7 +64,7 @@
   
 
   
-  
+
   
     <link rel="stylesheet" href="/css/vdonate.css" >
   
@@ -198,7 +198,9 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>写过Java的人应该都用过<figure class="highlight plain"><figcaption><span>bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## substring()能做什么？</span><br><span class="line">代码:</span><br><span class="line"></span><br><span class="line">``` stylus</span><br><span class="line">String origin = &quot;asdfg&quot;; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre></td></tr></table></figure></p>
+        <p>写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</p>
+<h2 id="substring-的用途"><a href="#substring-的用途" class="headerlink" title="substring()的用途"></a>substring()的用途</h2><p>代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String origin = "asdfg"; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre></td></tr></table></figure>
 <p>输出:</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd</span><br></pre></td></tr></table></figure>
 <p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
@@ -264,6 +266,25 @@ var a = new Donate({
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2018/02/08/binsearch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          二分查找的效率
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/29/hv6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Analysis For Hyperkernel</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -273,7 +294,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的实现"><span class="nav-number">1.</span> <span class="nav-text">substring()的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK6版本"><span class="nav-number">1.1.</span> <span class="nav-text">JDK6版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK7-版本"><span class="nav-number">1.2.</span> <span class="nav-text">JDK7+版本</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的用途"><span class="nav-number">1.</span> <span class="nav-text">substring()的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的实现"><span class="nav-number">2.</span> <span class="nav-text">substring()的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK6版本"><span class="nav-number">2.1.</span> <span class="nav-text">JDK6版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK7-版本"><span class="nav-number">2.2.</span> <span class="nav-text">JDK7+版本</span></a></li></ol></li></ol>
     
     </div>
   </aside>
