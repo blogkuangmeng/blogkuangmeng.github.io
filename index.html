@@ -1474,12 +1474,711 @@
 <!-- Table of Contents -->
 
   
-
-
-  <nav id="page-nav">
+    <article id="post-bash"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/12/03/bash/">Bash的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/12/03/bash/" class="article-date">
+	  <time datetime="2016-12-03T09:23:17.000Z" itemprop="datePublished">2016-12-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Shells/">Shells</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="显示-“Hello-world-”"><a href="#显示-“Hello-world-”" class="headerlink" title="显示 “Hello world!”"></a>显示 “Hello world!”</h2><p>echo Hello world!</p>
+<h2 id="每一句指令以换行或分号隔开："><a href="#每一句指令以换行或分号隔开：" class="headerlink" title="每一句指令以换行或分号隔开："></a>每一句指令以换行或分号隔开：</h2><p>echo ‘This is the first line’; echo ‘This is the second line’</p>
+<h2 id="声明一个变量："><a href="#声明一个变量：" class="headerlink" title="声明一个变量："></a>声明一个变量：</h2><p>Variable=”Some string”</p>
+<p><strong><em>这是错误的做法：</em></strong>Variable = “Some string”</p>
+<p><strong><em>原因：</em></strong>Bash 会把 Variable 当做一个指令，由于找不到该指令，因此这里会报错。</p>
+<p><strong><em>也不可以这样：</em></strong>Variable= ‘Some string’</p>
+<p><strong><em>原因：</em></strong>Bash 会认为 ‘Some string’ 是一条指令，由于找不到该指令，这里再次报错。这个例子中 ‘Variable=’ 这部分会被当作仅对 ‘Some string’ 起作用的赋值。）</p>
+<h2 id="使用变量："><a href="#使用变量：" class="headerlink" title="使用变量："></a>使用变量：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="variable">$Variable</span></span><br><span class="line">echo <span class="string">"$Variable"</span></span><br><span class="line">echo <span class="string">'$Variable'</span></span><br></pre></td></tr></table></figure>
+<p>当你赋值 (assign) 、导出 (export)，或者以其他方式使用变量时，变量名前不加 $。如果要使用变量的值， 则要加 $。</p>
+<p><strong><em>注意:</em></strong> ‘ (单引号) 不会展开变量（即会屏蔽掉变量）。</p>
+<h2 id="在变量内部进行字符串代换"><a href="#在变量内部进行字符串代换" class="headerlink" title="在变量内部进行字符串代换"></a>在变量内部进行字符串代换</h2><p>echo ${Variable/Some/A}</p>
+<p>会把 Variable 中首次出现的 “some” 替换成 “A”。</p>
+<h2 id="变量的截取"><a href="#变量的截取" class="headerlink" title="变量的截取"></a>变量的截取</h2><p>Length=7</p>
+<p>echo ${Variable:0:Length}</p>
+<p>这样会仅返回变量值的前7个字符</p>
+<h2 id="变量的默认值"><a href="#变量的默认值" class="headerlink" title="变量的默认值"></a>变量的默认值</h2><p>echo ${Foo:-“DefaultValueIfFooIsMissingOrEmpty”}</p>
+<p>对 null (Foo=) 和空串 (Foo=””) 起作用； 零（Foo=0）时返回0</p>
+<p>注意这仅返回默认值而不是改变变量的值</p>
+<h2 id="内置变量："><a href="#内置变量：" class="headerlink" title="内置变量："></a>内置变量：</h2><h3 id="下面的内置变量很有用"><a href="#下面的内置变量很有用" class="headerlink" title="下面的内置变量很有用"></a>下面的内置变量很有用</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"Last program return value: $?"</span></span><br><span class="line">echo <span class="string">"Script's PID: $$"</span></span><br><span class="line">echo <span class="string">"Number of arguments: $#"</span></span><br><span class="line">echo <span class="string">"Scripts arguments: $@"</span></span><br><span class="line">echo <span class="string">"Scripts arguments separated in different variables: $1 $2..."</span></span><br></pre></td></tr></table></figure>
+<h3 id="读取输入："><a href="#读取输入：" class="headerlink" title="读取输入："></a>读取输入：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"What's your name?"</span></span><br><span class="line">read Name # 这里不需要声明新变量</span><br><span class="line">echo Hello, <span class="variable">$Name</span>!</span><br></pre></td></tr></table></figure>
+<h2 id="通常的-if-结构看起来像这样："><a href="#通常的-if-结构看起来像这样：" class="headerlink" title="通常的 if 结构看起来像这样："></a>通常的 if 结构看起来像这样：</h2><p><strong><em>‘man test’ 可查看更多的信息</em></strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$Name</span> -ne <span class="variable">$USER</span> ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"Your name isn't your username"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    echo <span class="string">"Your name is your username"</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h2 id="根据上一个指令执行结果决定是否执行下一个指令"><a href="#根据上一个指令执行结果决定是否执行下一个指令" class="headerlink" title="根据上一个指令执行结果决定是否执行下一个指令"></a>根据上一个指令执行结果决定是否执行下一个指令</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo "Always executed" || echo "Only executed if first command fails"</span><br><span class="line">echo <span class="string">"Always executed"</span> &amp;&amp; echo <span class="string">"Only executed if first command does NOT fail"</span></span><br></pre></td></tr></table></figure>
+<h2 id="在-if-语句中使用-amp-amp-和-需要多对方括号"><a href="#在-if-语句中使用-amp-amp-和-需要多对方括号" class="headerlink" title="在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号"></a>在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$Name</span> == <span class="string">"Steve"</span> ] &amp;&amp; [ <span class="variable">$Age</span> -eq <span class="number">15</span> ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"This will run if $Name is Steve AND $Age is 15."</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ $Name == "Daniya" ] || [ $Name == "Zach" ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"This will run if $Name is Daniya OR Zach."</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h2 id="表达式的格式如下"><a href="#表达式的格式如下" class="headerlink" title="表达式的格式如下:"></a>表达式的格式如下:</h2><p>echo $(( 10 + 5 ))</p>
+<h2 id="指令可以带有选项："><a href="#指令可以带有选项：" class="headerlink" title="指令可以带有选项："></a>指令可以带有选项：</h2><p><strong><em>与其他编程语言不同的是，bash 运行时依赖上下文。比如，使用 ls 时，列出当前目录。</em></strong></p>
+<figure class="highlight ls"><figcaption><span>-l``` 列出文件和目录的详细信息</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">```grep``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">```ls -l | grep "\.txt"</span><br></pre></td></tr></table></figure>
+<h2 id="以-EOF-作为结束标记从标准输入读取数据并覆盖-hello-py"><a href="#以-EOF-作为结束标记从标准输入读取数据并覆盖-hello-py" class="headerlink" title="以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 hello.py"></a>以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 hello.py</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; hello<span class="selector-class">.py</span> &lt;&lt; EOF</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">from __future__ import print_function</span><br><span class="line">import sys</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"#stdout"</span>, file=sys.stdout)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"#stderr"</span>, file=sys.stderr)</span></span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys<span class="selector-class">.stdin</span>:</span><br><span class="line">    print(line, file=sys.stdout)</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h2 id="重定向可以到输出，输入和错误输出"><a href="#重定向可以到输出，输入和错误输出" class="headerlink" title="重定向可以到输出，输入和错误输出"></a>重定向可以到输出，输入和错误输出</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python hello<span class="selector-class">.py</span> &lt; <span class="string">"input.in"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; <span class="string">"output.out"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> <span class="number">2</span>&gt; <span class="string">"error.err"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; <span class="string">"output-and-error.log"</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"># &gt; 会覆盖已存在的文件， &gt;&gt; 会以累加的方式输出文件中。</span><br><span class="line">python hello<span class="selector-class">.py</span> &gt;&gt; <span class="string">"output.out"</span> <span class="number">2</span>&gt;&gt; <span class="string">"error.err"</span></span><br></pre></td></tr></table></figure>
+<h2 id="覆盖-output-out-追加-error-err-并统计行数"><a href="#覆盖-output-out-追加-error-err-并统计行数" class="headerlink" title="覆盖 output.out , 追加 error.err 并统计行数"></a>覆盖 output.out , 追加 error.err 并统计行数</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info bash <span class="string">'Basic Shell Features'</span> <span class="string">'Redirections'</span> &gt; output<span class="selector-class">.out</span> <span class="number">2</span>&gt;&gt; error.err</span><br><span class="line">wc -l output<span class="selector-class">.out</span> error.err</span><br></pre></td></tr></table></figure>
+<h2 id="运行指令并打印文件描述符-（比如-dev-fd-123）"><a href="#运行指令并打印文件描述符-（比如-dev-fd-123）" class="headerlink" title="运行指令并打印文件描述符 （比如 /dev/fd/123）"></a>运行指令并打印文件描述符 （比如 /dev/fd/123）</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 具体可查看： man fd</span><br><span class="line">echo &lt;(echo <span class="string">"#helloworld"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="以-“-helloworld”-覆盖-output-out"><a href="#以-“-helloworld”-覆盖-output-out" class="headerlink" title="以 “#helloworld” 覆盖 output.out"></a>以 “#helloworld” 覆盖 output.out</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; output<span class="selector-class">.out</span> &lt;(echo <span class="string">"#helloworld"</span>)</span><br><span class="line">echo <span class="string">"#helloworld"</span> &gt; output.out</span><br><span class="line">echo "#helloworld" | cat &gt; output.out</span><br><span class="line">echo "#helloworld" | tee output.out &gt;/dev/null</span><br></pre></td></tr></table></figure>
+<h2 id="清理临时文件并显示详情（增加-‘-i’-选项启用交互模式）"><a href="#清理临时文件并显示详情（增加-‘-i’-选项启用交互模式）" class="headerlink" title="清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）"></a>清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -v output<span class="selector-class">.out</span> error<span class="selector-class">.err</span> output-and-error.log</span><br></pre></td></tr></table></figure>
+<h2 id="一个指令可用-嵌套在另一个指令内部"><a href="#一个指令可用-嵌套在另一个指令内部" class="headerlink" title="一个指令可用 $( ) 嵌套在另一个指令内部"></a>一个指令可用 $( ) 嵌套在另一个指令内部</h2><h3 id="以下的指令会打印当前目录下的目录和文件总数"><a href="#以下的指令会打印当前目录下的目录和文件总数" class="headerlink" title="以下的指令会打印当前目录下的目录和文件总数"></a>以下的指令会打印当前目录下的目录和文件总数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;There are $(ls | wc -l) items here.&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="反引号-起相同作用，但不允许嵌套"><a href="#反引号-起相同作用，但不允许嵌套" class="headerlink" title="反引号 `` 起相同作用，但不允许嵌套"></a>反引号 `` 起相同作用，但不允许嵌套</h3><p><strong><em>优先使用 $()</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;There are `ls | wc -l` items here.&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Bash-的-case-语句与-Java-和-C-中的-switch-语句类似"><a href="#Bash-的-case-语句与-Java-和-C-中的-switch-语句类似" class="headerlink" title="Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似"></a>Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case <span class="string">"$Variable"</span> <span class="keyword">in</span></span><br><span class="line">    # 列出需要匹配的字符串</span><br><span class="line">    0) echo "There is a zero.";;</span><br><span class="line">    1) echo "There is a one.";;</span><br><span class="line">    *) echo "It is not null.";;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<h2 id="循环遍历给定的参数序列"><a href="#循环遍历给定的参数序列" class="headerlink" title="循环遍历给定的参数序列"></a>循环遍历给定的参数序列</h2><h3 id="变量-Variable-的值会被打印-3-次"><a href="#变量-Variable-的值会被打印-3-次" class="headerlink" title="变量$Variable 的值会被打印 3 次"></a>变量$Variable 的值会被打印 3 次</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> Variable <span class="keyword">in</span> &#123;<span class="number">1</span>..<span class="number">3</span>&#125;</span><br><span class="line">do</span><br><span class="line">    echo <span class="string">"$Variable"</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h3 id="或传统的-“for循环”"><a href="#或传统的-“for循环”" class="headerlink" title="或传统的 “for循环”"></a>或传统的 “for循环”</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for ((a=1; a &lt;= 3; a++))</span><br><span class="line">do</span><br><span class="line">    echo <span class="variable">$a</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p><strong><em>也可以用于文件</em></strong></p>
+<h3 id="用-cat-输出-file1-和-file2-内容"><a href="#用-cat-输出-file1-和-file2-内容" class="headerlink" title="用 cat 输出 file1 和 file2 内容"></a>用 cat 输出 file1 和 file2 内容</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> Variable <span class="keyword">in</span> file1 file2</span><br><span class="line">do</span><br><span class="line">    cat <span class="string">"$Variable"</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p><strong><em>或作用于其他命令的输出</em></strong></p>
+<h3 id="对-ls-输出的文件执行-cat-指令"><a href="#对-ls-输出的文件执行-cat-指令" class="headerlink" title="对 ls 输出的文件执行 cat 指令"></a>对 ls 输出的文件执行 cat 指令</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> Output <span class="keyword">in</span> $(ls)</span><br><span class="line">do</span><br><span class="line">    cat <span class="string">"$Output"</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while [ true ]</span><br><span class="line">do</span><br><span class="line">    echo <span class="string">"loop body here..."</span></span><br><span class="line">    break</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="你也可以使用函数"><a href="#你也可以使用函数" class="headerlink" title="你也可以使用函数"></a>你也可以使用函数</h2><h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function foo ()</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Arguments work just like script arguments: $@"</span></span><br><span class="line">    echo <span class="string">"And: $1 $2..."</span></span><br><span class="line">    echo <span class="string">"This is a function"</span></span><br><span class="line">    return <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更简单的方法"><a href="#更简单的方法" class="headerlink" title="更简单的方法"></a>更简单的方法</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bar ()</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Another way to declare functions!"</span></span><br><span class="line">    return <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo &quot;My name is&quot; $Name</span><br></pre></td></tr></table></figure>
+<h2 id="有很多有用的指令需要学习"><a href="#有很多有用的指令需要学习" class="headerlink" title="有很多有用的指令需要学习"></a>有很多有用的指令需要学习</h2><h3 id="打印-file-txt-的最后-10-行"><a href="#打印-file-txt-的最后-10-行" class="headerlink" title="打印 file.txt 的最后 10 行"></a>打印 file.txt 的最后 10 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n 10 file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="打印-file-txt-的前-10-行"><a href="#打印-file-txt-的前-10-行" class="headerlink" title="打印 file.txt 的前 10 行"></a>打印 file.txt 的前 10 行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 10 file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="将-file-txt-按行排序"><a href="#将-file-txt-按行排序" class="headerlink" title="将 file.txt 按行排序"></a>将 file.txt 按行排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="报告或忽略重复的行，用选项-d-打印重复的行"><a href="#报告或忽略重复的行，用选项-d-打印重复的行" class="headerlink" title="报告或忽略重复的行，用选项 -d 打印重复的行"></a>报告或忽略重复的行，用选项 -d 打印重复的行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniq -d file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="打印每行中-‘-’-之前内容"><a href="#打印每行中-‘-’-之前内容" class="headerlink" title="打印每行中 ‘,’ 之前内容"></a>打印每行中 ‘,’ 之前内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -d &apos;,&apos; -f 1 file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="将-file-txt-文件所有-‘okay’-替换为-‘great’-（兼容正则表达式）"><a href="#将-file-txt-文件所有-‘okay’-替换为-‘great’-（兼容正则表达式）" class="headerlink" title="将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）"></a>将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/okay/great/g&apos; file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="将-file-txt-中匹配正则的行打印到标准输出"><a href="#将-file-txt-中匹配正则的行打印到标准输出" class="headerlink" title="将 file.txt 中匹配正则的行打印到标准输出"></a>将 file.txt 中匹配正则的行打印到标准输出</h3><p>这里打印以 “foo” 开头, “bar” 结尾的行</p>
+<figure class="highlight plain"><figcaption><span>"^foo.*bar$" file.txt```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用选项 &quot;-c&quot; 统计行数</span><br><span class="line"></span><br><span class="line">```grep -c &quot;^foo.*bar$&quot; file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="如果只是要按字面形式搜索字符串而不是按正则表达式，使用-fgrep-或-grep-F"><a href="#如果只是要按字面形式搜索字符串而不是按正则表达式，使用-fgrep-或-grep-F" class="headerlink" title="如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)"></a>如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fgrep &quot;^foo.*bar$&quot; file.txt</span><br></pre></td></tr></table></figure>
+<h2 id="以-bash-内建的-‘help’-指令阅读-Bash-自带文档"><a href="#以-bash-内建的-‘help’-指令阅读-Bash-自带文档" class="headerlink" title="以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档"></a>以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">help</span><br><span class="line">help help</span><br><span class="line">help <span class="keyword">for</span></span><br><span class="line">help return</span><br><span class="line">help source</span><br><span class="line">help .</span><br></pre></td></tr></table></figure>
+<h2 id="用-man-指令阅读相关的-Bash-手册"><a href="#用-man-指令阅读相关的-Bash-手册" class="headerlink" title="用 man 指令阅读相关的 Bash 手册"></a>用 man 指令阅读相关的 Bash 手册</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apropos bash</span><br><span class="line">man <span class="number">1</span> bash</span><br><span class="line">man bash</span><br></pre></td></tr></table></figure>
+<h2 id="用-info-指令查阅命令的-info-文档-（info-中按-显示帮助信息）"><a href="#用-info-指令查阅命令的-info-文档-（info-中按-显示帮助信息）" class="headerlink" title="用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）"></a>用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apropos info | grep '^info.*('</span><br><span class="line">man info</span><br><span class="line">info info</span><br><span class="line">info <span class="number">5</span> info</span><br></pre></td></tr></table></figure>
+<h2 id="阅读-Bash-的-info-文档"><a href="#阅读-Bash-的-info-文档" class="headerlink" title="阅读 Bash 的 info 文档"></a>阅读 Bash 的 info 文档</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">info bash</span><br><span class="line">info bash <span class="string">'Bash Features'</span></span><br><span class="line">info bash <span class="number">6</span></span><br><span class="line">info --apropos bash</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell-Bash/">Shell, Bash</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-iframe"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/11/23/iframe/">Java web中的浮出层使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/11/23/iframe/" class="article-date">
+	  <time datetime="2016-11-23T05:30:45.000Z" itemprop="datePublished">2016-11-23</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>进行<a href="https://github.com/HITAmigos/WebDataExtraction/" target="_blank" rel="noopener">《软件工程》大项目</a>时，遇到想在主页上仿Google首页上的那种“一个输入框+两个按钮”，同时一个按钮搜索、一个按钮上传文件，于是到网上查了好久，都没有关于“一个按钮实现文件上传”的功能介绍，最后只能使用“通过一个浮出层弹出上传文件”这种方式，下面贴出JavaScript代码。</p>
+<p>在按钮中使用时只需要这样使用就行：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">a</span> href=<span class="string">"javascript:_iframe() %&gt;')"</span> class=<span class="string">"button"</span>&gt;点击进入我的博客&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>JavaScript代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    function _iframe() &#123;</span><br><span class="line">        zeroModal.show(&#123;</span><br><span class="line">            title: <span class="string">'我的博客'</span>,</span><br><span class="line">            <span class="selector-tag">iframe</span>: true,</span><br><span class="line">            url: <span class="string">'http://www.meng.uno'</span>,</span><br><span class="line">            <span class="attribute">width</span>: <span class="string">'60%'</span>,</span><br><span class="line">            <span class="attribute">height</span>: <span class="string">'60%'</span>,</span><br><span class="line">            cancel: true</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-sudo_error"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/11/19/sudo_error/">Mac sudo命令无法使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/11/19/sudo_error/" class="article-date">
+	  <time datetime="2016-11-19T03:29:25.000Z" itemprop="datePublished">2016-11-19</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在之前好长一段时间，不知道因为我改动了哪个文件的权限，导致sudo命令无法使用，每次启动sudo总会报什么权限不对的错误，在网上找了好久都没找到解决办法，包括stackoverflow这么牛逼哄哄的网站上面问题人采纳的方案都无济于事，今天闲来无事，又想解决这个问题，这次我是直接进苹果的“Mac 支持”上看的，发现Mac有个<a href="https://support.apple.com/zh-cn/HT201573" target="_blank" rel="noopener"><code>单用户模式</code></a>（在此给出连接），我进入单用户模式，然后就是一个黑框框，在里面输入以下几条命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount -uw /</span><br><span class="line">chown root:wheel /etc/sudoers</span><br><span class="line">chmod <span class="number">440</span> /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>大致就是恢复文件权限之类的吧，结果<code>reboot</code>之后，居然就好了😝。<br>特此记录以下，给出现同种问题的小伙伴提供下。<br>其实，我的MySQL也有问题，我正准备进MySQL官网看看有什么解决办法😂，所以说，有什么事，能看懂英文的，尽量去软件官网找解决办法！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-string_plus"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/11/01/string_plus/">String的“+”操作分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/11/01/string_plus/" class="article-date">
+	  <time datetime="2016-11-01T08:39:36.000Z" itemprop="datePublished">2016-11-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。<br>我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。</p>
+<h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2><p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-inputaswhole"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/29/inputaswhole/">将多个input合并成一个字符串提交给后台</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/29/inputaswhole/" class="article-date">
+	  <time datetime="2016-10-29T04:50:24.000Z" itemprop="datePublished">2016-10-29</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用JavaScript实现，在尝试了很多次之后，终于成功了，在此先贴上代码。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function n(n)&#123;</span><br><span class="line">	var num="";</span><br><span class="line">	for(var i=0;i&lt;n;i++)&#123;</span><br><span class="line">    num += document.getElementById("num"+i).value;</span><br><span class="line">	&#125;</span><br><span class="line">document.getElementById("result").value = num;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  int num=3;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">form</span>  action=<span class="string">"addAction"</span>&gt;</span><br><span class="line">&lt;input id="num"  name="num" value=&lt;%=num %&gt; type="text"&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span> id=<span class="string">"num&lt;%=i %&gt;"</span> type=<span class="string">"text"</span> onblur=<span class="string">"n(&lt;%=num%&gt;)"</span>&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span>  name=<span class="string">"str"</span> id=<span class="string">"result"</span> type=<span class="string">"hidden"</span> &gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span> &gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-use_git"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/21/use_git/">Git学习小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/21/use_git/" class="article-date">
+	  <time datetime="2016-10-21T07:50:24.000Z" itemprop="datePublished">2016-10-21</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="从Git官方教程出发"><a href="#从Git官方教程出发" class="headerlink" title="从Git官方教程出发"></a>从Git官方教程出发</h2><p>进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：</p>
+<h3 id="建立项目"><a href="#建立项目" class="headerlink" title="建立项目"></a>建立项目</h3><ol>
+<li>init</li>
+<li>clone</li>
+</ol>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ol>
+<li>add</li>
+<li>status</li>
+<li>diff</li>
+<li>commit</li>
+<li>reset</li>
+<li>rm</li>
+<li>mv</li>
+</ol>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><ol>
+<li>branch</li>
+<li>checkout</li>
+<li>merge</li>
+<li>mergetool</li>
+<li>log</li>
+<li>stash</li>
+<li>tag</li>
+</ol>
+<h3 id="分享与更新"><a href="#分享与更新" class="headerlink" title="分享与更新"></a>分享与更新</h3><ol>
+<li>fetch</li>
+<li>pull</li>
+<li>push</li>
+<li>remote</li>
+<li>submodule</li>
+</ol>
+<p>看到这里，我们基本的git学习就可以结束了，要问为什么我只写标题而不写内容，我只想说，我写这篇博客只是为了通过自己写一遍命令来复习一遍而已。😝</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-ruby_email_crawler"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/10/ruby_email_crawler/">E-mail小爬虫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/10/ruby_email_crawler/" class="article-date">
+	  <time datetime="2016-10-10T06:18:08.000Z" itemprop="datePublished">2016-10-10</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ruby据说是一个比Python还要简洁还要快速的编程语言 ：）</p>
+<p>好吧，这里并不是要挑起编程语言之间的战争，每个语言都有自己适应的场景，作为程序员应该知道在什么样的应用场景之下，用哪种的语言来实现业务逻辑，才是最重要的。</p>
+<p>这次，我们使用Ruby来获取网页上的e-mail地址。</p>
+<p>不知道各位有没有在成堆的垃圾邮件中，寻找某宝密码重置的邮件，简直是杯具…… </p>
+<p>我们总是小心翼翼的保护着我们的邮箱，但还是被别有用心的人知道；e-mail爬虫就是这些人的工具之一，它可以在某个网页上过滤出一个个的e-mail，然后发送垃圾邮件。</p>
+<p>“加密”你的email地址，防止爬虫收集</p>
+<p>当然，我们抱着学习的心态，来了解它的基本结构，揭开它神秘的面纱。</p>
+<p>代码下载：<br><code>git clone http://git.shiyanlou.com/shiyanlou/email_spider</code></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>实验楼已经提供了Ruby运行环境，但是，还是需要我们安装一些插件：</p>
+<p>将gem下载源换为国内源</p>
+<p>请确保只有<code>ruby.taobao.org</code></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove http:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -<span class="selector-tag">a</span> http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">**CURRENT SOURCES **</span><br><span class="line">http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br></pre></td></tr></table></figure>
+<p>安装Ruby爬虫库 anemone</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby1.<span class="number">9.1</span>-dev</span><br><span class="line">$ sudo apt-get install libsqlite3-dev</span><br><span class="line">$ sudo gem install anemone</span><br></pre></td></tr></table></figure>
+<p>查看对应的数据库支持</p>
+<p>Ruby数据库支持</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install data_mapper</span><br><span class="line">sudo gem install dm-sqlite-adapter</span><br></pre></td></tr></table></figure>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>我们使用sqlite3来放置我们扒下来的数据：</p>
+<p>Site：存储爬行过的网站</p>
+<p>Page：存储爬行过的存在email地址的页面的URL</p>
+<p>Address：email地址</p>
+<p>我们只讲解其中一个表的model，其他更深入的请看：</p>
+<p>data_mapper property详解</p>
+<p>Page模型需要include模块DataMapper::Resource，引入相应的方法，其中就包括了property，belongs_to，has n，validates_presence_of，这些我们马上需要用到的方法。</p>
+<p>property：定义了对象的属性（表的字段类型），Serial是自增ID，并且是主键。</p>
+<p>belongs_to： 定义了一对多的关系，一个网站可能包含了多个网页URL</p>
+<p>has n：定义多对多的关系，一个网页上可能包含多个email地址，一个email可能同时存在多个网页上。</p>
+<p>validates_presence_of：检查 url是否存在。</p>
+<p>data_mapper validates详解</p>
+<h2 id="爬虫代码"><a href="#爬虫代码" class="headerlink" title="爬虫代码"></a>爬虫代码</h2><p>首先，我们需要引入uri 和 anemone包，其次还需要刚才定义的数据库的model</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">require <span class="string">'uri'</span></span><br><span class="line">require <span class="string">'anemone'</span></span><br><span class="line">require_relative <span class="string">'data'</span></span><br><span class="line">data是对data.rb文件的引用。</span><br><span class="line">ARGV：获取命令行参数</span><br><span class="line"></span><br><span class="line">ruby crawl<span class="selector-class">.rb</span> http:<span class="comment">//www.test.test</span></span><br></pre></td></tr></table></figure>
+<p>ARGV是Ruby的数组，所以我们用循环来处理它，因为我可以输入不只一个URL，如果，我们使用多线程的话，这样就可以同一时间处理多个URL，事半功倍。</p>
+<p>然后马上使用URI()来处理传入的URL，结果返回给uri，下一步就把这个结果存入数据库中，uri.host网站的域名，和当前时间(这里使用的是内置模块Time) URI模块。</p>
+<p>接下来的事情就很写意了，我们不需要自己去做很多的比如什么广度和深度算法的设计，我们只需要给它一个入口的URL，它会自动的去爬行，根本停不下来啊！</p>
+<p>使用模块Anemone的方法crawl创建一个新的爬虫，参数就传一个我们想爬行的URL就OK了！</p>
+<p>Storage.PStore用来缓存新扒下来的网页代码，on_every_page处理每个页面，正则去匹配email，该页面的所有email会被包装在一个数组里面，然后循环这个数组并将结果存放数据库。</p>
+<p>Anemone爬虫模块</p>
+<p>if判断将会去查询address表，如果这个数据存在就更新，不存在则创建。</p>
+<p>Datamapper更删查改详解</p>
+<p>最后，将得到的E-mail地址输出到屏幕，又接着下一次循环，你要是不想等了，直接Ctrl+c吧 ：）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-profile_javaweb"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/07/profile_javaweb/">我的Java+Struts2+MySQL配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/07/profile_javaweb/" class="article-date">
+	  <time datetime="2016-10-07T11:18:54.000Z" itemprop="datePublished">2016-10-07</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在Eclipse中配置Struts2"><a href="#在Eclipse中配置Struts2" class="headerlink" title="在Eclipse中配置Struts2"></a>在Eclipse中配置Struts2</h2><p>为了配置Struts2，首先我明确了，配置其所需要的各个部分的文件，我的理解是，一个web.xml(配置监听器)、一个struts.xml(配置“action”)、导入必要的jar包，现将配置好的文件结构截图展示如下：</p>
+<p><img src="/images/1.png" alt="enter description here" title="1.png"></p>
+<p>其中，web.xml与struts.xml具体内容将在以后篇幅具体展开！</p>
+<h2 id="在Eclipse中配置MySQL"><a href="#在Eclipse中配置MySQL" class="headerlink" title="在Eclipse中配置MySQL"></a>在Eclipse中配置MySQL</h2><p>通过对该实验的理解，我发现eclipse配置数据库，并不是针对某一个项目，而是针对整个集成开发环境，所以，相应地配置MySQL也是整个IDE的事，在软件的总配置中，如下图所示位置：</p>
+<p><img src="/images/6.png" alt="enter description here" title="6.png"></p>
+<p>此为我成功地加入了MySQL之后的界面，如果没有加入，需要点击右侧的“Add…”进行添加，如下图：</p>
+<p><img src="/images/7.png" alt="enter description here" title="7.png"></p>
+<p>由于我添加的是最新的MySQL 5.1，所以在具体的项目中，我也需要导入相应版本的jar包，用来加载MySQL驱动：</p>
+<p><img src="/images/5.png" alt="enter description here" title="5.png"></p>
+<p>添加的具体方法是将本地的此jar文件拖动到“WebContent-&gt;WEB-INF-&gt;lib”文件夹下，然后右键，将其添加到“Build Path”。</p>
+<h2 id="在Eclipse中配置Tomcat"><a href="#在Eclipse中配置Tomcat" class="headerlink" title="在Eclipse中配置Tomcat"></a>在Eclipse中配置Tomcat</h2><p>Tomcat是一个开源的web应用服务器，与MySQL一样，它也是对整个集成开发环境而言的，所以关于其的配置，也在eclipse的设置中，已经配置好的环境如下：</p>
+<p><img src="/images/2.png" alt="enter description here" title="2.png"></p>
+<p>如果是第一次配置，仍然需要点击右侧的“Add…”来选择你要安装的版本：</p>
+<p><img src="/images/3.png" alt="enter description here" title="3.png"></p>
+<p>再下一步就是要选择安装的tomcat的地址与安装名称了：</p>
+<p><img src="/images/4.png" alt="enter description here" title="4.png"></p>
+<p>点击结束，就会自动安装好，每次对着web项目点击右键，在“Run As”选项下，第一个，就是：Run On Server，即在tomcat上运行该程序。</p>
+<p>至此，开发环境已经完全搭建好了，接下来就是实际的开发过程了!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-lab2_se"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/10/06/lab2_se/">软工实验二回顾</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/10/06/lab2_se/" class="article-date">
+	  <time datetime="2016-10-06T12:42:57.000Z" itemprop="datePublished">2016-10-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下：</p>
+<h2 id="SAE的坑"><a href="#SAE的坑" class="headerlink" title="SAE的坑"></a>SAE的坑</h2><p>首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：</p>
+<ul>
+<li>特别贵</li>
+<li>特别不人性</li>
+<li>错误特别多</li>
+<li>……</li>
+</ul>
+<h2 id="怎么应对SAE的坑"><a href="#怎么应对SAE的坑" class="headerlink" title="怎么应对SAE的坑"></a>怎么应对SAE的坑</h2><h3 id="关于数据库的选择"><a href="#关于数据库的选择" class="headerlink" title="关于数据库的选择"></a>关于数据库的选择</h3><p>我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后，发现原来是一个比较简单的又比较不注意的地方，而且网上还没有相关教程！！！<br>原来，<strong>我们本地的MySQL是不区分大小写的，而SAE上的MySQL大小写敏感！！</strong></p>
+<h3 id="连上数据库之后"><a href="#连上数据库之后" class="headerlink" title="连上数据库之后"></a>连上数据库之后</h3><p>在刚才的惊喜之后，又有了另一个问题，就是：原来SAE上传之后需要<strong>相对路径</strong>，不能使用我原来使用的<strong>绝对路径</strong>！</p>
+<h2 id="关于中文"><a href="#关于中文" class="headerlink" title="关于中文"></a>关于中文</h2><p>基本上在编写每一个页面时都会遇到关于中文的问题。</p>
+<h3 id="数据库插入中文"><a href="#数据库插入中文" class="headerlink" title="数据库插入中文"></a>数据库插入中文</h3><p>如果没有声明，默认情况下好像MySQL不是utf-8的编码，所以我将MySQL数据库地址后加入<code>?useUnicode=true&amp;characterEncoding=utf8</code>，就解决了这个问题。</p>
+<h3 id="网页传输遇到中文"><a href="#网页传输遇到中文" class="headerlink" title="网页传输遇到中文"></a>网页传输遇到中文</h3><p>我将一个页面的中文传递到另一个页面，发现在另一个页面接收时，其为空或者乱码，很乱的那种！后来，经过查询，我将“s”添加上，例如<code>&lt;s:from&gt;……</code></p>
+<p>暂时只想到这么多啦！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-lab1_se"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/09/28/lab1_se/">软工实验一要点回顾</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/09/28/lab1_se/" class="article-date">
+	  <time datetime="2016-09-28T10:57:29.000Z" itemprop="datePublished">2016-09-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>距离实验一结束已经有一段时间了，之所以选择在现在这个时候写这篇回顾，是想考验一下，是否真的像老师说的那样：<br>“变量名没有特殊意义的话，过段时间就看不懂了！”<br>虽然没有到那种程度，但是确实：养成一个好的起变量名的习惯，是非常非常重要的！<br>这一次再看以前的代码，觉得有几点比较好的地方：</p>
+<h2 id="方法较清晰"><a href="#方法较清晰" class="headerlink" title="方法较清晰"></a>方法较清晰</h2><p>我们组在一开始规划的时候，就将这次实验“藐视”了，以至于我们只能使用一开始想好的强大的数据结构：数组！！！<br>我们几乎把每种数组都用了一遍，也算是锻炼我们Java结构化编程基础了吧！我们</p>
+<ul>
+<li>用String数组存放以“+/-”分割下来的多项式的每一项；<ul>
+<li>用Int数组存放每一项的符号；</li>
+<li>用Char数组存放原始的输入串的每一个字符——以删掉多余的空格……</li>
+</ul>
+</li>
+</ul>
+<p>总之，Java基本的元素，我们淋漓尽致地用上了！！</p>
+<h2 id="安排较合理"><a href="#安排较合理" class="headerlink" title="安排较合理"></a>安排较合理</h2><p>我们没有将这次实验当做什么大的项目来做，反而是想“投机取巧”。<br>怎么个巧呢？待我一点点招来：</p>
+<ul>
+<li>首先，我们在基本功能保障的情况下，写好了化简以及简化、求导等主要功能；</li>
+<li>然后，当我想要添加功能时，我觉得我可以不用改动已经写好的功能，而仅仅将输入做处理，做成我们需要的样子！！<br>是不是很机智！</li>
+</ul>
+<p>于是，在我们后来的拓展中，我们仅仅以一个for循环就实现一个功能的神速，比较简单地完成了这次实验。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这是我使用Java写的第一个项目，有很多东西没法用的那么熟练，例如：每次分割字符串，我们都是用“substring+for循环”来实现。<br>后来，我终于发现我为什么没法用<strong>split</strong>了，原来在使用它的时候，参数如果是符号，就要加“\”，对，是两个“\”，这样才行。<br>也算是通过实验掌握的一个Java小知识吧！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-cumum2016"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2016/09/12/cumum2016/">一次数学建模经历</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2016/09/12/cumum2016/" class="article-date">
+	  <time datetime="2016-09-12T04:25:49.000Z" itemprop="datePublished">2016-09-12</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/数学建模/">数学建模</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经过三个白天，一个黑夜的战斗，我们终于如期赶出我们的数学建模论文。我将链接附加于此，希望大家帮忙指正。版权所有，请勿抄袭。<br><a href="https://mega.nz/#!PMliSAbb!6hoWFHJEI3W3M0Exn6edmbhhl2CGdZa7XRom-KjktVI" target="_blank" rel="noopener">https://mega.nz/#!PMliSAbb!6hoWFHJEI3W3M0Exn6edmbhhl2CGdZa7XRom-KjktVI</a></p>
+<blockquote>
+<p>结果：省一</p>
+</blockquote>
+<p><strong><em>三天日记</em></strong></p>
+<h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><p>看看现在的时间，竞赛第一天就这么过去了。然而到现在为止，我们什么都没做！！</p>
+<h3 id="为什么会这样？"><a href="#为什么会这样？" class="headerlink" title="为什么会这样？"></a>为什么会这样？</h3><p>我觉得，最主要的原因，应该是我们组自己的问题——从来没有实际模拟过！就在开赛的前几天，我们还在为平时的课而发愁。</p>
+<p>还有就是，我们的选题，虽然我学过一年的交通，但是在这道题上，我还是显得手足无措，丝毫没有思路，当初我们之所以选这道题是因为我们觉得第一题可能不太适合我们非数学系的人做，这么看来，第二题不适合<br>我们非工程学生做啊233。</p>
+<h3 id="我的想法"><a href="#我的想法" class="headerlink" title="我的想法"></a>我的想法</h3><p>虽然有这么多的困难，但是我觉得我还是很有信心的，毕竟这次竞赛意义非比寻常！<br>虽然有那么多的不适合，但是还是有很努力的小伙伴们一起！</p>
+<h3 id="立个Flag"><a href="#立个Flag" class="headerlink" title="立个Flag"></a>立个Flag</h3><p>我们一定做好这次建模！</p>
+<h2 id="第二天"><a href="#第二天" class="headerlink" title="第二天"></a>第二天</h2><p>我们或许还是太年轻，太没有经验，昨天大好时光居然就那么浪费了，谁知道今天依旧没有什么头绪。还</p>
+<p>有10分钟就明天了，可是到现在我们连一个模型都没建好，连第一题都没有写出来。虽说第一次，失败了也没有关系，但是如果还有时间可以努力，但是已经宣布你失败了，谁会甘心！</p>
+<p>我们从早上8点到正心去合作讨论，一直到刚才不久，才回到寝楼的自习室，继续我们的”创举“，只能用充实来形容这一天天的生活。</p>
+<p>不过，大学生嘛，总得在大学期间有所追求，有所疯狂，眼看着已经大三，这应该是我们这组人唯一一次参加的数学建模了。时间不多也不少，还有一半！</p>
+<p>看着对面的两个队友都在认真地查阅着文献，而我却在这写博客，着实有点不好意思，不过还好，马上就结束了，希望我能在接下来的一半时间里，认真投入，也预祝我们对在这次比赛中取得好成绩！</p>
+<h2 id="第三天"><a href="#第三天" class="headerlink" title="第三天"></a>第三天</h2><p>本来昨天才应该是第三天，可是我觉得加上这11个小时，第三天才算完整！</p>
+<p>说实话，前两天我们真的没做出什么像样的东西来，连第二题都没有写完，连模型都没有建起来，但是最后一天往往就是转机！</p>
+<p>第三天如往常一样来临，这一次我们起的一个比一个晚，总是听到周围同学不想做了的豪情壮语，我们也有点想要放弃了呢。</p>
+<p>但我们没一个人敢先提“放弃”，就这样我们仅仅抱着想把这次竞赛打完的想法，一点点凑着我们丝毫没有连贯性的论文。</p>
+<p>夜，很快就来了，我们都感到疲倦。</p>
+<p>最终只有我和赵正宇坚持熬夜来做，我们避开楼管大叔，来到正心楼8楼，准确地说是822教室，教室里随处可见考研教材和英语资料。</p>
+<p>我们选了最后一排，继续我们的创作，本来丝毫没有连贯性的一篇一万多字的“杂文”，居然在我们不到三个小时的时间里将它完全驯服妥帖。</p>
+<p>我们本来都在暗自高兴，也就聊到了其他的一些事情，可能没有这次竞赛，不会和这位老乡这么亲切，也不会体验到真正的努力是什么滋味！<br>乘着兴致，我很快又做完了平时需要几个小时才能完成的评优评奖答辩PPT。</p>
+<p>这是天已经亮了，哈尔滨远没有家乡那么热闹，一切都还在睡梦中。</p>
+<p>我们迫不及待地一遍遍保存、转换格式、阅读……确保没有什么错误了，我们又急切地准备提交了。这一切简直不敢相信，只能说太佩服自己了！<br>今天早晨，吃了这学期第一次早餐，最饱的一次早餐……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学建模/">数学建模</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+
 
 </section>
         
