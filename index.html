@@ -262,61 +262,7 @@
         
           <section id="main" style="float:none;">
   
-    <article id="post-substring"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/02/08/substring/">Java Substring() 的实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/02/08/substring/" class="article-date">
-	  <time datetime="2018-02-08T07:43:08.000Z" itemprop="datePublished">2018-02-08</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>写过Java的人应该都用过<figure class="highlight plain"><figcaption><span>bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## substring()能做什么？</span><br><span class="line">代码:</span><br><span class="line"></span><br><span class="line">``` stylus</span><br><span class="line">String origin = &quot;asdfg&quot;; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre></td></tr></table></figure></p>
-<p>输出:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd</span><br></pre></td></tr></table></figure>
-<p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
-<h2 id="substring-的实现"><a href="#substring-的实现" class="headerlink" title="substring()的实现"></a>substring()的实现</h2><blockquote>
-<p>Java中的字符串有三个域：char value[], int offset以及int count，它们分别存储字符串的值，起始下标与长度。</p>
-</blockquote>
-<h3 id="JDK6版本"><a href="#JDK6版本" class="headerlink" title="JDK6版本"></a>JDK6版本</h3><p>在这个版本中，每次执行substring()方法时并不会新建新的string，仅仅只是将上述三个域中的offset，count做必要的修改。返回对象仍指向原来的数据。</p>
-<p><img src="http://www.meng.uno/images/substring_jdk.png" alt="Substring()实现版本一"></p>
-<p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
-<h3 id="JDK7-版本"><a href="#JDK7-版本" class="headerlink" title="JDK7+版本"></a>JDK7+版本</h3><p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
-<p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
   
 
 
@@ -331,7 +277,7 @@
 
   <div class="container">
       	<div class="row">
-	      <p id="copyRightEn">Copyright &copy; 2018.02.08 - 2018.02.08 欢迎来到我的博客！ All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2018.02.08 - 2018.02.08 <a href="http://meng.uno/">匡盟盟</a> All Rights Reserved.</p>
 
 	      
     		<p class="busuanzi_uv">
