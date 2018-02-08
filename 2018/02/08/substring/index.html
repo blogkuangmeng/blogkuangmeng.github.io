@@ -11,20 +11,20 @@
   
   
   
-  <meta name="description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(o">
+  <meta name="description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678910## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.printl">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Substring() 的实现">
 <meta property="og:url" content="http://meng.uno/2018/02/08/substring/index.html">
 <meta property="og:site_name" content="欢迎来到我的博客！">
-<meta property="og:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(o">
+<meta property="og:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678910## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.printl">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.meng.uno/images/substring_jdk.png">
 <meta property="og:image" content="http://www.meng.uno/images/substring_jdk7.png">
-<meta property="og:updated_time" content="2018-02-08T09:08:00.102Z">
+<meta property="og:updated_time" content="2018-02-08T11:05:20.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Substring() 的实现">
-<meta name="twitter:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.println(o">
+<meta name="twitter:description" content="写过Java的人应该都用过bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。12345678910## substring()能做什么？Input:``` stylusString origin = &amp;quot;asdfg&amp;quot;; origin = origin.substring(1,3);System.out.printl">
 <meta name="twitter:image" content="http://www.meng.uno/images/substring_jdk.png">
   
     <link rel="alternate" href="/atom.xml" title="欢迎来到我的博客！" type="application/atom+xml">
@@ -199,7 +199,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>写过Java的人应该都用过<figure class="highlight plain"><figcaption><span>bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## substring()能做什么？</span><br><span class="line">Input:</span><br><span class="line"></span><br><span class="line">``` stylus</span><br><span class="line">String origin = &quot;asdfg&quot;; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre></td></tr></table></figure></p>
+<p>写过Java的人应该都用过<figure class="highlight plain"><figcaption><span>bedinIndex, int endIndex)```方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">## substring()能做什么？</span><br><span class="line"></span><br><span class="line">Input:</span><br><span class="line"></span><br><span class="line">``` stylus</span><br><span class="line">String origin = &quot;asdfg&quot;; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>Output:</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd</span><br></pre></td></tr></table></figure>
