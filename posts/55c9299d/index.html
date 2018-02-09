@@ -12,18 +12,18 @@
 
 
 
-  <meta name="description" content="¶State-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the">
+  <meta name="description" content="nullState-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to t">
   <meta name="keywords" content="System Verification">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Analysis For Hyperkernel">
   <meta property="og:url" content="http://meng.uno/posts/55c9299d/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="¶State-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the">
+  <meta property="og:description" content="nullState-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to t">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.922Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Analysis For Hyperkernel">
-  <meta name="twitter:description" content="¶State-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the">
+  <meta name="twitter:description" content="nullState-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to t">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -209,13 +209,13 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">¶</a>State-machine Specification</h2>
+                <h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">null</a>State-machine Specification</h2>
                 <p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification
                   consists of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional
                   verification if program is free of loops and state is finite.</p>
                 <p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state
                   or it is runnable, it will return the new procedure so that it can be proved true.</p>
-                <h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">¶</a>Declarative Specification</h2>
+                <h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">null</a>Declarative Specification</h2>
                 <p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the
                   programmer’s confidence in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior,
                   in the form of a conjunction of crosscutting properties that hold across all trap handlers.</p>
@@ -296,8 +296,8 @@
               <strong class="toc-title">文章目录</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#state-machine-specification"><span class="nav-number">1.</span> <span class="nav-text">¶State-machine Specification</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#declarative-specification"><span class="nav-number">2.</span> <span class="nav-text">¶Declarative Specification</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#state-machine-specification"><span class="nav-number">1.</span> <span class="nav-text">nullState-machine Specification</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#declarative-specification"><span class="nav-number">2.</span> <span class="nav-text">nullDeclarative Specification</span></a></li>
               </ol>
 
             </div>
