@@ -94,7 +94,7 @@
 </head>
 
 
-<body style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+<body>
 
 
 
@@ -108,7 +108,7 @@
       <!-- Support rolling -->
       <!-- Don't rolling -->
       <script>
-        var imgUrls = "https://source.unsplash.com/collection/954550/1920x1080".split(",");
+        var imgUrls = "css/images/home-bg.jpg,css/images/sample.jpg,https://source.unsplash.com/collection/954550/1920x2500".split(",");
         var random = Math.floor((Math.random() * imgUrls.length));
         if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
           document.getElementById("intrologo").style.backgroundImage = 'url(' + imgUrls[random] + ')';
@@ -142,14 +142,6 @@
 
         <!-- 折线Polyline背景 -->
       </script>
-
-      <div id="site_search">
-        <div class="form-group">
-          <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control" />
-        </div>
-        <div id="local-search-result"></div>
-      </div>
-
 
       <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);">
 
@@ -194,18 +186,6 @@
       }
     </script>
 
-    <script src="/js/search.js"></script>
-
-
-
-    <script type="text/javascript">
-      var search_path = "search.xml";
-      if (search_path.length == 0) {
-        search_path = "search.xml";
-      }
-      var path = "/" + search_path;
-      searchFunc(path, 'local-search-input', 'local-search-result');
-    </script>
     <div class="intro-navigate">
       <p class="navigater-list">
 
