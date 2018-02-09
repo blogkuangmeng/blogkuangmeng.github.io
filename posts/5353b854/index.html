@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>软工实验二回顾 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+  
+  
+  
+  
+  <meta name="description" content="到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下： ¶SAE的坑 首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：  特别贵 特别不人性 错误特别多 ……  ¶怎么应对SAE的坑 ¶关于数据库的选择 我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软工实验二回顾">
+<meta property="og:url" content="http://meng.uno/posts/5353b854/index.html">
+<meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+<meta property="og:description" content="到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下： ¶SAE的坑 首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：  特别贵 特别不人性 错误特别多 ……  ¶怎么应对SAE的坑 ¶关于数据库的选择 我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-08T12:13:07.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软工实验二回顾">
+<meta name="twitter:description" content="到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下： ¶SAE的坑 首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：  特别贵 特别不人性 错误特别多 ……  ¶怎么应对SAE的坑 ¶关于数据库的选择 我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后">
+  
+    <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+            
+
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/cv.html">关于我</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-lab2_se" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      软工实验二回顾
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/posts/5353b854/" class="article-date">
+	  <time datetime="2016-10-06T12:42:57.000Z" itemprop="datePublished">2016-10-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/软件工程/">软件工程</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数412</span>
+	<span class="post-count"> | 预计时间1分钟</span>
+	</a>
+
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下：</p>
+<h2 id="sae的坑"><a class="header-anchor" href="#sae的坑">¶</a>SAE的坑</h2>
+<p>首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：</p>
+<ul>
+<li>特别贵</li>
+<li>特别不人性</li>
+<li>错误特别多</li>
+<li>……</li>
+</ul>
+<h2 id="怎么应对sae的坑"><a class="header-anchor" href="#怎么应对sae的坑">¶</a>怎么应对SAE的坑</h2>
+<h3 id="关于数据库的选择"><a class="header-anchor" href="#关于数据库的选择">¶</a>关于数据库的选择</h3>
+<p>我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后，发现原来是一个比较简单的又比较不注意的地方，而且网上还没有相关教程！！！<br>
+原来，<strong>我们本地的MySQL是不区分大小写的，而SAE上的MySQL大小写敏感！！</strong></p>
+<h3 id="连上数据库之后"><a class="header-anchor" href="#连上数据库之后">¶</a>连上数据库之后</h3>
+<p>在刚才的惊喜之后，又有了另一个问题，就是：原来SAE上传之后需要<strong>相对路径</strong>，不能使用我原来使用的<strong>绝对路径</strong>！</p>
+<h2 id="关于中文"><a class="header-anchor" href="#关于中文">¶</a>关于中文</h2>
+<p>基本上在编写每一个页面时都会遇到关于中文的问题。</p>
+<h3 id="数据库插入中文"><a class="header-anchor" href="#数据库插入中文">¶</a>数据库插入中文</h3>
+<p>如果没有声明，默认情况下好像MySQL不是utf-8的编码，所以我将MySQL数据库地址后加入<code>?useUnicode=true&amp;characterEncoding=utf8</code>，就解决了这个问题。</p>
+<h3 id="网页传输遇到中文"><a class="header-anchor" href="#网页传输遇到中文">¶</a>网页传输遇到中文</h3>
+<p>我将一个页面的中文传递到另一个页面，发现在另一个页面接收时，其为空或者乱码，很乱的那种！后来，经过查询，我将“s”添加上，例如<code>&lt;s:from&gt;……</code></p>
+<p>暂时只想到这么多啦！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'kuangmeng';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/61cdd944/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          我的Java+Struts2+MySQL配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/9ba24af6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">软工实验一要点回顾</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sae的坑"><span class="nav-number">1.</span> <span class="nav-text">¶SAE的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么应对sae的坑"><span class="nav-number">2.</span> <span class="nav-text">¶怎么应对SAE的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于数据库的选择"><span class="nav-number">2.1.</span> <span class="nav-text">¶关于数据库的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连上数据库之后"><span class="nav-number">2.2.</span> <span class="nav-text">¶连上数据库之后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于中文"><span class="nav-number">3.</span> <span class="nav-text">¶关于中文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库插入中文"><span class="nav-number">3.1.</span> <span class="nav-text">¶数据库插入中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页传输遇到中文"><span class="nav-number">3.2.</span> <span class="nav-text">¶网页传输遇到中文</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p id="copyRightEn">Copyright &copy; 2018.02.08 - 2018.02.09 <a href="http://www.meng.uno/">匡盟盟</a> All Rights Reserved.</p>
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/cv.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            欢迎来到匡盟盟的博客！
+          </div>
+          <div class="panel-body">
+            匡盟盟
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 匡盟盟 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+  
+</body>
+</html>

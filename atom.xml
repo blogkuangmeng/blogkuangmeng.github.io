@@ -18,8 +18,8 @@
   
   <entry>
     <title>二分查找的效率</title>
-    <link href="http://meng.uno/2018/02/08/binsearch/"/>
-    <id>http://meng.uno/2018/02/08/binsearch/</id>
+    <link href="http://meng.uno/posts/fff444e8/"/>
+    <id>http://meng.uno/posts/fff444e8/</id>
     <published>2018-02-08T09:20:00.000Z</published>
     <updated>2018-02-08T13:31:50.641Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>Java Substring() 的实现</title>
-    <link href="http://meng.uno/2018/02/08/substring/"/>
-    <id>http://meng.uno/2018/02/08/substring/</id>
+    <link href="http://meng.uno/posts/f3057e6c/"/>
+    <id>http://meng.uno/posts/f3057e6c/</id>
     <published>2018-02-08T07:43:08.000Z</published>
     <updated>2018-02-08T12:37:35.004Z</updated>
     
@@ -66,8 +66,8 @@
   
   <entry>
     <title>Analysis For Hyperkernel</title>
-    <link href="http://meng.uno/2018/01/29/hv6/"/>
-    <id>http://meng.uno/2018/01/29/hv6/</id>
+    <link href="http://meng.uno/posts/55c9299d/"/>
+    <id>http://meng.uno/posts/55c9299d/</id>
     <published>2018-01-29T13:43:03.000Z</published>
     <updated>2018-02-08T12:02:24.918Z</updated>
     
@@ -92,8 +92,8 @@
   
   <entry>
     <title>中文分词小赛数据</title>
-    <link href="http://meng.uno/2017/10/30/nlpc/"/>
-    <id>http://meng.uno/2017/10/30/nlpc/</id>
+    <link href="http://meng.uno/posts/649482ba/"/>
+    <id>http://meng.uno/posts/649482ba/</id>
     <published>2017-10-30T08:02:41.000Z</published>
     <updated>2017-10-30T08:21:43.000Z</updated>
     
@@ -122,8 +122,8 @@
   
   <entry>
     <title>JavaScript操作DOM</title>
-    <link href="http://meng.uno/2017/03/05/js_dom/"/>
-    <id>http://meng.uno/2017/03/05/js_dom/</id>
+    <link href="http://meng.uno/posts/2c47a986/"/>
+    <id>http://meng.uno/posts/2c47a986/</id>
     <published>2017-03-05T08:03:01.000Z</published>
     <updated>2018-02-08T12:41:17.841Z</updated>
     
@@ -148,8 +148,8 @@
   
   <entry>
     <title>HIT操作系统实验总结</title>
-    <link href="http://meng.uno/2017/01/04/oslab/"/>
-    <id>http://meng.uno/2017/01/04/oslab/</id>
+    <link href="http://meng.uno/posts/86743755/"/>
+    <id>http://meng.uno/posts/86743755/</id>
     <published>2017-01-04T12:50:26.000Z</published>
     <updated>2018-02-08T12:43:30.418Z</updated>
     
@@ -175,8 +175,8 @@
   
   <entry>
     <title>手写数字识别（SVM）</title>
-    <link href="http://meng.uno/2016/12/17/svm_number_recog/"/>
-    <id>http://meng.uno/2016/12/17/svm_number_recog/</id>
+    <link href="http://meng.uno/posts/7dac38a/"/>
+    <id>http://meng.uno/posts/7dac38a/</id>
     <published>2016-12-17T04:08:13.000Z</published>
     <updated>2016-12-17T04:14:46.000Z</updated>
     
@@ -202,8 +202,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>多项式拟合曲线——最小二乘法</title>
-    <link href="http://meng.uno/2016/12/17/least_square_method/"/>
-    <id>http://meng.uno/2016/12/17/least_square_method/</id>
+    <link href="http://meng.uno/posts/1af17fd9/"/>
+    <id>http://meng.uno/posts/1af17fd9/</id>
     <published>2016-12-17T03:59:39.000Z</published>
     <updated>2018-02-08T12:33:01.712Z</updated>
     
@@ -228,8 +228,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>主成分分析（PCA）</title>
-    <link href="http://meng.uno/2016/12/17/pca/"/>
-    <id>http://meng.uno/2016/12/17/pca/</id>
+    <link href="http://meng.uno/posts/6c0d033f/"/>
+    <id>http://meng.uno/posts/6c0d033f/</id>
     <published>2016-12-17T03:52:21.000Z</published>
     <updated>2018-02-08T12:23:34.859Z</updated>
     
@@ -255,8 +255,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>使用EM算法优化的GMM</title>
-    <link href="http://meng.uno/2016/12/17/gmm/"/>
-    <id>http://meng.uno/2016/12/17/gmm/</id>
+    <link href="http://meng.uno/posts/177fbbcc/"/>
+    <id>http://meng.uno/posts/177fbbcc/</id>
     <published>2016-12-17T03:16:53.000Z</published>
     <updated>2018-02-08T12:02:06.038Z</updated>
     
@@ -281,8 +281,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Android新闻软件编写</title>
-    <link href="http://meng.uno/2016/12/16/androidnews/"/>
-    <id>http://meng.uno/2016/12/16/androidnews/</id>
+    <link href="http://meng.uno/posts/8fb3f6d8/"/>
+    <id>http://meng.uno/posts/8fb3f6d8/</id>
     <published>2016-12-16T07:01:14.000Z</published>
     <updated>2016-12-16T07:14:28.000Z</updated>
     
@@ -306,8 +306,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Linux 0.11启动引导</title>
-    <link href="http://meng.uno/2016/12/16/os/"/>
-    <id>http://meng.uno/2016/12/16/os/</id>
+    <link href="http://meng.uno/posts/6c138ff9/"/>
+    <id>http://meng.uno/posts/6c138ff9/</id>
     <published>2016-12-16T06:52:23.000Z</published>
     <updated>2016-12-16T06:58:20.000Z</updated>
     
@@ -332,8 +332,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Android的ListView的使用</title>
-    <link href="http://meng.uno/2016/12/15/android_listview/"/>
-    <id>http://meng.uno/2016/12/15/android_listview/</id>
+    <link href="http://meng.uno/posts/5d6c9819/"/>
+    <id>http://meng.uno/posts/5d6c9819/</id>
     <published>2016-12-15T05:58:11.000Z</published>
     <updated>2016-12-15T06:03:01.000Z</updated>
     
@@ -359,8 +359,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Android实现输入框回车输入</title>
-    <link href="http://meng.uno/2016/12/15/android_enter/"/>
-    <id>http://meng.uno/2016/12/15/android_enter/</id>
+    <link href="http://meng.uno/posts/e60b1ba5/"/>
+    <id>http://meng.uno/posts/e60b1ba5/</id>
     <published>2016-12-15T05:22:51.000Z</published>
     <updated>2016-12-15T05:39:14.000Z</updated>
     
@@ -384,8 +384,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Android页面跳转</title>
-    <link href="http://meng.uno/2016/12/15/android_pages_jump/"/>
-    <id>http://meng.uno/2016/12/15/android_pages_jump/</id>
+    <link href="http://meng.uno/posts/1da18548/"/>
+    <id>http://meng.uno/posts/1da18548/</id>
     <published>2016-12-15T04:46:49.000Z</published>
     <updated>2016-12-15T05:21:17.000Z</updated>
     
@@ -410,8 +410,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>表格搜索</title>
-    <link href="http://meng.uno/2016/12/13/tablesearch/"/>
-    <id>http://meng.uno/2016/12/13/tablesearch/</id>
+    <link href="http://meng.uno/posts/49d54823/"/>
+    <id>http://meng.uno/posts/49d54823/</id>
     <published>2016-12-13T04:29:32.000Z</published>
     <updated>2018-02-08T11:25:03.623Z</updated>
     
@@ -436,8 +436,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>使用JavaScript将页面导出为图片</title>
-    <link href="http://meng.uno/2016/12/13/canvas/"/>
-    <id>http://meng.uno/2016/12/13/canvas/</id>
+    <link href="http://meng.uno/posts/f03eda59/"/>
+    <id>http://meng.uno/posts/f03eda59/</id>
     <published>2016-12-13T04:20:18.000Z</published>
     <updated>2016-12-13T04:25:07.000Z</updated>
     
@@ -462,8 +462,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Java导出Excel</title>
-    <link href="http://meng.uno/2016/12/06/java2excel/"/>
-    <id>http://meng.uno/2016/12/06/java2excel/</id>
+    <link href="http://meng.uno/posts/7725d215/"/>
+    <id>http://meng.uno/posts/7725d215/</id>
     <published>2016-12-06T14:16:48.000Z</published>
     <updated>2018-02-08T12:45:22.485Z</updated>
     
@@ -490,8 +490,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Mac MySQL无法启动解决方案</title>
-    <link href="http://meng.uno/2016/12/06/mysql_error/"/>
-    <id>http://meng.uno/2016/12/06/mysql_error/</id>
+    <link href="http://meng.uno/posts/115ed5e0/"/>
+    <id>http://meng.uno/posts/115ed5e0/</id>
     <published>2016-12-06T13:24:05.000Z</published>
     <updated>2016-12-06T14:18:03.000Z</updated>
     
@@ -517,8 +517,8 @@ svm.SVC(C=8.0, ker
   
   <entry>
     <title>Java发送邮件</title>
-    <link href="http://meng.uno/2016/12/04/javamail/"/>
-    <id>http://meng.uno/2016/12/04/javamail/</id>
+    <link href="http://meng.uno/posts/21f3b9c2/"/>
+    <id>http://meng.uno/posts/21f3b9c2/</id>
     <published>2016-12-04T14:30:34.000Z</published>
     <updated>2018-02-08T12:46:32.970Z</updated>
     
