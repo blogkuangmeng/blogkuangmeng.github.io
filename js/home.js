@@ -17,3 +17,10 @@ function scrollHandler(e) {
     navbar.classList.remove("fixed");
   }
 }
+
+function toggle() {
+  target = document.getElementById("homelogo");
+  target.style.display = "block";
+  target2 = document.getElementById("local-search-result");
+  target2.style.display = "none";
+}

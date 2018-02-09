@@ -17,7 +17,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 // 02110-1301 USA
 //
-
 var searchFunc = function(path, search_id, content_id) {
   'use strict';
   $.ajax({
@@ -32,11 +31,11 @@ var searchFunc = function(path, search_id, content_id) {
           url: $("url", this).text()
         };
       }).get();
-
       var $input = document.getElementById(search_id);
-      if (!$input) return;
+      if (!$input) {
+        return;
+      }
       var $resultContent = document.getElementById(content_id);
-
       $input.addEventListener('input', function() {
         var str = '<ul class=\"search-result-list\">';
         var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
@@ -106,8 +105,6 @@ var searchFunc = function(path, search_id, content_id) {
                 var regS = new RegExp(keyword, "gi");
                 match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
               });
-
-              str += "<p class=\"search-result\">" + match_content + "...</p>"
             }
             str += "</li>";
           }
