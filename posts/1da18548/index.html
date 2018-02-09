@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
 <meta property="og:description" content="¶前情提要 开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了其他牛人的（海量）博客之后，才总结出如下的这点精华步骤（又要感慨一下国内搜索引擎之渣）！ ¶编写AndroidManifest.xml 首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在And">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-12-15T05:21:17.000Z">
+<meta property="og:updated_time" content="2018-02-09T10:46:20.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android页面跳转">
 <meta name="twitter:description" content="¶前情提要 开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了其他牛人的（海量）博客之后，才总结出如下的这点精华步骤（又要感慨一下国内搜索引擎之渣）！ ¶编写AndroidManifest.xml 首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在And">
@@ -189,7 +189,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数770</span>
+	<span class="post-count"> | 字数783</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
 
@@ -218,6 +218,7 @@
 将从MainActivity.java接收来的文字打印到result.xml的框中：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class ResultActivity extends AppCompatActivity&#123;</span><br><span class="line">    private Intent intent;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.result);</span><br><span class="line">        intent = getIntent();</span><br><span class="line">        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);</span><br><span class="line">        System.out.println(message);</span><br><span class="line">       TextView textview = new TextView(this);</span><br><span class="line">       textview.setTextSize(100);</span><br><span class="line">       textview.setText(message);</span><br><span class="line">       setContentView(textview);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>到此为止，已经完成了Android页面跳转！</p>
+<p>本文链接： <a href="http://meng.uno/posts/1da18548/">http://meng.uno/posts/1da18548/</a> 欢迎转载！</p>
 
       
     </div>

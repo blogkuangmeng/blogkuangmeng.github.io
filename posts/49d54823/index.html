@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
 <meta property="og:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单： 12345var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;, function() &amp;#123;  allRows.hide();  $(&quot;tr:conta">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-08T11:25:03.623Z">
+<meta property="og:updated_time" content="2018-02-09T10:46:20.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="表格搜索">
 <meta name="twitter:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单： 12345var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;, function() &amp;#123;  allRows.hide();  $(&quot;tr:conta">
@@ -189,7 +189,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数213</span>
+	<span class="post-count"> | 字数226</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
 
@@ -205,6 +205,7 @@
 <p>在input框之后加入以下JavaScript代码：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">// Quick Table Search</span></span><br><span class="line">$(<span class="string">'#search'</span>).keyup(function() &#123;</span><br><span class="line">  var regex = new RegExp($('#search').val(), "i");</span><br><span class="line">  var rows = $('table tr:gt(0)');</span><br><span class="line">  rows.each(function (index) &#123;</span><br><span class="line">    title = $(this).children(<span class="string">"#title"</span>).html()</span><br><span class="line">    <span class="keyword">if</span> (title.search(regex) != -<span class="number">1</span>) &#123;</span><br><span class="line">      $(this).show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      $(this).hide();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>完美运行有木有！！！</p>
+<p>本文链接： <a href="http://meng.uno/posts/49d54823/">http://meng.uno/posts/49d54823/</a> 欢迎转载！</p>
 
       
     </div>

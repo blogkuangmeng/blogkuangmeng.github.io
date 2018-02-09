@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
 <meta property="og:description" content="¶State-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-08T12:02:24.918Z">
+<meta property="og:updated_time" content="2018-02-09T10:46:20.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Analysis For Hyperkernel">
 <meta name="twitter:description" content="¶State-machine Specification State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the">
@@ -189,7 +189,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数241</span>
+	<span class="post-count"> | 字数254</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
 
@@ -202,6 +202,7 @@
 <p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state or it is runnable, it will return the new procedure so that it can be proved true.</p>
 <h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">¶</a>Declarative Specification</h2>
 <p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the programmer’s confidence in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior, in the form of a conjunction of crosscutting properties that hold across all trap handlers.</p>
+<p>本文链接： <a href="http://meng.uno/posts/55c9299d/">http://meng.uno/posts/55c9299d/</a> 欢迎转载！</p>
 
       
     </div>

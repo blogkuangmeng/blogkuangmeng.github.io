@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
 <meta property="og:description" content="¶起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 ¶结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-11-16T09:09:53.000Z">
+<meta property="og:updated_time" content="2018-02-09T10:46:20.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String的“+”操作分析">
 <meta name="twitter:description" content="¶起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 ¶结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销">
@@ -189,7 +189,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数283</span>
+	<span class="post-count"> | 字数296</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
 
@@ -206,6 +206,7 @@
 <p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p>
 <h2 id="操作"><a class="header-anchor" href="#操作">¶</a>操作</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre></td></tr></table></figure>
+<p>本文链接： <a href="http://meng.uno/posts/fc57b387/">http://meng.uno/posts/fc57b387/</a> 欢迎转载！</p>
 
       
     </div>
