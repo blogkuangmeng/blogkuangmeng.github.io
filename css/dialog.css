@@ -1,3 +1,7 @@
+#comment_title {
+  font-size: 30px;
+}
+
 .modal-content {
   background-color: #ffffff;
   border: 1px solid #999999;
@@ -64,4 +68,10 @@
 .panel-body {
   font-family: "楷体", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   color: #333;
+}
+
+@media (max-width: 600px) {
+  #comment_title {
+    font-size: 20px;
+  }
 }
