@@ -9,225 +9,224 @@ URL:http://www.chris-creed.com
 
 @import "reset.css";
 /* -------------------- */
+
 /* -- General Styles -- */
+
 /* -------------------- */
-#wrap{
-	width:930px;
-	margin:30px auto;
-	font-family:Helvetica, "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-	color:#555;
-	border:1px #eee solid;
-	padding:70px 70px 20px 70px;
-	-webkit-box-shadow:0 0 50px #aaa;
-	-moz-box-shadow:0 0 30px #aaa;
-	box-shadow:0 0 50px #aaa;
-	background:#fff;
-	background:-moz-linear-gradient(top, #EEEEEE 0%, #FFFFFF 2%);
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEEEEE), color-stop(2%, #FFFFFF));
+
+#wraps {
+  font-family: Helvetica, "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  padding: 50px 0 0 0;
+  margin: 0 auto;
 }
-body{
-	font-family: Helvetica, Arial,Georgia, Verdana, san-serif, Times;
-	background-color:#eee;
+
+#warning {
+  display: none;
 }
-h1{
-	font-size:40px;
-	margin:0 0 30px 0;
-	letter-spacing:-1px;
+
+#nameme {
+  font-size: 40px;
+  margin: 0 0 30px 0;
+  letter-spacing: -1px;
 }
-h2{
-	font-size:34px;
-	margin:0 0 20px 0;
+
+.h3c {
+  font-size: 24px;
+  margin: 30px 0 2px 0;
 }
-h3{
-	font-size:24px;
-	margin:30px 0 2px 0;
+
+.h4c {
+  font-size: 20px;
+  margin: 3px 0 1px 0;
 }
-h4{
-	font-size:20px;
-	margin:3px 0 1px 0;
+
+.h5c {
+  font-size: 18px;
+  margin: 15px 0 5px 0;
 }
-h5{
-	font-size:18px;
-	margin:15px 0 5px 0;
+
+.pc {
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0 0 15px 0;
 }
-p{
-	font-size:18px;
-	line-height:22px;
-	margin:0 0 15px 0;
+
+.ac {
+  text-decoration: none;
+  color: #0b8bbb;
 }
-a{
-	text-decoration:none;
-	color:#0b8bbb;
+
+.ac:hover {
+  color: #13227a;
 }
-a:hover{
-	color:#13227a;
+
+.ulc {
+  list-style-type: square;
+  padding: 0;
+  margin: 1em;
+  margin-left: 40px;
 }
-ul {
-list-style-type: square;
-padding:0;
-margin:1em;
-margin-left: 40px;
+
+.lic {
+  color: #e86e14;
 }
-li {
-color:#e86e14;
+
+.lic span {
+  color: #555;
+  /* text color */
 }
-li span {
-  color:#555; /* text color */
-}
+
 /*li {
 color:#555;
 }*/
+
 /*ul li {
 list-style-type: square;
 margin: 0.8em 1em 0.8em 0.5em;
 }*/
-.line{
-	clear:both;
-	border-bottom:3px #eee solid;
-	/*border-bottom:2px #e86e14 solid;*/
-	/* border-bottom:2px #eee solid;*/
+
+.lines {
+  clear: both;
+  border-bottom: 3px #eee solid;
+  /*border-bottom:2px #e86e14 solid;*/
+  /* border-bottom:2px #eee solid;*/
 }
+
 /* ------------ */
-/* -- Header -- */
+
+/* -- headers -- */
+
 /* ------------ */
-#header{
-	float:left;
-	width:930px;
-	margin:0 0 70px 0;
+
+#headers {
+  float: left;
+  width: 930px;
+  margin: 0 0 70px 0;
 }
-#header #header-content{
-	float:left;
-	width:680px;
-	height: 300px;
+
+#headers #headers-contents {
+  float: left;
+  width: 680px;
+  height: 300px;
 }
-#header #header-content h1{
-	margin:0 0 2px 0;
-	color:#444;
+
+#headers #headers-contents h1 {
+  margin: 0 0 2px 0;
+  color: #444;
 }
-#header #header-content h2{
-	color:#0b8bbb;
-	font-size:28px;
+
+#headers #headers-contents h2 {
+  color: #0b8bbb;
+  font-size: 28px;
 }
-#header #header-content p{
-	font-size:15px;
-	margin:0 0 0 1px;
+
+#headers #headers-contents p {
+  font-size: 15px;
+  margin: 0 0 0 1px;
 }
-#header #contact-details{
-	float:left;
-	margin:18px 0 0 0;
+
+#headers #contact-details {
+  float: left;
+  margin: 18px 0 0 0;
 }
-#header #header-content .contact{
-	font-size:16px;
-	color:#888;
-	margin:0;
+
+#headers #headers-contents .contact {
+  font-size: 16px;
+  color: #888;
+  margin: 0;
 }
-#header #header-content .contact span{
-	color:#444;
-	width:75px;
-	float:left;
+
+#headers #headers-contents .contact span {
+  color: #444;
+  width: 75px;
+  float: left;
 }
-#header #header-photo{
-	float:right;
-	margin-top: -300px;
+
+#headers #headers-photos {
+  float: right;
+  margin-top: -300px;
 }
-#photo{
-	width:250px;
-	height:250px;
+
+#photos {
+  width: 250px;
+  height: 250px;
+  float: right;
+  right: 0;
 }
-#kmm{
-	width:250px;
-	height:100px;
+
+#kmm {
+  width: 250px;
+  height: 100px;
 }
-.kmm{
-	float:right;
-	margin-right: 270px;
-	margin-top: -300px;
+
+.kmm {
+  float: right;
+  margin-right: 270px;
+  margin-top: -300px;
 }
+
 /* ------------- */
-/* -- Content -- */
+
+/* -- contents -- */
+
 /* ------------- */
-#content .cv-section{
-	width:900px;
-	margin:0 7.5px 15px 7.5px;
-}
-#content .cv-section h3{
-	font-size:28px;
-	color:#444;
-	margin:45px 0 30px 0;
-}
-#content .cv-section h4.title{
-	font-size:22px;
-	color:#e86e14;
-	margin:0 0 -26px 0;
-}
-#content .cv-section h4.meta{
-	font-size:22px;
-	color:#777;
-}
-#content .cv-section p{
-	font-size:15px;
-	color:#555;
-	letter-spacing:0;
-}
-#content .cv-section-item{
-	padding:0 0 1px 0;
-}
-.abstract {
-	display:none;
-	font-size: 12pt;
-	line-height:13pt;
-	padding:5px 10px;
-	margin:10px 0px 10px 10px;
+
+#contents .cv-section {
+  width: 900px;
+  margin: 0 7.5px 15px 7.5px;
 }
 
-#back-top {
-	position: fixed;
-	bottom: 50px;
-	right: 100px;
-}
-#mail{
-	color: #000;
-}
-#phone{
-	color: #000;
+#contents .cv-section .h3c {
+  font-size: 28px;
+  color: #444;
+  margin: 45px 0 30px 0;
 }
 
-#back-top a {
-	width: 108px;
-	display: block;
-	text-align: center;
-	font: 11px/100% Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
-	text-decoration: none;*/
-	color: #1296db;
-
-	/* transition */
-	-webkit-transition: 1s;
-	-moz-transition: 1s;
-	transition: 1s;
+#contents .cv-section h4.title {
+  font-size: 22px;
+  color: #e86e14;
+  margin: 0 0 -26px 0;
 }
-/* arrow icon (span tag) */
-#back-top span {
-	margin-left:28px;
-	width: 50px;
-	height: 50px;
-	display: block;
-	margin-bottom: 5px;
-	background: url(arrow2.png) no-repeat center center;*/
-	/* rounded corners */
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
 
-	/* transition */
-	-webkit-transition: 1s;
-	-moz-transition: 1s;
-	transition: 1s;
+#contents .cv-section h4.meta {
+  font-size: 22px;
+  color: #777;
 }
-#back-top a:hover{
-	color: #1afa29;
-}
-#back-top a:hover span {
-	background: url(arrow1.png) no-repeat center center;
 
+#contents .cv-section p {
+  font-size: 15px;
+  color: #555;
+  letter-spacing: 0;
+}
+
+#contents .cv-section-item {
+  padding: 0 0 1px 0;
+}
+
+.abstracts {
+  display: none;
+  font-size: 12pt;
+  line-height: 13pt;
+  padding: 5px 10px;
+  margin: 10px 0px 10px 10px;
+}
+
+#mail {
+  color: #000;
+}
+
+#phone {
+  color: #000;
+}
+
+@media (max-width: 960px) {
+  #wraps {
+    display: none;
+  }
+  #warning {
+    display: block;
+    padding-top: 50px;
+    text-align: center;
+    font-size: 20px;
+  }
 }
