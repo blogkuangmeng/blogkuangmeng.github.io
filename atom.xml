@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-02-10T14:52:18.170Z</updated>
+  <updated>2018-02-10T14:52:50.489Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://meng.uno/posts/61c2f1f1/"/>
     <id>http://meng.uno/posts/61c2f1f1/</id>
     <published>2018-02-10T13:58:04.000Z</published>
-    <updated>2018-02-10T14:52:18.170Z</updated>
+    <updated>2018-02-10T14:52:50.489Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>  <p>当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道<code>.length</code>与<code>length()</code>的区别喻原因呢？</p></blockquote><p>上面问题的答案是：</p><ul>  <li>数组使用<code>.length</code>属性</li>  <li>字符串使用<code>length()</code>方法</li></ul><p>下面我来回答原因。</p><h2 id="为什么数组有-length属性？"><a class="header-anchor" href="#为什么数组有-length属性？">🌊</a>为什么数组有<code>.length</code>属性？</h2><p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p><h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2><p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<blockquote>  <p>当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道<code>.length</code>与<code>length()</code>的区别喻原因呢？</p></blockquote><p>上面问题的答案是：</p><ul>  <li>数组使用<code>.length</code>属性</li>  <li>字符串使用<code>length()</code>方法</li></ul><p>下面我来回答原因。</p><h2 id="为什么数组有-length属性？"><a class="header-anchor" href="#为什么数组有-length属性？">🌊</a>为什么数组有<code>.length</code>属性？</h2><p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p><h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2><p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p><p>本文链接: <a href="http://meng.uno/posts/61c2f1f1/">http://meng.uno/posts/61c2f1f1/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -173,16 +173,16 @@
     <link href="http://meng.uno/posts/55c9299d/"/>
     <id>http://meng.uno/posts/55c9299d/</id>
     <published>2018-01-29T13:43:03.000Z</published>
-    <updated>2018-02-10T13:07:14.160Z</updated>
+    <updated>2018-02-10T14:56:55.140Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">🌊</a>State-machine Specification</h2><p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification consists  of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional verification if program  is free of loops and state is finite.</p><p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state or it is runnable,  it will return the new procedure so that it can be proved true.</p><h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">🌊</a>Declarative Specification</h2><p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the programmer’s confidence  in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior, in the form of a conjunction of crosscutting  properties that hold across all trap handlers.</p><p>本文链接: <a href="http://meng.uno/posts/55c9299d/">http://meng.uno/posts/55c9299d/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<blockquote>  <p>Homepage: <a href="https://locore.cs.washington.edu/hyperkernel/" target="_blank" rel="noopener">https://locore.cs.washington.edu/hyperkernel/</a><br> Code: <a href="https://github.com/locore/hv6" target="_blank" rel="noopener">https://github.com/locore/hv6</a></p></blockquote><h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">🌊</a>State-machine Specification</h2><p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification consists  of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional verification if program  is free of loops and state is finite.</p><p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state or it is runnable,  it will return the new procedure so that it can be proved true.</p><h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">🌊</a>Declarative Specification</h2><p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the programmer’s confidence  in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior, in the form of a conjunction of crosscutting  properties that hold across all trap handlers.</p><p>本文链接: <a href="http://meng.uno/posts/55c9299d/">http://meng.uno/posts/55c9299d/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;state-machine-specification&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#state-machine-specification&quot;&gt;🌊&lt;/a&gt;State-machine Specification&lt;/h2&gt;
-&lt;p&gt;
+        &lt;blockquote&gt;
+  &lt;p&gt;Homepage: &lt;a href=&quot;https://locore.cs.washington.edu/hyperkernel/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://locore.cs.washing
       
     
     </summary>

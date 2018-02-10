@@ -18,7 +18,7 @@
 <p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p>
 <h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2>
 <p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/61c2f1f1/">http://meng.uno/posts/61c2f1f1/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             
@@ -339,7 +339,10 @@
     <entry>
       <title><![CDATA[Analysis For Hyperkernel]]></title>
       <url>/posts/55c9299d/</url>
-      <content type="html"><![CDATA[<h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">🌊</a>State-machine Specification</h2>
+      <content type="html"><![CDATA[<blockquote>
+  <p>Homepage: <a href="https://locore.cs.washington.edu/hyperkernel/" target="_blank" rel="noopener">https://locore.cs.washington.edu/hyperkernel/</a><br> Code: <a href="https://github.com/locore/hv6" target="_blank" rel="noopener">https://github.com/locore/hv6</a></p>
+</blockquote>
+<h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">🌊</a>State-machine Specification</h2>
 <p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification consists
   of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional verification if program
   is free of loops and state is finite.</p>
