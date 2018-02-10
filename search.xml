@@ -3,6 +3,34 @@
   
     
     <entry>
+      <title><![CDATA[Java异常结构层次图]]></title>
+      <url>/posts/1164dab2/</url>
+      <content type="html"><![CDATA[<p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p>
+<p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p>
+<p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p>
+<p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Java开发Tips </category>
+            
+            <category> Exception </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> Exception </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[二分查找的效率]]></title>
       <url>/posts/fff444e8/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -218,6 +246,60 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Java异常处理]]></title>
+      <url>/posts/7526d370/</url>
+      <content type="html"><![CDATA[<p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p>
+<h2 id="调用方法必须处理被调用方法抛出的异常"><a class="header-anchor" href="#调用方法必须处理被调用方法抛出的异常">🌊</a>调用方法必须处理被调用方法抛出的异常</h2>
+<p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p>
+<figure class="highlight java">
+  <table>
+    <tr>
+      <td class="gutter">
+        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+      </td>
+      <td class="code">
+        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+      </td>
+    </tr>
+  </table>
+</figure>
+<h2 id="超类可以用来捕获或处理子类异常"><a class="header-anchor" href="#超类可以用来捕获或处理子类异常">🌊</a>超类可以用来捕获或处理子类异常</h2>
+<p>可以使用如下代码验证。</p>
+<figure class="highlight java">
+  <table>
+    <tr>
+      <td class="gutter">
+        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>
+      </td>
+      <td class="code">
+        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> myException myexception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> myException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> myexception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+      </td>
+    </tr>
+  </table>
+</figure>
+<p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Java开发Tips </category>
+            
+            <category> Exception </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> Exception </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Analysis For Hyperkernel]]></title>
       <url>/posts/55c9299d/</url>
       <content type="html"><![CDATA[<h2 id="state-machine-specification"><a class="header-anchor" href="#state-machine-specification">🌊</a>State-machine Specification</h2>
@@ -246,6 +328,66 @@
             <tag> System </tag>
             
             <tag> Verification </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[怎么处理噪声]]></title>
+      <url>/posts/a12d1477/</url>
+      <content type="html"><![CDATA[<p>处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入<code>X</code>，亦可以出现在输出<code>Y</code>中。</p>
+<h2 id="x中缺失值"><a class="header-anchor" href="#x中缺失值">🌊</a><code>X</code>中缺失值</h2>
+<ol>
+  <li>使用来自所有可用数据的特征的平均值</li>
+  <li>忽略实例</li>
+  <li>使用来自类似项目的平均值</li>
+  <li>使用另一个机器学习算法来预测值</li>
+</ol>
+<ul>
+  <li>Bagging 或者 Boosting</li>
+</ul>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> AI（人工智能） </category>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 噪声 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Deep Learning上手工具]]></title>
+      <url>/posts/99be2c50/</url>
+      <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p>
+<p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p>
+<p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> AI（人工智能） </category>
+            
+            <category> Deep Learning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Deep Learning </tag>
             
         </tags>
         

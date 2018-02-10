@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>java substring() 的实现 | 欢迎来到匡盟盟的博客！</title>
+  <title>category: deep learning | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -12,21 +12,16 @@
 
 
 
-  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 🌊substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substr">
-  <meta name="keywords" content="Java">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Java Substring() 的实现">
-  <meta property="og:url" content="http://meng.uno/posts/f3057e6c/index.html">
+  <meta name="description" content="Mengmeng Kuang&apos;s Blog!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:url" content="http://meng.uno/categories/AI（人工智能）/Deep-Learning/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 🌊substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substr">
+  <meta property="og:description" content="Mengmeng Kuang&apos;s Blog!">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/images/substring_jdk.png">
-  <meta property="og:image" content="http://www.meng.uno/images/substring_jdk7.png">
-  <meta property="og:updated_time" content="2018-02-09T10:46:20.937Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Java Substring() 的实现">
-  <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 🌊substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substr">
-  <meta name="twitter:image" content="http://www.meng.uno/images/substring_jdk.png">
+  <meta name="twitter:title" content="欢迎来到匡盟盟的博客！">
+  <meta name="twitter:description" content="Mengmeng Kuang&apos;s Blog!">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -88,6 +83,8 @@
 
 
 
+  <link rel="stylesheet" href="/css/archive.css">
+
 
 
   <link rel="stylesheet" href="/css/vdonate.css">
@@ -98,7 +95,7 @@
 </head>
 
 
-<body data-spy="scroll" data-target="#toc" data-offset="50">
+<body>
 
 
   <div id="container">
@@ -119,7 +116,7 @@
 
 
               <a class="brand" style="
-                 margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                 margin-top: 0px;">
                   <img width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
               </a>
 
@@ -190,158 +187,28 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-substring" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
-            <div id="articleInner" class="article-inner">
+          <section class="archives-wrap">
+            <div class="archive-year-wrap">
+              <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
+            </div>
+            <div class="archives">
 
-
-              <header class="article-header">
-                <h1 class="thumb" class="article-title" itemprop="name">
-                  Java Substring() 的实现
-                </h1>
-              </header>
-
-              <div class="article-meta">
-                <a href="/posts/f3057e6c/" class="article-date">
-	  <time datetime="2018-02-08T07:43:08.000Z" itemprop="datePublished">2018-02-08</time>
+              <article class="archive-article archive-type-post">
+                <div class="archive-article-inner">
+                  <header class="archive-article-header">
+                    <a href="/posts/99be2c50/" class="archive-article-date">
+	  <time datetime="2018-01-10T14:43:43.000Z" itemprop="datePublished">2018-01-10</time>
 	</a>
-                <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
-                <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数300</span>
-	<span class="post-count"> | 预计时间1分钟</span>
-	</a>
-              </div>
-              <div class="article-entry" itemprop="articleBody">
-
-                <p>写过Java的人应该都用过<code>substring(int bedinIndex, int endIndex)</code>方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</p>
-                <h2 id="substring-的用途"><a class="header-anchor" href="#substring-的用途">🌊</a>substring()的用途</h2>
-                <p>代码:</p>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">String origin = "asdfg"; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>输出:</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">sd</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
-                <h2 id="substring-的实现"><a class="header-anchor" href="#substring-的实现">🌊</a>substring()的实现</h2>
-                <blockquote>
-                  <p>Java中的字符串有三个域：char value[], int offset以及int count，它们分别存储字符串的值，起始下标与长度。</p>
-                </blockquote>
-                <h3 id="jdk6版本"><a class="header-anchor" href="#jdk6版本">🌊</a>JDK6版本</h3>
-                <p>在这个版本中，每次执行substring()方法时并不会新建新的string，仅仅只是将上述三个域中的offset，count做必要的修改。返回对象仍指向原来的数据。</p>
-                <p><img src="http://www.meng.uno/images/substring_jdk.png" alt="Substring()实现版本一"></p>
-                <p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
-                <h3 id="jdk7-版本"><a class="header-anchor" href="#jdk7-版本">🌊</a>JDK7+版本</h3>
-                <p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
-                <p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>
-                <p>本文链接: <a href="http://meng.uno/posts/f3057e6c/">http://meng.uno/posts/f3057e6c/</a> 欢迎转载！</p>
-
-              </div>
-              <footer class="article-footer">
-
-                <div id="donation_div"></div>
-
-                <script src="/js/vdonate.js"></script>
-                <script>
-                  var a = new Donate({
-                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
-                    el: document.getElementById('donation_div'),
-                    wechatImage: '',
-                    alipayImage: ''
-                  });
-                </script>
-
-
-                <div id="comment">
-                  <!-- 来必力City版安装代码 -->
-                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
-                    <script type="text/javascript">
-                      (function(d, s) {
-                        var j, e = d.getElementsByTagName(s)[0];
-
-                        if (typeof LivereTower === 'function') {
-                          return;
-                        }
-
-                        j = d.createElement(s);
-                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                        j.async = true;
-
-                        e.parentNode.insertBefore(j, e);
-                      })(document, 'script');
-                    </script>
-                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
-                  </div>
-                  <!-- City版安装代码已完成 -->
+                    <h1 class="thumb" itemprop="name">
+                      <a class="archive-article-title" href="/posts/99be2c50/">Deep Learning上手工具</a>
+                    </h1>
+                  </header>
                 </div>
+              </article>
 
-                <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li>
-                </ul>
-              </footer>
-            </div>
-
-            <nav id="article-nav">
-
-              <a href="/posts/fff444e8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          二分查找的效率
-        
-      </div>
-    </a>
-
-
-              <a href="/posts/7526d370/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Java异常处理</div>
-    </a>
-
-            </nav>
-
-          </article>
-
-          <!-- Table of Contents -->
-
-          <aside id="toc-sidebar">
-            <div id="toc" class="toc-article">
-              <strong class="toc-title">文章目录</strong>
-
-              <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的用途"><span class="nav-number">1.</span> <span class="nav-text">🌊substring()的用途</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的实现"><span class="nav-number">2.</span> <span class="nav-text">🌊substring()的实现</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#jdk6版本"><span class="nav-number">2.1.</span> <span class="nav-text">🌊JDK6版本</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#jdk7-版本"><span class="nav-number">2.2.</span> <span class="nav-text">🌊JDK7+版本</span></a></li>
-                  </ol>
-                </li>
-              </ol>
 
             </div>
-          </aside>
+          </section>
         </section>
 
       </div>
@@ -421,8 +288,6 @@
 
 
 
-        <script src="/js/dialog.js"></script>
-
 
 
 
@@ -494,8 +359,6 @@
 
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-
-  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
 
 
 </body>
