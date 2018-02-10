@@ -3,13 +3,50 @@
   
     
     <entry>
+      <title><![CDATA[.length与length()的区别]]></title>
+      <url>/posts/61c2f1f1/</url>
+      <content type="html"><![CDATA[<blockquote>
+  <p>当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道<code>.length</code>与<code>length()</code>的区别喻原因呢？</p>
+</blockquote>
+<p>上面问题的答案是：</p>
+<ul>
+  <li>数组使用<code>.length</code>属性</li>
+  <li>字符串使用<code>length()</code>方法</li>
+</ul>
+<p>下面我来回答原因。</p>
+<h2 id="为什么数组有-length属性？"><a class="header-anchor" href="#为什么数组有-length属性？">🌊</a>为什么数组有<code>.length</code>属性？</h2>
+<p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p>
+<h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2>
+<p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Java开发Tips </category>
+            
+            <category> String </category>
+            
+            <category> Object </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java异常结构层次图]]></title>
       <url>/posts/1164dab2/</url>
       <content type="html"><![CDATA[<p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p>
 <p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p>
 <p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p>
 <p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/1164dab2/">http://meng.uno/posts/1164dab2/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             
@@ -175,9 +212,9 @@
         
         <tags>
             
-            <tag> 算法复杂性 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 算法复杂性 </tag>
             
             <tag> 二分查找 </tag>
             
@@ -278,7 +315,7 @@
   </table>
 </figure>
 <p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/7526d370/">http://meng.uno/posts/7526d370/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             
@@ -347,7 +384,7 @@
 <ul>
   <li>Bagging 或者 Boosting</li>
 </ul>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/a12d1477/">http://meng.uno/posts/a12d1477/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             
@@ -374,7 +411,7 @@
       <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p>
 <p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p>
 <p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/99be2c50/">http://meng.uno/posts/99be2c50/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             

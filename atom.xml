@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-02-10T14:18:36.955Z</updated>
+  <updated>2018-02-10T14:52:18.170Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -17,13 +17,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>.length与length()的区别</title>
+    <link href="http://meng.uno/posts/61c2f1f1/"/>
+    <id>http://meng.uno/posts/61c2f1f1/</id>
+    <published>2018-02-10T13:58:04.000Z</published>
+    <updated>2018-02-10T14:52:18.170Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>  <p>当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道<code>.length</code>与<code>length()</code>的区别喻原因呢？</p></blockquote><p>上面问题的答案是：</p><ul>  <li>数组使用<code>.length</code>属性</li>  <li>字符串使用<code>length()</code>方法</li></ul><p>下面我来回答原因。</p><h2 id="为什么数组有-length属性？"><a class="header-anchor" href="#为什么数组有-length属性？">🌊</a>为什么数组有<code>.length</code>属性？</h2><p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p><h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2><p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+  &lt;p&gt;当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道&lt;code&gt;.length&lt;/code&gt;与&lt;code&gt;length()&lt;/code&gt;的区别喻原因呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面问题的答案是：&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="Java开发Tips" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/"/>
+    
+      <category term="String" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/String/"/>
+    
+      <category term="Object" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/String/Object/"/>
+    
+    
+      <category term="Java" scheme="http://meng.uno/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java异常结构层次图</title>
     <link href="http://meng.uno/posts/1164dab2/"/>
     <id>http://meng.uno/posts/1164dab2/</id>
     <published>2018-02-09T14:11:15.000Z</published>
-    <updated>2018-02-10T14:18:36.955Z</updated>
+    <updated>2018-02-10T14:51:35.021Z</updated>
     
-    <content type="html"><![CDATA[<p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p><p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p><p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p><p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p><p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p><p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p><p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p><p>本文链接: <a href="http://meng.uno/posts/1164dab2/">http://meng.uno/posts/1164dab2/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -72,9 +104,9 @@
       <category term="Search" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/Search/"/>
     
     
-      <category term="算法复杂性" scheme="http://meng.uno/tags/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
-    
       <category term="Java" scheme="http://meng.uno/tags/Java/"/>
+    
+      <category term="算法复杂性" scheme="http://meng.uno/tags/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     
       <category term="二分查找" scheme="http://meng.uno/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
     
@@ -111,9 +143,9 @@
     <link href="http://meng.uno/posts/7526d370/"/>
     <id>http://meng.uno/posts/7526d370/</id>
     <published>2018-02-01T14:21:52.000Z</published>
-    <updated>2018-02-10T14:28:21.551Z</updated>
+    <updated>2018-02-10T14:51:35.019Z</updated>
     
-    <content type="html"><![CDATA[<p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p><h2 id="调用方法必须处理被调用方法抛出的异常"><a class="header-anchor" href="#调用方法必须处理被调用方法抛出的异常">🌊</a>调用方法必须处理被调用方法抛出的异常</h2><p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p><figure class="highlight java">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>      </td>      <td class="code">        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>      </td>    </tr>  </table></figure><h2 id="超类可以用来捕获或处理子类异常"><a class="header-anchor" href="#超类可以用来捕获或处理子类异常">🌊</a>超类可以用来捕获或处理子类异常</h2><p>可以使用如下代码验证。</p><figure class="highlight java">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>      </td>      <td class="code">        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> myException myexception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> myException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> myexception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>      </td>    </tr>  </table></figure><p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p><h2 id="调用方法必须处理被调用方法抛出的异常"><a class="header-anchor" href="#调用方法必须处理被调用方法抛出的异常">🌊</a>调用方法必须处理被调用方法抛出的异常</h2><p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p><figure class="highlight java">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>      </td>      <td class="code">        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>      </td>    </tr>  </table></figure><h2 id="超类可以用来捕获或处理子类异常"><a class="header-anchor" href="#超类可以用来捕获或处理子类异常">🌊</a>超类可以用来捕获或处理子类异常</h2><p>可以使用如下代码验证。</p><figure class="highlight java">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>      </td>      <td class="code">        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> myException myexception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> myException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> myexception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>      </td>    </tr>  </table></figure><p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p><p>本文链接: <a href="http://meng.uno/posts/7526d370/">http://meng.uno/posts/7526d370/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -171,9 +203,9 @@
     <link href="http://meng.uno/posts/a12d1477/"/>
     <id>http://meng.uno/posts/a12d1477/</id>
     <published>2018-01-27T14:35:33.000Z</published>
-    <updated>2018-02-10T14:40:31.407Z</updated>
+    <updated>2018-02-10T14:51:35.018Z</updated>
     
-    <content type="html"><![CDATA[<p>处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入<code>X</code>，亦可以出现在输出<code>Y</code>中。</p><h2 id="x中缺失值"><a class="header-anchor" href="#x中缺失值">🌊</a><code>X</code>中缺失值</h2><ol>  <li>使用来自所有可用数据的特征的平均值</li>  <li>忽略实例</li>  <li>使用来自类似项目的平均值</li>  <li>使用另一个机器学习算法来预测值</li></ol><ul>  <li>Bagging 或者 Boosting</li></ul><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<p>处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入<code>X</code>，亦可以出现在输出<code>Y</code>中。</p><h2 id="x中缺失值"><a class="header-anchor" href="#x中缺失值">🌊</a><code>X</code>中缺失值</h2><ol>  <li>使用来自所有可用数据的特征的平均值</li>  <li>忽略实例</li>  <li>使用来自类似项目的平均值</li>  <li>使用另一个机器学习算法来预测值</li></ol><ul>  <li>Bagging 或者 Boosting</li></ul><p>本文链接: <a href="http://meng.uno/posts/a12d1477/">http://meng.uno/posts/a12d1477/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -201,9 +233,9 @@
     <link href="http://meng.uno/posts/99be2c50/"/>
     <id>http://meng.uno/posts/99be2c50/</id>
     <published>2018-01-10T14:43:43.000Z</published>
-    <updated>2018-02-10T14:49:12.513Z</updated>
+    <updated>2018-02-10T14:51:35.020Z</updated>
     
-    <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p><p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p><p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p><p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p><p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p><p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p><p>本文链接: <a href="http://meng.uno/posts/99be2c50/">http://meng.uno/posts/99be2c50/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -557,34 +589,6 @@
     
     
       <category term="Android" scheme="http://meng.uno/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>表格搜索</title>
-    <link href="http://meng.uno/posts/49d54823/"/>
-    <id>http://meng.uno/posts/49d54823/</id>
-    <published>2016-12-13T04:29:32.000Z</published>
-    <updated>2018-02-09T10:46:20.941Z</updated>
-    
-    <content type="html"><![CDATA[<p>虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：</p><figure class="highlight">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>      </td>      <td class="code">        <pre><span class="line">var allRows = $("tr");</span><br><span class="line">$(<span class="string">"input#search"</span>).on(<span class="string">"keydown keyup"</span>, function() &#123;</span><br><span class="line">  allRows.hide();</span><br><span class="line">  $("tr:contains('" + $(this).val() + "')").show();</span><br><span class="line">&#125;);</span><br></pre>      </td>    </tr>  </table></figure><p>没有看错，就是这么简单，如果是在实际应用中，可以这样来写：<br> 先声明一个按钮：</p><figure class="highlight stylus">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br></pre>      </td>      <td class="code">        <pre><span class="line">&lt;<span class="selector-tag">input</span> type=<span class="string">"search"</span> id=<span class="string">"search"</span> placeholder=<span class="string">"请输入内容……"</span>&gt;</span><br></pre>      </td>    </tr>  </table></figure><p>在input框之后加入以下JavaScript代码：</p><figure class="highlight stylus">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>      </td>      <td class="code">        <pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">// Quick Table Search</span></span><br><span class="line">$(<span class="string">'#search'</span>).keyup(function() &#123;</span><br><span class="line">  var regex = new RegExp($('#search').val(), "i");</span><br><span class="line">  var rows = $('table tr:gt(0)');</span><br><span class="line">  rows.each(function (index) &#123;</span><br><span class="line">    title = $(this).children(<span class="string">"#title"</span>).html()</span><br><span class="line">    <span class="keyword">if</span> (title.search(regex) != -<span class="number">1</span>) &#123;</span><br><span class="line">      $(this).show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      $(this).hide();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre>      </td>    </tr>  </table></figure><p>完美运行有木有！！！</p><p>本文链接: <a href="http://meng.uno/posts/49d54823/">http://meng.uno/posts/49d54823/</a> 欢迎转载！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;
-  &lt;table&gt;
-    &lt;tr&gt;
-      
-    
-    </summary>
-    
-      <category term="软件工程" scheme="http://meng.uno/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件工程" scheme="http://meng.uno/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
