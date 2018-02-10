@@ -33,11 +33,9 @@
 }
 
 .dialog__content {
-  width: 50%;
+  width: 30%;
   max-width: 560px;
-  min-width: 290px;
-  background: #fff;
-  padding: 4em;
+  min-width: 190px;
   text-align: center;
   position: relative;
   z-index: 5;
@@ -54,6 +52,5 @@
   margin: 0;
   font-weight: 400;
   font-size: 2em;
-  padding: 0 0 2em;
   margin: 0;
 }

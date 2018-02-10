@@ -10,6 +10,73 @@ html {
   height: 100%;
 }
 
+#random-index {
+  margin: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #ecf0f1;
+}
+
+#random-index a {
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+#random-index .title {
+  font-size: 28px;
+  font-weight: 900;
+  font-color: #34495e; // text-shadow: 0 2px rgb(127, 140, 141);
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+#random-index .title a {
+  color: #34495e;
+}
+
+#random-index .title a:hover {
+  color: #34495e;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.sub-title {
+  cursor: pointer;
+  font-weight: none;
+  padding-bottom: 10px;
+}
+
+#random-index .index-nav-link {
+  list-style: none;
+  padding: 5px 5px 0px 5px;
+}
+
+#random-index .index-nav-link li {
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#random-index hr {
+  width: 75%;
+  color: #7f8c8d;
+  margin: 0px auto;
+}
+
+.center-field {
+  margin: 10px auto;
+}
+
+.avatar {
+  cursor: pointer;
+  margin-top: -70px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: #ecf0f1;
+  box-shadow: 0 0px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
 #header {
   height: 100%;
   overflow: hidden;

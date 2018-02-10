@@ -44,6 +44,7 @@ button {
   border: none;
   color: #fff;
   background: #c94e50;
+  display: none;
 }
 
 .content {

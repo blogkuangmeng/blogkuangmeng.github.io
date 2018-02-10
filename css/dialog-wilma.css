@@ -27,8 +27,6 @@
 }
 
 .morph-shape svg rect {
-  stroke: #fff;
-  stroke-width: 2px;
   stroke-dasharray: 1680;
 }
 
@@ -39,11 +37,9 @@
 
 .dialog-inner {
   opacity: 0;
-  background: #fff;
 }
 
 .dialog--open .dialog-inner {
-  padding: 4em;
   opacity: 1;
   -webkit-transition: opacity 0.85s 0.35s;
   transition: opacity 0.85s 0.35s;
