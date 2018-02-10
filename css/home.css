@@ -289,6 +289,12 @@ footer>.container>.row>p>a:hover {
 }
 
 @media (max-width: 680px) {
+  .homelogoback {
+    display: none;
+  }
+  .homelogo {
+    display: none;
+  }
   .pagination-lg>li>a,
   .pagination-lg>li>span {
     padding: 10px 12px;
@@ -331,5 +337,11 @@ footer>.container>.row>p>a:hover {
     font-weight: bold;
     top: 30%;
     letter-spacing: 4px;
+  }
+  .homelogoback {
+    display: none;
+  }
+  .homelogo {
+    display: none;
   }
 }
