@@ -70,8 +70,7 @@
 <p><img src="http://www.meng.uno/images/ltp/8.png" alt="LTP"></p>
 <p>Last, I will add this test case to the “meng” test suite and see the result (You can find the full output in “meng_syscall_output.txt” in the attachment).</p>
 <p><img src="http://www.meng.uno/images/ltp/9.png" alt="LTP"></p>
-<p>From the above picture, we can see that the verification is “pass” which means that not only the “rename” system call is correct, but also my code is right.</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>From the above picture, we can see that the verification is “pass” which means that not only the “rename” system call is correct, but also my code is right.</p>]]></content>
       
         <categories>
             
@@ -229,8 +228,7 @@
 <p>As for association analysis, its propose is to discover interesting links hidden in large data sets and the patterns discovered are usually represented in association rules or frequent item sets just as this paper shown. There are several efficient and
   scalable frequent item set mining methods such as Apriori algorithm and FP-growth which needs to construct FP-tree.</p>
 <p>As for classification and prediction, I think it is a more stirring area. Think of this, a marketing manager needs data analysis to help guess whether or not a customer with a given profile will buy a new computer and then the marketing manager would
-  like to predict how much a given customer will spend during a sale, what an attractive job!</p>
-<p>本文链接: <a href="http://meng.uno/posts/2251dcee/">http://meng.uno/posts/2251dcee/</a> 欢迎转载！</p>]]></content>
+  like to predict how much a given customer will spend during a sale, what an attractive job!</p>]]></content>
       
         <categories>
             
@@ -266,8 +264,7 @@
 <h2 id="为什么数组有-length属性？"><a class="header-anchor" href="#为什么数组有-length属性？">🌊</a>为什么数组有<code>.length</code>属性？</h2>
 <p>在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。</p>
 <h2 id="为什么字符串需要length-方法？"><a class="header-anchor" href="#为什么字符串需要length-方法？">🌊</a>为什么字符串需要<code>length()</code>方法？</h2>
-<p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p>
-<p>本文链接: <a href="http://meng.uno/posts/61c2f1f1/">http://meng.uno/posts/61c2f1f1/</a> 欢迎转载！</p>]]></content>
+<p>Java中的String，实际上是一个char类型数组，而char[]已经有了<code>.length</code>属性，所以在实现String时就没必要再定义重复的属性了，于是需要定义一个方法来返回其长度。</p>]]></content>
       
         <categories>
             
@@ -294,8 +291,7 @@
       <content type="html"><![CDATA[<p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p>
 <p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p>
 <p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p>
-<p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>
-<p>本文链接: <a href="http://meng.uno/posts/1164dab2/">http://meng.uno/posts/1164dab2/</a> 欢迎转载！</p>]]></content>
+<p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>]]></content>
       
         <categories>
             
@@ -447,8 +443,7 @@
 </figure>
 <h2 id="结论"><a class="header-anchor" href="#结论">🌊</a>结论</h2>
 <p>通过以上结果，我们可以发现二分搜索确实很高效，而且当数据量变大时，其时间增长幅度还比较小。</p>
-<p>以后，我们就可以使用<code>Arrays.binarySearch()</code>来高效查找某元素了。</p>
-<p>本文链接: <a href="http://meng.uno/posts/fff444e8/">http://meng.uno/posts/fff444e8/</a> 欢迎转载！</p>]]></content>
+<p>以后，我们就可以使用<code>Arrays.binarySearch()</code>来高效查找某元素了。</p>]]></content>
       
         <categories>
             
@@ -513,8 +508,7 @@
 <p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
 <h3 id="jdk7-版本"><a class="header-anchor" href="#jdk7-版本">🌊</a>JDK7+版本</h3>
 <p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
-<p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>
-<p>本文链接: <a href="http://meng.uno/posts/f3057e6c/">http://meng.uno/posts/f3057e6c/</a> 欢迎转载！</p>]]></content>
+<p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>]]></content>
       
         <categories>
             
@@ -563,8 +557,7 @@
     </tr>
   </table>
 </figure>
-<p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>
-<p>本文链接: <a href="http://meng.uno/posts/7526d370/">http://meng.uno/posts/7526d370/</a> 欢迎转载！</p>]]></content>
+<p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>]]></content>
       
         <categories>
             
@@ -600,8 +593,7 @@
 <h2 id="declarative-specification"><a class="header-anchor" href="#declarative-specification">🌊</a>Declarative Specification</h2>
 <p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the programmer’s confidence
   in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior, in the form of a conjunction of crosscutting
-  properties that hold across all trap handlers.</p>
-<p>本文链接: <a href="http://meng.uno/posts/55c9299d/">http://meng.uno/posts/55c9299d/</a> 欢迎转载！</p>]]></content>
+  properties that hold across all trap handlers.</p>]]></content>
       
         <categories>
             
@@ -635,8 +627,7 @@
 </ol>
 <ul>
   <li>Bagging 或者 Boosting</li>
-</ul>
-<p>本文链接: <a href="http://meng.uno/posts/a12d1477/">http://meng.uno/posts/a12d1477/</a> 欢迎转载！</p>]]></content>
+</ul>]]></content>
       
         <categories>
             
@@ -697,8 +688,7 @@
 <p>All data streams must go through handlers generated by the dispatcher. The data flow is like this.</p>
 <p><img src="http://www.meng.uno/images/rio/10.png" alt="RIO"></p>
 <h2 id="customization"><a class="header-anchor" href="#customization">🌊</a>Customization</h2>
-<p>DynamoRIO has developed some event driven APIs that allow developers to customize instrument instructions. Using it, you can achieve some proposes such as: memory checking, performance testing, system call tracking, code coverage calculation.</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>DynamoRIO has developed some event driven APIs that allow developers to customize instrument instructions. Using it, you can achieve some proposes such as: memory checking, performance testing, system call tracking, code coverage calculation.</p>]]></content>
       
         <categories>
             
@@ -787,8 +777,7 @@
 <p><code>brew install autojump</code></p>
 <p>然后按照提示将一句类似这个</p>
 <p><code>[ -f /usr/local/etc/profile.d/autojump.sh ] &amp;&amp; . /usr/local/etc/profile.d/autojump.sh</code></p>
-<p>的句子插入到<code>.zshrc</code>文件中即可。</p>
-<p>本文链接: <a href="http://meng.uno/posts/d911b12b/">http://meng.uno/posts/d911b12b/</a> 欢迎转载！</p>]]></content>
+<p>的句子插入到<code>.zshrc</code>文件中即可。</p>]]></content>
       
         <categories>
             
@@ -810,8 +799,7 @@
       <url>/posts/99be2c50/</url>
       <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p>
 <p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p>
-<p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p>
-<p>本文链接: <a href="http://meng.uno/posts/99be2c50/">http://meng.uno/posts/99be2c50/</a> 欢迎转载！</p>]]></content>
+<p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p>]]></content>
       
         <categories>
             
@@ -866,8 +854,7 @@
   <li>Variable renumbering and variable number hiding. due to this, XOR clauses are cut and the added variables are always consistently displayed;</li>
   <li>Temporary results are stored in SQLite which supports high speed update;</li>
   <li>XOR recovery.</li>
-</ul>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+</ul>]]></content>
       
         <categories>
             
@@ -932,8 +919,7 @@
   <li>“Simplifier”: Simplify algorithms for AST;</li>
   <li>“Parser”: Store some parsers for the CVC, SMT-LIB1, SMT-LIB2 inputs;</li>
   <li>“STPManager”: Hold all components together.</li>
-</ul>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+</ul>]]></content>
       
         <categories>
             
@@ -999,8 +985,7 @@
   <li>Construct the fault tree;</li>
   <li>Evaluate the fault tree;</li>
   <li>Control the hazards identified.</li>
-</ol>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+</ol>]]></content>
       
         <categories>
             
@@ -1034,8 +1019,7 @@
 <h2 id="data-structure-for-storing-the-big-graphs"><a class="header-anchor" href="#data-structure-for-storing-the-big-graphs">🌊</a>Data Structure for Storing the Big-Graphs</h2>
 <p>Most graph analysis systems assume that the graph is already generated in the requisite format for ingesting into the system. In practice, however, usually the graphs must first be extracted from non-graph data stores using a pre-processing step that
   generates the lists of nodes and edges. In many cases, graph analysis may form one component of a deep analysis pipeline, that also involves non-graph analytics operations; in such cases also, we may need to convert the data among different representations.
-  The costs of such pre-processing or conversion steps can be significant, and in some cases, the cost of extracting graphs may dominate the actual computation that follows (e.g., if edges are generated by computing similarities between node attributes).</p>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+  The costs of such pre-processing or conversion steps can be significant, and in some cases, the cost of extracting graphs may dominate the actual computation that follows (e.g., if edges are generated by computing similarities between node attributes).</p>]]></content>
       
         <categories>
             
@@ -1156,8 +1140,7 @@
   <li>Crossan A, Brewster S, Reid S, et al. Multi-session VR Medical Training: The HOPS Simulator[J]. People and Computers XVI - Memorable Yet Invisible, 2002:213–226.</li>
   <li>Bezerra A. Evaluation of VR medical training applications under the focus of professionals of the health area[C]// ACM Symposium on Applied Computing. ACM, 2009:821-825.</li>
   <li>JLM Vazquez, BK Wiederhold, I Miller, et al. Virtual Reality Assisted Anesthesia (VRAA) during Upper Gastrointestinal Endoscopy: Report of 115 Cases— Analysis of Physiological Responses, 2017</li>
-</ol>
-<p>本文链接: <a href="http://meng.uno/posts/c1dd0093/">http://meng.uno/posts/c1dd0093/</a> 欢迎转载！</p>]]></content>
+</ol>]]></content>
       
         <categories>
             
@@ -1198,8 +1181,7 @@
 <h2 id="所有数据"><a class="header-anchor" href="#所有数据">🌊</a>所有数据</h2>
 <p>所有文件下载：链接: <a href="https://pan.baidu.com/s/1gfJ7Duz" target="_blank" rel="noopener">https://pan.baidu.com/s/1gfJ7Duz</a> 密码: 8mmx</p>
 <h2 id="测试结果"><a class="header-anchor" href="#测试结果">🌊</a>测试结果</h2>
-<p>相关PPT：<a href="http://www.meng.uno/nlpc.pdf" target="_blank" rel="noopener">http://www.meng.uno/nlpc.pdf</a></p>
-<p>本文链接: <a href="http://meng.uno/posts/649482ba/">http://meng.uno/posts/649482ba/</a> 欢迎转载！</p>]]></content>
+<p>相关PPT：<a href="http://www.meng.uno/nlpc.pdf" target="_blank" rel="noopener">http://www.meng.uno/nlpc.pdf</a></p>]]></content>
       
         <categories>
             
@@ -1355,8 +1337,7 @@
   <li>在IE中，通过cloneNode方法复制的元素，会复制事件处理程序，比如，var b = a.cloneNode(true).若a存在click,mouseover等事件监听，则b也会拥有这些事件监听。</li>
   <li>在ff,chrome,safari中，通过cloneNode方法复制的元素，只会复制特性，其他一切都不会复制<br> 因此，若要解决跨浏览器问题，在复制前，最好先移除事件处理程序。
   </li>
-</ul>
-<p>本文链接: <a href="http://meng.uno/posts/2c47a986/">http://meng.uno/posts/2c47a986/</a> 欢迎转载！</p>]]></content>
+</ul>]]></content>
       
         <categories>
             
@@ -1463,8 +1444,7 @@
 <h3 id="file-dev-c"><a class="header-anchor" href="#file-dev-c">🌊</a>file_dev.c</h3>
 <ul>
   <li>添加输出到文件的字符控制</li>
-</ul>
-<p>本文链接: <a href="http://meng.uno/posts/86743755/">http://meng.uno/posts/86743755/</a> 欢迎转载！</p>]]></content>
+</ul>]]></content>
       
         <categories>
             
@@ -1540,8 +1520,7 @@
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/7dac38a/">http://meng.uno/posts/7dac38a/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -1575,8 +1554,7 @@
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/1af17fd9/">http://meng.uno/posts/1af17fd9/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -1681,8 +1659,7 @@
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/6c0d033f/">http://meng.uno/posts/6c0d033f/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -1782,8 +1759,7 @@
 <p>机器在识别方面面临着和人一样的问题，在机器学习中，一个学习算法也会有一个前提假设，这里被称作“归纳偏执”。例如线性回归，目的是要找一个函数尽可能好地拟合给定的数据点，它的归纳偏执就是“满足要求的函数必须是线性函数”。一个没有归纳偏执的学习算法从某种意义上来说毫无用处，就像一个完全没有归纳能力的人一样，在第一次看到鱼的时候有人告诉他那是鱼，下次看到另一条鱼了，他并不知道那也是鱼，因为两条鱼总有一些地方不一样的，或者就算是同一条鱼，在河里不同的地方看到，或者只是看到的时间不一样，也会被他认为是不同的，因为他无法归纳，无法提取主要矛盾、忽略次要因素，只好要求所有的条件都完全一样──然而哲学家已经告诉过我们了：世界上不会有任何样东西是完全一样的，所以这个人即使是有无比强悍的记忆力，也绝学不到任何一点知识。</p>
 <p>于是有了上面的铺垫，我们就可以引出论题——“过拟合 ”，就像前面的回归的问题，如果去掉“线性函数”这个归纳偏执，因为对于 N 个点，我们总是可以构造一个 N-1 次多项式函数，让它完美地穿过所有的这 N 个点，或者如果我用任何大于 N-1 次的多项式函数的话，我们甚至可以构造出无穷多个满足条件的函数出来。如果假定特定领域里的问题所给定的数据个数总是有个上限的话，我可以取一个足够大的 N ，从而得到一个（或者无穷多个）“超级函数”，能够拟合这个领域内所有的问题。</p>
 <p>没有归纳偏执或者归纳偏执太宽泛会导致过拟合 ，然而另一个极端──限制过大的归纳偏执也是有问题的：如果数据本身并不是线性的，强行用线性函数去做回归通常并不能得到好结果（例如我在“实验一：多项式拟合曲线”中就做过相应的测试）。难点正在于在这之间寻找一个临界点。不过我们在这里相对于机器来说有一个很大的优势：人通常不会孤立地用某一个独立的系统和模型去处理问题，一个人每天都会从各个来源获取大量的信息，并且通过各种手段进行整合处理，归纳所得的所有知识最终得以统一地存储起来，并能有机地组合起来去解决特定的问题。</p>
-<p>以上就是我关于“过拟合”的一点不全面的思考！</p>
-<p>本文链接: <a href="http://meng.uno/posts/177fbbcc/">http://meng.uno/posts/177fbbcc/</a> 欢迎转载！</p>]]></content>
+<p>以上就是我关于“过拟合”的一点不全面的思考！</p>]]></content>
       
         <categories>
             
@@ -1897,8 +1873,7 @@
     </tr>
   </table>
 </figure>
-<p>至此一个新闻客户端基本框架就已经编写完毕！</p>
-<p>本文链接: <a href="http://meng.uno/posts/8fb3f6d8/">http://meng.uno/posts/8fb3f6d8/</a> 欢迎转载！</p>]]></content>
+<p>至此一个新闻客户端基本框架就已经编写完毕！</p>]]></content>
       
         <categories>
             
@@ -1932,8 +1907,7 @@
 <h2 id="head-s"><a class="header-anchor" href="#head-s">🌊</a>head.s</h2>
 <p>其被编译到内核镜像中。重新定义了GDT表(目前就一个第二个段描述符有效)和并定义LDT表（表中中断处理程序目前还是指向一个默认的处理程序），并加载相应的寄存器；<br> 内存开始处设置页目录表，一共有4个叶目录，初始化页目录，然后开启分页，最后跳到主函数main()。
 </p>
-<p>至此，系统启动引导完成。</p>
-<p>本文链接: <a href="http://meng.uno/posts/6c138ff9/">http://meng.uno/posts/6c138ff9/</a> 欢迎转载！</p>]]></content>
+<p>至此，系统启动引导完成。</p>]]></content>
       
         <categories>
             
@@ -1981,8 +1955,7 @@
   </table>
 </figure>
 <p>其他文件保持不变即可。<br> 至此，一个Android列表程序就实现了。
-</p>
-<p>本文链接: <a href="http://meng.uno/posts/5d6c9819/">http://meng.uno/posts/5d6c9819/</a> 欢迎转载！</p>]]></content>
+</p>]]></content>
       
         <categories>
             
@@ -2025,8 +1998,7 @@
   <br> actionUnspecified——回车符–&gt;未指定
   <br> actionSend——回车符–&gt;发送
   <br> 又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上android:inputType 或者 android:singleline=”true”<br> 至此，就完成了Android回车符向iOS的转化！
-</p>
-<p>本文链接: <a href="http://meng.uno/posts/e60b1ba5/">http://meng.uno/posts/e60b1ba5/</a> 欢迎转载！</p>]]></content>
+</p>]]></content>
       
         <categories>
             
@@ -2122,8 +2094,7 @@
     </tr>
   </table>
 </figure>
-<p>到此为止，已经完成了Android页面跳转！</p>
-<p>本文链接: <a href="http://meng.uno/posts/1da18548/">http://meng.uno/posts/1da18548/</a> 欢迎转载！</p>]]></content>
+<p>到此为止，已经完成了Android页面跳转！</p>]]></content>
       
         <categories>
             
@@ -2183,8 +2154,7 @@
     </tr>
   </table>
 </figure>
-<p>完美运行有木有！！！</p>
-<p>本文链接: <a href="http://meng.uno/posts/49d54823/">http://meng.uno/posts/49d54823/</a> 欢迎转载！</p>]]></content>
+<p>完美运行有木有！！！</p>]]></content>
       
         <categories>
             
@@ -2217,8 +2187,7 @@
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/f03eda59/">http://meng.uno/posts/f03eda59/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -2252,8 +2221,7 @@
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/7725d215/">http://meng.uno/posts/7725d215/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -2365,8 +2333,7 @@
     </tr>
   </table>
 </figure>
-<p>至此应该来说MySQL应该好使了。</p>
-<p>本文链接: <a href="http://meng.uno/posts/115ed5e0/">http://meng.uno/posts/115ed5e0/</a> 欢迎转载！</p>]]></content>
+<p>至此应该来说MySQL应该好使了。</p>]]></content>
       
         <categories>
             
@@ -2462,8 +2429,7 @@ public class MailAction {
       sms.sendHtmlMail(mailInfo);//发送html格式 
    }
 }
-</code></pre>
-<p>本文链接: <a href="http://meng.uno/posts/21f3b9c2/">http://meng.uno/posts/21f3b9c2/</a> 欢迎转载！</p>]]></content>
+</code></pre>]]></content>
       
         <categories>
             
@@ -2598,7 +2564,7 @@ public class MailAction {
         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
       </td>
       <td class="code">
-        <pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">``<span class="javascript"><span class="string">`grep</span></span>``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">``<span class="javascript"><span class="string">`ls -l | grep "\.txt"</span></span></span><br></pre>
+        <pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">```grep``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">```ls -l | grep "\.txt"</span><br></pre>
       </td>
     </tr>
   </table>
@@ -2988,8 +2954,7 @@ public class MailAction {
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/19f2d195/">http://meng.uno/posts/19f2d195/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -3037,8 +3002,7 @@ public class MailAction {
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/fa7b6881/">http://meng.uno/posts/fa7b6881/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -3073,8 +3037,7 @@ public class MailAction {
 </figure>
 <p>大致就是恢复文件权限之类的吧，结果<code>reboot</code>之后，居然就好了😝。<br> 特此记录以下，给出现同种问题的小伙伴提供下。
   <br> 其实，我的MySQL也有问题，我正准备进MySQL官网看看有什么解决办法😂，所以说，有什么事，能看懂英文的，尽量去软件官网找解决办法！！
-</p>
-<p>本文链接: <a href="http://meng.uno/posts/e3b9b515/">http://meng.uno/posts/e3b9b515/</a> 欢迎转载！</p>]]></content>
+</p>]]></content>
       
         <categories>
             
@@ -3113,8 +3076,7 @@ public class MailAction {
       </td>
     </tr>
   </table>
-</figure>
-<p>本文链接: <a href="http://meng.uno/posts/fc57b387/">http://meng.uno/posts/fc57b387/</a> 欢迎转载！</p>]]></content>
+</figure>]]></content>
       
         <categories>
             
@@ -3153,8 +3115,7 @@ public class MailAction {
   </table>
 </figure>
 <h2 id="分析"><a class="header-anchor" href="#分析">🌊</a>分析</h2>
-<p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
-<p>本文链接: <a href="http://meng.uno/posts/f12d3e70/">http://meng.uno/posts/f12d3e70/</a> 欢迎转载！</p>]]></content>
+<p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>]]></content>
       
         <categories>
             
@@ -3209,8 +3170,7 @@ public class MailAction {
   <li>remote</li>
   <li>submodule</li>
 </ol>
-<p>看到这里，我们基本的git学习就可以结束了，要问为什么我只写标题而不写内容，我只想说，我写这篇博客只是为了通过自己写一遍命令来复习一遍而已。😝</p>
-<p>本文链接: <a href="http://meng.uno/posts/5850713f/">http://meng.uno/posts/5850713f/</a> 欢迎转载！</p>]]></content>
+<p>看到这里，我们基本的git学习就可以结束了，要问为什么我只写标题而不写内容，我只想说，我写这篇博客只是为了通过自己写一遍命令来复习一遍而已。😝</p>]]></content>
       
         <categories>
             
@@ -3317,8 +3277,7 @@ public class MailAction {
 <p>Anemone爬虫模块</p>
 <p>if判断将会去查询address表，如果这个数据存在就更新，不存在则创建。</p>
 <p>Datamapper更删查改详解</p>
-<p>最后，将得到的E-mail地址输出到屏幕，又接着下一次循环，你要是不想等了，直接Ctrl+c吧 ：）</p>
-<p>本文链接: <a href="http://meng.uno/posts/5d4e2c71/">http://meng.uno/posts/5d4e2c71/</a> 欢迎转载！</p>]]></content>
+<p>最后，将得到的E-mail地址输出到屏幕，又接着下一次循环，你要是不想等了，直接Ctrl+c吧 ：）</p>]]></content>
       
         <categories>
             
@@ -3358,8 +3317,7 @@ public class MailAction {
 <p>再下一步就是要选择安装的tomcat的地址与安装名称了：</p>
 <p><img src="/images/4.png" alt="enter description here" title="4.png"></p>
 <p>点击结束，就会自动安装好，每次对着web项目点击右键，在“Run As”选项下，第一个，就是：Run On Server，即在tomcat上运行该程序。</p>
-<p>至此，开发环境已经完全搭建好了，接下来就是实际的开发过程了!</p>
-<p>本文链接: <a href="http://meng.uno/posts/61cdd944/">http://meng.uno/posts/61cdd944/</a> 欢迎转载！</p>]]></content>
+<p>至此，开发环境已经完全搭建好了，接下来就是实际的开发过程了!</p>]]></content>
       
         <categories>
             
@@ -3400,8 +3358,7 @@ public class MailAction {
 <p>如果没有声明，默认情况下好像MySQL不是utf-8的编码，所以我将MySQL数据库地址后加入<code>?useUnicode=true&amp;characterEncoding=utf8</code>，就解决了这个问题。</p>
 <h3 id="网页传输遇到中文"><a class="header-anchor" href="#网页传输遇到中文">🌊</a>网页传输遇到中文</h3>
 <p>我将一个页面的中文传递到另一个页面，发现在另一个页面接收时，其为空或者乱码，很乱的那种！后来，经过查询，我将“s”添加上，例如<code>&lt;s:from&gt;……</code></p>
-<p>暂时只想到这么多啦！！</p>
-<p>本文链接: <a href="http://meng.uno/posts/5353b854/">http://meng.uno/posts/5353b854/</a> 欢迎转载！</p>]]></content>
+<p>暂时只想到这么多啦！！</p>]]></content>
       
         <categories>
             
@@ -3446,8 +3403,7 @@ public class MailAction {
 <h2 id="后记"><a class="header-anchor" href="#后记">🌊</a>后记</h2>
 <p>这是我使用Java写的第一个项目，有很多东西没法用的那么熟练，例如：每次分割字符串，我们都是用“substring+for循环”来实现。<br> 后来，我终于发现我为什么没法用
   <strong>split</strong>了，原来在使用它的时候，参数如果是符号，就要加“\”，对，是两个“\”，这样才行。<br> 也算是通过实验掌握的一个Java小知识吧！！
-</p>
-<p>本文链接: <a href="http://meng.uno/posts/9ba24af6/">http://meng.uno/posts/9ba24af6/</a> 欢迎转载！</p>]]></content>
+</p>]]></content>
       
         <categories>
             
@@ -3502,8 +3458,7 @@ public class MailAction {
 </p>
 <p>这是天已经亮了，哈尔滨远没有家乡那么热闹，一切都还在睡梦中。</p>
 <p>我们迫不及待地一遍遍保存、转换格式、阅读……确保没有什么错误了，我们又急切地准备提交了。这一切简直不敢相信，只能说太佩服自己了！<br> 今天早晨，吃了这学期第一次早餐，最饱的一次早餐……
-</p>
-<p>本文链接: <a href="http://meng.uno/posts/832e4a48/">http://meng.uno/posts/832e4a48/</a> 欢迎转载！</p>]]></content>
+</p>]]></content>
       
         <categories>
             
