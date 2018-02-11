@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>paper report for a melody composer for both tonal and non-tonal languages | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+
+
+  <meta name="description" content="Summary 🌊Abstract This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the">
+  <meta name="keywords" content="Paper Report,Data Mining">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Paper Report for A Melody Composer for both Tonal and Non-Tonal Languages">
+  <meta property="og:url" content="http://meng.uno/posts/2251dcee/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="Summary 🌊Abstract This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music-arch.png">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music-database.png">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music-database2.png">
+  <meta property="og:updated_time" content="2018-02-11T04:16:16.565Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Paper Report for A Melody Composer for both Tonal and Non-Tonal Languages">
+  <meta name="twitter:description" content="Summary 🌊Abstract This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the">
+  <meta name="twitter:image" content="http://www.meng.uno/images/t-music-arch.png">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-paperreport-hkust-dm" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Paper Report for A Melody Composer for both Tonal and Non-Tonal Languages
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/posts/2251dcee/" class="article-date">
+	  <time datetime="2018-02-11T04:03:24.000Z" itemprop="datePublished">2018-02-11</time>
+	</a>
+                <a class="article-category-link" href="/categories/Paper-Report/">Paper Report</a>
+                <a class="article-category-link" href="/categories/Paper-Report/Data-mining/">Data mining</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,399</span>
+	<span class="post-count"> | 预计时间15分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>Summary</h1>
+                <h2 id="abstract"><a class="header-anchor" href="#abstract">🌊</a>Abstract</h2>
+                <p>This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the relationship between the melodies and lyrics. These relationships
+                  are known as frequent patterns (FPS) . The ameliorations are two ways to enhance the methods of mining frequent patterns form instrumental compositions and an optimal way of using FPS mined from songs in one language to compose a melody
+                  for the input things in another language.</p>
+                <h2 id="propse"><a class="header-anchor" href="#propse">🌊</a>Propse</h2>
+                <p>The propose is to get an algorithm which take lyrics as input and a good melody as outcome in order to help those people who have little music background to compose songs. In view of the fact that there is already a pretty well method,
+                  T-music, the authors’ tasks are making some improvements on the basis of the original algorithm.</p>
+                <h2 id="deficiencies-of-original-algorithm"><a class="header-anchor" href="#deficiencies-of-original-algorithm">🌊</a>Deficiencies of original algorithm</h2>
+                <p>At the first place, I need to borrow a figure from the paper as follows to express my understanding of the original T-music method.</p>
+                <p><img src="http://www.meng.uno/images/t-music-arch.png" alt="t-musuc"></p>
+                <p>As the picture shows that the system architecture of T-music can be divided as two phases which are “Frequent Pattern Mining” and “Melody Composition”. I will report this method following the flow of the algorithm.</p>
+                <ul>
+                  <li>
+                    <p>Mining the FPS from “Song Database” and storing them in the “Frequent Pattern Database”:</p>
+                    <ul>
+                      <li>Obtaining tone sequences from “Song Database” by reading the “Language Dictionary”;</li>
+                      <li>Generating s-sequence from a melody, a pitch sequence and a duration sequence;</li>
+                      <li>Mining the FPS from s-sequence;</li>
+                      <li>Storing the FPS to “Frequent Pattern Database”.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p>Composing a melody for the “Lyrics” based on FPS in the “Frequent Pattern Database”:</p>
+                    <ul>
+                      <li>Obtaining the tone sequence of the lyrics by reading the “Language Dictionary”;</li>
+                      <li>Adding some “Music Parameters” such as some music rules;</li>
+                      <li>Generating “Melody” by the process “Melody Composition” using FPS.</li>
+                    </ul>
+                  </li>
+                </ul>
+                <p>There are some deficiencies of the original T-music algorithm as follows. It can only mine FPS from songs in which lyrics must be present. What’s more, the original one can’t use the FPS mined from a language to compose melody in another
+                  language. However, we can’t always get the ideal songs data which have lyrics embedded easily. What we can get from the Internet are those instrumental compositions in which lyrics are absent. Also, we want to achieve that composing
+                  melody in a language with the FPS mined from another language which can make the algorithm more efficient.</p>
+                <h2 id="improvements"><a class="header-anchor" href="#improvements">🌊</a>Improvements</h2>
+                <p>What the authors have done provided two ways to mine Frequent Patterns from instrumental compositions and an optimal mapping method for composing a melody using FPS in different language with the input lyrics.</p>
+                <p>The first way is “Method emphasizing the original FPS”. I will use the following picture to express my comprehension. Firstly, mining the FPS from songs and storing them in “FP database (General)”. Secondly, mining the frequent pitch trends
+                  from “Instrumental compositions with style database” and storing them in “Frequent pitch trends (Style)” and then using it as a selector to select those FPS storing the matches in “FP database (Style)”.</p>
+                <p><img src="http://www.meng.uno/images/t-music-database.png" alt="t-musuc"></p>
+                <p>The second way is “Method emphasizing the newly mined frequent pitch trends”. I will also introduce it using the screenshot from the paper. The FPS based on those of the first way was subdivided. The frequent pitch trends are mined as
+                  usually. The most difference is that one pitch trend may match a set of several tone trends.</p>
+                <p><img src="http://www.meng.uno/images/t-music-database2.png" alt="t-musuc"></p>
+                <p>The optimal mapping method is shown as follows. Firstly, using the same method gets a “FP database” in one language. Then, generating several tone sequences for each tone trend in this “FP database”. There are some lemmas proofed on the
+                  paper to decide the specific number of the mapping.</p>
+                <h1>Improvements</h1>
+                <p>In this section, I will analysis some excellent algorithms, important thoughts or some key points. Some of them may look small or nothing special, but each has its function.</p>
+                <h2 id="using-the-trend-representation"><a class="header-anchor" href="#using-the-trend-representation">🌊</a>Using the “Trend” representation</h2>
+                <p>If I were doing this job, I could have chosen the simple “absolute” representation, just because this is the most intuitive frequent pattern we can get from songs. After careful consideration, just as the author explains that same melodies
+                  which start at different pitches may sound similar to us. Then, I understand that it is a big wisdom to use the “trend” representation which uses a FP to extract the general rules of a set of FPS with different pitches, simplifying a
+                  large number of calculations and making the result more obvious.</p>
+                <h2 id="using-frequent-pitch-trends-style-as-a-selector"><a class="header-anchor" href="#using-frequent-pitch-trends-style-as-a-selector">🌊</a>Using “Frequent pitch trends (Style)” as a selector</h2>
+                <p>Though we know that “T-music” uses “the FPS between the tone port and the pitch part” and agree the mining method used on mining the frequent pattern which contains a tone trend and a pitch trend, there must be some correlation between
+                  “Tone trend” and “Pitch trend”. Since the instrumental compositions don’t contain lyrics, we couldn’t mine a whole frequent pattern from them. However, we can also mine part of the frequent pattern from them which is “Pitch trend”. For
+                  we have so much instrumental compositions which means we can get enough “Pitch trend” and we already know the correlation between “Tone trend” and “Pitch trend”, we can estimate the frequency of the original frequent pattern and eliminate
+                  part of them which have a zero frequency.</p>
+                <h2 id="using-the-subsequences-of-original-frequent-pattern"><a class="header-anchor" href="#using-the-subsequences-of-original-frequent-pattern">🌊</a>Using the subsequences of original frequent pattern</h2>
+                <p>According to the Apriori property that all nonempty subsets of frequent item set must also be frequent, the authors artfully break the original FPS into smaller form and then making them combine more FPS which can be selected from the
+                  original FP database. By doing this, we can get more frequent patterns from the identical data which means our mining algorithm is more efficient.</p>
+                <h2 id="using-multi-map-as-a-data-structure"><a class="header-anchor" href="#using-multi-map-as-a-data-structure">🌊</a>Using multi-map as a data structure</h2>
+                <p>This data structure allows the task of retrieving a value by a key quickly and returns more than one frequent pattern with a support. From it, we can get a tuple in top-k tuples with some selection strategies and ensure that a pattern
+                  with a very large support isn’t always selected because it doesn’t mean that it is always the best choice.</p>
+                <h2 id="employing-the-divide-and-conquer-idea"><a class="header-anchor" href="#employing-the-divide-and-conquer-idea">🌊</a>Employing the divide and conquer idea</h2>
+                <p>Considering to compose a melody of a very long lyric, we may need to divide the original tone trend into several shorter tone trends, apply the same procedure on them and then return the concatenation of the results of the sub-problems.
+                  It is a simple idea of solving such problem, but we can’t resist its correctness and effectiveness.</p>
+                <h1>Limitations</h1>
+                <p>I just list some areas that I think need improvements or I think it can be added slightly on the basis of the original research.</p>
+                <h2 id="applying-word-segmentation"><a class="header-anchor" href="#applying-word-segmentation">🌊</a>Applying word segmentation</h2>
+                <p>Though the paper has mentioned the use of word segmentation, there is just a word and no detailed explanation. I think I should express my own idea here. Firstly, the word segmentation here isn’t the same of those applied in the fields
+                  of natural language processing (NLP). As we all known, the latter has so many strict norms to follow, however, in the lyrics, the norms aren’t very same. Why we do this in the input lyrics is because we want to determine the length of
+                  durations between every two words, which is different from the propose in the NLP which just wants to add pause at the same length of time between words and words.</p>
+                <h2 id="handling-the-tone-trend-with-a-length-of-1"><a class="header-anchor" href="#handling-the-tone-trend-with-a-length-of-1">🌊</a>Handling the tone trend with a length of 1</h2>
+                <p>In this paper, the authors just simply set the pitch trend to be the input tone trend where, I think, may need improvement. Firstly, we all know that “the tone trend with a length of 1” couldn’t appear individually. It is usually because
+                  we matched the tone sequences before it or after it. I think if we consider dividing the original sequence into overlapping parts using the similar idea of divide and conquer idea, the question may disappear.</p>
+                <h2 id="mining-the-relationship-between-tone-trend-and-pitch-trend"><a class="header-anchor" href="#mining-the-relationship-between-tone-trend-and-pitch-trend">🌊</a>Mining the relationship between “tone trend” and “pitch trend”</h2>
+                <p>The authors just determine the relationship based on statistics in whether the original T-music method or the improved edition, store the regulars on a multi-map and when using the frequent pattern, the method just randomly selects a tuple
+                  from top-k tuples from the multi-map. Therefore, no matter which one we choose, it is just the original sequence in the FP-database. If there is a very large database which contains a large number of every frequent pattern, it may have
+                  a remarkable effect without complex computations. However, we can’t ensure it or we just want to improve our algorithm with little support of so many records. Let’s look at the following samples which has the form as same as those in
+                  the multi-map and assume that the same tone trend only has the three tuples.</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">1</span>,-<span class="number">2</span>&gt;, <span class="number">10</span>)</span><br><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">2</span>,-<span class="number">1</span>&gt;, <span class="number">9</span>) </span><br><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">2</span>,-<span class="number">1</span>&gt;, <span class="number">5</span>)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>As we can see, they have the same tone trend and different pitch trends with different values of a support. If we just use the method described in the paper, we may get the result of the 1st, the 2nd, or the 3rd. However, is it the best
+                  one? Maybe not, I think. I mean maybe <code>&lt;1,1,2,0,-2,-1&gt;</code> is better. I think we need to add some correlation analyses to the pitch trends which have the same tone trends.</p>
+                <h1>Expanding Research</h1>
+                <p>After reading this paper, I have some ideas for further research and some of them are listed as follows.</p>
+                <h2 id="adding-location-variables"><a class="header-anchor" href="#adding-location-variables">🌊</a>Adding location variables</h2>
+                <p>I mean, as we all known, a same lyric may have different melodies when it is at the beginning or at the end of a song. Of course, if we just want to use a simple sentence as its input, this consideration is rather superfluous. However,
+                  if the input lyric is long enough, it is very important then.</p>
+                <h2 id="generating-a-melody-with-a-longer-note"><a class="header-anchor" href="#generating-a-melody-with-a-longer-note">🌊</a>Generating a melody with a longer note</h2>
+                <p>This thought is mentioned in the end of the paper as well. We may have noticed that the normal notes will be longer than the syllables of lyrics, at least at the end of each sentence. We may need to modify the match method to add the frequent
+                  pattern which contains group of pitch trends sequences and its corresponding longer tone trends sequences.</p>
+                <h2 id="applying-syntactic-analysis"><a class="header-anchor" href="#applying-syntactic-analysis">🌊</a>Applying syntactic analysis</h2>
+                <p>The following is my exploratory opinion of the original T-music. If I have many songs with lyrics, I will mine the frequent patterns of syntactic analysis and add them to the “s-sequence” mentioned in this paper. Thus I will reform the
+                  original multi-map as follows.</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">(&lt;pitch trend pattern&gt;, &lt;syntax pattern&gt;) —&gt; (&lt;tone trend pattern&gt;, support)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>When we match the input lyrics, we need to not only match the “pitch trend pattern” from the FP-database but also contrast the “syntax pattern” and then make the best decision.</p>
+                <h2 id="expanding-to-speech-recognization"><a class="header-anchor" href="#expanding-to-speech-recognization">🌊</a>Expanding to speech recognization</h2>
+                <p>I have a simple idea of speech recognization using the same method mentioned in this paper. If I could collect enough voice information spoken by the same person, I would mine the frequent patterns of his intonation habit from the voice
+                  data and then using them to judge whether another voice is his or not.</p>
+                <h2 id="expanding-to-password-security"><a class="header-anchor" href="#expanding-to-password-security">🌊</a>Expanding to password security</h2>
+                <p>In order to prevent the password being stolen, all websites are making efforts on password diversity. I think the method of mining frequent pattern can be applied to protect users’ password as well. For the same string of ciphers, different
+                  people may type it out in different speeds with different intermission on every two letters. I, for example, usually use the combination of my name and birthday as a password and when I type it out there is a longer break between the
+                  last letter of my name and the first number of my birthday. If we use the same way to mine the frequent patterns form enough times records of someone, we may use the frequent patterns to judge whether it is the right person or not who
+                  is typing the password.</p>
+                <h2 id="generating-good-problems"><a class="header-anchor" href="#generating-good-problems">🌊</a>Generating “good problems”</h2>
+                <p>I often encounter some tricky programming problems and as we all known, “StackOverflow” is the biggest website which can offer you relevant solutions when you ask a question on it. However, we all want to get the best answer as soon as
+                  possible so we may need to put forward “good questions”. I think the thought of this paper can be applied to this question. We can first collect enough “good questions” from the website and then mine the syntactic frequent patterns of
+                  each question by categories. Finally, we can generate such “good questions” by adding the knowledge of sentence construction and providing some keywords needed.</p>
+                <h1>Related Research</h1>
+                <p>This paper is about mining frequent patterns which is a subfield of data mining. I will express my understanding mixing information retrieved from the Internet in this field.</p>
+                <p>With the rise of big data, so many research topics about data is more and more frequent such as forecasting passenger flow and passenger flow directions during the Spring Festival and predicting the composition of Chinese college entrance
+                  examination this year. Data mining means the process of extracting valuable information and patterns from large amounts of data and these new discovery rules, patterns, information and concepts have potential value. It usually contains
+                  the association rules, classification, estimation, clustering and so on.</p>
+                <p>As for association analysis, its propose is to discover interesting links hidden in large data sets and the patterns discovered are usually represented in association rules or frequent item sets just as this paper shown. There are several
+                  efficient and scalable frequent item set mining methods such as Apriori algorithm and FP-growth which needs to construct FP-tree.</p>
+                <p>As for classification and prediction, I think it is a more stirring area. Think of this, a marketing manager needs data analysis to help guess whether or not a customer with a given profile will buy a new computer and then the marketing
+                  manager would like to predict how much a given customer will spend during a sale, what an attractive job!</p>
+                <p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: '',
+                    alipayImage: ''
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Mining/">Data Mining</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper-Report/">Paper Report</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+
+              <a href="/posts/61c2f1f1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">.length与length()的区别</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Summary</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">🌊Abstract</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#propse"><span class="nav-number">1.2.</span> <span class="nav-text">🌊Propse</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#deficiencies-of-original-algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">🌊Deficiencies of original algorithm</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#improvements"><span class="nav-number">1.4.</span> <span class="nav-text">🌊Improvements</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Improvements</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#using-the-trend-representation"><span class="nav-number">2.1.</span> <span class="nav-text">🌊Using the “Trend” representation</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#using-frequent-pitch-trends-style-as-a-selector"><span class="nav-number">2.2.</span> <span class="nav-text">🌊Using “Frequent pitch trends (Style)” as a selector</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#using-the-subsequences-of-original-frequent-pattern"><span class="nav-number">2.3.</span> <span class="nav-text">🌊Using the subsequences of original frequent pattern</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#using-multi-map-as-a-data-structure"><span class="nav-number">2.4.</span> <span class="nav-text">🌊Using multi-map as a data structure</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#employing-the-divide-and-conquer-idea"><span class="nav-number">2.5.</span> <span class="nav-text">🌊Employing the divide and conquer idea</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Limitations</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#applying-word-segmentation"><span class="nav-number">3.1.</span> <span class="nav-text">🌊Applying word segmentation</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#handling-the-tone-trend-with-a-length-of-1"><span class="nav-number">3.2.</span> <span class="nav-text">🌊Handling the tone trend with a length of 1</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mining-the-relationship-between-tone-trend-and-pitch-trend"><span class="nav-number">3.3.</span> <span class="nav-text">🌊Mining the relationship between “tone trend” and “pitch trend”</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Expanding Research</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#adding-location-variables"><span class="nav-number">4.1.</span> <span class="nav-text">🌊Adding location variables</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#generating-a-melody-with-a-longer-note"><span class="nav-number">4.2.</span> <span class="nav-text">🌊Generating a melody with a longer note</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#applying-syntactic-analysis"><span class="nav-number">4.3.</span> <span class="nav-text">🌊Applying syntactic analysis</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#expanding-to-speech-recognization"><span class="nav-number">4.4.</span> <span class="nav-text">🌊Expanding to speech recognization</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#expanding-to-password-security"><span class="nav-number">4.5.</span> <span class="nav-text">🌊Expanding to password security</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#generating-good-problems"><span class="nav-number">4.6.</span> <span class="nav-text">🌊Generating “good problems”</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Related Research</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">Copyright &copy; 2018.02.08 - 2018.02.11 <a href="http://www.meng.uno/">匡盟盟</a> All Rights Reserved.</p>
+
+            <p class="busuanzi_uv">
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+            </p>
+
+          </div>
+
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              匡盟盟
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+</body>
+
+</html>
