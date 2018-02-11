@@ -26,6 +26,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java web中的浮出层使用">
   <meta name="twitter:description" content="进行《软件工程》大项目时，遇到想在主页上仿Google首页上的那种“一个输入框+两个按钮”，同时一个按钮搜索、一个按钮上传文件，于是到网上查了好久，都没有关于“一个按钮实现文件上传”的功能介绍，最后只能使用“通过一个浮出层弹出上传文件”这种方式，下面贴出JavaScript代码。 在按钮中使用时只需要这样使用就行：                         1">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -409,7 +411,24 @@
         <script src="/js/dialog.js"></script>
 
 
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
 
 
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">

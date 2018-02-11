@@ -28,6 +28,8 @@
   <meta name="twitter:title" content="Java异常结构层次图">
   <meta name="twitter:description" content="在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。  其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。 另一种颜色的为unchecked异常，他们的异常不需要被recover。 本文链接: http://meng.uno/posts/1164dab2/ 欢迎转载！">
   <meta name="twitter:image" content="http://www.meng.uno/images/ehd.jpeg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -390,7 +392,24 @@
         <script src="/js/dialog.js"></script>
 
 
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
 
 
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">

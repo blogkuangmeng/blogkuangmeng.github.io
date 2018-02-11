@@ -26,6 +26,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="将多个input合并成一个字符串提交给后台">
   <meta name="twitter:description" content="🌊需求 我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。 🌊实现 于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -404,7 +406,24 @@
         <script src="/js/dialog.js"></script>
 
 
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
 
 
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">

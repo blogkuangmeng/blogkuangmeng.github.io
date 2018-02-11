@@ -26,6 +26,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java异常处理">
   <meta name="twitter:description" content="在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。 🌊调用方法必须处理被调用方法抛出的异常 下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。                         123456789101112131415">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -417,7 +419,24 @@
         <script src="/js/dialog.js"></script>
 
 
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
 
 
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">

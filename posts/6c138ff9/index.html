@@ -26,6 +26,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux 0.11启动引导">
   <meta name="twitter:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： 🌊bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -401,7 +403,24 @@
         <script src="/js/dialog.js"></script>
 
 
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
 
 
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
