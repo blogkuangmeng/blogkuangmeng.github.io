@@ -8,6 +8,12 @@
   text-shadow: 1px 1px 1px #FFF;
 }
 
+.imgc {
+  width: 14px;
+  height: auto;
+  margin-top: -4px;
+}
+
 .basic-grey h1 {
   font-size: 25px;
   padding: 0px 0px 10px 40px;

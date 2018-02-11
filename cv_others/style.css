@@ -25,9 +25,29 @@ URL:http://www.chris-creed.com
 }
 
 #nameme {
-  font-size: 40px;
+  font-size: 30px;
   margin: 0 0 30px 0;
   letter-spacing: -1px;
+}
+
+.tr1c td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.lefttdc {
+  vertical-align: middle;
+  text-align: right;
+}
+
+.midtdc {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.righttdc {
+  vertical-align: middle;
+  text-align: left;
 }
 
 /*
@@ -38,10 +58,6 @@ URL:http://www.chris-creed.com
 .h4c{
 	font-size:20px;
 	margin:3px 0 1px 0;
-}
-.h5c{
-	font-size:18px;
-	margin:15px 0 5px 0;
 }
 .pc{
 	font-size:18px;
@@ -98,7 +114,6 @@ margin: 0.8em 1em 0.8em 0.5em;
 
 #headers {
   float: left;
-  width: 930px;
   margin: 0 0 70px 0;
 }
 
@@ -160,7 +175,7 @@ margin: 0.8em 1em 0.8em 0.5em;
 .kmm {
   float: right;
   margin-right: 270px;
-  margin-top: -300px;
+  margin-top: -320px;
 }
 
 /* ------------- */
@@ -170,7 +185,6 @@ margin: 0.8em 1em 0.8em 0.5em;
 /* ------------- */
 
 #contents .cv-section {
-  width: 900px;
   margin: 0 7.5px 15px 7.5px;
 }
 
@@ -181,9 +195,14 @@ margin: 0.8em 1em 0.8em 0.5em;
 }
 
 #contents .cv-section h4.title {
-  /* font-size:22px; */
+  font-size: 18px;
   color: #e86e14;
   margin: 0 0 -26px 0;
+}
+
+.h5c {
+  font-size: 16px;
+  margin: 15px 0 5px 0;
 }
 
 #contents .cv-section h4.meta {
