@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-02-11T14:04:49.151Z</updated>
+  <updated>2018-02-11T14:14:45.216Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CPAchecker</title>
+    <link href="http://meng.uno/posts/c5d9877c/"/>
+    <id>http://meng.uno/posts/c5d9877c/</id>
+    <published>2018-02-11T14:08:59.000Z</published>
+    <updated>2018-02-11T14:14:45.216Z</updated>
+    
+    <content type="html"><![CDATA[<p>CPAchecker is a tool for configurable software verification which means expressing different program analysis and model checking approaches in one single formalism. The main algorithm is configurable to perform a reachability analysis on arbitrary combinations  of existing configurable program analysis (CPA). One application of CPAchecker is the verification of Linux device drivers.</p><p>CPA provides a conceptual basis for expressing different verification approaches in the same formal setting. The CPA formalism provides an interface for the definition of program analyses, which includes the abstract domain, the post operator, the merge  operator, and the stop operator. Consequently, the corresponding tool implementation CPAchecker provides an implementation framework that allows the seamless integration of program analyses that are expressed in the CPA framework. The comparison of  different approaches in the same experimental setting becomes easy and the experimental results will be more meaningful.</p><h2 id="architecture"><a class="header-anchor" href="#architecture">🌊</a>Architecture</h2><p><img src="http://www.meng.uno/images/cpa/1.png" alt="CPAchecker"></p><p>The above picture is the overview of CPAchecker’s architecture. The central data structure is a set of control-flow automata (CFA), which consist of control-flow locations and control-flow edges. A location represents a program-counter value, and an edge  represents a program operation, which is either an assume operation, an assignment block, a function call, or a function return. Before a program analysis starts, the input program is transformed into a syntax tree, and further into CFAs. The framework  provides interfaces to SMT solvers and interpolation procedures, such that the CPA operators can be written in a concise and convenient way. From the picture, we know that they use MathSAT as an SMT solver, and CSIsat and MathSAT as interpolation procedures.  They also use JavaBDD as a BDD package, and provide an interface to an Octagon Library as well. The CPA Algorithm is the center of this project and the detailed design is shown as follows.</p><p><img src="http://www.meng.uno/images/cpa/2.png" alt="CPAchecker"></p><p>The CPA algorithm (shown at the top in the above figure) takes as input a set of control-flow automata (CFA) representing the program, and a CPA, which is in most cases a Composite CPA. The interfaces correspond one-to-one to the formal framework. The  elements in the gray box (top right) represent the abstract interfaces of the CPA and the CPA operations. The two gray boxes at the bottom of the figure show two implementations of the interface CPA, one is a Composite CPA that can combine several other  CPAs, and the other is a Leaf CPA.</p><h2 id="build-and-test"><a class="header-anchor" href="#build-and-test">🌊</a>Build and Test</h2><p>Owing to the long development history, this project is very prefect which means you could use its binary directly, build from the source and even use their jar-ball in Java applications. To experience it, I will build it from the source and use it in  the command-line.</p><p>We need to install “jdk”, “ant”, “svn” and “subversion” before we build it. Then enter the root directory and run “ant”. Wait a moment and this is the result.</p><p>To test this project, we need to write a C/C++ code without “#include  <headers>”. I choose a simple one (QuickSort) shown in the attachment.</headers></p><p>The result contains a log file, a statistics file and a report which is in “html” format.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;CPAchecker is a tool for configurable software verification which means expressing different program analysis and model checking approach
+      
+    
+    </summary>
+    
+      <category term="Software Verification" scheme="http://meng.uno/categories/Software-Verification/"/>
+    
+      <category term="CPA" scheme="http://meng.uno/categories/Software-Verification/CPA/"/>
+    
+      <category term="CPAchecker" scheme="http://meng.uno/categories/Software-Verification/CPA/CPAchecker/"/>
+    
+    
+      <category term="CPA" scheme="http://meng.uno/tags/CPA/"/>
+    
+      <category term="CPAchecker" scheme="http://meng.uno/tags/CPAchecker/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux Test Project</title>
@@ -573,32 +604,6 @@
     
     
       <category term="前端" scheme="http://meng.uno/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HIT操作系统实验总结</title>
-    <link href="http://meng.uno/posts/86743755/"/>
-    <id>http://meng.uno/posts/86743755/</id>
-    <published>2017-01-04T12:50:26.000Z</published>
-    <updated>2018-02-09T10:46:20.931Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>  <p>哈工大《操作系统》六次实验每次需要修改的文件见：<a href="http://www.meng.uno/os.html" target="_blank" rel="noopener">修改文件列表</a><br> 本实验总结源自github项目：    <a href="https://github.com/HITAmigos/MIC" target="_blank" rel="noopener">MIC</a></p></blockquote><h2 id="操作系统引导"><a class="header-anchor" href="#操作系统引导">🌊</a>操作系统引导</h2><h3 id="bootsect-s"><a class="header-anchor" href="#bootsect-s">🌊</a>bootsect.s</h3><ul>  <li>实现屏幕输出</li>  <li>修改打印的字符串（空白也算作一个字符）</li>  <li>读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）</li></ul><h3 id="setup-s"><a class="header-anchor" href="#setup-s">🌊</a>setup.s</h3><ul>  <li>（和bootsect.s中部分代码相同）打印相关信息</li>  <li>（原代码已经可以部分打印硬件信息）需要在相关位置嵌入msg实现打印提示信息功能</li></ul><h3 id="build-c"><a class="header-anchor" href="#build-c">🌊</a>build.c</h3><ul>  <li>将bootsect.s、setup.s、system.s编译、链接生成Image文件</li></ul><h2 id="系统调用"><a class="header-anchor" href="#系统调用">🌊</a>系统调用</h2><ul>  <li>unistd.h文件：添加系统调用功能号</li>  <li>sys.h声明新的系统调用处理函数；添加系统调用处理程序索引值到指针数组表中</li>  <li>system_call.s中增加系统调用总数</li>  <li>makefile添加新的系统调用所在文件的编译链接规则（依赖关系）</li></ul><h2 id="进程运行轨迹的跟踪与统计"><a class="header-anchor" href="#进程运行轨迹的跟踪与统计">🌊</a>进程运行轨迹的跟踪与统计</h2><h3 id="process-c"><a class="header-anchor" href="#process-c">🌊</a>process.c</h3><ul>  <li>涉及到fork()和wait()系统调用</li>  <li>主要实现了一个函数——cpuio_bound()</li>  <li>用fork()建立若干个同时运行的子程序</li>  <li>父P等待所有子P退出后才退出，每个子P性质通过cpuio_bound()控制性质</li></ul><h3 id="fork-c"><a class="header-anchor" href="#fork-c">🌊</a>fork.c</h3><ul>  <li>fork系统调用函数</li></ul><h3 id="main-c"><a class="header-anchor" href="#main-c">🌊</a>main.c</h3><ul>  <li>内核的入口函数main()，对它的修改是增加日志创建语句，并将log文件关联到文件描述符log文件记录进程状态转换轨迹</li></ul><h3 id="kernel"><a class="header-anchor" href="#kernel">🌊</a>kernel</h3><p>主要寻找进程状态转换点：</p><ul>  <li>printk.c</li>  <li>sched.c</li>  <li>exit.c</li></ul><h2 id="信号量的实现和应用"><a class="header-anchor" href="#信号量的实现和应用">🌊</a>信号量的实现和应用</h2><h3 id="sem-open"><a class="header-anchor" href="#sem-open">🌊</a>sem_open</h3><ul>  <li>打开信号量</li></ul><h3 id="sem-wait"><a class="header-anchor" href="#sem-wait">🌊</a>sem_wait</h3><ul>  <li>信号量P操作——value–</li></ul><h3 id="sem-post"><a class="header-anchor" href="#sem-post">🌊</a>sem_post</h3><ul>  <li>信号量V操作——value++</li></ul><h3 id="sem-unlink"><a class="header-anchor" href="#sem-unlink">🌊</a>sem_unlink</h3><ul>  <li>释放信号量</li></ul><h2 id="地址映射与共享"><a class="header-anchor" href="#地址映射与共享">🌊</a>地址映射与共享</h2><h3 id="shm-c"><a class="header-anchor" href="#shm-c">🌊</a>shm.c</h3><ul>  <li>shmget()：得到一个共享内存标识符或创建一个共享内存对象并返回共享内存标识符</li>  <li>shmat()：连接共享内存标识符为shmid的共享内存，连接成功后把共享内存区对象映射到调用进程的地址空间，随后可像本地空间一样访问</li></ul><h3 id="sem-c"><a class="header-anchor" href="#sem-c">🌊</a>sem.c</h3><p>实现信号量的四种操作，与实验四相同</p><h2 id="字符显示的控制"><a class="header-anchor" href="#字符显示的控制">🌊</a>字符显示的控制</h2><h3 id="keyboard-s"><a class="header-anchor" href="#keyboard-s">🌊</a>keyboard.S</h3><ul>  <li>添加对字符F12的输入判断</li></ul><h3 id="console-c"><a class="header-anchor" href="#console-c">🌊</a>console.c</h3><ul>  <li>添加输出到控制台的字符控制</li></ul><h3 id="file-dev-c"><a class="header-anchor" href="#file-dev-c">🌊</a>file_dev.c</h3><ul>  <li>添加输出到文件的字符控制</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;哈工大《操作系统》六次实验每次需要修改的文件见：&lt;a href=&quot;http://www.meng.uno/os.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;修改文件列表&lt;/a&gt;&lt;br&gt; 本实验总结源自github项
-      
-    
-    </summary>
-    
-      <category term="操作系统" scheme="http://meng.uno/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="操作系统" scheme="http://meng.uno/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
