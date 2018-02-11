@@ -3,6 +3,96 @@
   
     
     <entry>
+      <title><![CDATA[Linux Test Project]]></title>
+      <url>/posts/bfb74f68/</url>
+      <content type="html"><![CDATA[<p>I found this project from the references of other papers, and I thought it was good, so I plan to run it. As we can see from its name, Linux Test Project (LTP) has a goal to deliver test suites to the open source community that validate the reliability,
+  robustness, and stability of Linux. This project wants to support Linux development by making unit testing more complete and minimizing user impact by building a barrier to keep bugs from making it to the user. There are two important testing techniques
+  which are supported by giving developers an ever growing set of tools to help identify any operational problems in their code: Design and Code Inspections. I knew that Yggdrasil and Hyperkernel which I have run successfully belong to the last category.
+  LTP doesn’t have a benchmark which means they don’t compare different kernel of Linux.</p>
+<p>In LTP, we need to know:</p>
+<ul>
+  <li>Test case: A single action and verification which has a result PASS/FAIL.</li>
+  <li>Test suite: Containing one or more test cases.</li>
+  <li>Test tags: Pairing a unique identifier with a test program and a set of command line options.</li>
+</ul>
+<p>We also need to know the ways of reporting the results of a test case. There are two main ways which are contained in LTP:</p>
+<ul>
+  <li>Exit status: If a test program encounters unexpected or incorrect results, exit the test program with a non-zero exit status, i.e. exit(1). Conversely, if a program completes as expected, return a zero exit status, i.e. exit(0).</li>
+  <li>Standard output: Tools can be used to analyze the results, if they are written in a standard way.</li>
+</ul>
+<h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">🌊</a>Build and Run</h2>
+<p>To build this project, we need to run the following executions:</p>
+<figure class="highlight stylus">
+  <table>
+    <tr>
+      <td class="gutter">
+        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+      </td>
+      <td class="code">
+        <pre><span class="line">$ git clone https:<span class="comment">//github.com/linux-test-project/ltp.git</span></span><br><span class="line">$ cd ltp</span><br><span class="line">$ make autotools</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre>
+      </td>
+    </tr>
+  </table>
+</figure>
+<p>Before these, we need to ensure “git, autoconf, automake, m4” are installed. If not, we can use “apt-get” to get them. The output of “make” is shown as following.</p>
+<p><img src="http://www.meng.uno/images/ltp/1.png" alt="LTP"></p>
+<p>After building this project, let’s run it personally. If we want to run all the test suites, we just need run “./runltp” in the “opt/ltp/” directory. However, I will run a single test suite to verify this project only with “./runltp -f syscalls” execution.</p>
+<p><img src="http://www.meng.uno/images/ltp/2.png" alt="LTP"></p>
+<p>The picture above is the output of “abort01” test case. From it we can see that the test method is “Exit status test” and it passes all the situations.</p>
+<p>If a test case needs datafiles to work, these would be put in a subdirectory named datafilesand installed in the testcases/data/$TCID directory</p>
+<h2 id="analyze-test-cases"><a class="header-anchor" href="#analyze-test-cases">🌊</a>Analyze Test Cases</h2>
+<p>We could find LTP in “/opt/ltp” and the test suites are installed in the “/opt/ltp/runtest/” directory. The following picture is a screenshot of it.</p>
+<p><img src="http://www.meng.uno/images/ltp/3.png" alt="LTP"></p>
+<p>In a single file, such as “syscalls” file, there exist many single test cases which are like the follows.</p>
+<p><img src="http://www.meng.uno/images/ltp/4.png" alt="LTP"></p>
+<p>From this picture, those words, like “abort01”, represent different test cases which are laid in “/opt/ltp/testcases/bin/” directory.</p>
+<p><img src="http://www.meng.uno/images/ltp/5.png" alt="LTP"></p>
+<p>Each test case is a binary written either in portable Shell or C such as “abort01” which is from “abort01.c” which lays in the “ltp/testcases/kernel/syscalls/abort” directory. The test gets a configuration via environment variables and/or command line
+  parameters, it prints additional information into the stdout and reports overall success/failure via the exit value.</p>
+<p><img src="http://www.meng.uno/images/ltp/6.png" alt="LTP"></p>
+<h2 id="write-a-test-suite"><a class="header-anchor" href="#write-a-test-suite">🌊</a>Write A Test Suite</h2>
+<p>To make things simple, I will use LTP standard interface, not add custom reporting functions and use LTP build system. The following are my steps (These steps are very simple, so I didn’t list any screenshot):</p>
+<ul>
+  <li>Add a new file “meng” to “ltp/runtest/” directory;</li>
+  <li>Write some test cases’ names, such as “abort01 accept01”;</li>
+  <li>Run “make” and “make install”;</li>
+  <li>Enter “/opt/ltp/” directory;</li>
+  <li>Run “./runltp -f meng”;</li>
+  <li>Get the result as the picture. (You can also find the full logs from “meng_output.txt” file in the attachment)</li>
+</ul>
+<p><img src="http://www.meng.uno/images/ltp/7.png" alt="LTP"></p>
+<h2 id="write-a-test-case"><a class="header-anchor" href="#write-a-test-case">🌊</a>Write A Test Case</h2>
+<p>As I said before, we can use C language or Shell to write a test case, however, in this section, I will just use C language to write a simple one which may make me have a deep understanding of this project.</p>
+<p><strong>I used the “man-pages” to find the untested system calls, however, my linux version maybe a little old (2015 release, version 16.04), so that I can’t find a untested one which is excluded by the newest LTP.</strong></p>
+<p>I will write a test for verifying system call “file rename”. First, I create a new file “meng.c” in the “ltp/testcases/kernel/syscalls/meng/” directory. Then I need to write the codes. The next thing I need to do is to include “tst_test.h” (There are
+  also another headers, however, this one is basic). We need to write “main(), setup(), clean()” functions and the detailed realizations are in the “meng.c” which is in the attachment (I give some notes of the code in the “meng.c” file as well). What’s
+  more, we need to create a “Makefile” in the same directory and write the compiling information. The compiled file is like this.</p>
+<p><img src="http://www.meng.uno/images/ltp/8.png" alt="LTP"></p>
+<p>Last, I will add this test case to the “meng” test suite and see the result (You can find the full output in “meng_syscall_output.txt” in the attachment).</p>
+<p><img src="http://www.meng.uno/images/ltp/9.png" alt="LTP"></p>
+<p>From the above picture, we can see that the verification is “pass” which means that not only the “rename” system call is correct, but also my code is right.</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+            <category> Linux Test </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Linux Test </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[A Melody Composer for both Tonal and Non-Tonal Languages]]></title>
       <url>/posts/2251dcee/</url>
       <content type="html"><![CDATA[<h1>Summary</h1>
@@ -568,6 +658,68 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Analysis for DynamoRIO]]></title>
+      <url>/posts/a331aaad/</url>
+      <content type="html"><![CDATA[<p>DynamoRIO is a dynamic binary piling/translation platform. Through it, you can manipulate the running code of a program, that is, it can simulate running a program and allow you to transform and control any place of the running code. It is used for dynamic
+  analysis, optimization and translation of programs.</p>
+<p>DynamoRIO is a cooperation project between HP and MIT. Dynamo comes from HP’s laboratory, RIO (Runtime Introspection and Optimization) comes from MIT’s computer science laboratory. The history is shown as follows.</p>
+<p><img src="http://www.meng.uno/images/rio/1.png" alt="RIO"></p>
+<h2 id="architecture"><a class="header-anchor" href="#architecture">🌊</a>Architecture</h2>
+<p>DynamoRIO’s architecture is like this. It is between the operating system and the application so that it can get the system calls and the applications’ code easily.</p>
+<p><img src="http://www.meng.uno/images/rio/2.png" alt="RIO"></p>
+<p>This picture is the Toolchain Control Points.</p>
+<p><img src="http://www.meng.uno/images/rio/3.png" alt="RIO"></p>
+<p>The process flow is as follows. The original program goes through the “basic block builder”, “trace selector”, “basic block cache” and “trace cache” to get the emulation propose.</p>
+<p><img src="http://www.meng.uno/images/rio/4.png" alt="RIO"></p>
+<h2 id="efficiency"><a class="header-anchor" href="#efficiency">🌊</a>Efficiency</h2>
+<p>DynamoRIO is separated from the code of applications by the “context switch” as shown in the picture above. The applications’ code is copied to the instruction cache. The code in these caches will execute as native code. Until a jump instruction is encountered,
+  the applications’ “machine state” will be saved, and the control will turn back to DynamoRIO to find the basic block where the jump instruction is located. DynamoRIO is much faster than pure emulations by “code cache”.</p>
+<p><img src="http://www.meng.uno/images/rio/5.png" alt="RIO"></p>
+<p>There are several improvements in this project. The picture above is the first one — Basic Block Cache. If you copy each basic block into a code cache and run it natively, it greatly reduces the overhead of interpreting, however, we still need to explain
+  each jump instruction, and then return to DynamoRIO to find the target instruction. If a target instruction already exists in the code cache and is referred to by a direct jump instruction, DynamoRIO can directly jump to the target instruction in the
+  code cache to avoid the overhead of the context switch, which is called “Linking Direct Branches”.</p>
+<p><img src="http://www.meng.uno/images/rio/6.png" alt="RIO"></p>
+<p>The next improvement is “Linking Indirect Branches” since a conditional branch instruction can not be linked like a direct jump instruction because it has more than one goal and needs to make decisions and find the list’s jump target.</p>
+<p><img src="http://www.meng.uno/images/rio/7.png" alt="RIO"></p>
+<p>Some basic blocks, which are often executed sequentially, are combined into one execution stream to reduce the number of branches and increase the locality of the program. It reduces some overhead of indirect branch search, because it has put indirect
+  brach in this trace as well. This is also the last improvement — Trace Building.</p>
+<p><img src="http://www.meng.uno/images/rio/8.png" alt="RIO"></p>
+<h2 id="transparency"><a class="header-anchor" href="#transparency">🌊</a>Transparency</h2>
+<p>It has three transparency principles which are “As few changes as possible”, “Hide necessary changes” and “Separate resources”. Changes in these areas are few: application code, stored addresses, threads and application data. Changes in these fields are
+  hidden: application addresses, address space, error transparency and code cache consistency. This picture shows the principle 3 well. DynamoRIO’s own code also uses share libraries when loading applications, which may cause some conflicts if the application
+  also uses the same library. The solution is that, DynamoRIO doesn’t use the library directly, calling system call on Linux and calling system call via windows win32 API profile.</p>
+<p><img src="http://www.meng.uno/images/rio/9.png" alt="RIO"></p>
+<p>The heap memory allocated by DynamoRIO itself is distinguished from the heap memory requested by the application. In addition, DynamoRIO uses its own I/O routines for input and output to avoid conflicts with the applications’ I/O buffers. What’s more,
+  since the use of shared locks can also cause conflicts between DynamoRIO and applications, it also has synchronization transparency.</p>
+<p>To avoid conflicts with applications, DynamoRIO doesn’t create its own thread, instead spawns threads in the application process to distinguish between its own status and applications’ status via a “Context Switch” as the first picture shows. Further
+  more, it chooses to leave the stack of application processes intact, creating a private stack of each thread.</p>
+<h2 id="comprehensive"><a class="header-anchor" href="#comprehensive">🌊</a>Comprehensive</h2>
+<p>All data streams must go through handlers generated by the dispatcher. The data flow is like this.</p>
+<p><img src="http://www.meng.uno/images/rio/10.png" alt="RIO"></p>
+<h2 id="customization"><a class="header-anchor" href="#customization">🌊</a>Customization</h2>
+<p>DynamoRIO has developed some event driven APIs that allow developers to customize instrument instructions. Using it, you can achieve some proposes such as: memory checking, performance testing, system call tracking, code coverage calculation.</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> RIO </category>
+            
+            <category> DynamoRIO </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> DynamoRIO </tag>
+            
+            <tag> RIO </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Zsh]]></title>
       <url>/posts/d911b12b/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -679,6 +831,228 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CryptoMinisat]]></title>
+      <url>/posts/7d26fe8/</url>
+      <content type="html"><![CDATA[<p>Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I’ll start with this report from an advanced SAT solver — CryptoMinisat. (I have written a report
+  about STP which is a SMT solver.)</p>
+<p>The Boolean Satisfiability Problem (SAT for short) is the problem of determining if there exists an interpretation that satisfies a given boolean formula. In other words, it asks whether the variables of a given boolean formula can be consistently replaced
+  by the values TRUE or FALSE in such a way that the formula evaluates to TRUE. If this is the case, the formula is called satisfiable. Otherwise, the formula is unsatisfiable.</p>
+<p>SAT solvers have recently been enjoying a boom in the application front: more and more applications can and do make use of SAT solvers to accomplish tasks ranging from the fairly trivial to the very complex. The benefit of the incredible improvements
+  in the design of efficient SAT solvers those recent years is now reaching our lives: The Intel Core7 processor for instance has been designed with the help of SAT technology, while the device drivers of Windows 7 are being certified thanks to an SMT
+  solver (based on a SAT solver).</p>
+<h2 id="build-and-test"><a class="header-anchor" href="#build-and-test">🌊</a>Build and Test</h2>
+<p>This is the 5th version of CryptoMinisat which means the install instruction is very prefect now. To build and test this project, all we have to do is following the instruction. Firstly, we need to install many dependencies. Then, it is very simple to
+  build by “make”. The following is part of the output.</p>
+<p><img src="http://www.meng.uno/images/cryptominisat/1.png" alt="CryptoMinisat"></p>
+<p>Testing this project is very easy by the script written by the authors. Typing “make test” and waiting for a moment, we will get this output which means the tests are correct.</p>
+<p><img src="http://www.meng.uno/images/cryptominisat/2.png" alt="CryptoMinisat"></p>
+<h2 id="run-this-project"><a class="header-anchor" href="#run-this-project">🌊</a>Run This Project</h2>
+<p>This is a very mature project which can be run from the terminal or used as a C++/Python library. In this report, I just choose the first way.</p>
+<p>As I said before, this project is a SAT solver which means it could find out the situations which fulfill the input or return error. The grammar is very simple just like this.</p>
+<p><img src="http://www.meng.uno/images/cryptominisat/3.png" alt="CryptoMinisat"></p>
+<p>The first line means this input has 2 variables and 4 clauses. Every line is a clause which is ended by “0”. Using the third line as an example, it says that 2 is TRUE and 3 is FALSE. I use this file as an input and run it in the terminal. The result
+  is shown as follows. It means 1 is TRUE, 2 and 3 are FALSE is the only solution to this problem.</p>
+<p><img src="http://www.meng.uno/images/cryptominisat/4.png" alt="CryptoMinisat"></p>
+<p>This is another example and the result.</p>
+<p><img src="http://www.meng.uno/images/cryptominisat/5.png" alt="CryptoMinisat"></p>
+<p><img src="http://www.meng.uno/images/cryptominisat/6.png" alt="CryptoMinisat"></p>
+<p>It means there isn’t a solution to this problem.</p>
+<h2 id="how-it-works"><a class="header-anchor" href="#how-it-works">🌊</a>How It Works</h2>
+<p>There are many improvements and techniques included in this project. It uses “Minisat” as its core and uses Gaussian Elimination on top-level. This is another part of its techniques.</p>
+<ul>
+  <li>Variable elimination and replacement, strengthening and subsumption;</li>
+  <li>Gate-based clause shortening and removal;</li>
+  <li>No time or memory-outs on weird CNFs;</li>
+  <li>Variable renumbering and variable number hiding. due to this, XOR clauses are cut and the added variables are always consistently displayed;</li>
+  <li>Temporary results are stored in SQLite which supports high speed update;</li>
+  <li>XOR recovery.</li>
+</ul>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> solver </category>
+            
+            <category> SAT </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> CryptoMinisat </tag>
+            
+            <tag> SAT </tag>
+            
+            <tag> solver </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Simple Theorem Prover SMT solver]]></title>
+      <url>/posts/cd3afb7d/</url>
+      <content type="html"><![CDATA[<p>I found it could be generated as program analysis tools, theorem provers, automated bug finders and so on which means it is a very crucial research. STP is a constraint solver aimed at solving constraints of bit vectors and arrays. It can read CVC, SMT-LIB1
+  and SMT-LIB2 formats files. It also could be used by Python, SMT-LIBv2 and even C library. STP preprocesses the input through the application of mathematical and logical identities, and then eagerly translates constraints into a purely propositional
+  logic formula that it feeds to an off-the-shelf SAT solver.</p>
+<p>STP views memory as untyped bytes. It provides only three data types: booleans, bitvectors, and arrays of bitvectors. A bitvector is an unsigned, fixed-length sequence of bits. For example, “0010” is a constant, 4-bit bitvector representing the constant
+  2.</p>
+<h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">🌊</a>Build and Run</h2>
+<p>We can build this project on Linux or Docker, however, you know, Google isn’t well supported in China, so I can’t use “repo” execution which needed by Docker. In this document, I will use a quick install.</p>
+<p>Firstly, we need to install many dependencies. Then, since STP uses “minisat” as its SAT solver by default, we need to install it first. It is very simple to do this by “cmake”. The following is part of the output.</p>
+<p><img src="http://www.meng.uno/images/stp/1.png" alt="STP"></p>
+<p>Then we could start to install STP (To get the code, we need to use “git clone” but not download it directly).</p>
+<p><img src="http://www.meng.uno/images/stp/2.png" alt="STP"></p>
+<p>This project depends on various external tools to do testing. Here we install “lit” and do some individual tests and use “GoogleTest” to write some unit tests.</p>
+<h2 id="analyze-individual-test"><a class="header-anchor" href="#analyze-individual-test">🌊</a>Analyze Individual Test</h2>
+<p>An individual test is like this.</p>
+<p><img src="http://www.meng.uno/images/stp/3.png" alt="STP"></p>
+<p>In this screenshot, we can see that this file is judging “b = (c || b)” and “((c || b) = b) &lt; c &lt; b”. We could find that an individual test file may contain these components:</p>
+<ul>
+  <li>“; line”: comments;</li>
+  <li>“set-info”: set some configuration information for running this file;</li>
+  <li>“declare-fun”: definite some functions and their return types;</li>
+  <li>“assert”: like C lang, do some judgement;</li>
+  <li>“exit”: return.</li>
+</ul>
+<h2 id="analyze-unit-test"><a class="header-anchor" href="#analyze-unit-test">🌊</a>Analyze Unit Test</h2>
+<p>We can simply run unit test by giving “lit” the individual tests directory or run “make C-api-tests” to build the C-api tests as unit tests. The Cpp file is like this.</p>
+<p><img src="http://www.meng.uno/images/stp/4.png" alt="STP"></p>
+<p>From this picture, we can see that a C-api test contains many simple verifications.</p>
+<h2 id="analyze-the-code-structure"><a class="header-anchor" href="#analyze-the-code-structure">🌊</a>Analyze the Code Structure</h2>
+<p><img src="http://www.meng.uno/images/stp/5.png" alt="STP"></p>
+<p>From the above picture, I give the following simple understandings to this project.</p>
+<ul>
+  <li>“Interface”: Define a C interface to achieve the file ins and outs;</li>
+  <li>“Sat”: Copy from “minisat” to call SAT solver.</li>
+  <li>“AST”: Implement the abstract syntax tree for parsed solver inputs;</li>
+  <li>“Util”: Store some header files for small tasks;</li>
+  <li>“Printer”: Appoint some output formats;</li>
+  <li>“Simplifier”: Simplify algorithms for AST;</li>
+  <li>“Parser”: Store some parsers for the CVC, SMT-LIB1, SMT-LIB2 inputs;</li>
+  <li>“STPManager”: Hold all components together.</li>
+</ul>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> solver </category>
+            
+            <category> SMT </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> solver </tag>
+            
+            <tag> STP </tag>
+            
+            <tag> SMT </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Software Verification Approaches]]></title>
+      <url>/posts/55e262ef/</url>
+      <content type="html"><![CDATA[<h2 id="network-function-virtualization-nfv"><a class="header-anchor" href="#network-function-virtualization-nfv">🌊</a>Network Function Virtualization (NFV)</h2>
+<p>In the beginning, we need to know NFV which through the establishment of VNF (Virtualized Network Function) to achieve some network functions on a common server, switches, memory and other hardware devices, making these network functions on a common hardware
+  device run, do not need to configure a new dedicated network elements, can greatly enhance the flexibility of the network deployment, and lower investment costs.</p>
+<p>In the process of realization of network functionality through NFV technology, VNF in the form of software running on the hardware, by way of example and to achieve termination VNF allocation and deallocation of resources.</p>
+<p>In order to avoid VNF packet forgery in transit and in storage and tampering, increasing the signature files in the software package VNF, the receiving end after receiving the VNF software package by verifying signature files for VNF package for secure
+  authentication to ensure VNF packet during transmission security; in addition, the receiving end before VNF instantiated need for storage VNF package for secure authentication to ensure VNF package in the store security, which increased VNF instantiation
+  delay, reduce the VNF instantiated performance.</p>
+<h2 id="systems-theoretic-process-analysis-stpa"><a class="header-anchor" href="#systems-theoretic-process-analysis-stpa">🌊</a>Systems-Theoretic Process Analysis (STPA)</h2>
+<p>STPA is for identifying harmful circumstances which could lead to accidents and generating detailed safety requirements which must be implemented in the design to prevent the occurrence of these unsafe scenarios in the system. STPA is a top-down process
+  and it addresses many types of hazards of components and their interactions like design errors, software flaws and component interaction failures. One of the advantages of STPA is that it can be applied at any stage of the system development process.
+  STPA is performed by four main steps:</p>
+<ol>
+  <li>Before conducting an STPA analysis, the safety analysts should establish fundamentals of the analysis (e.g. accidents, the associated hazards) and construct the control structure diagram.</li>
+  <li>For each control action in the control diagram, the safety analysts must identify the potentially unsafe control actions of the system that could lead to a hazardous state. A unsafe control action is a control action that violates system safety constraints.</li>
+  <li>Use the identified hazardous control actions to create safety requirements and constraints.</li>
+  <li>Determine how each potentially hazardous control action, identified in step 2., could occur by augmenting the control structure diagram with a process model.</li>
+</ol>
+<h2 id="software-model-checking-smc"><a class="header-anchor" href="#software-model-checking-smc">🌊</a>Software Model Checking (SMC)</h2>
+<p>SMC is an automatic technique based on a verification model which explore all possible software states in a brute-force manner to prove properties of their execution. The model checking process involves the target software to be formally modeled in the
+  input language of a model checker and specifications (properties) to be formalized in a temporal logic. Many safety-critical software systems are being written in ANSI-C. Therefore, there exist a number of software model checker tools which are used
+  to verify code conducted a comparison and evaluation of existing model checking tools for C code. This comparison showed that the SPIN model checker, a general-purpose model checker, uses an efficient algorithm to reduce the state explosion problem.</p>
+<h2 id="safety-analysis-combining-stpa-and-smc"><a class="header-anchor" href="#safety-analysis-combining-stpa-and-smc">🌊</a>Safety Analysis Combining STPA and SMC</h2>
+<p>This method can derive software safety requirements at the system level and to verify them at the code level. This approach is divided into three kinds of activities:</p>
+<ol>
+  <li>Deriving software safety requirements using STPA;</li>
+  <li>Formalizing of safety requirements and</li>
+  <li>Verifying software against its safety requirements at the code level.</li>
+</ol>
+<p>The structure is like this:</p>
+<p><img src="http://www.meng.uno/images/software_verification.png" alt="Software Verification"></p>
+<h2 id="fault-tree-analysis-fta"><a class="header-anchor" href="#fault-tree-analysis-fta">🌊</a>Fault Tree Analysis (FTA)</h2>
+<p>FTA is a top-down, deductive failure analysis in which an undesired state of a system is analyzed using Boolean logic to combine a series of lower-level events. The propose is to understand how systems can fail, to identify the best ways to reduce risk
+  or to determine event rates of a safety accident or a particular system level failure.</p>
+<p>This method can divide into 5 steps:</p>
+<ol>
+  <li>Define the undesired event to study;</li>
+  <li>Obtain an understanding of the system;</li>
+  <li>Construct the fault tree;</li>
+  <li>Evaluate the fault tree;</li>
+  <li>Control the hazards identified.</li>
+</ol>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Software Verification </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Software Verification </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Some Throughts on Big Graphs Research]]></title>
+      <url>/posts/52d6fa6b/</url>
+      <content type="html"><![CDATA[<h2 id="redesign-the-frameworks-used-for-big-graphs-mining"><a class="header-anchor" href="#redesign-the-frameworks-used-for-big-graphs-mining">🌊</a>Redesign the Frameworks Used for Big-Graphs Mining.</h2>
+<p>Nowadays, researches on Big-graphs are only using those open source distributed systems such as Hadoop, Spark and so on. I don’t mean they are bad, but I think we could redesign some new frameworks based on they. If I do this research, I will first redesign
+  some data structure such as Inverted files for those distributed systems.</p>
+<h2 id="mine-frequent-subgraphs-by-adding-some-parameters"><a class="header-anchor" href="#mine-frequent-subgraphs-by-adding-some-parameters">🌊</a>Mine Frequent Subgraphs by Adding Some Parameters.</h2>
+<p>Mining frequent subgraphs is very crucial to SNS network graphs. In these networks, a user is often associated with location information (e.g., positions of her hometown and check-ins). These networks are collectively known as spatial graphs. However,
+  it isn’t mean those who are in a same location are in the same subgraph. For example, if I am in Singapore, I may also care China more Singapore, so I belong to the subgraph of China instead of others. In this circumstance, we need add more parameters
+  to our mining methods to get the right mining result.</p>
+<h2 id="temporal-and-streaming-systems-for-dynamic-graphs"><a class="header-anchor" href="#temporal-and-streaming-systems-for-dynamic-graphs">🌊</a>Temporal and Streaming Systems for Dynamic Graphs</h2>
+<p>Despite the plurality of graph systems, majority of them support processing static graphs only. In reality, however, many graph applications today need to handle changes to the graphs over time. Many challenges remain in this sub-field. For example, most
+  temporal and streaming graph systems cannot efficiently handle frequent vertex and edge deletions, as deletions often break the nice properties that enable incremental computation in these systems. Certainly, maybe I will do some research in this area
+  to support efficient analysis of dynamic graphs.</p>
+<h2 id="data-structure-for-storing-the-big-graphs"><a class="header-anchor" href="#data-structure-for-storing-the-big-graphs">🌊</a>Data Structure for Storing the Big-Graphs</h2>
+<p>Most graph analysis systems assume that the graph is already generated in the requisite format for ingesting into the system. In practice, however, usually the graphs must first be extracted from non-graph data stores using a pre-processing step that
+  generates the lists of nodes and edges. In many cases, graph analysis may form one component of a deep analysis pipeline, that also involves non-graph analytics operations; in such cases also, we may need to convert the data among different representations.
+  The costs of such pre-processing or conversion steps can be significant, and in some cases, the cost of extracting graphs may dominate the actual computation that follows (e.g., if edges are generated by computing similarities between node attributes).</p>
+<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+      
+        <categories>
+            
+            <category> Big Graphs </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Big Graphs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[浅析]]></title>
       <url>/posts/c1dd0093/</url>
       <content type="html"><![CDATA[<h1>VR/AR介绍</h1>
@@ -783,7 +1157,7 @@
   <li>Bezerra A. Evaluation of VR medical training applications under the focus of professionals of the health area[C]// ACM Symposium on Applied Computing. ACM, 2009:821-825.</li>
   <li>JLM Vazquez, BK Wiederhold, I Miller, et al. Virtual Reality Assisted Anesthesia (VRAA) during Upper Gastrointestinal Endoscopy: Report of 115 Cases— Analysis of Physiological Responses, 2017</li>
 </ol>
-<p>本文链接: <a href="http://meng.uno/posts/undefined/">http://meng.uno/posts/undefined/</a> 欢迎转载！</p>]]></content>
+<p>本文链接: <a href="http://meng.uno/posts/c1dd0093/">http://meng.uno/posts/c1dd0093/</a> 欢迎转载！</p>]]></content>
       
         <categories>
             
@@ -2224,7 +2598,7 @@ public class MailAction {
         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
       </td>
       <td class="code">
-        <pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">```grep``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">```ls -l | grep "\.txt"</span><br></pre>
+        <pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">``<span class="javascript"><span class="string">`grep</span></span>``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">``<span class="javascript"><span class="string">`ls -l | grep "\.txt"</span></span></span><br></pre>
       </td>
     </tr>
   </table>
