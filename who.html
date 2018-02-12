@@ -1,0 +1,30 @@
+<div id="contents">
+  <div id="experience" class="cv-section">
+<h3 class="h3c"><img class="imgc" src="<%- config.root %>cv_others/contact.png">&nbsp;能参加初四聚会的同学请填下表</h3>
+  <div class="cv-section-item">
+
+    <form action="https://formspree.io/<%= theme.mailbox %>"
+          method="POST" class="basic-grey">
+      <label>
+        <span>联系方式</span>
+        <input  type="text" name="联系方式" placeholder="联系方式" />
+      </label>
+
+      <label>
+        <span>姓名</span>
+        <input type="text" name="姓名" placeholder="姓名" />
+      </label>
+
+      <label>
+      <span>其他信息</span>
+        <textarea  name="Message" placeholder="其他信息（可无）"></textarea>
+      </label>
+      <label>
+      <span>&nbsp;</span>
+        <input type="submit" class="button" value="发送" />
+      </label>
+    </form>
+    </div>
+  </div>
+  <br>
+</div>
