@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-02-11T14:15:48.025Z</updated>
+  <updated>2018-02-12T12:50:09.426Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单但完整的Python3爬虫</title>
+    <link href="http://meng.uno/posts/41f15279/"/>
+    <id>http://meng.uno/posts/41f15279/</id>
+    <published>2018-02-12T12:18:15.000Z</published>
+    <updated>2018-02-12T12:50:09.426Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>  <p>我们先从分析原理入手，然后再使用Python提供的基本的库urllib。</p>  <p>注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。</p></blockquote><h1>原理</h1><p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p><h2 id="url"><a class="header-anchor" href="#url">🌊</a>URL</h2><p>URL就是同意资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p><p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p><p>可见，一个URL包含三个部分：</p><ol>  <li>protocol：协议，例如https，http等；</li>  <li>hostname[:port]：主机名(端口号为可选参数)，一般网站默认的端口号为80，例如我的博客域名www.meng.uno，可以作为主机名使用;</li>  <li>path：第三部分就是主机资源的具体地址，如目录和文件名等。</li></ol><p>爬虫就是向URL发送请求，然后得到响应，基本就实现了爬取网页的功能。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+  &lt;p&gt;我们先从分析原理入手，然后再使用Python提供的基本的库urllib。&lt;/p&gt;
+  &lt;p&gt;注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。&lt;/p
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://meng.uno/categories/Python/"/>
+    
+      <category term="爬虫" scheme="http://meng.uno/categories/Python/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="http://meng.uno/tags/Python/"/>
+    
+      <category term="爬虫" scheme="http://meng.uno/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>CPAchecker</title>
@@ -195,9 +226,9 @@
       <category term="Search" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/Search/"/>
     
     
-      <category term="算法复杂性" scheme="http://meng.uno/tags/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
-    
       <category term="Java" scheme="http://meng.uno/tags/Java/"/>
+    
+      <category term="算法复杂性" scheme="http://meng.uno/tags/%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     
       <category term="二分查找" scheme="http://meng.uno/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
     
@@ -569,31 +600,6 @@
       <category term="STP" scheme="http://meng.uno/tags/STP/"/>
     
       <category term="SMT" scheme="http://meng.uno/tags/SMT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Software Verification Approaches</title>
-    <link href="http://meng.uno/posts/55e262ef/"/>
-    <id>http://meng.uno/posts/55e262ef/</id>
-    <published>2017-12-11T13:19:48.000Z</published>
-    <updated>2018-02-11T14:04:49.152Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="network-function-virtualization-nfv"><a class="header-anchor" href="#network-function-virtualization-nfv">🌊</a>Network Function Virtualization (NFV)</h2><p>In the beginning, we need to know NFV which through the establishment of VNF (Virtualized Network Function) to achieve some network functions on a common server, switches, memory and other hardware devices, making these network functions on a common hardware  device run, do not need to configure a new dedicated network elements, can greatly enhance the flexibility of the network deployment, and lower investment costs.</p><p>In the process of realization of network functionality through NFV technology, VNF in the form of software running on the hardware, by way of example and to achieve termination VNF allocation and deallocation of resources.</p><p>In order to avoid VNF packet forgery in transit and in storage and tampering, increasing the signature files in the software package VNF, the receiving end after receiving the VNF software package by verifying signature files for VNF package for secure  authentication to ensure VNF packet during transmission security; in addition, the receiving end before VNF instantiated need for storage VNF package for secure authentication to ensure VNF package in the store security, which increased VNF instantiation  delay, reduce the VNF instantiated performance.</p><h2 id="systems-theoretic-process-analysis-stpa"><a class="header-anchor" href="#systems-theoretic-process-analysis-stpa">🌊</a>Systems-Theoretic Process Analysis (STPA)</h2><p>STPA is for identifying harmful circumstances which could lead to accidents and generating detailed safety requirements which must be implemented in the design to prevent the occurrence of these unsafe scenarios in the system. STPA is a top-down process  and it addresses many types of hazards of components and their interactions like design errors, software flaws and component interaction failures. One of the advantages of STPA is that it can be applied at any stage of the system development process.  STPA is performed by four main steps:</p><ol>  <li>Before conducting an STPA analysis, the safety analysts should establish fundamentals of the analysis (e.g. accidents, the associated hazards) and construct the control structure diagram.</li>  <li>For each control action in the control diagram, the safety analysts must identify the potentially unsafe control actions of the system that could lead to a hazardous state. A unsafe control action is a control action that violates system safety constraints.</li>  <li>Use the identified hazardous control actions to create safety requirements and constraints.</li>  <li>Determine how each potentially hazardous control action, identified in step 2., could occur by augmenting the control structure diagram with a process model.</li></ol><h2 id="software-model-checking-smc"><a class="header-anchor" href="#software-model-checking-smc">🌊</a>Software Model Checking (SMC)</h2><p>SMC is an automatic technique based on a verification model which explore all possible software states in a brute-force manner to prove properties of their execution. The model checking process involves the target software to be formally modeled in the  input language of a model checker and specifications (properties) to be formalized in a temporal logic. Many safety-critical software systems are being written in ANSI-C. Therefore, there exist a number of software model checker tools which are used  to verify code conducted a comparison and evaluation of existing model checking tools for C code. This comparison showed that the SPIN model checker, a general-purpose model checker, uses an efficient algorithm to reduce the state explosion problem.</p><h2 id="safety-analysis-combining-stpa-and-smc"><a class="header-anchor" href="#safety-analysis-combining-stpa-and-smc">🌊</a>Safety Analysis Combining STPA and SMC</h2><p>This method can derive software safety requirements at the system level and to verify them at the code level. This approach is divided into three kinds of activities:</p><ol>  <li>Deriving software safety requirements using STPA;</li>  <li>Formalizing of safety requirements and</li>  <li>Verifying software against its safety requirements at the code level.</li></ol><p>The structure is like this:</p><p><img src="http://www.meng.uno/images/software_verification.png" alt="Software Verification"></p><h2 id="fault-tree-analysis-fta"><a class="header-anchor" href="#fault-tree-analysis-fta">🌊</a>Fault Tree Analysis (FTA)</h2><p>FTA is a top-down, deductive failure analysis in which an undesired state of a system is analyzed using Boolean logic to combine a series of lower-level events. The propose is to understand how systems can fail, to identify the best ways to reduce risk  or to determine event rates of a safety accident or a particular system level failure.</p><p>This method can divide into 5 steps:</p><ol>  <li>Define the undesired event to study;</li>  <li>Obtain an understanding of the system;</li>  <li>Construct the fault tree;</li>  <li>Evaluate the fault tree;</li>  <li>Control the hazards identified.</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;network-function-virtualization-nfv&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#network-function-virtualization-nfv&quot;&gt;🌊&lt;/a&gt;Network Function Vir
-      
-    
-    </summary>
-    
-      <category term="Software Verification" scheme="http://meng.uno/categories/Software-Verification/"/>
-    
-    
-      <category term="Software Verification" scheme="http://meng.uno/tags/Software-Verification/"/>
     
   </entry>
   

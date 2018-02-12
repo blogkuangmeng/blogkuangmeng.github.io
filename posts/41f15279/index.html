@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>E-mail小爬虫 | 欢迎来到匡盟盟的博客！</title>
+  <title>简单但完整的Python3爬虫 | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -16,18 +16,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Ruby据说是一个比Python还要简洁还要快速的编程语言 ：） 好吧，这里并不是要挑起编程语言之间的战争，每个语言都有自己适应的场景，作为程序员应该知道在什么样的应用场景之下，用哪种的语言来实现业务逻辑，才是最重要的。 这次，我们使用Ruby来获取网页上的e-mail地址。 不知道各位有没有在成堆的垃圾邮件中，寻找某宝密码重置的邮件，简直是杯具…… 我们总是小心翼翼的保护着我们的邮箱，但还是被别">
-  <meta name="keywords" content="爬虫,E-mail,Ruby">
+  <meta name="description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。   注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。  原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，">
+  <meta name="keywords" content="Python,爬虫">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="E-mail小爬虫">
-  <meta property="og:url" content="http://meng.uno/posts/5d4e2c71/index.html">
+  <meta property="og:title" content="简单但完整的Python3爬虫">
+  <meta property="og:url" content="http://meng.uno/posts/41f15279/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Ruby据说是一个比Python还要简洁还要快速的编程语言 ：） 好吧，这里并不是要挑起编程语言之间的战争，每个语言都有自己适应的场景，作为程序员应该知道在什么样的应用场景之下，用哪种的语言来实现业务逻辑，才是最重要的。 这次，我们使用Ruby来获取网页上的e-mail地址。 不知道各位有没有在成堆的垃圾邮件中，寻找某宝密码重置的邮件，简直是杯具…… 我们总是小心翼翼的保护着我们的邮箱，但还是被别">
+  <meta property="og:description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。   注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。  原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:updated_time" content="2018-02-11T14:12:34.629Z">
+  <meta property="og:updated_time" content="2018-02-12T12:50:09.426Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="E-mail小爬虫">
-  <meta name="twitter:description" content="Ruby据说是一个比Python还要简洁还要快速的编程语言 ：） 好吧，这里并不是要挑起编程语言之间的战争，每个语言都有自己适应的场景，作为程序员应该知道在什么样的应用场景之下，用哪种的语言来实现业务逻辑，才是最重要的。 这次，我们使用Ruby来获取网页上的e-mail地址。 不知道各位有没有在成堆的垃圾邮件中，寻找某宝密码重置的邮件，简直是杯具…… 我们总是小心翼翼的保护着我们的邮箱，但还是被别">
+  <meta name="twitter:title" content="简单但完整的Python3爬虫">
+  <meta name="twitter:description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。   注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。  原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
 
@@ -220,120 +220,48 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-ruby_email_crawler" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-crawl-py" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  E-mail小爬虫
+                  简单但完整的Python3爬虫
                 </h1>
               </header>
 
               <div class="article-meta">
-                <a href="/posts/5d4e2c71/" class="article-date">
-	  <time datetime="2016-10-10T06:18:08.000Z" itemprop="datePublished">2016-10-10</time>
+                <a href="/posts/41f15279/" class="article-date">
+	  <time datetime="2018-02-12T12:18:15.000Z" itemprop="datePublished">2018-02-12</time>
 	</a>
-                <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
-                <a class="article-category-link" href="/categories/Ruby/爬虫/">爬虫</a><a class="article-category-link" href="/categories/Ruby/爬虫/E-mail/">E-mail</a>
+                <a class="article-category-link" href="/categories/Python/">Python</a>
+                <a class="article-category-link" href="/categories/Python/爬虫/">爬虫</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,031</span>
-	<span class="post-count"> | 预计时间4分钟</span>
+	<span class="post-count"> | 字数308</span>
+	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>Ruby据说是一个比Python还要简洁还要快速的编程语言 ：）</p>
-                <p>好吧，这里并不是要挑起编程语言之间的战争，每个语言都有自己适应的场景，作为程序员应该知道在什么样的应用场景之下，用哪种的语言来实现业务逻辑，才是最重要的。</p>
-                <p>这次，我们使用Ruby来获取网页上的e-mail地址。</p>
-                <p>不知道各位有没有在成堆的垃圾邮件中，寻找某宝密码重置的邮件，简直是杯具……</p>
-                <p>我们总是小心翼翼的保护着我们的邮箱，但还是被别有用心的人知道；e-mail爬虫就是这些人的工具之一，它可以在某个网页上过滤出一个个的e-mail，然后发送垃圾邮件。</p>
-                <p>“加密”你的email地址，防止爬虫收集</p>
-                <p>当然，我们抱着学习的心态，来了解它的基本结构，揭开它神秘的面纱。</p>
-                <p>代码下载：<br>
-                  <code>git clone http://git.shiyanlou.com/shiyanlou/email_spider</code></p>
-                <h2 id="准备工作"><a class="header-anchor" href="#准备工作">🌊</a>准备工作</h2>
-                <p>实验楼已经提供了Ruby运行环境，但是，还是需要我们安装一些插件：</p>
-                <p>将gem下载源换为国内源</p>
-                <p>请确保只有<code>ruby.taobao.org</code></p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">$ gem sources --remove http:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -<span class="selector-tag">a</span> http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">**CURRENT SOURCES **</span><br><span class="line">http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>安装Ruby爬虫库 anemone</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby1.<span class="number">9.1</span>-dev</span><br><span class="line">$ sudo apt-get install libsqlite3-dev</span><br><span class="line">$ sudo gem install anemone</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>查看对应的数据库支持</p>
-                <p>Ruby数据库支持</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">sudo gem install data_mapper</span><br><span class="line">sudo gem install dm-sqlite-adapter</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <h2 id="数据库设计"><a class="header-anchor" href="#数据库设计">🌊</a>数据库设计</h2>
-                <p>我们使用sqlite3来放置我们扒下来的数据：</p>
-                <p>Site：存储爬行过的网站</p>
-                <p>Page：存储爬行过的存在email地址的页面的URL</p>
-                <p>Address：email地址</p>
-                <p>我们只讲解其中一个表的model，其他更深入的请看：</p>
-                <p>data_mapper property详解</p>
-                <p>Page模型需要include模块DataMapper::Resource，引入相应的方法，其中就包括了property，belongs_to，has n，validates_presence_of，这些我们马上需要用到的方法。</p>
-                <p>property：定义了对象的属性（表的字段类型），Serial是自增ID，并且是主键。</p>
-                <p>belongs_to： 定义了一对多的关系，一个网站可能包含了多个网页URL</p>
-                <p>has n：定义多对多的关系，一个网页上可能包含多个email地址，一个email可能同时存在多个网页上。</p>
-                <p>validates_presence_of：检查 url是否存在。</p>
-                <p>data_mapper validates详解</p>
-                <h2 id="爬虫代码"><a class="header-anchor" href="#爬虫代码">🌊</a>爬虫代码</h2>
-                <p>首先，我们需要引入uri 和 anemone包，其次还需要刚才定义的数据库的model</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">require <span class="string">'uri'</span></span><br><span class="line">require <span class="string">'anemone'</span></span><br><span class="line">require_relative <span class="string">'data'</span></span><br><span class="line">data是对data.rb文件的引用。</span><br><span class="line">ARGV：获取命令行参数</span><br><span class="line"></span><br><span class="line">ruby crawl<span class="selector-class">.rb</span> http:<span class="comment">//www.test.test</span></span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>ARGV是Ruby的数组，所以我们用循环来处理它，因为我可以输入不只一个URL，如果，我们使用多线程的话，这样就可以同一时间处理多个URL，事半功倍。</p>
-                <p>然后马上使用URI()来处理传入的URL，结果返回给uri，下一步就把这个结果存入数据库中，uri.host网站的域名，和当前时间(这里使用的是内置模块Time) URI模块。</p>
-                <p>接下来的事情就很写意了，我们不需要自己去做很多的比如什么广度和深度算法的设计，我们只需要给它一个入口的URL，它会自动的去爬行，根本停不下来啊！</p>
-                <p>使用模块Anemone的方法crawl创建一个新的爬虫，参数就传一个我们想爬行的URL就OK了！</p>
-                <p>Storage.PStore用来缓存新扒下来的网页代码，on_every_page处理每个页面，正则去匹配email，该页面的所有email会被包装在一个数组里面，然后循环这个数组并将结果存放数据库。</p>
-                <p>Anemone爬虫模块</p>
-                <p>if判断将会去查询address表，如果这个数据存在就更新，不存在则创建。</p>
-                <p>Datamapper更删查改详解</p>
-                <p>最后，将得到的E-mail地址输出到屏幕，又接着下一次循环，你要是不想等了，直接Ctrl+c吧 ：）</p>
+                <blockquote>
+                  <p>我们先从分析原理入手，然后再使用Python提供的基本的库urllib。</p>
+                  <p>注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。</p>
+                </blockquote>
+                <h1>原理</h1>
+                <p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p>
+                <h2 id="url"><a class="header-anchor" href="#url">🌊</a>URL</h2>
+                <p>URL就是同意资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
+                <p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p>
+                <p>可见，一个URL包含三个部分：</p>
+                <ol>
+                  <li>protocol：协议，例如https，http等；</li>
+                  <li>hostname[:port]：主机名(端口号为可选参数)，一般网站默认的端口号为80，例如我的博客域名www.meng.uno，可以作为主机名使用;</li>
+                  <li>path：第三部分就是主机资源的具体地址，如目录和文件名等。</li>
+                </ol>
+                <p>爬虫就是向URL发送请求，然后得到响应，基本就实现了爬取网页的功能。</p>
 
               </div>
               <footer class="article-footer">
@@ -376,8 +304,7 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/E-mail/">E-mail</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li>
                 </ul>
               </footer>
@@ -385,19 +312,10 @@
 
             <nav id="article-nav">
 
-              <a href="/posts/5850713f/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Git学习小结
-        
-      </div>
-    </a>
 
-
-              <a href="/posts/61cdd944/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/posts/c5d9877c/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">我的Java+Struts2+MySQL配置</div>
+      <div class="article-nav-title">CPAchecker</div>
     </a>
 
             </nav>
@@ -411,9 +329,11 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">🌊准备工作</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">2.</span> <span class="nav-text">🌊数据库设计</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫代码"><span class="nav-number">3.</span> <span class="nav-text">🌊爬虫代码</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">1.1.</span> <span class="nav-text">🌊URL</span></a></li>
+                  </ol>
+                </li>
               </ol>
 
             </div>

@@ -3,6 +3,45 @@
   
     
     <entry>
+      <title><![CDATA[简单但完整的Python3爬虫]]></title>
+      <url>/posts/41f15279/</url>
+      <content type="html"><![CDATA[<blockquote>
+  <p>我们先从分析原理入手，然后再使用Python提供的基本的库urllib。</p>
+  <p>注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。</p>
+</blockquote>
+<h1>原理</h1>
+<p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p>
+<h2 id="url"><a class="header-anchor" href="#url">🌊</a>URL</h2>
+<p>URL就是同意资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
+<p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p>
+<p>可见，一个URL包含三个部分：</p>
+<ol>
+  <li>protocol：协议，例如https，http等；</li>
+  <li>hostname[:port]：主机名(端口号为可选参数)，一般网站默认的端口号为80，例如我的博客域名www.meng.uno，可以作为主机名使用;</li>
+  <li>path：第三部分就是主机资源的具体地址，如目录和文件名等。</li>
+</ol>
+<p>爬虫就是向URL发送请求，然后得到响应，基本就实现了爬取网页的功能。</p>]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+            <category> 爬虫 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CPAchecker]]></title>
       <url>/posts/c5d9877c/</url>
       <content type="html"><![CDATA[<p>CPAchecker is a tool for configurable software verification which means expressing different program analysis and model checking approaches in one single formalism. The main algorithm is configurable to perform a reachability analysis on arbitrary combinations
@@ -503,9 +542,9 @@
         
         <tags>
             
-            <tag> 算法复杂性 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 算法复杂性 </tag>
             
             <tag> 二分查找 </tag>
             
@@ -3571,9 +3610,9 @@ public class MailAction {
         
         <tags>
             
-            <tag> E-mail </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> E-mail </tag>
             
             <tag> Ruby </tag>
             
