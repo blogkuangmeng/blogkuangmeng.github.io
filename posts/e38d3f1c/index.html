@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>跨领域分词国内外研究现状 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="🌊国内研究 国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及哈工大等。 国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。 国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。">
+  <meta name="keywords" content="分词,跨领域">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="跨领域分词国内外研究现状">
+  <meta property="og:url" content="http://meng.uno/posts/e38d3f1c/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="🌊国内研究 国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及哈工大等。 国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。 国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-02-13T14:06:23.348Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="跨领域分词国内外研究现状">
+  <meta name="twitter:description" content="🌊国内研究 国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及哈工大等。 国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。 国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": ["copy", "weixin", "linkedin", "sqq", "tsina", "twi", "fbook", "mail"],
+        "bdPic": "",
+        "bdStyle": "0",
+        "bdSize": "16"
+      },
+      "slide": {
+        "type": "slide",
+        "bdImg": "0",
+        "bdPos": "left",
+        "bdTop": "100"
+      },
+      "selectShare": {
+        "bdContainerClass": null,
+        "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+      }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+  </script>
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-word-seg-history" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  跨领域分词国内外研究现状
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/posts/e38d3f1c/" class="article-date">
+	  <time datetime="2017-12-22T12:15:00.000Z" itemprop="datePublished">2017-12-22</time>
+	</a>
+                <a class="article-category-link" href="/categories/毕设/">毕设</a>
+                <a class="article-category-link" href="/categories/毕设/研究现状/">研究现状</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数3,426</span>
+	<span class="post-count"> | 预计时间14分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h2 id="国内研究"><a class="header-anchor" href="#国内研究">🌊</a>国内研究</h2>
+                <p>国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及<strong>哈工大</strong>等。</p>
+                <p>国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。</p>
+                <p>国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。国内分词算法上的进展主要有：2005年，哈工大[13]在分词阶段以基于词的n-gram方法为核心。先将词按照词典初步切分，并从训练语料统计得到3-gram信息，动态规划计算哪条切分路径最优。但在命名实体识别、新词识别、消除分词歧义部分使用ME模型。2007年，赵海等人[19]研究了基于子串标注的分词算法，在Bakeoff-2005测试集上准确度较高。2009年，[3]利用一种基于N元语法的汉语自动分词系统,
+                  将分词与标注结合起来, 用词性标注来参与评价分词结果。[34]提出了一种字词联合解码的分词方法，算法中使用了字、词信息，充分发挥由字构词识别未登录词的能力。2010年，[35]提出基于词边界分类的分词方法，该方法对字符之间的边界进行分类，判断是否为词的边界，从而达到分词目的。[36]将基于字的生成模型与基于字的判别模型进行联合。2014年，[29]对[28]的模型做了重要改进，引入了标签向量来更精细地刻画标签之间的转移关系，其改进程度类似于引入Markov特征到最大熵模型之中。2015年，为了更完整精细地对分词上下文建模，[30]提出了一种带有自适应门结构的递归神经网络(GRNN)抽取n-gram特征，其中的两种定制的门结构（重置门、更新门）被用来控制n-gram信息的融合和抽取。2016年，[31]将GRNN和LSTM联合起来使用。该模型中，先用双向LSTM提取上下文敏感的局部信息，然后在滑动窗口内将这些局部信息用带门结构的递归神经网络融合起来，最后用作标签分类的依据。[32]提出了一种基于转移的模型用于分词，并将传统的特征模版和神经网络自动提取的特征结合起来，在神经网络自动提取的特征和传统的离散特征的融合方法做了尝试。2017年，[33]通过简化网络结构，混合字词输入以及使用早期更新（early
+                  update）等收敛性更好的训练策略，设计了一个基于贪心搜索(greedy search)的快速分词系统。该算法与之前的深度学习算法相比不仅在速度上有了巨大提升，分词精度也得到了进一定提高。</p>
+                <p>在领域自适应方面相关研究比较少，2008年，[45]利用并发展针对单个汉字的构词能力和构词模式公式, 计算词的构词能力和词的构词模式, 并以此作为新词发现的规则, 对科技领域做了新词发现和新技术发现的实验。2012年，[41]通过将外部词典信息融入统计分词模型 (使用CRF 统计模型)来实现领域自适应性。在确定一个领域并给出这个领域的文献数据集合的前提下，[44]主要从这两个步骤进行新词发现：首先对特定领域的文献集合进行分词处理，在进行分词处理方面使用了基于统计的N-Gram方法，较为有效地找出了词典中所不存在地新词汇；第二个步骤为新的专业词汇的抽取，这是一个根据已有专业词汇来发现未知专业词汇的过程，目的从第一步中所产生的新的词汇中抽取出新的属于目标领域的专业词汇，在这个步骤中，使用了Apriori方法。2013年，[40]实现了基于生语料的领域自适应分词模型和双语引导的汉语分词，并提出融合多种分词结果的方法，通过构建格状(Lattice)结构并使用动态规划算法得到较佳汉语分词结果。2015年，[39]提出Active
+                  Learning与n-gram统计特征相结合，通过对目标领域文本与已有标注语料差异统计分析，选择含有最多未标记过得语言现象的小规模语料优先进行人工标注的方法，此法验证在科技文献上有所提高。[43]提出使用卡方统计 量以及边界熵提升未登录词的处理能力，并结合自学习和协同学习策略进一步改善字标注分词方法在领域适应性方面的性能。2016年，[42]提出一种条件随机场与领域词典相结合的方法提高领域自适应性，并根据构词规则提出了固定词串消解，动词消解，词概率消解三种方法消除歧义。</p>
+                <h2 id="国外研究"><a class="header-anchor" href="#国外研究">🌊</a>国外研究</h2>
+                <p>国外研究中文分词的主要科研机构有：斯坦福、SUTD、UC Berkeley、CMU、CityU等。</p>
+                <p>国外成熟的分词系统有：Core NLP（斯坦福 NLP Group）、Zpar（SUTD）、Basis Technology、Open NLP (Apache 基金会)等。</p>
+                <p>国外分词算法上的进展：2003年之前，主要集中在词典与人工规则相结合，词典与概率统计规则相结合。2005年，开始使用基于字序列标注的分词方法，该方法始于[20]，第一次将严格的串标注学习应用于分词在[21]和[22]之后。[23]与[24]的出现，基于CRF模型崭露头角，在此之后，CRF多个变种构成了深度学习时代之前的标准分词模型。基于词的随机过程建模导致一个CRF变种，即semi-CRF(半条件随机场)模型的直接应用。2006年，基于字序列标注的方法已经开始盛行，核心模型仍然是ME与CRF，同年，[25]发表semi-CRF的第一个分词实现。[26]提出了一种基于子词（subword）的标注学习，基本思路是从训练集中抽取高频已知词构造子词词典。2007年，ME的方法已经开始退出舞台，CRF越来越成为主流。2010年，核心方法还是基于CRF模型，后处理是SVM-HMM模型。2011年，当子串的抽取和统计度量得分计算扩展到训练集之外，[27]实际上提出了一种扩展性很强的半监督分词方法，实验也验证了其有效性。2013年，[28]提出神经网络中文分词方法，首次验证了深度学习方法应用到中文分词任务上的可行性。</p>
+                <p>在领域自适应上，由耶鲁大学教授提出的Active Learning得到了较为广泛的使用。</p>
+                <p><strong>待补充</strong></p>
+                <h2 id="参考文献"><a class="header-anchor" href="#参考文献">🌊</a>参考文献</h2>
+                <p>[1] 马晏. 基于评价的汉语自动分词系统的研究与实现[D]. 清华大学, 1991.</p>
+                <p>[2] 张国兵, 李淼. 一种基于局部歧义词网格的快速分词算法[J]. 计算机工程与应用, 2008, 44(12):175-177.</p>
+                <p>[3] 石佳, 蔡皖东. 基于N元语法的汉语自动分词系统研究[J]. 微电子学与计算机, 2009, 26(7):98-101.</p>
+                <p>[4] 韩莹, 王茂发, 陈新房,等. 汉语自动分词词典新机制—词值哈希机制[J]. 计算机系统应用, 2013, 22(2):233-235.</p>
+                <p>[5] 蒋才智, 王浩. 基于memcached的动态四字双向词典机制[J]. 计算机应用研究, 2011, 28(1):152-154.</p>
+                <p>[6] 刘超, 王卫东. 基于双哈希词典机制中文分词的研究[J]. 信息技术, 2016, 40(11).</p>
+                <p>[7] 刘挺, 吴岩, 王开铸. 串频统计和词形匹配相结合的汉语自动分词系统[J]. 中文信息学报, 1998, 12(1):17-25.</p>
+                <p>[8] 唐涛. 面向特定领域的中文分词技术的研究[D]. 沈阳航空航天大学, 2012.</p>
+                <p>[9] 卢志茂, 刘挺, 郎君,等. 神经网络和贝叶斯网络在汉语词义消歧上的对比研究[J]. 高技术通讯, 2004, 14(8):15-19.</p>
+                <p>[10] 廖先桃, 于海滨, 秦兵,等. HMM与自动规则提取相结合的中文命名实体识别[C]// 全国学生计算语言学研讨会. 2004.</p>
+                <p>[11] 程志刚. 基于规则和条件随机场的中文命名实体识别方法研究[D]. 华中师范大学, 2015.</p>
+                <p>[12] 祝继锋. 基于SVM和HMM算法的中文机构名称识别[D]. 吉林大学, 2017.</p>
+                <p>[13] ZHUORAN WANG, TING LIU. Chinese Unknown Word Identification Based on Local Bigram Model[J]. International Journal of Computer Processing of Oriental Languages, 2012, 1(3):185-196.</p>
+                <p>[14] 原媛, 彭建华, 张汝云. 基于统计的汉语词义消歧研究[J]. 信息工程大学学报, 2007, 8(4):501-504.</p>
+                <p>[15] 肖建涛. 基于最大熵原理的汉语词义消歧与标注语言模型研究[D]. 北京机械工业学院 北京信息科技大学, 2007.</p>
+                <p>[16] 张旭. 一个基于词典与统计的中文分词算法[D]. 电子科技大学, 2007.</p>
+                <p>[17] 佟德琴. 基于字词联合解码的中文分词研究[D]. 大连理工大学, 2011.</p>
+                <p>[18] 赵海, 揭春雨, 宋彦. 基于字依存树的中文词法-句法一体化分析[C]// 中国计算机语言学研究前沿进展. 2009.</p>
+                <p>[19] 赵海, 揭春雨. 基于有效子串标注的中文分词[J]. 中文信息学报, 2007, 21(5):8-13.</p>
+                <p>[20] Nianwen Xue. Chinese Word Segmentation as Character Tagging. Computational Linguistics and Chinese Language Processing, 8(1), 2003, pp. 29–48.</p>
+                <p>[21] Hwee Tou Ng and Jin Kiat Low. Chinese part-of-speech tagging: One-at-a-time or all-at-once? word-based or character-based? In Conference on Empirical Methods in Natural Language Processing, 2004, pp. 277–284.</p>
+                <p>[22] Jin Kiat Low, Hwee Tou Ng, and Wenyuan Guo. A maximum entropy approach to Chinese word segmentation. In Proceedings of the SIGHAN Workshop on Chinese Language Processing, 2005, pp. 448–455.</p>
+                <p>[23] Huihsin Tseng, Pichuan Chang, Galen Andrew, Daniel Jurafsky, and Christopher Manning. A conditional random field word segmenter for SIGHAN bakeoff 2005. In Proceedings of the SIGHAN workshop on Chinese language Processing, vol. 171,
+                  2005.</p>
+                <p>[24] Fuchun Peng, Fangfang Feng, and Andrew McCallum. Chinese segmentation and new word detection using conditional random fields. In Proceedings of the international conference on Computational Linguistics, 2004, pp. 562–569.</p>
+                <p>[25] Galen Andrew. A hybrid Markov/semi-Markov conditional random field for sequence segmentation. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2006, pp. 465– 472.</p>
+                <p>[26] Ruiqiang Zhang, Genichiro Kikui, and Eiichiro Sumita. Subword-based tagging for confidence-dependent Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the international
+                  conference on Computational Linguistics, 2006, pp. 961–968.</p>
+                <p>[27] Hai Zhao and Chunyu Kit. Integrating Unsupervised and Supervised Word Segmentation: the Role of Goodness Measures. Information Sciences, 181(1), 2011, pp. 163–183.</p>
+                <p>[28] Xiaoqing Zheng, Hanyang Chen, and Tianyu Xu. Deep learning for Chinese word segmentation and POS tagging. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2013, pp.647–657.</p>
+                <p>[29] Wenzhe Pei, Tao Ge, and Baobao Chang. Max-margin tensor neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2014, pp. 293–303.</p>
+                <p>[30] Xinchi Chen, Xipeng Qiu, Chenxi Zhu, and Xuanjing Huang. Gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the 7th International
+                  Joint Conference on Natural Language Processing, 2015a, pp. 1744–1753.</p>
+                <p>[31] Jingjing Xu and Xu Sun. Dependency-based gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), 2016, pp. 567–572.</p>
+                <p>[32] Meishan Zhang, Yue Zhang, and Guohong Fu. Transition-based neural word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2016, pp. 421–431.</p>
+                <p>[33] Deng Cai, Hai Zhao, Zhisong Zhang, Yuan Xin, Yongjian Wu, and Feiyue Huang. Fast and accurate neural word segmentation for Chinese. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2017.</p>
+                <p>[34] 宋彦, 蔡东风, 张桂平,等. 一种基于字词联合解码的中文分词方法[J]. 软件学报, 2009, 20(9):2366-2375.</p>
+                <p>[35] 李寿山, 黄居仁. 基于词边界分类的中文分词方法[J]. 中文信息学报, 2010, 24(1):3-7.</p>
+                <p>[36] Wang K, Su K Y, Su K Y. A character-based joint model for Chinese word segmentation[C]// International Conference on Computational Linguistics. Association for Computational Linguistics, 2010:1173-1181.</p>
+                <p>[37] 王娟, 曹庆花, 黄精籼,等. 基于受限领域的中文分词系统[J]. 信息系统工程, 2011(11):106-106.</p>
+                <p>[38] 张少阳. 领域自适应中文分词系统的研究与实现[D]. 沈阳航空航天大学, 2017.</p>
+                <p>[39] 许华婷, 张玉洁, 杨晓晖,等. 基于Active Learning的中文分词领域自适应[J]. 中文信息学报, 2015, 29(5):55-62.</p>
+                <p>[40] 苏晨, 张玉洁, 郭振,等. 适用于特定领域机器翻译的汉语分词方法[J]. 中文信息学报, 2013, 27(5):184-190.</p>
+                <p>[41] 张梅山, 邓知龙, 车万翔,等. 统计与词典相结合的领域自适应中文分词[J]. 中文信息学报, 2012, 26(2):8-12.</p>
+                <p>[42] 朱艳辉, 刘璟, 徐叶强,等. 基于条件随机场的中文领域分词研究[J]. 计算机工程与应用, 2016, 52(15):97-100.</p>
+                <p>[43] 韩冬煦, 常宝宝. 中文分词模型的领域适应性方法[J]. 计算机学报, 2015, 38(2):272-281.</p>
+                <p>[44] 李明. 针对特定领域的中文新词发现技术研究[D]. 南京航空航天大学, 2012.</p>
+                <p>[45] 王文荣, 乔晓东, 朱礼军. 针对特定领域的新词发现和新技术发现[J]. 现代图书情报技术, 2008, 24(2):35-40.</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分词/">分词</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨领域/">跨领域</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/posts/cd3afb7d/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Simple Theorem Prover SMT solver
+        
+      </div>
+    </a>
+
+
+              <a href="/posts/55e262ef/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Software Verification Approaches</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#国内研究"><span class="nav-number">1.</span> <span class="nav-text">🌊国内研究</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#国外研究"><span class="nav-number">2.</span> <span class="nav-text">🌊国外研究</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">🌊参考文献</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.02.13 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+            </p>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <img border="0" height=27px width=109px style="background-color:white;" src="/css/images/kaba.png" />
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              匡盟盟
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+</body>
+
+</html>

@@ -1456,6 +1456,91 @@
     </entry>
     
     <entry>
+      <title><![CDATA[跨领域分词国内外研究现状]]></title>
+      <url>/posts/e38d3f1c/</url>
+      <content type="html"><![CDATA[<h2 id="国内研究"><a class="header-anchor" href="#国内研究">🌊</a>国内研究</h2>
+<p>国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及<strong>哈工大</strong>等。</p>
+<p>国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。</p>
+<p>国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。国内分词算法上的进展主要有：2005年，哈工大[13]在分词阶段以基于词的n-gram方法为核心。先将词按照词典初步切分，并从训练语料统计得到3-gram信息，动态规划计算哪条切分路径最优。但在命名实体识别、新词识别、消除分词歧义部分使用ME模型。2007年，赵海等人[19]研究了基于子串标注的分词算法，在Bakeoff-2005测试集上准确度较高。2009年，[3]利用一种基于N元语法的汉语自动分词系统,
+  将分词与标注结合起来, 用词性标注来参与评价分词结果。[34]提出了一种字词联合解码的分词方法，算法中使用了字、词信息，充分发挥由字构词识别未登录词的能力。2010年，[35]提出基于词边界分类的分词方法，该方法对字符之间的边界进行分类，判断是否为词的边界，从而达到分词目的。[36]将基于字的生成模型与基于字的判别模型进行联合。2014年，[29]对[28]的模型做了重要改进，引入了标签向量来更精细地刻画标签之间的转移关系，其改进程度类似于引入Markov特征到最大熵模型之中。2015年，为了更完整精细地对分词上下文建模，[30]提出了一种带有自适应门结构的递归神经网络(GRNN)抽取n-gram特征，其中的两种定制的门结构（重置门、更新门）被用来控制n-gram信息的融合和抽取。2016年，[31]将GRNN和LSTM联合起来使用。该模型中，先用双向LSTM提取上下文敏感的局部信息，然后在滑动窗口内将这些局部信息用带门结构的递归神经网络融合起来，最后用作标签分类的依据。[32]提出了一种基于转移的模型用于分词，并将传统的特征模版和神经网络自动提取的特征结合起来，在神经网络自动提取的特征和传统的离散特征的融合方法做了尝试。2017年，[33]通过简化网络结构，混合字词输入以及使用早期更新（early
+  update）等收敛性更好的训练策略，设计了一个基于贪心搜索(greedy search)的快速分词系统。该算法与之前的深度学习算法相比不仅在速度上有了巨大提升，分词精度也得到了进一定提高。</p>
+<p>在领域自适应方面相关研究比较少，2008年，[45]利用并发展针对单个汉字的构词能力和构词模式公式, 计算词的构词能力和词的构词模式, 并以此作为新词发现的规则, 对科技领域做了新词发现和新技术发现的实验。2012年，[41]通过将外部词典信息融入统计分词模型 (使用CRF 统计模型)来实现领域自适应性。在确定一个领域并给出这个领域的文献数据集合的前提下，[44]主要从这两个步骤进行新词发现：首先对特定领域的文献集合进行分词处理，在进行分词处理方面使用了基于统计的N-Gram方法，较为有效地找出了词典中所不存在地新词汇；第二个步骤为新的专业词汇的抽取，这是一个根据已有专业词汇来发现未知专业词汇的过程，目的从第一步中所产生的新的词汇中抽取出新的属于目标领域的专业词汇，在这个步骤中，使用了Apriori方法。2013年，[40]实现了基于生语料的领域自适应分词模型和双语引导的汉语分词，并提出融合多种分词结果的方法，通过构建格状(Lattice)结构并使用动态规划算法得到较佳汉语分词结果。2015年，[39]提出Active
+  Learning与n-gram统计特征相结合，通过对目标领域文本与已有标注语料差异统计分析，选择含有最多未标记过得语言现象的小规模语料优先进行人工标注的方法，此法验证在科技文献上有所提高。[43]提出使用卡方统计 量以及边界熵提升未登录词的处理能力，并结合自学习和协同学习策略进一步改善字标注分词方法在领域适应性方面的性能。2016年，[42]提出一种条件随机场与领域词典相结合的方法提高领域自适应性，并根据构词规则提出了固定词串消解，动词消解，词概率消解三种方法消除歧义。</p>
+<h2 id="国外研究"><a class="header-anchor" href="#国外研究">🌊</a>国外研究</h2>
+<p>国外研究中文分词的主要科研机构有：斯坦福、SUTD、UC Berkeley、CMU、CityU等。</p>
+<p>国外成熟的分词系统有：Core NLP（斯坦福 NLP Group）、Zpar（SUTD）、Basis Technology、Open NLP (Apache 基金会)等。</p>
+<p>国外分词算法上的进展：2003年之前，主要集中在词典与人工规则相结合，词典与概率统计规则相结合。2005年，开始使用基于字序列标注的分词方法，该方法始于[20]，第一次将严格的串标注学习应用于分词在[21]和[22]之后。[23]与[24]的出现，基于CRF模型崭露头角，在此之后，CRF多个变种构成了深度学习时代之前的标准分词模型。基于词的随机过程建模导致一个CRF变种，即semi-CRF(半条件随机场)模型的直接应用。2006年，基于字序列标注的方法已经开始盛行，核心模型仍然是ME与CRF，同年，[25]发表semi-CRF的第一个分词实现。[26]提出了一种基于子词（subword）的标注学习，基本思路是从训练集中抽取高频已知词构造子词词典。2007年，ME的方法已经开始退出舞台，CRF越来越成为主流。2010年，核心方法还是基于CRF模型，后处理是SVM-HMM模型。2011年，当子串的抽取和统计度量得分计算扩展到训练集之外，[27]实际上提出了一种扩展性很强的半监督分词方法，实验也验证了其有效性。2013年，[28]提出神经网络中文分词方法，首次验证了深度学习方法应用到中文分词任务上的可行性。</p>
+<p>在领域自适应上，由耶鲁大学教授提出的Active Learning得到了较为广泛的使用。</p>
+<p><strong>待补充</strong></p>
+<h2 id="参考文献"><a class="header-anchor" href="#参考文献">🌊</a>参考文献</h2>
+<p>[1] 马晏. 基于评价的汉语自动分词系统的研究与实现[D]. 清华大学, 1991.</p>
+<p>[2] 张国兵, 李淼. 一种基于局部歧义词网格的快速分词算法[J]. 计算机工程与应用, 2008, 44(12):175-177.</p>
+<p>[3] 石佳, 蔡皖东. 基于N元语法的汉语自动分词系统研究[J]. 微电子学与计算机, 2009, 26(7):98-101.</p>
+<p>[4] 韩莹, 王茂发, 陈新房,等. 汉语自动分词词典新机制—词值哈希机制[J]. 计算机系统应用, 2013, 22(2):233-235.</p>
+<p>[5] 蒋才智, 王浩. 基于memcached的动态四字双向词典机制[J]. 计算机应用研究, 2011, 28(1):152-154.</p>
+<p>[6] 刘超, 王卫东. 基于双哈希词典机制中文分词的研究[J]. 信息技术, 2016, 40(11).</p>
+<p>[7] 刘挺, 吴岩, 王开铸. 串频统计和词形匹配相结合的汉语自动分词系统[J]. 中文信息学报, 1998, 12(1):17-25.</p>
+<p>[8] 唐涛. 面向特定领域的中文分词技术的研究[D]. 沈阳航空航天大学, 2012.</p>
+<p>[9] 卢志茂, 刘挺, 郎君,等. 神经网络和贝叶斯网络在汉语词义消歧上的对比研究[J]. 高技术通讯, 2004, 14(8):15-19.</p>
+<p>[10] 廖先桃, 于海滨, 秦兵,等. HMM与自动规则提取相结合的中文命名实体识别[C]// 全国学生计算语言学研讨会. 2004.</p>
+<p>[11] 程志刚. 基于规则和条件随机场的中文命名实体识别方法研究[D]. 华中师范大学, 2015.</p>
+<p>[12] 祝继锋. 基于SVM和HMM算法的中文机构名称识别[D]. 吉林大学, 2017.</p>
+<p>[13] ZHUORAN WANG, TING LIU. Chinese Unknown Word Identification Based on Local Bigram Model[J]. International Journal of Computer Processing of Oriental Languages, 2012, 1(3):185-196.</p>
+<p>[14] 原媛, 彭建华, 张汝云. 基于统计的汉语词义消歧研究[J]. 信息工程大学学报, 2007, 8(4):501-504.</p>
+<p>[15] 肖建涛. 基于最大熵原理的汉语词义消歧与标注语言模型研究[D]. 北京机械工业学院 北京信息科技大学, 2007.</p>
+<p>[16] 张旭. 一个基于词典与统计的中文分词算法[D]. 电子科技大学, 2007.</p>
+<p>[17] 佟德琴. 基于字词联合解码的中文分词研究[D]. 大连理工大学, 2011.</p>
+<p>[18] 赵海, 揭春雨, 宋彦. 基于字依存树的中文词法-句法一体化分析[C]// 中国计算机语言学研究前沿进展. 2009.</p>
+<p>[19] 赵海, 揭春雨. 基于有效子串标注的中文分词[J]. 中文信息学报, 2007, 21(5):8-13.</p>
+<p>[20] Nianwen Xue. Chinese Word Segmentation as Character Tagging. Computational Linguistics and Chinese Language Processing, 8(1), 2003, pp. 29–48.</p>
+<p>[21] Hwee Tou Ng and Jin Kiat Low. Chinese part-of-speech tagging: One-at-a-time or all-at-once? word-based or character-based? In Conference on Empirical Methods in Natural Language Processing, 2004, pp. 277–284.</p>
+<p>[22] Jin Kiat Low, Hwee Tou Ng, and Wenyuan Guo. A maximum entropy approach to Chinese word segmentation. In Proceedings of the SIGHAN Workshop on Chinese Language Processing, 2005, pp. 448–455.</p>
+<p>[23] Huihsin Tseng, Pichuan Chang, Galen Andrew, Daniel Jurafsky, and Christopher Manning. A conditional random field word segmenter for SIGHAN bakeoff 2005. In Proceedings of the SIGHAN workshop on Chinese language Processing, vol. 171, 2005.</p>
+<p>[24] Fuchun Peng, Fangfang Feng, and Andrew McCallum. Chinese segmentation and new word detection using conditional random fields. In Proceedings of the international conference on Computational Linguistics, 2004, pp. 562–569.</p>
+<p>[25] Galen Andrew. A hybrid Markov/semi-Markov conditional random field for sequence segmentation. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2006, pp. 465– 472.</p>
+<p>[26] Ruiqiang Zhang, Genichiro Kikui, and Eiichiro Sumita. Subword-based tagging for confidence-dependent Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the international conference
+  on Computational Linguistics, 2006, pp. 961–968.</p>
+<p>[27] Hai Zhao and Chunyu Kit. Integrating Unsupervised and Supervised Word Segmentation: the Role of Goodness Measures. Information Sciences, 181(1), 2011, pp. 163–183.</p>
+<p>[28] Xiaoqing Zheng, Hanyang Chen, and Tianyu Xu. Deep learning for Chinese word segmentation and POS tagging. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2013, pp.647–657.</p>
+<p>[29] Wenzhe Pei, Tao Ge, and Baobao Chang. Max-margin tensor neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2014, pp. 293–303.</p>
+<p>[30] Xinchi Chen, Xipeng Qiu, Chenxi Zhu, and Xuanjing Huang. Gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference
+  on Natural Language Processing, 2015a, pp. 1744–1753.</p>
+<p>[31] Jingjing Xu and Xu Sun. Dependency-based gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), 2016, pp. 567–572.</p>
+<p>[32] Meishan Zhang, Yue Zhang, and Guohong Fu. Transition-based neural word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2016, pp. 421–431.</p>
+<p>[33] Deng Cai, Hai Zhao, Zhisong Zhang, Yuan Xin, Yongjian Wu, and Feiyue Huang. Fast and accurate neural word segmentation for Chinese. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2017.</p>
+<p>[34] 宋彦, 蔡东风, 张桂平,等. 一种基于字词联合解码的中文分词方法[J]. 软件学报, 2009, 20(9):2366-2375.</p>
+<p>[35] 李寿山, 黄居仁. 基于词边界分类的中文分词方法[J]. 中文信息学报, 2010, 24(1):3-7.</p>
+<p>[36] Wang K, Su K Y, Su K Y. A character-based joint model for Chinese word segmentation[C]// International Conference on Computational Linguistics. Association for Computational Linguistics, 2010:1173-1181.</p>
+<p>[37] 王娟, 曹庆花, 黄精籼,等. 基于受限领域的中文分词系统[J]. 信息系统工程, 2011(11):106-106.</p>
+<p>[38] 张少阳. 领域自适应中文分词系统的研究与实现[D]. 沈阳航空航天大学, 2017.</p>
+<p>[39] 许华婷, 张玉洁, 杨晓晖,等. 基于Active Learning的中文分词领域自适应[J]. 中文信息学报, 2015, 29(5):55-62.</p>
+<p>[40] 苏晨, 张玉洁, 郭振,等. 适用于特定领域机器翻译的汉语分词方法[J]. 中文信息学报, 2013, 27(5):184-190.</p>
+<p>[41] 张梅山, 邓知龙, 车万翔,等. 统计与词典相结合的领域自适应中文分词[J]. 中文信息学报, 2012, 26(2):8-12.</p>
+<p>[42] 朱艳辉, 刘璟, 徐叶强,等. 基于条件随机场的中文领域分词研究[J]. 计算机工程与应用, 2016, 52(15):97-100.</p>
+<p>[43] 韩冬煦, 常宝宝. 中文分词模型的领域适应性方法[J]. 计算机学报, 2015, 38(2):272-281.</p>
+<p>[44] 李明. 针对特定领域的中文新词发现技术研究[D]. 南京航空航天大学, 2012.</p>
+<p>[45] 王文荣, 乔晓东, 朱礼军. 针对特定领域的新词发现和新技术发现[J]. 现代图书情报技术, 2008, 24(2):35-40.</p>]]></content>
+      
+        <categories>
+            
+            <category> 毕设 </category>
+            
+            <category> 研究现状 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 分词 </tag>
+            
+            <tag> 跨领域 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Software Verification Approaches]]></title>
       <url>/posts/55e262ef/</url>
       <content type="html"><![CDATA[<h2 id="network-function-virtualization-nfv"><a class="header-anchor" href="#network-function-virtualization-nfv">🌊</a>Network Function Virtualization (NFV)</h2>
