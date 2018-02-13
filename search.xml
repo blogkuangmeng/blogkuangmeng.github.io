@@ -12,7 +12,7 @@
 <h1>原理</h1>
 <p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p>
 <h2 id="url"><a class="header-anchor" href="#url">🌊</a>URL</h2>
-<p>URL就是同意资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
+<p>URL就是统一资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
 <p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p>
 <p>可见，一个URL包含三个部分：</p>
 <ol>
@@ -232,9 +232,9 @@
         
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> Python </tag>
             
         </tags>
         
@@ -3894,9 +3894,9 @@ public class MailAction {
         
         <tags>
             
-            <tag> 爬虫 </tag>
-            
             <tag> E-mail </tag>
+            
+            <tag> 爬虫 </tag>
             
             <tag> Ruby </tag>
             
