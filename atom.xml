@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-02-13T14:08:54.149Z</updated>
+  <updated>2018-02-14T12:10:11.784Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于比特币（Bitcoin）</title>
+    <link href="http://meng.uno/posts/7bfe1542/"/>
+    <id>http://meng.uno/posts/7bfe1542/</id>
+    <published>2018-02-14T11:47:44.000Z</published>
+    <updated>2018-02-14T12:10:11.784Z</updated>
+    
+    <content type="html"><![CDATA[<h1>比特币术语</h1><h2 id="比特币"><a class="header-anchor" href="#比特币">🌊</a>比特币</h2><p>首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内容。”</p><p>而没有大写的bitcoin则表示一个记账单位。例如：“我今天转出了10个bitcoin。”该单位通常也简写为BTC或XBT。</p><h2 id="比特币地址"><a class="header-anchor" href="#比特币地址">🌊</a>比特币地址</h2><p>比特币地址就像一个物理地址或者电子邮件地址。这是别人付给你比特币时你唯一需要提供的信息。然而一个重要的区别是，每个地址应该只用于单笔交易。</p><h2 id="对等式网络"><a class="header-anchor" href="#对等式网络">🌊</a>对等式网络</h2><p>对等式网络是指，通过允许单个节点与其他节点直接交互，从而实现整个系统像有组织的集体一样运作的系统 。对于比特币来说，比特币网络以这样一种方式构建——每个用户都在传播其他用户的交易。而且重要的是，不需要银行作为第三方。</p><h2 id="哈希率"><a class="header-anchor" href="#哈希率">🌊</a>哈希率</h2><p>哈希率是衡量比特币网络处理能力的测量单位。为保证安全，比特币网络必须进行大量的数学运算。当网络达到10Th/秒的哈希率时，就意味着它能够进行每秒10万亿次的计算。</p><h2 id="交易确认"><a class="header-anchor" href="#交易确认">🌊</a>交易确认</h2><p>交易确认意味着一笔交易已经被网络处理且不太可能被撤销。当交易被包含进一个块时会收到一个确认，后续的每一个块都对应一个确认。对于小金额交易单个确认便可视为安全，然而对于比如1000美元的大金额交易，等待6个以上的确认比较合理。每一个确认都成指数级地降低交易撤销的风险。</p><h2 id="块链"><a class="header-anchor" href="#块链">🌊</a>块链</h2><p>块链是一个按时间顺序排列的比特币交易公共记录。块链由所有比特币用户共享。它被用来验证比特币交易的永久性并防止双重消费。</p><h2 id="密码学"><a class="header-anchor" href="#密码学">🌊</a>密码学</h2><p>密码学是数学的一个分支，它让我们创造出可以提供很高安全性的数学证明。电子商务和网上银行也用到了密码学。对于比特币来说，密码学用来保证任何人都不可能使用他人钱包里的资金，或者破坏块链。密码学也用来给钱包加密，这样没有密码就用不了钱包。</p><h2 id="签名"><a class="header-anchor" href="#签名">🌊</a>签名</h2><p>密码学签名是一个让人可以证明所有权的数学机制。对于比特币来说，一个比特币钱包和它的私钥通过一些数学魔法关联到一起。当你的比特币软件用对应的私钥为一笔交易签名，整个网络都能知道这个签名和已花费的比特币相匹配。但是，世界上没有人可以猜到你的私钥来窃取你辛苦赚来的比特币。</p><h2 id="钱包"><a class="header-anchor" href="#钱包">🌊</a>钱包</h2><p>比特币钱包大致实体钱包在比特币网络中的等同物。钱包中实际上包含了你的私钥，可以让你消费块链中分配给钱包的比特币。和真正的钱包一样，每个比特币钱包都可以显示它所控制的所有比特币的总余额，并允许你将一定金额的比特币付给某人。这与商家进行扣款的信用卡不同。</p><h2 id="区块"><a class="header-anchor" href="#区块">🌊</a>区块</h2><p>一个块是块链中的一条记录，包含并确认待处理的交易。平均约每10分钟就有一个包含交易的新块通过挖矿的方式添加到块链中。</p><h2 id="双重消费"><a class="header-anchor" href="#双重消费">🌊</a>双重消费</h2><p>如果一个不怀好意的用户试图将比特币同时支付给两个不同的收款人，就被称为双重消费。比特币挖矿和块链将就两比交易中那笔获得确认并被视为有效在网络上达成一致。</p><h2 id="私钥"><a class="header-anchor" href="#私钥">🌊</a>私钥</h2><p>私钥是一个证明你有权从一个特定的钱包消费比特币的保密数据块，是通过一个密码学签名来实现的 。如果你使用的是钱包软件，你的私钥就存储在你的计算机内；如果使用的是在线钱包，你的私钥就存储在远程服务器上。千万不能泄露私钥，因为它们可以让你消费对应比特币钱包里的比特币。</p><h2 id="挖矿"><a class="header-anchor" href="#挖矿">🌊</a>挖矿</h2><p>比特币挖矿是利用计算机硬件为比特币网络做数学计算进行交易确认和提高安全性的过程。作为对他们服务的奖励，矿工可以得到他们所确认的交易中包含的手续费，以及新创建的比特币。挖矿是一个专业的、竞争激烈的市场，奖金按照完成的计算量分割。并非所有的比特币用户都挖矿，挖矿赚钱也并不容易。</p><h2 id="bit"><a class="header-anchor" href="#bit">🌊</a>Bit</h2><p>Bit是标明一个比特币的次级单位的常用单位 -1,000,000 bit 等于1 比特币 (BTC 或 B⃦).，这个单位对于标示小费、商品和服务价格更方便。</p><h2 id="btc"><a class="header-anchor" href="#btc">🌊</a>BTC</h2><p>BTC 是用于标示一个比特币 (B⃦). 的常用单位。</p><h1>比特币账户</h1><p>我们可以在<code>bitcoin.org</code>上选择自己的钱包。我在这里向大家展示使用一个浏览器插件<code>GreenAddress</code>，下载链接是：<code>https://chrome.google.com/webstore/detail/greenaddress/dgbimgjoijjemhdamicmljbncacfndmp/related</code></p><h2 id="注册"><a class="header-anchor" href="#注册">🌊</a>注册</h2><p>打开安装好的<code>GreenAddress</code>，没有账户点击右上角，开始注册。</p><p><img src="http://www.meng.uno/images/bitcoins/1.png" alt="BITCOIN"></p><p><strong>打码的位置请保存下来，应该需要用它来登录</strong></p><p>接着是验证你保存没保存（想的还很周到）。</p><p>再就是添加两步验证，这个比较常见了，我只选了“邮件”验证，推荐是选两个，要不然总是有warning。</p><p><img src="http://www.meng.uno/images/bitcoins/2.png" alt="BITCOIN"></p><h2 id="使用"><a class="header-anchor" href="#使用">🌊</a>使用</h2><p>接着就进入主界面了，有很多配置需要大家自己去查看，主界面显示了你的“Bitcoin URI”，分享这个，别人就可以向你转钱了，应该。</p><p><img src="http://www.meng.uno/images/bitcoins/3.png" alt="BITCOIN"></p><p><strong>最后强调一下，我的比特币地址是：3CEzyZnpij4WnrAsHhhcaoD1Kf5JqSAEGj</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;比特币术语&lt;/h1&gt;
+&lt;h2 id=&quot;比特币&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#比特币&quot;&gt;🌊&lt;/a&gt;比特币&lt;/h2&gt;
+&lt;p&gt;首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内
+      
+    
+    </summary>
+    
+    
+      <category term="比特币" scheme="http://meng.uno/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="Bitcoin" scheme="http://meng.uno/tags/Bitcoin/"/>
+    
+  </entry>
   
   <entry>
     <title>简单的Python3爬虫</title>
@@ -569,37 +596,6 @@
       <category term="Boogie" scheme="http://meng.uno/tags/Boogie/"/>
     
       <category term="Language" scheme="http://meng.uno/tags/Language/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Simple Theorem Prover SMT solver</title>
-    <link href="http://meng.uno/posts/cd3afb7d/"/>
-    <id>http://meng.uno/posts/cd3afb7d/</id>
-    <published>2018-01-03T13:42:58.000Z</published>
-    <updated>2018-02-11T14:04:49.153Z</updated>
-    
-    <content type="html"><![CDATA[<p>I found it could be generated as program analysis tools, theorem provers, automated bug finders and so on which means it is a very crucial research. STP is a constraint solver aimed at solving constraints of bit vectors and arrays. It can read CVC, SMT-LIB1  and SMT-LIB2 formats files. It also could be used by Python, SMT-LIBv2 and even C library. STP preprocesses the input through the application of mathematical and logical identities, and then eagerly translates constraints into a purely propositional  logic formula that it feeds to an off-the-shelf SAT solver.</p><p>STP views memory as untyped bytes. It provides only three data types: booleans, bitvectors, and arrays of bitvectors. A bitvector is an unsigned, fixed-length sequence of bits. For example, “0010” is a constant, 4-bit bitvector representing the constant  2.</p><h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">🌊</a>Build and Run</h2><p>We can build this project on Linux or Docker, however, you know, Google isn’t well supported in China, so I can’t use “repo” execution which needed by Docker. In this document, I will use a quick install.</p><p>Firstly, we need to install many dependencies. Then, since STP uses “minisat” as its SAT solver by default, we need to install it first. It is very simple to do this by “cmake”. The following is part of the output.</p><p><img src="http://www.meng.uno/images/stp/1.png" alt="STP"></p><p>Then we could start to install STP (To get the code, we need to use “git clone” but not download it directly).</p><p><img src="http://www.meng.uno/images/stp/2.png" alt="STP"></p><p>This project depends on various external tools to do testing. Here we install “lit” and do some individual tests and use “GoogleTest” to write some unit tests.</p><h2 id="analyze-individual-test"><a class="header-anchor" href="#analyze-individual-test">🌊</a>Analyze Individual Test</h2><p>An individual test is like this.</p><p><img src="http://www.meng.uno/images/stp/3.png" alt="STP"></p><p>In this screenshot, we can see that this file is judging “b = (c || b)” and “((c || b) = b) &lt; c &lt; b”. We could find that an individual test file may contain these components:</p><ul>  <li>“; line”: comments;</li>  <li>“set-info”: set some configuration information for running this file;</li>  <li>“declare-fun”: definite some functions and their return types;</li>  <li>“assert”: like C lang, do some judgement;</li>  <li>“exit”: return.</li></ul><h2 id="analyze-unit-test"><a class="header-anchor" href="#analyze-unit-test">🌊</a>Analyze Unit Test</h2><p>We can simply run unit test by giving “lit” the individual tests directory or run “make C-api-tests” to build the C-api tests as unit tests. The Cpp file is like this.</p><p><img src="http://www.meng.uno/images/stp/4.png" alt="STP"></p><p>From this picture, we can see that a C-api test contains many simple verifications.</p><h2 id="analyze-the-code-structure"><a class="header-anchor" href="#analyze-the-code-structure">🌊</a>Analyze the Code Structure</h2><p><img src="http://www.meng.uno/images/stp/5.png" alt="STP"></p><p>From the above picture, I give the following simple understandings to this project.</p><ul>  <li>“Interface”: Define a C interface to achieve the file ins and outs;</li>  <li>“Sat”: Copy from “minisat” to call SAT solver.</li>  <li>“AST”: Implement the abstract syntax tree for parsed solver inputs;</li>  <li>“Util”: Store some header files for small tasks;</li>  <li>“Printer”: Appoint some output formats;</li>  <li>“Simplifier”: Simplify algorithms for AST;</li>  <li>“Parser”: Store some parsers for the CVC, SMT-LIB1, SMT-LIB2 inputs;</li>  <li>“STPManager”: Hold all components together.</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;I found it could be generated as program analysis tools, theorem provers, automated bug finders and so on which means it is a very crucia
-      
-    
-    </summary>
-    
-      <category term="solver" scheme="http://meng.uno/categories/solver/"/>
-    
-      <category term="SMT" scheme="http://meng.uno/categories/solver/SMT/"/>
-    
-    
-      <category term="solver" scheme="http://meng.uno/tags/solver/"/>
-    
-      <category term="STP" scheme="http://meng.uno/tags/STP/"/>
-    
-      <category term="SMT" scheme="http://meng.uno/tags/SMT/"/>
     
   </entry>
   
