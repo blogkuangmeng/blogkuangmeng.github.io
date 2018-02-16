@@ -43,6 +43,8 @@
   <meta name="twitter:image" content="http://www.meng.uno/images/kvm/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -262,7 +264,7 @@
                 <p>This project, as its name suggests, is to provide unit tests for KVM. The unit tests are tiny guest operating systems that generally execute only tens of lines of C and assembler test code in order to obtain its PASS/FAIL/SKIP result.
                   Unit tests provide KVM and virtual hardware functional testing by targeting the features through minimal implementations of their use per the hardware specification. The simplicity of unit tests make them easy to verify they are correct,
                   easy to maintain, and easy to use in timing measurements. Unit tests are also often used for quick and dirty bug reproducers.</p>
-                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">🌊</a>Build and Run</h2>
+                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">¶</a>Build and Run</h2>
                 <p>Building this project is very easy, we just need to enter the directory and run “./configure; make”. If there isn’t any mistake, it means this project is successfully built. As can be seen from its name, it is a testing program so running
                   it means running some tests on KVM. In addition, as other verification systems, it also has some single test cases and a whole test suite. What has to be aware is we need to install “kvm” or “qemu-kvm” before testing, otherwise, the
                   tests will just “SKIP” because it is just for testing KVM.</p>
@@ -271,7 +273,7 @@
                 <p>Then, I will run a test suite. The following picture is part of the result. I found that there are 3 status of the test results which are PASS, FAIL and SKIP.</p>
                 <p><img src="http://www.meng.uno/images/kvm/2.png" alt="KVM"></p>
                 <p>From the picture, we can see that not all tests are PASS, which means this version of KVM may have many points to be improved.</p>
-                <h2 id="analyze-the-test"><a class="header-anchor" href="#analyze-the-test">🌊</a>Analyze the Test</h2>
+                <h2 id="analyze-the-test"><a class="header-anchor" href="#analyze-the-test">¶</a>Analyze the Test</h2>
                 <p>To write a test case/suite, we first need to analyze an example. From the file “run_tests.sh”, we could find that it runs each test in “x86/unittests.cfg”. This is a section of this file. From it, we could know that when the test suite
                   runs to here, it will find test case “apic.flat” and run it in the x86_64 architecture within 30 seconds.</p>
                 <p><img src="http://www.meng.uno/images/kvm/3.png" alt="KVM"></p>
@@ -283,7 +285,7 @@
                 <p><img src="http://www.meng.uno/images/kvm/6.png" alt="KVM"></p>
                 <p>Now I will focus on a single function as the following picture shows. It just tests some single function calls and report the results.</p>
                 <p><img src="http://www.meng.uno/images/kvm/7.png" alt="KVM"></p>
-                <h2 id="write-a-test"><a class="header-anchor" href="#write-a-test">🌊</a>Write A Test</h2>
+                <h2 id="write-a-test"><a class="header-anchor" href="#write-a-test">¶</a>Write A Test</h2>
                 <p>Because I can’t know about KVM clearly for such a short period of time, here I just write a simple test, in order to experience how to write a test case.</p>
                 <p><img src="http://www.meng.uno/images/kvm/8.png" alt="KVM"></p>
                 <p>After compiling and running it, we could get this expected output.</p>
@@ -292,7 +294,7 @@
                 <p><img src="http://www.meng.uno/images/kvm/10.png" alt="KVM"></p>
                 <p>Also, it must be PASS as expected.</p>
                 <p><img src="http://www.meng.uno/images/kvm/11.png" alt="KVM"></p>
-                <h2 id="analyze-the-framework"><a class="header-anchor" href="#analyze-the-framework">🌊</a>Analyze the Framework</h2>
+                <h2 id="analyze-the-framework"><a class="header-anchor" href="#analyze-the-framework">¶</a>Analyze the Framework</h2>
                 <p>In the beginning, let’s analyze the directory structure.</p>
                 <p><img src="http://www.meng.uno/images/kvm/12.png" alt="KVM"></p>
                 <ul>
@@ -387,10 +389,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">🌊Build and Run</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-test"><span class="nav-number">2.</span> <span class="nav-text">🌊Analyze the Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test"><span class="nav-number">3.</span> <span class="nav-text">🌊Write A Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-framework"><span class="nav-number">4.</span> <span class="nav-text">🌊Analyze the Framework</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">¶Build and Run</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-test"><span class="nav-number">2.</span> <span class="nav-text">¶Analyze the Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test"><span class="nav-number">3.</span> <span class="nav-text">¶Write A Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-framework"><span class="nav-number">4.</span> <span class="nav-text">¶Analyze the Framework</span></a></li>
               </ol>
 
             </div>

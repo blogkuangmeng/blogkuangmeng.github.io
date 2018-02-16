@@ -32,6 +32,8 @@
   <meta name="twitter:image" content="http://meng.uno/images/crawl/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -254,7 +256,7 @@
                 </blockquote>
                 <h1>原理</h1>
                 <p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p>
-                <h2 id="url"><a class="header-anchor" href="#url">🌊</a>URL</h2>
+                <h2 id="url"><a class="header-anchor" href="#url">¶</a>URL</h2>
                 <p>URL就是统一资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
                 <p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p>
                 <p>可见，一个URL包含三个部分：</p>
@@ -265,7 +267,7 @@
                 </ol>
                 <p>爬虫就是向URL发送请求，然后得到响应，基本就实现了爬取网页的功能。</p>
                 <p><strong>URI可以分为URL,URN或同时具备locators 和names特性的一个东西。URN作用就好像一个人的名字，URL就像一个人的地址。换句话说：URN确定了东西的身份，URL提供了找到它的方式。</strong></p>
-                <h2 id="从浏览器发送和接收数据看起"><a class="header-anchor" href="#从浏览器发送和接收数据看起">🌊</a>从浏览器发送和接收数据看起</h2>
+                <h2 id="从浏览器发送和接收数据看起"><a class="header-anchor" href="#从浏览器发送和接收数据看起">¶</a>从浏览器发送和接收数据看起</h2>
                 <p>进入我的首页<code>www.meng.uno</code>，打开浏览器的“检查”功能，选项卡选到“Network”，然后点击所有文章，随便选择一条，我们可以发现如下截图的&quot;Headers&quot;</p>
                 <p><img src="http://meng.uno/images/crawl/1.png" alt="Headers"></p>
                 <p>我们可以发现最明显的有两个区域（我已经圈出来了）：“request”和“response”。从字面意思上来看，我们就知道分别是（发送的）请求和（收到的）回复。</p>
@@ -310,7 +312,7 @@
                   <li>安装Opener；</li>
                 </ul>
                 <p><strong>这个网站提供了很多代理主机：<a href="http://www.xicidaili.com/" target="_blank" rel="noopener">http://www.xicidaili.com/</a></strong></p>
-                <h2 id="正则表达式"><a class="header-anchor" href="#正则表达式">🌊</a>正则表达式</h2>
+                <h2 id="正则表达式"><a class="header-anchor" href="#正则表达式">¶</a>正则表达式</h2>
                 <p>我直接以表格的形式呈现好了：</p>
                 <table>
                   <thead>
@@ -423,7 +425,7 @@
                   </tbody>
                 </table>
                 <h1>代码</h1>
-                <h2 id="简单带错误信息的获取网页内所有url的爬虫"><a class="header-anchor" href="#简单带错误信息的获取网页内所有url的爬虫">🌊</a>简单带错误信息的获取网页内所有URL的爬虫</h2>
+                <h2 id="简单带错误信息的获取网页内所有url的爬虫"><a class="header-anchor" href="#简单带错误信息的获取网页内所有url的爬虫">¶</a>简单带错误信息的获取网页内所有URL的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -436,7 +438,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="模拟真实环境的爬虫"><a class="header-anchor" href="#模拟真实环境的爬虫">🌊</a>模拟真实环境的爬虫</h2>
+                <h2 id="模拟真实环境的爬虫"><a class="header-anchor" href="#模拟真实环境的爬虫">¶</a>模拟真实环境的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -449,7 +451,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="通过队列获取网站所有url的爬虫"><a class="header-anchor" href="#通过队列获取网站所有url的爬虫">🌊</a>通过队列获取网站所有URL的爬虫</h2>
+                <h2 id="通过队列获取网站所有url的爬虫"><a class="header-anchor" href="#通过队列获取网站所有url的爬虫">¶</a>通过队列获取网站所有URL的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -541,16 +543,16 @@
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">1.1.</span> <span class="nav-text">🌊URL</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#从浏览器发送和接收数据看起"><span class="nav-number">1.2.</span> <span class="nav-text">🌊从浏览器发送和接收数据看起</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.3.</span> <span class="nav-text">🌊正则表达式</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">1.1.</span> <span class="nav-text">¶URL</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#从浏览器发送和接收数据看起"><span class="nav-number">1.2.</span> <span class="nav-text">¶从浏览器发送和接收数据看起</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.3.</span> <span class="nav-text">¶正则表达式</span></a></li>
                   </ol>
                 </li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#简单带错误信息的获取网页内所有url的爬虫"><span class="nav-number">2.1.</span> <span class="nav-text">🌊简单带错误信息的获取网页内所有URL的爬虫</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#模拟真实环境的爬虫"><span class="nav-number">2.2.</span> <span class="nav-text">🌊模拟真实环境的爬虫</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#通过队列获取网站所有url的爬虫"><span class="nav-number">2.3.</span> <span class="nav-text">🌊通过队列获取网站所有URL的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#简单带错误信息的获取网页内所有url的爬虫"><span class="nav-number">2.1.</span> <span class="nav-text">¶简单带错误信息的获取网页内所有URL的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#模拟真实环境的爬虫"><span class="nav-number">2.2.</span> <span class="nav-text">¶模拟真实环境的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#通过队列获取网站所有url的爬虫"><span class="nav-number">2.3.</span> <span class="nav-text">¶通过队列获取网站所有URL的爬虫</span></a></li>
                   </ol>
                 </li>
               </ol>

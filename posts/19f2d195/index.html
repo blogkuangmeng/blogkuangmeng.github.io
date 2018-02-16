@@ -16,20 +16,22 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="🌊显示 “Hello world!” echo Hello world! 🌊每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 🌊声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Ba">
+  <meta name="description" content="¶显示 “Hello world!” echo Hello world! ¶每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ ¶声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash">
   <meta name="keywords" content="Shell,Bash">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Bash的使用">
   <meta property="og:url" content="http://meng.uno/posts/19f2d195/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="🌊显示 “Hello world!” echo Hello world! 🌊每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 🌊声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Ba">
+  <meta property="og:description" content="¶显示 “Hello world!” echo Hello world! ¶每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ ¶声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.918Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Bash的使用">
-  <meta name="twitter:description" content="🌊显示 “Hello world!” echo Hello world! 🌊每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 🌊声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Ba">
+  <meta name="twitter:description" content="¶显示 “Hello world!” echo Hello world! ¶每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ ¶声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -245,17 +247,17 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2 id="显示-hello-world"><a class="header-anchor" href="#显示-hello-world">🌊</a>显示 “Hello world!”</h2>
+                <h2 id="显示-hello-world"><a class="header-anchor" href="#显示-hello-world">¶</a>显示 “Hello world!”</h2>
                 <p>echo Hello world!</p>
-                <h2 id="每一句指令以换行或分号隔开："><a class="header-anchor" href="#每一句指令以换行或分号隔开：">🌊</a>每一句指令以换行或分号隔开：</h2>
+                <h2 id="每一句指令以换行或分号隔开："><a class="header-anchor" href="#每一句指令以换行或分号隔开：">¶</a>每一句指令以换行或分号隔开：</h2>
                 <p>echo ‘This is the first line’; echo ‘This is the second line’</p>
-                <h2 id="声明一个变量："><a class="header-anchor" href="#声明一个变量：">🌊</a>声明一个变量：</h2>
+                <h2 id="声明一个变量："><a class="header-anchor" href="#声明一个变量：">¶</a>声明一个变量：</h2>
                 <p>Variable=“Some string”</p>
                 <p>***这是错误的做法：***Variable = “Some string”</p>
                 <p>***原因：***Bash 会把 Variable 当做一个指令，由于找不到该指令，因此这里会报错。</p>
                 <p>***也不可以这样：***Variable= ‘Some string’</p>
                 <p>***原因：***Bash 会认为 ‘Some string’ 是一条指令，由于找不到该指令，这里再次报错。这个例子中 ‘Variable=’ 这部分会被当作仅对 ‘Some string’ 起作用的赋值。）</p>
-                <h2 id="使用变量："><a class="header-anchor" href="#使用变量：">🌊</a>使用变量：</h2>
+                <h2 id="使用变量："><a class="header-anchor" href="#使用变量：">¶</a>使用变量：</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -270,19 +272,19 @@
                 </figure>
                 <p>当你赋值 (assign) 、导出 (export)，或者以其他方式使用变量时，变量名前不加 $。如果要使用变量的值， 则要加 $。</p>
                 <p><strong><em>注意:</em></strong> ’ (单引号) 不会展开变量（即会屏蔽掉变量）。</p>
-                <h2 id="在变量内部进行字符串代换"><a class="header-anchor" href="#在变量内部进行字符串代换">🌊</a>在变量内部进行字符串代换</h2>
+                <h2 id="在变量内部进行字符串代换"><a class="header-anchor" href="#在变量内部进行字符串代换">¶</a>在变量内部进行字符串代换</h2>
                 <p>echo ${Variable/Some/A}</p>
                 <p>会把 Variable 中首次出现的 “some” 替换成 “A”。</p>
-                <h2 id="变量的截取"><a class="header-anchor" href="#变量的截取">🌊</a>变量的截取</h2>
+                <h2 id="变量的截取"><a class="header-anchor" href="#变量的截取">¶</a>变量的截取</h2>
                 <p>Length=7</p>
                 <p>echo ${Variable:0:Length}</p>
                 <p>这样会仅返回变量值的前7个字符</p>
-                <h2 id="变量的默认值"><a class="header-anchor" href="#变量的默认值">🌊</a>变量的默认值</h2>
+                <h2 id="变量的默认值"><a class="header-anchor" href="#变量的默认值">¶</a>变量的默认值</h2>
                 <p>echo ${Foo:-“DefaultValueIfFooIsMissingOrEmpty”}</p>
                 <p>对 null (Foo=) 和空串 (Foo=&quot;&quot;) 起作用； 零（Foo=0）时返回0</p>
                 <p>注意这仅返回默认值而不是改变变量的值</p>
-                <h2 id="内置变量："><a class="header-anchor" href="#内置变量：">🌊</a>内置变量：</h2>
-                <h3 id="下面的内置变量很有用"><a class="header-anchor" href="#下面的内置变量很有用">🌊</a>下面的内置变量很有用</h3>
+                <h2 id="内置变量："><a class="header-anchor" href="#内置变量：">¶</a>内置变量：</h2>
+                <h3 id="下面的内置变量很有用"><a class="header-anchor" href="#下面的内置变量很有用">¶</a>下面的内置变量很有用</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -295,7 +297,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="读取输入："><a class="header-anchor" href="#读取输入：">🌊</a>读取输入：</h3>
+                <h3 id="读取输入："><a class="header-anchor" href="#读取输入：">¶</a>读取输入：</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -308,7 +310,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="通常的-if-结构看起来像这样："><a class="header-anchor" href="#通常的-if-结构看起来像这样：">🌊</a>通常的 if 结构看起来像这样：</h2>
+                <h2 id="通常的-if-结构看起来像这样："><a class="header-anchor" href="#通常的-if-结构看起来像这样：">¶</a>通常的 if 结构看起来像这样：</h2>
                 <p><strong><em>’man test’ 可查看更多的信息</em></strong></p>
                 <figure class="highlight stylus">
                   <table>
@@ -322,7 +324,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="根据上一个指令执行结果决定是否执行下一个指令"><a class="header-anchor" href="#根据上一个指令执行结果决定是否执行下一个指令">🌊</a>根据上一个指令执行结果决定是否执行下一个指令</h2>
+                <h2 id="根据上一个指令执行结果决定是否执行下一个指令"><a class="header-anchor" href="#根据上一个指令执行结果决定是否执行下一个指令">¶</a>根据上一个指令执行结果决定是否执行下一个指令</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -335,7 +337,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="在-if-语句中使用-和-需要多对方括号"><a class="header-anchor" href="#在-if-语句中使用-和-需要多对方括号">🌊</a>在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</h2>
+                <h2 id="在-if-语句中使用-和-需要多对方括号"><a class="header-anchor" href="#在-if-语句中使用-和-需要多对方括号">¶</a>在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -348,9 +350,9 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="表达式的格式如下"><a class="header-anchor" href="#表达式的格式如下">🌊</a>表达式的格式如下:</h2>
+                <h2 id="表达式的格式如下"><a class="header-anchor" href="#表达式的格式如下">¶</a>表达式的格式如下:</h2>
                 <p>echo $(( 10 + 5 ))</p>
-                <h2 id="指令可以带有选项："><a class="header-anchor" href="#指令可以带有选项：">🌊</a>指令可以带有选项：</h2>
+                <h2 id="指令可以带有选项："><a class="header-anchor" href="#指令可以带有选项：">¶</a>指令可以带有选项：</h2>
                 <p><strong><em>与其他编程语言不同的是，bash 运行时依赖上下文。比如，使用 ls 时，列出当前目录。</em></strong></p>
                 <figure class="highlight ls">
                   <figcaption><span>-l``` 列出文件和目录的详细信息</span></figcaption>
@@ -365,7 +367,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py"><a class="header-anchor" href="#以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py">🌊</a>以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 <a href="http://hello.py" target="_blank" rel="noopener">hello.py</a></h2>
+                <h2 id="以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py"><a class="header-anchor" href="#以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py">¶</a>以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 <a href="http://hello.py" target="_blank" rel="noopener">hello.py</a></h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -378,7 +380,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="重定向可以到输出-输入和错误输出"><a class="header-anchor" href="#重定向可以到输出-输入和错误输出">🌊</a>重定向可以到输出，输入和错误输出</h2>
+                <h2 id="重定向可以到输出-输入和错误输出"><a class="header-anchor" href="#重定向可以到输出-输入和错误输出">¶</a>重定向可以到输出，输入和错误输出</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -391,7 +393,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="覆盖-output-out-追加-error-err-并统计行数"><a class="header-anchor" href="#覆盖-output-out-追加-error-err-并统计行数">🌊</a>覆盖 output.out , 追加 error.err 并统计行数</h2>
+                <h2 id="覆盖-output-out-追加-error-err-并统计行数"><a class="header-anchor" href="#覆盖-output-out-追加-error-err-并统计行数">¶</a>覆盖 output.out , 追加 error.err 并统计行数</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -404,7 +406,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="运行指令并打印文件描述符-比如-dev-fd-123"><a class="header-anchor" href="#运行指令并打印文件描述符-比如-dev-fd-123">🌊</a>运行指令并打印文件描述符 （比如 /dev/fd/123）</h2>
+                <h2 id="运行指令并打印文件描述符-比如-dev-fd-123"><a class="header-anchor" href="#运行指令并打印文件描述符-比如-dev-fd-123">¶</a>运行指令并打印文件描述符 （比如 /dev/fd/123）</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -417,7 +419,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="以-helloworld-覆盖-output-out"><a class="header-anchor" href="#以-helloworld-覆盖-output-out">🌊</a>以 “#helloworld” 覆盖 output.out</h2>
+                <h2 id="以-helloworld-覆盖-output-out"><a class="header-anchor" href="#以-helloworld-覆盖-output-out">¶</a>以 “#helloworld” 覆盖 output.out</h2>
                 <figure class="highlight">
                   <table>
                     <tr>
@@ -430,7 +432,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="清理临时文件并显示详情-增加-i-选项启用交互模式"><a class="header-anchor" href="#清理临时文件并显示详情-增加-i-选项启用交互模式">🌊</a>清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</h2>
+                <h2 id="清理临时文件并显示详情-增加-i-选项启用交互模式"><a class="header-anchor" href="#清理临时文件并显示详情-增加-i-选项启用交互模式">¶</a>清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -443,8 +445,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="一个指令可用-嵌套在另一个指令内部"><a class="header-anchor" href="#一个指令可用-嵌套在另一个指令内部">🌊</a>一个指令可用 $( ) 嵌套在另一个指令内部</h2>
-                <h3 id="以下的指令会打印当前目录下的目录和文件总数"><a class="header-anchor" href="#以下的指令会打印当前目录下的目录和文件总数">🌊</a>以下的指令会打印当前目录下的目录和文件总数</h3>
+                <h2 id="一个指令可用-嵌套在另一个指令内部"><a class="header-anchor" href="#一个指令可用-嵌套在另一个指令内部">¶</a>一个指令可用 $( ) 嵌套在另一个指令内部</h2>
+                <h3 id="以下的指令会打印当前目录下的目录和文件总数"><a class="header-anchor" href="#以下的指令会打印当前目录下的目录和文件总数">¶</a>以下的指令会打印当前目录下的目录和文件总数</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -457,7 +459,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="反引号-起相同作用-但不允许嵌套"><a class="header-anchor" href="#反引号-起相同作用-但不允许嵌套">🌊</a>反引号 `` 起相同作用，但不允许嵌套</h3>
+                <h3 id="反引号-起相同作用-但不允许嵌套"><a class="header-anchor" href="#反引号-起相同作用-但不允许嵌套">¶</a>反引号 `` 起相同作用，但不允许嵌套</h3>
                 <p><strong><em>优先使用 $()</em></strong></p>
                 <figure class="highlight plain">
                   <table>
@@ -471,7 +473,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="bash-的-case-语句与-java-和-c-中的-switch-语句类似"><a class="header-anchor" href="#bash-的-case-语句与-java-和-c-中的-switch-语句类似">🌊</a>Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</h2>
+                <h2 id="bash-的-case-语句与-java-和-c-中的-switch-语句类似"><a class="header-anchor" href="#bash-的-case-语句与-java-和-c-中的-switch-语句类似">¶</a>Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -484,8 +486,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="循环遍历给定的参数序列"><a class="header-anchor" href="#循环遍历给定的参数序列">🌊</a>循环遍历给定的参数序列</h2>
-                <h3 id="变量-variable-的值会被打印-3-次"><a class="header-anchor" href="#变量-variable-的值会被打印-3-次">🌊</a>变量$Variable 的值会被打印 3 次</h3>
+                <h2 id="循环遍历给定的参数序列"><a class="header-anchor" href="#循环遍历给定的参数序列">¶</a>循环遍历给定的参数序列</h2>
+                <h3 id="变量-variable-的值会被打印-3-次"><a class="header-anchor" href="#变量-variable-的值会被打印-3-次">¶</a>变量$Variable 的值会被打印 3 次</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -498,7 +500,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="或传统的-for循环"><a class="header-anchor" href="#或传统的-for循环">🌊</a>或传统的 “for循环”</h3>
+                <h3 id="或传统的-for循环"><a class="header-anchor" href="#或传统的-for循环">¶</a>或传统的 “for循环”</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -512,7 +514,7 @@
                   </table>
                 </figure>
                 <p><strong><em>也可以用于文件</em></strong></p>
-                <h3 id="用-cat-输出-file1-和-file2-内容"><a class="header-anchor" href="#用-cat-输出-file1-和-file2-内容">🌊</a>用 cat 输出 file1 和 file2 内容</h3>
+                <h3 id="用-cat-输出-file1-和-file2-内容"><a class="header-anchor" href="#用-cat-输出-file1-和-file2-内容">¶</a>用 cat 输出 file1 和 file2 内容</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -526,7 +528,7 @@
                   </table>
                 </figure>
                 <p><strong><em>或作用于其他命令的输出</em></strong></p>
-                <h3 id="对-ls-输出的文件执行-cat-指令"><a class="header-anchor" href="#对-ls-输出的文件执行-cat-指令">🌊</a>对 ls 输出的文件执行 cat 指令</h3>
+                <h3 id="对-ls-输出的文件执行-cat-指令"><a class="header-anchor" href="#对-ls-输出的文件执行-cat-指令">¶</a>对 ls 输出的文件执行 cat 指令</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -539,7 +541,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="while-循环"><a class="header-anchor" href="#while-循环">🌊</a>while 循环</h3>
+                <h3 id="while-循环"><a class="header-anchor" href="#while-循环">¶</a>while 循环</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -552,8 +554,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="你也可以使用函数"><a class="header-anchor" href="#你也可以使用函数">🌊</a>你也可以使用函数</h2>
-                <h3 id="定义函数"><a class="header-anchor" href="#定义函数">🌊</a>定义函数</h3>
+                <h2 id="你也可以使用函数"><a class="header-anchor" href="#你也可以使用函数">¶</a>你也可以使用函数</h2>
+                <h3 id="定义函数"><a class="header-anchor" href="#定义函数">¶</a>定义函数</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -566,7 +568,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="更简单的方法"><a class="header-anchor" href="#更简单的方法">🌊</a>更简单的方法</h3>
+                <h3 id="更简单的方法"><a class="header-anchor" href="#更简单的方法">¶</a>更简单的方法</h3>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -579,7 +581,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="调用函数"><a class="header-anchor" href="#调用函数">🌊</a>调用函数</h3>
+                <h3 id="调用函数"><a class="header-anchor" href="#调用函数">¶</a>调用函数</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -592,8 +594,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="有很多有用的指令需要学习"><a class="header-anchor" href="#有很多有用的指令需要学习">🌊</a>有很多有用的指令需要学习</h2>
-                <h3 id="打印-file-txt-的最后-10-行"><a class="header-anchor" href="#打印-file-txt-的最后-10-行">🌊</a>打印 file.txt 的最后 10 行</h3>
+                <h2 id="有很多有用的指令需要学习"><a class="header-anchor" href="#有很多有用的指令需要学习">¶</a>有很多有用的指令需要学习</h2>
+                <h3 id="打印-file-txt-的最后-10-行"><a class="header-anchor" href="#打印-file-txt-的最后-10-行">¶</a>打印 file.txt 的最后 10 行</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -606,7 +608,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="打印-file-txt-的前-10-行"><a class="header-anchor" href="#打印-file-txt-的前-10-行">🌊</a>打印 file.txt 的前 10 行</h3>
+                <h3 id="打印-file-txt-的前-10-行"><a class="header-anchor" href="#打印-file-txt-的前-10-行">¶</a>打印 file.txt 的前 10 行</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -619,7 +621,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="将-file-txt-按行排序"><a class="header-anchor" href="#将-file-txt-按行排序">🌊</a>将 file.txt 按行排序</h3>
+                <h3 id="将-file-txt-按行排序"><a class="header-anchor" href="#将-file-txt-按行排序">¶</a>将 file.txt 按行排序</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -632,7 +634,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="报告或忽略重复的行-用选项-d-打印重复的行"><a class="header-anchor" href="#报告或忽略重复的行-用选项-d-打印重复的行">🌊</a>报告或忽略重复的行，用选项 -d 打印重复的行</h3>
+                <h3 id="报告或忽略重复的行-用选项-d-打印重复的行"><a class="header-anchor" href="#报告或忽略重复的行-用选项-d-打印重复的行">¶</a>报告或忽略重复的行，用选项 -d 打印重复的行</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -645,7 +647,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="打印每行中-之前内容"><a class="header-anchor" href="#打印每行中-之前内容">🌊</a>打印每行中 ‘,’ 之前内容</h3>
+                <h3 id="打印每行中-之前内容"><a class="header-anchor" href="#打印每行中-之前内容">¶</a>打印每行中 ‘,’ 之前内容</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -658,7 +660,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="将-file-txt-文件所有-okay-替换为-great-兼容正则表达式"><a class="header-anchor" href="#将-file-txt-文件所有-okay-替换为-great-兼容正则表达式">🌊</a>将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</h3>
+                <h3 id="将-file-txt-文件所有-okay-替换为-great-兼容正则表达式"><a class="header-anchor" href="#将-file-txt-文件所有-okay-替换为-great-兼容正则表达式">¶</a>将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -671,7 +673,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="将-file-txt-中匹配正则的行打印到标准输出"><a class="header-anchor" href="#将-file-txt-中匹配正则的行打印到标准输出">🌊</a>将 file.txt 中匹配正则的行打印到标准输出</h3>
+                <h3 id="将-file-txt-中匹配正则的行打印到标准输出"><a class="header-anchor" href="#将-file-txt-中匹配正则的行打印到标准输出">¶</a>将 file.txt 中匹配正则的行打印到标准输出</h3>
                 <p>这里打印以 “foo” 开头, “bar” 结尾的行</p>
                 <figure class="highlight plain">
                   <figcaption><span>"^foo.*bar$" file.txt```</span></figcaption>
@@ -686,7 +688,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h3 id="如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f"><a class="header-anchor" href="#如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f">🌊</a>如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</h3>
+                <h3 id="如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f"><a class="header-anchor" href="#如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f">¶</a>如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</h3>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -699,7 +701,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="以-bash-内建的-help-指令阅读-bash-自带文档"><a class="header-anchor" href="#以-bash-内建的-help-指令阅读-bash-自带文档">🌊</a>以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</h2>
+                <h2 id="以-bash-内建的-help-指令阅读-bash-自带文档"><a class="header-anchor" href="#以-bash-内建的-help-指令阅读-bash-自带文档">¶</a>以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -712,7 +714,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="用-man-指令阅读相关的-bash-手册"><a class="header-anchor" href="#用-man-指令阅读相关的-bash-手册">🌊</a>用 man 指令阅读相关的 Bash 手册</h2>
+                <h2 id="用-man-指令阅读相关的-bash-手册"><a class="header-anchor" href="#用-man-指令阅读相关的-bash-手册">¶</a>用 man 指令阅读相关的 Bash 手册</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -725,7 +727,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息"><a class="header-anchor" href="#用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息">🌊</a>用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</h2>
+                <h2 id="用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息"><a class="header-anchor" href="#用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息">¶</a>用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -738,7 +740,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="阅读-bash-的-info-文档"><a class="header-anchor" href="#阅读-bash-的-info-文档">🌊</a>阅读 Bash 的 info 文档</h2>
+                <h2 id="阅读-bash-的-info-文档"><a class="header-anchor" href="#阅读-bash-的-info-文档">¶</a>阅读 Bash 的 info 文档</h2>
                 <figure class="highlight stylus">
                   <table>
                     <tr>
@@ -827,69 +829,69 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#显示-hello-world"><span class="nav-number">1.</span> <span class="nav-text">🌊显示 “Hello world!”</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#每一句指令以换行或分号隔开："><span class="nav-number">2.</span> <span class="nav-text">🌊每一句指令以换行或分号隔开：</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个变量："><span class="nav-number">3.</span> <span class="nav-text">🌊声明一个变量：</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量："><span class="nav-number">4.</span> <span class="nav-text">🌊使用变量：</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#在变量内部进行字符串代换"><span class="nav-number">5.</span> <span class="nav-text">🌊在变量内部进行字符串代换</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的截取"><span class="nav-number">6.</span> <span class="nav-text">🌊变量的截取</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的默认值"><span class="nav-number">7.</span> <span class="nav-text">🌊变量的默认值</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#内置变量："><span class="nav-number">8.</span> <span class="nav-text">🌊内置变量：</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#显示-hello-world"><span class="nav-number">1.</span> <span class="nav-text">¶显示 “Hello world!”</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#每一句指令以换行或分号隔开："><span class="nav-number">2.</span> <span class="nav-text">¶每一句指令以换行或分号隔开：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个变量："><span class="nav-number">3.</span> <span class="nav-text">¶声明一个变量：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量："><span class="nav-number">4.</span> <span class="nav-text">¶使用变量：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#在变量内部进行字符串代换"><span class="nav-number">5.</span> <span class="nav-text">¶在变量内部进行字符串代换</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的截取"><span class="nav-number">6.</span> <span class="nav-text">¶变量的截取</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的默认值"><span class="nav-number">7.</span> <span class="nav-text">¶变量的默认值</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#内置变量："><span class="nav-number">8.</span> <span class="nav-text">¶内置变量：</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#下面的内置变量很有用"><span class="nav-number">8.1.</span> <span class="nav-text">🌊下面的内置变量很有用</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#读取输入："><span class="nav-number">8.2.</span> <span class="nav-text">🌊读取输入：</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#下面的内置变量很有用"><span class="nav-number">8.1.</span> <span class="nav-text">¶下面的内置变量很有用</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#读取输入："><span class="nav-number">8.2.</span> <span class="nav-text">¶读取输入：</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#通常的-if-结构看起来像这样："><span class="nav-number">9.</span> <span class="nav-text">🌊通常的 if 结构看起来像这样：</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#根据上一个指令执行结果决定是否执行下一个指令"><span class="nav-number">10.</span> <span class="nav-text">🌊根据上一个指令执行结果决定是否执行下一个指令</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#在-if-语句中使用-和-需要多对方括号"><span class="nav-number">11.</span> <span class="nav-text">🌊在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#表达式的格式如下"><span class="nav-number">12.</span> <span class="nav-text">🌊表达式的格式如下:</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#指令可以带有选项："><span class="nav-number">13.</span> <span class="nav-text">🌊指令可以带有选项：</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py"><span class="nav-number">14.</span> <span class="nav-text">🌊以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 hello.py</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#重定向可以到输出-输入和错误输出"><span class="nav-number">15.</span> <span class="nav-text">🌊重定向可以到输出，输入和错误输出</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖-output-out-追加-error-err-并统计行数"><span class="nav-number">16.</span> <span class="nav-text">🌊覆盖 output.out , 追加 error.err 并统计行数</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#运行指令并打印文件描述符-比如-dev-fd-123"><span class="nav-number">17.</span> <span class="nav-text">🌊运行指令并打印文件描述符 （比如 /dev/fd/123）</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-helloworld-覆盖-output-out"><span class="nav-number">18.</span> <span class="nav-text">🌊以 “#helloworld” 覆盖 output.out</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#清理临时文件并显示详情-增加-i-选项启用交互模式"><span class="nav-number">19.</span> <span class="nav-text">🌊清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#一个指令可用-嵌套在另一个指令内部"><span class="nav-number">20.</span> <span class="nav-text">🌊一个指令可用 $( ) 嵌套在另一个指令内部</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#通常的-if-结构看起来像这样："><span class="nav-number">9.</span> <span class="nav-text">¶通常的 if 结构看起来像这样：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#根据上一个指令执行结果决定是否执行下一个指令"><span class="nav-number">10.</span> <span class="nav-text">¶根据上一个指令执行结果决定是否执行下一个指令</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#在-if-语句中使用-和-需要多对方括号"><span class="nav-number">11.</span> <span class="nav-text">¶在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#表达式的格式如下"><span class="nav-number">12.</span> <span class="nav-text">¶表达式的格式如下:</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#指令可以带有选项："><span class="nav-number">13.</span> <span class="nav-text">¶指令可以带有选项：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py"><span class="nav-number">14.</span> <span class="nav-text">¶以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 hello.py</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#重定向可以到输出-输入和错误输出"><span class="nav-number">15.</span> <span class="nav-text">¶重定向可以到输出，输入和错误输出</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖-output-out-追加-error-err-并统计行数"><span class="nav-number">16.</span> <span class="nav-text">¶覆盖 output.out , 追加 error.err 并统计行数</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#运行指令并打印文件描述符-比如-dev-fd-123"><span class="nav-number">17.</span> <span class="nav-text">¶运行指令并打印文件描述符 （比如 /dev/fd/123）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-helloworld-覆盖-output-out"><span class="nav-number">18.</span> <span class="nav-text">¶以 “#helloworld” 覆盖 output.out</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#清理临时文件并显示详情-增加-i-选项启用交互模式"><span class="nav-number">19.</span> <span class="nav-text">¶清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#一个指令可用-嵌套在另一个指令内部"><span class="nav-number">20.</span> <span class="nav-text">¶一个指令可用 $( ) 嵌套在另一个指令内部</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#以下的指令会打印当前目录下的目录和文件总数"><span class="nav-number">20.1.</span> <span class="nav-text">🌊以下的指令会打印当前目录下的目录和文件总数</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#反引号-起相同作用-但不允许嵌套"><span class="nav-number">20.2.</span> <span class="nav-text">🌊反引号 `` 起相同作用，但不允许嵌套</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#以下的指令会打印当前目录下的目录和文件总数"><span class="nav-number">20.1.</span> <span class="nav-text">¶以下的指令会打印当前目录下的目录和文件总数</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#反引号-起相同作用-但不允许嵌套"><span class="nav-number">20.2.</span> <span class="nav-text">¶反引号 `` 起相同作用，但不允许嵌套</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#bash-的-case-语句与-java-和-c-中的-switch-语句类似"><span class="nav-number">21.</span> <span class="nav-text">🌊Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#循环遍历给定的参数序列"><span class="nav-number">22.</span> <span class="nav-text">🌊循环遍历给定的参数序列</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#bash-的-case-语句与-java-和-c-中的-switch-语句类似"><span class="nav-number">21.</span> <span class="nav-text">¶Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#循环遍历给定的参数序列"><span class="nav-number">22.</span> <span class="nav-text">¶循环遍历给定的参数序列</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#变量-variable-的值会被打印-3-次"><span class="nav-number">22.1.</span> <span class="nav-text">🌊变量$Variable 的值会被打印 3 次</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#或传统的-for循环"><span class="nav-number">22.2.</span> <span class="nav-text">🌊或传统的 “for循环”</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#用-cat-输出-file1-和-file2-内容"><span class="nav-number">22.3.</span> <span class="nav-text">🌊用 cat 输出 file1 和 file2 内容</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#对-ls-输出的文件执行-cat-指令"><span class="nav-number">22.4.</span> <span class="nav-text">🌊对 ls 输出的文件执行 cat 指令</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">22.5.</span> <span class="nav-text">🌊while 循环</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#变量-variable-的值会被打印-3-次"><span class="nav-number">22.1.</span> <span class="nav-text">¶变量$Variable 的值会被打印 3 次</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#或传统的-for循环"><span class="nav-number">22.2.</span> <span class="nav-text">¶或传统的 “for循环”</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#用-cat-输出-file1-和-file2-内容"><span class="nav-number">22.3.</span> <span class="nav-text">¶用 cat 输出 file1 和 file2 内容</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#对-ls-输出的文件执行-cat-指令"><span class="nav-number">22.4.</span> <span class="nav-text">¶对 ls 输出的文件执行 cat 指令</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">22.5.</span> <span class="nav-text">¶while 循环</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#你也可以使用函数"><span class="nav-number">23.</span> <span class="nav-text">🌊你也可以使用函数</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#你也可以使用函数"><span class="nav-number">23.</span> <span class="nav-text">¶你也可以使用函数</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数"><span class="nav-number">23.1.</span> <span class="nav-text">🌊定义函数</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#更简单的方法"><span class="nav-number">23.2.</span> <span class="nav-text">🌊更简单的方法</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#调用函数"><span class="nav-number">23.3.</span> <span class="nav-text">🌊调用函数</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数"><span class="nav-number">23.1.</span> <span class="nav-text">¶定义函数</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#更简单的方法"><span class="nav-number">23.2.</span> <span class="nav-text">¶更简单的方法</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#调用函数"><span class="nav-number">23.3.</span> <span class="nav-text">¶调用函数</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#有很多有用的指令需要学习"><span class="nav-number">24.</span> <span class="nav-text">🌊有很多有用的指令需要学习</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#有很多有用的指令需要学习"><span class="nav-number">24.</span> <span class="nav-text">¶有很多有用的指令需要学习</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的最后-10-行"><span class="nav-number">24.1.</span> <span class="nav-text">🌊打印 file.txt 的最后 10 行</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的前-10-行"><span class="nav-number">24.2.</span> <span class="nav-text">🌊打印 file.txt 的前 10 行</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-按行排序"><span class="nav-number">24.3.</span> <span class="nav-text">🌊将 file.txt 按行排序</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#报告或忽略重复的行-用选项-d-打印重复的行"><span class="nav-number">24.4.</span> <span class="nav-text">🌊报告或忽略重复的行，用选项 -d 打印重复的行</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印每行中-之前内容"><span class="nav-number">24.5.</span> <span class="nav-text">🌊打印每行中 ‘,’ 之前内容</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-文件所有-okay-替换为-great-兼容正则表达式"><span class="nav-number">24.6.</span> <span class="nav-text">🌊将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-中匹配正则的行打印到标准输出"><span class="nav-number">24.7.</span> <span class="nav-text">🌊将 file.txt 中匹配正则的行打印到标准输出</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f"><span class="nav-number">24.8.</span> <span class="nav-text">🌊如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的最后-10-行"><span class="nav-number">24.1.</span> <span class="nav-text">¶打印 file.txt 的最后 10 行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的前-10-行"><span class="nav-number">24.2.</span> <span class="nav-text">¶打印 file.txt 的前 10 行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-按行排序"><span class="nav-number">24.3.</span> <span class="nav-text">¶将 file.txt 按行排序</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#报告或忽略重复的行-用选项-d-打印重复的行"><span class="nav-number">24.4.</span> <span class="nav-text">¶报告或忽略重复的行，用选项 -d 打印重复的行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印每行中-之前内容"><span class="nav-number">24.5.</span> <span class="nav-text">¶打印每行中 ‘,’ 之前内容</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-文件所有-okay-替换为-great-兼容正则表达式"><span class="nav-number">24.6.</span> <span class="nav-text">¶将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-中匹配正则的行打印到标准输出"><span class="nav-number">24.7.</span> <span class="nav-text">¶将 file.txt 中匹配正则的行打印到标准输出</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f"><span class="nav-number">24.8.</span> <span class="nav-text">¶如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-bash-内建的-help-指令阅读-bash-自带文档"><span class="nav-number">25.</span> <span class="nav-text">🌊以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-man-指令阅读相关的-bash-手册"><span class="nav-number">26.</span> <span class="nav-text">🌊用 man 指令阅读相关的 Bash 手册</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息"><span class="nav-number">27.</span> <span class="nav-text">🌊用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#阅读-bash-的-info-文档"><span class="nav-number">28.</span> <span class="nav-text">🌊阅读 Bash 的 info 文档</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-bash-内建的-help-指令阅读-bash-自带文档"><span class="nav-number">25.</span> <span class="nav-text">¶以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-man-指令阅读相关的-bash-手册"><span class="nav-number">26.</span> <span class="nav-text">¶用 man 指令阅读相关的 Bash 手册</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息"><span class="nav-number">27.</span> <span class="nav-text">¶用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#阅读-bash-的-info-文档"><span class="nav-number">28.</span> <span class="nav-text">¶阅读 Bash 的 info 文档</span></a></li>
               </ol>
 
             </div>

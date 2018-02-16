@@ -16,20 +16,22 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： 🌊bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也">
+  <meta name="description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： ¶bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
   <meta name="keywords" content="操作系统">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Linux 0.11启动引导">
   <meta property="og:url" content="http://meng.uno/posts/6c138ff9/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： 🌊bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也">
+  <meta property="og:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： ¶bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.931Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux 0.11启动引导">
-  <meta name="twitter:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： 🌊bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也">
+  <meta name="twitter:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中： ¶bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -246,17 +248,17 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <p>Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中：</p>
-                <h2 id="bootset-s"><a class="header-anchor" href="#bootset-s">🌊</a>bootset.s</h2>
+                <h2 id="bootset-s"><a class="header-anchor" href="#bootset-s">¶</a>bootset.s</h2>
                 <p>系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就是bootset.s编译完成的内容）内容读取到内存0x7c00(31kB)处，并且跳转到这里。<br> 跳转到bootset.s后，bootset.s主要做如下工作：
                   <br> bootset.s在最前面的几句代码先将自己移动到内存0x90000（576kB）处；
                   <br> bootset.s将启动设备第2个扇区到第五个扇区内容（4个扇区里面存放的是setup.s的内容）读取到内存0x90200处，也就是bootset.s后面；
                   <br> 将内核其他模块读取到0x10000（64KB）处，读取的大小为192KB，对于当时的内核来说确实是足够大了；
                   <br> 在bootset.s偏移508处定义了根文件系统的设备号，并且根据编译选项进行了赋值操代码默认启动驱动器是软盘a，然后就是bootset.s,setup.s,和内核镜像都成放在软盘a中;
                 </p>
-                <h2 id="setup-s"><a class="header-anchor" href="#setup-s">🌊</a>setup.s</h2>
+                <h2 id="setup-s"><a class="header-anchor" href="#setup-s">¶</a>setup.s</h2>
                 <p>将系统的一些参数存放在0x90000处,覆盖之前的bootset.s,参数主要包括，内存大小，硬盘参数，显存的参数信息以及根文件系统的设备号;<br> 定义了GDT表，最后加载了gdtr和ldtr，最后跳到保护模式GDT表定义在setup.s,也就是在0x90200的那段内存中，LDT还没有定义。
                 </p>
-                <h2 id="head-s"><a class="header-anchor" href="#head-s">🌊</a>head.s</h2>
+                <h2 id="head-s"><a class="header-anchor" href="#head-s">¶</a>head.s</h2>
                 <p>其被编译到内核镜像中。重新定义了GDT表(目前就一个第二个段描述符有效)和并定义LDT表（表中中断处理程序目前还是指向一个默认的处理程序），并加载相应的寄存器；<br> 内存开始处设置页目录表，一共有4个叶目录，初始化页目录，然后开启分页，最后跳到主函数main()。
                 </p>
                 <p>至此，系统启动引导完成。</p>
@@ -335,9 +337,9 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#bootset-s"><span class="nav-number">1.</span> <span class="nav-text">🌊bootset.s</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#setup-s"><span class="nav-number">2.</span> <span class="nav-text">🌊setup.s</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#head-s"><span class="nav-number">3.</span> <span class="nav-text">🌊head.s</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#bootset-s"><span class="nav-number">1.</span> <span class="nav-text">¶bootset.s</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#setup-s"><span class="nav-number">2.</span> <span class="nav-text">¶setup.s</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#head-s"><span class="nav-number">3.</span> <span class="nav-text">¶head.s</span></a></li>
               </ol>
 
             </div>

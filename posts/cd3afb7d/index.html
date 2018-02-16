@@ -36,6 +36,8 @@
   <meta name="twitter:image" content="http://www.meng.uno/images/stp/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -258,14 +260,14 @@
                 <p>STP views memory as untyped bytes. It provides only three data types: booleans, bitvectors, and arrays of bitvectors. A bitvector is an unsigned, fixed-length sequence of bits. For example, “0010” is a constant, 4-bit bitvector representing
                   the constant 2.
                 </p>
-                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">🌊</a>Build and Run</h2>
+                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">¶</a>Build and Run</h2>
                 <p>We can build this project on Linux or Docker, however, you know, Google isn’t well supported in China, so I can’t use “repo” execution which needed by Docker. In this document, I will use a quick install.</p>
                 <p>Firstly, we need to install many dependencies. Then, since STP uses “minisat” as its SAT solver by default, we need to install it first. It is very simple to do this by “cmake”. The following is part of the output.</p>
                 <p><img src="http://www.meng.uno/images/stp/1.png" alt="STP"></p>
                 <p>Then we could start to install STP (To get the code, we need to use “git clone” but not download it directly).</p>
                 <p><img src="http://www.meng.uno/images/stp/2.png" alt="STP"></p>
                 <p>This project depends on various external tools to do testing. Here we install “lit” and do some individual tests and use “GoogleTest” to write some unit tests.</p>
-                <h2 id="analyze-individual-test"><a class="header-anchor" href="#analyze-individual-test">🌊</a>Analyze Individual Test</h2>
+                <h2 id="analyze-individual-test"><a class="header-anchor" href="#analyze-individual-test">¶</a>Analyze Individual Test</h2>
                 <p>An individual test is like this.</p>
                 <p><img src="http://www.meng.uno/images/stp/3.png" alt="STP"></p>
                 <p>In this screenshot, we can see that this file is judging “b = (c || b)” and “((c || b) = b) &lt; c &lt; b”. We could find that an individual test file may contain these components:</p>
@@ -276,11 +278,11 @@
                   <li>“assert”: like C lang, do some judgement;</li>
                   <li>“exit”: return.</li>
                 </ul>
-                <h2 id="analyze-unit-test"><a class="header-anchor" href="#analyze-unit-test">🌊</a>Analyze Unit Test</h2>
+                <h2 id="analyze-unit-test"><a class="header-anchor" href="#analyze-unit-test">¶</a>Analyze Unit Test</h2>
                 <p>We can simply run unit test by giving “lit” the individual tests directory or run “make C-api-tests” to build the C-api tests as unit tests. The Cpp file is like this.</p>
                 <p><img src="http://www.meng.uno/images/stp/4.png" alt="STP"></p>
                 <p>From this picture, we can see that a C-api test contains many simple verifications.</p>
-                <h2 id="analyze-the-code-structure"><a class="header-anchor" href="#analyze-the-code-structure">🌊</a>Analyze the Code Structure</h2>
+                <h2 id="analyze-the-code-structure"><a class="header-anchor" href="#analyze-the-code-structure">¶</a>Analyze the Code Structure</h2>
                 <p><img src="http://www.meng.uno/images/stp/5.png" alt="STP"></p>
                 <p>From the above picture, I give the following simple understandings to this project.</p>
                 <ul>
@@ -370,10 +372,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">🌊Build and Run</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-individual-test"><span class="nav-number">2.</span> <span class="nav-text">🌊Analyze Individual Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-unit-test"><span class="nav-number">3.</span> <span class="nav-text">🌊Analyze Unit Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-code-structure"><span class="nav-number">4.</span> <span class="nav-text">🌊Analyze the Code Structure</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">¶Build and Run</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-individual-test"><span class="nav-number">2.</span> <span class="nav-text">¶Analyze Individual Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-unit-test"><span class="nav-number">3.</span> <span class="nav-text">¶Analyze Unit Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-code-structure"><span class="nav-number">4.</span> <span class="nav-text">¶Analyze the Code Structure</span></a></li>
               </ol>
 
             </div>

@@ -33,6 +33,8 @@
   <meta name="twitter:image" content="http://www.meng.uno/images/cpa/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
 
   <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
 
@@ -254,7 +256,7 @@
                 <p>CPA provides a conceptual basis for expressing different verification approaches in the same formal setting. The CPA formalism provides an interface for the definition of program analyses, which includes the abstract domain, the post operator,
                   the merge operator, and the stop operator. Consequently, the corresponding tool implementation CPAchecker provides an implementation framework that allows the seamless integration of program analyses that are expressed in the CPA framework.
                   The comparison of different approaches in the same experimental setting becomes easy and the experimental results will be more meaningful.</p>
-                <h2 id="architecture"><a class="header-anchor" href="#architecture">🌊</a>Architecture</h2>
+                <h2 id="architecture"><a class="header-anchor" href="#architecture">¶</a>Architecture</h2>
                 <p><img src="http://www.meng.uno/images/cpa/1.png" alt="CPAchecker"></p>
                 <p>The above picture is the overview of CPAchecker’s architecture. The central data structure is a set of control-flow automata (CFA), which consist of control-flow locations and control-flow edges. A location represents a program-counter
                   value, and an edge represents a program operation, which is either an assume operation, an assignment block, a function call, or a function return. Before a program analysis starts, the input program is transformed into a syntax tree,
@@ -265,7 +267,7 @@
                 <p>The CPA algorithm (shown at the top in the above figure) takes as input a set of control-flow automata (CFA) representing the program, and a CPA, which is in most cases a Composite CPA. The interfaces correspond one-to-one to the formal
                   framework. The elements in the gray box (top right) represent the abstract interfaces of the CPA and the CPA operations. The two gray boxes at the bottom of the figure show two implementations of the interface CPA, one is a Composite
                   CPA that can combine several other CPAs, and the other is a Leaf CPA.</p>
-                <h2 id="build-and-test"><a class="header-anchor" href="#build-and-test">🌊</a>Build and Test</h2>
+                <h2 id="build-and-test"><a class="header-anchor" href="#build-and-test">¶</a>Build and Test</h2>
                 <p>Owing to the long development history, this project is very prefect which means you could use its binary directly, build from the source and even use their jar-ball in Java applications. To experience it, I will build it from the source
                   and use it in the command-line.</p>
                 <p>We need to install “jdk”, “ant”, “svn” and “subversion” before we build it. Then enter the root directory and run “ant”. Wait a moment and this is the result.</p>
@@ -349,8 +351,8 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#architecture"><span class="nav-number">1.</span> <span class="nav-text">🌊Architecture</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-test"><span class="nav-number">2.</span> <span class="nav-text">🌊Build and Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#architecture"><span class="nav-number">1.</span> <span class="nav-text">¶Architecture</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-test"><span class="nav-number">2.</span> <span class="nav-text">¶Build and Test</span></a></li>
               </ol>
 
             </div>
