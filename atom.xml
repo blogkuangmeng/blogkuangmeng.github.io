@@ -352,7 +352,7 @@
     <link href="http://meng.uno/posts/a12d1477/"/>
     <id>http://meng.uno/posts/a12d1477/</id>
     <published>2018-01-27T14:35:33.000Z</published>
-    <updated>2018-02-10T14:51:35.018Z</updated>
+    <updated>2018-02-17T02:10:40.282Z</updated>
     
     <content type="html"><![CDATA[<p>处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入<code>X</code>，亦可以出现在输出<code>Y</code>中。</p><h2 id="x中缺失值"><a class="header-anchor" href="#x中缺失值">¶</a><code>X</code>中缺失值</h2><ol>  <li>使用来自所有可用数据的特征的平均值</li>  <li>忽略实例</li>  <li>使用来自类似项目的平均值</li>  <li>使用另一个机器学习算法来预测值</li></ol><ul>  <li>Bagging 或者 Boosting</li></ul>]]></content>
     
@@ -366,9 +366,9 @@
     
     </summary>
     
-      <category term="AI（人工智能）" scheme="http://meng.uno/categories/AI%EF%BC%88%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%89/"/>
+      <category term="AI" scheme="http://meng.uno/categories/AI/"/>
     
-      <category term="机器学习" scheme="http://meng.uno/categories/AI%EF%BC%88%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%89/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="http://meng.uno/categories/AI/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="机器学习" scheme="http://meng.uno/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
@@ -491,7 +491,7 @@
     <link href="http://meng.uno/posts/99be2c50/"/>
     <id>http://meng.uno/posts/99be2c50/</id>
     <published>2018-01-10T14:43:43.000Z</published>
-    <updated>2018-02-10T14:51:35.020Z</updated>
+    <updated>2018-02-17T02:11:39.642Z</updated>
     
     <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p><p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p><p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p>]]></content>
     
@@ -505,9 +505,9 @@
     
     </summary>
     
-      <category term="AI（人工智能）" scheme="http://meng.uno/categories/AI%EF%BC%88%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%89/"/>
+      <category term="AI" scheme="http://meng.uno/categories/AI/"/>
     
-      <category term="Deep Learning" scheme="http://meng.uno/categories/AI%EF%BC%88%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%89/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="http://meng.uno/categories/AI/Deep-Learning/"/>
     
     
       <category term="Deep Learning" scheme="http://meng.uno/tags/Deep-Learning/"/>
