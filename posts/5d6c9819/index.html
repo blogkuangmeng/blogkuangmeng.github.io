@@ -16,18 +16,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                          12345678910111213141516171819                       &amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;g">
+  <meta name="description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                                     12345678910111213141516171819                             &amp;lt;?xml version=&quot;1.0&quot; en">
   <meta name="keywords" content="Android">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Android的ListView的使用">
   <meta property="og:url" content="http://meng.uno/posts/5d6c9819/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                          12345678910111213141516171819                       &amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;g">
+  <meta property="og:description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                                     12345678910111213141516171819                             &amp;lt;?xml version=&quot;1.0&quot; en">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.916Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Android的ListView的使用">
-  <meta name="twitter:description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                          12345678910111213141516171819                       &amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;g">
+  <meta name="twitter:description" content="可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:                                     12345678910111213141516171819                             &amp;lt;?xml version=&quot;1.0&quot; en">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -247,34 +247,38 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？<br> 首先还是显示界面activity_main.xml:
+                <p>可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？ 首先还是显示界面activity_main.xml:
                 </p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_main"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    tools:context=<span class="string">"com.example.lpf.test.MainActivity"</span>&gt;</span><br><span class="line">    &lt;ListView</span><br><span class="line">        android:id=<span class="string">"@+id/listview"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_alignParentBottom=<span class="string">"true"</span></span><br><span class="line">        android:layout_alignParentStart=<span class="string">"true"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"@color/bg"</span></span><br><span class="line">        android:divider=<span class="string">"@color/item_item"</span></span><br><span class="line">        android:dividerHeight=<span class="string">"10dp"</span>/&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_main"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    tools:context=<span class="string">"com.example.lpf.test.MainActivity"</span>&gt;</span><br><span class="line">    &lt;ListView</span><br><span class="line">        android:id=<span class="string">"@+id/listview"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_alignParentBottom=<span class="string">"true"</span></span><br><span class="line">        android:layout_alignParentStart=<span class="string">"true"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"@color/bg"</span></span><br><span class="line">        android:divider=<span class="string">"@color/item_item"</span></span><br><span class="line">        android:dividerHeight=<span class="string">"10dp"</span>/&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>之后是其对应的MainActivity.java文件：</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">public class MainActivity extends AppCompatActivity&#123;</span><br><span class="line">    private ListView listview;</span><br><span class="line">    <span class="comment">//private ArrayAdapter&lt;String&gt;arr_adapter;</span></span><br><span class="line">    private SimpleAdapter simp_Adapter;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt;datalist;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        listview = (ListView)findViewById(R.id.listview);</span><br><span class="line">        datalist = new ArrayList&lt;Map&lt;String,String&gt;&gt;();</span><br><span class="line">        simp_Adapter = new SimpleAdapter(this,getData(),R<span class="selector-class">.layout</span><span class="selector-class">.item</span>,</span><br><span class="line">                new String[]&#123;"title","text"&#125;,new int[]&#123;R.id.title,R.id.text&#125;);</span><br><span class="line">        listview.setAdapter(simp_Adapter);</span><br><span class="line">    &#125;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt; getData()&#123;</span><br><span class="line">        String[] data_text = getResources().getStringArray(R.array.text_arr);</span><br><span class="line">        String[] data_title = getResources().getStringArray(R.array.title_arr);</span><br><span class="line">        for(int i=0;i&lt;data_text.length;i++)&#123;</span><br><span class="line">            Map&lt;String,String&gt;map = new HashMap&lt;String,String&gt;();</span><br><span class="line">            map.put("title",data_title[i]);</span><br><span class="line">            map.put("text",data_text[i]);</span><br><span class="line">            datalist.add(map);</span><br><span class="line">        &#125;</span><br><span class="line">        return datalist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>其他文件保持不变即可。<br> 至此，一个Android列表程序就实现了。
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">public class MainActivity extends AppCompatActivity&#123;</span><br><span class="line">    private ListView listview;</span><br><span class="line">    <span class="comment">//private ArrayAdapter&lt;String&gt;arr_adapter;</span></span><br><span class="line">    private SimpleAdapter simp_Adapter;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt;datalist;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        listview = (ListView)findViewById(R.id.listview);</span><br><span class="line">        datalist = new ArrayList&lt;Map&lt;String,String&gt;&gt;();</span><br><span class="line">        simp_Adapter = new SimpleAdapter(this,getData(),R<span class="selector-class">.layout</span><span class="selector-class">.item</span>,</span><br><span class="line">                new String[]&#123;"title","text"&#125;,new int[]&#123;R.id.title,R.id.text&#125;);</span><br><span class="line">        listview.setAdapter(simp_Adapter);</span><br><span class="line">    &#125;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt; getData()&#123;</span><br><span class="line">        String[] data_text = getResources().getStringArray(R.array.text_arr);</span><br><span class="line">        String[] data_title = getResources().getStringArray(R.array.title_arr);</span><br><span class="line">        for(int i=0;i&lt;data_text.length;i++)&#123;</span><br><span class="line">            Map&lt;String,String&gt;map = new HashMap&lt;String,String&gt;();</span><br><span class="line">            map.put("title",data_title[i]);</span><br><span class="line">            map.put("text",data_text[i]);</span><br><span class="line">            datalist.add(map);</span><br><span class="line">        &#125;</span><br><span class="line">        return datalist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
+                <p>其他文件保持不变即可。 至此，一个Android列表程序就实现了。
                 </p>
 
               </div>

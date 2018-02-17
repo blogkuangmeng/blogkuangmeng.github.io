@@ -16,18 +16,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="¶起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 ¶结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销">
+  <meta name="description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
   <meta name="keywords" content="软件工程">
   <meta property="og:type" content="article">
   <meta property="og:title" content="String的“+”操作分析">
   <meta property="og:url" content="http://meng.uno/posts/fc57b387/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="¶起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 ¶结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销">
+  <meta property="og:description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-10T13:09:13.130Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="String的“+”操作分析">
-  <meta name="twitter:description" content="¶起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 ¶结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销">
+  <meta name="twitter:description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。 结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -248,26 +248,28 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2 id="起源"><a class="header-anchor" href="#起源">¶</a>起源</h2>
+                <h2>起源</h2>
                 <p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p>
-                <h2 id="结论"><a class="header-anchor" href="#结论">¶</a>结论</h2>
-                <p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。<br> 我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。
+                <h2>结论</h2>
+                <p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。 我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。
                 </p>
-                <h2 id="策略"><a class="header-anchor" href="#策略">¶</a>策略</h2>
+                <h2>策略</h2>
                 <p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p>
-                <h2 id="操作"><a class="header-anchor" href="#操作">¶</a>操作</h2>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <h2>操作</h2>
+                <p>
+                  <figure class="highlight">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
 
               </div>
               <footer class="article-footer">
@@ -343,10 +345,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">¶起源</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">¶结论</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#策略"><span class="nav-number">3.</span> <span class="nav-text">¶策略</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">4.</span> <span class="nav-text">¶操作</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">策略</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">操作</span></a></li>
               </ol>
 
             </div>

@@ -16,18 +16,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                         1                       mysql --version                 关闭MySQL连接（即使没连也无妨）                         1">
+  <meta name="description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                                    1                             mysql --version                          关闭MySQL连接（即使没连也无妨）">
   <meta name="keywords" content="软件工程">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mac MySQL无法启动解决方案">
   <meta property="og:url" content="http://meng.uno/posts/115ed5e0/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                         1                       mysql --version                 关闭MySQL连接（即使没连也无妨）                         1">
+  <meta property="og:description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                                    1                             mysql --version                          关闭MySQL连接（即使没连也无妨）">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.929Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Mac MySQL无法启动解决方案">
-  <meta name="twitter:description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                         1                       mysql --version                 关闭MySQL连接（即使没连也无妨）                         1">
+  <meta name="twitter:description" content="正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！ 检查MySQL是否成功安装                                    1                             mysql --version                          关闭MySQL连接（即使没连也无妨）">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -249,96 +249,110 @@
 
                 <p>正像这次博客的日期那样，《软工》大项目接近尾声了，然而直到今天我才真正解决了这个大难题——Mac MySQL无法使用！！！</p>
                 <p>检查MySQL是否成功安装</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">mysql --version</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">mysql --version</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>关闭MySQL连接（即使没连也无妨）</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">sudo /usr/local/mysql/support-files/mysql<span class="selector-class">.server</span> stop</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">sudo /usr/local/mysql/support-files/mysql<span class="selector-class">.server</span> stop</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>登录管理员</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">cd /usr/local/mysql/bin/</span><br><span class="line">sudo su</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">cd /usr/local/mysql/bin/</span><br><span class="line">sudo su</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>禁止MySQL验证来登录（此时不验证密码）</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>（此时应该成功进入<code>mysql&gt;</code>）设置密码</p>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">UPDATE mysql.user SET authentication_string=PASSWORD('*****') WHERE User='root';</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">UPDATE mysql.user SET authentication_string=PASSWORD('*****') WHERE User='root';</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>（若显示密码过期）设置密码永不过期</p>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>刷新MySQL的系统权限</p>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">flush privileges;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">flush privileges;</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>至此应该来说MySQL应该好使了。</p>
 
               </div>

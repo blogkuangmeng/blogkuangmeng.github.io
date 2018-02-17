@@ -257,21 +257,21 @@
 
                 <p>Boogie is an intermediate verification language (IVL), intended as a layer on which to build program verifiers for other languages. It is also the name of the verification tool that takes Boogie programs as input. It can accept the input
                   of a Boogie program and generate verification conditions that are passed to an SMT solver such as Z3 used by my test.</p>
-                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">¶</a>Build and Run</h2>
+                <h2>Build and Run</h2>
                 <p>Building this project is very simple, however, we may need to install many other tools such as “Mono” (I use a MacBook to build this project) and “NuGet”. The information of successfully building is like this.</p>
                 <p><img src="http://www.meng.uno/images/boogie/1.png" alt="Boogie"></p>
                 <p>There are two kinds of verifications said by the authors: Driver tests and Unit tests, however, I couldn’t find the python script for the latter, so I just run the driver tests.</p>
-                <h2 id="driver-tests"><a class="header-anchor" href="#driver-tests">¶</a>Driver Tests</h2>
+                <h2>Driver Tests</h2>
                 <p>In this kind of tests, we need to use “lit” and “OutputCheck”. We could run all the tests by “lit .”. The result is shown as follows.</p>
                 <p><img src="http://www.meng.uno/images/boogie/2.png" alt="Boogie"></p>
                 <p>We also could run a single test by giving “lit” a specific folder or file. The picture is a test of a folder.</p>
                 <p><img src="http://www.meng.uno/images/boogie/3.png" alt="Boogie"></p>
-                <h2 id="analyze-the-test"><a class="header-anchor" href="#analyze-the-test">¶</a>Analyze the Test</h2>
+                <h2>Analyze the Test</h2>
                 <p><img src="http://www.meng.uno/images/boogie/4.png" alt="Boogie"></p>
                 <p>The picture is a function written by Boogie, from which we can see that the Boogie language is something like C language. In addition, in every Boogie file, every function is separated.</p>
                 <p>If there are some errors occurred, there will be a “.expect” file outputted like this to tell us why they are wrong.</p>
                 <p><img src="http://www.meng.uno/images/boogie/5.png" alt="Boogie"></p>
-                <h2 id="write-a-test"><a class="header-anchor" href="#write-a-test">¶</a>Write A Test</h2>
+                <h2>Write A Test</h2>
                 <p>We can write a new file or just add our function to a existed file. The following is my test:</p>
                 <p><img src="http://www.meng.uno/images/boogie/6.png" alt="Boogie"></p>
                 <p>This is the result:</p>
@@ -354,10 +354,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">¶Build and Run</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#driver-tests"><span class="nav-number">2.</span> <span class="nav-text">¶Driver Tests</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-test"><span class="nav-number">3.</span> <span class="nav-text">¶Analyze the Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test"><span class="nav-number">4.</span> <span class="nav-text">¶Write A Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Build and Run</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Driver Tests</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Analyze the Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Write A Test</span></a></li>
               </ol>
 
             </div>

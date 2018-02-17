@@ -273,20 +273,22 @@
                   <li>Exit status: If a test program encounters unexpected or incorrect results, exit the test program with a non-zero exit status, i.e. exit(1). Conversely, if a program completes as expected, return a zero exit status, i.e. exit(0).</li>
                   <li>Standard output: Tools can be used to analyze the results, if they are written in a standard way.</li>
                 </ul>
-                <h2 id="build-and-run"><a class="header-anchor" href="#build-and-run">¶</a>Build and Run</h2>
+                <h2>Build and Run</h2>
                 <p>To build this project, we need to run the following executions:</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">$ git clone https:<span class="comment">//github.com/linux-test-project/ltp.git</span></span><br><span class="line">$ cd ltp</span><br><span class="line">$ make autotools</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">$ git clone https:<span class="comment">//github.com/linux-test-project/ltp.git</span></span><br><span class="line">$ cd ltp</span><br><span class="line">$ make autotools</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
                 <p>Before these, we need to ensure “git, autoconf, automake, m4” are installed. If not, we can use “apt-get” to get them. The output of “make” is shown as following.</p>
                 <p><img src="http://www.meng.uno/images/ltp/1.png" alt="LTP"></p>
                 <p>After building this project, let’s run it personally. If we want to run all the test suites, we just need run “./runltp” in the “opt/ltp/” directory. However, I will run a single test suite to verify this project only with “./runltp -f
@@ -295,7 +297,7 @@
                 <p><img src="http://www.meng.uno/images/ltp/2.png" alt="LTP"></p>
                 <p>The picture above is the output of “abort01” test case. From it we can see that the test method is “Exit status test” and it passes all the situations.</p>
                 <p>If a test case needs datafiles to work, these would be put in a subdirectory named datafilesand installed in the testcases/data/$TCID directory</p>
-                <h2 id="analyze-test-cases"><a class="header-anchor" href="#analyze-test-cases">¶</a>Analyze Test Cases</h2>
+                <h2>Analyze Test Cases</h2>
                 <p>We could find LTP in “/opt/ltp” and the test suites are installed in the “/opt/ltp/runtest/” directory. The following picture is a screenshot of it.</p>
                 <p><img src="http://www.meng.uno/images/ltp/3.png" alt="LTP"></p>
                 <p>In a single file, such as “syscalls” file, there exist many single test cases which are like the follows.</p>
@@ -305,7 +307,7 @@
                 <p>Each test case is a binary written either in portable Shell or C such as “abort01” which is from “abort01.c” which lays in the “ltp/testcases/kernel/syscalls/abort” directory. The test gets a configuration via environment variables and/or
                   command line parameters, it prints additional information into the stdout and reports overall success/failure via the exit value.</p>
                 <p><img src="http://www.meng.uno/images/ltp/6.png" alt="LTP"></p>
-                <h2 id="write-a-test-suite"><a class="header-anchor" href="#write-a-test-suite">¶</a>Write A Test Suite</h2>
+                <h2>Write A Test Suite</h2>
                 <p>To make things simple, I will use LTP standard interface, not add custom reporting functions and use LTP build system. The following are my steps (These steps are very simple, so I didn’t list any screenshot):</p>
                 <ul>
                   <li>Add a new file “meng” to “ltp/runtest/” directory;</li>
@@ -316,7 +318,7 @@
                   <li>Get the result as the picture. (You can also find the full logs from “meng_output.txt” file in the attachment)</li>
                 </ul>
                 <p><img src="http://www.meng.uno/images/ltp/7.png" alt="LTP"></p>
-                <h2 id="write-a-test-case"><a class="header-anchor" href="#write-a-test-case">¶</a>Write A Test Case</h2>
+                <h2>Write A Test Case</h2>
                 <p>As I said before, we can use C language or Shell to write a test case, however, in this section, I will just use C language to write a simple one which may make me have a deep understanding of this project.</p>
                 <p><strong>I used the “man-pages” to find the untested system calls, however, my linux version maybe a little old (2015 release, version 16.04), so that I can’t find a untested one which is excluded by the newest LTP.</strong></p>
                 <p>I will write a test for verifying system call “file rename”. First, I create a new file “meng.c” in the “ltp/testcases/kernel/syscalls/meng/” directory. Then I need to write the codes. The next thing I need to do is to include “tst_test.h”
@@ -402,10 +404,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">¶Build and Run</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-test-cases"><span class="nav-number">2.</span> <span class="nav-text">¶Analyze Test Cases</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test-suite"><span class="nav-number">3.</span> <span class="nav-text">¶Write A Test Suite</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test-case"><span class="nav-number">4.</span> <span class="nav-text">¶Write A Test Case</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Build and Run</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Analyze Test Cases</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Write A Test Suite</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Write A Test Case</span></a></li>
               </ol>
 
             </div>
