@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>手写数字识别（SVM） | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="调用第三方库 在此我选用的是sk-learn的关于svm的库，其关于此次实验的svm函数定义为： svm.SVC(C=8.0, kernel=&apos;rbf&apos;, gamma=0.1) svm.SVC()函数的几个重要参数在其官方的介绍文档中有如下的解释： C :误差项的惩罚参数，浮点型，可选 (默认=1.0)； kernel : 指定核函数类型，字符型，可选 (默认=‘rbf’)，如果使用自定义的核函数">
+  <meta name="keywords" content="模式识别">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="手写数字识别（SVM）">
+  <meta property="og:url" content="http://meng.uno/articles/7dac38a/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="调用第三方库 在此我选用的是sk-learn的关于svm的库，其关于此次实验的svm函数定义为： svm.SVC(C=8.0, kernel=&apos;rbf&apos;, gamma=0.1) svm.SVC()函数的几个重要参数在其官方的介绍文档中有如下的解释： C :误差项的惩罚参数，浮点型，可选 (默认=1.0)； kernel : 指定核函数类型，字符型，可选 (默认=‘rbf’)，如果使用自定义的核函数">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-02-17T02:12:08.406Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="手写数字识别（SVM）">
+  <meta name="twitter:description" content="调用第三方库 在此我选用的是sk-learn的关于svm的库，其关于此次实验的svm函数定义为： svm.SVC(C=8.0, kernel=&apos;rbf&apos;, gamma=0.1) svm.SVC()函数的几个重要参数在其官方的介绍文档中有如下的解释： C :误差项的惩罚参数，浮点型，可选 (默认=1.0)； kernel : 指定核函数类型，字符型，可选 (默认=‘rbf’)，如果使用自定义的核函数">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": ["copy", "weixin", "linkedin", "sqq", "tsina", "twi", "fbook", "mail"],
+        "bdPic": "",
+        "bdStyle": "0",
+        "bdSize": "16"
+      },
+      "slide": {
+        "type": "slide",
+        "bdImg": "0",
+        "bdPos": "left",
+        "bdTop": "100"
+      },
+      "selectShare": {
+        "bdContainerClass": null,
+        "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+      }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+  </script>
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="trans-rotate" width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-svm_number_recog" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  手写数字识别（SVM）
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/7dac38a/" class="article-date">
+	  <time datetime="2016-12-17T04:08:13.000Z" itemprop="datePublished">2016-12-17</time>
+	</a>
+                <a class="article-category-link" href="/categories/AI/">AI</a>
+                <a class="article-category-link" href="/categories/AI/模式识别/">模式识别</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,955</span>
+	<span class="post-count"> | 预计时间14分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h2>调用第三方库</h2>
+                <p>在此我选用的是sk-learn的关于svm的库，其关于此次实验的svm函数定义为： svm.SVC(C=8.0, kernel='rbf', gamma=0.1) svm.SVC()函数的几个重要参数在其官方的介绍文档中有如下的解释： C :误差项的惩罚参数，浮点型，可选 (默认=1.0)； kernel : 指定核函数类型，字符型，可选 (默认=‘rbf’)，如果使用自定义的核函数，需要预先计算核矩阵； gamma : 浮点型, 可选 (默认=0.0)，’rbf’核函数的系数，需要注意的是，此处的gamma与课本中的sigma是互为倒数的关系（所以其可以为0）。
+                  因为是调用别人的库（应该说完全是别人的功劳），所以在实现上没有什么可以说的。
+                </p>
+                <h3>代码</h3>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Thu Dec  1 13:30:21 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">使用SVM分类器，从MNIST数据集中进行手写数字识别的分类程序</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import cPickle</span><br><span class="line">import gzip</span><br><span class="line">from sklearn import svm</span><br><span class="line">import time</span><br><span class="line">def load_data():</span><br><span class="line">    <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">    返回包含训练数据、验证数据、测试数据的元组的模式识别数据</span></span><br><span class="line"><span class="string">    "</span><span class="string">""</span></span><br><span class="line">    f = gzip.open(<span class="string">'data.gz'</span>, <span class="string">'rb'</span>)</span><br><span class="line">    training_data, validation_data, test_data = cPickle.load(f)</span><br><span class="line">    f.close()</span><br><span class="line">    return (training_data, validation_data, test_data)</span><br><span class="line">def Svm():</span><br><span class="line">    print (<span class="string">"开始时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)) </span><br><span class="line">    training_data, validation_data, test_data = load_data()</span><br><span class="line">    # 传递训练模型的参数，这里用默认的参数</span><br><span class="line">    clf = svm.SVC(C=<span class="number">10.0</span>, kernel=<span class="string">'rbf'</span>, gamma=<span class="number">0.10</span>,cache_size=<span class="number">8000</span>,probability=False)</span><br><span class="line">    # 进行模型训练</span><br><span class="line">    clf.fit(training_data[<span class="number">0</span>], training_data[<span class="number">1</span>])</span><br><span class="line">    # 测试集测试预测结果</span><br><span class="line">    predictions = [int(a) <span class="keyword">for</span> <span class="selector-tag">a</span> <span class="keyword">in</span> clf.predict(test_data[<span class="number">0</span>])]</span><br><span class="line">    num_correct = sum(int(<span class="selector-tag">a</span> == y) <span class="keyword">for</span> <span class="selector-tag">a</span>, y <span class="keyword">in</span> zip(predictions, test_data[<span class="number">1</span>]))</span><br><span class="line">    print ("%s 中的 %s 测试正确。" % (num_correct, len(test_data[1])))</span><br><span class="line">    print (<span class="string">"结束时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    Svm()</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
+                <h2>自己编程实现</h2>
+                <p>在自己编程实现过程中，我也借鉴了很多其他人写的很成熟的方案，最终从数据结构、逻辑结构以及特征计算等方面得到比较合理的一组答案。</p>
+                <h3>逻辑结构</h3>
+                <p>本次实验的程序分为“训练”和“测试”两部分，两部分分别进行的工作如下：</p>
+                <h4>训练</h4>
+                <p>加载数据 初始化模型 更新标签 初始化预测误差 迭代每个样本（用KT优化） 得到每个样本的模型 对步骤5的解释： 对于svm我们要求解a（数组），如果 a的所有分量满足svm对偶问题的KKT条件，那么这个问题的解就求出来了，我们svm模型学习也就完成了。如果没有满足KKT，那么我们就在 a中找两个分量 ai和 aj，其中 ai 是违反KKT条件最严重的分量，通过计算，使得 ai 和 aj满足KKT条件，直到a的所有分量都满足KKT条件。而且这个计算过程是收敛的，因为每次计算出来的新的两个分量，使得对偶问题中要优化的目标函数值更小。因为每次求解的那两个分量，是要优化问题在这两个分量上的极小值，所以每一次优化，都会使目标函数比上一次的优化结果的值变小。</p>
+                <h4>测试</h4>
+                <p>加载数据 对每个数据预测 计算正确率与相关信息逻辑结构 特征计算 仿照KKT的优化方法，在本次试验中，我将每张图片作为一个数据。由此得到对每一个测试样本的预测（如果在某个分类的计算时结果为正，则说明该测试样本属于该类别，结果为0则不属于此类别）。
+                </p>
+                <h3>其他杂项</h3>
+                <p>核函数选择：按照传统，选择的是RBF核函数，函数形式与教材完全相同； 数据来源：来源自网友整理之后的数据（测试数据与训练数据没有均分）； SMO优化算法： 取初始值a(0)=0，令K=0； 选取优化变量a1(k) , a2(k) , 针对优化问题，求得最优解 a1(k+1) , a2(k+1) 更新 a(k) 为 a(k+1) ； 在精度条件范围内是否满足停机条件，即是否有变量违反KKT条件，如果违反了，则令k=k+1，跳转2，否则4； 求得近似解â =a(k+1)
+                  其中第3步中，是否违反KKT条件，对于a(k)的每个分量按照以下的违反KKT条件的公式进行验算即可。 变量选取分为两步，第一步是选取违反KKT条件最严重的ai，第二步是根据已经选取的第一个变量，选择优化程度最大的第二个变量。 违反KKT条件最严重的变量可以按照这样的规则选取，首先看0&lt;ai&lt;C的那些分量中，是否有违反KKT条件的，如果有，则选取yig(xi)最小的那个做为a1。如果没有则遍历所有的样本点，在违反KKT条件的分量中选取yig(xi)最小的做为a1。
+                  当选择了a1后，如果a1对应的E1为正，选择Ei最小的那个分量最为a2，如果E1为负，选择Ei最大的那个分量最为a2，这是因为anew2依赖于|E1−E2|。 如果选择的a2，不能满足下降的最小步长，那么就遍历所有的支持向量点做为a2进行试用，如果仍然都不能满足下降的最小步长，那么就遍历所有的样本点做为a2试用。如果还算是不能满足下降的最小步长，那么就重新选择a1。
+                </p>
+                <h3>代码</h3>
+                <p>
+                  <figure class="highlight stylus">
+                    <table>
+                      <tr>
+                        <td class="gutter">
+                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre>
+                        </td>
+                        <td class="code">
+                          <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Sun Dec  4 14:24:53 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import time</span><br><span class="line">import os</span><br><span class="line">import math</span><br><span class="line">class model:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self<span class="selector-class">.a</span> = []</span><br><span class="line">        self<span class="selector-class">.b</span> = <span class="number">0.0</span>   </span><br><span class="line">class DATA:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.samples = []        # 样本数据</span><br><span class="line">        self.tests = []          # 测试数据</span><br><span class="line">        self.models = []         # 训练的模型</span><br><span class="line">        self.forecasterror = []      # 预测知与真实y之差Ei</span><br><span class="line">        self.modelnum = 0         # 当前正使用或训练的模型</span><br><span class="line">        self.cache= []   # 缓存kernel函数的计算结果</span><br><span class="line">        self.sigma = 10        # sigma</span><br><span class="line">    def init_models(self):</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">            m = model()</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(self.samples)):</span><br><span class="line">                m<span class="selector-class">.a</span><span class="selector-class">.append</span>(<span class="number">0</span>)</span><br><span class="line">            self<span class="selector-class">.models</span><span class="selector-class">.append</span>(m)</span><br><span class="line">    def init_cache(self):</span><br><span class="line">        <span class="selector-tag">i</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> self<span class="selector-class">.samples</span>: </span><br><span class="line">            print (<span class="string">"正在计算第"</span>,i+<span class="number">1</span>,<span class="string">"个样本的RBF核"</span>)</span><br><span class="line">            self<span class="selector-class">.cache</span><span class="selector-class">.append</span>([])</span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> self<span class="selector-class">.samples</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="selector-tag">i</span> &gt; j:</span><br><span class="line">                    self<span class="selector-class">.cache</span>[i].append(self<span class="selector-class">.cache</span>[j][i])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self<span class="selector-class">.cache</span>[i].append(RBF(x,z))</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="selector-tag">i</span> += <span class="number">1</span>                 </span><br><span class="line">class image:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self<span class="selector-class">.data</span> = []</span><br><span class="line">        self<span class="selector-class">.num</span> = <span class="number">0</span></span><br><span class="line">        self<span class="selector-class">.label</span> = []</span><br><span class="line">        self<span class="selector-class">.filename</span> = <span class="string">""</span></span><br><span class="line">gv = DATA()</span><br><span class="line"># RBF核函数</span><br><span class="line">def RBF(j, i):</span><br><span class="line">    <span class="keyword">if</span> j == <span class="selector-tag">i</span>:</span><br><span class="line">        return math.exp(<span class="number">0</span>)</span><br><span class="line">    sigma = gv.sigma</span><br><span class="line">    ret = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(j.data)):</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(j<span class="selector-class">.data</span>[m])):</span><br><span class="line">            ret += math.pow(int(j<span class="selector-class">.data</span>[m][n]) - int(<span class="selector-tag">i</span><span class="selector-class">.data</span>[m][n]), <span class="number">2</span>)</span><br><span class="line">    ret = math.exp(-ret/sigma)</span><br><span class="line">    return ret</span><br><span class="line">#加载测试与训练数据</span><br><span class="line">def loaddata(dirpath, name):</span><br><span class="line">    files = os.listdir(dirpath)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="selector-tag">img</span> = image()</span><br><span class="line">        <span class="selector-tag">img</span><span class="selector-class">.data</span> = images(dirpath + file)</span><br><span class="line">        <span class="selector-tag">img</span><span class="selector-class">.num</span> = int(file[<span class="number">0</span>])</span><br><span class="line">        <span class="selector-tag">img</span><span class="selector-class">.filename</span> = file</span><br><span class="line">        name.append(img)</span><br><span class="line">#图片分列        </span><br><span class="line">def images(path):</span><br><span class="line">    <span class="selector-tag">img</span> = []</span><br><span class="line">    file = open(path, <span class="string">"r"</span>) </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> file:</span><br><span class="line">        line = line[:-<span class="number">2</span>]</span><br><span class="line">        <span class="selector-tag">img</span>.append(line)</span><br><span class="line">    return <span class="selector-tag">img</span>  </span><br><span class="line">#更新样本标签，正在训练啥就将啥的标签定为<span class="number">1</span>，其他的定为-<span class="number">1</span>    </span><br><span class="line">def update_samples_label(num):</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">img</span> <span class="keyword">in</span> gv<span class="selector-class">.samples</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="selector-tag">img</span><span class="selector-class">.num</span> == num:</span><br><span class="line">            <span class="selector-tag">img</span><span class="selector-class">.label</span><span class="selector-class">.append</span>(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="selector-tag">img</span><span class="selector-class">.label</span><span class="selector-class">.append</span>(-<span class="number">1</span>)          </span><br><span class="line">#初始化DATA.forecasterror</span><br><span class="line">def init_forecasterror():</span><br><span class="line">    gv<span class="selector-class">.forecasterror</span> = []</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">        diff = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">            <span class="keyword">if</span> gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[j] != <span class="number">0</span>:</span><br><span class="line">                 diff += gv.models[gv.modelnum].a[j] * gv.samples[j].label[gv.modelnum] * gv.cache[j][i]</span><br><span class="line">        diff += gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.b</span> </span><br><span class="line">        diff -= gv<span class="selector-class">.samples</span>[i]<span class="selector-class">.label</span>[gv.modelnum]</span><br><span class="line">        gv<span class="selector-class">.forecasterror</span><span class="selector-class">.append</span>(diff)</span><br><span class="line">#更新DATA<span class="selector-class">.forecasterror</span>        </span><br><span class="line">def update_forecasterror(i, new_ai, j, new_bj, new_b):</span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">        diff = (new_ai - gv.models[gv.modelnum].a[i])* gv.samples[i].label[gv.modelnum] * gv.cache[i][idx]</span><br><span class="line">        diff += (new_bj - gv.models[gv.modelnum].a[j])* gv.samples[j].label[gv.modelnum] * gv.cache[j][idx]</span><br><span class="line">        diff += new_b - gv<span class="selector-class">.models</span>[gv.modelnum].b</span><br><span class="line">        diff += gv<span class="selector-class">.forecasterror</span>[idx]</span><br><span class="line">        gv<span class="selector-class">.forecasterror</span>[idx] = diff</span><br><span class="line"># g(x)</span><br><span class="line">def predict(m):</span><br><span class="line">    pred = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">        <span class="keyword">if</span> gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[j] != <span class="number">0</span>:</span><br><span class="line">            pred += gv.models[gv.modelnum].a[j] * gv.samples[j].label[gv.modelnum] * RBF(gv.samples[j],m)</span><br><span class="line">    pred += gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.b</span> </span><br><span class="line">    return pred</span><br><span class="line">def save_models():</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        fn = open(<span class="string">"models/"</span> + str(i) + <span class="string">"_a.model"</span>, <span class="string">"w"</span>)</span><br><span class="line">        <span class="keyword">for</span> ai <span class="keyword">in</span> gv<span class="selector-class">.models</span>[i]<span class="selector-class">.a</span>:</span><br><span class="line">            fn.write(str(ai))</span><br><span class="line">            fn.write(<span class="string">'\n'</span>)</span><br><span class="line">        fn.close()</span><br><span class="line">        fn = open(<span class="string">"models/"</span> + str(i) + <span class="string">"_b.model"</span>, <span class="string">"w"</span>)</span><br><span class="line">        fn.write(str(gv<span class="selector-class">.models</span>[i].b))</span><br><span class="line">        fn.close()</span><br><span class="line">def load_models():</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        fn = open(<span class="string">"models/"</span> + str(i) + <span class="string">"_a.model"</span>, <span class="string">"r"</span>)</span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fn:</span><br><span class="line">            gv<span class="selector-class">.models</span>[i]<span class="selector-class">.a</span>[j] = <span class="attribute">float</span>(line)</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        fn.close()</span><br><span class="line">        fn = open(<span class="string">"models/"</span> + str(i) + <span class="string">"_b.model"</span>, <span class="string">"r"</span>)</span><br><span class="line">        gv.models[i].b = float(fn.readline())</span><br><span class="line">        fn.close()</span><br><span class="line">###</span><br><span class="line">#  T: tolerance 误差容忍度(精度)</span><br><span class="line">#  times: 迭代次数</span><br><span class="line"># 优化方法：SMO</span><br><span class="line">#  C: 惩罚系数</span><br><span class="line">#  modelnum: 模型序号0到9</span><br><span class="line">#  step: aj移动的最小步长</span><br><span class="line">###</span><br><span class="line">def train(T, times, C, modelnum, step):</span><br><span class="line">    <span class="selector-tag">time</span> = <span class="number">0</span></span><br><span class="line">    gv<span class="selector-class">.modelnum</span> = modelnum</span><br><span class="line">    update_samples_label(modelnum)</span><br><span class="line">    init_forecasterror()</span><br><span class="line">    updated = True</span><br><span class="line">    while <span class="selector-tag">time</span> &lt; times and updated:</span><br><span class="line">        updated = False</span><br><span class="line">        <span class="selector-tag">time</span> += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">            ai = gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[i]</span><br><span class="line">            Ei = gv<span class="selector-class">.forecasterror</span>[i]</span><br><span class="line">            #计算违背KKT的点</span><br><span class="line">            if (gv.samples[i].label[gv.modelnum] * Ei &lt; -T and ai &lt; C) or (gv.samples[i].label[gv.modelnum] * Ei &gt; T and ai &gt; 0):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(len(gv.samples)):</span><br><span class="line">                    <span class="keyword">if</span> j == <span class="selector-tag">i</span>: continue</span><br><span class="line">                    kii = gv<span class="selector-class">.cache</span>[i][i]</span><br><span class="line">                    kjj = gv<span class="selector-class">.cache</span>[j][j]</span><br><span class="line">                    kji = kij = gv<span class="selector-class">.cache</span>[i][j] </span><br><span class="line">                    eta = kii + kjj - 2 * kij </span><br><span class="line">                    <span class="keyword">if</span> eta &lt;= <span class="number">0</span>: continue</span><br><span class="line">                    new_aj = gv.models[gv.modelnum].a[j] + gv.samples[j].label[gv.modelnum] * (gv.forecasterror[i] - gv.forecasterror[j]) / eta # f 7.106</span><br><span class="line">                    L = <span class="number">0.0</span></span><br><span class="line">                    H = <span class="number">0.0</span></span><br><span class="line">                    a1_old = gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[i]</span><br><span class="line">                    a2_old = gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[j]</span><br><span class="line">                    <span class="keyword">if</span> gv<span class="selector-class">.samples</span>[i]<span class="selector-class">.label</span>[gv.modelnum] == gv<span class="selector-class">.samples</span>[j]<span class="selector-class">.label</span>[gv.modelnum]:</span><br><span class="line">                        L = max(<span class="number">0</span>, a2_old + a1_old - C)</span><br><span class="line">                        H = min(C, a2_old + a1_old)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        L = max(<span class="number">0</span>, a2_old - a1_old)</span><br><span class="line">                        H = min(C, C + a2_old - a1_old)</span><br><span class="line">                    <span class="keyword">if</span> new_aj &gt; H:</span><br><span class="line">                        new_aj = H</span><br><span class="line">                    <span class="keyword">if</span> new_aj &lt; L:</span><br><span class="line">                        new_aj = L</span><br><span class="line">                    <span class="keyword">if</span> abs(a2_old - new_aj) &lt; step:</span><br><span class="line">                       # print ("j = %d, is not moving enough" % j)</span><br><span class="line">                        continue</span><br><span class="line">                    new_ai = a1_old + gv.samples[i].label[gv.modelnum] * gv.samples[j].label[gv.modelnum] * (a2_old - new_aj) # f 7.109 </span><br><span class="line">                    new_b1 = gv.models[gv.modelnum].b - gv.forecasterror[i] - gv.samples[i].label[gv.modelnum] * kii * (new_ai - a1_old) - gv.samples[j].label[gv.modelnum] * kji * (new_aj - a2_old) # f7.115</span><br><span class="line">                    new_b2 = gv.models[gv.modelnum].b - gv.forecasterror[j] - gv.samples[i].label[gv.modelnum]*kji*(new_ai - a1_old) - gv.samples[j].label[gv.modelnum]*kjj*(new_aj-a2_old)    # f7.116</span><br><span class="line">                    <span class="keyword">if</span> new_ai &gt; <span class="number">0</span> and new_ai &lt; C: new_b = new_b1</span><br><span class="line">                    elif new_aj &gt; <span class="number">0</span> and new_aj &lt; C: new_b = new_b2</span><br><span class="line">                    <span class="keyword">else</span>: new_b = (new_b1 + new_b2) / <span class="number">2.0</span></span><br><span class="line">                    update_forecasterror(<span class="selector-tag">i</span>, new_ai, j, new_aj, new_b)</span><br><span class="line">                    gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[i] = new_ai</span><br><span class="line">                    gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.a</span>[j] = new_aj</span><br><span class="line">                    gv<span class="selector-class">.models</span>[gv.modelnum]<span class="selector-class">.b</span> = new_b</span><br><span class="line">                    updated = True</span><br><span class="line">                    print ("迭代次数: %d, 修改组合: i: %d 与 j:%d" %(time, i, j))</span><br><span class="line">                    break</span><br><span class="line"># 测试数据</span><br><span class="line">def test():</span><br><span class="line">    record = <span class="number">0</span></span><br><span class="line">    record_correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">img</span> <span class="keyword">in</span> gv<span class="selector-class">.tests</span>: </span><br><span class="line">        print (<span class="string">"正在测试："</span>, <span class="selector-tag">img</span>.filename)</span><br><span class="line">        <span class="keyword">for</span> modelnum <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">            gv<span class="selector-class">.modelnum</span> = modelnum</span><br><span class="line">            <span class="keyword">if</span> predict(img) &gt; <span class="number">0</span>:</span><br><span class="line">                print (<span class="string">"测试结果："</span>,modelnum)</span><br><span class="line">                record += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> modelnum == int(<span class="selector-tag">img</span><span class="selector-class">.filename</span>[<span class="number">0</span>]):</span><br><span class="line">                    record_correct += <span class="number">1</span></span><br><span class="line">                break</span><br><span class="line">    print (<span class="string">"相关记录数量:"</span>, record)</span><br><span class="line">    print (<span class="string">"正确识别数量:"</span>, record_correct)</span><br><span class="line">    print (<span class="string">"正确识别比例:"</span>, record_correct/record)</span><br><span class="line">    print (<span class="string">"测试数据总量:"</span>, len(gv.tests))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print (<span class="string">"开始时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)) </span><br><span class="line">    training = True</span><br><span class="line">    loaddata(<span class="string">"train/"</span>, gv.samples)</span><br><span class="line">    loaddata(<span class="string">"test/"</span>, gv.tests)    </span><br><span class="line">    print (<span class="string">"训练数据个数："</span>,len(gv.samples))</span><br><span class="line">    print (<span class="string">"测试数据个数："</span>,len(gv.tests))</span><br><span class="line">    <span class="keyword">if</span> training == True:</span><br><span class="line">        gv.init_cache()</span><br><span class="line">        gv.init_models()</span><br><span class="line">    print (<span class="string">"模型初始化成功！"</span>) </span><br><span class="line">    print (<span class="string">"当前时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))        </span><br><span class="line">    T = <span class="number">0.0001</span></span><br><span class="line">    C = <span class="number">10</span></span><br><span class="line">    step = <span class="number">0.001</span></span><br><span class="line">    gv<span class="selector-class">.sigma</span> = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> training == True:</span><br><span class="line">       <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">            print (<span class="string">"正在训练模型:"</span>, i)</span><br><span class="line">            train(T, <span class="number">10</span>, C, <span class="selector-tag">i</span>, step)</span><br><span class="line">            save_models()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        load_models()</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">            update_samples_label(i)</span><br><span class="line">    print (<span class="string">"训练完成时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)) </span><br><span class="line">    test()</span><br><span class="line">    print (<span class="string">"测试完成时间："</span>,<span class="selector-tag">time</span>.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br></pre>
+                        </td>
+                      </tr>
+                    </table>
+                  </figure>
+                </p>
+
+              </div>
+              <footer class="article-footer">
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式识别/">模式识别</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/86743755/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          HIT操作系统实验总结
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/1af17fd9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">多项式拟合曲线——最小二乘法</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">调用第三方库</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">自己编程实现</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">逻辑结构</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.1.</span> <span class="nav-text">训练</span></a></li>
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.2.</span> <span class="nav-text">测试</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">其他杂项</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.02.19 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <img border="0" height=27px width=109px style="background-color:white;" src="/css/images/kaba.png" />
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
+
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"fixed","width":100,"height":200,"superSample":2,"hOffset":-30,"vOffset":-130},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2}});</script></body>
+
+</html>
