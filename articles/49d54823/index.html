@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                                    12345                             var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(">
+  <meta name="description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                         12345                       var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;,">
   <meta name="keywords" content="软件工程">
   <meta property="og:type" content="article">
   <meta property="og:title" content="表格搜索">
   <meta property="og:url" content="http://meng.uno/articles/49d54823/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                                    12345                             var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(">
+  <meta property="og:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                         12345                       var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;,">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.941Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="表格搜索">
-  <meta name="twitter:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                                    12345                             var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(">
+  <meta name="twitter:description" content="虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：                         12345                       var allRows = $(&quot;tr&quot;);$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;,">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -249,50 +249,45 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <p>虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：</p>
-                <p>
-                  <figure class="highlight">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">var allRows = $("tr");</span><br><span class="line">$(<span class="string">"input#search"</span>).on(<span class="string">"keydown keyup"</span>, function() &#123;</span><br><span class="line">  allRows.hide();</span><br><span class="line">  $("tr:contains('" + $(this).val() + "')").show();</span><br><span class="line">&#125;);</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var allRows = $("tr");</span><br><span class="line">$(<span class="string">"input#search"</span>).on(<span class="string">"keydown keyup"</span>, function() &#123;</span><br><span class="line">  allRows.hide();</span><br><span class="line">  $("tr:contains('" + $(this).val() + "')").show();</span><br><span class="line">&#125;);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>没有看错，就是这么简单，如果是在实际应用中，可以这样来写： 先声明一个按钮：
                 </p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">&lt;<span class="selector-tag">input</span> type=<span class="string">"search"</span> id=<span class="string">"search"</span> placeholder=<span class="string">"请输入内容……"</span>&gt;</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
-                <p>在input框之后加入以下JavaScript代码：
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">// Quick Table Search</span></span><br><span class="line">$(<span class="string">'#search'</span>).keyup(function() &#123;</span><br><span class="line">  var regex = new RegExp($('#search').val(), "i");</span><br><span class="line">  var rows = $('table tr:gt(0)');</span><br><span class="line">  rows.each(function (index) &#123;</span><br><span class="line">    title = $(this).children(<span class="string">"#title"</span>).html()</span><br><span class="line">    <span class="keyword">if</span> (title.search(regex) != -<span class="number">1</span>) &#123;</span><br><span class="line">      $(this).show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      $(this).hide();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;<span class="selector-tag">input</span> type=<span class="string">"search"</span> id=<span class="string">"search"</span> placeholder=<span class="string">"请输入内容……"</span>&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>在input框之后加入以下JavaScript代码：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">// Quick Table Search</span></span><br><span class="line">$(<span class="string">'#search'</span>).keyup(function() &#123;</span><br><span class="line">  var regex = new RegExp($('#search').val(), "i");</span><br><span class="line">  var rows = $('table tr:gt(0)');</span><br><span class="line">  rows.each(function (index) &#123;</span><br><span class="line">    title = $(this).children(<span class="string">"#title"</span>).html()</span><br><span class="line">    <span class="keyword">if</span> (title.search(regex) != -<span class="number">1</span>) &#123;</span><br><span class="line">      $(this).show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      $(this).hide();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>完美运行有木有！！！</p>
                 <div>
                   <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li></ul></div>
@@ -425,6 +420,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

@@ -248,25 +248,23 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2>需求</h2>
+                <h2 id="需求">需求</h2>
                 <p>我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。</p>
-                <h2>实现</h2>
+                <h2 id="实现">实现</h2>
                 <p>于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用JavaScript实现，在尝试了很多次之后，终于成功了，在此先贴上代码。</p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function n(n)&#123;</span><br><span class="line">	var num="";</span><br><span class="line">	for(var i=0;i&lt;n;i++)&#123;</span><br><span class="line">    num += document.getElementById("num"+i).value;</span><br><span class="line">	&#125;</span><br><span class="line">document.getElementById("result").value = num;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  int num=3;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">form</span>  action=<span class="string">"addAction"</span>&gt;</span><br><span class="line">&lt;input id="num"  name="num" value=&lt;%=num %&gt; type="text"&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span> id=<span class="string">"num&lt;%=i %&gt;"</span> type=<span class="string">"text"</span> onblur=<span class="string">"n(&lt;%=num%&gt;)"</span>&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span>  name=<span class="string">"str"</span> id=<span class="string">"result"</span> type=<span class="string">"hidden"</span> &gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span> &gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
-                <h2>分析</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function n(n)&#123;</span><br><span class="line">	var num="";</span><br><span class="line">	for(var i=0;i&lt;n;i++)&#123;</span><br><span class="line">    num += document.getElementById("num"+i).value;</span><br><span class="line">	&#125;</span><br><span class="line">document.getElementById("result").value = num;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  int num=3;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">form</span>  action=<span class="string">"addAction"</span>&gt;</span><br><span class="line">&lt;input id="num"  name="num" value=&lt;%=num %&gt; type="text"&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span> id=<span class="string">"num&lt;%=i %&gt;"</span> type=<span class="string">"text"</span> onblur=<span class="string">"n(&lt;%=num%&gt;)"</span>&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span>  name=<span class="string">"str"</span> id=<span class="string">"result"</span> type=<span class="string">"hidden"</span> &gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span> &gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="分析">分析</h2>
                 <p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
                 <div>
                   <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li></ul></div>
@@ -344,10 +342,10 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li>
                     </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a>
@@ -403,6 +401,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

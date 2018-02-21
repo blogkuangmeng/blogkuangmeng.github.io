@@ -249,28 +249,26 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2>起源</h2>
+                <h2 id="起源">起源</h2>
                 <p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p>
-                <h2>结论</h2>
+                <h2 id="结论">结论</h2>
                 <p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。 我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。
                 </p>
-                <h2>策略</h2>
+                <h2 id="策略">策略</h2>
                 <p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p>
-                <h2>操作</h2>
-                <p>
-                  <figure class="highlight">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <h2 id="操作">操作</h2>
+                <figure class="highlight">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <div>
                   <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li><li><a href="http://meng.uno/articles/49d54823/">表格搜索</a></li></ul></div>
       
@@ -347,11 +345,11 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">策略</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">操作</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#策略"><span class="nav-number">3.</span> <span class="nav-text">策略</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">4.</span> <span class="nav-text">操作</span></a></li>
                     </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a>
@@ -407,6 +405,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

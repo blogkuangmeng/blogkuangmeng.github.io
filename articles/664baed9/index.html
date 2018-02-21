@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="As we all known, system call testing is very important to a system. System call fuzzers aren&apos;t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
+  <meta name="description" content="As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
   <meta name="keywords" content="Trinity,Fuzzer">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Trinity">
   <meta property="og:url" content="http://meng.uno/articles/664baed9/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="As we all known, system call testing is very important to a system. System call fuzzers aren&apos;t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
+  <meta property="og:description" content="As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:image" content="http://www.meng.uno/images/fuzzer/1.png">
   <meta property="og:image" content="http://www.meng.uno/images/fuzzer/2.png">
@@ -38,7 +38,7 @@
   <meta property="og:updated_time" content="2018-02-11T14:48:52.839Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Trinity">
-  <meta name="twitter:description" content="As we all known, system call testing is very important to a system. System call fuzzers aren&apos;t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
+  <meta name="twitter:description" content="As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistica">
   <meta name="twitter:image" content="http://www.meng.uno/images/fuzzer/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -259,14 +259,14 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>As we all known, system call testing is very important to a system. System call fuzzers aren't a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistication to the fuzz-testing process. One
+                <p>As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistication to the fuzz-testing process. One
                   of them, Scrashme, was started in 2006. Work on that project languished for a few years, and only picked up momentum starting in late 2010, when the authors began to devote significantly more time to its development. In December 2010,
                   Scrashme was renamed to Trinity which is this project.</p>
-                <p>Trinity is an intelligent system call fuzzer since it incorporates specific knowledge about each system call which is tested. Its thought is to reduce the time spent running &quot;useless&quot; tests, so reaching deeper into the tested
-                  code and increasing the chances of testing a more interesting case that may result in an unexpected error.</p>
-                <h2>Build and Run</h2>
-                <p>We can get the source code from GitHub, compile the code and invoke Trinity with a command line as simple as “./trinity”. Building this project is very simple, we just need to enter the directory and “./configure; make”. It's so simple
-                  that the authors didn't write it out. The result of a successful “make” is like this:</p>
+                <p>Trinity is an intelligent system call fuzzer since it incorporates specific knowledge about each system call which is tested. Its thought is to reduce the time spent running “useless” tests, so reaching deeper into the tested code and
+                  increasing the chances of testing a more interesting case that may result in an unexpected error.</p>
+                <h2 id="build-and-run">Build and Run</h2>
+                <p>We can get the source code from GitHub, compile the code and invoke Trinity with a command line as simple as “./trinity”. Building this project is very simple, we just need to enter the directory and “./configure; make”. It’s so simple
+                  that the authors didn’t write it out. The result of a successful “make” is like this:</p>
                 <p><img src="http://www.meng.uno/images/fuzzer/1.png" alt="Trinity"></p>
                 <p>Now let’s run it. I will test a system call “madvise” as an example.</p>
                 <p><img src="http://www.meng.uno/images/fuzzer/2.png" alt="Trinity"></p>
@@ -277,7 +277,7 @@
                 <p>This project also has many other test modes which I didn’t test here. Trinity has been rather successful at finding bugs if we fully test it. It said that the authors of this project had sometimes left systems running for hours or days
                   in order to discover failures.
                 </p>
-                <h2>Analyze the Test</h2>
+                <h2 id="analyze-the-test">Analyze the Test</h2>
                 <p>Here is the segment of the code of system call “madvise”.</p>
                 <p><img src="http://www.meng.uno/images/fuzzer/5.png" alt="Trinity"></p>
                 <p>This is a structure definition, from which we can see Trinity has some understanding of the arguments for each system call. This is why it brings intelligence to its tests. The “.num_args” means that this system call need 3 parameters.
@@ -287,7 +287,7 @@
                   about each of the child processes as the picture shown in the “Build and Run” section. The “trinity-watchdog” process ensures that the test system is still working correctly which is similar to the function of “Zookeeper” to “Hadoop”,
                   I think.</p>
                 <p><img src="http://www.meng.uno/images/fuzzer/6.png" alt="Trinity"></p>
-                <h2>Write A Test</h2>
+                <h2 id="write-a-test">Write A Test</h2>
                 <p>First, we need to select a system call for testing. I choose “getcpu” system call here from “syscalls.h” file. (We need to delete the original test file because all system call listed in “syscalls.h” are tested.) Then I write a new file
                   to “/trinity/syscalls/” directory named “meng.c” and the contents are as follows.</p>
                 <p><img src="http://www.meng.uno/images/fuzzer/7.png" alt="Trinity"></p>
@@ -374,9 +374,9 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Build and Run</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Analyze the Test</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Write A Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-run"><span class="nav-number">1.</span> <span class="nav-text">Build and Run</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#analyze-the-test"><span class="nav-number">2.</span> <span class="nav-text">Analyze the Test</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-test"><span class="nav-number">3.</span> <span class="nav-text">Write A Test</span></a></li>
               </ol>
 
             </div>
@@ -430,6 +430,17 @@
           var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
           document.write('<script src="' + src + '" id="sozz"><\/script>');
         })();
+      </script>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
       </script>
     </div>
     <!-- <nav id="mobile-nav">

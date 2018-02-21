@@ -258,56 +258,50 @@
                 <p>当然，我们抱着学习的心态，来了解它的基本结构，揭开它神秘的面纱。</p>
                 <p>代码下载：
                   <code>git clone http://git.shiyanlou.com/shiyanlou/email_spider</code></p>
-                <h2>准备工作</h2>
+                <h2 id="准备工作">准备工作</h2>
                 <p>实验楼已经提供了Ruby运行环境，但是，还是需要我们安装一些插件：</p>
                 <p>将gem下载源换为国内源</p>
                 <p>请确保只有<code>ruby.taobao.org</code></p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">$ gem sources --remove http:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -<span class="selector-tag">a</span> http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">**CURRENT SOURCES **</span><br><span class="line">http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">$ gem sources --remove http:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -<span class="selector-tag">a</span> http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">**CURRENT SOURCES **</span><br><span class="line">http:<span class="comment">//mirrors.aliyuncs.com/rubygems/</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>安装Ruby爬虫库 anemone</p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby1.<span class="number">9.1</span>-dev</span><br><span class="line">$ sudo apt-get install libsqlite3-dev</span><br><span class="line">$ sudo gem install anemone</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby1.<span class="number">9.1</span>-dev</span><br><span class="line">$ sudo apt-get install libsqlite3-dev</span><br><span class="line">$ sudo gem install anemone</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>查看对应的数据库支持</p>
                 <p>Ruby数据库支持</p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">sudo gem install data_mapper</span><br><span class="line">sudo gem install dm-sqlite-adapter</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
-                <h2>数据库设计</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo gem install data_mapper</span><br><span class="line">sudo gem install dm-sqlite-adapter</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="数据库设计">数据库设计</h2>
                 <p>我们使用sqlite3来放置我们扒下来的数据：</p>
                 <p>Site：存储爬行过的网站</p>
                 <p>Page：存储爬行过的存在email地址的页面的URL</p>
@@ -320,22 +314,20 @@
                 <p>has n：定义多对多的关系，一个网页上可能包含多个email地址，一个email可能同时存在多个网页上。</p>
                 <p>validates_presence_of：检查 url是否存在。</p>
                 <p>data_mapper validates详解</p>
-                <h2>爬虫代码</h2>
+                <h2 id="爬虫代码">爬虫代码</h2>
                 <p>首先，我们需要引入uri 和 anemone包，其次还需要刚才定义的数据库的model</p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">require <span class="string">'uri'</span></span><br><span class="line">require <span class="string">'anemone'</span></span><br><span class="line">require_relative <span class="string">'data'</span></span><br><span class="line">data是对data.rb文件的引用。</span><br><span class="line">ARGV：获取命令行参数</span><br><span class="line"></span><br><span class="line">ruby crawl<span class="selector-class">.rb</span> http:<span class="comment">//www.test.test</span></span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">require <span class="string">'uri'</span></span><br><span class="line">require <span class="string">'anemone'</span></span><br><span class="line">require_relative <span class="string">'data'</span></span><br><span class="line">data是对data.rb文件的引用。</span><br><span class="line">ARGV：获取命令行参数</span><br><span class="line"></span><br><span class="line">ruby crawl<span class="selector-class">.rb</span> http:<span class="comment">//www.test.test</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>ARGV是Ruby的数组，所以我们用循环来处理它，因为我可以输入不只一个URL，如果，我们使用多线程的话，这样就可以同一时间处理多个URL，事半功倍。</p>
                 <p>然后马上使用URI()来处理传入的URL，结果返回给uri，下一步就把这个结果存入数据库中，uri.host网站的域名，和当前时间(这里使用的是内置模块Time) URI模块。</p>
                 <p>接下来的事情就很写意了，我们不需要自己去做很多的比如什么广度和深度算法的设计，我们只需要给它一个入口的URL，它会自动的去爬行，根本停不下来啊！</p>
@@ -423,10 +415,10 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">数据库设计</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">爬虫代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">2.</span> <span class="nav-text">数据库设计</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫代码"><span class="nav-number">3.</span> <span class="nav-text">爬虫代码</span></a></li>
                     </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a>
@@ -482,6 +474,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

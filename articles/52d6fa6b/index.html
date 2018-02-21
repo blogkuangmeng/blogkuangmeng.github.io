@@ -248,18 +248,18 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h2>Redesign the Frameworks Used for Big-Graphs Mining.</h2>
+                <h2 id="redesign-the-frameworks-used-for-big-graphs-mining">Redesign the Frameworks Used for Big-Graphs Mining.</h2>
                 <p>Nowadays, researches on Big-graphs are only using those open source distributed systems such as Hadoop, Spark and so on. I don’t mean they are bad, but I think we could redesign some new frameworks based on they. If I do this research,
                   I will first redesign some data structure such as Inverted files for those distributed systems.</p>
-                <h2>Mine Frequent Subgraphs by Adding Some Parameters.</h2>
+                <h2 id="mine-frequent-subgraphs-by-adding-some-parameters">Mine Frequent Subgraphs by Adding Some Parameters.</h2>
                 <p>Mining frequent subgraphs is very crucial to SNS network graphs. In these networks, a user is often associated with location information (e.g., positions of her hometown and check-ins). These networks are collectively known as spatial
                   graphs. However, it isn’t mean those who are in a same location are in the same subgraph. For example, if I am in Singapore, I may also care China more Singapore, so I belong to the subgraph of China instead of others. In this circumstance,
                   we need add more parameters to our mining methods to get the right mining result.</p>
-                <h2>Temporal and Streaming Systems for Dynamic Graphs</h2>
+                <h2 id="temporal-and-streaming-systems-for-dynamic-graphs">Temporal and Streaming Systems for Dynamic Graphs</h2>
                 <p>Despite the plurality of graph systems, majority of them support processing static graphs only. In reality, however, many graph applications today need to handle changes to the graphs over time. Many challenges remain in this sub-field.
                   For example, most temporal and streaming graph systems cannot efficiently handle frequent vertex and edge deletions, as deletions often break the nice properties that enable incremental computation in these systems. Certainly, maybe
                   I will do some research in this area to support efficient analysis of dynamic graphs.</p>
-                <h2>Data Structure for Storing the Big-Graphs</h2>
+                <h2 id="data-structure-for-storing-the-big-graphs">Data Structure for Storing the Big-Graphs</h2>
                 <p>Most graph analysis systems assume that the graph is already generated in the requisite format for ingesting into the system. In practice, however, usually the graphs must first be extracted from non-graph data stores using a pre-processing
                   step that generates the lists of nodes and edges. In many cases, graph analysis may form one component of a deep analysis pipeline, that also involves non-graph analytics operations; in such cases also, we may need to convert the data
                   among different representations. The costs of such pre-processing or conversion steps can be significant, and in some cases, the cost of extracting graphs may dominate the actual computation that follows (e.g., if edges are generated
@@ -339,10 +339,10 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Redesign the Frameworks Used for Big-Graphs Mining.</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Mine Frequent Subgraphs by Adding Some Parameters.</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Temporal and Streaming Systems for Dynamic Graphs</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Data Structure for Storing the Big-Graphs</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#redesign-the-frameworks-used-for-big-graphs-mining"><span class="nav-number">1.</span> <span class="nav-text">Redesign the Frameworks Used for Big-Graphs Mining.</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#mine-frequent-subgraphs-by-adding-some-parameters"><span class="nav-number">2.</span> <span class="nav-text">Mine Frequent Subgraphs by Adding Some Parameters.</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#temporal-and-streaming-systems-for-dynamic-graphs"><span class="nav-number">3.</span> <span class="nav-text">Temporal and Streaming Systems for Dynamic Graphs</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#data-structure-for-storing-the-big-graphs"><span class="nav-number">4.</span> <span class="nav-text">Data Structure for Storing the Big-Graphs</span></a></li>
               </ol>
 
             </div>
@@ -396,6 +396,17 @@
           var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
           document.write('<script src="' + src + '" id="sozz"><\/script>');
         })();
+      </script>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
       </script>
     </div>
     <!-- <nav id="mobile-nav">

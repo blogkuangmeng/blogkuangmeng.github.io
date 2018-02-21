@@ -250,7 +250,7 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <h1>数据传输指令</h1>
-                <h2>通用数据传送指令</h2>
+                <h2 id="通用数据传送指令">通用数据传送指令</h2>
                 <p>MOV 传送字或字节.</p>
                 <p>MOVSX 先符号扩展,再传送.</p>
                 <p>MOVZX 先零扩展,再传送.</p>
@@ -266,18 +266,18 @@
                 <p>XADD 先交换再累加.( 结果在第一个操作数里 )</p>
                 <p>XLAT 字节查表转换.</p>
                 <p><strong>BX 指向一张 256 字节的表的起点, AL 为表的索引值 (0-255,即0-FFH); 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )</strong></p>
-                <h2>输入输出端口传送指令</h2>
+                <h2 id="输入输出端口传送指令">输入输出端口传送指令</h2>
                 <p>IN I/O端口输入. ( 语法: IN 累加器, {端口号│DX} )</p>
                 <p>OUT I/O端口输出. ( 语法: OUT {端口号│DX},累加器 )</p>
                 <p><strong>输入输出端口由立即方式指定时, 其范围是 0-255; 由寄存器 DX 指定时,其范围是 0-65535.</strong></p>
-                <h2>目的地址传送指令.</h2>
+                <h2 id="目的地址传送指令">目的地址传送指令.</h2>
                 <p>LEA 装入有效地址. 例: LEA DX,string ;把偏移地址存到DX.</p>
                 <p>LDS 传送目标指针,把指针内容装入DS. 例: LDS SI,string ;把段地址:偏移地址存到DS:SI.</p>
                 <p>LES 传送目标指针,把指针内容装入ES. 例: LES DI,string ;把段地址:偏移地址存到ES:DI.</p>
                 <p>LFS 传送目标指针,把指针内容装入FS. 例: LFS DI,string ;把段地址:偏移地址存到FS:DI.</p>
                 <p>LGS 传送目标指针,把指针内容装入GS. 例: LGS DI,string ;把段地址:偏移地址存到GS:DI.</p>
                 <p>LSS 传送目标指针,把指针内容装入SS. 例: LSS DI,string ;把段地址:偏移地址存到SS:DI.</p>
-                <h2>标志传送指令.</h2>
+                <h2 id="标志传送指令">标志传送指令.</h2>
                 <p>LAHF 标志寄存器传送,把标志装入AH.</p>
                 <p>SAHF 标志寄存器传送,把AH内容装入标志寄存器.</p>
                 <p>PUSHF 标志入栈.</p>
@@ -343,11 +343,11 @@
                 <p>REPC 当CF=1且CX/ECX&lt;&gt;0时重复.</p>
                 <p>REPNC 当CF=0且CX/ECX&lt;&gt;0时重复.</p>
                 <h1>程序转移指令</h1>
-                <h2>无条件转移指令 (长转移)</h2>
+                <h2 id="无条件转移指令-长转移">无条件转移指令 (长转移)</h2>
                 <p>JMP 无条件转移指令</p>
                 <p>CALL 过程调用</p>
                 <p>RET/RETF过程返回.</p>
-                <h2>条件转移指令 (短转移,-128到+127的距离内)</h2>
+                <h2 id="条件转移指令-短转移-128到-127的距离内">条件转移指令 (短转移,-128到+127的距离内)</h2>
                 <p><strong>当且仅当(SF XOR OF)=1时,OP1&lt;OP2</strong></p>
                 <p>JA/JNBE 不小于或不等于时转移.</p>
                 <p>JAE/JNB 大于或等于转移.</p>
@@ -365,21 +365,21 @@
                 <p>JNC 无进位时转移.</p>
                 <p>JNO 不溢出时转移.</p>
                 <p>JNP/JPO 奇偶性为奇数时转移.</p>
-                <p>JNS 符号位为 &quot;0&quot; 时转移.</p>
+                <p>JNS 符号位为 “0” 时转移.</p>
                 <p>JO 溢出转移.</p>
                 <p>JP/JPE 奇偶性为偶数时转移.</p>
-                <p>JS 符号位为 &quot;1&quot; 时转移.</p>
-                <h2>循环控制指令(短转移)</h2>
+                <p>JS 符号位为 “1” 时转移.</p>
+                <h2 id="循环控制指令-短转移">循环控制指令(短转移)</h2>
                 <p>LOOP CX不为零时循环.</p>
                 <p>LOOPE/LOOPZ CX不为零且标志Z=1时循环.</p>
                 <p>LOOPNE/LOOPNZ CX不为零且标志Z=0时循环.</p>
                 <p>JCXZ CX为零时转移.</p>
                 <p>JECXZ ECX为零时转移.</p>
-                <h2>中断指令</h2>
+                <h2 id="中断指令">中断指令</h2>
                 <p>INT 中断指令</p>
                 <p>INTO 溢出中断</p>
                 <p>IRET 中断返回</p>
-                <h2>处理器控制指令</h2>
+                <h2 id="处理器控制指令">处理器控制指令</h2>
                 <p>HLT 处理器暂停, 直到出现中断或复位信号才继续.</p>
                 <p>WAIT 当芯片引线TEST为高电平时使CPU进入等待状态.</p>
                 <p>ESC 转换到外处理器.</p>
@@ -401,7 +401,7 @@
                 <p>ENDS 段结束.</p>
                 <p>END 程序结束.</p>
                 <h1>处理机控制指令</h1>
-                <h2>标志处理指令</h2>
+                <h2 id="标志处理指令">标志处理指令</h2>
                 <p>CLC（进位位置0指令）</p>
                 <p>CMC（进位位求反指令）</p>
                 <p>STC（进位位置为1指令）</p>
@@ -493,10 +493,10 @@
     
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">数据传输指令</span></a>
                     <ol class="nav-child">
-                      <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">通用数据传送指令</span></a></li>
-                      <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出端口传送指令</span></a></li>
-                      <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">目的地址传送指令.</span></a></li>
-                      <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">标志传送指令.</span></a></li>
+                      <li class="nav-item nav-level-2"><a class="nav-link" href="#通用数据传送指令"><span class="nav-number">1.1.</span> <span class="nav-text">通用数据传送指令</span></a></li>
+                      <li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出端口传送指令"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出端口传送指令</span></a></li>
+                      <li class="nav-item nav-level-2"><a class="nav-link" href="#目的地址传送指令"><span class="nav-number">1.3.</span> <span class="nav-text">目的地址传送指令.</span></a></li>
+                      <li class="nav-item nav-level-2"><a class="nav-link" href="#标志传送指令"><span class="nav-number">1.4.</span> <span class="nav-text">标志传送指令.</span></a></li>
                     </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">算术运算指令</span></a></li>
@@ -504,17 +504,17 @@
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">串指令</span></a></li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">程序转移指令</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">无条件转移指令 (长转移)</span></a></li>
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.2.</span> <span class="nav-text">条件转移指令 (短转移,-128到+127的距离内)</span></a></li>
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.3.</span> <span class="nav-text">循环控制指令(短转移)</span></a></li>
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.4.</span> <span class="nav-text">中断指令</span></a></li>
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.5.</span> <span class="nav-text">处理器控制指令</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#无条件转移指令-长转移"><span class="nav-number">5.1.</span> <span class="nav-text">无条件转移指令 (长转移)</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#条件转移指令-短转移-128到-127的距离内"><span class="nav-number">5.2.</span> <span class="nav-text">条件转移指令 (短转移,-128到+127的距离内)</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#循环控制指令-短转移"><span class="nav-number">5.3.</span> <span class="nav-text">循环控制指令(短转移)</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#中断指令"><span class="nav-number">5.4.</span> <span class="nav-text">中断指令</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#处理器控制指令"><span class="nav-number">5.5.</span> <span class="nav-text">处理器控制指令</span></a></li>
                       </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">伪指令</span></a></li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">处理机控制指令</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">7.1.</span> <span class="nav-text">标志处理指令</span></a></li>
+                        <li class="nav-item nav-level-2"><a class="nav-link" href="#标志处理指令"><span class="nav-number">7.1.</span> <span class="nav-text">标志处理指令</span></a></li>
                       </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">推荐文章</span></a></li>
@@ -571,6 +571,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

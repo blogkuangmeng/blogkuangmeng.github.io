@@ -264,7 +264,7 @@
                   run-time performance, Yggdrasil optionally performs optimizations. If there is a bug, Yggdrasil produces a counterexample to help identify and fix the cause. It requires no manual annotations or proofs about the implementation code.
                   Once the verification passes, Yggdrasil emits C code, which is then compiled and linked using a C compiler to produce an executable file system, as well as a “fsck” checker.</p>
                 <p>The above is the entire overall content of this project. The authors also introduced every part of this project. I will analyze it by following the paper.</p>
-                <h2>Single-level File System (YminLFS)</h2>
+                <h2 id="single-level-file-system-yminlfs">Single-level File System (YminLFS)</h2>
                 <p>In this project, every file system must contain three parts: an abstract data structure, a set of operations and a state equivalence predicate which defines whether a given implementation satisfies the specification. So the authors first
                   defines a file system which contains these features.</p>
                 <p><img src="http://www.meng.uno/images/yggdrasil/2.png" alt="Yggdrasil"></p>
@@ -276,13 +276,13 @@
                   equivalent and consistent states (just like state-machine). This project defines equivalence using the equivalent predicate and defines consistency using the consistency invariants as the above pictures show.</p>
                 <p>The second part deals with crash executions which requires the implementation to exist no more crash states than the specification, which means each possible state of the YminLFS implementation must be equivalent to some crash state of
                   FSSpec. What’s more, Yggdrasil provides a greedy optimizer that tries to remove every disk flush and re-verify the code.</p>
-                <h2>Multi-level File System (Yxv6)</h2>
+                <h2 id="multi-level-file-system-yxv6">Multi-level File System (Yxv6)</h2>
                 <p>We could directly prove crash refinement between the entire file system specification and implementation in a single-level file system, however, we couldn’t use the same method in a complex multi-level file system. First, let’s look at
                   the structure of Yxv6 journaling file system.</p>
                 <p><img src="http://www.meng.uno/images/yggdrasil/6.png" alt="Yggdrasil"></p>
                 <p>This is the 5 layers of abstraction and every layer contains a specification and a implementation. The authors use this project to prove crash refinement for each layer and upper layers then use the specifications of lower layers. The
                   lowest layer of the stack is a specification of an asynchronous disk. This specification comprises the asynchronous disk model which is to implement YminLFS.</p>
-                <h2>Application-level (“Ycp”)</h2>
+                <h2 id="application-level-ycp">Application-level (“Ycp”)</h2>
                 <p>Ycp has a formal specification which means if the copy operation succeeds, the result is the same as “cp”, however, if it fails, the file system is unchanged. To achieve this propose, the implementation of Ycp is something similar to Yxv6
                   file system specification. There are 3 atomicity patterns which are “create a temporary file”, “write the source data to it” and “rename it to atomically create the target file”. After doing such an analogy, verifying this operation
                   is similar to verify the single-level file system.</p>
@@ -362,9 +362,9 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Single-level File System (YminLFS)</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Multi-level File System (Yxv6)</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Application-level (“Ycp”)</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#single-level-file-system-yminlfs"><span class="nav-number">1.</span> <span class="nav-text">Single-level File System (YminLFS)</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#multi-level-file-system-yxv6"><span class="nav-number">2.</span> <span class="nav-text">Multi-level File System (Yxv6)</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#application-level-ycp"><span class="nav-number">3.</span> <span class="nav-text">Application-level (“Ycp”)</span></a></li>
               </ol>
 
             </div>
@@ -418,6 +418,17 @@
           var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
           document.write('<script src="' + src + '" id="sozz"><\/script>');
         })();
+      </script>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
       </script>
     </div>
     <!-- <nav id="mobile-nav">

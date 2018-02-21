@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I&apos;ll start with this report from an advance">
+  <meta name="description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I’ll start with this report from an advance">
   <meta name="keywords" content="CryptoMinisat,SAT,solver">
   <meta property="og:type" content="article">
   <meta property="og:title" content="CryptoMinisat">
   <meta property="og:url" content="http://meng.uno/articles/7d26fe8/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I&apos;ll start with this report from an advance">
+  <meta property="og:description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I’ll start with this report from an advance">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:image" content="http://www.meng.uno/images/cryptominisat/1.png">
   <meta property="og:image" content="http://www.meng.uno/images/cryptominisat/2.png">
@@ -34,7 +34,7 @@
   <meta property="og:updated_time" content="2018-02-11T14:04:49.150Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CryptoMinisat">
-  <meta name="twitter:description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I&apos;ll start with this report from an advance">
+  <meta name="twitter:description" content="Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I’ll start with this report from an advance">
   <meta name="twitter:image" content="http://www.meng.uno/images/cryptominisat/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -256,20 +256,20 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I'll start with this report from an advanced SAT solver — CryptoMinisat. (I have
+                <p>Inspired by other verification system projects, I want to further explore the means of verification they used such as SMT solver, SAT solver, Coq and so on. I’ll start with this report from an advanced SAT solver — CryptoMinisat. (I have
                   written a report about STP which is a SMT solver.)</p>
                 <p>The Boolean Satisfiability Problem (SAT for short) is the problem of determining if there exists an interpretation that satisfies a given boolean formula. In other words, it asks whether the variables of a given boolean formula can be
                   consistently replaced by the values TRUE or FALSE in such a way that the formula evaluates to TRUE. If this is the case, the formula is called satisfiable. Otherwise, the formula is unsatisfiable.</p>
                 <p>SAT solvers have recently been enjoying a boom in the application front: more and more applications can and do make use of SAT solvers to accomplish tasks ranging from the fairly trivial to the very complex. The benefit of the incredible
                   improvements in the design of efficient SAT solvers those recent years is now reaching our lives: The Intel Core7 processor for instance has been designed with the help of SAT technology, while the device drivers of Windows 7 are being
                   certified thanks to an SMT solver (based on a SAT solver).</p>
-                <h2>Build and Test</h2>
+                <h2 id="build-and-test">Build and Test</h2>
                 <p>This is the 5th version of CryptoMinisat which means the install instruction is very prefect now. To build and test this project, all we have to do is following the instruction. Firstly, we need to install many dependencies. Then, it is
                   very simple to build by “make”. The following is part of the output.</p>
                 <p><img src="http://www.meng.uno/images/cryptominisat/1.png" alt="CryptoMinisat"></p>
                 <p>Testing this project is very easy by the script written by the authors. Typing “make test” and waiting for a moment, we will get this output which means the tests are correct.</p>
                 <p><img src="http://www.meng.uno/images/cryptominisat/2.png" alt="CryptoMinisat"></p>
-                <h2>Run This Project</h2>
+                <h2 id="run-this-project">Run This Project</h2>
                 <p>This is a very mature project which can be run from the terminal or used as a C++/Python library. In this report, I just choose the first way.</p>
                 <p>As I said before, this project is a SAT solver which means it could find out the situations which fulfill the input or return error. The grammar is very simple just like this.</p>
                 <p><img src="http://www.meng.uno/images/cryptominisat/3.png" alt="CryptoMinisat"></p>
@@ -280,7 +280,7 @@
                 <p><img src="http://www.meng.uno/images/cryptominisat/5.png" alt="CryptoMinisat"></p>
                 <p><img src="http://www.meng.uno/images/cryptominisat/6.png" alt="CryptoMinisat"></p>
                 <p>It means there isn’t a solution to this problem.</p>
-                <h2>How It Works</h2>
+                <h2 id="how-it-works">How It Works</h2>
                 <p>There are many improvements and techniques included in this project. It uses “Minisat” as its core and uses Gaussian Elimination on top-level. This is another part of its techniques.</p>
                 <ul>
                   <li>Variable elimination and replacement, strengthening and subsumption;</li>
@@ -368,10 +368,10 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Build and Test</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-and-test"><span class="nav-number">1.</span> <span class="nav-text">Build and Test</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Run This Project</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">How It Works</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#run-this-project"><span class="nav-number">2.</span> <span class="nav-text">Run This Project</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#how-it-works"><span class="nav-number">3.</span> <span class="nav-text">How It Works</span></a></li>
                     </ol>
                     </li>
                     <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a>
@@ -427,6 +427,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

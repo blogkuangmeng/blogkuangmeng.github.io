@@ -249,7 +249,7 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <p>到现在为止，实验二基本上接近尾声了，今天发现了好几个特别坑的地方，现在乘着兴致，我将其总结如下：</p>
-                <h2>SAE的坑</h2>
+                <h2 id="sae的坑">SAE的坑</h2>
                 <p>首先，我想发表一下关于我们《软件工程》课所要用的SaaS平台——SAE的唾弃：</p>
                 <ul>
                   <li>特别贵</li>
@@ -257,17 +257,17 @@
                   <li>错误特别多</li>
                   <li>……</li>
                 </ul>
-                <h2>怎么应对SAE的坑</h2>
-                <h3>关于数据库的选择</h3>
+                <h2 id="怎么应对sae的坑">怎么应对SAE的坑</h2>
+                <h3 id="关于数据库的选择">关于数据库的选择</h3>
                 <p>我之前用的是“共享型”的，后来一直不成功，怎么都连不上（还不报错）！于是，我换成“独享型”还是没什么改变！！！在再三排查之后，发现原来是一个比较简单的又比较不注意的地方，而且网上还没有相关教程！！！ 原来，
                   <strong>我们本地的MySQL是不区分大小写的，而SAE上的MySQL大小写敏感！！</strong></p>
-                <h3>连上数据库之后</h3>
+                <h3 id="连上数据库之后">连上数据库之后</h3>
                 <p>在刚才的惊喜之后，又有了另一个问题，就是：原来SAE上传之后需要<strong>相对路径</strong>，不能使用我原来使用的<strong>绝对路径</strong>！</p>
-                <h2>关于中文</h2>
+                <h2 id="关于中文">关于中文</h2>
                 <p>基本上在编写每一个页面时都会遇到关于中文的问题。</p>
-                <h3>数据库插入中文</h3>
+                <h3 id="数据库插入中文">数据库插入中文</h3>
                 <p>如果没有声明，默认情况下好像MySQL不是utf-8的编码，所以我将MySQL数据库地址后加入<code>?useUnicode=true&amp;characterEncoding=utf8</code>，就解决了这个问题。</p>
-                <h3>网页传输遇到中文</h3>
+                <h3 id="网页传输遇到中文">网页传输遇到中文</h3>
                 <p>我将一个页面的中文传递到另一个页面，发现在另一个页面接收时，其为空或者乱码，很乱的那种！后来，经过查询，我将“s”添加上，例如<code>&lt;s:from&gt;……</code></p>
                 <p>暂时只想到这么多啦！！</p>
                 <div>
@@ -346,18 +346,18 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">SAE的坑</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sae的坑"><span class="nav-number">1.</span> <span class="nav-text">SAE的坑</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">怎么应对SAE的坑</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#怎么应对sae的坑"><span class="nav-number">2.</span> <span class="nav-text">怎么应对SAE的坑</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">关于数据库的选择</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">连上数据库之后</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#关于数据库的选择"><span class="nav-number">2.1.</span> <span class="nav-text">关于数据库的选择</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#连上数据库之后"><span class="nav-number">2.2.</span> <span class="nav-text">连上数据库之后</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">关于中文</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#关于中文"><span class="nav-number">3.</span> <span class="nav-text">关于中文</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">数据库插入中文</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">网页传输遇到中文</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#数据库插入中文"><span class="nav-number">3.1.</span> <span class="nav-text">数据库插入中文</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#网页传输遇到中文"><span class="nav-number">3.2.</span> <span class="nav-text">网页传输遇到中文</span></a></li>
                       </ol>
                     </li>
                     </ol>
@@ -415,6 +415,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

@@ -255,9 +255,9 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <h1>文章内容理解</h1>
-                <h2>作者写作背景</h2>
+                <h2 id="作者写作背景">作者写作背景</h2>
                 <p>在I/O设备开始与CPU异步直接与主存交换信息（DMA时代）开始时，DMA使用物理地址直接存取，这就给系统带来了很多诸如劣质甚至恶意设备影响，造成系统崩溃……等麻烦，在这种情况下，对I/O设备的存取统一管理的单元——输入输出存储管理单元（IOMMU）应运而生。随着设备带宽的提高，那些像网卡和PCIe SSD控制器等高带宽设备可以与系统通过一个环型缓冲器相互影响，于是一种带有环形的缓冲器能够分层、平滑地替换虚拟地址的rIOMMU成了研究的重点。这种rIOMMU能高达7.56倍地提高普通IOMMU的效率，是没有IOMMU的0.77—1.00倍。</p>
-                <h2>文章结构</h2>
+                <h2 id="文章结构">文章结构</h2>
                 <p>该文章从以下七个部分论述：</p>
                 <ul>
                   <li>
@@ -293,7 +293,7 @@
                   </li>
                 </ul>
                 <p>下面直接进入文章的设计部分：</p>
-                <h2>数据结构</h2>
+                <h2 id="数据结构">数据结构</h2>
                 <p>作者从软件、硬件两种方式来组合实现rIOMMU,所以数据结构不得不是最先介绍的东西了。我将以代码与文字结合的方式介绍：
                   <img src="http://www.meng.uno/images/iommu/3.png" alt="IOMMU"></p>
                 <p>以上四个结构体所展示的数据结构，都是硬件软件公用的，他们都被rIOMMU用来转换虚拟地址，被操作系统调用。接下来定义一个只有硬件会使用的结构体：</p>
@@ -302,7 +302,7 @@
                 <p>其次，如果e已经初始化在rIOTLB被找到，rIOMMU匹配每一个IOVA和e，并且实时更新e。</p>
                 <p>然后，检查IOVA.offset如果出错，会造成rIOMMU启动I/O默认页（IOPF）,当然这并不是所希望的，未出错时，最终该offset会加到rPTE.phys_addr上形成虚拟地址的转换。</p>
                 <p>最后还有关于错误的一些处理，在此不再赘述。</p>
-                <h2>软件处理</h2>
+                <h2 id="软件处理">软件处理</h2>
                 <p>说完了硬件上的处理，接下来该软件上的操作了，说是软件其实就是设备的驱动程序、映射函数等底层的软件，这部分的处理和Linux中IOMMU的基准处理相似。</p>
                 <p>这一部分主要是处理映射的问题，具体就是将数据结构中定义的每个结构体的各个域之间建立联系。映射给每个设备一个ring ID，一个映射的物理地址，它包含两个部分：</p>
                 <ol>
@@ -311,13 +311,13 @@
                 </ol>
                 <p>这一部分也同样有错误处理，在此不再赘述。</p>
                 <h1>可行性分析</h1>
-                <h2>可行性评估</h2>
+                <h2 id="可行性评估">可行性评估</h2>
                 <p>在读了这一篇关于优化IOMMU的文章后，我在网上寻找了一下，相关的研究进展情况，发现早在很多年前像Intel、AMD等处理器生产商早就有关于IOMMU的应用，但是在像本文所讲的rIOMMU还没有得到应用过，也就是说文章现在所言皆是理想的情况。</p>
                 <p>在文章的后半部分，作者也从“方法”、“实验执行”、“基准”等方面做了很多测试，其中在“方法”模块采用：①strict，②strict+，③defer，④defer+，⑤riommu-，⑥riommu，⑦none其中模式，可以说是比较准确的了下图及下表展示所有测试结果：</p>
                 <p><img src="http://www.meng.uno/images/iommu/1.png" alt="IOMMU"></p>
                 <p><img src="http://www.meng.uno/images/iommu/2.png" alt="IOMMU"></p>
                 <p>通过结果可见，当运行“需求-响应”（RR）模式是，相对于普通IOMMU，提升不是多么的明显，但是在其他方面，结果还是挺理想的。</p>
-                <h2>创新之处</h2>
+                <h2 id="创新之处">创新之处</h2>
                 <p>作者在测试部分将模拟方法分成7个等级，基本上模拟了所有的正常可能情况，有力证明了本次实验的成功。</p>
                 <p>作者在进行设计之初，分析了现有的DMA与IOMMU，然后提出自己的设计，使我们对总体设计有一个整体认识，也使的作者的设计比较容易接受。</p>
                 <p>在设计上，作者不仅考虑到硬件，同时对软件也进行了设计，而且设计过程相当明细，用实际的代码来解释，使设计极具可行性。</p>
@@ -430,16 +430,16 @@
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">文章内容理解</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">作者写作背景</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">文章结构</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">数据结构</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">软件处理</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#作者写作背景"><span class="nav-number">1.1.</span> <span class="nav-text">作者写作背景</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#文章结构"><span class="nav-number">1.2.</span> <span class="nav-text">文章结构</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.3.</span> <span class="nav-text">数据结构</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#软件处理"><span class="nav-number">1.4.</span> <span class="nav-text">软件处理</span></a></li>
                   </ol>
                 </li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">可行性分析</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">可行性评估</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">创新之处</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#可行性评估"><span class="nav-number">2.1.</span> <span class="nav-text">可行性评估</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#创新之处"><span class="nav-number">2.2.</span> <span class="nav-text">创新之处</span></a></li>
                   </ol>
                 </li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">设计存在的不足分析</span></a></li>
@@ -498,6 +498,17 @@
           var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
           document.write('<script src="' + src + '" id="sozz"><\/script>');
         })();
+      </script>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
       </script>
     </div>
     <!-- <nav id="mobile-nav">

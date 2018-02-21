@@ -248,7 +248,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数5,390</span>
+	<span class="post-count"> | 字数5,389</span>
 	<span class="post-count"> | 预计时间19分钟</span>
 	</a>
               </div>
@@ -265,17 +265,17 @@
                 <p>在应对每一大类图的各种操作（插入或删除）时，由于仍旧很复杂，所以作者又一次运用分治思想，将他们每个具体的操作继续分解为更小的几种情况，同时做到面面俱到，条理清晰。</p>
                 <p>在每一个小的情况下，遍历所有情况，找出能使匹配最大的情况，属于贪心的范畴，对于贪心算法，由于每种情况实在所要找的节点较少，所以我也认为贪心是比较不错的选择，而且，我们没必要在这样的小点上过于纠结。</p>
                 <h1>基本算法描述</h1>
-                <h2>一般图</h2>
-                <h3>定义V={1,2……n}表示图的顶点的集合</h3>
+                <h2 id="一般图">一般图</h2>
+                <h3 id="定义v-1-2-n-表示图的顶点的集合">定义V={1,2……n}表示图的顶点的集合</h3>
                 <p>为了简单处理，假定√n为整数；</p>
                 <p>定义G = (G0,G1……)表示图的集合，而且定义G0为空图，Gi由Gi-1得到；</p>
                 <p>对于每一个时间跨度i,Gi=(V,Ei),mi=|Ei| （m表示图中的边数）。</p>
-                <h3>数据结构</h3>
+                <h3 id="数据结构">数据结构</h3>
                 <p>M 存储在AVL树中（支持O(logn)时间复杂度的插入、删除）每个节点v处保存mate(v)返回当前匹配中的邻接顶点；</p>
-                <p>N(v) 存储在AVL树中（v∈V）用于存储节点v的邻接顶点，变量deg(v)存储v的度（无向图）（支持O(logn)时间复杂度的插入、删除以及取出r邻接顶点在O(r)时间复杂度内）；</p>
+                <p>N(v) 存储在AVL树中（v∈V）用于存储节点v的邻接顶点，变量deg(v)存储v的度（无向图）（支持O(logn)时间复杂度的插入、删除以及取出r邻接顶点在O®时间复杂度内）；</p>
                 <p>F(v)（v∈V）用于保存v的自由邻接节点（支持O(1)时间复杂度下的插入、删除以及如果有自由邻接顶点就返回TRUE的has-free(v)操作，O(√n)时间复杂度下的返回任意自由邻接顶点的get-free(v)操作），为了很好的得出F(v)，还另外加了一个长度为n的Boolean型数组来表明当前自由邻接顶点、一个长度为√n的范围在[√n<em>j+1,√n</em>(j+1)]的计数数组来保存位置j处的自由邻接顶点的数目、一个变量来存储总的自由邻接节点数。</p>
                 <p>一个最大堆Fmax存储所有的以自身的度为权的自由节点（支持O(logn)时间内的插入、删除、update-key、find-max操作）。</p>
-                <h3>具体算法</h3>
+                <h3 id="具体算法">具体算法</h3>
                 <p>初始化图后，定义三个不变量，每次程序循环运行结束都不会突破这些不变量：</p>
                 <ul>
                   <li>
@@ -289,7 +289,7 @@
                   </li>
                 </ul>
                 <p>然后进行循环，每次循环对边ei进行操作。</p>
-                <h4>插入边ei={u,v}的操作</h4>
+                <h4 id="插入边ei-u-v-的操作">插入边ei={u,v}的操作</h4>
                 <p>首先更新相关的数据结构：N(u),N(v),deg(u),deg(v),Fmax以及u、v的值。</p>
                 <p>然后分如下四种情况讨论：</p>
                 <ul>
@@ -298,7 +298,7 @@
                   <li>u是自由的而v已被匹配，这种境况下，找到最大匹配集M中与v匹配的节点x=mate(v),再找到与x邻接的自由顶点w，如果能找到，则将匹配(x,v)移除，而将（u,v)、(x,w)加入。操作时间也在O(√n+m)内；</li>
                   <li>v是自由的而v已被匹配，这种情况与上一种相对称。</li>
                 </ul>
-                <h4>删除边ei={u,v}的操作</h4>
+                <h4 id="删除边ei-u-v-的操作">删除边ei={u,v}的操作</h4>
                 <p>删除操作主要分为两种情况：</p>
                 <ul>
                   <li>ei ∉ M 唯一要做的事就是，将u从F(v)，v从F(u)中删去；</li>
@@ -309,20 +309,20 @@
                     </ul>
                   </li>
                 </ul>
-                <h2>对于低荫度图</h2>
+                <h2 id="对于低荫度图">对于低荫度图</h2>
                 <p>在这部分中，考虑的是荫度不大于c的图，而c由下式确定：</p>
                 <p><img src="http://www.meng.uno/images/match/1.png" alt="Match"></p>
                 <p>其中E(U)表示U中的边数。</p>
                 <p>由于图较稀疏，所以将每条边都带上方向，构成△-方向无向图</p>
-                <h3>数据结构</h3>
+                <h3 id="数据结构-v2">数据结构</h3>
                 <p>与一般图基本相同。</p>
-                <h3>具体算法</h3>
+                <h3 id="具体算法-v2">具体算法</h3>
                 <p>主要从：定向、插入、删除，几个部分来阐述：</p>
-                <h4>定向</h4>
+                <h4 id="定向">定向</h4>
                 <p>在每一步中，都通过运行算法A，来保证当前图是△-方向的。像如下算法中那样更新F和D，如果有t条边在定向，我们需要O(t)时间。</p>
-                <h4>插入边ei={u,v}的操作</h4>
+                <h4 id="插入边ei-u-v-的操作-v2">插入边ei={u,v}的操作</h4>
                 <p>由于出度最多为△，所以插入时间O(△)。</p>
-                <h4>删除边ei={u,v}的操作</h4>
+                <h4 id="删除边ei-u-v-的操作-v2">删除边ei={u,v}的操作</h4>
                 <p>未匹配的边被删除没什么可以操作的，但是当匹配的边被删除就有趣了，这里必须找到u(v)的匹配节点，时间复杂度仍为O(△)。</p>
                 <h1>算法分析的结论</h1>
                 <p>分析这个算法，其时间复杂度确实是平摊条件[4]下O(√m)(m表示图的边数)；</p>
@@ -356,7 +356,7 @@
                 <p><img src="http://www.meng.uno/images/match/4.png" alt="Match"></p>
                 <p>通过以上两个实例（一个删除、一个插入），基本能模拟本文关于动态最大匹配的一般算法。</p>
                 <h1>认识与看法</h1>
-                <h2>已有算法的问题所在</h2>
+                <h2 id="已有算法的问题所在">已有算法的问题所在</h2>
                 <ol>
                   <li>
                     <p>算法提到对于低荫度图，给每条边改成有向边处理，然后用贪心算法求解，但是算法并未给出如何判断一个图是否是低荫度图，而且即使有了一个标准，那么当一个图先是低荫度图，后来因为添加一条边之后，成了算法判断的非低荫度图，之后再添加边……如此一来，后面添加边的匹配操作，仍然会按低荫度图处理，这样一来时间复杂度就明显升高了。与此相反，当一个图先是普通图，当减去一条边后，成了低荫度图，再继续减去边……后来虽然形成了低荫度图，但是仍然按普通图来处理的。——我的意思是，当加边/减边（一个更新操作）在普通图与低荫度图之间轮换时，算法会因每次都错开最好情况而用的时间急剧升高。在实际应用中，这种情况应该会很常见，所以我认为这个问题还是相当严峻的。</p>
@@ -365,14 +365,14 @@
                     <p>算法一直在说向图G，但这是一个“抽象”的概念，文中并没有提及这个图是怎么存储的，也没有提及添加/删除边是怎么进行的。我觉得这虽然是不起眼的一部分，但是它实现的好坏，却是后来算法的高效进行与否的保证。（在第四次作业中我将详细分析不同存储结构存储的图的不同之处，以及哪种存储对此算法的实现最有益。）</p>
                   </li>
                 </ol>
-                <h2>已有算法可改进之处</h2>
+                <h2 id="已有算法可改进之处">已有算法可改进之处</h2>
                 <ol>
                   <li>算法中提到对点的度按降序排列，但如果两个点的度完全一样，或者所有点的度完全一样时，这样的处理难免有些草率，和普通匹配算法没有这一处理操作的算法过程相似，甚至多了偶尔的不必要交换（当度相同时的交换），于是我想到，能不能通过增加一个标志位来改进交换同时由于考虑到一般情况下，顶点的度有大部分是相同的，所以可以考虑改进一下排序操作，找一个比较稳定的排序是比较好的。</li>
                   <li>算法用AVL树来存储匹配，这一点感觉是比较好的操作，但是当存储每个点的邻接点时，不仅又用AVL树来存储，而且需要用另外一个变量存储该顶点的度，而且每次插入/删除边（一个更新操作）都可能需要调整AVL树，于是，我想能不能用更好的适用于随机搜索（插入、删除）的数据结构，例如：散列表来存储邻接顶点呢？这样一来，搜索的时间由O(logN)减小到O(1)，空间基本不会增加，反而减少一个整型空间（每个顶点减少一个，共N个），插入/删除边的时间大约也是O(1)，这样一来就比以前的算法要改进了一些（具体实现，见作业四）。</li>
                   <li>算法中提到用一个数据结构F(v)来存储顶点v的邻接顶点中未匹配的顶点，及其信息。然后算法提到一个长度为n（n表示所有顶点数量）的数组以及一个长度√n的计数数组。这种处理，在原则上是没有什么错误的，但是长度为n或者√n的数组没法实现每次插入顶点时就没法用了，为了实现完全动态匹配，我们需要用一个更好的数据结构来完成这一操作（当然对于本算法，这一改进并没有什么作用，但是想到可以为算法进行拓展，所以这个改进是必要的），我想到的数据结构是动态表——一种最省空间，且扩充/缩减时间O(1)（由摊还分析可证）的数据结构。</li>
                   <li>当数据量较大，短时间有较多条边需要插入/删除时，（通过插入操作来说明）每次操作，都是先将边加入存储边的数据结构，然后再依次更新其他相邻节点的邻接信息，以及边的信息。最后再分情况（动态规划）依次判断以及做出调整，简单来讲，整个判断过程分为三个部分，而且这三个部分是相互独立的，所以假如有N次插入，那么就有3N步，正常情况（该算法原来描述那样）。在一次插入边的操作结束后，存储边的数据结构便空闲下来，而第二次边的插入还没有开始。中间这部分时间浪费严重（当大数据来临时）。</li>
                 </ol>
-                <h2>已有算法不适用之处</h2>
+                <h2 id="已有算法不适用之处">已有算法不适用之处</h2>
                 <ol>
                   <li>算法一开始是通过一个空的数据结构开始插入边，来建立匹配，假如已有一个大数据的图（数据在外存，一般来说数据量过大，没法一次性装入内存）或者，由于数据量过大，没法普通存储（或者为了省空间、减小出错率）而用压缩图来存储，如果仍然用现有的算法来做，是极其困难的。也许可以实现，但是也困难重重，我仅将其归为不适用的一类。</li>
                 </ol>
@@ -487,26 +487,26 @@
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">采用的思想</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">基本算法描述</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">一般图</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#一般图"><span class="nav-number">3.1.</span> <span class="nav-text">一般图</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义V={1,2……n}表示图的顶点的集合</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据结构</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.3.</span> <span class="nav-text">具体算法</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#定义v-1-2-n-表示图的顶点的集合"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义V={1,2……n}表示图的顶点的集合</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据结构</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#具体算法"><span class="nav-number">3.1.3.</span> <span class="nav-text">具体算法</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#插入边ei-u-v-的操作"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#删除边ei-u-v-的操作"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
                           </ol>
                         </li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">对于低荫度图</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#对于低荫度图"><span class="nav-number">3.2.</span> <span class="nav-text">对于低荫度图</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.1.</span> <span class="nav-text">数据结构</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.2.</span> <span class="nav-text">具体算法</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构-v2"><span class="nav-number">3.2.1.</span> <span class="nav-text">数据结构</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#具体算法-v2"><span class="nav-number">3.2.2.</span> <span class="nav-text">具体算法</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">定向</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#定向"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">定向</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#插入边ei-u-v-的操作-v2"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#删除边ei-u-v-的操作-v2"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
                           </ol>
                         </li>
                       </ol>
@@ -517,9 +517,9 @@
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">用一个例子说明相关算法</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">认识与看法</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.1.</span> <span class="nav-text">已有算法的问题所在</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.2.</span> <span class="nav-text">已有算法可改进之处</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.3.</span> <span class="nav-text">已有算法不适用之处</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法的问题所在"><span class="nav-number">6.1.</span> <span class="nav-text">已有算法的问题所在</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法可改进之处"><span class="nav-number">6.2.</span> <span class="nav-text">已有算法可改进之处</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法不适用之处"><span class="nav-number">6.3.</span> <span class="nav-text">已有算法不适用之处</span></a></li>
                   </ol>
                 </li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">改进意见</span></a></li>
@@ -576,6 +576,17 @@
           var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
           document.write('<script src="' + src + '" id="sozz"><\/script>');
         })();
+      </script>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
       </script>
     </div>
     <!-- <nav id="mobile-nav">

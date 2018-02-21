@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：">
+  <meta name="description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：                         123456">
   <meta name="keywords" content="Android">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Android实现输入框回车输入">
   <meta property="og:url" content="http://meng.uno/articles/e60b1ba5/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：">
+  <meta property="og:description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：                         123456">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.915Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Android实现输入框回车输入">
-  <meta name="twitter:description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：">
+  <meta name="twitter:description" content="用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：                         123456">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -248,22 +248,21 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:weightSum=<span class="string">"1"</span>&gt;</span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">"@+id/edit_message"</span></span><br><span class="line">        android:layout_margin=<span class="string">"30dp"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"80dp"</span></span><br><span class="line">        android:hint=<span class="string">"请输入文本信息 ..."</span></span><br><span class="line">        android:imeOptions=<span class="string">"actionSearch"</span></span><br><span class="line">        android:singleLine=<span class="string">"true"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
-                <p>在EditText中加入了imeOptions就可以将回车符转变成各种各样的功能： actionDone——回车符--&gt;完成 actionSend——回车符--&gt;发送 actionGo——回车符--&gt;前进 actionNext——回车符--&gt;下一项 actionNone——回车符--&gt;无动作 actionPrevious——回车符--&gt;上一项 actionSearch——回车符--&gt;搜索 actionUnspecified——回车符--&gt;未指定
-                  actionSend——回车符--&gt;发送 又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上android:inputType 或者 android:singleline=”true” 至此，就完成了Android回车符向iOS的转化！
+                <p>用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:weightSum=<span class="string">"1"</span>&gt;</span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">"@+id/edit_message"</span></span><br><span class="line">        android:layout_margin=<span class="string">"30dp"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"80dp"</span></span><br><span class="line">        android:hint=<span class="string">"请输入文本信息 ..."</span></span><br><span class="line">        android:imeOptions=<span class="string">"actionSearch"</span></span><br><span class="line">        android:singleLine=<span class="string">"true"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>在EditText中加入了imeOptions就可以将回车符转变成各种各样的功能： actionDone——回车符–&gt;完成 actionSend——回车符–&gt;发送 actionGo——回车符–&gt;前进 actionNext——回车符–&gt;下一项 actionNone——回车符–&gt;无动作 actionPrevious——回车符–&gt;上一项 actionSearch——回车符–&gt;搜索 actionUnspecified——回车符–&gt;未指定
+                  actionSend——回车符–&gt;发送 又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上android:inputType 或者 android:singleline=”true” 至此，就完成了Android回车符向iOS的转化！
                 </p>
                 <div>
                   <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/8fb3f6d8/">Android新闻软件编写</a></li><li><a href="http://meng.uno/articles/5d6c9819/">Android的ListView的使用</a></li><li><a href="http://meng.uno/articles/1da18548/">Android页面跳转</a></li></ul></div>
@@ -396,6 +395,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">

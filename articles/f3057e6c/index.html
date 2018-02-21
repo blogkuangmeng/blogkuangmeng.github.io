@@ -17,20 +17,20 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                                    123                             String origin = &quot;asdfg&quot;; origin">
+  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substrin">
   <meta name="keywords" content="Java">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Java Substring() 的实现">
   <meta property="og:url" content="http://meng.uno/articles/f3057e6c/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                                    123                             String origin = &quot;asdfg&quot;; origin">
+  <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substrin">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:image" content="http://www.meng.uno/images/substring_jdk.png">
   <meta property="og:image" content="http://www.meng.uno/images/substring_jdk7.png">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.937Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java Substring() 的实现">
-  <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                                    123                             String origin = &quot;asdfg&quot;; origin">
+  <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substrin">
   <meta name="twitter:image" content="http://www.meng.uno/images/substring_jdk.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -252,47 +252,43 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <p>写过Java的人应该都用过<code>substring(int bedinIndex, int endIndex)</code>方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</p>
-                <h2>substring()的用途</h2>
+                <h2 id="substring-的用途">substring()的用途</h2>
                 <p>代码:</p>
-                <p>
-                  <figure class="highlight">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">String origin = "asdfg"; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String origin = "asdfg"; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>输出:</p>
-                <p>
-                  <figure class="highlight stylus">
-                    <table>
-                      <tr>
-                        <td class="gutter">
-                          <pre><span class="line">1</span><br></pre>
-                        </td>
-                        <td class="code">
-                          <pre><span class="line">sd</span><br></pre>
-                        </td>
-                      </tr>
-                    </table>
-                  </figure>
-                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sd</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
-                <h2>substring()的实现</h2>
+                <h2 id="substring-的实现">substring()的实现</h2>
                 <blockquote>
                   <p>Java中的字符串有三个域：char value[], int offset以及int count，它们分别存储字符串的值，起始下标与长度。</p>
                 </blockquote>
-                <h3>JDK6版本</h3>
+                <h3 id="jdk6版本">JDK6版本</h3>
                 <p>在这个版本中，每次执行substring()方法时并不会新建新的string，仅仅只是将上述三个域中的offset，count做必要的修改。返回对象仍指向原来的数据。</p>
                 <p><img src="http://www.meng.uno/images/substring_jdk.png" alt="Substring()实现版本一"></p>
                 <p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
-                <h3>JDK7+版本</h3>
+                <h3 id="jdk7-版本">JDK7+版本</h3>
                 <p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
                 <p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>
                 <div>
@@ -371,12 +367,12 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">目录导航</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">substring()的用途</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的用途"><span class="nav-number">1.</span> <span class="nav-text">substring()的用途</span></a>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">substring()的实现</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#substring-的实现"><span class="nav-number">2.</span> <span class="nav-text">substring()的实现</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">JDK6版本</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">JDK7+版本</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#jdk6版本"><span class="nav-number">2.1.</span> <span class="nav-text">JDK6版本</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#jdk7-版本"><span class="nav-number">2.2.</span> <span class="nav-text">JDK7+版本</span></a></li>
                       </ol>
                     </li>
                     </ol>
@@ -434,6 +430,17 @@
             var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
             document.write('<script src="' + src + '" id="sozz"><\/script>');
           })();
+        </script>
+
+        <script>
+          (function(w, i, d, g, e, t, s) {
+            w[d] = w[d] || [];
+            t = i.createElement(g);
+            t.async = 1;
+            t.src = e;
+            s = i.getElementsByTagName(g)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
         </script>
         </div>
         <!-- <nav id="mobile-nav">
