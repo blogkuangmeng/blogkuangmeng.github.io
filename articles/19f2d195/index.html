@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Bash的使用 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="显示 “Hello world!” echo Hello world! 每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash 会把">
+  <meta name="keywords" content="Shell,Bash">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bash的使用">
+  <meta property="og:url" content="http://meng.uno/articles/19f2d195/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="显示 “Hello world!” echo Hello world! 每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash 会把">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-02-09T10:46:20.918Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bash的使用">
+  <meta name="twitter:description" content="显示 “Hello world!” echo Hello world! 每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’ 声明一个变量： Variable=“Some string” ***这是错误的做法：***Variable = “Some string” ***原因：***Bash 会把">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/works">作品</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-bash" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Bash的使用
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/19f2d195/" class="article-date">
+	  <time datetime="2016-12-03T09:23:17.000Z" itemprop="datePublished">2016-12-03</time>
+	</a>
+                <a class="article-category-link" href="/categories/Shells/">Shells</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,579</span>
+	<span class="post-count"> | 预计时间7分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h2 id="显示-hello-world">显示 “Hello world!”</h2>
+                <p>echo Hello world!</p>
+                <h2 id="每一句指令以换行或分号隔开：">每一句指令以换行或分号隔开：</h2>
+                <p>echo ‘This is the first line’; echo ‘This is the second line’</p>
+                <h2 id="声明一个变量：">声明一个变量：</h2>
+                <p>Variable=“Some string”</p>
+                <p>***这是错误的做法：***Variable = “Some string”</p>
+                <p>***原因：***Bash 会把 Variable 当做一个指令，由于找不到该指令，因此这里会报错。</p>
+                <p>***也不可以这样：***Variable= ‘Some string’</p>
+                <p>***原因：***Bash 会认为 ‘Some string’ 是一条指令，由于找不到该指令，这里再次报错。这个例子中 ‘Variable=’ 这部分会被当作仅对 ‘Some string’ 起作用的赋值。）</p>
+                <h2 id="使用变量：">使用变量：</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo <span class="variable">$Variable</span></span><br><span class="line">echo <span class="string">"$Variable"</span></span><br><span class="line">echo <span class="string">'$Variable'</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>当你赋值 (assign) 、导出 (export)，或者以其他方式使用变量时，变量名前不加 $。如果要使用变量的值， 则要加 $。</p>
+                <p><strong><em>注意:</em></strong> ’ (单引号) 不会展开变量（即会屏蔽掉变量）。</p>
+                <h2 id="在变量内部进行字符串代换">在变量内部进行字符串代换</h2>
+                <p>echo ${Variable/Some/A}</p>
+                <p>会把 Variable 中首次出现的 “some” 替换成 “A”。</p>
+                <h2 id="变量的截取">变量的截取</h2>
+                <p>Length=7</p>
+                <p>echo ${Variable:0:Length}</p>
+                <p>这样会仅返回变量值的前7个字符</p>
+                <h2 id="变量的默认值">变量的默认值</h2>
+                <p>echo ${Foo:-“DefaultValueIfFooIsMissingOrEmpty”}</p>
+                <p>对 null (Foo=) 和空串 (Foo=&quot;&quot;) 起作用； 零（Foo=0）时返回0</p>
+                <p>注意这仅返回默认值而不是改变变量的值</p>
+                <h2 id="内置变量：">内置变量：</h2>
+                <h3 id="下面的内置变量很有用">下面的内置变量很有用</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo <span class="string">"Last program return value: $?"</span></span><br><span class="line">echo <span class="string">"Script's PID: $$"</span></span><br><span class="line">echo <span class="string">"Number of arguments: $#"</span></span><br><span class="line">echo <span class="string">"Scripts arguments: $@"</span></span><br><span class="line">echo <span class="string">"Scripts arguments separated in different variables: $1 $2..."</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="读取输入：">读取输入：</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo <span class="string">"What's your name?"</span></span><br><span class="line">read Name # 这里不需要声明新变量</span><br><span class="line">echo Hello, <span class="variable">$Name</span>!</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="通常的-if-结构看起来像这样：">通常的 if 结构看起来像这样：</h2>
+                <p><strong><em>’man test’ 可查看更多的信息</em></strong></p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$Name</span> -ne <span class="variable">$USER</span> ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"Your name isn't your username"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    echo <span class="string">"Your name is your username"</span></span><br><span class="line">fi</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="根据上一个指令执行结果决定是否执行下一个指令">根据上一个指令执行结果决定是否执行下一个指令</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo "Always executed" || echo "Only executed if first command fails"</span><br><span class="line">echo <span class="string">"Always executed"</span> &amp;&amp; echo <span class="string">"Only executed if first command does NOT fail"</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="在-if-语句中使用-和-需要多对方括号">在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$Name</span> == <span class="string">"Steve"</span> ] &amp;&amp; [ <span class="variable">$Age</span> -eq <span class="number">15</span> ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"This will run if $Name is Steve AND $Age is 15."</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ $Name == "Daniya" ] || [ $Name == "Zach" ]</span><br><span class="line">then</span><br><span class="line">    echo <span class="string">"This will run if $Name is Daniya OR Zach."</span></span><br><span class="line">fi</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="表达式的格式如下">表达式的格式如下:</h2>
+                <p>echo $(( 10 + 5 ))</p>
+                <h2 id="指令可以带有选项：">指令可以带有选项：</h2>
+                <p><strong><em>与其他编程语言不同的是，bash 运行时依赖上下文。比如，使用 ls 时，列出当前目录。</em></strong></p>
+                <figure class="highlight ls">
+                  <figcaption><span>-l``` 列出文件和目录的详细信息</span></figcaption>
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"></span><br><span class="line"><span class="comment">## 前一个指令的输出可以当作后一个指令的输入。</span></span><br><span class="line">```grep``` 用来匹配字符串。</span><br><span class="line"><span class="comment">## 用下面的指令列出当前目录下所有的 txt 文件：</span></span><br><span class="line">```ls -l | grep "\.txt"</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py">以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 <a href="http://hello.py" target="_blank" rel="noopener">hello.py</a></h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">cat &gt; hello<span class="selector-class">.py</span> &lt;&lt; EOF</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">from __future__ import print_function</span><br><span class="line">import sys</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"#stdout"</span>, file=sys.stdout)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"#stderr"</span>, file=sys.stderr)</span></span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys<span class="selector-class">.stdin</span>:</span><br><span class="line">    print(line, file=sys.stdout)</span><br><span class="line">EOF</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="重定向可以到输出-输入和错误输出">重定向可以到输出，输入和错误输出</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">python hello<span class="selector-class">.py</span> &lt; <span class="string">"input.in"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; <span class="string">"output.out"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> <span class="number">2</span>&gt; <span class="string">"error.err"</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; <span class="string">"output-and-error.log"</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">python hello<span class="selector-class">.py</span> &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"># &gt; 会覆盖已存在的文件， &gt;&gt; 会以累加的方式输出文件中。</span><br><span class="line">python hello<span class="selector-class">.py</span> &gt;&gt; <span class="string">"output.out"</span> <span class="number">2</span>&gt;&gt; <span class="string">"error.err"</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="覆盖-output-out-追加-error-err-并统计行数">覆盖 output.out , 追加 error.err 并统计行数</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">info bash <span class="string">'Basic Shell Features'</span> <span class="string">'Redirections'</span> &gt; output<span class="selector-class">.out</span> <span class="number">2</span>&gt;&gt; error.err</span><br><span class="line">wc -l output<span class="selector-class">.out</span> error.err</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="运行指令并打印文件描述符-比如-dev-fd-123">运行指令并打印文件描述符 （比如 /dev/fd/123）</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"># 具体可查看： man fd</span><br><span class="line">echo &lt;(echo <span class="string">"#helloworld"</span>)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="以-helloworld-覆盖-output-out">以 “#helloworld” 覆盖 output.out</h2>
+                <figure class="highlight">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">cat &gt; output<span class="selector-class">.out</span> &lt;(echo <span class="string">"#helloworld"</span>)</span><br><span class="line">echo <span class="string">"#helloworld"</span> &gt; output.out</span><br><span class="line">echo "#helloworld" | cat &gt; output.out</span><br><span class="line">echo "#helloworld" | tee output.out &gt;/dev/null</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="清理临时文件并显示详情-增加-i-选项启用交互模式">清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">rm -v output<span class="selector-class">.out</span> error<span class="selector-class">.err</span> output-and-error.log</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="一个指令可用-嵌套在另一个指令内部">一个指令可用 $( ) 嵌套在另一个指令内部</h2>
+                <h3 id="以下的指令会打印当前目录下的目录和文件总数">以下的指令会打印当前目录下的目录和文件总数</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo &quot;There are $(ls | wc -l) items here.&quot;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="反引号-起相同作用-但不允许嵌套">反引号 `` 起相同作用，但不允许嵌套</h3>
+                <p><strong><em>优先使用 $()</em></strong></p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">echo &quot;There are `ls | wc -l` items here.&quot;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="bash-的-case-语句与-java-和-c-中的-switch-语句类似">Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">case <span class="string">"$Variable"</span> <span class="keyword">in</span></span><br><span class="line">    # 列出需要匹配的字符串</span><br><span class="line">    0) echo "There is a zero.";;</span><br><span class="line">    1) echo "There is a one.";;</span><br><span class="line">    *) echo "It is not null.";;</span><br><span class="line">esac</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="循环遍历给定的参数序列">循环遍历给定的参数序列</h2>
+                <h3 id="变量-variable-的值会被打印-3-次">变量$Variable 的值会被打印 3 次</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">for</span> Variable <span class="keyword">in</span> &#123;<span class="number">1</span>..<span class="number">3</span>&#125;</span><br><span class="line">do</span><br><span class="line">    echo <span class="string">"$Variable"</span></span><br><span class="line">done</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="或传统的-for循环">或传统的 “for循环”</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">for ((a=1; a &lt;= 3; a++))</span><br><span class="line">do</span><br><span class="line">    echo <span class="variable">$a</span></span><br><span class="line">done</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><strong><em>也可以用于文件</em></strong></p>
+                <h3 id="用-cat-输出-file1-和-file2-内容">用 cat 输出 file1 和 file2 内容</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">for</span> Variable <span class="keyword">in</span> file1 file2</span><br><span class="line">do</span><br><span class="line">    cat <span class="string">"$Variable"</span></span><br><span class="line">done</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><strong><em>或作用于其他命令的输出</em></strong></p>
+                <h3 id="对-ls-输出的文件执行-cat-指令">对 ls 输出的文件执行 cat 指令</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">for</span> Output <span class="keyword">in</span> $(ls)</span><br><span class="line">do</span><br><span class="line">    cat <span class="string">"$Output"</span></span><br><span class="line">done</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="while-循环">while 循环</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">while [ true ]</span><br><span class="line">do</span><br><span class="line">    echo <span class="string">"loop body here..."</span></span><br><span class="line">    break</span><br><span class="line">done</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="你也可以使用函数">你也可以使用函数</h2>
+                <h3 id="定义函数">定义函数</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">function foo ()</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Arguments work just like script arguments: $@"</span></span><br><span class="line">    echo <span class="string">"And: $1 $2..."</span></span><br><span class="line">    echo <span class="string">"This is a function"</span></span><br><span class="line">    return <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="更简单的方法">更简单的方法</h3>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">bar ()</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Another way to declare functions!"</span></span><br><span class="line">    return <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="调用函数">调用函数</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">foo &quot;My name is&quot; $Name</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="有很多有用的指令需要学习">有很多有用的指令需要学习</h2>
+                <h3 id="打印-file-txt-的最后-10-行">打印 file.txt 的最后 10 行</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">tail -n 10 file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="打印-file-txt-的前-10-行">打印 file.txt 的前 10 行</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">head -n 10 file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="将-file-txt-按行排序">将 file.txt 按行排序</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sort file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="报告或忽略重复的行-用选项-d-打印重复的行">报告或忽略重复的行，用选项 -d 打印重复的行</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">uniq -d file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="打印每行中-之前内容">打印每行中 ‘,’ 之前内容</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">cut -d &apos;,&apos; -f 1 file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="将-file-txt-文件所有-okay-替换为-great-兼容正则表达式">将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sed -i &apos;s/okay/great/g&apos; file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="将-file-txt-中匹配正则的行打印到标准输出">将 file.txt 中匹配正则的行打印到标准输出</h3>
+                <p>这里打印以 “foo” 开头, “bar” 结尾的行</p>
+                <figure class="highlight plain">
+                  <figcaption><span>"^foo.*bar$" file.txt```</span></figcaption>
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"></span><br><span class="line">使用选项 &quot;-c&quot; 统计行数</span><br><span class="line"></span><br><span class="line">```grep -c &quot;^foo.*bar$&quot; file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f">如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</h3>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">fgrep &quot;^foo.*bar$&quot; file.txt</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="以-bash-内建的-help-指令阅读-bash-自带文档">以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">help</span><br><span class="line">help help</span><br><span class="line">help <span class="keyword">for</span></span><br><span class="line">help return</span><br><span class="line">help source</span><br><span class="line">help .</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="用-man-指令阅读相关的-bash-手册">用 man 指令阅读相关的 Bash 手册</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">apropos bash</span><br><span class="line">man <span class="number">1</span> bash</span><br><span class="line">man bash</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息">用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">apropos info | grep '^info.*('</span><br><span class="line">man info</span><br><span class="line">info info</span><br><span class="line">info <span class="number">5</span> info</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="阅读-bash-的-info-文档">阅读 Bash 的 info 文档</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">info bash</span><br><span class="line">info bash <span class="string">'Bash Features'</span></span><br><span class="line">info bash <span class="number">6</span></span><br><span class="line">info --apropos bash</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+
+              </div>
+              <footer class="article-footer">
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bash/">Bash</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/21f3b9c2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Java发送邮件
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/fa7b6881/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Java web中的浮出层使用</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#显示-hello-world"><span class="nav-number">1.</span> <span class="nav-text">显示 “Hello world!”</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#每一句指令以换行或分号隔开："><span class="nav-number">2.</span> <span class="nav-text">每一句指令以换行或分号隔开：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#声明一个变量："><span class="nav-number">3.</span> <span class="nav-text">声明一个变量：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量："><span class="nav-number">4.</span> <span class="nav-text">使用变量：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#在变量内部进行字符串代换"><span class="nav-number">5.</span> <span class="nav-text">在变量内部进行字符串代换</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的截取"><span class="nav-number">6.</span> <span class="nav-text">变量的截取</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#变量的默认值"><span class="nav-number">7.</span> <span class="nav-text">变量的默认值</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#内置变量："><span class="nav-number">8.</span> <span class="nav-text">内置变量：</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#下面的内置变量很有用"><span class="nav-number">8.1.</span> <span class="nav-text">下面的内置变量很有用</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#读取输入："><span class="nav-number">8.2.</span> <span class="nav-text">读取输入：</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#通常的-if-结构看起来像这样："><span class="nav-number">9.</span> <span class="nav-text">通常的 if 结构看起来像这样：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#根据上一个指令执行结果决定是否执行下一个指令"><span class="nav-number">10.</span> <span class="nav-text">根据上一个指令执行结果决定是否执行下一个指令</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#在-if-语句中使用-和-需要多对方括号"><span class="nav-number">11.</span> <span class="nav-text">在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#表达式的格式如下"><span class="nav-number">12.</span> <span class="nav-text">表达式的格式如下:</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#指令可以带有选项："><span class="nav-number">13.</span> <span class="nav-text">指令可以带有选项：</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py"><span class="nav-number">14.</span> <span class="nav-text">以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 hello.py</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#重定向可以到输出-输入和错误输出"><span class="nav-number">15.</span> <span class="nav-text">重定向可以到输出，输入和错误输出</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#覆盖-output-out-追加-error-err-并统计行数"><span class="nav-number">16.</span> <span class="nav-text">覆盖 output.out , 追加 error.err 并统计行数</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#运行指令并打印文件描述符-比如-dev-fd-123"><span class="nav-number">17.</span> <span class="nav-text">运行指令并打印文件描述符 （比如 /dev/fd/123）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-helloworld-覆盖-output-out"><span class="nav-number">18.</span> <span class="nav-text">以 “#helloworld” 覆盖 output.out</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#清理临时文件并显示详情-增加-i-选项启用交互模式"><span class="nav-number">19.</span> <span class="nav-text">清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#一个指令可用-嵌套在另一个指令内部"><span class="nav-number">20.</span> <span class="nav-text">一个指令可用 $( ) 嵌套在另一个指令内部</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#以下的指令会打印当前目录下的目录和文件总数"><span class="nav-number">20.1.</span> <span class="nav-text">以下的指令会打印当前目录下的目录和文件总数</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#反引号-起相同作用-但不允许嵌套"><span class="nav-number">20.2.</span> <span class="nav-text">反引号 `` 起相同作用，但不允许嵌套</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#bash-的-case-语句与-java-和-c-中的-switch-语句类似"><span class="nav-number">21.</span> <span class="nav-text">Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#循环遍历给定的参数序列"><span class="nav-number">22.</span> <span class="nav-text">循环遍历给定的参数序列</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#变量-variable-的值会被打印-3-次"><span class="nav-number">22.1.</span> <span class="nav-text">变量$Variable 的值会被打印 3 次</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#或传统的-for循环"><span class="nav-number">22.2.</span> <span class="nav-text">或传统的 “for循环”</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#用-cat-输出-file1-和-file2-内容"><span class="nav-number">22.3.</span> <span class="nav-text">用 cat 输出 file1 和 file2 内容</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#对-ls-输出的文件执行-cat-指令"><span class="nav-number">22.4.</span> <span class="nav-text">对 ls 输出的文件执行 cat 指令</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">22.5.</span> <span class="nav-text">while 循环</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#你也可以使用函数"><span class="nav-number">23.</span> <span class="nav-text">你也可以使用函数</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数"><span class="nav-number">23.1.</span> <span class="nav-text">定义函数</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#更简单的方法"><span class="nav-number">23.2.</span> <span class="nav-text">更简单的方法</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#调用函数"><span class="nav-number">23.3.</span> <span class="nav-text">调用函数</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#有很多有用的指令需要学习"><span class="nav-number">24.</span> <span class="nav-text">有很多有用的指令需要学习</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的最后-10-行"><span class="nav-number">24.1.</span> <span class="nav-text">打印 file.txt 的最后 10 行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印-file-txt-的前-10-行"><span class="nav-number">24.2.</span> <span class="nav-text">打印 file.txt 的前 10 行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-按行排序"><span class="nav-number">24.3.</span> <span class="nav-text">将 file.txt 按行排序</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#报告或忽略重复的行-用选项-d-打印重复的行"><span class="nav-number">24.4.</span> <span class="nav-text">报告或忽略重复的行，用选项 -d 打印重复的行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#打印每行中-之前内容"><span class="nav-number">24.5.</span> <span class="nav-text">打印每行中 ‘,’ 之前内容</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-文件所有-okay-替换为-great-兼容正则表达式"><span class="nav-number">24.6.</span> <span class="nav-text">将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#将-file-txt-中匹配正则的行打印到标准输出"><span class="nav-number">24.7.</span> <span class="nav-text">将 file.txt 中匹配正则的行打印到标准输出</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f"><span class="nav-number">24.8.</span> <span class="nav-text">如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#以-bash-内建的-help-指令阅读-bash-自带文档"><span class="nav-number">25.</span> <span class="nav-text">以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-man-指令阅读相关的-bash-手册"><span class="nav-number">26.</span> <span class="nav-text">用 man 指令阅读相关的 Bash 手册</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息"><span class="nav-number">27.</span> <span class="nav-text">用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#阅读-bash-的-info-文档"><span class="nav-number">28.</span> <span class="nav-text">阅读 Bash 的 info 文档</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.02.22 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/works" class="mobile-nav-link">Works</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+</body>
+
+</html>

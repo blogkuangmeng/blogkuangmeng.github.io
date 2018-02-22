@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Android新闻软件编写 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="当我开始学安卓开发时，我发现网上最多的教程就是关于Android上的新闻客户端开发的（而且课时特别长），我本人觉得完全是那些上传网课的人想拉时长牟利，在写完listview之后，因为我们的《软设》项目需要，我也来做做“新闻页”，我只写显示过程（不涉及爬虫），只是为了记录下开发过程供初学者及日后自己回顾。 首先，我在values/string目录加上如下条目，用作显示（内容无关）：">
+  <meta name="keywords" content="Android">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Android新闻软件编写">
+  <meta property="og:url" content="http://meng.uno/articles/8fb3f6d8/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="当我开始学安卓开发时，我发现网上最多的教程就是关于Android上的新闻客户端开发的（而且课时特别长），我本人觉得完全是那些上传网课的人想拉时长牟利，在写完listview之后，因为我们的《软设》项目需要，我也来做做“新闻页”，我只写显示过程（不涉及爬虫），只是为了记录下开发过程供初学者及日后自己回顾。 首先，我在values/string目录加上如下条目，用作显示（内容无关）：">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-02-09T10:46:20.938Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Android新闻软件编写">
+  <meta name="twitter:description" content="当我开始学安卓开发时，我发现网上最多的教程就是关于Android上的新闻客户端开发的（而且课时特别长），我本人觉得完全是那些上传网课的人想拉时长牟利，在写完listview之后，因为我们的《软设》项目需要，我也来做做“新闻页”，我只写显示过程（不涉及爬虫），只是为了记录下开发过程供初学者及日后自己回顾。 首先，我在values/string目录加上如下条目，用作显示（内容无关）：">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/works">作品</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-androidnews" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Android新闻软件编写
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/8fb3f6d8/" class="article-date">
+	  <time datetime="2016-12-16T07:01:14.000Z" itemprop="datePublished">2016-12-16</time>
+	</a>
+                <a class="article-category-link" href="/categories/Android/">Android</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,336</span>
+	<span class="post-count"> | 预计时间10分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <p>当我开始学安卓开发时，我发现网上最多的教程就是关于Android上的新闻客户端开发的（而且课时特别长），我本人觉得完全是那些上传网课的人想拉时长牟利，在写完listview之后，因为我们的《软设》项目需要，我也来做做“新闻页”，我只写显示过程（不涉及爬虫），只是为了记录下开发过程供初学者及日后自己回顾。 首先，我在values/string目录加上如下条目，用作显示（内容无关）：
+                </p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;string name="title"&gt;是上帝除四害是的次数不多是彻底那就是地产表示比不对是不死都今?&lt;/string&gt;</span><br><span class="line">   &lt;string name=<span class="string">"text"</span>&gt;我是测手术储备货币结算你说的内存金士顿内存就剧场那就看到手残你从从今年刷卡才能加内存显卡才能收到你今年的你朝鲜才能常出现从侠客行朝鲜&lt;/string&gt;</span><br><span class="line">   &lt;string-array name=<span class="string">"text_arr"</span>&gt;</span><br><span class="line">       &lt;item&gt;bids比貂蝉死不打算比赛的buds不v电话苏帮你吧报错还加班猝死地产表示出版社u白崇禧必须&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;但是不撒手撒就行字数限制到<span class="number">6</span>个字，多的用省略号，是设置什么属学校决定停止晚自习，我和同学一起回荚冬</span><br><span class="line">              我是在那次孝雅之星的事迹报告会上认识她的。当轮到她上场的时候，主持人这样说道：“她是一个外表刚强，内心柔弱的人。”话音刚落，她班上的同学一阵哄堂大笑。</span><br><span class="line">           我用疑惑的眼神看了看身旁的同学，她告诉我，在她们班上谁都知道她是一个标准的女汉子。她的话勾起了我的好奇心，使我有了想听听她的故事的欲望。</span><br><span class="line">              她步履坚定的走上了演讲台，先是向我们深深地鞠了一躬，便开始娓娓道来她的事迹。</span><br><span class="line">              她的父母都在外打拼，忙于事业，所以很少有空去照顾她，所以家中的一切只能由她一人包办。后来，她又有了一个妹妹，致使她身上的担子又加重了许多，但她依然十分</span><br><span class="line">           坚强的承担这一切。她说妹妹的到来对于她来说像一个天使一样美好，而并不是觉得她是一个负担。当我们回到家中扑在父母怀里撒娇时，她在床头哄着妹妹入睡；当我作文网</span><br><span class="line">           http:<span class="comment">//wwW.zuoWen8.Com/们安稳的进入梦乡时，她却还在奋笔疾书。夜的黑暗与漫长，只有她才知道；思念的感受有多浓稠，只有她才知道；内心的压抑有多难受，只有她才知</span></span><br><span class="line">           道。</span><br><span class="line">              当她说到妹妹因调皮将很烫的饭菜洒到她的手臂上，她还得继续给妹妹喂饭时，当她提及妹妹做坏事后她忍气吞声的到别人家中道歉时，她哽咽了，将头扭到一边独自抹眼泪。</span><br><span class="line">           我们沉默了，低头不语。忧伤的气息迅速在全场蔓延，每个人的心都在和她共鸣着，有好几次，她正准备开口时，却都卡在了喉咙，全场为她响起了雷鸣般经久不息的掌声。</span><br><span class="line">       &lt;/item&gt;</span><br><span class="line">       &lt;item&gt;看到他我想到了爸爸，幸好他今天不上班，不用冒那么大的雪，假如哪个人是我爸爸，我多么希看有一个好心人上前伸出一只手，帮他一把。假如那是你，&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;我停了车子，想往帮助他，可我也象那些来来往往的行人一样，脚步并没有动，的确有很多人同情他，同情也的确对他没用，他还是站不起来，一遍一遍看他起来又摔倒，只好转过头，</span><br><span class="line">           不看他，疼痛无奈，一个中年男子的窘态在众人眼前暴露无遗，这时的他没有一点男子汉的心胸。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;走到一个小岔路口时，我看到路的另一边一个中年男子坐在地上，他穿着青色衣服，双手扶地，似乎挣扎着坐起来，一次又一次尝试着。旁边躺着他的尽看的大梁自行车，等待着主人扶</span><br><span class="line">           起它，在这路上最难过的就是他们了吧！也只有他们可以相互安慰。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;春天，春姑娘带来了蒙蒙细雨和柔和的春风，并把它们化作一只大画笔，把绿色涂在草坪上。这时，无数只小燕子从远方飞来，在草坪上飞来飞去。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;夏天，草坪旁的花坛里，月季花欣然怒放，引来了勤劳的小蜜蜂和翩翩起舞的蝴蝶，热闹极了。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;冬天，雪花落到草坪上，给草坪盖上了一层厚厚的棉被，来年，小草更加茁壮成长。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;草坪就像一个氧气袋，它通过光合作用，净化空气，美化环境。我们要爱护学校的草坪。&lt;/item&gt;</span><br><span class="line">   &lt;/string-array&gt;</span><br><span class="line">   &lt;string-array name=<span class="string">"title_arr"</span>&gt;</span><br><span class="line">       &lt;item&gt;死地产表示出版社u白崇禧必须&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;停止晚自习，我和同学一起回荚冬&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;假如哪个人是我爸爸，我多么希看有一个好心人上前伸出一只手，帮他一把。假如那是你，&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;我停了的行人一样，脚步并没有动，的确有很多人同情他，同情也的确对他没用，他还是站不起来，一遍一遍看他起来又摔倒，只好转过头，他没有一点男子汉的心胸。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;他穿着青色衣服，双手扶地，似乎挣扎着坐起来，一次又一次尝试着。旁边躺着他的尽看的大梁自行车，等待着主人扶&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;春天。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;夏天极了。&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;冬天，雪花落到&lt;/item&gt;</span><br><span class="line">       &lt;item&gt;草坪就像的草坪。&lt;/item&gt;</span><br><span class="line">   &lt;/string-array&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>接着编写显示主界面：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class MainActivity extends AppCompatActivity&#123;</span><br><span class="line">    private ListView listview;</span><br><span class="line">    <span class="comment">//private ArrayAdapter&lt;String&gt;arr_adapter;</span></span><br><span class="line">    private SimpleAdapter simp_Adapter;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt;datalist;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        listview = (ListView)findViewById(R.id.listview);</span><br><span class="line">        datalist = new ArrayList&lt;Map&lt;String,String&gt;&gt;();</span><br><span class="line">        simp_Adapter = new SimpleAdapter(this,getData(),R<span class="selector-class">.layout</span><span class="selector-class">.item</span>,</span><br><span class="line">                new String[]&#123;"title","text"&#125;,new int[]&#123;R.id.title,R.id.text&#125;);</span><br><span class="line">        listview.setAdapter(simp_Adapter);</span><br><span class="line">    &#125;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt; getData()&#123;</span><br><span class="line">        String[] data_text = getResources().getStringArray(R.array.text_arr);</span><br><span class="line">        String[] data_title = getResources().getStringArray(R.array.title_arr);</span><br><span class="line">        for(int i=0;i&lt;data_text.length;i++)&#123;</span><br><span class="line">            Map&lt;String,String&gt;map = new HashMap&lt;String,String&gt;();</span><br><span class="line">            map.put("title",data_title[i]);</span><br><span class="line">            map.put("text",data_text[i]);</span><br><span class="line">            datalist.add(map);</span><br><span class="line">        &#125;</span><br><span class="line">        return datalist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>其对应的activity_main.xml文件为：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:id=<span class="string">"@+id/activity_main"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    tools:context=<span class="string">"com.example.lpf.test.MainActivity"</span>&gt;</span><br><span class="line">    &lt;ListView</span><br><span class="line">        android:id=<span class="string">"@+id/listview"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_alignParentBottom=<span class="string">"true"</span></span><br><span class="line">        android:layout_alignParentStart=<span class="string">"true"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"@color/bg"</span></span><br><span class="line">        android:divider=<span class="string">"@color/item_item"</span></span><br><span class="line">        android:dividerHeight=<span class="string">"10dp"</span>/&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>再然后，编写点击后的后台跳转逻辑：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class ShowActivity extends AppCompatActivity &#123;</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_show);</span><br><span class="line">        Bundle bundle = getIntent().getExtras();</span><br><span class="line">        String title = bundle.getString("title");</span><br><span class="line">        String text = bundle.getString("text");</span><br><span class="line">        TextView title_view = (TextView) findViewById(R.id.title);</span><br><span class="line">        title_view.setText(title);</span><br><span class="line">        TextView text_view = (TextView) findViewById(R.id.text);</span><br><span class="line">        text_view.setMovementMethod(ScrollingMovementMethod.getInstance());</span><br><span class="line">        text_view.setText(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>对应的activity_show.xml文件如下：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingLeft=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingRight=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span>&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:id=<span class="string">"@+id/title"</span></span><br><span class="line">        android:text=<span class="string">"@string/title"</span></span><br><span class="line">        android:textSize=<span class="string">"22sp"</span></span><br><span class="line">        android:typeface=<span class="string">"monospace"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"@color/itembg"</span>/&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:id=<span class="string">"@+id/text"</span></span><br><span class="line">        android:textSize=<span class="string">"18sp"</span></span><br><span class="line">        android:textColor=<span class="string">"@color/textbg"</span></span><br><span class="line">        android:typeface=<span class="string">"normal"</span></span><br><span class="line">        android:scrollbars=<span class="string">"vertical"</span></span><br><span class="line">        android:text=<span class="string">"@string/text"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>最后就是负责点击跳转的任务的后台程序了：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class TestActivity extends ListActivity &#123;</span><br><span class="line">    String[] data = &#123;"北京","西安","广州","上海"&#125;;</span><br><span class="line">    ListView lstview;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        lstview = (ListView)findViewById(R.id.listview);</span><br><span class="line">        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemClick(AdapterView&lt;?&gt; parent, View view, int position, long id) &#123;</span><br><span class="line">                String s = data[<span class="attribute">position</span>];    </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(</span><br><span class="line">                this,</span><br><span class="line">                R<span class="selector-class">.layout</span><span class="selector-class">.item</span>,</span><br><span class="line">                R<span class="selector-class">.id</span><span class="selector-class">.listview</span>,</span><br><span class="line">                data</span><br><span class="line">        );</span><br><span class="line">        lstview.setAdapter(adapter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>附加一个item.xml用于接收显示：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingLeft=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingRight=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:<span class="attribute">background</span>=<span class="string">"@drawable/white_bg"</span>&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:id=<span class="string">"@+id/title"</span></span><br><span class="line">        android:text=<span class="string">"@string/title"</span></span><br><span class="line">        android:textSize=<span class="string">"20sp"</span></span><br><span class="line">        android:typeface=<span class="string">"monospace"</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">"@color/itembg"</span>/&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:id=<span class="string">"@+id/text"</span></span><br><span class="line">        android:textSize=<span class="string">"15sp"</span></span><br><span class="line">        android:textColor=<span class="string">"@color/textbg"</span></span><br><span class="line">        android:typeface=<span class="string">"normal"</span></span><br><span class="line">        android:maxLines=<span class="string">"3"</span></span><br><span class="line">        android:ellipsize=<span class="string">"end"</span></span><br><span class="line">        android:text=<span class="string">"@string/text"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>至此一个新闻客户端基本框架就已经编写完毕！</p>
+                <div>
+                  <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/5d6c9819/">Android的ListView的使用</a></li><li><a href="http://meng.uno/articles/e60b1ba5/">Android实现输入框回车输入</a></li><li><a href="http://meng.uno/articles/1da18548/">Android页面跳转</a></li></ul></div>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+  var a = new Donate({
+    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+    btnText: '打赏支持', // 可选参数，打赏按钮文字
+    el: document.getElementById('donation_div'),
+    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+  });
+</script>
+      
+      
+        <div id="comment">
+  <!-- 来必力City版安装代码 -->
+  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+  </div>
+  <!-- City版安装代码已完成 -->
+</div>
+      
+      <ul class="article-tag-list">
+  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li>
+</ul>
+    </footer>
+  </div>
+  
+    <nav id="article-nav">
+
+  <a href="/articles/177fbbcc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          使用EM算法优化的GMM
+        
+      </div>
+    </a>
+
+
+  <a href="/articles/6c138ff9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux 0.11启动引导</div>
+    </a>
+
+</nav>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">目录导航</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">推荐文章</span></a>
+                    </li>
+                    </ol>
+
+                </div>
+                </aside>
+        </section>
+
+        </div>
+
+        <footer id="footer">
+
+
+          <div class="container">
+            <div class="row">
+              <p id="copyRightEn">&copy; 2018.02.08 - 2018.02.22 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+
+              <p class="busuanzi_uv">
+
+                访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+              </p>
+
+
+
+              <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+              <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+              <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            </div>
+
+          </div>
+        </footer>
+
+
+        <!-- min height -->
+
+        <script>
+          var wrapdiv = document.getElementById("wrap");
+          var contentdiv = document.getElementById("content");
+          var allheader = document.getElementById("allheader");
+
+          wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+          if (allheader != null) {
+            contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+          } else {
+            contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+          }
+        </script>
+
+        <script>
+          (function() {
+            var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+            document.write('<script src="' + src + '" id="sozz"><\/script>');
+          })();
+        </script>
+        </div>
+        <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/works" class="mobile-nav-link">Works</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+        <!-- mathjax config similar to math.stackexchange -->
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+        </script>
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+        </script>
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+          < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+            <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+            </script>
+
+
+            <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+            <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+            <script src="/js/scripts.js"></script>
+
+
+
+
+            <script src="/js/dialog.js"></script>
+
+
+            <!-- Google Analytics -->
+            <script type="text/javascript">
+              (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                  (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+              })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+              ga('create', 'UA-113947925-1', 'auto');
+              ga('send', 'pageview');
+            </script>
+            <!-- End Google Analytics -->
+
+
+            <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+            </script>
+      </div>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="myModalLabel">设置</h2>
+            </div>
+            <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+            <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+            <div class="modal-body">
+              <div style="margin:6px;">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  您已调整页面字体大小
+                </div>
+              </div>
+
+
+
+              <div style="margin:6px;">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  夜间模式已经开启，再次单击按钮即可关闭
+                </div>
+              </div>
+
+              <div>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  欢迎来到匡盟盟的博客！
+                </div>
+                <div class="panel-body">
+                  一个不满平凡的大龄码农
+                </div>
+                <div class="panel-body">
+                  Copyright © 2018 匡盟盟 All Rights Reserved.
+                </div>
+              </div>
+            </div>
+
+
+            <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+            <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+            <div class="modal-footer">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a id="rocket" href="#top" class=""></a>
+      <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+      <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+</body>
+
+</html>
