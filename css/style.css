@@ -147,7 +147,7 @@ body {
 }
 
 ::selection {
-  background: #00aced;
+  background: #ff7e79;
   color: #fff;
 }
 
@@ -156,7 +156,7 @@ body {
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 #rocket {
@@ -278,6 +278,7 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
+  min-height: 665px !important;
 }
 
 .outer:before,
@@ -522,13 +523,13 @@ body {
 }
 
 .navigater-list>a:hover {
-  color: #00aced;
-  border-bottom: 5px solid #00aced;
+  color: #ff7e79;
+  border-bottom: 5px solid #ff7e79;
   text-decoration: none;
 }
 
 .hr {
-  background: #00aced;
+  background: #ff7e79;
 }
 
 .carousel-fade .carousel-inner .item {
@@ -644,15 +645,15 @@ body {
 
 .navbar-nav>li>a:hover,
 .navbar-nav>li>a:focus {
-  border-bottom: 5px solid #00aced;
-  color: #00aced !important;
+  border-bottom: 5px solid #ff7e79;
+  color: #ff7e79 !important;
 }
 
 .navbar-inner {
   min-height: 90px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  border-top: 2px solid #00aced;
+  border-top: 2px solid #ff7e79;
 }
 
 .brand {
@@ -740,7 +741,7 @@ body {
 
 #search-form-wrap .search-form .search-form-submit:hover,
 #search-form-wrap .search-form .search-form-submit:focus {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .search-form-input,
@@ -896,7 +897,7 @@ body {
 }
 
 .article-date:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .article-category {
@@ -934,7 +935,7 @@ body {
 }
 
 .article-category-link:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .article-views {
@@ -954,7 +955,7 @@ body {
 }
 
 .article-views:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .article-date,
@@ -1024,7 +1025,7 @@ body {
 }
 
 a.article-title:hover {
-  color: #00aced;
+  color: #ff7e79;
   text-decoration: none;
 }
 
@@ -1081,7 +1082,7 @@ a.article-title:hover {
 }
 
 .article-entry a:hover {
-  color: #00aced;
+  color: #ff7e79;
   text-decoration: none;
 }
 
@@ -1127,7 +1128,7 @@ a.article-title:hover {
   font-size: 1.1em;
   color: rgba(44, 44, 44, 0.6);
   margin: 1.4em 0px;
-  border-left: 2px solid #00aced;
+  border-left: 2px solid #ff7e79;
   background: rgba(208, 211, 248, 0.15);
 }
 
@@ -1229,7 +1230,7 @@ a.article-title:hover {
   border-radius: 15px;
   background: #f9fbfd;
   border: 1px solid #eef1f8;
-  color: #00aced;
+  color: #ff7e79;
   text-decoration: none;
   -webkit-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1239,7 +1240,7 @@ a.article-title:hover {
 }
 
 .article-more-link a:hover {
-  background: #00aced;
+  background: #ff7e79;
   color: #fff;
   text-decoration: none;
 }
@@ -1250,6 +1251,7 @@ a.article-title:hover {
   border-top: 1px solid rgba(208, 211, 248, 0.25);
   padding-top: 1.6em;
   margin: 0 20px 20px;
+  bottom: 0 !important;
 }
 
 .article-footer:before,
@@ -1612,7 +1614,7 @@ a.article-title:hover {
   position: fixed;
   top: 100px;
   margin-top: 0;
-  max-height: 72%;
+  max-height: 68%;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1;
@@ -1630,7 +1632,7 @@ a.article-title:hover {
 }
 
 .nav .active>a {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .nav-link {
@@ -1640,7 +1642,7 @@ a.article-title:hover {
 }
 
 .nav-link:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .nav-child {
@@ -1689,11 +1691,11 @@ a.article-title:hover {
 }
 
 .archive-year {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-year:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-year:before {
@@ -1713,7 +1715,7 @@ a.article-title:hover {
   font-weight: bold;
   color: #33363b;
   text-align: center;
-  border-left: 0px solid #00aced;
+  border-left: 0px solid #ff7e79;
   background: rgba(208, 211, 248, 0.15);
 }
 
@@ -1723,16 +1725,16 @@ a.article-title:hover {
 }
 
 .archives-tags-wrap blockquote a:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-tag {
   text-transform: none;
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-tag:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-tag:before {
@@ -1752,11 +1754,11 @@ a.article-title:hover {
   font-size: 1em;
   font-weight: normal;
   line-height: 1em;
-  color: #00aced;
+  color: #ff7e79;
   text-align: center;
   height: 80%;
   width: 100%;
-  border-left: 0px solid #00aced;
+  border-left: 0px solid #ff7e79;
   background: rgba(208, 211, 248, 0.15);
 }
 
@@ -1766,7 +1768,7 @@ a.article-title:hover {
 }
 
 .archives-category-wrap blockquote a:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archives-category-wrap blockquote a:before {
@@ -1777,7 +1779,7 @@ a.article-title:hover {
 
 .archive-category {
   text-transform: none;
-  color: #00aced;
+  color: #ff7e79;
   display: block;
 }
 
@@ -1845,7 +1847,7 @@ a.article-title:hover {
   -ms-transition: color 0.2s;
   transition: color 0.2s;
   line-height: 1.6em;
-  border-left: 1px solid #00aced;
+  border-left: 1px solid #ff7e79;
   padding-left: 15px;
 }
 
@@ -1856,7 +1858,7 @@ a.article-title:hover {
 }
 
 .archive-article-title:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .archive-article-footer {
@@ -1876,7 +1878,7 @@ a.article-title:hover {
 }
 
 .archive-article-date:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 #page-nav {
@@ -1910,7 +1912,7 @@ a.article-title:hover {
 }
 
 #page-nav a:hover {
-  background: #00aced;
+  background: #ff7e79;
   color: #fff;
 }
 
@@ -1950,6 +1952,9 @@ a.article-title:hover {
   line-height: 22px;
   border-color: #e0e0e0;
   font-size: 0.85em;
+  bottom: 0px !important;
+  margin-bottom: 0px;
+  float: bottom;
 }
 
 #footer a {
@@ -1957,7 +1962,7 @@ a.article-title:hover {
 }
 
 #footer a:hover {
-  color: #00aced;
+  color: #ff7e79;
   text-decoration: none;
 }
 
@@ -2385,7 +2390,7 @@ pre .xml .cdata {
 }
 
 .ins-close:hover {
-  color: #00aced;
+  color: #ff7e79;
 }
 
 .ins-search-container {
@@ -2463,7 +2468,7 @@ pre .xml .cdata {
 .ins-section .ins-search-item:hover,
 .ins-section .ins-search-item.active {
   color: #fff;
-  background: #00aced;
+  background: #ff7e79;
 }
 
 .ins-section .ins-search-item:hover .ins-slug,
@@ -2513,7 +2518,7 @@ pre .xml .cdata {
 }
 
 .widget a:hover {
-  color: #00aced;
+  color: #ff7e79;
   text-decoration: none;
 }
 

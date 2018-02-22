@@ -16,8 +16,6 @@
   z-index: 2;
   position: fixed;
   width: 100%;
-  margin: 0 0 600px 0;
-  padding: 0 0 -100px 0;
 }
 
 .navbar-default .navbar-nav>li>a {
