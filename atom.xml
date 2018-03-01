@@ -352,6 +352,38 @@
   </entry>
   
   <entry>
+    <title>Eclipse的Google样式Java代码自动规范配置</title>
+    <link href="http://meng.uno/articles/548d5dfd/"/>
+    <id>http://meng.uno/articles/548d5dfd/</id>
+    <published>2018-02-01T12:59:33.000Z</published>
+    <updated>2018-03-01T13:27:09.418Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>  <p>不知道大家在用Eclipse的时候有没有感觉到，当代码量一大就看不懂自己代码了呢？有人可能要说了，eclipse不是自己带有格式化代码工具吗？确实如此，但是我们可能想使用更高级的自动化工具，例如Google—Java-Style。这篇博文，我将展示如何使用eclipse自带的自动化代码规范工具，以及怎么配置Google-Java-Style。</p></blockquote><h1>准备</h1><p>文件下载：</p><ul>  <li>Eclipse: <a href="http://www.eclipse.org/" target="_blank" rel="noopener">进入官网</a></li>  <li>Google Java Format File: <a href="http://meng.uno/utils/eclipse-java-google-style.xml">点击下载</a></li></ul><h1>使用Eclipse自带</h1><ul>  <li>快捷键： <code>Ctrl/Command + Shift + F</code></li>  <li>鼠标：    <ul>      <li>单个文件：进入文件/对着文件名<code>点右键</code> &gt; 找到<code>Source</code> &gt; 点击<code>Format</code> (其实就是快捷键的作用！)</li>      <li>项目：对着项目名/包名<code>点右键</code> &gt; 找到<code>Source</code> &gt; 点击<code>Format</code></li>    </ul>  </li></ul><p>如下截图：</p><p><img src="http://www.meng.uno/images/format/3.png" alt="右键"></p><h1>更换成Google Style</h1><p>当我们下载了本博客提供的<code>eclipse-java-google-style.xml</code>，就可以开始为formatter改风格了。</p><ul>  <li>打开eclipse的<code>Preferences</code>找到<code>Java</code>，再展开<code>Code Style</code>，找到<code>Formatter</code>。</li></ul><p><img src="http://meng.uno/images/format/1.png" alt="Code Style"></p><p>点击<code>Import</code>，在弹出窗口里选择我们下载的文件，确定即可。</p><p><img src="http://meng.uno/images/format/2.png" alt="Code Style"></p><p>再次进入项目，对着想要格式化的对象进行格式化操作，在进度条走完，我们就得到一份Google Java Style的代码了。</p><h1>后记</h1><ul>  <li>按照相似的步骤，我们也可以<code>Import</code>其他风格的代码规范；</li>  <li>Google不仅提供了eclipse上Java的代码规范，还有其他很多规范，详见<a href="https://github.com/google/styleguide" target="_blank" rel="noopener">Goole Style Guile</a></li>  <li>如果任何代码规范都不和心意，也可以打开某个代码规范，自己做相应的改动。</li></ul><p><img src="http://meng.uno/images/format/4.png" alt="Code Style"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+  &lt;p&gt;不知道大家在用Eclipse的时候有没有感觉到，当代码量一大就看不懂自己代码了呢？有人可能要说了，eclipse不是自己带有格式化代码工具吗？确实如此，但是我们可能想使用更高级的自动化工具，例如Google—Java-Style。这篇博文，我将
+      
+    
+    </summary>
+    
+      <category term="Java开发Tips" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/"/>
+    
+      <category term="代码规范" scheme="http://meng.uno/categories/Java%E5%BC%80%E5%8F%91Tips/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    
+    
+      <category term="代码规范" scheme="http://meng.uno/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="Google Format" scheme="http://meng.uno/tags/Google-Format/"/>
+    
+      <category term="Eclipse" scheme="http://meng.uno/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Analysis For Hyperkernel</title>
     <link href="http://meng.uno/articles/55c9299d/"/>
     <id>http://meng.uno/articles/55c9299d/</id>
@@ -578,33 +610,6 @@
       <category term="SAT" scheme="http://meng.uno/tags/SAT/"/>
     
       <category term="solver" scheme="http://meng.uno/tags/solver/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Trinity</title>
-    <link href="http://meng.uno/articles/664baed9/"/>
-    <id>http://meng.uno/articles/664baed9/</id>
-    <published>2018-01-05T14:37:53.000Z</published>
-    <updated>2018-02-11T14:48:52.839Z</updated>
-    
-    <content type="html"><![CDATA[<p>As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects began from the mid-2000s with the aim of bringing more sophistication to the fuzz-testing process. One of them, Scrashme,  was started in 2006. Work on that project languished for a few years, and only picked up momentum starting in late 2010, when the authors began to devote significantly more time to its development. In December 2010, Scrashme was renamed to Trinity which  is this project.</p><p>Trinity is an intelligent system call fuzzer since it incorporates specific knowledge about each system call which is tested. Its thought is to reduce the time spent running “useless” tests, so reaching deeper into the tested code and increasing the chances  of testing a more interesting case that may result in an unexpected error.</p><h2 id="build-and-run">Build and Run</h2><p>We can get the source code from GitHub, compile the code and invoke Trinity with a command line as simple as “./trinity”. Building this project is very simple, we just need to enter the directory and “./configure; make”. It’s so simple that the authors  didn’t write it out. The result of a successful “make” is like this:</p><p><img src="http://www.meng.uno/images/fuzzer/1.png" alt="Trinity"></p><p>Now let’s run it. I will test a system call “madvise” as an example.</p><p><img src="http://www.meng.uno/images/fuzzer/2.png" alt="Trinity"></p><p><img src="http://www.meng.uno/images/fuzzer/3.png" alt="Trinity"></p><p>From the above picture, we can see that there are 384 32 bits system calls and 333 64 bits system calls tested in this project (not all in this test case).</p><p>The log information of the main test process and its children processes are stored separately like this.</p><p><img src="http://www.meng.uno/images/fuzzer/4.png" alt="Trinity"></p><p>This project also has many other test modes which I didn’t test here. Trinity has been rather successful at finding bugs if we fully test it. It said that the authors of this project had sometimes left systems running for hours or days in order to discover  failures.</p><h2 id="analyze-the-test">Analyze the Test</h2><p>Here is the segment of the code of system call “madvise”.</p><p><img src="http://www.meng.uno/images/fuzzer/5.png" alt="Trinity"></p><p>This is a structure definition, from which we can see Trinity has some understanding of the arguments for each system call. This is why it brings intelligence to its tests. The “.num_args” means that this system call need 3 parameters. These parameters  are “arg1, arg2, arg3” whose names and types are defined as the picture shows.</p><p>I found the architecture of Trinity from its website. From this picture, we know that the “trinity-main” process kicks off a number of child processes (It is 4 in this picture) that perform the system call tests. There is a shared memory region used to  record various pieces of global information, such as open file descriptor numbers, total system calls performed, and number of system calls that succeeded and failed. The shared memory region also records various information about each of the child  processes as the picture shown in the “Build and Run” section. The “trinity-watchdog” process ensures that the test system is still working correctly which is similar to the function of “Zookeeper” to “Hadoop”, I think.</p><p><img src="http://www.meng.uno/images/fuzzer/6.png" alt="Trinity"></p><h2 id="write-a-test">Write A Test</h2><p>First, we need to select a system call for testing. I choose “getcpu” system call here from “syscalls.h” file. (We need to delete the original test file because all system call listed in “syscalls.h” are tested.) Then I write a new file to “/trinity/syscalls/”  directory named “meng.c” and the contents are as follows.</p><p><img src="http://www.meng.uno/images/fuzzer/7.png" alt="Trinity"></p><p>The type of parameters can be found at “syscall.h” as follows.</p><p><img src="http://www.meng.uno/images/fuzzer/8.png" alt="Trinity"></p><p>After compiling the file and running, here is part of the result.</p><p><img src="http://www.meng.uno/images/fuzzer/9.png" alt="Trinity"></p><p><img src="http://www.meng.uno/images/fuzzer/10.png" alt="Trinity"></p><p>In the future, I may add some system calls which it didn’t test till now to this project. However, you can see that it is very difficult for us to really test a system call which we used everyday using this project because Trinity randomly invokes system  calls currently and real programs demonstrate common patterns for making system calls.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;As we all known, system call testing is very important to a system. System call fuzzers aren’t a particularly new idea. A few projects be
-      
-    
-    </summary>
-    
-      <category term="Fuzzer" scheme="http://meng.uno/categories/Fuzzer/"/>
-    
-    
-      <category term="Trinity" scheme="http://meng.uno/tags/Trinity/"/>
-    
-      <category term="Fuzzer" scheme="http://meng.uno/tags/Fuzzer/"/>
     
   </entry>
   
