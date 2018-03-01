@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Analysis For Hyperkernel | 欢迎来到匡盟盟的博客！</title>
+  <title>Eclipse的阿里巴巴代码规范配置 | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -17,18 +17,29 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Homepage: https://locore.cs.washington.edu/hyperkernel/ Code: https://github.com/locore/hv6  State-machine Specification State-machine specification means the system function will first verify the">
-  <meta name="keywords" content="System,Verification">
+  <meta name="description" content="插件安装 环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。 Help -&amp;gt; Install New Software…  输入Update Site地址：https://p3c.alibaba.com/plugin/eclipse/update 回车，然后勾选Ali">
+  <meta name="keywords" content="代码规范,Alibaba Format,Eclipse">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Analysis For Hyperkernel">
-  <meta property="og:url" content="http://meng.uno/articles/55c9299d/index.html">
+  <meta property="og:title" content="Eclipse的阿里巴巴代码规范配置">
+  <meta property="og:url" content="http://meng.uno/articles/6e79ab7a/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Homepage: https://locore.cs.washington.edu/hyperkernel/ Code: https://github.com/locore/hv6  State-machine Specification State-machine specification means the system function will first verify the">
+  <meta property="og:description" content="插件安装 环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。 Help -&amp;gt; Install New Software…  输入Update Site地址：https://p3c.alibaba.com/plugin/eclipse/update 回车，然后勾选Ali">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:updated_time" content="2018-02-10T14:56:55.140Z">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1LOyPifJNTKJjSspoXXc6mpXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1Ud5kifBNTKJjSszcXXbO2VXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1XGo8iPihSKJjy0FeXXbJtpXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB18UsJi2NZWeJjSZFpXXXjBFXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1vt1oifBNTKJjSszcXXbO2VXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1_uFJi6ihSKJjy0FlXXadEXXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1UNTnmYsTMeJjSszhXXcGCFXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1_rf7sOAKL1JjSZFoXXagCFXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1KsyYsiFTMKJjSZFAXXckJpXa.png">
+  <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB19bzdm3oQMeJjy1XaXXcSsFXa.png">
+  <meta property="og:updated_time" content="2018-03-01T15:25:35.957Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Analysis For Hyperkernel">
-  <meta name="twitter:description" content="Homepage: https://locore.cs.washington.edu/hyperkernel/ Code: https://github.com/locore/hv6  State-machine Specification State-machine specification means the system function will first verify the">
+  <meta name="twitter:title" content="Eclipse的阿里巴巴代码规范配置">
+  <meta name="twitter:description" content="插件安装 环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。 Help -&amp;gt; Install New Software…  输入Update Site地址：https://p3c.alibaba.com/plugin/eclipse/update 回车，然后勾选Ali">
+  <meta name="twitter:image" content="https://gw.alicdn.com/tfscom/TB1LOyPifJNTKJjSspoXXc6mpXa.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -214,45 +225,69 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-hv6" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-alibaba_style" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  Analysis For Hyperkernel
+                  Eclipse的阿里巴巴代码规范配置
                 </h1>
               </header>
 
               <div class="article-meta">
-                <a href="/articles/55c9299d/" class="article-date">
-	  <time datetime="2018-01-29T13:43:03.000Z" itemprop="datePublished">2018-01-29</time>
+                <a href="/articles/6e79ab7a/" class="article-date">
+	  <time datetime="2018-03-01T15:25:33.000Z" itemprop="datePublished">2018-03-01</time>
 	</a>
-                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
-                <a class="article-category-link" href="/categories/操作系统/系统验证/">系统验证</a>
+                <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
+                <a class="article-category-link" href="/categories/Java开发Tips/代码规范/">代码规范</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数254</span>
+	<span class="post-count"> | 字数664</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <blockquote>
-                  <p>Homepage: <a href="https://locore.cs.washington.edu/hyperkernel/" target="_blank" rel="noopener">https://locore.cs.washington.edu/hyperkernel/</a> Code: <a href="https://github.com/locore/hv6" target="_blank" rel="noopener">https://github.com/locore/hv6</a></p>
-                </blockquote>
-                <h2 id="state-machine-specification">State-machine Specification</h2>
-                <p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification
-                  consists of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional
-                  verification if program is free of loops and state is finite.</p>
-                <p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state
-                  or it is runnable, it will return the new procedure so that it can be proved true.</p>
-                <h2 id="declarative-specification">Declarative Specification</h2>
-                <p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the
-                  programmer’s confidence in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior,
-                  in the form of a conjunction of crosscutting properties that hold across all trap handlers.</p>
+                <h2 id="插件安装">插件安装</h2>
+                <p>环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。</p>
+                <p>Help -&gt; Install New Software…</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1LOyPifJNTKJjSspoXXc6mpXa.png" alt=""></p>
+                <p>输入Update Site地址：<a href="https://p3c.alibaba.com/plugin/eclipse/update" target="_blank" rel="noopener">https://p3c.alibaba.com/plugin/eclipse/update</a> 回车，然后勾选Ali-CodeAnalysis，再一直点Next Next…按提示走下去就好。 然后就是提示重启了，安装完毕。</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1Ud5kifBNTKJjSszcXXbO2VXa.png" alt=""></p>
+                <p>注意：有同学反映插件扫描会触发很多 “JPA Java Change Event Handler (Waiting)” 的任务，这个是Eclipse的一个<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=387455" target="_blank" rel="noopener">bug</a>，因为插件在扫描的时候会对文件进行标记，所以触发了JPA的任务。卸载JPA插件，或者尝试升级到最新版的Eclipse。附：
+                  <a
+                    href="https://my.oschina.net/cimu/blog/278724" target="_blank" rel="noopener">JPA project Change Event Handler问题解决</a>
+                </p>
+                <h2 id="插件使用">插件使用</h2>
+                <p>目前插件实现了开发手册中的53条规则，大部分基于PMD实现，其中有4条规则基于Eclipse实现，支持4条规则的QuickFix功能。</p>
+                <pre><code>* 所有的覆写方法，必须加@Override注解， 
+* if/for/while/switch/do等保留字与左右括号之间都必须加空格,
+* long或者Long初始赋值时，必须使用大写的L，不能是小写的l）
+* Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。
+</code></pre>
+                <p>目前不支持代码实时检测，需要手动触发，希望更多的人加入进来一起把咱们的插件做得越来越好，尽量提升研发的使用体验。</p>
+                <h3 id="代码扫描">代码扫描</h3>
+                <p>可以通过右键菜单、Toolbar按钮两种方式手动触发代码检测。同时结果面板中可以对部分实现了QuickFix功能的规则进行快速修复。</p>
+                <h4 id="触发扫描">触发扫描</h4>
+                <p>在当前编辑的文件中点击右键，可以在弹出的菜单中触发对该文件的检测。</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1XGo8iPihSKJjy0FeXXbJtpXa.png" alt=""></p>
+                <p>在左侧的Project目录树种点击右键，可以触发对整个工程或者选择的某个目录、文件进行检测。</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB18UsJi2NZWeJjSZFpXXXjBFXa.png" alt=""></p>
+                <p>也可以通过Toolbar中的按钮来触发检测，目前Toolbar的按钮触发的检测范围与您IDE当时的焦点有关，如当前编辑的文件或者是Project目录树选中的项，是不是感觉与右键菜单的检测范围类似呢。</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1vt1oifBNTKJjSszcXXbO2VXa.png" alt=""></p>
+                <h4 id="扫描结果">扫描结果</h4>
+                <p>简洁的结果面板，按规则等级分类，等级-&gt;规则-&gt;文件-&gt;违规项。同时还提供一个查看规则详情的界面。</p>
+                <p>清除结果标记更方便，支持上面提到的4条规则QuickFix。</p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1_uFJi6ihSKJjy0FlXXadEXXa.png" alt=""></p>
+                <h4 id="查看所有规则">查看所有规则</h4>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1UNTnmYsTMeJjSszhXXcGCFXa.png" alt="">
+                  <img src="https://gw.alicdn.com/tfscom/TB1_rf7sOAKL1JjSZFoXXagCFXa.png" alt=""></p>
+                <h4 id="国际化">国际化</h4>
+                <p><img src="https://gw.alicdn.com/tfscom/TB1KsyYsiFTMKJjSZFAXXckJpXa.png" alt=""></p>
+                <p><img src="https://gw.alicdn.com/tfscom/TB19bzdm3oQMeJjy1XaXXcSsFXa.png" alt=""></p>
 
               </div>
               <footer class="article-footer">
@@ -314,27 +349,19 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System/">System</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Verification/">Verification</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alibaba-Format/">Alibaba Format</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码规范/">代码规范</a></li>
                 </ul>
               </footer>
             </div>
 
             <nav id="article-nav">
 
-              <a href="/articles/7526d370/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Java异常处理
-        
-      </div>
-    </a>
 
-
-              <a href="/articles/a12d1477/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/articles/548d5dfd/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">怎么处理噪声</div>
+      <div class="article-nav-title">Eclipse的Google样式Java代码自动规范配置</div>
     </a>
 
             </nav>
@@ -348,8 +375,19 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#state-machine-specification"><span class="nav-number">1.</span> <span class="nav-text">State-machine Specification</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#declarative-specification"><span class="nav-number">2.</span> <span class="nav-text">Declarative Specification</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装"><span class="nav-number">1.</span> <span class="nav-text">插件安装</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#插件使用"><span class="nav-number">2.</span> <span class="nav-text">插件使用</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#代码扫描"><span class="nav-number">2.1.</span> <span class="nav-text">代码扫描</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#触发扫描"><span class="nav-number">2.1.1.</span> <span class="nav-text">触发扫描</span></a></li>
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#扫描结果"><span class="nav-number">2.1.2.</span> <span class="nav-text">扫描结果</span></a></li>
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有规则"><span class="nav-number">2.1.3.</span> <span class="nav-text">查看所有规则</span></a></li>
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#国际化"><span class="nav-number">2.1.4.</span> <span class="nav-text">国际化</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
               </ol>
 
             </div>
