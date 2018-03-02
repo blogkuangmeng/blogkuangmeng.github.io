@@ -25,13 +25,13 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substrin">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/images/substring_jdk.png">
-  <meta property="og:image" content="http://www.meng.uno/images/substring_jdk7.png">
-  <meta property="og:updated_time" content="2018-02-09T10:46:20.937Z">
+  <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
+  <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk7.png">
+  <meta property="og:updated_time" content="2018-03-02T03:26:32.958Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java Substring() 的实现">
   <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。 substring()的用途 代码:                         123                       String origin = &quot;asdfg&quot;; origin = origin.substrin">
-  <meta name="twitter:image" content="http://www.meng.uno/images/substring_jdk.png">
+  <meta name="twitter:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -277,18 +277,18 @@
                 </blockquote>
                 <h3 id="jdk6版本">JDK6版本</h3>
                 <p>在这个版本中，每次执行substring()方法时并不会新建新的string，仅仅只是将上述三个域中的offset，count做必要的修改。返回对象仍指向原来的数据。</p>
-                <p><img src="http://www.meng.uno/images/substring_jdk.png" alt="Substring()实现版本一"></p>
+                <p><img src="http://www.meng.uno/images/substring/substring_jdk.png" alt="Substring()实现版本一"></p>
                 <p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
                 <h3 id="jdk7-版本">JDK7+版本</h3>
                 <p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
-                <p><img src="http://www.meng.uno/images/substring_jdk7.png" alt="Substring()实现版本二"></p>
+                <p><img src="http://www.meng.uno/images/substring/substring_jdk7.png" alt="Substring()实现版本二"></p>
                 <div>
                   <h1>推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/7526d370/">Java异常处理</a></li><li><a href="http://meng.uno/articles/61c2f1f1/">.length与length()的区别</a></li><li><a href="http://meng.uno/articles/fff444e8/">二分查找的效率</a></li><li><a href="http://www.libinx.com/2017/auto-conversion-and-narrow-conversion-in-Java/">Java | 自动类型转换和强制类型转换</a></li></ul></div>
       
     </div>
     <footer class="article-footer">
       
-        <h1>请为本文章打分</h1>
+        <h1 style="text-align:center;">请为本文章打分</h1>
 <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
 <script type="text/javascript">
   wpac_init = window.wpac_init || [];

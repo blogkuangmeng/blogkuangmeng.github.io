@@ -25,14 +25,14 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="Summary Abstract This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the re">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/images/t-music-arch.png">
-  <meta property="og:image" content="http://www.meng.uno/images/t-music-database.png">
-  <meta property="og:image" content="http://www.meng.uno/images/t-music-database2.png">
-  <meta property="og:updated_time" content="2018-02-11T04:39:53.403Z">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music/t-music-arch.png">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music/t-music-database.png">
+  <meta property="og:image" content="http://www.meng.uno/images/t-music/t-music-database2.png">
+  <meta property="og:updated_time" content="2018-03-02T03:27:32.829Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="A Melody Composer for both Tonal and Non-Tonal Languages">
   <meta name="twitter:description" content="Summary Abstract This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the re">
-  <meta name="twitter:image" content="http://www.meng.uno/images/t-music-arch.png">
+  <meta name="twitter:image" content="http://www.meng.uno/images/t-music/t-music-arch.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -254,7 +254,7 @@
                   T-music, the authors’ tasks are making some improvements on the basis of the original algorithm.</p>
                 <h2 id="deficiencies-of-original-algorithm">Deficiencies of original algorithm</h2>
                 <p>At the first place, I need to borrow a figure from the paper as follows to express my understanding of the original T-music method.</p>
-                <p><img src="http://www.meng.uno/images/t-music-arch.png" alt="t-musuc"></p>
+                <p><img src="http://www.meng.uno/images/t-music/t-music-arch.png" alt="t-musuc"></p>
                 <p>As the picture shows that the system architecture of T-music can be divided as two phases which are “Frequent Pattern Mining” and “Melody Composition”. I will report this method following the flow of the algorithm.</p>
                 <ul>
                   <li>
@@ -282,10 +282,10 @@
                 <p>What the authors have done provided two ways to mine Frequent Patterns from instrumental compositions and an optimal mapping method for composing a melody using FPS in different language with the input lyrics.</p>
                 <p>The first way is “Method emphasizing the original FPS”. I will use the following picture to express my comprehension. Firstly, mining the FPS from songs and storing them in “FP database (General)”. Secondly, mining the frequent pitch trends
                   from “Instrumental compositions with style database” and storing them in “Frequent pitch trends (Style)” and then using it as a selector to select those FPS storing the matches in “FP database (Style)”.</p>
-                <p><img src="http://www.meng.uno/images/t-music-database.png" alt="t-musuc"></p>
+                <p><img src="http://www.meng.uno/images/t-music/t-music-database.png" alt="t-musuc"></p>
                 <p>The second way is “Method emphasizing the newly mined frequent pitch trends”. I will also introduce it using the screenshot from the paper. The FPS based on those of the first way was subdivided. The frequent pitch trends are mined as
                   usually. The most difference is that one pitch trend may match a set of several tone trends.</p>
-                <p><img src="http://www.meng.uno/images/t-music-database2.png" alt="t-musuc"></p>
+                <p><img src="http://www.meng.uno/images/t-music/t-music-database2.png" alt="t-musuc"></p>
                 <p>The optimal mapping method is shown as follows. Firstly, using the same method gets a “FP database” in one language. Then, generating several tone sequences for each tone trend in this “FP database”. There are some lemmas proofed on the
                   paper to decide the specific number of the mapping.</p>
                 <h1>Improvements</h1>
@@ -385,7 +385,7 @@
               </div>
               <footer class="article-footer">
 
-                <h1>请为本文章打分</h1>
+                <h1 style="text-align:center;">请为本文章打分</h1>
                 <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
                 <script type="text/javascript">
                   wpac_init = window.wpac_init || [];
