@@ -240,95 +240,35 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="works-" class="article article-type-works" itemscope itemprop="blogPost">
-            <div id="articleInner" class="article-inner">
+          <div id="gallery" class="mygall" style="display:none;">
+
+            <img alt="Preview Image 1" src="/ug_images/thumbs/thumb1.jpg" data-image="/ug_images/big/image1.jpg" data-description="Preview Image 1 Description">
 
 
-              <header class="article-header">
-                <h1 class="thumb" class="article-title" itemprop="name">
-                  我的作品
-                </h1>
-              </header>
-
-              <div class="article-meta">
-                <a href="/works/index.html" class="article-date">
-	  <time datetime="2018-02-22T03:47:00.563Z" itemprop="datePublished">2018-02-22</time>
-	</a>
+            <img alt="Youtube Video" data-type="youtube" data-videoid="A3PDXmYoF5U" data-description="You can include youtube videos easily!">
 
 
-              </div>
-              <div class="article-entry" itemprop="articleBody">
+            <img alt="Vimeo Video" data-type="vimeo" src="http://i.vimeocdn.com/video/447294219_200x150.jpg" data-image="http://i.vimeocdn.com/video/447294219_640.jpg" data-videoid="73234449" data-description="This gallery can also play vimeo videos!">
 
 
-
-              </div>
-              <footer class="article-footer">
-
-                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
-                <script type="text/javascript">
-                  wpac_init = window.wpac_init || [];
-                  wpac_init.push({
-                    widget: 'Rating',
-                    id: 9986
-                  });
-                  (function() {
-                    if ('WIDGETPACK_LOADED' in window) return;
-                    WIDGETPACK_LOADED = true;
-                    var mc = document.createElement('script');
-                    mc.type = 'text/javascript';
-                    mc.async = true;
-                    mc.src = 'https://embed.widgetpack.com/widget.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(mc, s.nextSibling);
-                  })();
-                </script>
-
-                <div id="donation_div"></div>
-
-                <script src="/js/vdonate.js"></script>
-                <script>
-                  var a = new Donate({
-                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
-                    el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
-                  });
-                </script>
+            <img alt="Html5 Video" src="/ug_images/thumbs/html5_video.png" data-type="html5video" data-image="http://video-js.zencoder.com/oceans-clip.png" data-videoogv="http://video-js.zencoder.com/oceans-clip.ogv" data-videowebm="http://video-js.zencoder.com/oceans-clip.webm"
+              data-videomp4="http://video-js.zencoder.com/oceans-clip.mp4" data-description="This is html5 video demo played by mediaelement2 player">
 
 
-                <div id="comment">
-                  <!-- 来必力City版安装代码 -->
-                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
-                    <script type="text/javascript">
-                      (function(d, s) {
-                        var j, e = d.getElementsByTagName(s)[0];
-
-                        if (typeof LivereTower === 'function') {
-                          return;
-                        }
-
-                        j = d.createElement(s);
-                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                        j.async = true;
-
-                        e.parentNode.insertBefore(j, e);
-                      })(document, 'script');
-                    </script>
-                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
-                  </div>
-                  <!-- City版安装代码已完成 -->
-                </div>
+            <img alt="Wistia Video" src="/ug_images/thumbs/wistia_video.jpg" data-type="wistia" data-image="/ug_images/big/wistia_video.jpg" data-videoid="9oedgxuciv" data-description="Hey, the gallery plays Wistia videos too!">
 
 
-              </footer>
-            </div>
+            <img alt="Sound Cloud Track" src="/ug_images/thumbs/sound_cloud.jpg" data-type="soundcloud" data-image="/ug_images/thumbs/sound_cloud.jpg" data-trackid="8390970" data-description="This gallery can play a soundcloud track">
 
 
+          </div>
 
-          </article>
-
-          <!-- Table of Contents -->
+          <script type="text/javascript">
+            jQuery("#gallery").unitegallery({
+              gallery_theme: "compact",
+              theme_panel_position: "left"
+            });
+          </script>
         </section>
 
       </div>
