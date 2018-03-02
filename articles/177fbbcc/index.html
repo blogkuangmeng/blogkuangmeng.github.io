@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -238,14 +241,14 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数4,075</span>
+	<span class="post-count"> | 字数4,065</span>
 	<span class="post-count"> | 预计时间16分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <p>先上代码：</p>
-                <pre><code class="language-stylus"># -*- coding: utf-8 -*-
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"># -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as mat
 import matplotlib.mlab as mlab
@@ -353,12 +356,12 @@ def GMM():
             except:
                 continue
         mat.hold(False)
-        if(i&gt;150 or abs(trains - prev)&lt; 0.01):
+        if(i>150 or abs(trains - prev)< 0.01):
             break
         prev = trains
 if __name__ == '__main__':
     GMM()
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="实验要求">实验要求</h2>
                 <h3 id="实验目标">实验目标</h3>
                 <p>实现一个混合高斯模型，并且用EM算法估计模型中的参数。</p>

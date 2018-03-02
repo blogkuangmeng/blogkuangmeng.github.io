@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,21 +240,21 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数339</span>
-	<span class="post-count"> | 预计时间2分钟</span>
+	<span class="post-count"> | 字数1</span>
+	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <p>昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：
                 </p>
-                <pre><code class="language-stylus">&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;script src=&quot;canvas2image.js&quot;&gt;&lt;/script&gt;
-&lt;body&gt;
-    &lt;canvas  id=&quot;cvs&quot;&gt;&lt;/canvas&gt;
-    &lt;button id=&quot;save&quot;&gt;save&lt;/button&gt;
-&lt;script&gt;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><!doctype html>
+<html>
+<script src="canvas2image.js"></script>
+<body>
+    <canvas  id="cvs"></canvas>
+    <button id="save">save</button>
+<script>
     var canvas, ctx, bMouseIsDown = false, iLastX, iLastY,
         $save, $imgs,
         $convert, $imgW, $imgH,
@@ -261,7 +264,7 @@
         ctx = canvas.getContext('2d');
         $save = document.getElementById('save');
         $convert = document.getElementById('convert');
-        $sel = &quot;png&quot;;
+        $sel = "png";
         $imgs = document.getElementById('imgs');
         $imgW = 1980;
         $imgH = 2000;
@@ -298,10 +301,10 @@
         }
     }
     onload = init;
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+</script>
+</body>
+</html>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/f03eda59/">http://meng.uno/articles/f03eda59/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li><li><a href="http://meng.uno/articles/49d54823/">表格搜索</a></li><li><a href="http://meng.uno/articles/21f3b9c2/">Java发送邮件</a></li></ul></div>

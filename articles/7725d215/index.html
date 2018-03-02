@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,15 +240,15 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数584</span>
-	<span class="post-count"> | 预计时间3分钟</span>
+	<span class="post-count"> | 字数487</span>
+	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <p>完成这个实验，你需要下载<code>jxl</code>jar包，具体方法自行百度。 接下来我将直接使用具体代码进行讲解我的实现过程。 文件名：
                   <code>ExcelAction.java</code></p>
-                <pre><code class="language-stylus">package net.kuangmeng.excel;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">package net.kuangmeng.excel;
 /*这里是所有需要导入的库，不用担心当你写好其他代码时，编辑器会提示或者自动帮你补全！*/
 import java.io.File;
 import java.io.FileOutputStream;
@@ -266,22 +269,22 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-@SuppressWarnings(&quot;serial&quot;)
+@SuppressWarnings("serial")
 public class ExcelAction extends ActionSupport{
 	 public static void main(String[] args) {
      //主函数调用
      //listth为导出excel的表头信息
-     list&lt;String&gt; listth = new ArrayList&lt;String&gt;;
+     list<String> listth = new ArrayList<String>;
      //listtd为导出的excel表项
-        list&lt;String&gt; listtd = new ArrayList&lt;String&gt;;
+        list<String> listtd = new ArrayList<String>;
         //num为表的列数
         int num ;
 		     exportExcel(tablename,listth,listtd,num);
 	   }
 //真正的导出excel方法
-	public static void exportExcel(String fileName,List&lt;String&gt; listth,List&lt;String&gt; listtd,int num) {
+	public static void exportExcel(String fileName,List<String> listth,List<String> listtd,int num) {
     //设置保存文件具体位置及文件名
-		 String excelName =&quot;C:\\Users\\meng\\Desktop\\&quot;+fileName+&quot;.xls&quot;;
+		 String excelName ="C:\\Users\\meng\\Desktop\\"+fileName+".xls";
 		  try {  
 		   File excelFile = new File(excelName);
 		   // 如果文件存在就删除它
@@ -290,7 +293,7 @@ public class ExcelAction extends ActionSupport{
 		   // 打开文件
 		   WritableWorkbook book = Workbook.createWorkbook(excelFile);
 		   // 生成名为“第一页”的工作表，参数0表示这是第一页
-		   WritableSheet sheet = book.createSheet(&quot;Up2U导出表格 &quot;, 0);
+		   WritableSheet sheet = book.createSheet("Up2U导出表格 ", 0);
 		   // 文字样式
 		   jxl.write.WritableFont wfc = new jxl.write.WritableFont(
 		     WritableFont.ARIAL, 10, WritableFont.NO_BOLD, false,
@@ -305,26 +308,26 @@ public class ExcelAction extends ActionSupport{
 
 		   // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
 		   // 以及单元格内容为
-		   for(int i=0;i&lt;listth.size()/(num-2);i++){
-			   for(int j=0;j&lt;num-2;j++){
+		   for(int i=0;i<listth.size()/(num-2);i++){
+			   for(int j=0;j<num-2;j++){
 				   sheet.addCell(new Label(j,i,listth.get(i*(num-2)+j),wcfFC));
 			   }
 		   }
-		   for(int i=listth.size()/(num-2);i&lt;(listth.size()+listtd.size())/(num-2);i++){
-			   for(int j=0;j&lt;num-2;j++){
+		   for(int i=listth.size()/(num-2);i<(listth.size()+listtd.size())/(num-2);i++){
+			   for(int j=0;j<num-2;j++){
 				   sheet.addCell(new Label(j,i,listtd.get((i-1)*(num-2)+j),wcfF));
 			   }
 		   }
 		  // 写入数据并关闭文件
 		   book.write();
 		   book.close();
-		   System.out.println(&quot;Excel创建成功&quot;);
+		   System.out.println("Excel创建成功");
 		  } catch (Exception e) {
 		   System.out.println(e);
 		  }
 		 }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/7725d215/">http://meng.uno/articles/7725d215/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li><li><a href="http://meng.uno/articles/49d54823/">表格搜索</a></li><li><a href="http://meng.uno/articles/21f3b9c2/">Java发送邮件</a></li></ul></div>

@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,7 +240,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数362</span>
+	<span class="post-count"> | 字数299</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
@@ -247,31 +250,31 @@
                 <p>我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。</p>
                 <h2 id="实现">实现</h2>
                 <p>于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用JavaScript实现，在尝试了很多次之后，终于成功了，在此先贴上代码。</p>
-                <pre><code class="language-stylus">&lt;script type=&quot;text/javascript&quot;&gt;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><script type="text/javascript">
 function n(n){
-	var num=&quot;&quot;;
-	for(var i=0;i&lt;n;i++){
-    num += document.getElementById(&quot;num&quot;+i).value;
+	var num="";
+	for(var i=0;i<n;i++){
+    num += document.getElementById("num"+i).value;
 	}
-document.getElementById(&quot;result&quot;).value = num;
+document.getElementById("result").value = num;
 }
-&lt;/script&gt;
-&lt;%
+</script>
+<%
   int num=3;
-%&gt;
-&lt;form  action=&quot;addAction&quot;&gt;
-&lt;input id=&quot;num&quot;  name=&quot;num&quot; value=&lt;%=num %&gt; type=&quot;text&quot;&gt;
-&lt;%
-  for(int i=0;i&lt;num;i++){
-%&gt;
-&lt;input id=&quot;num&lt;%=i %&gt;&quot; type=&quot;text&quot; onblur=&quot;n(&lt;%=num%&gt;)&quot;&gt;
-&lt;%
+%>
+<form  action="addAction">
+<input id="num"  name="num" value=<%=num %> type="text">
+<%
+  for(int i=0;i<num;i++){
+%>
+<input id="num<%=i %>" type="text" onblur="n(<%=num%>)">
+<%
   }
-%&gt;
-&lt;input  name=&quot;str&quot; id=&quot;result&quot; type=&quot;hidden&quot; &gt;
-&lt;button &gt;提交&lt;/button&gt;
-&lt;/form&gt;
-</code></pre>
+%>
+<input  name="str" id="result" type="hidden" >
+<button >提交</button>
+</form>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="分析">分析</h2>
                 <p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/f12d3e70/">http://meng.uno/articles/f12d3e70/</a> 欢迎转载！</p>

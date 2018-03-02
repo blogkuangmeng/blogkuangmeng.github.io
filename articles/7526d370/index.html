@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -247,7 +250,7 @@
                 <p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p>
                 <h2 id="调用方法必须处理被调用方法抛出的异常">调用方法必须处理被调用方法抛出的异常</h2>
                 <p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p>
-                <pre><code class="language-java">public class exceptionTest {
+                <pre class="line-numbers language-language-java"><code class="language-language-java">public class exceptionTest {
     private static Exception exception;
  
     public static void main(String[] args) throws Exception {
@@ -262,10 +265,10 @@
         doOne();
     }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="超类可以用来捕获或处理子类异常">超类可以用来捕获或处理子类异常</h2>
                 <p>可以使用如下代码验证。</p>
-                <pre><code class="language-java">class myException extends Exception{
+                <pre class="line-numbers language-language-java"><code class="language-language-java">class myException extends Exception{
  
 }
  
@@ -286,7 +289,7 @@ public class exceptionTest {
         throw exception;
     }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/7526d370/">http://meng.uno/articles/7526d370/</a> 欢迎转载！</p>
                 <div>

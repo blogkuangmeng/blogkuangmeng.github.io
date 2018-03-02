@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,8 +240,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数724</span>
-	<span class="post-count"> | 预计时间3分钟</span>
+	<span class="post-count"> | 字数517</span>
+	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -247,63 +250,63 @@
                 <p>开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了其他牛人的（海量）博客之后，才总结出如下的这点精华步骤（又要感慨一下国内搜索引擎之渣）！</p>
                 <h2 id="编写androidmanifest-xml">编写AndroidManifest.xml</h2>
                 <p>首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在AndroidManifest.xml中，我们需要这样写：</p>
-                <pre><code class="language-stylus">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    package=&quot;uno.meng.download&quot;&gt;
-    &lt;application
-        android:allowBackup=&quot;true&quot;
-        android:icon=&quot;@mipmap/ic_launcher&quot;
-        android:theme=&quot;@style/AppTheme&quot;&gt;
-        &lt;activity
-            android:name=&quot;.MainActivity&quot;
-           android:label=&quot;@string/app_name&quot;&gt;
-            &lt;intent-filter&gt;
-                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
-                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
-            &lt;/intent-filter&gt;
-        &lt;/activity&gt;
-        &lt;activity
-            android:name=&quot;.ResultActivity&quot;
-            android:label=&quot;@string/comeback&quot;
-            android:parentActivityName=&quot;.MainActivity&quot; &gt;
-            &lt;meta-data
-                android:name=&quot;android.support.PARENT_ACTIVITY&quot;
-                android:value=&quot;.MainActivity&quot;/&gt;
-        &lt;/activity&gt;
-    &lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uno.meng.download">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+           android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ResultActivity"
+            android:label="@string/comeback"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+    </application>
+</manifest>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>其中，每个
                   <activity>对应一个界面，从代码中可见，我将后一个页面加了一个返回前一个页面的“返回符”。</activity>
                 </p>
                 <h2 id="编写跳转前界面search-xml">编写跳转前界面search.xml</h2>
                 <p>由于我在此将介绍怎么使用按钮跳转（带输入），所以直接在主界面search.xml（名称随意）中声明这两个组件（按钮，输入框）：</p>
-                <pre><code class="language-stylus">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:orientation=&quot;vertical&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:weightSum=&quot;1&quot;&gt;
-    &lt;EditText
-        android:id=&quot;@+id/edit_message&quot;
-        android:layout_margin=&quot;30dp&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;80dp&quot;
-        android:hint=&quot;请输入文本信息 ...&quot;/&gt;
-    &lt;Button
-        android:id=&quot;@+id/button&quot;
-        android:text=&quot;点击提交 &quot;
-        android:layout_margin=&quot;100dp&quot;
-        android:layout_width=&quot;127dp&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:onClick=&quot;sendMessage&quot; /&gt;
-&lt;/LinearLayout&gt;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <EditText
+        android:id="@+id/edit_message"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:hint="请输入文本信息 ..."/>
+    <Button
+        android:id="@+id/button"
+        android:text="点击提交 "
+        android:layout_margin="100dp"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:onClick="sendMessage" />
+</LinearLayout>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>可见，我对按钮加了一个onClick事件。</p>
                 <h2 id="编写对应的mainactivity-java">编写对应的MainActivity.java</h2>
                 <p>在search.xml对应的MainActivity.java文件中我们写好onCreate方法（每个文件都会有）以及sendMessage方法：</p>
-                <pre><code class="language-stylus">public class MainActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = &quot;uno.meng.download.MESSAGE&quot;;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">public class MainActivity extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "uno.meng.download.MESSAGE";
     public void sendMessage(){
         EditText editText = (EditText)findViewById(R.id.edit_message);
         String message = editText.getText().toString();
@@ -317,26 +320,26 @@
         setContentView(R.layout.search);
     }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="编写接收界面result-xml">编写接收界面result.xml</h2>
                 <p>然后到result.xml接收（我用的一个框来接收）：</p>
-                <pre><code class="language-stylus">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:orientation=&quot;vertical&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:weightSum=&quot;1&quot;&gt;
-    &lt;TextView
-        android:layout_margin=&quot;30dp&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;80dp&quot;/&gt;
-&lt;/LinearLayout&gt;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <TextView
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
+</LinearLayout>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="编写接收对应的resultactivity-java">编写接收对应的ResultActivity.java</h2>
                 <p>编写对应的ResultActivity.java文件， 将从MainActivity.java接收来的文字打印到result.xml的框中：
                 </p>
-                <pre><code class="language-stylus">public class ResultActivity extends AppCompatActivity{
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">public class ResultActivity extends AppCompatActivity{
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -351,7 +354,7 @@
        setContentView(textview);
     }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>到此为止，已经完成了Android页面跳转！</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/1da18548/">http://meng.uno/articles/1da18548/</a> 欢迎转载！</p>
                 <div>

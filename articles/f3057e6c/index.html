@@ -113,8 +113,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -249,13 +252,13 @@
                 <p>写过Java的人应该都用过<code>substring(int bedinIndex, int endIndex)</code>方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</p>
                 <h2 id="substring-的用途">substring()的用途</h2>
                 <p>代码:</p>
-                <pre><code class="language-stylus">String origin = &quot;asdfg&quot;; 
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">String origin = "asdfg"; 
 origin = origin.substring(1,3);
 System.out.println(origin);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <p>输出:</p>
-                <pre><code class="language-stylus">sd
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">sd
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 <p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
                 <h2 id="substring-的实现">substring()的实现</h2>
                 <blockquote>

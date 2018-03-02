@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -257,23 +260,23 @@
                 <p>实验楼已经提供了Ruby运行环境，但是，还是需要我们安装一些插件：</p>
                 <p>将gem下载源换为国内源</p>
                 <p>请确保只有<code>ruby.taobao.org</code></p>
-                <pre><code class="language-stylus">$ gem sources --remove http://rubygems.org/
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">$ gem sources --remove http://rubygems.org/
 $ gem sources -a http://mirrors.aliyuncs.com/rubygems/
 $ gem sources -l
 **CURRENT SOURCES **
 http://mirrors.aliyuncs.com/rubygems/
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>安装Ruby爬虫库 anemone</p>
-                <pre><code class="language-stylus">$ sudo apt-get update
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">$ sudo apt-get update
 $ sudo apt-get install ruby1.9.1-dev
 $ sudo apt-get install libsqlite3-dev
 $ sudo gem install anemone
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>查看对应的数据库支持</p>
                 <p>Ruby数据库支持</p>
-                <pre><code class="language-stylus">sudo gem install data_mapper
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">sudo gem install data_mapper
 sudo gem install dm-sqlite-adapter
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 <h2 id="数据库设计">数据库设计</h2>
                 <p>我们使用sqlite3来放置我们扒下来的数据：</p>
                 <p>Site：存储爬行过的网站</p>
@@ -289,14 +292,14 @@ sudo gem install dm-sqlite-adapter
                 <p>data_mapper validates详解</p>
                 <h2 id="爬虫代码">爬虫代码</h2>
                 <p>首先，我们需要引入uri 和 anemone包，其次还需要刚才定义的数据库的model</p>
-                <pre><code class="language-stylus">require 'uri'
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">require 'uri'
 require 'anemone'
 require_relative 'data'
 data是对data.rb文件的引用。
 ARGV：获取命令行参数
 
 ruby crawl.rb http://www.test.test
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>ARGV是Ruby的数组，所以我们用循环来处理它，因为我可以输入不只一个URL，如果，我们使用多线程的话，这样就可以同一时间处理多个URL，事半功倍。</p>
                 <p>然后马上使用URI()来处理传入的URL，结果返回给uri，下一步就把这个结果存入数据库中，uri.host网站的域名，和当前时间(这里使用的是内置模块Time) URI模块。</p>
                 <p>接下来的事情就很写意了，我们不需要自己去做很多的比如什么广度和深度算法的设计，我们只需要给它一个入口的URL，它会自动的去爬行，根本停不下来啊！</p>

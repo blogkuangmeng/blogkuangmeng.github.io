@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -255,7 +258,7 @@
                 <h2 id="发送邮件使用的基本信息">发送邮件使用的基本信息</h2>
                 <p>文件名：<code>MailSenderInfo.java</code> 代码如下，我仍然以备注的形式讲解：
                 </p>
-                <pre><code class="language-java">package net.kuangmeng.mail; 
+                <pre class="line-numbers language-language-java"><code class="language-language-java">package net.kuangmeng.mail; 
 /**  
 * 发送邮件需要使用的基本信息  
 */   
@@ -263,7 +266,7 @@ import java.util.Properties;
 public class MailSenderInfo {   
     // 发送邮件的服务器的IP和端口   
     private String mailServerHost;   
-    private String mailServerPort = &quot;25&quot;;   
+    private String mailServerPort = "25";   
     // 邮件发送者的地址   
     private String fromAddress;   
     // 邮件接收者的地址   
@@ -284,9 +287,9 @@ public class MailSenderInfo {
       */   
     public Properties getProperties(){   
       Properties p = new Properties();   
-      p.put(&quot;mail.smtp.host&quot;, this.mailServerHost);   
-      p.put(&quot;mail.smtp.port&quot;, this.mailServerPort);   
-      p.put(&quot;mail.smtp.auth&quot;, validate ? &quot;true&quot; : &quot;false&quot;);   
+      p.put("mail.smtp.host", this.mailServerHost);   
+      p.put("mail.smtp.port", this.mailServerPort);   
+      p.put("mail.smtp.auth", validate ? "true" : "false");   
       return p;   
     }   
     public String getMailServerHost() {   
@@ -350,10 +353,10 @@ public class MailSenderInfo {
       this.content = textContent;   
     }   
 }   
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="邮件发送器">邮件发送器</h2>
                 <p>文件名：<code>SimpleMailSender.java</code></p>
-                <pre><code class="language-java">package net.kuangmeng.mail;
+                <pre class="line-numbers language-language-java"><code class="language-language-java">package net.kuangmeng.mail;
 import java.util.Date;   
 import java.util.Properties;  
 import javax.mail.Address;   
@@ -445,7 +448,7 @@ public class SimpleMailSender  {
       // 创建一个包含HTML内容的MimeBodyPart   
       BodyPart html = new MimeBodyPart();   
       // 设置HTML内容   
-      html.setContent(mailInfo.getContent(), &quot;text/html; charset=utf-8&quot;);   
+      html.setContent(mailInfo.getContent(), "text/html; charset=utf-8");   
       mainPart.addBodyPart(html);   
       // 将MiniMultipart对象设置为邮件内容   
       mailMessage.setContent(mainPart);   
@@ -458,10 +461,10 @@ public class SimpleMailSender  {
       return false;   
     }   
 }   
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="发件人设置">发件人设置</h2>
                 <p>文件名：<code>MyAuthenticator.java</code></p>
-                <pre><code class="language-java">package net.kuangmeng.mail;
+                <pre class="line-numbers language-language-java"><code class="language-language-java">package net.kuangmeng.mail;
 import javax.mail.*;  
 
 public class MyAuthenticator extends Authenticator{  
@@ -478,32 +481,32 @@ public class MyAuthenticator extends Authenticator{
         return new PasswordAuthentication(userName, password);  
     }  
 }  
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="实际发送">实际发送</h2>
                 <p>文件名：<code>MailAction.java</code></p>
-                <pre><code class="language-java">package net.kuangmeng.mail;
+                <pre class="line-numbers language-language-java"><code class="language-language-java">package net.kuangmeng.mail;
 import net.kuangmeng.*;
 public class MailAction {
-	@SuppressWarnings(&quot;static-access&quot;)
+	@SuppressWarnings("static-access")
 	public static void main(String[] args){  
         //这个类主要是设置邮件  
      MailSenderInfo mailInfo = new MailSenderInfo();   
-     mailInfo.setMailServerHost(&quot;smtp.yeah.net&quot;);   
-     mailInfo.setMailServerPort(&quot;25&quot;);   
+     mailInfo.setMailServerHost("smtp.yeah.net");   
+     mailInfo.setMailServerPort("25");   
      mailInfo.setValidate(true);   
-     mailInfo.setUserName(&quot;*****@yeah.net&quot;);   
-     mailInfo.setPassword(&quot;******&quot;);//您的邮箱密码   
-     mailInfo.setFromAddress(&quot;*****@yeah.net&quot;);   
-     mailInfo.setToAddress(&quot;****@qq.com&quot;);   
-     mailInfo.setSubject(&quot;你好！&quot;);//邮件主题  
-     mailInfo.setContent(&quot;这是一个测试&quot;);//邮件内容
+     mailInfo.setUserName("*****@yeah.net");   
+     mailInfo.setPassword("******");//您的邮箱密码   
+     mailInfo.setFromAddress("*****@yeah.net");   
+     mailInfo.setToAddress("****@qq.com");   
+     mailInfo.setSubject("你好！");//邮件主题  
+     mailInfo.setContent("这是一个测试");//邮件内容
         //这个类主要来发送邮件  
       SimpleMailSender sms = new SimpleMailSender();  
       sms.sendTextMail(mailInfo);//发送文体格式   
       sms.sendHtmlMail(mailInfo);//发送html格式 
    }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/21f3b9c2/">http://meng.uno/articles/21f3b9c2/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li><li><a href="http://meng.uno/articles/49d54823/">表格搜索</a></li><li><a href="http://meng.uno/articles/7725d215/">Java导出Excel</a></li></ul></div>

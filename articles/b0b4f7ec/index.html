@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -250,7 +253,7 @@
                 <h2 id="匈牙利表示法">匈牙利表示法</h2>
                 <p>匈牙利表示法主要用在变量和子程序的命名，这是现在大部分程序员都在使用的命名约定。“匈牙利表示法”这个奇怪的名字是为了纪念匈牙利籍的Microsoft程序员Charles Simonyi，他首先使用了这种命名方法。</p>
                 <p>匈牙利表示法用连在一起的几个部分来命名一个变量，格式是类型前缀加上变量说明，类型用小写字母表示，如用h表示句柄，用dw表示double word，用sz表示以0结尾的字符串等，说明则用首字母大写的几个英文单词组成，如TimeCounter，NextPoint等，可以令人一眼看出变量的含义来，在汇编语言中常用的类型前缀有：</p>
-                <pre><code class="language-stylus">b          表示byte
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">b          表示byte
 w          表示word
 dw         表示dword
 h          表示句柄
@@ -259,14 +262,14 @@ sz         表示以0结尾的字符串
 lpsz       表示指向0结尾的字符串的指针
 f          表示浮点数
 st         表示一个数据结构
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>这样一来，变量的意思就很好理解：</p>
-                <pre><code class="language-stylus">hWinMain          主窗口的句柄
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">hWinMain          主窗口的句柄
 dwTimeCount       时间计数器，以双字定义
 szWelcome     欢迎信息字符串，以0结尾
 lpBuffer          指向缓冲区的指针
 stWndClass    WNDCLASS结构
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>由于匈牙利表示法既描述了变量的类型，又描述了变量的作用，所以能帮助程序员及早发现变量的使用错误，如把一个数值当指针来使用引发的内存页错误等。</p>
                 <p>对于函数名，由于不会返回多种类型的数值，所以命名时一般不再用类型开头，但名称还是用表示用途的单词组成，每个单词的首字母大写。Windows API是这种命名方式的绝好例子，当人们看到ShowWindow，GetWindowText，DeleteFile和GetCommandLine之类的API函数名称时，恐怕不用查手册，就能知道它们是做什么用的。比起int 21h/09h和int 13h/02h之类的中断调用，好处是不必多讲的。</p>
                 <h2 id="对匈牙利表示法的补充">对匈牙利表示法的补充</h2>
@@ -281,7 +284,7 @@ stWndClass    WNDCLASS结构
                   <li>在内部子程序的名称前面加下划线，以便和系统API区别。</li>
                 </ul>
                 <p>如下面是一个求复数模的子程序，子程序名前面加下划线表示这是本程序内部模块，两个参数——复数的实部和虚部用_dwX和_dwY表示，中间用到的局部变量@dwResult则用@号开头：</p>
-                <pre><code class="language-stylus">_Calc     proc    _dwX,_dwY
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">_Calc     proc    _dwX,_dwY
           local   @dwResult
 			finit
 			fild    _dwX
@@ -296,23 +299,23 @@ stWndClass    WNDCLASS结构
           mov     eax,@dwResult
           ret
 _Calc                endp
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h1>代码的书写格式</h1>
                 <h2 id="排版方式">排版方式</h2>
                 <p>程序的排版风格应该遵循以下规则。</p>
                 <p>首先是大小写的问题，汇编程序中对于指令和寄存器的书写是不分大小写的，但小写代码比大写代码便于阅读，所以程序中的指令和寄存器等要采用小写字母，而用equ伪操作符定义的常量则使用大写，变量和标号使用匈牙利表示法，大小写混合。</p>
                 <p>其次是使用Tab的问题。汇编源程序中Tab的宽度一般设置为8个字符。在语法上，指令和操作数之间至少有一个空格就可以了，但指令的助记符长度是不等长的，用Tab隔开指令和操作数可以使格式对齐，便于阅读。如：</p>
-                <pre><code class="language-stylus">xor eax,eax
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">xor eax,eax
 fistp dwNumber
 xchg eax,ebx
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <p>上述代码的写法就不如下面的写法整齐：</p>
-                <pre><code class="language-stylus">xor        eax, eax 
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">xor        eax, eax 
 fistp      dwNumber
 xchg       eax, ebx
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <p>还有就是缩进格式的问题。程序中的各部分采用不同的缩进，一般变量和标号的定义不缩进，指令用两个Tab缩进，遇到分支或循环伪指令再缩进一格，如：</p>
-                <pre><code class="language-stylus">.data
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">.data
 
 dwFlag    dd  ?
 
@@ -325,7 +328,7 @@ start:
      .else
           call       _Function2
      .endif
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>合适的缩进格式可以明显地表现出程序的流程结构，也很容易发现嵌套错误，当缩进过多的时候，可以意识到嵌套过深，该改进程序结构了。</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/b0b4f7ec/">http://meng.uno/articles/b0b4f7ec/</a> 欢迎转载！</p>
                 <div>

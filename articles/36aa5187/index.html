@@ -18,7 +18,7 @@
 
 
   <meta name="description" content="概述 基本上多数破解的思路是一样的，就是将本来判断为true的时候干的事情改为逻辑值为false就做，因此常常需要替换一些汇编命令：  cmp a,b 比较a与b mov a,b 把b的值送给a ret 返回主程序 nop 无作用,英文“no operation”的简写，意思是“do nothing”(机器码90) call 调用子程序 je 或jz 若相等则跳(机器码74 或0F84) jne或">
-  <meta name="keywords" content="破解,ASM,汇编">
+  <meta name="keywords" content="汇编,ASM,破解">
   <meta property="og:type" content="article">
   <meta property="og:title" content="破解时常用的汇编命令">
   <meta property="og:url" content="http://meng.uno/articles/36aa5187/index.html">
@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -246,7 +249,7 @@
 
                 <h1>概述</h1>
                 <p>基本上多数破解的思路是一样的，就是将本来判断为true的时候干的事情改为逻辑值为false就做，因此常常需要替换一些汇编命令：</p>
-                <pre><code class="language-stylus">cmp a,b 比较a与b
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">cmp a,b 比较a与b
 mov a,b 把b的值送给a
 ret 返回主程序
 nop 无作用,英文“no operation”的简写，意思是“do nothing”(机器码90)
@@ -262,7 +265,7 @@ jl 若小于则跳
 jle 若小于等于则跳
 pop 出栈
 push 压栈
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h1>常见修改(机器码)</h1>
                 <pre><code>74=&gt;75 74=&gt;90 74=&gt;EB
 75=&gt;74 75=&gt;90 75=&gt;EB

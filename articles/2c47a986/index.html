@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,7 +240,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数855</span>
+	<span class="post-count"> | 字数831</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
@@ -245,29 +248,29 @@
 
                 <h2 id="创建节点">创建节点</h2>
                 <p>除了可以使用<code>createElement</code>创建元素，也可以使用<code>createTextNode</code>创建文本节点。<code>document.body</code>指向的是<code>&lt;body&gt;</code>元素，<code>document.documentElement</code>则指向<code>&lt;html&gt;</code>元素。</p>
-                <pre><code class="language-javascript"> //创建节点
-    var createNode = document.createElement(&quot;div&quot;);
-    var createTextNode = document.createTextNode(&quot;hello world&quot;);
+                <pre class="line-numbers language-language-javascript"><code class="language-language-javascript"> //创建节点
+    var createNode = document.createElement("div");
+    var createTextNode = document.createTextNode("hello world");
     createNode.appendChild(createTextNode);
     document.body.appendChild(createNode);
     document.documentElement.appendChild(createNode);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="插入节点">插入节点</h2>
                 <p>可以使用appendChild，insertBefore，insertBefore接收两个参数，第一个是插入的节点，第二个是参照节点，如insertBefore(a,b)，则a会插入在b的前面</p>
-                <pre><code class="language-javascript">    //插入节点
-     var createNode = document.createElement(&quot;div&quot;);
-    var createTextNode = document.createTextNode(&quot;hello world&quot;);
+                <pre class="line-numbers language-language-javascript"><code class="language-language-javascript">    //插入节点
+     var createNode = document.createElement("div");
+    var createTextNode = document.createTextNode("hello world");
     createNode.appendChild(createTextNode);
-    var div1 = document.getElementById(&quot;div1&quot;);
+    var div1 = document.getElementById("div1");
     document.body.insertBefore(createNode,div1);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="替换和删除元素">替换和删除元素</h2>
                 <p>从replaceChild和removeChild的字面意思看，就是删除子节点，因此调用者，需要包含子节点div1，不然调用会报错。返回的节点是替换的或删除的元素，被替换/删除的元素仍然存在，但document中已经没有他们的位置了。</p>
-                <pre><code class="language-javascript">//替换元素
+                <pre class="line-numbers language-language-javascript"><code class="language-language-javascript">//替换元素
    var replaceChild = document.body.replaceChild(createNode,div1);
 //删除元素
     var removeChild = document.body.removeChild(div1);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="节点的属性">节点的属性</h2>
                 <ul>
                   <li>firstChild:第一个子节点</li>
@@ -279,15 +282,15 @@
                   <li>previousSibling：上一个兄弟节点</li>
                   <li>parentNode：父节点</li>
                 </ul>
-                <pre><code class="language-vbscript-html">&lt;ul id=&quot;ul&quot;&gt;
-&lt;li&gt;sdsssssss&lt;/li&gt;
-&lt;li&gt;qqqq&lt;/li&gt;
-&lt;li&gt;wwww&lt;/li&gt;
-&lt;li&gt;eeee&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-                <pre><code class="language-javascript">  //节点属性
-    var ul = document.getElementById(&quot;ul&quot;);
+                <pre class="line-numbers language-language-vbscript-html"><code class="language-language-vbscript-html"><ul id="ul">
+<li>sdsssssss</li>
+<li>qqqq</li>
+<li>wwww</li>
+<li>eeee</li>
+</ul>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <pre class="line-numbers language-language-javascript"><code class="language-language-javascript">  //节点属性
+    var ul = document.getElementById("ul");
     var firstChild = ul.firstChild;
     console.log(firstChild.innerHTML);
     var lastChild = ul.lastChild;
@@ -302,39 +305,39 @@
     console.log(thridChild.innerHTML);
     var parentNode = forthChild.parentNode;
     console.log(parentNode.innerHTML);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="文档片段">文档片段</h2>
                 <p>好处在于减少dom的渲染次数，可以优化性能。</p>
-                <pre><code class="language-javascript"> //文本片段
+                <pre class="line-numbers language-language-javascript"><code class="language-language-javascript"> //文本片段
     var fragment = document.createDocumentFragment();
-    var ul = document.getElementById(&quot;ul&quot;);
+    var ul = document.getElementById("ul");
     var li = null;
-    for (var i = 4; i &gt;= 0; i--) {
-        li = document.createElement(&quot;li&quot;);
-        li.appendChild(document.createTextNode(&quot;item &quot;+i));
+    for (var i = 4; i >= 0; i--) {
+        li = document.createElement("li");
+        li.appendChild(document.createTextNode("item "+i));
         fragment.appendChild(li);
     }
     ul.appendChild(fragment);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="克隆元素">克隆元素</h2>
                 <ul>
                   <li>someNode.cloneNode(true):深度克隆，会复制节点及整个子节点</li>
                   <li>someNode.cloneNode(false):浅克隆，会复制节点，但不复制子节点</li>
                 </ul>
-                <pre><code class="language-php">    //克隆
+                <pre class="line-numbers language-language-php"><code class="language-language-php">    //克隆
     var clone = ul.cloneNode(true);
     document.body.appendChild(clone);
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <h2 id="注意：">注意：</h2>
                 <h3 id="childnodes-length存在跨浏览器的问题">childNodes.length存在跨浏览器的问题</h3>
                 <p>可以看到有关列表的html片段没有用</p>
-                <pre><code class="language-vbscript-html">&lt;ul id=&quot;ul&quot;&gt;
-&lt;li&gt;sdsssssss&lt;/li&gt;
-&lt;li&gt;qqqq&lt;/li&gt;
-&lt;li&gt;wwww&lt;/li&gt;
-&lt;li&gt;eeee&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
+                <pre class="line-numbers language-language-vbscript-html"><code class="language-language-vbscript-html"><ul id="ul">
+<li>sdsssssss</li>
+<li>qqqq</li>
+<li>wwww</li>
+<li>eeee</li>
+</ul>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>这种书写格式而是使用没有换行的格式书写，是因为在不同的浏览器中，获取<code>ul.childNodes.length</code>的结果有差异：</p>
                 <ul>
                   <li>在ie中，ul.childNodes.length不会计算li之间的换行空格，从而得到数值为4</li>

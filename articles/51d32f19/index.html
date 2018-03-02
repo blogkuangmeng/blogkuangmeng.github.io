@@ -112,8 +112,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -422,14 +425,14 @@
                 </table>
                 <h1>代码</h1>
                 <h2 id="简单带错误信息的获取网页内所有url的爬虫">简单带错误信息的获取网页内所有URL的爬虫</h2>
-                <pre><code class="language-python">#获取URL的包
+                <pre class="line-numbers language-language-python"><code class="language-language-python">#获取URL的包
 import urllib
 #获取字符集编码方式
 import chardet
 #正则表达式
 import re
 #Request 对象
-req = urllib.request.Request(&quot;http://meng.uno/&quot;)
+req = urllib.request.Request("http://meng.uno/")
 data = None
 try:
     #得到Response
@@ -438,31 +441,31 @@ try:
     html = response.read()
     #获取这个response的编码方式
     charset = chardet.detect(html)
-    print(&quot;编码方式：&quot;,charset)
+    print("编码方式：",charset)
     #以这种编码方式解码打印
-    html = html.decode(charset.get(&quot;encoding&quot;))
+    html = html.decode(charset.get("encoding"))
     print(html)
-    urls = re.findall('href=\&quot;https*://w*\.*meng\.uno/.*?\&quot;', html,re.S)
-    uris = re.findall('href=\&quot;/[^/].*?[^\.]\&quot;',html, re.S)
+    urls = re.findall('href=\"https*://w*\.*meng\.uno/.*?\"', html,re.S)
+    uris = re.findall('href=\"/[^/].*?[^\.]\"',html, re.S)
     for item in urls:
         print(item[6:-1])
     for item in uris:
-        if &quot;.html&quot; in item:
-            print(&quot;http://www.meng.uno&quot;+item[6:-1])
+        if ".html" in item:
+            print("http://www.meng.uno"+item[6:-1])
         elif '.' in item:
             continue
         else:
-            print(&quot;http://www.meng.uno&quot;+item[6:-1])
+            print("http://www.meng.uno"+item[6:-1])
 except urllib.error.HTTPError as e:
     if hasattr(e, 'code'):
-        print(&quot;HTTPError&quot;)
+        print("HTTPError")
         print(e.code)
     elif hasattr(e, 'reason'):
-        print(&quot;URLError&quot;)
+        print("URLError")
         print(e.reason)
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="模拟真实环境的爬虫">模拟真实环境的爬虫</h2>
-                <pre><code class="language-python">import urllib
+                <pre class="line-numbers language-language-python"><code class="language-language-python">import urllib
  #访问网址
 url = 'http://www.whatismyip.com.tw/'
 #这是代理IP
@@ -478,12 +481,12 @@ urllib.request.install_opener(opener)
 #使用自己安装好的Opener
 response = urllib.request.urlopen(url)
 #读取相应信息并解码
-html = response.read().decode(&quot;utf-8&quot;)
+html = response.read().decode("utf-8")
 #打印信息
 print(html)
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="通过队列获取网站所有url的爬虫">通过队列获取网站所有URL的爬虫</h2>
-                <pre><code class="language-python">#python系统关于队列的包
+                <pre class="line-numbers language-language-python"><code class="language-language-python">#python系统关于队列的包
 import queue
 #获取URL的包
 import urllib
@@ -491,7 +494,7 @@ import urllib
 import chardet
 #正则表达式
 import re
-initial_page = &quot;http://www.meng.uno&quot;
+initial_page = "http://www.meng.uno"
 
 url_queue = queue.Queue()
 seen = set()
@@ -508,23 +511,23 @@ def extract_urls(url):
     #获取这个response的编码方式
     charset = chardet.detect(html)
     #以这种编码方式解码打印
-    html = html.decode(charset.get(&quot;encoding&quot;))
-    urls = re.findall('href=\&quot;https*://w*\.*meng\.uno/.*?\&quot;', html,re.S)
-    uris = re.findall('href=\&quot;/[^/].*?[^\.]\&quot;',html, re.S)
+    html = html.decode(charset.get("encoding"))
+    urls = re.findall('href=\"https*://w*\.*meng\.uno/.*?\"', html,re.S)
+    uris = re.findall('href=\"/[^/].*?[^\.]\"',html, re.S)
     tempseen = set()
     for item in urls:
         tempseen.add(item[6:-1])
     for item in uris:
-        if &quot;.html&quot; in item:
-            tempseen.add(&quot;http://www.meng.uno&quot;+item[6:-1])
+        if ".html" in item:
+            tempseen.add("http://www.meng.uno"+item[6:-1])
         elif '.' in item:
             continue
         else:
-            tempseen.add(&quot;http://www.meng.uno&quot;+item[6:-1])
+            tempseen.add("http://www.meng.uno"+item[6:-1])
     return tempseen
             
 while(True): #一直进行直到海枯石烂
-    if url_queue.qsize()&gt;0:
+    if url_queue.qsize()>0:
         current_url = url_queue.get()    #拿出队例中第一个的url
         print(current_url)               #把这个url代表的网页存储好
         for next_url in extract_urls(current_url): #提取把这个url里链向的url
@@ -533,7 +536,7 @@ while(True): #一直进行直到海枯石烂
                 url_queue.put(next_url)
     else:
         break
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><strong><em>这里先简单解释，以后有实际项目会再补充！</em></strong></p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/51d32f19/">http://meng.uno/articles/51d32f19/</a> 欢迎转载！</p>
                 <div>

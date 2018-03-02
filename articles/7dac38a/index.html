@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -238,8 +241,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,698</span>
-	<span class="post-count"> | 预计时间13分钟</span>
+	<span class="post-count"> | 字数2,373</span>
+	<span class="post-count"> | 预计时间11分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -249,27 +252,27 @@
                   因为是调用别人的库（应该说完全是别人的功劳），所以在实现上没有什么可以说的。
                 </p>
                 <h3 id="代码">代码</h3>
-                <pre><code class="language-stylus">#!/usr/bin/env python3
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-&quot;&quot;&quot;
+"""
 Created on Thu Dec  1 13:30:21 2016
 @author: kuangmeng
 使用SVM分类器，从MNIST数据集中进行手写数字识别的分类程序
-&quot;&quot;&quot;
+"""
 import cPickle
 import gzip
 from sklearn import svm
 import time
 def load_data():
-    &quot;&quot;&quot;
+    """
     返回包含训练数据、验证数据、测试数据的元组的模式识别数据
-    &quot;&quot;&quot;
+    """
     f = gzip.open('data.gz', 'rb')
     training_data, validation_data, test_data = cPickle.load(f)
     f.close()
     return (training_data, validation_data, test_data)
 def Svm():
-    print (&quot;开始时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S')) 
+    print ("开始时间：",time.strftime('%Y-%m-%d %H:%M:%S')) 
     training_data, validation_data, test_data = load_data()
     # 传递训练模型的参数，这里用默认的参数
     clf = svm.SVC(C=10.0, kernel='rbf', gamma=0.10,cache_size=8000,probability=False)
@@ -278,11 +281,11 @@ def Svm():
     # 测试集测试预测结果
     predictions = [int(a) for a in clf.predict(test_data[0])]
     num_correct = sum(int(a == y) for a, y in zip(predictions, test_data[1]))
-    print (&quot;%s 中的 %s 测试正确。&quot; % (num_correct, len(test_data[1])))
-    print (&quot;结束时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S'))
-if __name__ == &quot;__main__&quot;:
+    print ("%s 中的 %s 测试正确。" % (num_correct, len(test_data[1])))
+    print ("结束时间：",time.strftime('%Y-%m-%d %H:%M:%S'))
+if __name__ == "__main__":
     Svm()
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="自己编程实现">自己编程实现</h2>
                 <p>在自己编程实现过程中，我也借鉴了很多其他人写的很成熟的方案，最终从数据结构、逻辑结构以及特征计算等方面得到比较合理的一组答案。</p>
                 <h3 id="逻辑结构">逻辑结构</h3>
@@ -298,12 +301,12 @@ if __name__ == &quot;__main__&quot;:
                   当选择了a1后，如果a1对应的E1为正，选择Ei最小的那个分量最为a2，如果E1为负，选择Ei最大的那个分量最为a2，这是因为anew2依赖于|E1−E2|。 如果选择的a2，不能满足下降的最小步长，那么就遍历所有的支持向量点做为a2进行试用，如果仍然都不能满足下降的最小步长，那么就遍历所有的样本点做为a2试用。如果还算是不能满足下降的最小步长，那么就重新选择a1。
                 </p>
                 <h3 id="代码-v2">代码</h3>
-                <pre><code class="language-stylus">#!/usr/bin/env python3
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-&quot;&quot;&quot;
+"""
 Created on Sun Dec  4 14:24:53 2016
 @author: kuangmeng
-&quot;&quot;&quot;
+"""
 import time
 import os
 import math
@@ -329,11 +332,11 @@ class DATA:
     def init_cache(self):
         i = 0
         for x in self.samples: 
-            print (&quot;正在计算第&quot;,i+1,&quot;个样本的RBF核&quot;)
+            print ("正在计算第",i+1,"个样本的RBF核")
             self.cache.append([])
             j = 0
             for z in self.samples:
-                if i &gt; j:
+                if i > j:
                     self.cache[i].append(self.cache[j][i])
                 else:
                     self.cache[i].append(RBF(x,z))
@@ -344,7 +347,7 @@ class image:
         self.data = []
         self.num = 0
         self.label = []
-        self.filename = &quot;&quot;
+        self.filename = ""
 gv = DATA()
 # RBF核函数
 def RBF(j, i):
@@ -369,7 +372,7 @@ def loaddata(dirpath, name):
 #图片分列        
 def images(path):
     img = []
-    file = open(path, &quot;r&quot;) 
+    file = open(path, "r") 
     for line in file:
         line = line[:-2]
         img.append(line)
@@ -410,23 +413,23 @@ def predict(m):
     return pred
 def save_models():
     for i in range(10):
-        fn = open(&quot;models/&quot; + str(i) + &quot;_a.model&quot;, &quot;w&quot;)
+        fn = open("models/" + str(i) + "_a.model", "w")
         for ai in gv.models[i].a:
             fn.write(str(ai))
             fn.write('\n')
         fn.close()
-        fn = open(&quot;models/&quot; + str(i) + &quot;_b.model&quot;, &quot;w&quot;)
+        fn = open("models/" + str(i) + "_b.model", "w")
         fn.write(str(gv.models[i].b))
         fn.close()
 def load_models():
     for i in range(10):
-        fn = open(&quot;models/&quot; + str(i) + &quot;_a.model&quot;, &quot;r&quot;)
+        fn = open("models/" + str(i) + "_a.model", "r")
         j = 0
         for line in fn:
             gv.models[i].a[j] = float(line)
             j += 1
         fn.close()
-        fn = open(&quot;models/&quot; + str(i) + &quot;_b.model&quot;, &quot;r&quot;)
+        fn = open("models/" + str(i) + "_b.model", "r")
         gv.models[i].b = float(fn.readline())
         fn.close()
 ###
@@ -443,21 +446,21 @@ def train(T, times, C, modelnum, step):
     update_samples_label(modelnum)
     init_forecasterror()
     updated = True
-    while time &lt; times and updated:
+    while time < times and updated:
         updated = False
         time += 1
         for i in range(len(gv.samples)):
             ai = gv.models[gv.modelnum].a[i]
             Ei = gv.forecasterror[i]
             #计算违背KKT的点
-            if (gv.samples[i].label[gv.modelnum] * Ei &lt; -T and ai &lt; C) or (gv.samples[i].label[gv.modelnum] * Ei &gt; T and ai &gt; 0):
+            if (gv.samples[i].label[gv.modelnum] * Ei < -T and ai < C) or (gv.samples[i].label[gv.modelnum] * Ei > T and ai > 0):
                 for j in range(len(gv.samples)):
                     if j == i: continue
                     kii = gv.cache[i][i]
                     kjj = gv.cache[j][j]
                     kji = kij = gv.cache[i][j] 
                     eta = kii + kjj - 2 * kij 
-                    if eta &lt;= 0: continue
+                    if eta <= 0: continue
                     new_aj = gv.models[gv.modelnum].a[j] + gv.samples[j].label[gv.modelnum] * (gv.forecasterror[i] - gv.forecasterror[j]) / eta # f 7.106
                     L = 0.0
                     H = 0.0
@@ -469,73 +472,73 @@ def train(T, times, C, modelnum, step):
                     else:
                         L = max(0, a2_old - a1_old)
                         H = min(C, C + a2_old - a1_old)
-                    if new_aj &gt; H:
+                    if new_aj > H:
                         new_aj = H
-                    if new_aj &lt; L:
+                    if new_aj < L:
                         new_aj = L
-                    if abs(a2_old - new_aj) &lt; step:
-                       # print (&quot;j = %d, is not moving enough&quot; % j)
+                    if abs(a2_old - new_aj) < step:
+                       # print ("j = %d, is not moving enough" % j)
                         continue
                     new_ai = a1_old + gv.samples[i].label[gv.modelnum] * gv.samples[j].label[gv.modelnum] * (a2_old - new_aj) # f 7.109 
                     new_b1 = gv.models[gv.modelnum].b - gv.forecasterror[i] - gv.samples[i].label[gv.modelnum] * kii * (new_ai - a1_old) - gv.samples[j].label[gv.modelnum] * kji * (new_aj - a2_old) # f7.115
                     new_b2 = gv.models[gv.modelnum].b - gv.forecasterror[j] - gv.samples[i].label[gv.modelnum]*kji*(new_ai - a1_old) - gv.samples[j].label[gv.modelnum]*kjj*(new_aj-a2_old)    # f7.116
-                    if new_ai &gt; 0 and new_ai &lt; C: new_b = new_b1
-                    elif new_aj &gt; 0 and new_aj &lt; C: new_b = new_b2
+                    if new_ai > 0 and new_ai < C: new_b = new_b1
+                    elif new_aj > 0 and new_aj < C: new_b = new_b2
                     else: new_b = (new_b1 + new_b2) / 2.0
                     update_forecasterror(i, new_ai, j, new_aj, new_b)
                     gv.models[gv.modelnum].a[i] = new_ai
                     gv.models[gv.modelnum].a[j] = new_aj
                     gv.models[gv.modelnum].b = new_b
                     updated = True
-                    print (&quot;迭代次数: %d, 修改组合: i: %d 与 j:%d&quot; %(time, i, j))
+                    print ("迭代次数: %d, 修改组合: i: %d 与 j:%d" %(time, i, j))
                     break
 # 测试数据
 def test():
     record = 0
     record_correct = 0
     for img in gv.tests: 
-        print (&quot;正在测试：&quot;, img.filename)
+        print ("正在测试：", img.filename)
         for modelnum in range(10):
             gv.modelnum = modelnum
-            if predict(img) &gt; 0:
-                print (&quot;测试结果：&quot;,modelnum)
+            if predict(img) > 0:
+                print ("测试结果：",modelnum)
                 record += 1
                 if modelnum == int(img.filename[0]):
                     record_correct += 1
                 break
-    print (&quot;相关记录数量:&quot;, record)
-    print (&quot;正确识别数量:&quot;, record_correct)
-    print (&quot;正确识别比例:&quot;, record_correct/record)
-    print (&quot;测试数据总量:&quot;, len(gv.tests))
-if __name__ == &quot;__main__&quot;:
-    print (&quot;开始时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S')) 
+    print ("相关记录数量:", record)
+    print ("正确识别数量:", record_correct)
+    print ("正确识别比例:", record_correct/record)
+    print ("测试数据总量:", len(gv.tests))
+if __name__ == "__main__":
+    print ("开始时间：",time.strftime('%Y-%m-%d %H:%M:%S')) 
     training = True
-    loaddata(&quot;train/&quot;, gv.samples)
-    loaddata(&quot;test/&quot;, gv.tests)    
-    print (&quot;训练数据个数：&quot;,len(gv.samples))
-    print (&quot;测试数据个数：&quot;,len(gv.tests))
+    loaddata("train/", gv.samples)
+    loaddata("test/", gv.tests)    
+    print ("训练数据个数：",len(gv.samples))
+    print ("测试数据个数：",len(gv.tests))
     if training == True:
         gv.init_cache()
         gv.init_models()
-    print (&quot;模型初始化成功！&quot;) 
-    print (&quot;当前时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S'))        
+    print ("模型初始化成功！") 
+    print ("当前时间：",time.strftime('%Y-%m-%d %H:%M:%S'))        
     T = 0.0001
     C = 10
     step = 0.001
     gv.sigma = 1
     if training == True:
        for i in range(10):
-            print (&quot;正在训练模型:&quot;, i)
+            print ("正在训练模型:", i)
             train(T, 10, C, i, step)
             save_models()
     else:
         load_models()
         for i in range(10):
             update_samples_label(i)
-    print (&quot;训练完成时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S')) 
+    print ("训练完成时间：",time.strftime('%Y-%m-%d %H:%M:%S')) 
     test()
-    print (&quot;测试完成时间：&quot;,time.strftime('%Y-%m-%d %H:%M:%S')) 
-</code></pre>
+    print ("测试完成时间：",time.strftime('%Y-%m-%d %H:%M:%S')) 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/7dac38a/">http://meng.uno/articles/7dac38a/</a> 欢迎转载！</p>
 
               </div>

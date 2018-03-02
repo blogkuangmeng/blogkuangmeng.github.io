@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,8 +240,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,466</span>
-	<span class="post-count"> | 预计时间7分钟</span>
+	<span class="post-count"> | 字数1,417</span>
+	<span class="post-count"> | 预计时间6分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -254,10 +257,10 @@
                 <p>***也不可以这样：***Variable= ‘Some string’</p>
                 <p>***原因：***Bash 会认为 ‘Some string’ 是一条指令，由于找不到该指令，这里再次报错。这个例子中 ‘Variable=’ 这部分会被当作仅对 ‘Some string’ 起作用的赋值。）</p>
                 <h2 id="使用变量：">使用变量：</h2>
-                <pre><code class="language-stylus">echo $Variable
-echo &quot;$Variable&quot;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">echo $Variable
+echo "$Variable"
 echo '$Variable'
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <p>当你赋值 (assign) 、导出 (export)，或者以其他方式使用变量时，变量名前不加 $。如果要使用变量的值， 则要加 $。</p>
                 <p><strong><em>注意:</em></strong> ’ (单引号) 不会展开变量（即会屏蔽掉变量）。</p>
                 <h2 id="在变量内部进行字符串代换">在变量内部进行字符串代换</h2>
@@ -273,41 +276,41 @@ echo '$Variable'
                 <p>注意这仅返回默认值而不是改变变量的值</p>
                 <h2 id="内置变量：">内置变量：</h2>
                 <h3 id="下面的内置变量很有用">下面的内置变量很有用</h3>
-                <pre><code class="language-stylus">echo &quot;Last program return value: $?&quot;
-echo &quot;Script's PID: $$&quot;
-echo &quot;Number of arguments: $#&quot;
-echo &quot;Scripts arguments: $@&quot;
-echo &quot;Scripts arguments separated in different variables: $1 $2...&quot;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">echo "Last program return value: $?"
+echo "Script's PID: $$"
+echo "Number of arguments: $#"
+echo "Scripts arguments: $@"
+echo "Scripts arguments separated in different variables: $1 $2..."
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h3 id="读取输入：">读取输入：</h3>
-                <pre><code class="language-stylus">echo &quot;What's your name?&quot;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">echo "What's your name?"
 read Name # 这里不需要声明新变量
 echo Hello, $Name!
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <h2 id="通常的-if-结构看起来像这样：">通常的 if 结构看起来像这样：</h2>
                 <p><strong><em>’man test’ 可查看更多的信息</em></strong></p>
-                <pre><code class="language-stylus">if [ $Name -ne $USER ]
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">if [ $Name -ne $USER ]
 then
-    echo &quot;Your name isn't your username&quot;
+    echo "Your name isn't your username"
 else
-    echo &quot;Your name is your username&quot;
+    echo "Your name is your username"
 fi
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="根据上一个指令执行结果决定是否执行下一个指令">根据上一个指令执行结果决定是否执行下一个指令</h2>
-                <pre><code class="language-stylus">echo &quot;Always executed&quot; || echo &quot;Only executed if first command fails&quot;
-echo &quot;Always executed&quot; &amp;&amp; echo &quot;Only executed if first command does NOT fail&quot;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">echo "Always executed" || echo "Only executed if first command fails"
+echo "Always executed" && echo "Only executed if first command does NOT fail"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 <h2 id="在-if-语句中使用-和-需要多对方括号">在 if 语句中使用 &amp;&amp; 和 || 需要多对方括号</h2>
-                <pre><code class="language-stylus">if [ $Name == &quot;Steve&quot; ] &amp;&amp; [ $Age -eq 15 ]
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">if [ $Name == "Steve" ] && [ $Age -eq 15 ]
 then
-    echo &quot;This will run if $Name is Steve AND $Age is 15.&quot;
+    echo "This will run if $Name is Steve AND $Age is 15."
 fi
 
-if [ $Name == &quot;Daniya&quot; ] || [ $Name == &quot;Zach&quot; ]
+if [ $Name == "Daniya" ] || [ $Name == "Zach" ]
 then
-    echo &quot;This will run if $Name is Daniya OR Zach.&quot;
+    echo "This will run if $Name is Daniya OR Zach."
 fi
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="表达式的格式如下">表达式的格式如下:</h2>
                 <p>echo $(( 10 + 5 ))</p>
                 <h2 id="指令可以带有选项：">指令可以带有选项：</h2>
@@ -318,42 +321,42 @@ fi
                 <h2 id="用下面的指令列出当前目录下所有的-txt-文件：">用下面的指令列出当前目录下所有的 txt 文件：</h2>
                 <p><code>ls -l | grep &quot;\.txt&quot;</code></p>
                 <h2 id="以-eof-作为结束标记从标准输入读取数据并覆盖-hello-py">以 ^EOF$ 作为结束标记从标准输入读取数据并覆盖 <a href="http://hello.py" target="_blank" rel="noopener">hello.py</a></h2>
-                <pre><code class="language-stylus">cat &gt; hello.py &lt;&lt; EOF
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">cat > hello.py << EOF
 #!/usr/bin/env python
 from __future__ import print_function
 import sys
-print(&quot;#stdout&quot;, file=sys.stdout)
-print(&quot;#stderr&quot;, file=sys.stderr)
+print("#stdout", file=sys.stdout)
+print("#stderr", file=sys.stderr)
 for line in sys.stdin:
     print(line, file=sys.stdout)
 EOF
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="重定向可以到输出-输入和错误输出">重定向可以到输出，输入和错误输出</h2>
-                <pre><code class="language-stylus">python hello.py &lt; &quot;input.in&quot;
-python hello.py &gt; &quot;output.out&quot;
-python hello.py 2&gt; &quot;error.err&quot;
-python hello.py &gt; &quot;output-and-error.log&quot; 2&gt;&amp;1
-python hello.py &gt; /dev/null 2&gt;&amp;1
-# &gt; 会覆盖已存在的文件， &gt;&gt; 会以累加的方式输出文件中。
-python hello.py &gt;&gt; &quot;output.out&quot; 2&gt;&gt; &quot;error.err&quot;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">python hello.py < "input.in"
+python hello.py > "output.out"
+python hello.py 2> "error.err"
+python hello.py > "output-and-error.log" 2>&1
+python hello.py > /dev/null 2>&1
+# > 会覆盖已存在的文件， >> 会以累加的方式输出文件中。
+python hello.py >> "output.out" 2>> "error.err"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="覆盖-output-out-追加-error-err-并统计行数">覆盖 output.out , 追加 error.err 并统计行数</h2>
-                <pre><code class="language-stylus">info bash 'Basic Shell Features' 'Redirections' &gt; output.out 2&gt;&gt; error.err
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">info bash 'Basic Shell Features' 'Redirections' > output.out 2>> error.err
 wc -l output.out error.err
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 <h2 id="运行指令并打印文件描述符-比如-dev-fd-123">运行指令并打印文件描述符 （比如 /dev/fd/123）</h2>
-                <pre><code class="language-stylus"># 具体可查看： man fd
-echo &lt;(echo &quot;#helloworld&quot;)
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"># 具体可查看： man fd
+echo <(echo "#helloworld")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 <h2 id="以-helloworld-覆盖-output-out">以 “#helloworld” 覆盖 output.out</h2>
-                <pre><code class="language-stylus">cat &gt; output.out &lt;(echo &quot;#helloworld&quot;)
-echo &quot;#helloworld&quot; &gt; output.out
-echo &quot;#helloworld&quot; | cat &gt; output.out
-echo &quot;#helloworld&quot; | tee output.out &gt;/dev/null
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">cat > output.out <(echo "#helloworld")
+echo "#helloworld" > output.out
+echo "#helloworld" | cat > output.out
+echo "#helloworld" | tee output.out >/dev/null
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="清理临时文件并显示详情-增加-i-选项启用交互模式">清理临时文件并显示详情（增加 ‘-i’ 选项启用交互模式）</h2>
-                <pre><code class="language-stylus">rm -v output.out error.err output-and-error.log
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">rm -v output.out error.err output-and-error.log
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 <h2 id="一个指令可用-嵌套在另一个指令内部">一个指令可用 $( ) 嵌套在另一个指令内部</h2>
                 <h3 id="以下的指令会打印当前目录下的目录和文件总数">以下的指令会打印当前目录下的目录和文件总数</h3>
                 <pre><code>echo &quot;There are $(ls | wc -l) items here.&quot;
@@ -363,64 +366,64 @@ echo &quot;#helloworld&quot; | tee output.out &gt;/dev/null
                 <pre><code>echo &quot;There are `ls | wc -l` items here.&quot;
 </code></pre>
                 <h2 id="bash-的-case-语句与-java-和-c-中的-switch-语句类似">Bash 的 case 语句与 Java 和 C++ 中的 switch 语句类似</h2>
-                <pre><code class="language-stylus">case &quot;$Variable&quot; in
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">case "$Variable" in
     # 列出需要匹配的字符串
-    0) echo &quot;There is a zero.&quot;;;
-    1) echo &quot;There is a one.&quot;;;
-    *) echo &quot;It is not null.&quot;;;
+    0) echo "There is a zero.";;
+    1) echo "There is a one.";;
+    *) echo "It is not null.";;
 esac
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="循环遍历给定的参数序列">循环遍历给定的参数序列</h2>
                 <h3 id="变量-variable-的值会被打印-3-次">变量$Variable 的值会被打印 3 次</h3>
-                <pre><code class="language-stylus">for Variable in {1..3}
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">for Variable in {1..3}
 do
-    echo &quot;$Variable&quot;
+    echo "$Variable"
 done
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <h3 id="或传统的-for循环">或传统的 “for循环”</h3>
-                <pre><code class="language-stylus">for ((a=1; a &lt;= 3; a++))
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">for ((a=1; a <= 3; a++))
 do
     echo $a
 done
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><strong><em>也可以用于文件</em></strong></p>
                 <h3 id="用-cat-输出-file1-和-file2-内容">用 cat 输出 file1 和 file2 内容</h3>
-                <pre><code class="language-stylus">for Variable in file1 file2
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">for Variable in file1 file2
 do
-    cat &quot;$Variable&quot;
+    cat "$Variable"
 done
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><strong><em>或作用于其他命令的输出</em></strong></p>
                 <h3 id="对-ls-输出的文件执行-cat-指令">对 ls 输出的文件执行 cat 指令</h3>
-                <pre><code class="language-stylus">for Output in $(ls)
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">for Output in $(ls)
 do
-    cat &quot;$Output&quot;
+    cat "$Output"
 done
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <h3 id="while-循环">while 循环</h3>
-                <pre><code class="language-stylus">while [ true ]
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">while [ true ]
 do
-    echo &quot;loop body here...&quot;
+    echo "loop body here..."
     break
 done
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="你也可以使用函数">你也可以使用函数</h2>
                 <h3 id="定义函数">定义函数</h3>
-                <pre><code class="language-stylus">function foo ()
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">function foo ()
 {
-    echo &quot;Arguments work just like script arguments: $@&quot;
-    echo &quot;And: $1 $2...&quot;
-    echo &quot;This is a function&quot;
+    echo "Arguments work just like script arguments: $@"
+    echo "And: $1 $2..."
+    echo "This is a function"
     return 0
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h3 id="更简单的方法">更简单的方法</h3>
-                <pre><code class="language-stylus">bar ()
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">bar ()
 {
-    echo &quot;Another way to declare functions!&quot;
+    echo "Another way to declare functions!"
     return 0
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h3 id="调用函数">调用函数</h3>
                 <pre><code>foo &quot;My name is&quot; $Name
 </code></pre>
@@ -452,30 +455,30 @@ done
                 <pre><code>fgrep &quot;^foo.*bar$&quot; file.txt 
 </code></pre>
                 <h2 id="以-bash-内建的-help-指令阅读-bash-自带文档">以 bash 内建的 ‘help’ 指令阅读 Bash 自带文档</h2>
-                <pre><code class="language-stylus">help
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">help
 help help
 help for
 help return
 help source
 help .
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="用-man-指令阅读相关的-bash-手册">用 man 指令阅读相关的 Bash 手册</h2>
-                <pre><code class="language-stylus">apropos bash
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">apropos bash
 man 1 bash
 man bash
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <h2 id="用-info-指令查阅命令的-info-文档-info-中按-显示帮助信息">用 info 指令查阅命令的 info 文档 （info 中按 ? 显示帮助信息）</h2>
-                <pre><code class="language-stylus">apropos info | grep '^info.*('
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">apropos info | grep '^info.*('
 man info
 info info
 info 5 info
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <h2 id="阅读-bash-的-info-文档">阅读 Bash 的 info 文档</h2>
-                <pre><code class="language-stylus">info bash
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">info bash
 info bash 'Bash Features'
 info bash 6
 info --apropos bash
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/19f2d195/">http://meng.uno/articles/19f2d195/</a> 欢迎转载！</p>
 
               </div>

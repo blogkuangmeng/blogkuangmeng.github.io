@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -237,31 +240,31 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数241</span>
+	<span class="post-count"> | 字数190</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <p>虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：</p>
-                <pre><code class="language-stylus">var allRows = $(&quot;tr&quot;);
-$(&quot;input#search&quot;).on(&quot;keydown keyup&quot;, function() {
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">var allRows = $("tr");
+$("input#search").on("keydown keyup", function() {
   allRows.hide();
-  $(&quot;tr:contains('&quot; + $(this).val() + &quot;')&quot;).show();
+  $("tr:contains('" + $(this).val() + "')").show();
 });
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>没有看错，就是这么简单，如果是在实际应用中，可以这样来写： 先声明一个按钮：
                 </p>
-                <pre><code class="language-stylus">&lt;input type=&quot;search&quot; id=&quot;search&quot; placeholder=&quot;请输入内容……&quot;&gt;
-</code></pre>
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><input type="search" id="search" placeholder="请输入内容……">
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 <p>在input框之后加入以下JavaScript代码：</p>
-                <pre><code class="language-stylus">&lt;script&gt;
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><script>
 // Quick Table Search
 $('#search').keyup(function() {
-  var regex = new RegExp($('#search').val(), &quot;i&quot;);
+  var regex = new RegExp($('#search').val(), "i");
   var rows = $('table tr:gt(0)');
   rows.each(function (index) {
-    title = $(this).children(&quot;#title&quot;).html()
+    title = $(this).children("#title").html()
     if (title.search(regex) != -1) {
       $(this).show();
     } else {
@@ -269,8 +272,8 @@ $('#search').keyup(function() {
     }
   });
 });
-&lt;/script&gt;
-</code></pre>
+</script>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 <p>完美运行有木有！！！</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/49d54823/">http://meng.uno/articles/49d54823/</a> 欢迎转载！</p>
                 <div>

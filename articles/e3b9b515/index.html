@@ -110,8 +110,11 @@
 
   <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
   <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/prism-line-numbers.min.js"></script>
 <link rel="stylesheet" href="/css/prism-duotone-sea.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body data-spy="scroll" data-target="#toc" data-offset="50">
@@ -245,10 +248,10 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <p>在之前好长一段时间，不知道因为我改动了哪个文件的权限，导致sudo命令无法使用，每次启动sudo总会报什么权限不对的错误，在网上找了好久都没找到解决办法，包括stackoverflow这么牛逼哄哄的网站上面问题人采纳的方案都无济于事，今天闲来无事，又想解决这个问题，这次我是直接进苹果的“Mac 支持”上看的，发现Mac有个<a href="https://support.apple.com/zh-cn/HT201573" target="_blank" rel="noopener"><code>单用户模式</code></a>（在此给出连接），我进入单用户模式，然后就是一个黑框框，在里面输入以下几条命令：</p>
-                <pre><code class="language-stylus">mount -uw /
+                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">mount -uw /
 chown root:wheel /etc/sudoers
 chmod 440 /etc/sudoers
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 <p>大致就是恢复文件权限之类的吧，结果<code>reboot</code>之后，居然就好了😝。 特此记录以下，给出现同种问题的小伙伴提供下。 其实，我的MySQL也有问题，我正准备进MySQL官网看看有什么解决办法😂，所以说，有什么事，能看懂英文的，尽量去软件官网找解决办法！！
                 </p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/e3b9b515/">http://meng.uno/articles/e3b9b515/</a> 欢迎转载！</p>
