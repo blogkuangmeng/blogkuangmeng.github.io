@@ -17,20 +17,20 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输出:  sd">
+  <meta name="description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  1 2 3   String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输">
   <meta name="keywords" content="Java">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Java Substring() 的实现">
   <meta property="og:url" content="http://meng.uno/articles/f3057e6c/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输出:  sd">
+  <meta property="og:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  1 2 3   String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
   <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk7.png">
   <meta property="og:updated_time" content="2018-03-02T03:26:32.958Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java Substring() 的实现">
-  <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输出:  sd">
+  <meta name="twitter:description" content="写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。  substring()的用途 代码:  1 2 3   String origin = &quot;asdfg&quot;;  origin = origin.substring(1,3); System.out.println(origin);   输">
   <meta name="twitter:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -44,6 +44,8 @@
 
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
@@ -243,7 +245,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数357</span>
+	<span class="post-count"> | 字数361</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
@@ -252,13 +254,31 @@
                 <p>写过Java的人应该都用过<code>substring(int bedinIndex, int endIndex)</code>方法。我发现这个简单的方法在实现上居然经过了一次大的变革。</p>
                 <h2 id="substring-的用途">substring()的用途</h2>
                 <p>代码:</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">String origin = "asdfg"; 
-origin = origin.substring(1,3);
-System.out.println(origin);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String origin = "asdfg"; </span><br><span class="line">origin = origin.substring(1,3);</span><br><span class="line">System.out.println(origin);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>输出:</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">sd
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sd</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？</p>
                 <h2 id="substring-的实现">substring()的实现</h2>
                 <blockquote>

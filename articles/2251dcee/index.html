@@ -46,6 +46,8 @@
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
 
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -245,7 +247,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,351</span>
+	<span class="post-count"> | 字数2,399</span>
 	<span class="post-count"> | 预计时间15分钟</span>
 	</a>
               </div>
@@ -329,10 +331,18 @@
                   from top-k tuples from the multi-map. Therefore, no matter which one we choose, it is just the original sequence in the FP-database. If there is a very large database which contains a large number of every frequent pattern, it may have
                   a remarkable effect without complex computations. However, we can’t ensure it or we just want to improve our algorithm with little support of so many records. Let’s look at the following samples which has the form as same as those in
                   the multi-map and assume that the same tone trend only has the three tuples.</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><1,1,2,2,1,0> —> (<1,1,2,0,-1,-2>, 10)
-<1,1,2,2,1,0> —> (<1,1,2,0,-2,-1>, 9) 
-<1,1,2,2,1,0> —> (<1,0,2,0,-2,-1>, 5)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">1</span>,-<span class="number">2</span>&gt;, <span class="number">10</span>)</span><br><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">2</span>,-<span class="number">1</span>&gt;, <span class="number">9</span>) </span><br><span class="line">&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>&gt; —&gt; (&lt;<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">2</span>,-<span class="number">1</span>&gt;, <span class="number">5</span>)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>As we can see, they have the same tone trend and different pitch trends with different values of a support. If we just use the method described in the paper, we may get the result of the 1st, the 2nd, or the 3rd. However, is it the best
                   one? Maybe not, I think. I mean maybe <code>&lt;1,1,2,0,-2,-1&gt;</code> is better. I think we need to add some correlation analyses to the pitch trends which have the same tone trends.</p>
                 <h1>Expanding Research</h1>
@@ -346,8 +356,18 @@
                 <h2 id="applying-syntactic-analysis">Applying syntactic analysis</h2>
                 <p>The following is my exploratory opinion of the original T-music. If I have many songs with lyrics, I will mine the frequent patterns of syntactic analysis and add them to the “s-sequence” mentioned in this paper. Thus I will reform the
                   original multi-map as follows.</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">(<pitch trend pattern>, <syntax pattern>) —> (<tone trend pattern>, support)
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">(&lt;pitch trend pattern&gt;, &lt;syntax pattern&gt;) —&gt; (&lt;tone trend pattern&gt;, support)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>When we match the input lyrics, we need to not only match the “pitch trend pattern” from the FP-database but also contrast the “syntax pattern” and then make the best decision.</p>
                 <h2 id="expanding-to-speech-recognization">Expanding to speech recognization</h2>
                 <p>I have a simple idea of speech recognization using the same method mentioned in this paper. If I could collect enough voice information spoken by the same person, I would mine the frequent patterns of his intonation habit from the voice

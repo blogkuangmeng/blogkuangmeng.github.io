@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用Set publ">
+  <meta name="description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List 1 2 3   public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用">
   <meta name="keywords" content="Java,算法复杂性,二分查找">
   <meta property="og:type" content="article">
   <meta property="og:title" content="二分查找的效率">
   <meta property="og:url" content="http://meng.uno/articles/fff444e8/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用Set publ">
+  <meta property="og:description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List 1 2 3   public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-10T13:05:27.172Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="二分查找的效率">
-  <meta name="twitter:description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用Set publ">
+  <meta name="twitter:description" content="查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。  数组查找元素的几种方法 使用List 1 2 3   public static boolean useList(String[] arr, String targetValue) { 	return Arrays.asList(arr).contains(targetValue); }   使用">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -41,6 +41,8 @@
 
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
@@ -241,8 +243,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数422</span>
-	<span class="post-count"> | 预计时间2分钟</span>
+	<span class="post-count"> | 字数573</span>
+	<span class="post-count"> | 预计时间3分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -252,96 +254,127 @@
                 </blockquote>
                 <h2 id="数组查找元素的几种方法">数组查找元素的几种方法</h2>
                 <h3 id="使用list">使用List</h3>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">public static boolean useList(String[] arr, String targetValue) {
-	return Arrays.asList(arr).contains(targetValue);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">useList</span><span class="params">(String[] arr, String targetValue)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> Arrays.asList(arr).contains(targetValue);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="使用set">使用Set</h3>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">public static boolean useSet(String[] arr, String targetValue) {
-	Set<String> set = new HashSet<String>(Arrays.asList(arr));
-	return set.contains(targetValue);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">useSet</span><span class="params">(String[] arr, String targetValue)</span> </span>&#123;</span><br><span class="line">	Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;(Arrays.asList(arr));</span><br><span class="line">	<span class="keyword">return</span> set.contains(targetValue);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="使用for-loop">使用for-loop</h3>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">public static boolean useLoop(String[] arr, String targetValue) {
-	for(String s: arr){
-		if(s.equals(targetValue))
-			return true;
-	}
-	return false;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">useLoop</span><span class="params">(String[] arr, String targetValue)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(String s: arr)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s.equals(targetValue))</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="使用二分">使用二分</h3>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">public static boolean useArraysBinarySearch(String[] arr, String targetValue) {	
-	int a =  Arrays.binarySearch(arr, targetValue);
-	if(a > 0)
-		return true;
-	else
-		return false;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">useArraysBinarySearch</span><span class="params">(String[] arr, String targetValue)</span> </span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> a =  Arrays.binarySearch(arr, targetValue);</span><br><span class="line">	<span class="keyword">if</span>(a &gt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h2 id="时间复杂性">时间复杂性</h2>
                 <h3 id="代码">代码</h3>
                 <blockquote>
                   <p>使用如下代码来验证不同数据规模（5，1k，10k）的查找任务下四种方法的时间复杂性。（二分查找需要对数据排序，排序时间未计算在内。）</p>
                 </blockquote>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">public static void main(String[] args) {
-	String[] arr = new String[] {  "CD",  "BC", "EF", "DE", "AB"};
- 
-	//use list
-	long startTime = System.nanoTime();
-	for (int i = 0; i < 100000; i++) {
-		useList(arr, "A");
-	}
-	long endTime = System.nanoTime();
-	long duration = endTime - startTime;
-	System.out.println("useList:  " + duration / 1000000);
- 
-	//use set
-	startTime = System.nanoTime();
-	for (int i = 0; i < 100000; i++) {
-		useSet(arr, "A");
-	}
-	endTime = System.nanoTime();
-	duration = endTime - startTime;
-	System.out.println("useSet:  " + duration / 1000000);
- 
-	//use loop
-	startTime = System.nanoTime();
-	for (int i = 0; i < 100000; i++) {
-		useLoop(arr, "A");
-	}
-	endTime = System.nanoTime();
-	duration = endTime - startTime;
-	System.out.println("useLoop:  " + duration / 1000000);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	String[] arr = <span class="keyword">new</span> String[] &#123;  <span class="string">"CD"</span>,  <span class="string">"BC"</span>, <span class="string">"EF"</span>, <span class="string">"DE"</span>, <span class="string">"AB"</span>&#125;;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//use list</span></span><br><span class="line">	<span class="keyword">long</span> startTime = System.nanoTime();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">		useList(arr, <span class="string">"A"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">long</span> endTime = System.nanoTime();</span><br><span class="line">	<span class="keyword">long</span> duration = endTime - startTime;</span><br><span class="line">	System.out.println(<span class="string">"useList:  "</span> + duration / <span class="number">1000000</span>);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//use set</span></span><br><span class="line">	startTime = System.nanoTime();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">		useSet(arr, <span class="string">"A"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	endTime = System.nanoTime();</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println(<span class="string">"useSet:  "</span> + duration / <span class="number">1000000</span>);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//use loop</span></span><br><span class="line">	startTime = System.nanoTime();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">		useLoop(arr, <span class="string">"A"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	endTime = System.nanoTime();</span><br><span class="line">	duration = endTime - startTime;</span><br><span class="line">	System.out.println(<span class="string">"useLoop:  "</span> + duration / <span class="number">1000000</span>);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="5-结果">&quot;5&quot;结果</h3>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">useList:  13
-useSet:  72
-useLoop:  5
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">useList:  <span class="number">13</span></span><br><span class="line">useSet:  <span class="number">72</span></span><br><span class="line">useLoop:  <span class="number">5</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="1k-结果">&quot;1k&quot;结果</h3>
                 <h4 id="随机生成数据">随机生成数据</h4>
-                <pre class="line-numbers language-language-java"><code class="language-language-java">String[] arr = new String[1000];
- 
-Random s = new Random();
-for(int i=0; i< 1000; i++){
-	arr[i] = String.valueOf(s.nextInt());
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String[] arr = <span class="keyword">new</span> String[<span class="number">1000</span>];</span><br><span class="line"> </span><br><span class="line">Random s = <span class="keyword">new</span> Random();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; <span class="number">1000</span>; i++)&#123;</span><br><span class="line">	arr[i] = String.valueOf(s.nextInt());</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h4 id="结果">结果</h4>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">useList:  112
-useSet:  2055
-useLoop:  99
-useArrayBinary:  12
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">useList:  <span class="number">112</span></span><br><span class="line">useSet:  <span class="number">2055</span></span><br><span class="line">useLoop:  <span class="number">99</span></span><br><span class="line">useArrayBinary:  <span class="number">12</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h3 id="10k-结果">&quot;10k&quot;结果</h3>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">useList:  1590
-useSet:  23819
-useLoop:  1526
-useArrayBinary:  12
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">useList:  <span class="number">1590</span></span><br><span class="line">useSet:  <span class="number">23819</span></span><br><span class="line">useLoop:  <span class="number">1526</span></span><br><span class="line">useArrayBinary:  <span class="number">12</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h2 id="结论">结论</h2>
                 <p>通过以上结果，我们可以发现二分搜索确实很高效，而且当数据量变大时，其时间增长幅度还比较小。</p>
                 <p>以后，我们就可以使用<code>Arrays.binarySearch()</code>来高效查找某元素了。</p>

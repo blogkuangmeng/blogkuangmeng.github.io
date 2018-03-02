@@ -42,6 +42,8 @@
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
 
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -240,8 +242,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数299</span>
-	<span class="post-count"> | 预计时间1分钟</span>
+	<span class="post-count"> | 字数386</span>
+	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -250,31 +252,18 @@
                 <p>我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。</p>
                 <h2 id="实现">实现</h2>
                 <p>于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用JavaScript实现，在尝试了很多次之后，终于成功了，在此先贴上代码。</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><script type="text/javascript">
-function n(n){
-	var num="";
-	for(var i=0;i<n;i++){
-    num += document.getElementById("num"+i).value;
-	}
-document.getElementById("result").value = num;
-}
-</script>
-<%
-  int num=3;
-%>
-<form  action="addAction">
-<input id="num"  name="num" value=<%=num %> type="text">
-<%
-  for(int i=0;i<num;i++){
-%>
-<input id="num<%=i %>" type="text" onblur="n(<%=num%>)">
-<%
-  }
-%>
-<input  name="str" id="result" type="hidden" >
-<button >提交</button>
-</form>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">function n(n)&#123;</span><br><span class="line">	var num="";</span><br><span class="line">	for(var i=0;i&lt;n;i++)&#123;</span><br><span class="line">    num += document.getElementById("num"+i).value;</span><br><span class="line">	&#125;</span><br><span class="line">document.getElementById("result").value = num;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  int num=3;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">form</span>  action=<span class="string">"addAction"</span>&gt;</span><br><span class="line">&lt;input id="num"  name="num" value=&lt;%=num %&gt; type="text"&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span> id=<span class="string">"num&lt;%=i %&gt;"</span> type=<span class="string">"text"</span> onblur=<span class="string">"n(&lt;%=num%&gt;)"</span>&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span>  name=<span class="string">"str"</span> id=<span class="string">"result"</span> type=<span class="string">"hidden"</span> &gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span> &gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h2 id="分析">分析</h2>
                 <p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/f12d3e70/">http://meng.uno/articles/f12d3e70/</a> 欢迎转载！</p>

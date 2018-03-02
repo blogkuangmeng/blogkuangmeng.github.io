@@ -42,6 +42,8 @@
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
 
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -241,7 +243,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,245</span>
+	<span class="post-count"> | 字数2,310</span>
 	<span class="post-count"> | 预计时间9分钟</span>
 	</a>
               </div>
@@ -319,72 +321,18 @@
                 <p>特征值矩阵的正交向量空间是否唯一有待讨论；</p>
                 <p>属于无监督学习。</p>
                 <h2 id="代码">代码</h2>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 29 15:51:25 2016
-@author: kuangmeng
-"""
-import numpy as np
-import matplotlib.pyplot as plt
-#全局变量定义区
-XLabel = list()
-YLabel = list()
-phi = [0., 0.]
-#自己定义的矩阵转换函数
-def Transport(matrix):
-        temp = list()
-        for i in range(len(matrix[0])):
-            temp.append(list())
-            for j in range(len(matrix)):
-                temp[i].append(matrix[j][i])
-        return temp
-#加载文件（可以通过更改文件名来加载不同的测试数据）
-data_set = open('testSet.txt', 'r')
-for line in data_set.readlines():
-    data_line = line.strip().split()
-    tmpx = float(data_line[0])
-    tmpy = float(data_line[1])
-    phi[0] += tmpx
-    phi[1] += tmpy
-    XLabel.append(tmpx)
-    YLabel.append(tmpy)
-phi[0] = phi[0]/100.0
-phi[1] = phi[1]/100.0
-data_set.close()
-#加载结束
-temp_x = list()
-for i in range(100):
-     temp_x.append([XLabel[i]-phi[0], YLabel[i]-phi[1]])
-temp_x_ = Transport(temp_x)
-sigma = np.dot(temp_x_, temp_x)
-D,V= np.linalg.eig(sigma)
-for i in range(2):
-     for j in range(2):
-         V.real[i][j] *= -1
-temp_v_ = Transport(V.real)
-tr1 = list()
-tr1.append(XLabel)
-tr1.append(YLabel)
-tr1 = Transport(tr1)
-xr1 = np.dot(tr1, temp_v_[0])
-xr2 = np.dot(phi, temp_v_[1])
-xr = tr1
-#        print xr
-for i in range(len(XLabel)):
-      xr[i][0] = np.dot(xr1[i], V.real[0][0])+np.dot(xr2, V.real[0][1])
-      xr[i][1] = np.dot(xr1[i], V.real[1][0])+np.dot(xr2, V.real[1][1])
-#        print xr
-plt.plot(XLabel, YLabel, 'r+')
-temp_xr = Transport(xr)
-plt.plot(temp_xr[0], temp_xr[1], 'b*')
-for i in range(len(XLabel)):
-     plt.plot([XLabel[i],xr[i][0]], [YLabel[i],xr[i][1]])
-plt.axis([-8,6,-5,5])
-plt.xlabel = 'x'
-plt.ylabel = 'y'
-plt.show()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Tue Nov 29 15:51:25 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">#全局变量定义区</span><br><span class="line">XLabel = list()</span><br><span class="line">YLabel = list()</span><br><span class="line">phi = [<span class="number">0</span>., <span class="number">0</span>.]</span><br><span class="line">#自己定义的矩阵转换函数</span><br><span class="line">def Transport(matrix):</span><br><span class="line">        temp = list()</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">            temp.append(list())</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">                temp[i].append(matrix[j][i])</span><br><span class="line">        return temp</span><br><span class="line">#加载文件（可以通过更改文件名来加载不同的测试数据）</span><br><span class="line">data_set = open(<span class="string">'testSet.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> data_set.readlines():</span><br><span class="line">    data_line = line.strip().split()</span><br><span class="line">    tmpx = <span class="attribute">float</span>(data_line[<span class="number">0</span>])</span><br><span class="line">    tmpy = <span class="attribute">float</span>(data_line[<span class="number">1</span>])</span><br><span class="line">    phi[<span class="number">0</span>] += tmpx</span><br><span class="line">    phi[<span class="number">1</span>] += tmpy</span><br><span class="line">    XLabel.append(tmpx)</span><br><span class="line">    YLabel.append(tmpy)</span><br><span class="line">phi[<span class="number">0</span>] = phi[<span class="number">0</span>]/<span class="number">100.0</span></span><br><span class="line">phi[<span class="number">1</span>] = phi[<span class="number">1</span>]/<span class="number">100.0</span></span><br><span class="line">data_set.close()</span><br><span class="line">#加载结束</span><br><span class="line">temp_x = list()</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">     temp_x.append([XLabel[i]-phi[<span class="number">0</span>], YLabel[i]-phi[<span class="number">1</span>]])</span><br><span class="line">temp_x_ = Transport(temp_x)</span><br><span class="line">sigma = np.dot(temp_x_, temp_x)</span><br><span class="line">D,V= np<span class="selector-class">.linalg</span><span class="selector-class">.eig</span>(sigma)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">     <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">         V<span class="selector-class">.real</span>[i][j] *= -<span class="number">1</span></span><br><span class="line">temp_v_ = Transport(V.real)</span><br><span class="line">tr1 = list()</span><br><span class="line">tr1.append(XLabel)</span><br><span class="line">tr1.append(YLabel)</span><br><span class="line">tr1 = Transport(tr1)</span><br><span class="line">xr1 = np.dot(tr1, temp_v_[<span class="number">0</span>])</span><br><span class="line">xr2 = np.dot(phi, temp_v_[<span class="number">1</span>])</span><br><span class="line">xr = tr1</span><br><span class="line">#        print xr</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">      xr[i][<span class="number">0</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">      xr[i][<span class="number">1</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">#        print xr</span><br><span class="line">plt.plot(XLabel, YLabel, <span class="string">'r+'</span>)</span><br><span class="line">temp_xr = Transport(xr)</span><br><span class="line">plt.plot(temp_xr[<span class="number">0</span>], temp_xr[<span class="number">1</span>], <span class="string">'b*'</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">     plt.plot([XLabel[i],xr[i][<span class="number">0</span>]], [YLabel[i],xr[i][<span class="number">1</span>]])</span><br><span class="line">plt.axis([-<span class="number">8</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line">plt<span class="selector-class">.xlabel</span> = <span class="string">'x'</span></span><br><span class="line">plt<span class="selector-class">.ylabel</span> = <span class="string">'y'</span></span><br><span class="line">plt.show()</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/6c0d033f/">http://meng.uno/articles/6c0d033f/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/177fbbcc/">使用EM算法优化的GMM</a></li><li><a href="http://meng.uno/articles/a12d1477/">怎么处理噪声</a></li><li><a href="http://meng.uno/articles/1af17fd9/">多项式拟合曲线——最小二乘法</a></li><li><a href="http://www.libinx.com/2016/2016-11-09-machine-learning-algorithm-series-decision-tree/">机器学习算法系列（1）决策树</a></li><li><a href="http://www.libinx.com/2017/2017-02-26-machine-learning-algorithm-series-svm-2/">机器学习算法系列（5）支持向量机（二）</a></li><li><a href="http://www.libinx.com/2016/2016-11-12-machine-learning-algorithm-series-linearing-regression/">机器学习算法系列（2）多元线性回归</a></li></ul></div>

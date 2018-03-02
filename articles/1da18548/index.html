@@ -42,6 +42,8 @@
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
 
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -240,8 +242,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数517</span>
-	<span class="post-count"> | 预计时间2分钟</span>
+	<span class="post-count"> | 字数811</span>
+	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -250,111 +252,79 @@
                 <p>开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了其他牛人的（海量）博客之后，才总结出如下的这点精华步骤（又要感慨一下国内搜索引擎之渣）！</p>
                 <h2 id="编写androidmanifest-xml">编写AndroidManifest.xml</h2>
                 <p>首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在AndroidManifest.xml中，我们需要这样写：</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uno.meng.download">
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-           android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ResultActivity"
-            android:label="@string/comeback"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-    </application>
-</manifest>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;manifest xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    package=<span class="string">"uno.meng.download"</span>&gt;</span><br><span class="line">    &lt;application</span><br><span class="line">        android:allowBackup=<span class="string">"true"</span></span><br><span class="line">        android:<span class="attribute">icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">        android:theme=<span class="string">"@style/AppTheme"</span>&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=<span class="string">".MainActivity"</span></span><br><span class="line">           android:label=<span class="string">"@string/app_name"</span>&gt;</span><br><span class="line">            &lt;intent-<span class="attribute">filter</span>&gt;</span><br><span class="line">                &lt;action android:name=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span><br><span class="line">                &lt;category android:name=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span><br><span class="line">            &lt;/intent-<span class="attribute">filter</span>&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=<span class="string">".ResultActivity"</span></span><br><span class="line">            android:label=<span class="string">"@string/comeback"</span></span><br><span class="line">            android:parentActivityName=<span class="string">".MainActivity"</span> &gt;</span><br><span class="line">            &lt;meta-data</span><br><span class="line">                android:name=<span class="string">"android.support.PARENT_ACTIVITY"</span></span><br><span class="line">                android:value=<span class="string">".MainActivity"</span>/&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">    &lt;/application&gt;</span><br><span class="line">&lt;/manifest&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>其中，每个
                   <activity>对应一个界面，从代码中可见，我将后一个页面加了一个返回前一个页面的“返回符”。</activity>
                 </p>
                 <h2 id="编写跳转前界面search-xml">编写跳转前界面search.xml</h2>
                 <p>由于我在此将介绍怎么使用按钮跳转（带输入），所以直接在主界面search.xml（名称随意）中声明这两个组件（按钮，输入框）：</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
-    <EditText
-        android:id="@+id/edit_message"
-        android:layout_margin="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:hint="请输入文本信息 ..."/>
-    <Button
-        android:id="@+id/button"
-        android:text="点击提交 "
-        android:layout_margin="100dp"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
-        android:onClick="sendMessage" />
-</LinearLayout>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:weightSum=<span class="string">"1"</span>&gt;</span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">"@+id/edit_message"</span></span><br><span class="line">        android:layout_margin=<span class="string">"30dp"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"80dp"</span></span><br><span class="line">        android:hint=<span class="string">"请输入文本信息 ..."</span>/&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">"@+id/button"</span></span><br><span class="line">        android:text=<span class="string">"点击提交 "</span></span><br><span class="line">        android:layout_margin=<span class="string">"100dp"</span></span><br><span class="line">        android:layout_width=<span class="string">"127dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:onClick=<span class="string">"sendMessage"</span> /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>可见，我对按钮加了一个onClick事件。</p>
                 <h2 id="编写对应的mainactivity-java">编写对应的MainActivity.java</h2>
                 <p>在search.xml对应的MainActivity.java文件中我们写好onCreate方法（每个文件都会有）以及sendMessage方法：</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">public class MainActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "uno.meng.download.MESSAGE";
-    public void sendMessage(){
-        EditText editText = (EditText)findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        Intent intent = new Intent(this, ResultActivity.class);
-        intent.putExtra(EXTRA_MESSAGE,message);
-        startActivity(intent);
-    }
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search);
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    public final static String EXTRA_MESSAGE = "uno.meng.download.MESSAGE";</span><br><span class="line">    public void sendMessage()&#123;</span><br><span class="line">        EditText editText = (EditText)findViewById(R.id.edit_message);</span><br><span class="line">        String message = editText.getText().toString();</span><br><span class="line">        Intent intent = new Intent(this, ResultActivity.class);</span><br><span class="line">        intent.putExtra(EXTRA_MESSAGE,message);</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState)&#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h2 id="编写接收界面result-xml">编写接收界面result.xml</h2>
                 <p>然后到result.xml接收（我用的一个框来接收）：</p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus"><?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
-    <TextView
-        android:layout_margin="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"/>
-</LinearLayout>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:weightSum=<span class="string">"1"</span>&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_margin=<span class="string">"30dp"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"80dp"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h2 id="编写接收对应的resultactivity-java">编写接收对应的ResultActivity.java</h2>
                 <p>编写对应的ResultActivity.java文件， 将从MainActivity.java接收来的文字打印到result.xml的框中：
                 </p>
-                <pre class="line-numbers language-language-stylus"><code class="language-language-stylus">public class ResultActivity extends AppCompatActivity{
-    private Intent intent;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.result);
-        intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        System.out.println(message);
-       TextView textview = new TextView(this);
-       textview.setTextSize(100);
-       textview.setText(message);
-       setContentView(textview);
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class ResultActivity extends AppCompatActivity&#123;</span><br><span class="line">    private Intent intent;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.result);</span><br><span class="line">        intent = getIntent();</span><br><span class="line">        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);</span><br><span class="line">        System.out.println(message);</span><br><span class="line">       TextView textview = new TextView(this);</span><br><span class="line">       textview.setTextSize(100);</span><br><span class="line">       textview.setText(message);</span><br><span class="line">       setContentView(textview);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>到此为止，已经完成了Android页面跳转！</p>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/1da18548/">http://meng.uno/articles/1da18548/</a> 欢迎转载！</p>
                 <div>
