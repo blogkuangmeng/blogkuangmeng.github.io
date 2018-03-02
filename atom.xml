@@ -27,12 +27,18 @@
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;插件安装&quot;&gt;插件安装&lt;/h2&gt;
-&lt;p&gt;环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。&lt;/p&gt;
-&lt;p&gt;Help -&amp;gt; Instal
-      
+      插件安装
+环境：JDK1.8，Eclipse4+。有同学遇到过这样的情况，安装插件重启后，发现没有对应的菜单项，从日志上也看不到相关的异常信息，最后把JDK从1.6升级到1.8解决问题。
+
+Help -&gt; Install New Software…
+
+
+
+输入Update Site地址：https://p3c.alibaba.com/plugin/eclipse/update 回车，然后勾选Ali-CodeAnalysis，再一直点Next Next…按提示走下去就好。 然后就是提示重启了，安装完毕。
+
+
+
+注意：有同学反映插件扫描会触发很多 “JPA Java Change Event Ha
     
     </summary>
     
@@ -60,11 +66,17 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;不知道大家在用Eclipse的时候有没有感觉到，当代码量一大就看不懂自己代码了呢？有人可能要说了，eclipse不是自己带有格式化代码工具吗？确实如此，但是我们可能想使用更高级的自动化工具，例如Google—Java-Style。这篇博文，我将
-      
+      不知道大家在用Eclipse的时候有没有感觉到，当代码量一大就看不懂自己代码了呢？有人可能要说了，eclipse不是自己带有格式化代码工具吗？确实如此，但是我们可能想使用更高级的自动化工具，例如Google—Java-Style。这篇博文，我将展示如何使用eclipse自带的自动化代码规范工具，以及怎么配置Google-Java-Style。
+
+准备
+文件下载：
+
+ * Eclipse: 进入官网
+ * Google Java Format File: 点击下载
+
+使用Eclipse自带
+ * 快捷键： Ctrl/Command + Shift + F
+ * 鼠标：  * 单个文件：进入文件/
     
     </summary>
     
@@ -92,12 +104,11 @@
     
     <summary type="html">
     
-      
-      
-        &lt;h1&gt;Human Genome Project&lt;/h1&gt;
-&lt;h2 id=&quot;the-profile-of-the-project&quot;&gt;The Profile of the Project&lt;/h2&gt;
-&lt;p&gt;人类基因组计划(Human Genome Project,简称HGP)是由美国
-      
+      Human Genome Project
+The Profile of the Project
+人类基因组计划(Human Genome Project,简称HGP)是由美国科学家于1985年率先提出，又于1990年正式启动的。来自美国、英国、法国、德国、日本和中国科学家共同参与了这一预算达30亿美元的人类基因组计划。按照这个计划的设想，在2005年，要把人体内约10万个基因的密码全部解开，同时绘制出人类基因的谱图。换句话说，就是要揭开组成人体4万个基因的30亿个碱基对的秘密。
+
+这一计划的最终目的是测定人类基因组30亿个基本化学组成（称为碱基对或核苷酸），进而揭开与人类的生老病死有关的数万个
     
     </summary>
     
@@ -123,13 +134,17 @@
     
     <summary type="html">
     
-      
-      
-        &lt;h1&gt;比特币术语&lt;/h1&gt;
-&lt;h2 id=&quot;比特币&quot;&gt;比特币&lt;/h2&gt;
-&lt;p&gt;首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内容。”&lt;/p&gt;
-&lt;p&gt;而没有大写的bitcoin则表示一个记账单位。例如：“我今天转出
-      
+      比特币术语
+比特币
+首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内容。”
+
+而没有大写的bitcoin则表示一个记账单位。例如：“我今天转出了10个bitcoin。”该单位通常也简写为BTC或XBT。
+
+比特币地址
+比特币地址就像一个物理地址或者电子邮件地址。这是别人付给你比特币时你唯一需要提供的信息。然而一个重要的区别是，每个地址应该只用于单笔交易。
+
+对等式网络
+对等式网络是指，通过允许单个节点与其他节点直接交互，从而实现整个系统像有组织的集体一样运作的系统 。对于比特币来说，比特币网络以这样一种方式构建——每个用户都在传
     
     </summary>
     
@@ -151,12 +166,17 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;我们先从分析原理入手，然后再使用Python提供的基本的库urllib。&lt;/p&gt;
-  &lt;p&gt;注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。&lt;/p
-      
+      我们先从分析原理入手，然后再使用Python提供的基本的库urllib。
+
+注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。
+
+原理
+网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。
+
+URL
+URL就是统一资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：
+
+protocol ://hostname[:port]/
     
     </summary>
     
@@ -182,10 +202,7 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;CPAchecker is a tool for configurable software verification which means expressing different program analysis and model checking approach
-      
+      CPAchecker is a tool for configurable software verification which means expressing different program analysis and model checking approaches in one single formalism. The main algorithm is configurable to perform a reachability analysis on arbitrary combinations of existing configurable program analys
     
     </summary>
     
@@ -213,10 +230,7 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;I found this project from the references of other papers, and I thought it was good, so I plan to run it. As we can see from its name, Li
-      
+      I found this project from the references of other papers, and I thought it was good, so I plan to run it. As we can see from its name, Linux Test Project (LTP) has a goal to deliver test suites to the open source community that validate the reliability, robustness, and stability of Linux. This proje
     
     </summary>
     
@@ -242,12 +256,9 @@
     
     <summary type="html">
     
-      
-      
-        &lt;h1&gt;Summary&lt;/h1&gt;
-&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;This paper contains some improvements on an algorithmic melody composer called “T-music”
-      
+      Summary
+Abstract
+This paper contains some improvements on an algorithmic melody composer called “T-music”. “T-music” is an algorithm which can compose a melody for users’ input lyrics by mining the relationship between the melodies and lyrics. These relationships are known as frequent patterns (FPS)
     
     </summary>
     
@@ -273,13 +284,20 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道&lt;code&gt;.length&lt;/code&gt;与&lt;code&gt;length()&lt;/code&gt;的区别喻原因呢？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面问题的答案是：&lt;/p&gt;
-      
+      当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道.length与length()的区别喻原因呢？
+
+上面问题的答案是：
+
+ * 数组使用.length属性
+ * 字符串使用length()方法
+
+下面我来回答原因。
+
+为什么数组有.length属性？
+在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，其长度可以作为一个属性。
+
+为什么字符串需要length()方法？
+Java中的String，实际上是一个char类型数组，而char[]已经有了.length属性，所以在实现String时就没必要再定义重复的属性了，
     
     </summary>
     
@@ -305,11 +323,17 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;在Java中，异常分为&lt;code&gt;checked&lt;/code&gt;与&lt;code&gt;unchecked&lt;/code&gt;，他们都在一个分类层次中，如下图。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://www.meng.uno/images/ehd.jpeg&quot; alt=&quot;DEH&quot;&gt;&lt;
-      
+      在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。
+
+
+
+其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。
+
+另一种颜色的为unchecked异常，他们的异常不需要被recover。
+
+
+
+本文链接： http://meng.uno/articles/1164dab2/ 欢迎转载！
     
     </summary>
     
@@ -335,14 +359,29 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;数组查找元素的几种方法&quot;&gt;数组查找元素的几种方法&lt;/h2&gt;
-&lt;h3 id=&quot;使用list&quot;&gt;
-      
+      查找是比较常见的工作，今天我通过对比几种在数组中查找一个确定的值的例子来向大家展示二分查找的魅力。
+
+数组查找元素的几种方法
+使用List
+1
+2
+3
+
+
+public static boolean useList(String[] arr, String targetValue) {
+	return Arrays.asList(arr).contains(targetValue);
+}
+
+
+使用Set
+1
+2
+3
+4
+
+
+public static boolean useSet(String[] arr, String targetValue) {
+	Set&lt;String&gt; set = ne
     
     </summary>
     
@@ -370,11 +409,33 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;写过Java的人应该都用过&lt;code&gt;substring(int bedinIndex, int endIndex)&lt;/code&gt;方法。我发现这个简单的方法在实现上居然经过了一次大的变革。&lt;/p&gt;
-&lt;h2 id=&quot;substring-的用途&quot;&gt;substring()的用途&lt;
-      
+      写过Java的人应该都用过substring(int bedinIndex, int endIndex)方法。我发现这个简单的方法在实现上居然经过了一次大的变革。
+
+substring()的用途
+代码:
+
+1
+2
+3
+
+
+String origin = &quot;asdfg&quot;; 
+origin = origin.substring(1,3);
+System.out.println(origin);
+
+
+输出:
+
+1
+
+
+sd
+
+
+我们发现它能将原始字符串中从下标为beginIndex到endIndex-1之间的子串取出。那它是怎么实现的呢？
+
+substring()的实现
+Java中的字符串有三个域：
     
     </summary>
     
@@ -396,12 +457,32 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。&lt;/p&gt;
-&lt;h2 id=&quot;调用方法必须处理被调用方法抛出的异常&quot;&gt;调用方法必须处理被调用方法抛出的异常&lt;/h2&gt;
-&lt;p&gt;下面是一个处理异常的程序。我们可以测试一下，如果在一个方
-      
+      在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。
+
+调用方法必须处理被调用方法抛出的异常
+下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+
+public class exceptionTest {
+    private static Exception exception;
+ 
+    public static void main(String[] args) throws Ex
     
     </summary>
     
@@ -427,11 +508,10 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;Homepage: &lt;a href=&quot;https://locore.cs.washington.edu/hyperkernel/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://locore.cs.washing
-      
+      Homepage: https://locore.cs.washington.edu/hyperkernel/ Code: https://github.com/locore/hv6
+
+State-machine Specification
+State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system i
     
     </summary>
     
@@ -457,13 +537,19 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入&lt;code&gt;X&lt;/code&gt;，亦可以出现在输出&lt;code&gt;Y&lt;/code&gt;中。&lt;/p&gt;
-&lt;h2 id=&quot;x中缺失值&quot;&gt;&lt;code&gt;X&lt;/code&gt;中缺失值&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;使用来自所有可
-      
+      处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入X，亦可以出现在输出Y中。
+
+X中缺失值
+ 1. 使用来自所有可用数据的特征的平均值
+ 2. 忽略实例
+ 3. 使用来自类似项目的平均值
+ 4. 使用另一个机器学习算法来预测值
+
+ * Bagging 或者 Boosting
+
+
+
+本文链接： http://meng.uno/articles/a12d1477/ 欢迎转载！
     
     </summary>
     
@@ -489,10 +575,7 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it 
-      
+      Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it means that Yggdrasil needs no manual annotations or proofs. As for crash refinement, it is amenable to fully automated SMT reasoning. The whole verification is som
     
     </summary>
     
@@ -518,10 +601,9 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Kernel-based Virtual Machine (KVM) is a virtualization infrastructure for the Linux kernel that turns it into a hypervisor. KVM requires 
-      
+      Kernel-based Virtual Machine (KVM) is a virtualization infrastructure for the Linux kernel that turns it into a hypervisor. KVM requires a processor with hardware virtualization extensions.
+
+This project, as its name suggests, is to provide unit tests for KVM. The unit tests are tiny guest operating
     
     </summary>
     
@@ -543,10 +625,7 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;DynamoRIO is a dynamic binary piling/translation platform. Through it, you can manipulate the running code of a program, that is, it can 
-      
+      DynamoRIO is a dynamic binary piling/translation platform. Through it, you can manipulate the running code of a program, that is, it can simulate running a program and allow you to transform and control any place of the running code. It is used for dynamic analysis, optimization and translation of p
     
     </summary>
     
@@ -572,11 +651,30 @@
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-  &lt;p&gt;不少程序员都觉得Mac的一大优势就是其Shell，也有很多人觉得Mac与Linux在Shell上很相似。不错，但是Mac还是略胜一筹或者说高一个量级。今天，我将向大家介绍一个Mac特有的Shell（Linux也可以安装，但是不是系统自带。）——
-      
+      不少程序员都觉得Mac的一大优势就是其Shell，也有很多人觉得Mac与Linux在Shell上很相似。不错，但是Mac还是略胜一筹或者说高一个量级。今天，我将向大家介绍一个Mac特有的Shell（Linux也可以安装，但是不是系统自带。）—— Zsh。
+
+切换到Zsh
+使用cat /etc/shells指令，我们可以看看自己的系统有哪些Shells，下面是我的Mac的结果：
+
+1
+2
+3
+4
+5
+6
+7
+
+
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/usr/local/bin/fish
+
+
+使用这个指令切换到Zsh：chs
     
     </summary>
     
@@ -598,11 +696,15 @@
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。&lt;/p&gt;
-&lt;p&gt;&lt;img sr
-      
+      现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。
+
+
+
+谷歌开发的Tensorflow，微软的CNTK以及Theano都是为深度学习而开发的库，它们促进了使用GPU计算。他们并不难，但与Keras相比，他们仍然非常复杂。Keras只是使用底层深度学习库的界面。使用Keras就像玩乐高一样简单。我建议初学者从Keras开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。
+
+
+
+本文
     
     </summary>
     
