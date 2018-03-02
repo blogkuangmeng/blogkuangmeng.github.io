@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19">
+  <meta name="description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：               save">
   <meta name="keywords" content="软件工程">
   <meta property="og:type" content="article">
   <meta property="og:title" content="使用JavaScript将页面导出为图片">
   <meta property="og:url" content="http://meng.uno/articles/f03eda59/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19">
+  <meta property="og:description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：               save">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.919Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="使用JavaScript将页面导出为图片">
-  <meta name="twitter:description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19">
+  <meta name="twitter:description" content="昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：               save">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -41,8 +41,6 @@
 
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
-
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
@@ -82,6 +80,7 @@
   <script src="/js/bootstrap.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-a11y-dark.css">
 
 
   <link rel="stylesheet" href="/css/dialog.css">
@@ -235,7 +234,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数395</span>
+	<span class="post-count"> | 字数339</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
@@ -243,18 +242,63 @@
 
                 <p>昨天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！ 在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么屁用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：
                 </p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;script src=<span class="string">"canvas2image.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;<span class="selector-tag">canvas</span>  id=<span class="string">"cvs"</span>&gt;&lt;/canvas&gt;</span><br><span class="line">    &lt;<span class="selector-tag">button</span> id=<span class="string">"save"</span>&gt;save&lt;/button&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="selector-tag">canvas</span>, ctx, bMouseIsDown = false, iLastX, iLastY,</span><br><span class="line">        <span class="variable">$save</span>, <span class="variable">$imgs</span>,</span><br><span class="line">        <span class="variable">$convert</span>, <span class="variable">$imgW</span>, <span class="variable">$imgH</span>,</span><br><span class="line">        $sel;</span><br><span class="line">    function init ()&#123;</span><br><span class="line">        canvas = document.getElementById('cvs');</span><br><span class="line">        ctx = canvas.getContext('2d');</span><br><span class="line">        $save = document.getElementById('save');</span><br><span class="line">        $convert = document.getElementById('convert');</span><br><span class="line">        $sel = "png";</span><br><span class="line">        $imgs = document.getElementById('imgs');</span><br><span class="line">        $imgW = 1980;</span><br><span class="line">        $imgH = 2000;</span><br><span class="line">        bind();</span><br><span class="line">        draw();</span><br><span class="line">    &#125;</span><br><span class="line">    function bind () &#123;</span><br><span class="line">        <span class="selector-tag">canvas</span><span class="selector-class">.onmousedown</span> = function(e) &#123;</span><br><span class="line">            bMouseIsDown = true;</span><br><span class="line">            iLastX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);</span><br><span class="line">            iLastY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">canvas</span><span class="selector-class">.onmouseup</span> = function() &#123;</span><br><span class="line">            bMouseIsDown = false;</span><br><span class="line">            iLastX = -1;</span><br><span class="line">            iLastY = -1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">canvas</span><span class="selector-class">.onmousemove</span> = function(e) &#123;</span><br><span class="line">            <span class="keyword">if</span> (bMouseIsDown) &#123;</span><br><span class="line">                var iX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);</span><br><span class="line">                var iY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);</span><br><span class="line">                ctx.moveTo(iLastX, iLastY);</span><br><span class="line">                ctx.lineTo(iX, iY);</span><br><span class="line">                ctx.stroke();</span><br><span class="line">                iLastX = iX;</span><br><span class="line">                iLastY = iY;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="variable">$save</span><span class="selector-class">.onclick</span> = function (e) &#123;</span><br><span class="line">            <span class="selector-tag">var</span> type = <span class="variable">$sel</span><span class="selector-class">.value</span>,</span><br><span class="line">                w = <span class="variable">$imgW</span><span class="selector-class">.value</span>,</span><br><span class="line">                h = $imgH.value;</span><br><span class="line">            Canvas2Image.saveAsImage(canvas, w, h, type);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    onload = init;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-stylus">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;script src=&quot;canvas2image.js&quot;&gt;&lt;/script&gt;
+&lt;body&gt;
+    &lt;canvas  id=&quot;cvs&quot;&gt;&lt;/canvas&gt;
+    &lt;button id=&quot;save&quot;&gt;save&lt;/button&gt;
+&lt;script&gt;
+    var canvas, ctx, bMouseIsDown = false, iLastX, iLastY,
+        $save, $imgs,
+        $convert, $imgW, $imgH,
+        $sel;
+    function init (){
+        canvas = document.getElementById('cvs');
+        ctx = canvas.getContext('2d');
+        $save = document.getElementById('save');
+        $convert = document.getElementById('convert');
+        $sel = &quot;png&quot;;
+        $imgs = document.getElementById('imgs');
+        $imgW = 1980;
+        $imgH = 2000;
+        bind();
+        draw();
+    }
+    function bind () {
+        canvas.onmousedown = function(e) {
+            bMouseIsDown = true;
+            iLastX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);
+            iLastY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);
+        }
+        canvas.onmouseup = function() {
+            bMouseIsDown = false;
+            iLastX = -1;
+            iLastY = -1;
+        }
+        canvas.onmousemove = function(e) {
+            if (bMouseIsDown) {
+                var iX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);
+                var iY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);
+                ctx.moveTo(iLastX, iLastY);
+                ctx.lineTo(iX, iY);
+                ctx.stroke();
+                iLastX = iX;
+                iLastY = iY;
+            }
+        };
+        $save.onclick = function (e) {
+            var type = $sel.value,
+                w = $imgW.value,
+                h = $imgH.value;
+            Canvas2Image.saveAsImage(canvas, w, h, type);
+        }
+    }
+    onload = init;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/f03eda59/">http://meng.uno/articles/f03eda59/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/61cdd944/">我的Java+Struts2+MySQL配置</a></li><li><a href="http://meng.uno/articles/fc57b387/">String的“+”操作分析</a></li><li><a href="http://meng.uno/articles/fa7b6881/">Java web中的浮出层使用</a></li><li><a href="http://meng.uno/articles/49d54823/">表格搜索</a></li><li><a href="http://meng.uno/articles/21f3b9c2/">Java发送邮件</a></li></ul></div>

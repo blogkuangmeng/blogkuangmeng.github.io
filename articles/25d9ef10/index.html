@@ -49,8 +49,6 @@
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
 
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -89,6 +87,7 @@
   <script src="/js/bootstrap.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-a11y-dark.css">
 
 
   <link rel="stylesheet" href="/css/dialog.css">
@@ -243,7 +242,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,056</span>
+	<span class="post-count"> | 字数1,047</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
@@ -273,18 +272,17 @@
                 <p><img src="http://meng.uno/images/map/2.png" alt="IMG"></p>
                 <p>数据分块（chuck）存储在多台服务器。如上图所示，一个大文件分割成C0～C5共6块，每块在多台服务器存储备份。每台存储服务器也做计算用，使得计算靠近存储端。</p>
                 <h2 id="计算模型">计算模型</h2>
-                <figure class="highlight plain">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">输入：key-value对的集合 </span><br><span class="line"></span><br><span class="line">- Map(k,v) —&gt; &lt;k’, v’&gt;*</span><br><span class="line">  - 输入一个key-value对，输出多个key-value对；</span><br><span class="line">  - 对所有的(k,v)对，只有一个Map函数。</span><br><span class="line"></span><br><span class="line">- Reduce(k’, &lt;v’&gt;*) —&gt; &lt;k’, v”&gt;</span><br><span class="line">  - 所有的具有相同k’的v’都被reduce到一起；</span><br><span class="line">  - 对同一个k’，只有一个Reduce函数。</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code>输入：key-value对的集合 
+
+- Map(k,v) —&gt; &lt;k’, v’&gt;*
+  - 输入一个key-value对，输出多个key-value对；
+  - 对所有的(k,v)对，只有一个Map函数。
+
+- Reduce(k’, &lt;v’&gt;*) —&gt; &lt;k’, v”&gt;
+  - 所有的具有相同k’的v’都被reduce到一起；
+  - 对同一个k’，只有一个Reduce函数。
+
+</code></pre>
                 <p>Map-Reduce的计算模型分为Map和Reduce两步，Map分布式处理任务，Reduce合并任务。</p>
                 <p><img src="http://meng.uno/images/map/3.png" alt="IMG"></p>
                 <p>上图展示了用Map-Reduce统计超大规模文件中单词出现次数，红色横线将不同节点的实现分割开。对于Map节点，所有相同单词都输出到同一个节点，比如the都在第二个节点。为了保证效率，Map-Reduce都采用的是顺序读取。</p>

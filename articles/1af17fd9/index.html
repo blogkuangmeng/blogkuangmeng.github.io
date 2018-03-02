@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60">
+  <meta name="description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  # -*- coding: utf-8 -*- import matplotlib.pyplot as plt import numpy import random  f = plt.figure() draw = f.add_subplot(111) #拟合函数的次数限制 times=9 tail=times+1 x = numpy.a">
   <meta name="keywords" content="机器学习">
   <meta property="og:type" content="article">
   <meta property="og:title" content="多项式拟合曲线——最小二乘法">
   <meta property="og:url" content="http://meng.uno/articles/1af17fd9/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60">
+  <meta property="og:description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  # -*- coding: utf-8 -*- import matplotlib.pyplot as plt import numpy import random  f = plt.figure() draw = f.add_subplot(111) #拟合函数的次数限制 times=9 tail=times+1 x = numpy.a">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-17T02:10:59.079Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="多项式拟合曲线——最小二乘法">
-  <meta name="twitter:description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60">
+  <meta name="twitter:description" content="直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：  # -*- coding: utf-8 -*- import matplotlib.pyplot as plt import numpy import random  f = plt.figure() draw = f.add_subplot(111) #拟合函数的次数限制 times=9 tail=times+1 x = numpy.a">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -41,8 +41,6 @@
 
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
-
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
@@ -82,6 +80,7 @@
   <script src="/js/bootstrap.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-a11y-dark.css">
 
 
   <link rel="stylesheet" href="/css/dialog.css">
@@ -236,25 +235,78 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数447</span>
+	<span class="post-count"> | 字数383</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <p>直接上代码，最小二乘法比较简单，在拟合效果上也相当不错：</p>
-                <figure class="highlight stylus">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">import numpy</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line">f = plt.figure()</span><br><span class="line">draw = f.add_subplot(<span class="number">111</span>)</span><br><span class="line">#拟合函数的次数限制</span><br><span class="line">times=<span class="number">9</span></span><br><span class="line">tail=times+<span class="number">1</span></span><br><span class="line">x = numpy.arange(-<span class="number">2</span>,<span class="number">2</span>,<span class="number">0.1</span>)</span><br><span class="line">y = [((xi-<span class="number">1</span>)*(xi*xi-<span class="number">1</span>)+<span class="number">0.5</span>)*numpy.cos(xi) <span class="keyword">for</span> xi <span class="keyword">in</span> x]</span><br><span class="line">#所有使用到的全局变量声明</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line">xlabel=[]</span><br><span class="line">ylabel=[]</span><br><span class="line">A=[]</span><br><span class="line">B=[]</span><br><span class="line">tempA=[]</span><br><span class="line">tempB=[]</span><br><span class="line">X=[]</span><br><span class="line">Y=[]</span><br><span class="line">#-----------------------------</span><br><span class="line">#生成数据，加入cos函数，作为噪声！</span><br><span class="line"><span class="keyword">for</span> xi <span class="keyword">in</span> x:</span><br><span class="line">    r=float(random.randint(80,100))/100</span><br><span class="line">    xlabel.append(xi*r)</span><br><span class="line">    ylabel.append(y[i]*r)</span><br><span class="line">    i+=<span class="number">1</span></span><br><span class="line">draw.plot(xlabel,ylabel,<span class="attribute">color</span>=<span class="string">'b'</span>,linestyle=<span class="string">''</span>,marker=<span class="string">'*'</span>)</span><br><span class="line">length=len(xlabel)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">0</span>,tail):</span><br><span class="line">	tempA=[]</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,tail):</span><br><span class="line">		temp=<span class="number">0.0</span></span><br><span class="line">		<span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,length):</span><br><span class="line">			d=<span class="number">1.0</span></span><br><span class="line">			<span class="keyword">for</span> m <span class="keyword">in</span> range(<span class="number">0</span>,j+i):</span><br><span class="line">				d=d*xlabel[k]</span><br><span class="line">			temp+=d</span><br><span class="line">		tempA.append(temp)</span><br><span class="line">	A.append(tempA)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">0</span>,tail):</span><br><span class="line">	temp=<span class="number">0.0</span></span><br><span class="line">	<span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,length):</span><br><span class="line">		d=<span class="number">1.0</span></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,i):</span><br><span class="line">			d=d*xlabel[k]</span><br><span class="line">		temp+=ylabel[k]*d</span><br><span class="line">	B.append(temp)</span><br><span class="line"> #X为可行解</span><br><span class="line">X=numpy<span class="selector-class">.linalg</span><span class="selector-class">.solve</span>(A,B)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'可行解a(x的系数)的矩阵表示为：[a0,---,a%d]'</span>%(times)</span></span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(X)</span></span></span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">0</span>,length):</span><br><span class="line">	temp=<span class="number">0.0</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,tail):</span><br><span class="line">		d=<span class="number">1.0</span></span><br><span class="line">		<span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,j):</span><br><span class="line">			d*=x[i]</span><br><span class="line">		d*=X[j]</span><br><span class="line">		temp+=d</span><br><span class="line">	Y.append(temp)</span><br><span class="line">draw.plot(x,Y,<span class="attribute">color</span>=<span class="string">'r'</span>,linestyle=<span class="string">'-'</span>,marker=<span class="string">'.'</span>)</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-stylus"># -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
+import numpy
+import random
+
+f = plt.figure()
+draw = f.add_subplot(111)
+#拟合函数的次数限制
+times=9
+tail=times+1
+x = numpy.arange(-2,2,0.1)
+y = [((xi-1)*(xi*xi-1)+0.5)*numpy.cos(xi) for xi in x]
+#所有使用到的全局变量声明
+i=0
+xlabel=[]
+ylabel=[]
+A=[]
+B=[]
+tempA=[]
+tempB=[]
+X=[]
+Y=[]
+#-----------------------------
+#生成数据，加入cos函数，作为噪声！
+for xi in x:
+    r=float(random.randint(80,100))/100
+    xlabel.append(xi*r)
+    ylabel.append(y[i]*r)
+    i+=1
+draw.plot(xlabel,ylabel,color='b',linestyle='',marker='*')
+length=len(xlabel)
+for i in range(0,tail):
+	tempA=[]
+	for j in range(0,tail):
+		temp=0.0
+		for k in range(0,length):
+			d=1.0
+			for m in range(0,j+i):
+				d=d*xlabel[k]
+			temp+=d
+		tempA.append(temp)
+	A.append(tempA)
+for i in range(0,tail):
+	temp=0.0
+	for k in range(0,length):
+		d=1.0
+		for j in range(0,i):
+			d=d*xlabel[k]
+		temp+=ylabel[k]*d
+	B.append(temp)
+ #X为可行解
+X=numpy.linalg.solve(A,B)
+print('可行解a(x的系数)的矩阵表示为：[a0,---,a%d]'%(times))
+print(X)
+for i in range(0,length):
+	temp=0.0
+	for j in range(0,tail):
+		d=1.0
+		for k in range(0,j):
+			d*=x[i]
+		d*=X[j]
+		temp+=d
+	Y.append(temp)
+draw.plot(x,Y,color='r',linestyle='-',marker='.')
+</code></pre>
                 <p><br><br>本文链接： <a href="http://meng.uno/articles/1af17fd9/">http://meng.uno/articles/1af17fd9/</a> 欢迎转载！</p>
                 <div>
                   <h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/6c0d033f/">主成分分析（PCA）</a></li><li><a href="http://meng.uno/articles/177fbbcc/">使用EM算法优化的GMM</a></li><li><a href="http://meng.uno/articles/a12d1477/">怎么处理噪声</a></li><li><a href="http://www.libinx.com/2016/2016-11-09-machine-learning-algorithm-series-decision-tree/">机器学习算法系列（1）决策树</a></li><li><a href="http://www.libinx.com/2017/2017-02-26-machine-learning-algorithm-series-svm-2/">机器学习算法系列（5）支持向量机（二）</a></li><li><a href="http://www.libinx.com/2016/2016-11-12-machine-learning-algorithm-series-linearing-regression/">机器学习算法系列（2）多元线性回归</a></li></ul></div>

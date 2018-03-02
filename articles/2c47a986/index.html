@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。  1 2 3 4 5 6   //创建节点    var createNode = document.createElement(&quot;div&quot;);    var createTextNode">
+  <meta name="description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。   //创建节点     var createNode = document.createElement(&quot;div&quot;);     var createTextNode = document">
   <meta name="keywords" content="前端">
   <meta property="og:type" content="article">
   <meta property="og:title" content="JavaScript操作DOM">
   <meta property="og:url" content="http://meng.uno/articles/2c47a986/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。  1 2 3 4 5 6   //创建节点    var createNode = document.createElement(&quot;div&quot;);    var createTextNode">
+  <meta property="og:description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。   //创建节点     var createNode = document.createElement(&quot;div&quot;);     var createTextNode = document">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:updated_time" content="2018-02-09T10:46:20.926Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JavaScript操作DOM">
-  <meta name="twitter:description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。  1 2 3 4 5 6   //创建节点    var createNode = document.createElement(&quot;div&quot;);    var createTextNode">
+  <meta name="twitter:description" content="创建节点 除了可以使用createElement创建元素，也可以使用createTextNode创建文本节点。document.body指向的是元素，document.documentElement则指向元素。   //创建节点     var createNode = document.createElement(&quot;div&quot;);     var createTextNode = document">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -41,8 +41,6 @@
 
   <link rel="icon" href="/css/images/logo.png">
   <link rel="apple-touch-icon" href="/css/images/logo.png">
-
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
@@ -82,6 +80,7 @@
   <script src="/js/bootstrap.js"></script>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-a11y-dark.css">
 
 
   <link rel="stylesheet" href="/css/dialog.css">
@@ -235,7 +234,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数912</span>
+	<span class="post-count"> | 字数855</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
@@ -243,46 +242,29 @@
 
                 <h2 id="创建节点">创建节点</h2>
                 <p>除了可以使用<code>createElement</code>创建元素，也可以使用<code>createTextNode</code>创建文本节点。<code>document.body</code>指向的是<code>&lt;body&gt;</code>元素，<code>document.documentElement</code>则指向<code>&lt;html&gt;</code>元素。</p>
-                <figure class="highlight javascript">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//创建节点</span></span><br><span class="line">   <span class="keyword">var</span> createNode = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">   <span class="keyword">var</span> createTextNode = <span class="built_in">document</span>.createTextNode(<span class="string">"hello world"</span>);</span><br><span class="line">   createNode.appendChild(createTextNode);</span><br><span class="line">   <span class="built_in">document</span>.body.appendChild(createNode);</span><br><span class="line">   <span class="built_in">document</span>.documentElement.appendChild(createNode);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-javascript"> //创建节点
+    var createNode = document.createElement(&quot;div&quot;);
+    var createTextNode = document.createTextNode(&quot;hello world&quot;);
+    createNode.appendChild(createTextNode);
+    document.body.appendChild(createNode);
+    document.documentElement.appendChild(createNode);
+</code></pre>
                 <h2 id="插入节点">插入节点</h2>
                 <p>可以使用appendChild，insertBefore，insertBefore接收两个参数，第一个是插入的节点，第二个是参照节点，如insertBefore(a,b)，则a会插入在b的前面</p>
-                <figure class="highlight javascript">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//插入节点</span></span><br><span class="line"> <span class="keyword">var</span> createNode = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line"><span class="keyword">var</span> createTextNode = <span class="built_in">document</span>.createTextNode(<span class="string">"hello world"</span>);</span><br><span class="line">createNode.appendChild(createTextNode);</span><br><span class="line"><span class="keyword">var</span> div1 = <span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line"><span class="built_in">document</span>.body.insertBefore(createNode,div1);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-javascript">    //插入节点
+     var createNode = document.createElement(&quot;div&quot;);
+    var createTextNode = document.createTextNode(&quot;hello world&quot;);
+    createNode.appendChild(createTextNode);
+    var div1 = document.getElementById(&quot;div1&quot;);
+    document.body.insertBefore(createNode,div1);
+</code></pre>
                 <h2 id="替换和删除元素">替换和删除元素</h2>
                 <p>从replaceChild和removeChild的字面意思看，就是删除子节点，因此调用者，需要包含子节点div1，不然调用会报错。返回的节点是替换的或删除的元素，被替换/删除的元素仍然存在，但document中已经没有他们的位置了。</p>
-                <figure class="highlight javascript">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//替换元素</span></span><br><span class="line">   <span class="keyword">var</span> replaceChild = <span class="built_in">document</span>.body.replaceChild(createNode,div1);</span><br><span class="line"><span class="comment">//删除元素</span></span><br><span class="line">    <span class="keyword">var</span> removeChild = <span class="built_in">document</span>.body.removeChild(div1);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-javascript">//替换元素
+   var replaceChild = document.body.replaceChild(createNode,div1);
+//删除元素
+    var removeChild = document.body.removeChild(div1);
+</code></pre>
                 <h2 id="节点的属性">节点的属性</h2>
                 <ul>
                   <li>firstChild:第一个子节点</li>
@@ -294,76 +276,62 @@
                   <li>previousSibling：上一个兄弟节点</li>
                   <li>parentNode：父节点</li>
                 </ul>
-                <figure class="highlight vbscript-html">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">&lt;ul id="ul"&gt;</span><br><span class="line">&lt;li&gt;sdsssssss&lt;/li&gt;</span><br><span class="line">&lt;li&gt;qqqq&lt;/li&gt;</span><br><span class="line">&lt;li&gt;wwww&lt;/li&gt;</span><br><span class="line">&lt;li&gt;eeee&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <figure class="highlight javascript">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//节点属性</span></span><br><span class="line">  <span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"ul"</span>);</span><br><span class="line">  <span class="keyword">var</span> firstChild = ul.firstChild;</span><br><span class="line">  <span class="built_in">console</span>.log(firstChild.innerHTML);</span><br><span class="line">  <span class="keyword">var</span> lastChild = ul.lastChild;</span><br><span class="line">  <span class="built_in">console</span>.log(lastChild.innerHTML);</span><br><span class="line">  <span class="keyword">var</span> length = ul.childNodes.length;</span><br><span class="line">  <span class="built_in">console</span>.log(length);</span><br><span class="line">  <span class="keyword">var</span> secondChild = ul.childNodes.item(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(secondChild.innerHTML);</span><br><span class="line">  <span class="keyword">var</span> forthChild = ul.childNodes.item(<span class="number">2</span>).nextSibling;</span><br><span class="line">  <span class="built_in">console</span>.log(forthChild.innerHTML);</span><br><span class="line">  <span class="keyword">var</span> thridChild = forthChild.previousSibling;</span><br><span class="line">  <span class="built_in">console</span>.log(thridChild.innerHTML);</span><br><span class="line">  <span class="keyword">var</span> parentNode = forthChild.parentNode;</span><br><span class="line">  <span class="built_in">console</span>.log(parentNode.innerHTML);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-vbscript-html">&lt;ul id=&quot;ul&quot;&gt;
+&lt;li&gt;sdsssssss&lt;/li&gt;
+&lt;li&gt;qqqq&lt;/li&gt;
+&lt;li&gt;wwww&lt;/li&gt;
+&lt;li&gt;eeee&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                <pre><code class="language-javascript">  //节点属性
+    var ul = document.getElementById(&quot;ul&quot;);
+    var firstChild = ul.firstChild;
+    console.log(firstChild.innerHTML);
+    var lastChild = ul.lastChild;
+    console.log(lastChild.innerHTML);
+    var length = ul.childNodes.length;
+    console.log(length);
+    var secondChild = ul.childNodes.item(1);
+    console.log(secondChild.innerHTML);
+    var forthChild = ul.childNodes.item(2).nextSibling;
+    console.log(forthChild.innerHTML);
+    var thridChild = forthChild.previousSibling;
+    console.log(thridChild.innerHTML);
+    var parentNode = forthChild.parentNode;
+    console.log(parentNode.innerHTML);
+</code></pre>
                 <h2 id="文档片段">文档片段</h2>
                 <p>好处在于减少dom的渲染次数，可以优化性能。</p>
-                <figure class="highlight javascript">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//文本片段</span></span><br><span class="line">   <span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">   <span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"ul"</span>);</span><br><span class="line">   <span class="keyword">var</span> li = <span class="literal">null</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">4</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">       li = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</span><br><span class="line">       li.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">"item "</span>+i));</span><br><span class="line">       fragment.appendChild(li);</span><br><span class="line">   &#125;</span><br><span class="line">   ul.appendChild(fragment);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-javascript"> //文本片段
+    var fragment = document.createDocumentFragment();
+    var ul = document.getElementById(&quot;ul&quot;);
+    var li = null;
+    for (var i = 4; i &gt;= 0; i--) {
+        li = document.createElement(&quot;li&quot;);
+        li.appendChild(document.createTextNode(&quot;item &quot;+i));
+        fragment.appendChild(li);
+    }
+    ul.appendChild(fragment);
+</code></pre>
                 <h2 id="克隆元素">克隆元素</h2>
                 <ul>
                   <li>someNode.cloneNode(true):深度克隆，会复制节点及整个子节点</li>
                   <li>someNode.cloneNode(false):浅克隆，会复制节点，但不复制子节点</li>
                 </ul>
-                <figure class="highlight php">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line"><span class="comment">//克隆</span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">clone</span> = ul.cloneNode(<span class="keyword">true</span>);</span><br><span class="line">document.body.appendChild(<span class="keyword">clone</span>);</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-php">    //克隆
+    var clone = ul.cloneNode(true);
+    document.body.appendChild(clone);
+</code></pre>
                 <h2 id="注意：">注意：</h2>
                 <h3 id="childnodes-length存在跨浏览器的问题">childNodes.length存在跨浏览器的问题</h3>
                 <p>可以看到有关列表的html片段没有用</p>
-                <figure class="highlight vbscript-html">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">&lt;ul id="ul"&gt;</span><br><span class="line">&lt;li&gt;sdsssssss&lt;/li&gt;</span><br><span class="line">&lt;li&gt;qqqq&lt;/li&gt;</span><br><span class="line">&lt;li&gt;wwww&lt;/li&gt;</span><br><span class="line">&lt;li&gt;eeee&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
+                <pre><code class="language-vbscript-html">&lt;ul id=&quot;ul&quot;&gt;
+&lt;li&gt;sdsssssss&lt;/li&gt;
+&lt;li&gt;qqqq&lt;/li&gt;
+&lt;li&gt;wwww&lt;/li&gt;
+&lt;li&gt;eeee&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
                 <p>这种书写格式而是使用没有换行的格式书写，是因为在不同的浏览器中，获取<code>ul.childNodes.length</code>的结果有差异：</p>
                 <ul>
                   <li>在ie中，ul.childNodes.length不会计算li之间的换行空格，从而得到数值为4</li>
