@@ -16,11 +16,9 @@ pre[class*="language-"] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -29,19 +27,24 @@ pre[class*="language-"] {
   color: #57718e;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   text-shadow: none;
   background: #004a9e;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   text-shadow: none;
   background: #004a9e;
 }
 
 /* Code blocks */
+
 pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
@@ -49,7 +52,8 @@ pre[class*="language-"] {
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+
+:not(pre)>code[class*="language-"] {
   padding: .1em;
   border-radius: .3em;
 }
@@ -142,7 +146,7 @@ code.language-scss,
   cursor: help;
 }
 
-pre > code.highlight {
+pre>code.highlight {
   outline: .4em solid #34659d;
   outline-offset: .4em;
 }
@@ -150,17 +154,19 @@ pre > code.highlight {
 /* overrides color-values for the Line Numbers plugin
  * http://prismjs.com/plugins/line-numbers/
  */
+
 .line-numbers .line-numbers-rows {
   border-right-color: #1f2932;
 }
 
-.line-numbers-rows > span:before {
+.line-numbers-rows>span:before {
   color: #2c3847;
 }
 
 /* overrides color-values for the Line Highlight plugin
 * http://prismjs.com/plugins/line-highlight/
 */
+
 .line-highlight {
   background: rgba(10, 163, 112, 0.2);
   background: -webkit-linear-gradient(left, rgba(10, 163, 112, 0.2) 70%, rgba(10, 163, 112, 0));
