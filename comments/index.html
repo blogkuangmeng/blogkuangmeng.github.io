@@ -148,8 +148,6 @@
 
                   <li> <a class="main-nav-link" href="/about">关于我</a> </li>
 
-                  <li> <a class="main-nav-link" href="/works">作品</a> </li>
-
                   <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
 
                   <li>
@@ -216,8 +214,106 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <div style="width: 100%;height: 160px;text-align: center;" id="temp"></div>
-          <h1 style="text-align:center;" id="comment_title">来都来了，不留下点啥？</h1>
+          <div style="width: 100%;height: 130px;text-align: center;" id="temp"></div>
+
+          <style>
+            .md-links {
+              min-height: calc(100% - 120px - 5pc - 6em);
+              text-align: center;
+              overflow: auto;
+              padding: 0;
+              margin: 0 auto;
+              max-width: 305px;
+            }
+
+            @media screen and (min-width: 700px) {
+              .md-links {
+                max-width: 610px;
+              }
+            }
+
+            @media screen and (min-width: 1020px) {
+              .md-links {
+                max-width: 915px;
+              }
+            }
+
+            @media screen and (max-width: 430px) {
+              .md-links {
+                min-height: calc(100% - 200px - 5pc - 6em);
+              }
+            }
+
+            .md-links-item {
+              background: #fff;
+              box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+              height: 72px;
+              line-height: 15px;
+              margin: 10px 10px;
+              padding: 0px 0px;
+              transition: box-shadow 0.25s;
+            }
+
+            .md-links a {
+              color: #333;
+              text-decoration: none;
+            }
+
+            .md-links li {
+              width: 285px;
+              float: left;
+              list-style: none;
+            }
+
+            .md-links-item img {
+              float: left;
+              box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 11px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            }
+
+            .md-links-item:hover {
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .md-links-item a:hover {
+              cursor: pointer;
+            }
+
+            .md-links-title {
+              font-size: 20px;
+              line-height: 50px;
+            }
+          </style>
+
+          <ul class="md-links">
+
+            <li class="md-links-item">
+              <a href="http://www.meng.uno" title="匡盟盟的博客" target="_blank">
+                    <img src="http://www.meng.uno/cv_others/touxiang.png" alt="匡盟盟的博客" height="72px"/>
+                    <span class="md-links-title">匡盟盟的博客</span><br />
+                    <span>自己的博客</span>
+                </a>
+            </li>
+
+            <li class="md-links-item">
+              <a href="https://yumingxing.github.io/" title="余明星的博客" target="_blank">
+                    <img src="https://avatars1.githubusercontent.com/u/24775660?s=400&amp;v=4" alt="余明星的博客" height="72px"/>
+                    <span class="md-links-title">余明星的博客</span><br />
+                    <span>好友的博客</span>
+                </a>
+            </li>
+
+            <li class="md-links-item">
+              <a href="http://jlraining.github.io/" title="JLraining is Coding" target="_blank">
+                    <img src="https://tvax2.sinaimg.cn/crop.0.0.960.960.180/699ffa3bly8fl9z2yc2ibj20qo0qoq4u.jpg" alt="JLraining is Coding" height="72px"/>
+                    <span class="md-links-title">JLraining is Coding</span><br />
+                    <span>黎酱的博客</span>
+                </a>
+            </li>
+
+          </ul>
+
+
+          <h1 style="text-align:center;margin-top: 30px;" id="comment_title">来都来了，不留下点啥？</h1>
           <!-- 来必力City版安装代码 -->
           <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
             <script type="text/javascript">
@@ -299,8 +395,6 @@
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
   <a href="/about" class="mobile-nav-link">About</a>
-
-  <a href="/works" class="mobile-nav-link">Works</a>
 
   <a href="/comments" class="mobile-nav-link">Comments</a>
 
