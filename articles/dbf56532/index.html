@@ -119,7 +119,7 @@
 </head>
 
 
-<body data-spy="scroll" data-target="#toc" data-offset="50">
+<body data-spy="scroll" data-target="#toc" data-offset="50" onload="removeLoading('test')">
 
 
 
@@ -725,6 +725,8 @@ m   锰紫色 -.  点虚线
     }, 1000);
   }
 </script>
+
+
 <script>
   var aLink = document.getElementsByTagName("a");
   for (i = 0; i < aLink.length; i++) {

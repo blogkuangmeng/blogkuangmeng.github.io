@@ -116,7 +116,7 @@
 </head>
 
 
-<body>
+<body onload="removeLoading('test')">
 
 
 
@@ -635,6 +635,8 @@
     }, 1000);
   }
 </script>
+
+
 <script>
   var aLink = document.getElementsByTagName("a");
   for (i = 0; i < aLink.length; i++) {
