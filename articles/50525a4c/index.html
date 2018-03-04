@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Java语法回顾 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="注释 每种语言，第一个教我们的都是“注释”。Java基本有如下三种注释。  1   // 单行注释   1 2 3   /* 多行注释 */   1 2 3   /** JavaDoc（Java文档）注释是这样的。可以用来描述类和类的属性。 */   文件头 包 包就像定义文件路径一样，实际上的存储也是按包的名称存储。  1   package uno.meng;   导入类 导入一个类：  1">
+  <meta name="keywords" content="Java,Language">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Java语法回顾">
+  <meta property="og:url" content="http://meng.uno/articles/50525a4c/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="注释 每种语言，第一个教我们的都是“注释”。Java基本有如下三种注释。  1   // 单行注释   1 2 3   /* 多行注释 */   1 2 3   /** JavaDoc（Java文档）注释是这样的。可以用来描述类和类的属性。 */   文件头 包 包就像定义文件路径一样，实际上的存储也是按包的名称存储。  1   package uno.meng;   导入类 导入一个类：  1">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-03-04T13:42:02.131Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Java语法回顾">
+  <meta name="twitter:description" content="注释 每种语言，第一个教我们的都是“注释”。Java基本有如下三种注释。  1   // 单行注释   1 2 3   /* 多行注释 */   1 2 3   /** JavaDoc（Java文档）注释是这样的。可以用来描述类和类的属性。 */   文件头 包 包就像定义文件路径一样，实际上的存储也是按包的名称存储。  1   package uno.meng;   导入类 导入一个类：  1">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://meng.uno/articles/50525a4c/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50" onbeforeunload="loading7()">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="Hike News" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-java-lang" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Java语法回顾
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/50525a4c/" class="article-date">
+	  <time datetime="2017-03-04T13:11:06.000Z" itemprop="datePublished">2017-03-04</time>
+	</a>
+                <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,526</span>
+	<span class="post-count"> | 预计时间7分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>注释</h1>
+                <p>每种语言，第一个教我们的都是“注释”。Java基本有如下三种注释。</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="comment">// 单行注释</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">多行注释</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">JavaDoc（Java文档）注释是这样的。可以用来描述类和类的属性。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>文件头</h1>
+                <h2 id="包">包</h2>
+                <p>包就像定义文件路径一样，实际上的存储也是按包的名称存储。</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">package</span> uno.meng;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="导入类">导入类</h2>
+                <p>导入一个类：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>导入所有类：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">import</span> java.security.*;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="书写类">书写类</h2>
+                <p>每个 <code>.java</code> 文件都包含一个public类，这个类的名字必须和这个文件名一致。</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LearnJava</span> </span>&#123;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>每个程序都需要有一个main函数作为入口：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> </span>&#123;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>标准输出：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(<span class="string">"Hello World!"</span>);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>使用<code>+</code>来拼接字符串：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(</span><br><span class="line">    <span class="string">"Integer: "</span> + <span class="number">10</span> +</span><br><span class="line">    <span class="string">" Double: "</span> + <span class="number">3.14</span> +</span><br><span class="line">    <span class="string">" Boolean: "</span> + <span class="keyword">true</span>);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>如果要在输出后不想自动换行，可以使用System.out.print方法：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.print(<span class="string">"Hello "</span>);</span><br><span class="line">System.out.print(<span class="string">"World"</span>);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>类型与变量</h1>
+                <h2 id="基本类型定义">基本类型定义</h2>
+                <p>用
+                  <type>
+                    <name> 来声明变量：</name>
+                  </type>
+                </p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">      <span class="keyword">byte</span> fooByte = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">short</span> fooShort = <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">int</span> fooInt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">long</span> fooLong = <span class="number">100000L</span>; <span class="comment">// L可以用来表示一个数字是长整型的。</span></span><br><span class="line"><span class="keyword">float</span> fooFloat = <span class="number">234.5f</span>; <span class="comment">// f用来表示一个数字是浮点型的。</span></span><br><span class="line"><span class="keyword">double</span> fooDouble = <span class="number">123.4</span>;</span><br><span class="line"><span class="keyword">boolean</span> fooBoolean = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">char</span> fooChar = <span class="string">'A'</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> HOURS_I_WORK_PER_WEEK = <span class="number">9001</span>; <span class="comment">// final 标识常量。</span></span><br><span class="line">String fooString = <span class="string">"My String Is Here!"</span>;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="数组">数组</h2>
+                <p>数组在声明时大小必须已经确定</p>
+                <p>数组的声明格式:</p>
+                <p>&lt;数据类型&gt; [] &lt;变量名&gt; = new &lt;数据类型&gt;[&lt;数组大小&gt;];</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> [] intArray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">String [] stringArray = <span class="keyword">new</span> String[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">boolean</span> [] booleanArray = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">100</span>];</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>声明并初始化数组也可以这样:</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> [] y = &#123;<span class="number">9000</span>, <span class="number">1000</span>, <span class="number">1337</span>&#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>随机访问数组中的元素:</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(<span class="string">"intArray @ 0: "</span> + intArray[<span class="number">0</span>]);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>数组下标从0开始并且可以被更改:</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">intArray[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">System.out.println(<span class="string">"intArray @ 1: "</span> + intArray[<span class="number">1</span>]); <span class="comment">// =&gt; 1</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="其他数据类型">其他数据类型</h2>
+                <p>ArrayLists - 类似于数组，但是功能更多，并且大小也可以改变，主要有：</p>
+                <ul>
+                  <li>LinkedLists</li>
+                  <li>Maps</li>
+                  <li>HashMaps</li>
+                </ul>
+                <h1>操作符</h1>
+                <h2 id="多重申明">多重申明</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> i1 = <span class="number">1</span>, i2 = <span class="number">2</span>; <span class="comment">// 多重声明可以简化</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="算数运算">算数运算</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(<span class="string">"1+2 = "</span> + (i1 + i2)); <span class="comment">// =&gt; 3</span></span><br><span class="line">System.out.println(<span class="string">"2-1 = "</span> + (i2 - i1)); <span class="comment">// =&gt; 1</span></span><br><span class="line">System.out.println(<span class="string">"2*1 = "</span> + (i2 * i1)); <span class="comment">// =&gt; 2</span></span><br><span class="line">System.out.println(<span class="string">"1/2 = "</span> + (i1 / i2)); <span class="comment">// =&gt; 0 (0.5 truncated down)</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="取余">取余</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(<span class="string">"11%3 = "</span>+(<span class="number">11</span> % <span class="number">3</span>)); <span class="comment">// =&gt; 2</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="比较操作符">比较操作符</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(<span class="string">"3 == 2? "</span> + (<span class="number">3</span> == <span class="number">2</span>)); <span class="comment">// =&gt; false</span></span><br><span class="line">System.out.println(<span class="string">"3 != 2? "</span> + (<span class="number">3</span> != <span class="number">2</span>)); <span class="comment">// =&gt; true</span></span><br><span class="line">System.out.println(<span class="string">"3 &gt; 2? "</span> + (<span class="number">3</span> &gt; <span class="number">2</span>)); <span class="comment">// =&gt; true</span></span><br><span class="line">System.out.println(<span class="string">"3 &lt; 2? "</span> + (<span class="number">3</span> &lt; <span class="number">2</span>)); <span class="comment">// =&gt; false</span></span><br><span class="line">System.out.println(<span class="string">"2 &lt;= 2? "</span> + (<span class="number">2</span> &lt;= <span class="number">2</span>)); <span class="comment">// =&gt; true</span></span><br><span class="line">System.out.println(<span class="string">"2 &gt;= 2? "</span> + (<span class="number">2</span> &gt;= <span class="number">2</span>)); <span class="comment">// =&gt; true</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="位运算操作符">位运算操作符</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">~       取反，求反码</span></span><br><span class="line"><span class="comment">&lt;&lt;      带符号左移</span></span><br><span class="line"><span class="comment">&gt;&gt;      带符号右移</span></span><br><span class="line"><span class="comment">&gt;&gt;&gt;     无符号右移</span></span><br><span class="line"><span class="comment">&amp;       和</span></span><br><span class="line"><span class="comment">^       异或</span></span><br><span class="line"><span class="comment">|       相容或</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="自增">自增</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">System.out.println(<span class="string">"\n-&gt;Inc/Dec-rementation"</span>);</span><br><span class="line"><span class="comment">// ++ 和 -- 操作符使变量加或减1。放在变量前面或者后面的区别是整个表达式的返回值。操作符在前面时，先加减，后取值。操作符在后面时，先取值后加减。</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">System.out.println(i++); <span class="comment">// 后自增 i = 1, 输出0</span></span><br><span class="line">System.out.println(++i); <span class="comment">// 前自增 i = 2, 输出2</span></span><br><span class="line">System.out.println(i--); <span class="comment">// 后自减 i = 1, 输出2</span></span><br><span class="line">System.out.println(--i); <span class="comment">// 前自减 i = 0, 输出0</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>控制结构</h1>
+                <h2 id="if语句和c的类似">If语句和C的类似</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">10</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"I get printed"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"I don't"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"I also don't"</span>);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="while循环">While循环</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> fooWhile = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(fooWhile &lt; <span class="number">100</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//System.out.println(fooWhile);</span></span><br><span class="line">    <span class="comment">//增加计数器</span></span><br><span class="line">    <span class="comment">//遍历99次， fooWhile 0-&gt;99</span></span><br><span class="line">    fooWhile++;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"fooWhile Value: "</span> + fooWhile);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="do-while循环">Do While循环</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> fooDoWhile = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//System.out.println(fooDoWhile);</span></span><br><span class="line">    <span class="comment">//增加计数器</span></span><br><span class="line">    <span class="comment">//遍历99次, fooDoWhile 0-&gt;99</span></span><br><span class="line">    fooDoWhile++;</span><br><span class="line">&#125;<span class="keyword">while</span>(fooDoWhile &lt; <span class="number">100</span>);</span><br><span class="line">System.out.println(<span class="string">"fooDoWhile Value: "</span> + fooDoWhile);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="for-循环">For 循环</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> fooFor;</span><br><span class="line"><span class="comment">//for 循环结构 =&gt; for(&lt;起始语句&gt;; &lt;循环进行的条件&gt;; &lt;步长&gt;)</span></span><br><span class="line"><span class="keyword">for</span>(fooFor=<span class="number">0</span>; fooFor&lt;<span class="number">10</span>; fooFor++)&#123;</span><br><span class="line">    <span class="comment">//System.out.println(fooFor);</span></span><br><span class="line">    <span class="comment">//遍历 10 次, fooFor 0-&gt;9</span></span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"fooFor Value: "</span> + fooFor);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="switch-case-语句">Switch Case 语句</h2>
+                <p>switch可以用来处理 byte, short, char, 和 int 数据类型，也可以用来处理枚举类型,字符串类,和原始数据类型的包装类：Character, Byte, Short, 和 Integer</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">int</span> month = <span class="number">3</span>;</span><br><span class="line">String monthString;</span><br><span class="line"><span class="keyword">switch</span> (month)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            monthString = <span class="string">"January"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            monthString = <span class="string">"February"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            monthString = <span class="string">"March"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">            monthString = <span class="string">"Some other month"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"Switch Case Result: "</span> + monthString);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>类型转换</h1>
+                <h2 id="数据转换">数据转换</h2>
+                <p>将字符串转换为整型</p>
+                <figure class="highlight arduino">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">Integer.<span class="built_in">parseInt</span>(<span class="string">"123"</span>);<span class="comment">//返回整数123</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>将整型转换为字符串</p>
+                <figure class="highlight awk">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">Integer.toString(<span class="number">123</span>);<span class="regexp">//</span>返回字符串<span class="string">"123"</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>其他的数据也可以进行互相转换:</p>
+                <ul>
+                  <li>Double</li>
+                  <li>Long</li>
+                  <li>String</li>
+                </ul>
+                <h2 id="类型转换">类型转换</h2>
+                <p>你也可以对java对象进行类型转换, 但其中会牵扯到很多概念在这里可以查看更详细的信息: <a href="http://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html" target="_blank" rel="noopener">http://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html</a></p>
+                <h1>方法</h1>
+                <h2 id="用new来实例化一个类">用new来实例化一个类</h2>
+                <figure class="highlight ebnf">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="attribute">Bicycle trek</span> = new Bicycle();</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="调用对象的方法">调用对象的方法</h2>
+                <figure class="highlight less">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="selector-tag">trek</span><span class="selector-class">.speedUp</span>(<span class="number">3</span>); <span class="comment">// 需用getter和setter方法</span></span><br><span class="line"><span class="selector-tag">trek</span><span class="selector-class">.setCadence</span>(<span class="number">100</span>);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="tostring-可以把对象转换为字符串">toString 可以把对象转换为字符串</h2>
+                <figure class="highlight css">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="selector-tag">System</span><span class="selector-class">.out</span><span class="selector-class">.println</span>("<span class="selector-tag">trek</span> <span class="selector-tag">info</span>: " + <span class="selector-tag">trek</span><span class="selector-class">.toString</span>());</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><strong>你也可以把其他的非public类放入到.java文件中！！</strong></p>
+                <h2 id="类定义的语法">类定义的语法</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;<span class="keyword">public</span>/<span class="keyword">private</span>/<span class="keyword">protected</span>&gt; <span class="class"><span class="keyword">class</span> &lt;类名&gt;</span>&#123;</span><br><span class="line">  <span class="comment">//成员变量, 构造函数, 函数</span></span><br><span class="line">  <span class="comment">//Java中函数被称作方法</span></span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="构造方法">构造方法</h2>
+                <p>构造方法不写返回值，返回类型，必须是<code>public</code>。</p>
+                <p>以下是一个默认构造函数</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Bicycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    gear = <span class="number">1</span>;</span><br><span class="line">    cadence = <span class="number">50</span>;</span><br><span class="line">    speed = <span class="number">5</span>;</span><br><span class="line">    name = <span class="string">"Bontrager"</span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>以下是一个含有参数的构造函数</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Bicycle</span><span class="params">(<span class="keyword">int</span> startCadence, <span class="keyword">int</span> startSpeed, <span class="keyword">int</span> startGear, String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.gear = startGear;</span><br><span class="line">    <span class="keyword">this</span>.cadence = startCadence;</span><br><span class="line">    <span class="keyword">this</span>.speed = startSpeed;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="方法书写语法">方法书写语法</h2>
+                <p>&lt;public/private/protected&gt; &lt;返回值类型&gt; &lt;函数名称&gt;(&lt;参数列表&gt;)</p>
+                <p>Java类中经常会用getter和setter来对成员变量进行操作。</p>
+                <h2 id="类的继承">类的继承</h2>
+                <p>PennyFarthing 是 Bicycle 的子类</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PennyFarthing</span> <span class="keyword">extends</span> <span class="title">Bicycle</span> </span>&#123;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>通过<code>super</code>调用父类的构造函数</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">PennyFarthing</span><span class="params">(<span class="keyword">int</span> startCadence, <span class="keyword">int</span> startSpeed)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(startCadence, startSpeed, <span class="number">0</span>, <span class="string">"PennyFarthing"</span>);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>你可以用<code>@注释</code>来表示需要重载的方法</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGear</span><span class="params">(<span class="keyword">int</span> gear)</span> </span>&#123;</span><br><span class="line">        gear = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>本文链接： <a href="http://meng.uno/articles/undefined/">http://meng.uno/articles/undefined/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/2c47a986/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          JavaScript操作DOM
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/25d9ef10/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Map Reduce</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">文件头</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#包"><span class="nav-number">2.1.</span> <span class="nav-text">包</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#导入类"><span class="nav-number">2.2.</span> <span class="nav-text">导入类</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#书写类"><span class="nav-number">2.3.</span> <span class="nav-text">书写类</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">类型与变量</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型定义"><span class="nav-number">3.1.</span> <span class="nav-text">基本类型定义</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">3.2.</span> <span class="nav-text">数组</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#其他数据类型"><span class="nav-number">3.3.</span> <span class="nav-text">其他数据类型</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">操作符</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#多重申明"><span class="nav-number">4.1.</span> <span class="nav-text">多重申明</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#算数运算"><span class="nav-number">4.2.</span> <span class="nav-text">算数运算</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#取余"><span class="nav-number">4.3.</span> <span class="nav-text">取余</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#比较操作符"><span class="nav-number">4.4.</span> <span class="nav-text">比较操作符</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#位运算操作符"><span class="nav-number">4.5.</span> <span class="nav-text">位运算操作符</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#自增"><span class="nav-number">4.6.</span> <span class="nav-text">自增</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">控制结构</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#if语句和c的类似"><span class="nav-number">5.1.</span> <span class="nav-text">If语句和C的类似</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#while循环"><span class="nav-number">5.2.</span> <span class="nav-text">While循环</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#do-while循环"><span class="nav-number">5.3.</span> <span class="nav-text">Do While循环</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#for-循环"><span class="nav-number">5.4.</span> <span class="nav-text">For 循环</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#switch-case-语句"><span class="nav-number">5.5.</span> <span class="nav-text">Switch Case 语句</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">类型转换</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数据转换"><span class="nav-number">6.1.</span> <span class="nav-text">数据转换</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">6.2.</span> <span class="nav-text">类型转换</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">方法</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#用new来实例化一个类"><span class="nav-number">7.1.</span> <span class="nav-text">用new来实例化一个类</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#调用对象的方法"><span class="nav-number">7.2.</span> <span class="nav-text">调用对象的方法</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#tostring-可以把对象转换为字符串"><span class="nav-number">7.3.</span> <span class="nav-text">toString 可以把对象转换为字符串</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#类定义的语法"><span class="nav-number">7.4.</span> <span class="nav-text">类定义的语法</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">7.5.</span> <span class="nav-text">构造方法</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#方法书写语法"><span class="nav-number">7.6.</span> <span class="nav-text">方法书写语法</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#类的继承"><span class="nav-number">7.7.</span> <span class="nav-text">类的继承</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.04 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
