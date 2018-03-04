@@ -110,10 +110,14 @@
 
   <link rel="canonical" href="http://meng.uno/tags/软件工程/" />
 
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
 </head>
 
 
-<body>
+<body onbeforeunload="loading7()">
+
 
 
   <div id="container">
@@ -422,7 +426,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.03 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.04 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
@@ -596,5 +600,40 @@
 
 
 </body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
 
 </html>
