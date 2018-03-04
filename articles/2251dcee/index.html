@@ -123,7 +123,7 @@
 </head>
 
 
-<body data-spy="scroll" data-target="#toc" data-offset="50" onbeforeunload="loading7()">
+<body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
 
@@ -745,6 +745,12 @@
     setTimeout(function() {
       removeLoading('test');
     }, 1000);
+  }
+</script>
+<script>
+  var aLink = document.getElementsByTagName("a");
+  for (i = 0; i < aLink.length; i++) {
+    aLink[i].onclick = loading7;
   }
 </script>
 
