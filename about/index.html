@@ -135,6 +135,14 @@
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
 
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- clipboard.js 是 JS 复制文本的库 -->
+  <script src="/js/script.js"></script>
+
+
 </head>
 
 
@@ -220,10 +228,20 @@
                 <br>
                 <a class="ac" name="news"></a>
 
-                <h3 class="h3c">
-                  <img class="imgc" src="/cv_others/phone.png">&nbsp;&nbsp;<i><span id="phone">(86)15636826909</span></i> <br>
-                  <img class="imgc" src="/cv_others/email.png">&nbsp;<i><a class="ac" id="mail" href="mailto:kuangmeng@msn.com">kuangmeng@msn.com</a></i> <br>
-                </h3>
+                <div id="DonateText" class="tr3">Donate</div>
+                <ul id="donateBox" class="list tr3">
+                  <li id="PayPal"><a href="https://www.paypal.me/MengKuang" target="_blank">PayPal</a></li>
+                  <li id="BTC" data-footnote="Copy addres and show QRCod"><button id="BTCBn" data-clipboard-target="#btc-key" alt="Copy to clipboard">Bitcoin</button></li>
+                  <li id="AliPay">AliPay</li>
+                  <li id="WeChat">WeChat</li>
+                </ul>
+                <div id="QRBox" class=" left-100">
+                  <div id="MainBox"></div>
+                </div>
+                <!-- Bitcoin 账号 -->
+                <input id="btc-key" type="text" value="3B1FESg8wnzyYZBKcniLVjRFMKVJUxxad7" readonly="readonly">
+
+
                 <br>
               </div>
               <div class="kmm">
@@ -584,7 +602,7 @@
 
           <div class="container">
             <div class="row">
-              <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.04 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+              <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.05 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
 
               <p class="busuanzi_uv">
 
