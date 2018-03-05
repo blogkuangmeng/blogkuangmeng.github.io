@@ -121,7 +121,11 @@
     };
     //]]>
   </script>
-
+  <link rel="stylesheet" href="/css/donate_style.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- clipboard.js 是 JS 复制文本的库 -->
+  <script src="/js/script.js"></script>
 
 
   <!--  -->
@@ -134,14 +138,6 @@
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
-
-
-
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
-  <!-- clipboard.js 是 JS 复制文本的库 -->
-  <script src="/js/script.js"></script>
-
 
 </head>
 
@@ -229,17 +225,18 @@
                 <a class="ac" name="news"></a>
 
                 <div id="DonateText" class="tr3">Donate</div>
-                <ul id="donateBox" class="lists tr3">
-                  <li id="PayPal"><a href="https://www.paypal.me/MengKuang" target="_blank" class="mya">PayPal</a></li>
+                <ul id="donateBox" class="lists pos-f tr3">
                   <li id="BTC" data-footnote="Copy addres and show QRCod"><button id="BTCBn" data-clipboard-target="#btc-key" alt="Copy to clipboard">Bitcoin</button></li>
                   <li id="AliPay">AliPay</li>
                   <li id="WeChat">WeChat</li>
+                  <li id="PayPal"><a href="https://www.paypal.me/MengKuang" target="_blank">PayPal</a></li>
                 </ul>
-                <div id="QRBox" class=" left-100">
+                <div id="QRBox" class="pos-f left-100">
                   <div id="MainBox"></div>
                 </div>
                 <!-- Bitcoin 账号 -->
-                <input id="btc-key" type="text" value="3B1FESg8wnzyYZBKcniLVjRFMKVJUxxad7" readonly="readonly">
+                <input id="btc-key" type="text" value="3GUDP3LJFBhwHidVLHt4fgbLeEWvioGKz2" readonly="readonly">
+
 
 
                 <br>

@@ -116,7 +116,6 @@
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
 
-
 </head>
 
 
@@ -334,26 +333,26 @@
                 <p>我们需要编译文档两次来保证他们顺序正确</p>
                 <p>使用目录来分开文档是很好的做法</p>
                 <p>这里我们使用 \newpage 操作符</p>
-                <figure class="highlight livescript">
+                <figure class="highlight haxe">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\newpage</span></span><br><span class="line"><span class="string">\tableofcontents</span></span><br></pre>
+                        <pre><span class="line">\<span class="keyword">new</span><span class="type">page</span></span><br><span class="line"><span class="type"></span>\tableofcontents</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <figure class="highlight livescript">
+                <figure class="highlight haxe">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\newpage</span></span><br></pre>
+                        <pre><span class="line">\<span class="keyword">new</span><span class="type">page</span></span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -581,14 +580,14 @@
                 <p>现在增加一些源代码在 LaTex 文档中， 我们之后需要 LaTex 不翻译这些内容而仅仅是把他们打印出来而已。</p>
                 <p>这里使用 verbatim environment。</p>
                 <p>也有其他库存在 (如. minty, lstlisting, 等)，但是 verbatim 是最基础和简单的一个。</p>
-                <figure class="highlight livescript">
+                <figure class="highlight arduino">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\begin&#123;verbatim&#125;</span> </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello World!"</span>)</span><br><span class="line">  a%b; % 在这一环境下我们可以使用 %</span><br><span class="line">  random = <span class="number">4</span>; <span class="comment">#decided by fair random dice roll</span></span><br><span class="line"><span class="string">\end&#123;verbatim&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="string">\section&#123;Compiling&#125;</span></span><br></pre>
+                        <pre><span class="line">\<span class="built_in">begin</span>&#123;verbatim&#125; </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello World!"</span>)</span><br><span class="line">  a%b; % 在这一环境下我们可以使用 %</span><br><span class="line">  <span class="built_in">random</span> = <span class="number">4</span>; <span class="meta">#decided by fair random dice roll</span></span><br><span class="line">\<span class="built_in">end</span>&#123;verbatim&#125;</span><br><span class="line"></span><br><span class="line">\section&#123;Compiling&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
