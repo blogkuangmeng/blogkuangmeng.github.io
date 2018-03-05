@@ -2,6 +2,22 @@ img {
   border-width: 0px;
 }
 
+.mya {
+  color: #000;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+.lists,
+.lists li,
+.list-left li {
+  list-style: none;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
 .left-100 {
   width: 100%;
   height: 100%;
