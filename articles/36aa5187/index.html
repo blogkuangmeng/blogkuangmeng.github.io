@@ -18,7 +18,7 @@
 
 
   <meta name="description" content="概述 基本上多数破解的思路是一样的，就是将本来判断为true的时候干的事情改为逻辑值为false就做，因此常常需要替换一些汇编命令：  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16   cmp a,b 比较a与b mov a,b 把b的值送给a ret 返回主程序 nop 无作用,英文“no operation”的简写，意思是“do nothing”(机器码90)">
-  <meta name="keywords" content="ASM,破解,汇编">
+  <meta name="keywords" content="破解,ASM,汇编">
   <meta property="og:type" content="article">
   <meta property="og:title" content="破解时常用的汇编命令">
   <meta property="og:url" content="http://meng.uno/articles/36aa5187/index.html">
@@ -494,7 +494,27 @@
 
               </p>
 
+              <p id="hitokoto">:D 获取中...</p>
+              <!-- 以下写法，选取一种即可 -->
 
+              <!-- 现代写法，推荐 -->
+              <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+              <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+              <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+              <!--End-->
+              <script>
+                fetch('https://v1.hitokoto.cn')
+                  .then(function(res) {
+                    return res.json();
+                  })
+                  .then(function(data) {
+                    var hitokoto = document.getElementById('hitokoto');
+                    hitokoto.innerText = data.hitokoto;
+                  })
+                  .catch(function(err) {
+                    console.error(err);
+                  })
+              </script>
 
               <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
               <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
