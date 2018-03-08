@@ -116,6 +116,18 @@
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
 
+  <script>
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔呦，网页崩溃了！';
+      } else {
+        document.title = tmptitle;
+      }
+    });
+  </script>
+
 </head>
 
 
@@ -510,7 +522,7 @@
 
           <div class="container">
             <div class="row">
-              <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.06 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+              <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.08 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
 
               <p class="busuanzi_uv">
 

@@ -114,6 +114,18 @@
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
 
+  <script>
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔呦，网页崩溃了！';
+      } else {
+        document.title = tmptitle;
+      }
+    });
+  </script>
+
 </head>
 
 
