@@ -124,7 +124,7 @@
     document.addEventListener('visibilitychange', function() {
       var isHidden = document.hidden;
       if (isHidden) {
-        document.title = '喔呦，网页崩溃了！';
+        document.title = '喔唷，崩溃啦！';
         linkEle.href = '/css/images/fault.png';
       } else {
         document.title = tmptitle;
@@ -380,14 +380,14 @@
                 <h2 id="进程通讯">进程通讯</h2>
                 <p>进程间通信(IPC)两个常见的实用方法是管道和套接字对(socket pairs)。</p>
                 <p>管道是一个单向数据流。打开一个管道，一个进程拥有管道的一段，另一个进程拥有另一端。然后数据就沿着管道单向传递。因此如果某个进程将自己作为一个管道的reader，而非writer，那么它就无法向管道中写入数据，反之亦然。例如在ruby脚本程序中：</p>
-                <figure class="highlight gauss">
+                <figure class="highlight stylus">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">reader，<span class="built_in">writer</span> = IO.pipe</span><br><span class="line"><span class="built_in">writer</span>.write(<span class="string">"I am writing something.."</span>)</span><br><span class="line"><span class="built_in">writer</span>.<span class="built_in">close</span></span><br><span class="line">puts reader.read</span><br></pre>
+                        <pre><span class="line">reader，writer = IO.pipe</span><br><span class="line">writer.write(<span class="string">"I am writing something.."</span>)</span><br><span class="line">writer.close</span><br><span class="line">puts reader.read</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -584,7 +584,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.10 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.11 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
