@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>商品推荐：协同过滤 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。  关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下">
+  <meta name="keywords" content="社会网络,商品推荐,协同过滤">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="商品推荐：协同过滤">
+  <meta property="og:url" content="http://meng.uno/articles/6f93935a/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。  关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/6.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/3.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/4.gif">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/5.gif">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/1.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/2.jpg">
+  <meta property="og:updated_time" content="2018-03-18T07:18:17.340Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="商品推荐：协同过滤">
+  <meta name="twitter:description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。  关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下">
+  <meta name="twitter:image" content="http://www.meng.uno/images/recommend/6.jpg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://meng.uno/articles/6f93935a/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/error.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-recommendation" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  商品推荐：协同过滤
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/6f93935a/" class="article-date">
+	  <time datetime="2018-03-17T06:05:52.000Z" itemprop="datePublished">2018-03-17</time>
+	</a>
+                <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+                <a class="article-category-link" href="/categories/机器学习/社会网络/">社会网络</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数3,814</span>
+	<span class="post-count"> | 预计时间16分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。</p>
+                </blockquote>
+                <h1>关于推荐系统</h1>
+                <p>根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下三类：</p>
+                <ul>
+                  <li>基于人口统计学的推荐机制（Demographic-based Recommendation）：根据系统用户的基本信息发现用户的相关程度。</li>
+                </ul>
+                <p><img src="http://www.meng.uno/images/recommend/6.jpg" alt=""></p>
+                <ul>
+                  <li>基于内容的推荐机制（Content-based Recommendation）：根据推荐物品或内容的元数据，发现物品或者内容的相关性。</li>
+                </ul>
+                <p><img src="http://www.meng.uno/images/recommend/3.jpg" alt=""></p>
+                <ul>
+                  <li>协同过滤的推荐机制（Collaborative Filtering-based Recommendation）：根据用户对物品或者信息的偏好，发现物品或者内容本身的相关性，或者是发现用户的相关性。</li>
+                </ul>
+                <p>根据推荐模型的建立方式不同，推荐系统可以分为这样三类：</p>
+                <ul>
+                  <li>基于物品和用户本身。这种推荐引擎将每个用户和每个物品都当作独立的实体，预测每个用户对于每个物品的喜好程度，这些信息往往是用一个二维矩阵描述的。由于用户感兴趣的物品远远小于总物品的数目，这样的模型导致大量的数据空置，即我们得到的二维矩阵往往是一个很大的稀疏矩阵。同时为了减小计算量，我们可以对物品和用户进行聚类， 然后记录和计算一类用户对一类物品的喜好程度，但这样的模型又会在推荐的准确性上有损失。</li>
+                  <li>基于关联规则的推荐（Rule-based Recommendation）。关联规则的挖掘已经是数据挖掘中的一个经典的问题，主要是挖掘一些数据的依赖关系，典型的场景就是“购物篮问题”，通过关联规则的挖掘，我们可以找到哪些物品经常被同时购买，或者用户购买了一些物品后通常会购买哪些其他的物品，当我们挖掘出这些关联规则之后，我们可以基于这些规则给用户进行推荐。</li>
+                  <li>基于模型的推荐（Model-based Recommendation）。这是一个典型的机器学习的问题，可以将已有的用户喜好信息作为训练样本，训练出一个预测用户喜好的模型，这样以后用户在进入系统，可以基于此模型计算推荐。这种方法的问题在于如何将用户实时或者近期的喜好信息反馈给训练好的模型，从而提高推荐的准确度。</li>
+                </ul>
+                <h1>协同过滤</h1>
+                <p>关于协同过滤的一个最经典的例子就是看电影，有时候不知道哪一部电影是我们喜欢的或者评分比较高的，那么通常的做法就是问问周围的朋友，看看最近有什么好的电影推荐。在问的时候，都习惯于问跟自己口味差不多的朋友，这就是协同过滤的核心思想。</p>
+                <h2 id="步骤">步骤</h2>
+                <p>要实现协同过滤，一般需要这样三步：</p>
+                <ul>
+                  <li>收集用户偏好</li>
+                  <li>找到相似物或人</li>
+                  <li>计算并推荐</li>
+                </ul>
+                <h3 id="收集用户偏好">收集用户偏好</h3>
+                <p>从用户的行为和偏好中发现规律，并基于此进行推荐，所以如何收集用户的偏好信息成为系统推荐效果最基础的决定因素。用户有很多种方式向系统提供自己的偏好信息，比如：评分，投票，转发，保存书签，购买，点击流，页面停留时间等等。</p>
+                <p>当然，得到原始数据之后，我们总是需要进行降噪、归一化等，在此不再赘述。</p>
+                <h3 id="找到相似物或人">找到相似物或人</h3>
+                <p>既然是找相似，我们就需要设定一个计算相似度的指标，一般而言，余弦相似度与皮尔逊相关系数是很好的选择。</p>
+                <h4 id="余弦相似度">余弦相似度</h4>
+                <p><img src="http://www.meng.uno/images/recommend/4.gif" alt=""></p>
+                <h4 id="皮尔逊相关系数">皮尔逊相关系数</h4>
+                <p>皮尔逊相关也称为积差相关（或积矩相关）是英国统计学家皮尔逊于20世纪提出的一种计算直线相关的方法。</p>
+                <p>假设有两个变量X、Y，那么两变量间的皮尔逊相关系数可通过以下公式计算：</p>
+                <p><img src="http://www.meng.uno/images/recommend/5.gif" alt=""></p>
+                <h3 id="计算并推荐">计算并推荐</h3>
+                <ul>
+                  <li>基于用户的协同过滤推荐</li>
+                </ul>
+                <p>基于用户的协同过滤推荐的基本原理是，根据所有用户对物品或者信息的偏好，发现与当前用户口味和偏好相似的“邻居”用户群，在一般的应用中是采用计算“K- 邻居”的算法；然后，基于这 K 个邻居的历史偏好信息，为当前用户进行推荐。</p>
+                <p><img src="http://www.meng.uno/images/recommend/1.jpg" alt=""></p>
+                <p>上图示意出基于用户的协同过滤推荐机制的基本原理，假设用户 A 喜欢物品 A，物品 C，用户 B 喜欢物品 B，用户 C 喜欢物品 A ，物品 C 和物品 D；从这些用户的历史喜好信息中，我们可以发现用户 A 和用户 C 的口味和偏好是比较类似的，同时用户 C 还喜欢物品 D，那么我们可以推断用户 A 可能也喜欢物品 D，因此可以将物品 D 推荐给用户 A。</p>
+                <p>基于用户的协同过滤推荐机制和基于人口统计学的推荐机制都是计算用户的相似度，并基于“邻居”用户群计算推荐，但它们所不同的是如何计算用户的相似度，基于人口统计学的机制只考虑用户本身的特征，而基于用户的协同过滤机制可是在用户的历史偏好的数据上计算用户的相似度，它的基本假设是，喜欢类似物品的用户可能有相同或者相似的口味和偏好。</p>
+                <ul>
+                  <li>基于项目的协同过滤推荐</li>
+                </ul>
+                <p>基于项目的协同过滤推荐的基本原理也是类似的，只是说它使用所有用户对物品或者信息的偏好，发现物品和物品之间的相似度，然后根据用户的历史偏好信息，将类似的物品推荐给用户。</p>
+                <p><img src="http://www.meng.uno/images/recommend/2.jpg" alt=""></p>
+                <p>假设用户 A 喜欢物品 A 和物品 C，用户 B 喜欢物品 A，物品 B 和物品 C，用户 C 喜欢物品 A，从这些用户的历史喜好可以分析出物品 A 和物品 C 时比较类似的，喜欢物品 A 的人都喜欢物品 C，基于这个数据可以推断用户 C 很有可能也喜欢物品 C，所以系统会将物品 C 推荐给用户 C。</p>
+                <p>与上面讲的类似，基于项目的协同过滤推荐和基于内容的推荐其实都是基于物品相似度预测推荐，只是相似度计算的方法不一样，前者是从用户历史的偏好推断，而后者是基于物品本身的属性特征信息。</p>
+                <ul>
+                  <li>基于模型的协同过滤推荐</li>
+                </ul>
+                <p>基于模型的协同过滤推荐就是基于样本的用户喜好信息，训练一个推荐模型，然后根据实时的用户喜好的信息进行预测，计算推荐。</p>
+                <p>基于协同过滤的推荐机制是现今应用最为广泛的推荐机制，它有以下几个显著的优点：</p>
+                <p>它不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可理解的，所以这种方法也是领域无关的。 这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好 而它也存在以下几个问题：
+                </p>
+                <p>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”的问题。 推荐的效果依赖于用户历史偏好数据的多少和准确性。 在大部分的实现中，用户历史偏好是用稀疏矩阵进行存储的，而稀疏矩阵上的计算有些明显的问题，包括可能少部分人的错误偏好会对推荐的准确度有很大的影响等等。 对于一些特殊品味的用户不能给予很好的推荐。 由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致这个方法不够灵活。
+                </p>
+                <h2 id="代码实现">代码实现</h2>
+                <p>基于用户的CF：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Map.Entry;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 基于用户的协同过滤推荐算法实现 </span></span><br><span class="line"><span class="comment">A a b d </span></span><br><span class="line"><span class="comment">B a c </span></span><br><span class="line"><span class="comment">C b e </span></span><br><span class="line"><span class="comment">D c d e </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Administrator </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserCF</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/** </span></span><br><span class="line"><span class="comment">   * 输入用户--&gt;物品条目 一个用户对应多个物品 </span></span><br><span class="line"><span class="comment">   * 用户ID 物品ID集合 </span></span><br><span class="line"><span class="comment">   * A  a b d </span></span><br><span class="line"><span class="comment">   * B  a c </span></span><br><span class="line"><span class="comment">   * C  b e </span></span><br><span class="line"><span class="comment">   * D  c d e </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">		Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"Input the total users number:"</span>);</span><br><span class="line">		<span class="comment">//输入用户总量 </span></span><br><span class="line">		<span class="keyword">int</span> N = scanner.nextint();</span><br><span class="line">		<span class="keyword">int</span>[][] sparseMatrix = <span class="keyword">new</span> <span class="keyword">int</span>[N][N];</span><br><span class="line">		<span class="comment">//建立用户稀疏矩阵，用于用户相似度计算【相似度矩阵】 </span></span><br><span class="line">		Map&lt;String, Integer&gt; userItemLength = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">//存储每一个用户对应的不同物品总数 eg: A 3 </span></span><br><span class="line">		Map&lt;String, Set&lt;String&gt;&gt; itemUserCollection = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">//建立物品到用户的倒排表 eg: a A B </span></span><br><span class="line">		Set&lt;String&gt; items = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">		<span class="comment">//辅助存储物品集合 </span></span><br><span class="line">		Map&lt;String, Integer&gt; userID = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">//辅助存储每一个用户的用户ID映射 </span></span><br><span class="line">		Map&lt;Integer, String&gt; idUser = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">//辅助存储每一个ID对应的用户映射 </span></span><br><span class="line">		System.out.println(<span class="string">"Input user--items maping infermation:&lt;eg:A a b d&gt;"</span>);</span><br><span class="line">		scanner.nextLine();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N ; i++)&#123;</span><br><span class="line">			<span class="comment">//依次处理N个用户 输入数据 以空格间隔 </span></span><br><span class="line">			String[] user_item = scanner.nextLine().split(<span class="string">" "</span>);</span><br><span class="line">			<span class="keyword">int</span> length = user_item.length;</span><br><span class="line">			userItemLength.put(user_item[<span class="number">0</span>], length-<span class="number">1</span>);</span><br><span class="line">			<span class="comment">//eg: A 3 </span></span><br><span class="line">			userID.put(user_item[<span class="number">0</span>], i);</span><br><span class="line">			<span class="comment">//用户ID与稀疏矩阵建立对应关系 </span></span><br><span class="line">			idUser.put(i, user_item[<span class="number">0</span>]);</span><br><span class="line">			<span class="comment">//建立物品--用户倒排表 </span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; length; j ++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(items.contains(user_item[j]))&#123;</span><br><span class="line">					<span class="comment">//如果已经包含对应的物品--用户映射，直接添加对应的用户 </span></span><br><span class="line">					itemUserCollection.get(user_item[j]).add(user_item[<span class="number">0</span>]);</span><br><span class="line">				&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">					<span class="comment">//否则创建对应物品--用户集合映射 </span></span><br><span class="line">					items.add(user_item[j]);</span><br><span class="line">					itemUserCollection.put(user_item[j], <span class="keyword">new</span> HashSet&lt;String&gt;());</span><br><span class="line">					<span class="comment">//创建物品--用户倒排关系 </span></span><br><span class="line">					itemUserCollection.get(user_item[j]).add(user_item[<span class="number">0</span>]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(itemUserCollection.toString());</span><br><span class="line">		<span class="comment">//计算相似度矩阵【稀疏】 </span></span><br><span class="line">		Set&lt;Entry&lt;String, Set&lt;String&gt;&gt;&gt; entrySet = itemUserCollection.entrySet();</span><br><span class="line">		Iterator&lt;Entry&lt;String, Set&lt;String&gt;&gt;&gt; iterator = entrySet.iterator();</span><br><span class="line">		<span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">			Set&lt;String&gt; commonUsers = iterator.next().getValue();</span><br><span class="line">			<span class="keyword">for</span> (String user_u : commonUsers) &#123;</span><br><span class="line">				<span class="keyword">for</span> (String user_v : commonUsers) &#123;</span><br><span class="line">					<span class="keyword">if</span>(user_u.equals(user_v))&#123;</span><br><span class="line">						<span class="keyword">continue</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					sparseMatrix[userID.get(user_u)][userID.get(user_v)] += <span class="number">1</span>;</span><br><span class="line">					<span class="comment">//计算用户u与用户v都有正反馈的物品总数</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(userItemLength.toString());</span><br><span class="line">		System.out.println(<span class="string">"Input the user for recommendation:&lt;eg:A&gt;"</span>);</span><br><span class="line">		String recommendUser = scanner.nextLine();</span><br><span class="line">		System.out.println(userID.get(recommendUser));</span><br><span class="line">		<span class="comment">//计算用户之间的相似度【余弦相似性】 </span></span><br><span class="line">		<span class="keyword">int</span> recommendUserId = userID.get(recommendUser);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; sparseMatrix.length; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(j != recommendUserId)&#123;</span><br><span class="line">				System.out.println(idUser.get(recommendUserId)+<span class="string">"--"</span>+idUser.get(j)+<span class="string">"相似度:"</span>+sparseMatrix[recommendUserId][j]/Math.sqrt(userItemLength.get(idUser.get(recommendUserId))*userItemLength.get(idUser.get(j))));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//计算指定用户recommendUser的物品推荐度 </span></span><br><span class="line">		<span class="keyword">for</span> (String item: items)&#123;</span><br><span class="line">			<span class="comment">//遍历每一件物品 </span></span><br><span class="line">			Set&lt;String&gt; users = itemUserCollection.get(item);</span><br><span class="line">			<span class="comment">//得到购买当前物品的所有用户集合 </span></span><br><span class="line">			<span class="keyword">if</span>(!users.contains(recommendUser))&#123;</span><br><span class="line">				<span class="comment">//如果被推荐用户没有购买当前物品，则进行推荐度计算 </span></span><br><span class="line">				<span class="keyword">double</span> itemRecommendDegree = <span class="number">0.0</span>;</span><br><span class="line">				<span class="keyword">for</span> (String user: users)&#123;</span><br><span class="line">					itemRecommendDegree += sparseMatrix[userID.get(recommendUser)][userID.get(user)]/Math.sqrt(userItemLength.get(recommendUser)*userItemLength.get(user));</span><br><span class="line">					<span class="comment">//推荐度计算</span></span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println(<span class="string">"The item "</span>+item+<span class="string">" for "</span>+recommendUser +<span class="string">"'s recommended degree:"</span>+itemRecommendDegree);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		scanner.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>基于项目的CF：</p>
+                <figure class="highlight python">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span>  itemgetter</span><br><span class="line">random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemBasedCF</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.trainset = &#123;&#125;</span><br><span class="line">        self.testset = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        self.n_sim_movie = <span class="number">20</span></span><br><span class="line">        self.n_rec_movie = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">        self.movie_sim_mat = &#123;&#125;</span><br><span class="line">        self.movie_popular = &#123;&#125;</span><br><span class="line">        self.movie_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'Similar movie number = %d'</span> % self.n_sim_movie, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'Recommendend movie number = %d'</span> % self.n_rec_movie,file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loadfile</span><span class="params">(filename)</span>:</span></span><br><span class="line">        fp = open(filename, <span class="string">'r'</span>)</span><br><span class="line">        <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(fp):</span><br><span class="line">            <span class="keyword">yield</span> line.strip(<span class="string">'\r\n'</span>)</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">print</span> (<span class="string">'load %s(%s)'</span> %(filename,i), file = sys.stderr)</span><br><span class="line">        fp.close()</span><br><span class="line">        print(<span class="string">'load %s succ'</span> %filename, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_dataset</span><span class="params">(self, filename, pivot = <span class="number">0.7</span>)</span>:</span></span><br><span class="line">        trainset_len = <span class="number">0</span></span><br><span class="line">        testset_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> self.loadfile(filename):</span><br><span class="line">            user, movie, rating , _= line.split(<span class="string">'::'</span>)</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; pivot:</span><br><span class="line">                self.trainset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.trainset[user][movie] = int(rating)</span><br><span class="line">                trainset_len += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.testset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.testset[user][movie] = int(rating)</span><br><span class="line">                testset_len += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'split succ , trainset is %d , testset is %d'</span>  %(trainset_len,testset_len) , file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calc_movie_sim</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> movie <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">not</span> <span class="keyword">in</span> self.movie_popular:</span><br><span class="line">                    self.movie_popular[movie] = <span class="number">0</span></span><br><span class="line">                self.movie_popular[movie] += <span class="number">1</span></span><br><span class="line">        print(<span class="string">'count movies number and pipularity succ'</span>,file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        self.movie_count = len(self.movie_popular)</span><br><span class="line">        print(<span class="string">'total movie number = %d'</span> %self.movie_count, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        itemsim_mat = self.movie_sim_mat</span><br><span class="line">        print(<span class="string">'building co-rated users matrix'</span>, file = sys.stderr)</span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> m1 <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">for</span> m2 <span class="keyword">in</span> movies:</span><br><span class="line">                    <span class="keyword">if</span> m1 == m2:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    itemsim_mat.setdefault(m1,&#123;&#125;)</span><br><span class="line">                    itemsim_mat[m1].setdefault(m2,<span class="number">0</span>)</span><br><span class="line">                    itemsim_mat[m1][m2] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'build co-rated users matrix succ'</span>, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calculating movie similarity matrix'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        simfactor_count = <span class="number">0</span></span><br><span class="line">        PRINT_STEP = <span class="number">2000000</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m1, related_movies <span class="keyword">in</span> itemsim_mat.items():</span><br><span class="line">            <span class="keyword">for</span> m2, count <span class="keyword">in</span> related_movies.items():</span><br><span class="line">                itemsim_mat[m1][m2] = count / math.sqrt(self.movie_popular[m1] * self.movie_popular[m2])</span><br><span class="line">                simfactor_count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> simfactor_count % PRINT_STEP == <span class="number">0</span>:</span><br><span class="line">                    print(<span class="string">'calcu movie similarity factor(%d)'</span> %simfactor_count, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calcu similiarity succ'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recommend</span><span class="params">(self,user)</span>:</span></span><br><span class="line">        K = self.n_sim_movie</span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line">        rank = &#123;&#125;</span><br><span class="line">        watched_movies = self.trainset[user]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> movie, rating <span class="keyword">in</span> watched_movies.items():</span><br><span class="line">            <span class="keyword">for</span> related_movie, similarity_factor <span class="keyword">in</span> sorted(self.movie_sim_mat[movie].items(), key=itemgetter(<span class="number">1</span>),</span><br><span class="line">                                                           reverse=<span class="keyword">True</span>)[<span class="number">0</span>:K]:</span><br><span class="line">                <span class="keyword">if</span> related_movie <span class="keyword">in</span> watched_movies:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                rank.setdefault(related_movie, <span class="number">0</span>)</span><br><span class="line">                rank[related_movie] += similarity_factor * rating</span><br><span class="line">        <span class="keyword">return</span> sorted(rank.items(), key=itemgetter(<span class="number">1</span>), reverse=<span class="keyword">True</span>)[<span class="number">0</span>:N]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evaluate</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'evaluation start'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line"></span><br><span class="line">        hit = <span class="number">0</span></span><br><span class="line">        rec_count = <span class="number">0</span></span><br><span class="line">        test_count = <span class="number">0</span></span><br><span class="line">        all_rec_movies = set()</span><br><span class="line">        popular_sum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, user <span class="keyword">in</span> enumerate(self.trainset):</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">500</span> == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">'recommend for %d users '</span> %i , file = sys.stderr)</span><br><span class="line">            test_movies = self.testset.get(user,&#123;&#125;)</span><br><span class="line">            rec_movies = self.recommend(user)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> movie, _ <span class="keyword">in</span> rec_movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">in</span> test_movies:</span><br><span class="line">                    hit += <span class="number">1</span></span><br><span class="line">                all_rec_movies.add(movie)</span><br><span class="line">                popular_sum += math.log(<span class="number">1</span> + self.movie_popular[movie])</span><br><span class="line"></span><br><span class="line">            rec_count += N</span><br><span class="line">            test_count += len(test_movies)</span><br><span class="line"></span><br><span class="line">            precision = hit / (<span class="number">1.0</span> * rec_count)</span><br><span class="line">            recall = hit / (<span class="number">1.0</span> * test_count)</span><br><span class="line">            coverage = len(all_rec_movies) / (<span class="number">1.0</span> * self.movie_count)</span><br><span class="line">            popularity = popular_sum / (<span class="number">1.0</span> * rec_count)</span><br><span class="line"></span><br><span class="line">            print(<span class="string">'precision is %.4f\t recall is %.4f \t coverage is %.4f \t popularity is %.4f'</span></span><br><span class="line">                  %(precision,recall,coverage,popularity), file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ratingfile = os.path.join(<span class="string">'ml-1m'</span>, <span class="string">'ratings.dat'</span>)</span><br><span class="line">    itemcf = ItemBasedCF()</span><br><span class="line">    itemcf.generate_dataset(ratingfile)</span><br><span class="line">    itemcf.calc_movie_sim()</span><br><span class="line">    itemcf.evaluate()</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>本文链接： <a href="http://meng.uno/articles/undefined/">http://meng.uno/articles/undefined/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/协同过滤/">协同过滤</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/商品推荐/">商品推荐</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/社会网络/">社会网络</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+
+              <a href="/articles/dde60b3a/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">JVM的垃圾回收机制</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于推荐系统</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">协同过滤</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.1.</span> <span class="nav-text">步骤</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#收集用户偏好"><span class="nav-number">2.1.1.</span> <span class="nav-text">收集用户偏好</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#找到相似物或人"><span class="nav-number">2.1.2.</span> <span class="nav-text">找到相似物或人</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#余弦相似度"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">余弦相似度</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#皮尔逊相关系数"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">皮尔逊相关系数</span></a></li>
+                          </ol>
+                        </li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#计算并推荐"><span class="nav-number">2.1.3.</span> <span class="nav-text">计算并推荐</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.18 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a9d5b43ece25231"></script>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
