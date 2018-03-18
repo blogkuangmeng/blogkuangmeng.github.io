@@ -339,14 +339,14 @@
                   </table>
                 </figure>
                 <h2 id="本地运行">本地运行</h2>
-                <figure class="highlight applescript">
+                <figure class="highlight stylus">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">docker <span class="built_in">run</span> <span class="comment">--name docker-mario -d -p 1989:80 <span class="doctag">XXX:</span>1.0</span></span><br></pre>
+                        <pre><span class="line">docker run --name docker-mario -d -<span class="selector-tag">p</span> <span class="number">1989</span>:<span class="number">80</span> XXX:<span class="number">1.0</span></span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -405,14 +405,14 @@
                   </table>
                 </figure>
                 <p>推送至网易云镜像仓库：</p>
-                <figure class="highlight dust">
+                <figure class="highlight stylus">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="xml">docker push hub.c.163.com/</span><span class="template-variable">&#123;你的用户名&#125;</span><span class="xml">/</span><span class="template-variable">&#123;标签名&#125;</span><span class="xml"></span></span><br></pre>
+                        <pre><span class="line">docker push hub<span class="selector-class">.c</span>.<span class="number">163</span>.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -587,14 +587,14 @@
                 </figure>
                 <h1>制作镜像</h1>
                 <h2 id="ldd-打印共享依赖库">ldd: 打印共享依赖库</h2>
-                <figure class="highlight lsl">
+                <figure class="highlight stylus">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">ldd  redis<span class="number">-3.0</span><span class="number">.0</span>/src/redis-server</span><br><span class="line">    linux-vdso.so<span class="number">.1</span> =&gt;  (<span class="number">0x00007fffde365000</span>)</span><br><span class="line">    libm.so<span class="number">.6</span> =&gt; /lib/x86_64-linux-gnu/libm.so<span class="number">.6</span> (<span class="number">0x00007f307d5aa000</span>)</span><br><span class="line">    libpthread.so<span class="number">.0</span> =&gt; /lib/x86_64-linux-gnu/libpthread.so<span class="number">.0</span> (<span class="number">0x00007f307d38c000</span>)</span><br><span class="line">    libc.so<span class="number">.6</span> =&gt; /lib/x86_64-linux-gnu/libc.so<span class="number">.6</span> (<span class="number">0x00007f307cfc6000</span>)</span><br><span class="line">    /lib64/ld-linux-x86<span class="number">-64.</span>so<span class="number">.2</span> (<span class="number">0x00007f307d8b9000</span>)</span><br></pre>
+                        <pre><span class="line">ldd  redis-<span class="number">3.0</span>.<span class="number">0</span>/src/redis-server</span><br><span class="line">    linux-vdso<span class="selector-class">.so</span>.<span class="number">1</span> =&gt;  (<span class="number">0</span>x00007fffde365000)</span><br><span class="line">    libm<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib/x86_64-linux-gnu/libm<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00007f307d5aa000)</span><br><span class="line">    libpthread<span class="selector-class">.so</span>.<span class="number">0</span> =&gt; /lib/x86_64-linux-gnu/libpthread<span class="selector-class">.so</span>.<span class="number">0</span> (<span class="number">0</span>x00007f307d38c000)</span><br><span class="line">    libc<span class="selector-class">.so</span>.<span class="number">6</span> =&gt; /lib/x86_64-linux-gnu/libc<span class="selector-class">.so</span>.<span class="number">6</span> (<span class="number">0</span>x00007f307cfc6000)</span><br><span class="line">    /lib64/ld-linux-x86-<span class="number">64</span><span class="selector-class">.so</span>.<span class="number">2</span> (<span class="number">0</span>x00007f307d8b9000)</span><br></pre>
                       </td>
                     </tr>
                   </table>
