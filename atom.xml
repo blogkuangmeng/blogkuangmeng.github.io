@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meng.uno/"/>
-  <updated>2018-03-18T07:18:29.430Z</updated>
+  <updated>2018-03-18T11:11:38.392Z</updated>
   <id>http://meng.uno/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微博好友推荐</title>
+    <link href="http://meng.uno/articles/82a6b55c/"/>
+    <id>http://meng.uno/articles/82a6b55c/</id>
+    <published>2018-03-18T11:03:48.000Z</published>
+    <updated>2018-03-18T11:11:38.392Z</updated>
+    
+    <content type="html"><![CDATA[<h1>HITS算法</h1><p>算法简介：</p><p>首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。</p><p>C中的每个节点分配一对权重&lt;h(s),a(s)&gt;, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。</p><p>算法过程：</p><p><img src="http://www.meng.uno/images/recommend/7.jpg" alt=""></p><p>网页的a权重向量：</p><p><img src="http://www.meng.uno/images/recommend/8.jpg" alt=""></p><p>关于HITS算法收敛性，可以从如下变换形式来得出：</p><p><img src="http://www.meng.uno/images/recommend/9.jpg" alt=""></p><p>当算法收敛时候，a其实就是对应矩阵A那个最大特征值对应的特征向量的归一化形式，同样，h也是H矩阵那个最大特征值对应的特征向量的归一化形式。</p><h1>SALSA算法</h1><p>SALSA算法和HITS算法初始部分一样，构建相同的集合集C和彼此的链接关系。</p><p>SALSA一种随机游走过程，但是不同经典的随机游走。它涉及到把一个网页节点看成2种不同类型节点：hub和authority，随机游走对应着这样两种不用类型的Markov链：hub链和authority链，状态转移为网页前向和后向。</p><p><img src="http://www.meng.uno/images/recommend/10.jpg" alt=""></p><p>首先是把构建一个无向图，原图节点分为2类，然后构建边。</p><p>这样从某个节点出发，进行两个方向的随机游走。h和a方向的状态转移矩阵：</p><p><img src="http://www.meng.uno/images/recommend/11.jpg" alt=""></p><p>对于以上的形式可以通过如下的矩阵相乘的方式展现：</p><p><img src="http://www.meng.uno/images/recommend/12.jpg" alt=""></p><p>有了H和A矩阵，就可以知道节点集合最终的h和a向量：和HITS一样，h和a对应H和A的最大特征值对应的归一化特征向量。其实，计算h和a可以参照HITS，进行迭代求解。</p><p><br><br>本文链接： <a href="http://meng.uno/articles/82a6b55c/">http://meng.uno/articles/82a6b55c/</a> 欢迎转载！</p>]]></content>
+    
+    <summary type="html">
+    
+      HITS算法
+算法简介：
+
+首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。
+
+C中的每个节点分配一对权重&lt;h(s),a(s)&gt;, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。
+
+算法过程：
+
+
+
+网页的a权重向量：
+
+
+
+关于HITS算法收敛性，可以从如下变换形式来得出：
+
+
+
+当算法收敛时候，a其实就是对应矩阵A那个最大特征值对应的特征向量的归一化形式，同样，h也是H矩阵那个最大特征值对应的特征向量的归一化形式。
+
+SALSA算法
+SALSA算法和HITS算法初始部
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://meng.uno/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="推荐" scheme="http://meng.uno/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="社交网络" scheme="http://meng.uno/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>商品推荐：协同过滤</title>
@@ -699,44 +745,6 @@ State-machine specification means the system function will first verify the old 
       <category term="System" scheme="http://meng.uno/tags/System/"/>
     
       <category term="Verification" scheme="http://meng.uno/tags/Verification/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>怎么处理噪声</title>
-    <link href="http://meng.uno/articles/a12d1477/"/>
-    <id>http://meng.uno/articles/a12d1477/</id>
-    <published>2018-01-27T14:35:33.000Z</published>
-    <updated>2018-02-17T02:10:40.282Z</updated>
-    
-    <content type="html"><![CDATA[<p>处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入<code>X</code>，亦可以出现在输出<code>Y</code>中。</p><h2 id="x中缺失值"><code>X</code>中缺失值</h2><ol>  <li>使用来自所有可用数据的特征的平均值</li>  <li>忽略实例</li>  <li>使用来自类似项目的平均值</li>  <li>使用另一个机器学习算法来预测值</li></ol><ul>  <li>Bagging 或者 Boosting</li></ul><p><br><br>本文链接： <a href="http://meng.uno/articles/a12d1477/">http://meng.uno/articles/a12d1477/</a> 欢迎转载！</p><div><h1>其他推荐文章<span style="font-size:0.45em; color:gray"></h1><ul><li><a href="http://meng.uno/articles/6c0d033f/">主成分分析（PCA）</a></li><li><a href="http://meng.uno/articles/177fbbcc/">使用EM算法优化的GMM</a></li><li><a href="http://meng.uno/articles/1af17fd9/">多项式拟合曲线——最小二乘法</a></li><li><a href="http://www.libinx.com/2016/2016-11-09-machine-learning-algorithm-series-decision-tree/">机器学习算法系列（1）决策树</a></li><li><a href="http://www.libinx.com/2017/2017-02-26-machine-learning-algorithm-series-svm-2/">机器学习算法系列（5）支持向量机（二）</a></li><li><a href="http://www.libinx.com/2016/2016-11-12-machine-learning-algorithm-series-linearing-regression/">机器学习算法系列（2）多元线性回归</a></li></ul></div>]]></content>
-    
-    <summary type="html">
-    
-      处理噪声是一个在机器学习学习过程中，总会被问到的问题。噪声可以出现在输入X，亦可以出现在输出Y中。
-
-X中缺失值
- 1. 使用来自所有可用数据的特征的平均值
- 2. 忽略实例
- 3. 使用来自类似项目的平均值
- 4. 使用另一个机器学习算法来预测值
-
- * Bagging 或者 Boosting
-
-
-
-本文链接： http://meng.uno/articles/a12d1477/ 欢迎转载！
-    
-    </summary>
-    
-      <category term="AI" scheme="http://meng.uno/categories/AI/"/>
-    
-      <category term="机器学习" scheme="http://meng.uno/categories/AI/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="http://meng.uno/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="噪声" scheme="http://meng.uno/tags/%E5%99%AA%E5%A3%B0/"/>
     
   </entry>
   
