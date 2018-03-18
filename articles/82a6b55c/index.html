@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>微博好友推荐 | 欢迎来到匡盟盟的博客！</title>
+  <title>几个常见的社区推荐算法 | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -17,25 +17,29 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="HITS算法 算法简介：  首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。  C中的每个节点分配一对权重, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。  算法过程：    网页的a权重向量：    关于HITS算法收敛性，可以从如下变换形式来得出：    当算法收敛时候">
+  <meta name="description" content="PageRank算法 PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。  另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）  接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。">
   <meta name="keywords" content="推荐,社交网络">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="微博好友推荐">
+  <meta property="og:title" content="几个常见的社区推荐算法">
   <meta property="og:url" content="http://meng.uno/articles/82a6b55c/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="HITS算法 算法简介：  首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。  C中的每个节点分配一对权重, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。  算法过程：    网页的a权重向量：    关于HITS算法收敛性，可以从如下变换形式来得出：    当算法收敛时候">
+  <meta property="og:description" content="PageRank算法 PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。  另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）  接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。">
   <meta property="og:locale" content="zh-CN">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/13.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/14.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/15.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/recommend/16.png">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/7.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/8.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/9.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/10.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/11.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/recommend/12.jpg">
-  <meta property="og:updated_time" content="2018-03-18T11:17:05.342Z">
+  <meta property="og:updated_time" content="2018-03-18T13:39:36.183Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="微博好友推荐">
-  <meta name="twitter:description" content="HITS算法 算法简介：  首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。  C中的每个节点分配一对权重, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。  算法过程：    网页的a权重向量：    关于HITS算法收敛性，可以从如下变换形式来得出：    当算法收敛时候">
-  <meta name="twitter:image" content="http://www.meng.uno/images/recommend/7.jpg">
+  <meta name="twitter:title" content="几个常见的社区推荐算法">
+  <meta name="twitter:description" content="PageRank算法 PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。  另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）  接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。">
+  <meta name="twitter:image" content="http://www.meng.uno/images/recommend/13.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -257,7 +261,7 @@
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  微博好友推荐
+                  几个常见的社区推荐算法
                 </h1>
               </header>
 
@@ -270,12 +274,30 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数934</span>
-	<span class="post-count"> | 预计时间4分钟</span>
+	<span class="post-count"> | 字数1,512</span>
+	<span class="post-count"> | 预计时间6分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
+                <h1>PageRank算法</h1>
+                <p>PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。</p>
+                <p>另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）</p>
+                <p>接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。</p>
+                <h2 id="普通情况">普通情况</h2>
+                <p><img src="http://www.meng.uno/images/recommend/13.jpg" alt=""></p>
+                <p>互联网中的众多网页可以看成一个有向图，箭头的指向即为链接的链入，根据上图，我们得到A的PR值为：PR(A)=PR(B)/2+PR©/1。</p>
+                <h2 id="没有出链">没有出链</h2>
+                <p><img src="http://www.meng.uno/images/recommend/14.jpg" alt=""></p>
+                <p>网络中不乏一些没有出链的网页，如上图，其中，网页C没有出链，也就是说网页C对其他网页没有PR值的贡献，我们不喜欢这种“自私”的网页（其实是为了满足 Markov 链的收敛性），于是设定其对所有网页（包括它自己）都有出链，则此图中A的PR值表示为：PR(A)=PR(B)/2+PR©/4。</p>
+                <h2 id="出链循环圈">出链循环圈</h2>
+                <p><img src="http://www.meng.uno/images/recommend/15.jpg" alt=""></p>
+                <p>网络中还存在这样的网页：只对自己有出链，或者几个网页的出链形成一个循环圈。那么在不断迭代的过程中，这一个或几个网页的PR值将只增不减，这显然是不合理的。</p>
+                <p>那么如何解决这个问题呢？我们假设某人正在浏览网页C，显然他不会一直停留在网页C，他可能会随机地输入一个网址从而去往另一个网页，并且其跳转到每个网页的概率是一样的。于是此图中A的PR值表示为：PR(A)=∂(PR(B)/2)+(1-∂)/4。</p>
+                <p>综上，一般情况下，一个网页的PR值计算公式如下：</p>
+                <p><img src="http://www.meng.uno/images/recommend/16.png" alt=""></p>
+                <p>其中，Mpi是所有对pi网页有出链的网页集合，L(pj)是网页pj的出链数目，N是网页总数，α一般取0.85。</p>
+                <p>根据上面的公式，我们就可以计算出每个网页的PR值，在不断迭代并趋于平稳的时候，即为最终结果。</p>
                 <h1>HITS算法</h1>
                 <p>算法简介：</p>
                 <p>首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。</p>
@@ -399,8 +421,15 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">HITS算法</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">SALSA算法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">PageRank算法</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#普通情况"><span class="nav-number">1.1.</span> <span class="nav-text">普通情况</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#没有出链"><span class="nav-number">1.2.</span> <span class="nav-text">没有出链</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#出链循环圈"><span class="nav-number">1.3.</span> <span class="nav-text">出链循环圈</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">HITS算法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">SALSA算法</span></a></li>
               </ol>
 
             </div>
