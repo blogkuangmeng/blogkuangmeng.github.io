@@ -407,6 +407,48 @@ protocol ://hostname[:port]/
   </entry>
   
   <entry>
+    <title>pjax: 当ajax遇上pushState</title>
+    <link href="http://meng.uno/articles/c039b062/"/>
+    <id>http://meng.uno/articles/c039b062/</id>
+    <published>2018-02-12T00:55:00.000Z</published>
+    <updated>2018-03-20T06:59:57.926Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>  <p>var pjax = pushState + ajax;<br> 小时候，小浣熊方便面里面有各种水浒人物的卡片。我买了一包，吃了方便面，饱了。而我又买了第二包，不是想吃方便面，而是仅仅想得到里面的卡片…  </p></blockquote><h1>一、简介</h1><p>pushState是html5中提供的方法，用以</p><ul>  <li>无刷新的更新浏览器地址栏；</li>  <li>如其名称，将新地址push到历史堆栈中</li></ul><p>用法：<code>pushState(data, title ,url)</code></p><p>data为保存的对象，可以在window.onpopstate时获取到；title为页面标题；url为需地址栏和历史发生改变的url。<br> 正是这点看似很平常的功能，跟ajax结合到一起产生了火花。因为，ajax最擅长的事情就是局部刷新页面。</p><h1>二、ajax的纠结历史</h1><p>一切可以从ajax最擅长的事情说起。</p><p>ajax作为一个异步请求模型，从最初设计开始，也许压根就没打算将它跟浏览器历史挂钩。原因是历史堆栈所记录的，某种意思上可以说是顺序，跟我们理解的“同步”更为密切。</p><p>因而，<code>ajax可以无刷新改变页面内容，却无法改变页面的url</code>。</p><h2 id="历史问题1-如何操控历史">历史问题1 - 如何操控历史</h2><p>当单页面越来越流行，操作记录却很容易被忽略。假设有这样的单页面，按照分类点击，界面逐层递进：<code>体育 - 篮球 -nba -马刺队 - 邓肯</code><br> 当我们点了4下到“邓肯”界面时，一个不小心的刷新，出现在你面前的也许是“体育”。原因是操作记录没有被记录。  <br> 而通常的解决方案是修改hash，每递进一层，去更新url的hash值，这样的方法：</p><ol>  <li>刷新时预先判断url的hash，从而知道这是哪一层，加载相应数据；</li>  <li>支持了历史</li></ol><p>这样的方式貌似比较完善，其实不然。</p><h2 id="历史问题2-对搜索引擎不友好">历史问题2 - 对搜索引擎不友好</h2><p>最大的问题是，hash后生成的内容是不会被搜索引擎引用到。数据不能被爬取，无疑是浪费和损失。因此google放言，咱可以约定个协议：<code>#!xxx</code>这样hash的url，google也去爬取。称之为<code>hash bang</code>（哈希大爆炸？）。这一协议，在g+，twitter，人人，新浪微博上都可以看到。</p><p>事实上，ajax最或缺的两个问题，恰好被pushState的功能补充完善。</p><h1>三、pjax带来的价值</h1><p>除去补齐了ajax的问题，我们发现pjax会给web带来更多的好处。<br> 回到开始说的“两包方便面”，我的意思是，有时你访问两个url，部分数据是相同的。比如百度贴吧，第一页和第二页的区别只是帖子内容（卡片）的不同，网站外框部分（方便面）都是一样的，这些东西就不需要在页面刷新时重复加载。</p><p>ajax处理这样的局部刷新，已经给我们带来了web2.0的体验，而加上pushstate的ajax则更进一步：</p><ol>  <li>一个url对应一套数据，有利于SEO；</li>  <li>更改数据和url时，只是局部刷新，带来较好的用户体验；</li>  <li>兼容性好，对不支持pushstate的浏览器，url也能正常请求页面（虽然有重复加载）；</li>  <li>刷新页面时，由于是url唯一，能正常加载到用户希望看到的数据，比处理hash的方式更方便；</li>  <li>后退与前进的浏览器操作，依然可以局部刷新（通过onpushstate事件捕获）</li></ol><h1>四、注意事项</h1><p>然而pjax不等于单纯的分离使用pushstate与ajax，还必须得做一些封装。缘于以下我能想到的注意事项：</p><ul>  <li>服务器端增加额外处理逻辑<br> 服务器端，需要根据请求的参数，作出全页渲染或局部渲染响应  </li></ul><figure class="highlight groovy">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>      </td>      <td class="code">        <pre><span class="line"><span class="string">Accept:</span>text<span class="regexp">/html, */</span>*; q=<span class="number">0.01</span></span><br><span class="line">Accept-<span class="string">Encoding:</span>gzip,deflate,sdch</span><br><span class="line"><span class="string">Connection:</span>keep-alive</span><br><span class="line"><span class="string">Host:</span>qianduannotes.duapp.com</span><br><span class="line">User-<span class="string">Agent:</span>AppleWebKit<span class="regexp">/537.36 (KHTML, like Gecko) Chrome/</span><span class="number">31.0</span><span class="number">.1650</span><span class="number">.63</span> Safari/<span class="number">537.36</span></span><br><span class="line">X-Requested-<span class="string">With:</span>XMLHttpRequest</span><br><span class="line">X-<span class="string">PJAX:</span><span class="literal">true</span></span><br></pre>      </td>    </tr>  </table></figure><p>比如请求头部可以设定一个X-PAJX:true，用以通知服务器。</p><ul>  <li>浏览器兼容</li></ul><p>假如浏览器不支持pushstate，提供fallback操作，直接打开需更改url的地址：</p><figure class="highlight javascript">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>      </td>      <td class="code">        <pre><span class="line">$.support.pjax = <span class="built_in">window</span>.history &amp;&amp; <span class="built_in">window</span>.history.pushState</span><br><span class="line"><span class="comment">// Fallback</span></span><br><span class="line"><span class="keyword">if</span> ( !$.support.pjax ) &#123;</span><br><span class="line">  $.pjax = <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location = $.isFunction(options.url) ? options.url() : options.url</span><br><span class="line">  &#125;</span><br><span class="line">  $.fn.pjax = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span> &#125;</span><br><span class="line">&#125;</span><br></pre>      </td>    </tr>  </table></figure><ul>  <li>本地存储机制</li></ul><p>无疑pjax与localstorage共同使用可以进一步提升体验，但这一步容易忽略的是数据上报。</p><h1>五、参考资料</h1><p><a href="https://github.com/defunkt/jquery-pjax" target="_blank" rel="noopener">jquery-pjax</a><br>  <a href="https://github.com/welefen/pjax" target="_blank" rel="noopener">welefen封装的pjax</a></p><p><br><br>本文链接： <a href="http://meng.uno/articles/c039b062/">http://meng.uno/articles/c039b062/</a> 欢迎转载！</p>]]></content>
+    
+    <summary type="html">
+    
+      var pjax = pushState + ajax;
+小时候，小浣熊方便面里面有各种水浒人物的卡片。我买了一包，吃了方便面，饱了。而我又买了第二包，不是想吃方便面，而是仅仅想得到里面的卡片… 
+
+一、简介
+pushState是html5中提供的方法，用以
+
+ * 无刷新的更新浏览器地址栏；
+ * 如其名称，将新地址push到历史堆栈中
+
+用法：pushState(data, title ,url)
+
+data为保存的对象，可以在window.onpopstate时获取到；title为页面标题；url为需地址栏和历史发生改变的url。
+正是这点看似很平常的功能，跟ajax结合到一起产生了火花
+    
+    </summary>
+    
+      <category term="web" scheme="http://meng.uno/categories/web/"/>
+    
+    
+      <category term="js" scheme="http://meng.uno/tags/js/"/>
+    
+      <category term="html5" scheme="http://meng.uno/tags/html5/"/>
+    
+      <category term="ajax" scheme="http://meng.uno/tags/ajax/"/>
+    
+      <category term="pjax" scheme="http://meng.uno/tags/pjax/"/>
+    
+      <category term="pushState" scheme="http://meng.uno/tags/pushState/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CPAchecker</title>
     <link href="http://meng.uno/articles/c5d9877c/"/>
     <id>http://meng.uno/articles/c5d9877c/</id>
@@ -709,35 +751,6 @@ public class exceptionTest {
       <category term="Java" scheme="http://meng.uno/tags/Java/"/>
     
       <category term="Exception" scheme="http://meng.uno/tags/Exception/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Analysis For Hyperkernel</title>
-    <link href="http://meng.uno/articles/55c9299d/"/>
-    <id>http://meng.uno/articles/55c9299d/</id>
-    <published>2018-01-29T13:43:03.000Z</published>
-    <updated>2018-02-10T14:56:55.140Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>  <p>Homepage: <a href="https://locore.cs.washington.edu/hyperkernel/" target="_blank" rel="noopener">https://locore.cs.washington.edu/hyperkernel/</a> Code: <a href="https://github.com/locore/hv6" target="_blank" rel="noopener">https://github.com/locore/hv6</a></p></blockquote><h2 id="state-machine-specification">State-machine Specification</h2><p>State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system image. All of these must run in the user level. This specification consists  of two parts: a definition of abstract kernel state, and a definition of trap handlers (e.g., system calls) in terms of abstract state transitions. They use fully automated technique to find bugs and this method is full functional verification if program  is free of loops and state is finite.</p><p>The “hv6/hv6/spec/kernel/spec/specs.py” file contains the system calls which use this kind of specification. From the picture, we can see that they use Z3 to prove the correction of the “old” procedure and if it can transfer to a new state or it is runnable,  it will return the new procedure so that it can be proved true.</p><h2 id="declarative-specification">Declarative Specification</h2><p>The authors also provide a declarative specification of the high level properties that the state-machine specification should satisfy. The verifier will check that these high level properties are indeed satisfied, helping increase the programmer’s confidence  in the correctness of the state-machine specification. To improve confidence in its correctness, there is a higher-level declarative specification to better capture programmer intuition about kernel behavior, in the form of a conjunction of crosscutting  properties that hold across all trap handlers.</p><p><br><br>本文链接： <a href="http://meng.uno/articles/55c9299d/">http://meng.uno/articles/55c9299d/</a> 欢迎转载！</p>]]></content>
-    
-    <summary type="html">
-    
-      Homepage: https://locore.cs.washington.edu/hyperkernel/ Code: https://github.com/locore/hv6
-
-State-machine Specification
-State-machine specification means the system function will first verify the old procedure until the procedure is runnable and then return a new procedure and write to the system i
-    
-    </summary>
-    
-      <category term="操作系统" scheme="http://meng.uno/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-      <category term="系统验证" scheme="http://meng.uno/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%B3%BB%E7%BB%9F%E9%AA%8C%E8%AF%81/"/>
-    
-    
-      <category term="System" scheme="http://meng.uno/tags/System/"/>
-    
-      <category term="Verification" scheme="http://meng.uno/tags/Verification/"/>
     
   </entry>
   
