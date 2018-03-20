@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Analysis for Yggdrasil | 欢迎来到匡盟盟的博客！</title>
+  <title>Git Large File Storage | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -17,25 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it means that Yggdrasil needs no manual annotations or proofs. As">
-  <meta name="keywords" content="Yggdrasil,System Verification">
+  <meta name="description" content="基本没有什么人不知道Git了吧，也没有多少人不知道GitHub，但是谈到GitHub如何存储大文件（100MB以上），又有多少人知道呢？  今天，我要给大家介绍一种，不用分割文件即可实现让GitHub存储我们的大文件的方案 —— Git Large File Storage。  首先，给出官网：Git Large File Storage。  使用方法：   1. 下载并安装：（Mac下：brew">
+  <meta name="keywords" content="git,超大文件,GitHub">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Analysis for Yggdrasil">
-  <meta property="og:url" content="http://meng.uno/articles/5ed9f695/index.html">
+  <meta property="og:title" content="Git Large File Storage">
+  <meta property="og:url" content="http://meng.uno/articles/c7ef6efe/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it means that Yggdrasil needs no manual annotations or proofs. As">
+  <meta property="og:description" content="基本没有什么人不知道Git了吧，也没有多少人不知道GitHub，但是谈到GitHub如何存储大文件（100MB以上），又有多少人知道呢？  今天，我要给大家介绍一种，不用分割文件即可实现让GitHub存储我们的大文件的方案 —— Git Large File Storage。  首先，给出官网：Git Large File Storage。  使用方法：   1. 下载并安装：（Mac下：brew">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/2.png">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/4.png">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/5.png">
-  <meta property="og:image" content="http://www.meng.uno/images/yggdrasil/6.png">
-  <meta property="og:updated_time" content="2018-02-11T14:48:52.840Z">
+  <meta property="og:updated_time" content="2018-03-20T07:23:16.277Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Analysis for Yggdrasil">
-  <meta name="twitter:description" content="Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it means that Yggdrasil needs no manual annotations or proofs. As">
-  <meta name="twitter:image" content="http://www.meng.uno/images/yggdrasil/1.png">
+  <meta name="twitter:title" content="Git Large File Storage">
+  <meta name="twitter:description" content="基本没有什么人不知道Git了吧，也没有多少人不知道GitHub，但是谈到GitHub如何存储大文件（100MB以上），又有多少人知道呢？  今天，我要给大家介绍一种，不用分割文件即可实现让GitHub存储我们的大文件的方案 —— Git Large File Storage。  首先，给出官网：Git Large File Storage。  使用方法：   1. 下载并安装：（Mac下：brew">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -118,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/5ed9f695/" />
+  <link rel="canonical" href="http://meng.uno/articles/c7ef6efe/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -251,63 +244,45 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-yggdrasil" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-git-lfs" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  Analysis for Yggdrasil
+                  Git Large File Storage
                 </h1>
               </header>
 
               <div class="article-meta">
-                <a href="/articles/5ed9f695/" class="article-date">
-	  <time datetime="2018-01-16T14:31:00.000Z" itemprop="datePublished">2018-01-16</time>
+                <a href="/articles/c7ef6efe/" class="article-date">
+	  <time datetime="2018-01-21T02:22:44.000Z" itemprop="datePublished">2018-01-21</time>
 	</a>
-                <a class="article-category-link" href="/categories/System-Verification/">System Verification</a>
-                <a class="article-category-link" href="/categories/System-Verification/Yggdrasil/">Yggdrasil</a>
+                <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数600</span>
-	<span class="post-count"> | 预计时间4分钟</span>
+	<span class="post-count"> | 字数167</span>
+	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>Yggdrasil is a toolkit for verifying file system with push-button verification via crash refinement. As for push-button verification, it means that Yggdrasil needs no manual annotations or proofs. As for crash refinement, it is amenable
-                  to fully automated SMT reasoning. The whole verification is something like the State-Machine Specification in the project “Hyperkernel”.</p>
-                <p>The whole system architecture is shown as follows.</p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/1.png" alt="Yggdrasil"></p>
-                <p>From this picture, we know that Yggdrasil needs three inputs: a specification of the expected behavior, an implementation and consistency invariants which indicate whether a file system image is in a consistent state or not. For better
-                  run-time performance, Yggdrasil optionally performs optimizations. If there is a bug, Yggdrasil produces a counterexample to help identify and fix the cause. It requires no manual annotations or proofs about the implementation code.
-                  Once the verification passes, Yggdrasil emits C code, which is then compiled and linked using a C compiler to produce an executable file system, as well as a “fsck” checker.</p>
-                <p>The above is the entire overall content of this project. The authors also introduced every part of this project. I will analyze it by following the paper.</p>
-                <h2 id="single-level-file-system-yminlfs">Single-level File System (YminLFS)</h2>
-                <p>In this project, every file system must contain three parts: an abstract data structure, a set of operations and a state equivalence predicate which defines whether a given implementation satisfies the specification. So the authors first
-                  defines a file system which contains these features.</p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/2.png" alt="Yggdrasil"></p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/3.png" alt="Yggdrasil"></p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/4.png" alt="Yggdrasil"></p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/5.png" alt="Yggdrasil"></p>
-                <p>Then it runs the verification. Yggdrasil uses the Z3 solver to prove a two-part crash refinement.</p>
-                <p>The first part deals with crash-free executions which requires the implementation and specification are similar in the absence of crashes, which means if both YminLFS and FSSpec start in equivalent and consistent states, they end up in
-                  equivalent and consistent states (just like state-machine). This project defines equivalence using the equivalent predicate and defines consistency using the consistency invariants as the above pictures show.</p>
-                <p>The second part deals with crash executions which requires the implementation to exist no more crash states than the specification, which means each possible state of the YminLFS implementation must be equivalent to some crash state of
-                  FSSpec. What’s more, Yggdrasil provides a greedy optimizer that tries to remove every disk flush and re-verify the code.</p>
-                <h2 id="multi-level-file-system-yxv6">Multi-level File System (Yxv6)</h2>
-                <p>We could directly prove crash refinement between the entire file system specification and implementation in a single-level file system, however, we couldn’t use the same method in a complex multi-level file system. First, let’s look at
-                  the structure of Yxv6 journaling file system.</p>
-                <p><img src="http://www.meng.uno/images/yggdrasil/6.png" alt="Yggdrasil"></p>
-                <p>This is the 5 layers of abstraction and every layer contains a specification and a implementation. The authors use this project to prove crash refinement for each layer and upper layers then use the specifications of lower layers. The
-                  lowest layer of the stack is a specification of an asynchronous disk. This specification comprises the asynchronous disk model which is to implement YminLFS.</p>
-                <h2 id="application-level-ycp">Application-level (“Ycp”)</h2>
-                <p>Ycp has a formal specification which means if the copy operation succeeds, the result is the same as “cp”, however, if it fails, the file system is unchanged. To achieve this propose, the implementation of Ycp is something similar to Yxv6
-                  file system specification. There are 3 atomicity patterns which are “create a temporary file”, “write the source data to it” and “rename it to atomically create the target file”. After doing such an analogy, verifying this operation
-                  is similar to verify the single-level file system.</p>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/5ed9f695/">http://meng.uno/articles/5ed9f695/</a> 欢迎转载！</p>
+                <blockquote>
+                  <p>基本没有什么人不知道Git了吧，也没有多少人不知道GitHub，但是谈到GitHub如何存储大文件（100MB以上），又有多少人知道呢？</p>
+                </blockquote>
+                <p>今天，我要给大家介绍一种，不用分割文件即可实现让GitHub存储我们的大文件的方案 —— <code>Git Large File Storage</code>。</p>
+                <p>首先，给出官网：<a href="https://git-lfs.github.com/" target="_blank" rel="noopener">Git Large File Storage</a>。</p>
+                <p>使用方法：</p>
+                <ol>
+                  <li>下载并安装：（Mac下：<code>brew install git-lfs</code>）</li>
+                  <li>进入Git仓库，安装lfs：<code>git lfs install</code></li>
+                  <li>设置要跟踪的大文件：<code>git lfs track &quot;*.file&quot;</code></li>
+                  <li>添加<code>.gitattributes</code>进Git仓库：<code>git add .gitattributes</code></li>
+                  <li>正常的Git提交到GitHub！</li>
+                </ol>
+                <p><br><br>本文链接： <a href="http://meng.uno/articles/c7ef6efe/">http://meng.uno/articles/c7ef6efe/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -371,27 +346,28 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Verification/">System Verification</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Yggdrasil/">Yggdrasil</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/超大文件/">超大文件</a></li>
                 </ul>
               </footer>
             </div>
 
             <nav id="article-nav">
 
-              <a href="/articles/c7ef6efe/" id="article-nav-newer" class="article-nav-link-wrap">
+              <a href="/articles/a12d1477/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          Git Large File Storage
+          怎么处理噪声
         
       </div>
     </a>
 
 
-              <a href="/articles/50351d5d/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/articles/5ed9f695/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">KVM Unit Tests</div>
+      <div class="article-nav-title">Analysis for Yggdrasil</div>
     </a>
 
             </nav>
@@ -404,11 +380,7 @@
             <div id="toc" class="toc-article">
               <strong class="toc-title">目录导航</strong>
 
-              <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#single-level-file-system-yminlfs"><span class="nav-number">1.</span> <span class="nav-text">Single-level File System (YminLFS)</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#multi-level-file-system-yxv6"><span class="nav-number">2.</span> <span class="nav-text">Multi-level File System (Yxv6)</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#application-level-ycp"><span class="nav-number">3.</span> <span class="nav-text">Application-level (“Ycp”)</span></a></li>
-              </ol>
+              <ol class="nav">空</ol>
 
             </div>
           </aside>
