@@ -351,14 +351,14 @@
                   </table>
                 </figure>
                 <p>shared-worker.js:</p>
-                <figure class="highlight javascript">
+                <figure class="highlight actionscript">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> connections = [];</span><br><span class="line">onconnect = <span class="function"><span class="keyword">function</span>(<span class="params">eConn</span>) </span>&#123;</span><br><span class="line">  		<span class="keyword">var</span> port = eConn.ports[<span class="number">0</span>]; <span class="comment">// 此连接的特有port</span></span><br><span class="line">  	<span class="comment">//当有消息的时候通知所有的连接</span></span><br><span class="line">  	port.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">eMsg</span>) </span>&#123; </span><br><span class="line">      	counter++;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; connections.length; i++)&#123;</span><br><span class="line">          	connections[i].postMessage(&#123;</span><br><span class="line">              	message: eMsg.data,</span><br><span class="line">              	counter: counter</span><br><span class="line">          	&#125;);</span><br><span class="line">      	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	port.start();</span><br><span class="line">  	connections.push(port);</span><br></pre>
+                        <pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> connections = [];</span><br><span class="line">onconnect = <span class="function"><span class="keyword">function</span><span class="params">(eConn)</span> </span>&#123;</span><br><span class="line">  		<span class="keyword">var</span> port = eConn.ports[<span class="number">0</span>]; <span class="comment">// 此连接的特有port</span></span><br><span class="line">  	<span class="comment">//当有消息的时候通知所有的连接</span></span><br><span class="line">  	port.onmessage = <span class="function"><span class="keyword">function</span><span class="params">(eMsg)</span> </span>&#123; </span><br><span class="line">      	counter++;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; connections.length; i++)&#123;</span><br><span class="line">          	connections[i].postMessage(&#123;</span><br><span class="line">              	message: eMsg.data,</span><br><span class="line">              	counter: counter</span><br><span class="line">          	&#125;);</span><br><span class="line">      	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	port.start();</span><br><span class="line">  	connections.push(port);</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -501,9 +501,9 @@
     </a>
 
 
-              <a href="/articles/bc3de361/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/articles/9da0578c/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">说到加载图片，我们可以谈些什么</div>
+      <div class="article-nav-title">HTML5实现刮奖效果</div>
     </a>
 
             </nav>

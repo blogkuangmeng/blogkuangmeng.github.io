@@ -436,11 +436,11 @@ data为保存的对象，可以在window.onpopstate时获取到；title为页面
       <category term="web" scheme="http://meng.uno/categories/web/"/>
     
     
+      <category term="ajax" scheme="http://meng.uno/tags/ajax/"/>
+    
       <category term="js" scheme="http://meng.uno/tags/js/"/>
     
       <category term="html5" scheme="http://meng.uno/tags/html5/"/>
-    
-      <category term="ajax" scheme="http://meng.uno/tags/ajax/"/>
     
       <category term="pjax" scheme="http://meng.uno/tags/pjax/"/>
     

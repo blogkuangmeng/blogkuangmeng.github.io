@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>HTML5实现刮奖效果 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="要实现刮奖效果，最重要的是要找到一种方法：当刮开上层的涂层是就能看到下层的结果。而HTML5的canvas API中有一个属性globalCompositeOperation，这个属性有多个值，而实现刮奖效果要用到的值就是destination-out。意思就是：在已有内容和新图形不重叠的地方，已有内容保留，所有其他内容成为透明。这样可能不好理解，后面实现的时候会解释。有了globalCompos">
+  <meta name="keywords" content="HTML5,canvas,刮奖效果">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="HTML5实现刮奖效果">
+  <meta property="og:url" content="http://meng.uno/articles/9da0578c/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="要实现刮奖效果，最重要的是要找到一种方法：当刮开上层的涂层是就能看到下层的结果。而HTML5的canvas API中有一个属性globalCompositeOperation，这个属性有多个值，而实现刮奖效果要用到的值就是destination-out。意思就是：在已有内容和新图形不重叠的地方，已有内容保留，所有其他内容成为透明。这样可能不好理解，后面实现的时候会解释。有了globalCompos">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:updated_time" content="2018-03-20T10:07:03.299Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HTML5实现刮奖效果">
+  <meta name="twitter:description" content="要实现刮奖效果，最重要的是要找到一种方法：当刮开上层的涂层是就能看到下层的结果。而HTML5的canvas API中有一个属性globalCompositeOperation，这个属性有多个值，而实现刮奖效果要用到的值就是destination-out。意思就是：在已有内容和新图形不重叠的地方，已有内容保留，所有其他内容成为透明。这样可能不好理解，后面实现的时候会解释。有了globalCompos">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://meng.uno/articles/9da0578c/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-h5_award" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  HTML5实现刮奖效果
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/9da0578c/" class="article-date">
+	  <time datetime="2015-07-15T23:31:04.000Z" itemprop="datePublished">2015-07-16</time>
+	</a>
+                <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,373</span>
+	<span class="post-count"> | 预计时间6分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <p>要实现刮奖效果，最重要的是要找到一种方法：当刮开上层的涂层是就能看到下层的结果。而HTML5的canvas API中有一个属性globalCompositeOperation，这个属性有多个值，而实现刮奖效果要用到的值就是destination-out。意思就是：在已有内容和新图形不重叠的地方，已有内容保留，所有其他内容成为透明。这样可能不好理解，后面实现的时候会解释。有了globalCompositeOperation这个属性，实现过程就很简单了。</p>
+                <p>我们需要有两个层，上面一层肯定是一个canvas元素，因为要能刮开就要用到画布。下面一层其实用什么元素都可以，既然上层用的是canvas元素，下层我们也用canvas元素，下面是html内容：</p>
+                <figure class="highlight xml">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">   <span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>刮刮乐<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"underCanvas"</span> <span class="attr">width</span>=<span class="string">300</span> <span class="attr">height</span>=<span class="string">300</span> <span class="attr">style</span>=<span class="string">"position: absolute; left: 0;top: 0;"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"upCanvas"</span> <span class="attr">width</span>=<span class="string">300</span> <span class="attr">height</span>=<span class="string">300</span> <span class="attr">style</span>=<span class="string">"position: absolute; left: 0; top: 0;"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./scratch.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 可能变化的值放在options中，方便修改</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> options = &#123;</span></span><br><span class="line"><span class="undefined">            text: &#123;</span></span><br><span class="line"><span class="actionscript">                fontWeight: <span class="string">"bold"</span>,</span></span><br><span class="line"><span class="undefined">                fontSize: 30,</span></span><br><span class="line"><span class="actionscript">                fontFamily: <span class="string">"Arial"</span>,</span></span><br><span class="line"><span class="actionscript">                align: <span class="string">"center"</span>,</span></span><br><span class="line"><span class="actionscript">                color: <span class="string">'#F60'</span></span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="actionscript">            maskColor: <span class="string">"red"</span>,</span></span><br><span class="line"><span class="undefined">            radius: 30,</span></span><br><span class="line"><span class="actionscript">            awards: [<span class="string">"一等奖"</span>, <span class="string">"二等奖"</span>, <span class="string">"三等奖"</span>, <span class="string">"谢谢！"</span>]</span></span><br><span class="line"><span class="undefined">        &#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Scratch(options).init();</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>先实现一个构造函数：</p>
+                <figure class="highlight kotlin">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">  <span class="keyword">var</span> Scratch = function (options) &#123;</span><br><span class="line"><span class="comment">// 下层画布元素</span></span><br><span class="line">      <span class="keyword">this</span>.underCanvas = doc.getElementById(<span class="string">"underCanvas"</span>);</span><br><span class="line">      <span class="comment">// 上层画布元素</span></span><br><span class="line"><span class="keyword">this</span>.upCanvas = doc.getElementById(<span class="string">"upCanvas"</span>);</span><br><span class="line">      <span class="comment">// 获取下层画布绘图上下文</span></span><br><span class="line"><span class="keyword">this</span>.underCtx = <span class="keyword">this</span>.underCanvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">      <span class="comment">// 获取上层画布绘图上下文</span></span><br><span class="line"><span class="keyword">this</span>.upCtx = <span class="keyword">this</span>.upCanvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">     	<span class="comment">// 画布宽度</span></span><br><span class="line"><span class="keyword">this</span>.width = <span class="keyword">this</span>.upCanvas.width;</span><br><span class="line">      <span class="comment">// 画布高度</span></span><br><span class="line"><span class="keyword">this</span>.height = <span class="keyword">this</span>.upCanvas.height;</span><br><span class="line">      <span class="comment">// 自定义选项</span></span><br><span class="line"><span class="keyword">this</span>.options = options;</span><br><span class="line">      <span class="keyword">this</span>.award = <span class="literal">null</span>;</span><br><span class="line">  &#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>在下层画布上画上刮奖的内容：</p>
+                <figure class="highlight processing">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">drawText: function () &#123;</span><br><span class="line">       var ctx = <span class="keyword">this</span>.underCtx;</span><br><span class="line">       var <span class="built_in">text</span> = <span class="keyword">this</span>.options.<span class="built_in">text</span>;</span><br><span class="line">       ctx.font = <span class="built_in">text</span>.fontWeight + <span class="string">" "</span> + <span class="built_in">text</span>.fontSize + <span class="string">'px '</span> + <span class="built_in">text</span>.fontFamily;</span><br><span class="line">       ctx.<span class="built_in">textAlign</span> = <span class="built_in">text</span>.align;</span><br><span class="line">       ctx.fillStyle = <span class="built_in">text</span>.<span class="built_in">color</span>;</span><br><span class="line">       <span class="keyword">this</span>.award = <span class="keyword">this</span>.options.awards[(Math.<span class="built_in">random</span>() * <span class="keyword">this</span>.options.awards.length) | <span class="number">0</span>]; <span class="comment">//随机抽奖</span></span><br><span class="line">       ctx.fillText(<span class="keyword">this</span>.award, <span class="keyword">this</span>.<span class="built_in">width</span> / <span class="number">2</span>, <span class="keyword">this</span>.<span class="built_in">height</span> / <span class="number">2</span> + <span class="built_in">text</span>.fontSize / <span class="number">2</span>);</span><br><span class="line">   &#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这边奖的内容是随机出现的，因为奖肯定有很多种，可以用一个数组来存放奖的内容，然后随机显示：</p>
+                <figure class="highlight kotlin">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">this</span>.award = <span class="keyword">this</span>.options.awards[(Math.random() * <span class="keyword">this</span>.options.awards.length) | <span class="number">0</span>];</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>然后在上层画布中画一层涂层：</p>
+                <figure class="highlight kotlin">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">drawMask: function () &#123;</span><br><span class="line">    <span class="keyword">var</span> ctx = <span class="keyword">this</span>.upCtx;</span><br><span class="line">    ctx.fillStyle = <span class="keyword">this</span>.options.maskColor;</span><br><span class="line">    ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">this</span>.width, <span class="keyword">this</span>.height);</span><br><span class="line">    ctx.globalCompositeOperation = <span class="string">'destination-out'</span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>在上层画布中用了globalCompositeOperation这个属性，当再在画布上画东西时，那么后面画的内容和涂层重合的部分将变透明，而其余涂层部分不变。就是利用了这个原理实现了刮奖效果。</p>
+                <p>需要刮开上层的涂层，就需要在上层画布上绑定事件：</p>
+                <figure class="highlight javascript">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">addEvent: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> upCanvas = <span class="keyword">this</span>.upCanvas;</span><br><span class="line">    <span class="keyword">var</span> callback1, callback2, callback3;</span><br><span class="line">    upCanvas.addEventListener(<span class="string">"mousedown"</span>, callback1 = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        upCanvas.addEventListener(<span class="string">"mousemove"</span>, callback2 = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> x = evt.clientX - upCanvas.offsetLeft;</span><br><span class="line">            <span class="keyword">var</span> y = evt.clientY - upCanvas.offsetTop;</span><br><span class="line">            <span class="keyword">var</span> ctx = that.upCtx;</span><br><span class="line">            <span class="keyword">var</span> options = that.options;</span><br><span class="line">            ctx.beginPath();</span><br><span class="line">            <span class="keyword">var</span> gradient = ctx.createRadialGradient(x, y, <span class="number">0</span>, x, y, options.radius);</span><br><span class="line">            <span class="comment">// 其实这边的颜色值是可以随便写的，因为都会变成透明，重要的是透明度</span></span><br><span class="line">            gradient.addColorStop(<span class="number">0</span>, <span class="string">"rgba(255, 255, 255, 0.5)"</span>);</span><br><span class="line">            gradient.addColorStop(<span class="number">1</span>, <span class="string">"rgba(255, 255, 255, 0)"</span>);</span><br><span class="line"><span class="comment">// 也可以不用渐变，直接用一种颜色，但渐变效果更好</span></span><br><span class="line">            ctx.fillStyle = gradient;</span><br><span class="line">            ctx.arc(x, y, options.radius, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">            ctx.fill();</span><br><span class="line">            ctx.closePath();</span><br><span class="line"><span class="comment">// 当刮开部分&gt;80%的时候提醒刮奖结果，这个可以自己设置</span></span><br><span class="line">            <span class="keyword">if</span> (that.result() &gt; <span class="number">0.8</span>) &#123;</span><br><span class="line">                alert(that.award);</span><br><span class="line">                upCanvas.removeEventListener(<span class="string">"mousemove"</span>, callback2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">        doc.addEventListener(<span class="string">"mouseup"</span>, callback3 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            upCanvas.removeEventListener(<span class="string">"mousemove"</span>, callback2);</span><br><span class="line">            doc.removeEventListener(<span class="string">"mouseup"</span>, callback3);</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>我们需要在刮到一定程度时提醒刮奖的结果：</p>
+                <figure class="highlight kotlin">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">  result: function () &#123;</span><br><span class="line"><span class="comment">// 获取文字部分的宽、高</span></span><br><span class="line">      <span class="keyword">var</span> textWidth = <span class="keyword">this</span>.options.text.fontSize * <span class="keyword">this</span>.award.length;</span><br><span class="line">      <span class="keyword">var</span> textHeight = <span class="keyword">this</span>.options.text.fontSize;</span><br><span class="line">      <span class="comment">// 获取文字部分的像素，这样可以根据刮开文字的部分占全部文字部分的百分比来提示结果，比如说在刮开80%的时候提示刮奖结果</span></span><br><span class="line">      <span class="keyword">var</span> imgData = <span class="keyword">this</span>.upCtx.getImageData(<span class="keyword">this</span>.width / <span class="number">2</span> - textWidth / <span class="number">2</span>, <span class="keyword">this</span>.height / <span class="number">2</span> - textHeight / <span class="number">2</span>, textWidth, textHeight);</span><br><span class="line">      <span class="keyword">var</span> pixelsArr = imgData.<span class="keyword">data</span>;</span><br><span class="line">      <span class="keyword">var</span> transPixelsArr = [];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = pixelsArr.length; i &lt; j; i += <span class="number">4</span>) &#123;</span><br><span class="line">          <span class="comment">// a代表透明度</span></span><br><span class="line">          <span class="keyword">var</span> a = pixelsArr[i + <span class="number">3</span>];</span><br><span class="line">          <span class="comment">// 渐变的透明度＜=0.5，其实透明度的值是介于0~255之间的，0.5 * 255 = 127.5就是a的值</span></span><br><span class="line">          <span class="keyword">if</span> (a &lt; <span class="number">128</span>) &#123;</span><br><span class="line">              transPixelsArr.push(a);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 小于128的透明度的值的个数占总透明度的的个数的百分比</span></span><br><span class="line">      <span class="keyword">return</span> transPixelsArr.length / (pixelsArr.length / <span class="number">4</span>);</span><br><span class="line">  &#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>上面用到了getImageData()方法，这个方法返回像素数据。重要的是我们只是获取了下层文字部分的像素数据，因为我们只需要知道刮开的文字部分占全部文字部分的百分比。</p>
+                <p>调用构造函数时，把可能改变的东西放在一个对象options中传递给构造函数：</p>
+                <figure class="highlight gradle">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">  <span class="comment">// 可能变化的值放在options中，方便修改</span></span><br><span class="line">  var <span class="keyword">options</span> = &#123;</span><br><span class="line"><span class="comment">// 文字部分的样式</span></span><br><span class="line">      text: &#123;</span><br><span class="line">          fontWeight: <span class="string">"bold"</span>,</span><br><span class="line">          fontSize: <span class="number">30</span>,</span><br><span class="line">          fontFamily: <span class="string">"Arial"</span>,</span><br><span class="line">          align: <span class="string">"center"</span>,</span><br><span class="line">          color: <span class="string">'#F60'</span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="comment">// 图层颜色</span></span><br><span class="line">      maskColor: <span class="string">"red"</span>,</span><br><span class="line"><span class="comment">// 画逼半径</span></span><br><span class="line">      radius: <span class="number">20</span>,</span><br><span class="line"><span class="comment">// 奖项</span></span><br><span class="line">      awards: [<span class="string">"一等奖"</span>, <span class="string">"二等奖"</span>, <span class="string">"三等奖"</span>, <span class="string">"谢谢！"</span>]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> Scratch(<span class="keyword">options</span>).init();</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>本文链接： <a href="http://meng.uno/articles/9da0578c/">http://meng.uno/articles/9da0578c/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/刮奖效果/">刮奖效果</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/da19b401/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Web Worker
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/bc3de361/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">说到加载图片，我们可以谈些什么</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">空</ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.20 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              Copyright © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a9d5b43ece25231"></script>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
