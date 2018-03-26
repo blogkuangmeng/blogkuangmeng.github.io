@@ -21,7 +21,7 @@
   <meta name="keywords" content="Shell,Bash">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Bash的使用">
-  <meta property="og:url" content="http://meng.uno/articles/19f2d195/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/19f2d195/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="显示 “Hello world!” echo Hello world!  每一句指令以换行或分号隔开： echo ‘This is the first line’; echo ‘This is the second line’  声明一个变量： Variable=“Some string”  ***这是错误的做法：***Variable = “Some string”  ***原因：***Bash">
   <meta property="og:locale" content="zh-CN">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/19f2d195/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/19f2d195/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -263,7 +263,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,592</span>
+	<span class="post-count"> | 字数1,593</span>
 	<span class="post-count"> | 预计时间7分钟</span>
 	</a>
               </div>
@@ -469,28 +469,28 @@
                 </figure>
                 <h2 id="一个指令可用-嵌套在另一个指令内部">一个指令可用 $( ) 嵌套在另一个指令内部</h2>
                 <h3 id="以下的指令会打印当前目录下的目录和文件总数">以下的指令会打印当前目录下的目录和文件总数</h3>
-                <figure class="highlight bash">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="built_in">echo</span> <span class="string">"There are <span class="variable">$(ls | wc -l)</span> items here."</span></span><br></pre>
+                        <pre><span class="line">echo &quot;There are $(ls | wc -l) items here.&quot;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="反引号-起相同作用-但不允许嵌套">反引号 `` 起相同作用，但不允许嵌套</h3>
                 <p><strong><em>优先使用 $()</em></strong></p>
-                <figure class="highlight autohotkey">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">echo <span class="string">"There are `ls | wc -l` items here."</span></span><br></pre>
+                        <pre><span class="line">echo &quot;There are `ls | wc -l` items here.&quot;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -604,93 +604,93 @@
                   </table>
                 </figure>
                 <h3 id="调用函数">调用函数</h3>
-                <figure class="highlight nginx">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">foo</span> <span class="string">"My name is"</span> <span class="variable">$Name</span></span><br></pre>
+                        <pre><span class="line">foo &quot;My name is&quot; $Name</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="有很多有用的指令需要学习">有很多有用的指令需要学习</h2>
                 <h3 id="打印-file-txt-的最后-10-行">打印 file.txt 的最后 10 行</h3>
-                <figure class="highlight applescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">tail -n <span class="number">10</span> <span class="built_in">file</span>.txt</span><br></pre>
+                        <pre><span class="line">tail -n 10 file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="打印-file-txt-的前-10-行">打印 file.txt 的前 10 行</h3>
-                <figure class="highlight applescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">head -n <span class="number">10</span> <span class="built_in">file</span>.txt</span><br></pre>
+                        <pre><span class="line">head -n 10 file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="将-file-txt-按行排序">将 file.txt 按行排序</h3>
-                <figure class="highlight gradle">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">sort</span> <span class="keyword">file</span>.txt</span><br></pre>
+                        <pre><span class="line">sort file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="报告或忽略重复的行-用选项-d-打印重复的行">报告或忽略重复的行，用选项 -d 打印重复的行</h3>
-                <figure class="highlight applescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">uniq -d <span class="built_in">file</span>.txt</span><br></pre>
+                        <pre><span class="line">uniq -d file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="打印每行中-之前内容">打印每行中 ‘,’ 之前内容</h3>
-                <figure class="highlight delphi">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">cut -d <span class="string">','</span> -f <span class="number">1</span> <span class="keyword">file</span>.txt</span><br></pre>
+                        <pre><span class="line">cut -d &apos;,&apos; -f 1 file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="将-file-txt-文件所有-okay-替换为-great-兼容正则表达式">将 file.txt 文件所有 ‘okay’ 替换为 ‘great’, （兼容正则表达式）</h3>
-                <figure class="highlight stylus">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sed -<span class="selector-tag">i</span> <span class="string">'s/okay/great/g'</span> file.txt</span><br></pre>
+                        <pre><span class="line">sed -i &apos;s/okay/great/g&apos; file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -711,14 +711,14 @@
                   </table>
                 </figure>
                 <h3 id="如果只是要按字面形式搜索字符串而不是按正则表达式-使用-fgrep-或-grep-f">如果只是要按字面形式搜索字符串而不是按正则表达式，使用 fgrep (或 grep -F)</h3>
-                <figure class="highlight applescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">fgrep <span class="string">"^foo.*bar$"</span> <span class="built_in">file</span>.txt</span><br></pre>
+                        <pre><span class="line">fgrep &quot;^foo.*bar$&quot; file.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -775,7 +775,7 @@
                     </tr>
                   </table>
                 </figure>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/19f2d195/">http://meng.uno/articles/19f2d195/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/19f2d195/">http://www.meng.uno/articles/19f2d195/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -950,7 +950,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

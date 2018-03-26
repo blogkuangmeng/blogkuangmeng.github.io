@@ -21,7 +21,7 @@
   <meta name="keywords" content="Language,Latex,Tex">
   <meta property="og:type" content="article">
   <meta property="og:title" content="神奇的Latex">
-  <meta property="og:url" content="http://meng.uno/articles/67934c43/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/67934c43/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="或许很多人都知道这个软件、语言的名字，也知道他至今只有两版（基本无错），但不是人人都会使用。  注释 所有的注释行以%开头，没有多行注释语法。  命令 每一个LaTeX命令由反斜线\开始  LaTeX 文档以对编译对象文档的定义开始  这些文档包括书籍，报告，演示等  文档的选项出现在中括号里  字体 我们设定文章字体为12pt  1   \documentclass[12pt]{article}">
   <meta property="og:locale" content="zh-CN">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/67934c43/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/67934c43/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -264,7 +264,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,046</span>
+	<span class="post-count"> | 字数2,047</span>
 	<span class="post-count"> | 预计时间9分钟</span>
 	</a>
               </div>
@@ -282,14 +282,14 @@
                 <p>文档的选项出现在中括号里</p>
                 <h2 id="字体">字体</h2>
                 <p>我们设定文章字体为12pt</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[12pt]</span><span class="string">&#123;article&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\documentclass[12pt]&#123;article&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -298,54 +298,54 @@
                 <p>如果想要引入图片，彩色字，或是其他语言的源码在您的文档中</p>
                 <p>需要增强 LaTeX 的功能。这将通过添加库来实现</p>
                 <p>下例中将要为展示数据引入 float 和 caption 库，为超链接引入 hyperref 库</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;caption&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;float&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;hyperref&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\usepackage&#123;caption&#125;</span><br><span class="line">\usepackage&#123;float&#125;</span><br><span class="line">\usepackage&#123;hyperref&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>我们还可以定义其他文档属性！</p>
-                <figure class="highlight livescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\author&#123;Chaitanya</span> Krishna Ande, Sricharan Chiruvolu <span class="string">\&amp;</span> Svetlana Golubeva&#125;</span><br><span class="line"><span class="string">\date&#123;\today&#125;</span></span><br><span class="line"><span class="string">\title&#123;Learn</span> <span class="string">\LaTeX</span> <span class="string">\hspace&#123;1pt&#125;</span> <span class="keyword">in</span> Y Minutes!&#125;</span><br></pre>
+                        <pre><span class="line">\author&#123;Chaitanya Krishna Ande, Sricharan Chiruvolu \&amp; Svetlana Golubeva&#125;</span><br><span class="line">\date&#123;\today&#125;</span><br><span class="line">\title&#123;Learn \LaTeX \hspace&#123;1pt&#125; in Y Minutes!&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="开始正文">开始正文</h2>
                 <p>这一行之前都是“序章”</p>
-                <figure class="highlight sql">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">begin</span>&#123;<span class="keyword">document</span>&#125;</span><br></pre>
+                        <pre><span class="line">\begin&#123;document&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>如果想设定作者，时间，标题字段我们可使用 LaTeX 来建立标题页</p>
-                <figure class="highlight livescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\maketitle</span></span><br></pre>
+                        <pre><span class="line">\maketitle</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -354,26 +354,26 @@
                 <p>我们需要编译文档两次来保证他们顺序正确</p>
                 <p>使用目录来分开文档是很好的做法</p>
                 <p>这里我们使用 \newpage 操作符</p>
-                <figure class="highlight haxe">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">new</span><span class="type">page</span></span><br><span class="line"><span class="type"></span>\tableofcontents</span><br></pre>
+                        <pre><span class="line">\newpage</span><br><span class="line">\tableofcontents</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <figure class="highlight haxe">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">new</span><span class="type">page</span></span><br></pre>
+                        <pre><span class="line">\newpage</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -381,55 +381,55 @@
                 <p>许多研究论文有摘要部分。这可以使用预定义的指令来实现</p>
                 <p>它应被放在逻辑上正确的位置，即顶部标题等的下面和文章主体的上面</p>
                 <p>该指令可以在报告和文章中使用</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;abstract&#125;</span></span></span><br><span class="line"> <span class="tag">\<span class="name">LaTeX</span></span> <span class="tag">\<span class="name">hspace</span><span class="string">&#123;1pt&#125;</span></span> documentation written as <span class="tag">\<span class="name">LaTeX</span></span>! How novel and totally not my idea!</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;abstract&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;abstract&#125;</span><br><span class="line"> \LaTeX \hspace&#123;1pt&#125; documentation written as \LaTeX! How novel and totally not my idea!</span><br><span class="line">\end&#123;abstract&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="章节指令">章节指令</h2>
                 <p>所有章节标题会自动地添加到目录中</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Introduction&#125;</span></span></span><br><span class="line">Hello, my name is Colton and together we're going to explore <span class="tag">\<span class="name">LaTeX</span></span>!</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Another section&#125;</span></span></span><br><span class="line">This is the text for another section. I think it needs a subsection.</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subsection</span><span class="string">&#123;This is a subsection&#125;</span></span> <span class="comment">% 子章节同样非常直观</span></span><br><span class="line">I think we need another one</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subsubsection</span><span class="string">&#123;Pythagoras&#125;</span></span></span><br><span class="line">Much better now.</span><br><span class="line"><span class="tag">\<span class="name">label</span><span class="string">&#123;subsec:pythagoras&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\section&#123;Introduction&#125;</span><br><span class="line">Hello, my name is Colton and together we&apos;re going to explore \LaTeX!</span><br><span class="line"></span><br><span class="line">\section&#123;Another section&#125;</span><br><span class="line">This is the text for another section. I think it needs a subsection.</span><br><span class="line"></span><br><span class="line">\subsection&#123;This is a subsection&#125; % 子章节同样非常直观</span><br><span class="line">I think we need another one</span><br><span class="line"></span><br><span class="line">\subsubsection&#123;Pythagoras&#125;</span><br><span class="line">Much better now.</span><br><span class="line">\label&#123;subsec:pythagoras&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>使用型号我们可以借助 LaTeX 内置的编号功能</p>
                 <p>这一技巧也在其他指令中有效</p>
-                <figure class="highlight livescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="string">\section*&#123;This</span> <span class="keyword">is</span> an unnumbered section&#125;</span><br></pre>
+                        <pre><span class="line">\section*&#123;This is an unnumbered section&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>然而并不是所有章节都要被标序号</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Some Text notes&#125;</span></span></span><br><span class="line"><span class="comment">%\section&#123;Spacing&#125; % 需要增加有关空白间隔的信息</span></span><br><span class="line"><span class="tag">\<span class="name">LaTeX</span></span> <span class="tag">\<span class="name">hspace</span><span class="string">&#123;1pt&#125;</span></span> is generally pretty good about placing text where it should</span><br><span class="line">go. If </span><br><span class="line">a line <span class="tag">\<span class="name">\</span></span> needs <span class="tag">\<span class="name">\</span></span> to <span class="tag">\<span class="name">\</span></span> break <span class="tag">\<span class="name">\</span></span> you add <span class="tag">\<span class="name">textbackslash</span></span><span class="tag">\<span class="name">textbackslash</span></span> </span><br><span class="line"><span class="tag">\<span class="name">hspace</span><span class="string">&#123;1pt&#125;</span></span> to the source code. <span class="tag">\<span class="name">\</span></span> </span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Lists&#125;</span></span></span><br><span class="line">Lists are one of the easiest things to create in <span class="tag">\<span class="name">LaTeX</span></span>! I need to go shopping</span><br><span class="line">tomorrow, so let's make a grocery list.</span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;enumerate&#125;</span></span> <span class="comment">% 此处创建了一个“枚举”环境</span></span><br><span class="line">  <span class="comment">% \item 使枚举增加一个单位</span></span><br><span class="line">  <span class="tag">\<span class="name">item</span></span> Salad.</span><br><span class="line">  <span class="tag">\<span class="name">item</span></span> 27 watermelon.</span><br><span class="line">  <span class="tag">\<span class="name">item</span></span> A single jackrabbit.</span><br><span class="line">  <span class="comment">% 我们甚至可以通过使用 [] 覆盖美剧的数量</span></span><br><span class="line">  <span class="tag">\<span class="name">item</span><span class="string">[how many?]</span></span> Medium sized squirt guns.</span><br><span class="line"></span><br><span class="line">  Not a list item, but still part of the enumerate.</span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;enumerate&#125;</span></span> <span class="comment">% 所有环境都有终止符</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Math&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\section&#123;Some Text notes&#125;</span><br><span class="line">%\section&#123;Spacing&#125; % 需要增加有关空白间隔的信息</span><br><span class="line">\LaTeX \hspace&#123;1pt&#125; is generally pretty good about placing text where it should</span><br><span class="line">go. If </span><br><span class="line">a line \\ needs \\ to \\ break \\ you add \textbackslash\textbackslash </span><br><span class="line">\hspace&#123;1pt&#125; to the source code. \\ </span><br><span class="line"></span><br><span class="line">\section&#123;Lists&#125;</span><br><span class="line">Lists are one of the easiest things to create in \LaTeX! I need to go shopping</span><br><span class="line">tomorrow, so let&apos;s make a grocery list.</span><br><span class="line">\begin&#123;enumerate&#125; % 此处创建了一个“枚举”环境</span><br><span class="line">  % \item 使枚举增加一个单位</span><br><span class="line">  \item Salad.</span><br><span class="line">  \item 27 watermelon.</span><br><span class="line">  \item A single jackrabbit.</span><br><span class="line">  % 我们甚至可以通过使用 [] 覆盖美剧的数量</span><br><span class="line">  \item[how many?] Medium sized squirt guns.</span><br><span class="line"></span><br><span class="line">  Not a list item, but still part of the enumerate.</span><br><span class="line"></span><br><span class="line">\end&#123;enumerate&#125; % 所有环境都有终止符</span><br><span class="line"></span><br><span class="line">\section&#123;Math&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -441,159 +441,159 @@
                 <p>注意我们需要在这些符号之前和之后增加 <code>$</code> 符号，因为在编写时我们处于 <code>text-mode</code>，然而数学符号只在 <code>math-mode</code> 中存在。</p>
                 <p>text mode 进入 math-mode 使用 <code>$</code> 操作符，反之亦然，变量同时会在 <code>math-mode</code> 中被渲染。</p>
                 <p>我们也可以使用 <code>\[ \]</code> 来进入 <code>math mode</code>。</p>
-                <figure class="highlight lsl">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\[a^<span class="number">2</span> + b^<span class="number">2</span> = c^<span class="number">2</span> \]</span><br></pre>
+                        <pre><span class="line">\[a^2 + b^2 = c^2 \]</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <figure class="highlight gams">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">My favorite Greek letter is <span class="symbol">$</span>\xi<span class="symbol">$</span>. I also like <span class="symbol">$</span>\<span class="built-in">beta</span><span class="symbol">$</span>, <span class="symbol">$</span>\<span class="built-in">gamma</span><span class="symbol">$</span> <span class="keyword">and</span> <span class="symbol">$</span>\sigma<span class="symbol">$</span>.</span><br><span class="line">I haven<span class="string">'t found a Greek letter yet that \LaTeX \hspace&#123;1pt&#125; doesn'</span>t know</span><br><span class="line">about!</span><br></pre>
+                        <pre><span class="line">My favorite Greek letter is $\xi$. I also like $\beta$, $\gamma$ and $\sigma$.</span><br><span class="line">I haven&apos;t found a Greek letter yet that \LaTeX \hspace&#123;1pt&#125; doesn&apos;t know</span><br><span class="line">about!</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>常用函数操作符同样很重要：</p>
-                <figure class="highlight gams">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">trigonometric functions (<span class="symbol">$</span>\<span class="built-in">sin</span><span class="symbol">$</span>, <span class="symbol">$</span>\<span class="built-in">cos</span><span class="symbol">$</span>, <span class="symbol">$</span>\<span class="built-in">tan</span><span class="symbol">$</span>), </span><br><span class="line">logarithms 和 exponentials (<span class="symbol">$</span>\<span class="built-in">log</span><span class="symbol">$</span>, <span class="symbol">$</span>\<span class="built-in">exp</span><span class="symbol">$</span>), </span><br><span class="line">limits (<span class="symbol">$</span>\lim<span class="symbol">$</span>), etc.</span><br></pre>
+                        <pre><span class="line">trigonometric functions ($\sin$, $\cos$, $\tan$), </span><br><span class="line">logarithms 和 exponentials ($\log$, $\exp$), </span><br><span class="line">limits ($\lim$), etc.</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="在-latex-指令中预定义">在 LaTeX 指令中预定义</h2>
                 <p>让我们写一个等式看看发生了什么：</p>
-                <figure class="highlight taggerscript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">$<span class="symbol">\c</span>os(2<span class="symbol">\t</span>heta) = <span class="symbol">\c</span>os^&#123;2&#125;(<span class="symbol">\t</span>heta) - <span class="symbol">\s</span>in^&#123;2&#125;(<span class="symbol">\t</span>heta)$</span><br></pre>
+                        <pre><span class="line">$\cos(2\theta) = \cos^&#123;2&#125;(\theta) - \sin^&#123;2&#125;(\theta)$</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>分数可以写成以下形式：</p>
-                <figure class="highlight gams">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">% <span class="number">10</span> / <span class="number">7</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span> ^&#123;<span class="number">10</span>&#125;/_&#123;<span class="number">7</span>&#125; <span class="symbol">$</span><span class="symbol">$</span></span><br></pre>
+                        <pre><span class="line">% 10 / 7</span><br><span class="line">$$ ^&#123;10&#125;/_&#123;7&#125; $$</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>相对比较复杂的分数可以写成</p>
-                <figure class="highlight gams">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">% \<span class="built-in">frac</span>&#123;numerator&#125;&#123;denominator&#125;</span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span> \<span class="built-in">frac</span>&#123;n!&#125;&#123;k!(n - k)!&#125; <span class="symbol">$</span><span class="symbol">$</span> \\</span><br></pre>
+                        <pre><span class="line">% \frac&#123;numerator&#125;&#123;denominator&#125;</span><br><span class="line">$$ \frac&#123;n!&#125;&#123;k!(n - k)!&#125; $$ \\</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>我们同样可以插入公式（equations）在环境 “equation environment” 下。</p>
                 <p>展示数学相关时，使用方程式环境</p>
-                <figure class="highlight erlang">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">begin</span>&#123;equation&#125; <span class="comment">% 进入 math-mode</span></span><br><span class="line">    c^<span class="number">2</span> = a^<span class="number">2</span> + b^<span class="number">2</span>.</span><br><span class="line">    \label&#123;eq:pythagoras&#125; <span class="comment">% 为了下一步引用</span></span><br><span class="line">\<span class="keyword">end</span>&#123;equation&#125; <span class="comment">% 所有 \begin 语句必须有end语句对应</span></span><br></pre>
+                        <pre><span class="line">\begin&#123;equation&#125; % 进入 math-mode</span><br><span class="line">    c^2 = a^2 + b^2.</span><br><span class="line">    \label&#123;eq:pythagoras&#125; % 为了下一步引用</span><br><span class="line">\end&#123;equation&#125; % 所有 \begin 语句必须有end语句对应</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>引用我们的新等式！</p>
-                <figure class="highlight css">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="selector-tag">Eqn</span>.~\<span class="selector-tag">ref</span>&#123;<span class="attribute">eq</span>:pythagoras&#125; <span class="selector-tag">is</span> <span class="selector-tag">also</span> <span class="selector-tag">known</span> <span class="selector-tag">as</span> <span class="selector-tag">the</span> <span class="selector-tag">Pythagoras</span> <span class="selector-tag">Theorem</span> <span class="selector-tag">which</span> <span class="selector-tag">is</span> <span class="selector-tag">also</span></span><br><span class="line"><span class="selector-tag">the</span> <span class="selector-tag">subject</span> <span class="selector-tag">of</span> <span class="selector-tag">Sec</span>.~\<span class="selector-tag">ref</span>&#123;<span class="attribute">subsec</span>:pythagoras&#125;. <span class="selector-tag">A</span> <span class="selector-tag">lot</span> <span class="selector-tag">of</span> <span class="selector-tag">things</span> <span class="selector-tag">can</span> <span class="selector-tag">be</span> <span class="selector-tag">labeled</span>: </span><br><span class="line"><span class="selector-tag">figures</span>, <span class="selector-tag">equations</span>, <span class="selector-tag">sections</span>, <span class="selector-tag">etc</span>.</span><br></pre>
+                        <pre><span class="line">Eqn.~\ref&#123;eq:pythagoras&#125; is also known as the Pythagoras Theorem which is also</span><br><span class="line">the subject of Sec.~\ref&#123;subsec:pythagoras&#125;. A lot of things can be labeled: </span><br><span class="line">figures, equations, sections, etc.</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>求和（Summations）与整合（Integrals）写作 <code>sum</code> 和 <code>int</code>。</p>
                 <p>一些编译器会提醒在等式环境中的空行</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span> </span><br><span class="line">  <span class="tag">\<span class="name">sum</span></span>_&#123;i=0&#125;^&#123;5&#125; f_&#123;i&#125;</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span> </span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span> </span><br><span class="line">  <span class="tag">\<span class="name">int</span></span>_&#123;0&#125;^&#123;<span class="tag">\<span class="name">infty</span></span>&#125; <span class="tag">\<span class="name">mathrm</span><span class="string">&#123;e&#125;</span></span>^&#123;-x&#125; <span class="tag">\<span class="name">mathrm</span><span class="string">&#123;d&#125;</span></span>x</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span> </span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Figures&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;equation&#125; </span><br><span class="line">  \sum_&#123;i=0&#125;^&#123;5&#125; f_&#123;i&#125;</span><br><span class="line">\end&#123;equation&#125; </span><br><span class="line">\begin&#123;equation&#125; </span><br><span class="line">  \int_&#123;0&#125;^&#123;\infty&#125; \mathrm&#123;e&#125;^&#123;-x&#125; \mathrm&#123;d&#125;x</span><br><span class="line">\end&#123;equation&#125; </span><br><span class="line"></span><br><span class="line">\section&#123;Figures&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="插入">插入</h2>
                 <p>让我们插入图片，图片的放置非常微妙，我在每次使用时都会查找可用选项。</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[H]</span></span> <span class="comment">% H 是放置选项的符号</span></span><br><span class="line">    <span class="tag">\<span class="name">centering</span></span> <span class="comment">% 图片在本页居中</span></span><br><span class="line">    <span class="comment">% 宽度放缩为页面的0.8倍</span></span><br><span class="line">    <span class="comment">%\includegraphics[width=0.8\linewidth]&#123;right-triangle.png&#125; </span></span><br><span class="line">    <span class="comment">% 需要使用想象力决定是否语句超出编译预期</span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;Right triangle with sides $a$, $b$, $c$&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">label</span><span class="string">&#123;fig:right-triangle&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;figure&#125;[H] % H 是放置选项的符号</span><br><span class="line">    \centering % 图片在本页居中</span><br><span class="line">    % 宽度放缩为页面的0.8倍</span><br><span class="line">    %\includegraphics[width=0.8\linewidth]&#123;right-triangle.png&#125; </span><br><span class="line">    % 需要使用想象力决定是否语句超出编译预期</span><br><span class="line">    \caption&#123;Right triangle with sides $a$, $b$, $c$&#125;</span><br><span class="line">    \label&#123;fig:right-triangle&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>插入表格与插入图片方式相同</p>
-                <figure class="highlight gams">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\subsection&#123;<span class="keyword">Table</span>&#125;</span><br></pre>
+                        <pre><span class="line">\subsection&#123;Table&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[H]</span></span></span><br><span class="line">  <span class="tag">\<span class="name">caption</span><span class="string">&#123;Caption for the Table.&#125;</span></span></span><br><span class="line">  <span class="comment">% 下方的 &#123;&#125; 描述了表格中每一行的绘制方式</span></span><br><span class="line">  <span class="comment">% 同样，我在每次使用时都会查找可用选项。</span></span><br><span class="line">  <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;c|cc&#125;</span></span> </span><br><span class="line">    Number &amp;  Last Name &amp; First Name <span class="tag">\<span class="name">\</span></span> <span class="comment">% 每一列被 &amp; 分开</span></span><br><span class="line">    <span class="tag">\<span class="name">hline</span></span> <span class="comment">% 水平线</span></span><br><span class="line">    1 &amp; Biggus &amp; Dickus <span class="tag">\<span class="name">\</span></span></span><br><span class="line">    2 &amp; Monty &amp; Python</span><br><span class="line">  <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;table&#125;[H]</span><br><span class="line">  \caption&#123;Caption for the Table.&#125;</span><br><span class="line">  % 下方的 &#123;&#125; 描述了表格中每一行的绘制方式</span><br><span class="line">  % 同样，我在每次使用时都会查找可用选项。</span><br><span class="line">  \begin&#123;tabular&#125;&#123;c|cc&#125; </span><br><span class="line">    Number &amp;  Last Name &amp; First Name \\ % 每一列被 &amp; 分开</span><br><span class="line">    \hline % 水平线</span><br><span class="line">    1 &amp; Biggus &amp; Dickus \\</span><br><span class="line">    2 &amp; Monty &amp; Python</span><br><span class="line">  \end&#123;tabular&#125;</span><br><span class="line">\end&#123;table&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -601,28 +601,28 @@
                 <p>现在增加一些源代码在 LaTex 文档中， 我们之后需要 LaTex 不翻译这些内容而仅仅是把他们打印出来而已。</p>
                 <p>这里使用 verbatim environment。</p>
                 <p>也有其他库存在 (如. minty, lstlisting, 等)，但是 verbatim 是最基础和简单的一个。</p>
-                <figure class="highlight arduino">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="built_in">begin</span>&#123;verbatim&#125; </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"Hello World!"</span>)</span><br><span class="line">  a%b; % 在这一环境下我们可以使用 %</span><br><span class="line">  <span class="built_in">random</span> = <span class="number">4</span>; <span class="meta">#decided by fair random dice roll</span></span><br><span class="line">\<span class="built_in">end</span>&#123;verbatim&#125;</span><br><span class="line"></span><br><span class="line">\section&#123;Compiling&#125;</span><br></pre>
+                        <pre><span class="line">\begin&#123;verbatim&#125; </span><br><span class="line">  print(&quot;Hello World!&quot;)</span><br><span class="line">  a%b; % 在这一环境下我们可以使用 %</span><br><span class="line">  random = 4; #decided by fair random dice roll</span><br><span class="line">\end&#123;verbatim&#125;</span><br><span class="line"></span><br><span class="line">\section&#123;Compiling&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>现在你大概想了解如何编译这个美妙的文档，然后得到饱受称赞的<code>\LaTeX \hspace{1pt} pdf</code>文档</p>
                 <h2 id="latex组合">LaTex组合</h2>
-                <figure class="highlight sql">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">begin</span>&#123;enumerate&#125;</span><br><span class="line">  \item Write the <span class="keyword">document</span> <span class="keyword">in</span> plain <span class="built_in">text</span> (the <span class="string">``</span><span class="keyword">source</span> code<span class="string">''</span>).</span><br><span class="line">  \item Compile <span class="keyword">source</span> code <span class="keyword">to</span> produce a pdf. </span><br><span class="line">   The compilation step looks <span class="keyword">like</span> this (<span class="keyword">in</span> Linux): \\</span><br><span class="line">   \<span class="keyword">begin</span>&#123;verbatim&#125; </span><br><span class="line">      &gt; pdflatex learn-latex.tex</span><br><span class="line">   \<span class="keyword">end</span>&#123;verbatim&#125;</span><br><span class="line">\<span class="keyword">end</span>&#123;enumerate&#125;</span><br></pre>
+                        <pre><span class="line">\begin&#123;enumerate&#125;</span><br><span class="line">  \item Write the document in plain text (the ``source code&apos;&apos;).</span><br><span class="line">  \item Compile source code to produce a pdf. </span><br><span class="line">   The compilation step looks like this (in Linux): \\</span><br><span class="line">   \begin&#123;verbatim&#125; </span><br><span class="line">      &gt; pdflatex learn-latex.tex</span><br><span class="line">   \end&#123;verbatim&#125;</span><br><span class="line">\end&#123;enumerate&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -631,55 +631,55 @@
                 <p>步骤2同样在以下情境中使用情景 <code>\footnote</code></p>
                 <p>以防万一，当你使用引用时(如 Eqn.~\ref{eq:pythagoras})，你将需要多次运行步骤2来生成一个媒介文件 *.aux 。同时这也是在文档中增加脚标的方式。</p>
                 <p>在步骤1中，用普通文本写入格式化信息，步骤2的编译阶段则注意在步骤1 中定义的格式信息。</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;Hyperlinks&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\section&#123;Hyperlinks&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>同样可以在文档中加入超链接</p>
                 <p>使用如下命令在序言中引入库：</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;verbatim&#125;</span></span> </span><br><span class="line">    <span class="tag">\<span class="name">usepackage</span><span class="string">&#123;hyperref&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;verbatim&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;verbatim&#125; </span><br><span class="line">    \usepackage&#123;hyperref&#125;</span><br><span class="line">\end&#123;verbatim&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="超链接">超链接</h2>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">url</span><span class="string">&#123;https://learnxinyminutes.com/docs/latex/&#125;</span></span>， 或  </span><br><span class="line"><span class="tag">\<span class="name">href</span><span class="string">&#123;https://learnxinyminutes.com/docs/latex/&#125;</span><span class="string">&#123;shadowed by text&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\url&#123;https://learnxinyminutes.com/docs/latex/&#125;， 或  </span><br><span class="line">\href&#123;https://learnxinyminutes.com/docs/latex/&#125;&#123;shadowed by text&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>你不可以增加特殊空格和符号，因为这将会造成编译错误</p>
                 <p>这个库同样在输出PDF文档时制造略缩的列表，或在目录中激活链接</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">section</span><span class="string">&#123;End&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\section&#123;End&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -687,32 +687,32 @@
                 <p>这就是全部内容了！</p>
                 <h2 id="引用部分">引用部分</h2>
                 <p>最简单的建立方式是使用书目提要章节</p>
-                <figure class="highlight tex">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;thebibliography&#125;</span><span class="string">&#123;1&#125;</span></span></span><br><span class="line">  <span class="comment">% 与其他列表相同， \bibitem 命令被用来列出条目</span></span><br><span class="line">  <span class="comment">% 每个记录可以直接被文章主体引用</span></span><br><span class="line">  <span class="tag">\<span class="name">bibitem</span><span class="string">&#123;latexwiki&#125;</span></span> The amazing <span class="tag">\<span class="name">LaTeX</span></span> <span class="tag">\<span class="name">hspace</span><span class="string">&#123;1pt&#125;</span></span> wikibook: &#123;<span class="tag">\<span class="name">em</span></span> </span><br><span class="line">https://en.wikibooks.org/wiki/LaTeX&#125;</span><br><span class="line">  <span class="tag">\<span class="name">bibitem</span><span class="string">&#123;latextutorial&#125;</span></span> An actual tutorial: &#123;<span class="tag">\<span class="name">em</span></span> http://www.latex-tutorial.com&#125;</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;thebibliography&#125;</span></span></span><br></pre>
+                        <pre><span class="line">\begin&#123;thebibliography&#125;&#123;1&#125;</span><br><span class="line">  % 与其他列表相同， \bibitem 命令被用来列出条目</span><br><span class="line">  % 每个记录可以直接被文章主体引用</span><br><span class="line">  \bibitem&#123;latexwiki&#125; The amazing \LaTeX \hspace&#123;1pt&#125; wikibook: &#123;\em </span><br><span class="line">https://en.wikibooks.org/wiki/LaTeX&#125;</span><br><span class="line">  \bibitem&#123;latextutorial&#125; An actual tutorial: &#123;\em http://www.latex-tutorial.com&#125;</span><br><span class="line">\end&#123;thebibliography&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="结束文档">结束文档</h2>
-                <figure class="highlight sql">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">\<span class="keyword">end</span>&#123;<span class="keyword">document</span>&#125;</span><br></pre>
+                        <pre><span class="line">\end&#123;document&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/67934c43/">http://meng.uno/articles/67934c43/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/67934c43/">http://www.meng.uno/articles/67934c43/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -841,7 +841,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

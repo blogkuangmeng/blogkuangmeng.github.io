@@ -21,7 +21,7 @@
   <meta name="keywords" content="web,经验,产品">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Instagram图片拉取小经验">
-  <meta property="og:url" content="http://meng.uno/articles/7d661978/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/7d661978/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="最近喜欢上了instagram，分享一下获取照片的经验。  一、三“步”曲 instagram开放了API，授权遵循Oauth2.0协议。  1、注册client id 到管理客户端页面，选择“注册新客户端”。 这时会提示你填手机号，接着会收到短信验证码。经过验证，就到达了下面的界面：  按照字面意思填写完毕，client id就注册完毕了。    2、用client_id去换取token 在浏览">
   <meta property="og:locale" content="zh-CN">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/7d661978/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/7d661978/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -266,7 +266,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数597</span>
+	<span class="post-count"> | 字数598</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
@@ -281,14 +281,14 @@
                 <p><img src="http://www.meng.uno/images/ins/2.jpg" alt="获得client_id"></p>
                 <h2 id="2-用client-id去换取token">2、用client_id去换取token</h2>
                 <p>在浏览器中请求：</p>
-                <figure class="highlight awk">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">https:<span class="regexp">//i</span>nstagram.com<span class="regexp">/oauth/</span>authorize<span class="regexp">/?client_id=&#123;CLIENT_ID&#125;&amp;redirect_uri=&#123;REDIRECT_URI&#125;&amp;response_type=token</span></span><br></pre>
+                        <pre><span class="line">https://instagram.com/oauth/authorize/?client_id=&#123;CLIENT_ID&#125;&amp;redirect_uri=&#123;REDIRECT_URI&#125;&amp;response_type=token</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -298,14 +298,14 @@
                 <h2 id="3-用token去调用api">3、用token去调用API</h2>
                 <p>拿到token，就等于拿到仓库的钥匙了！<br> 赶紧试着用token调用api查看自己的图片吧：
                 </p>
-                <figure class="highlight awk">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">https:<span class="regexp">//</span>api.instagram.com<span class="regexp">/v1/u</span>sers<span class="regexp">/&#123;USER_ID&#125;/m</span>edia<span class="regexp">/recent/</span>?access_token=&#123;TOKEN&#125;</span><br></pre>
+                        <pre><span class="line">https://api.instagram.com/v1/users/&#123;USER_ID&#125;/media/recent/?access_token=&#123;TOKEN&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -322,7 +322,7 @@
                 <p>事实上，instagram有很多限制，或者大家称之“功能不完善”的地方。比如，在pc上浏览网站，居然不能发图片，不能看自己关注的人，或者有哪些粉丝。这都限制死了，何以称为社交？但换个角度来想，这样就“强迫”用户去用手机操作instagram，因为产品最想想表达的，就是用摄影去快速记录生活，而已。</p>
                 <p>不用拓展业务的噱头去损坏产品的思想表达，不刻意向老板汇报我们新增了多少用户量。</p>
                 <p><strong>“你想做什么，你就会进入什么样的圈子”</strong>，这句话，不单单是对用户而言，每个创造者心中都应有这样的思考。</p>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/7d661978/">http://meng.uno/articles/7d661978/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/7d661978/">http://www.meng.uno/articles/7d661978/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -439,7 +439,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

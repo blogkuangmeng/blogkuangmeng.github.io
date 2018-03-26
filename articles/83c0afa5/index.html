@@ -21,7 +21,7 @@
   <meta name="keywords" content="数据库,NoSQL,MongDB">
   <meta property="og:type" content="article">
   <meta property="og:title" content="MongDB">
-  <meta property="og:url" content="http://meng.uno/articles/83c0afa5/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/83c0afa5/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="开启服务 1   mongod --dbpath /data/db/ --port 27017 --fork --logpath --config --nohttpinterface    * dbpath 数据库目录 (请先创建好，如果不创建，直接运行mongod会报错)  * port 端口  * fork 守护进程  * logpath 日志目录  * config 配置文件  * noht">
   <meta property="og:locale" content="zh-CN">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/83c0afa5/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/83c0afa5/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -263,21 +263,21 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数588</span>
+	<span class="post-count"> | 字数589</span>
 	<span class="post-count"> | 预计时间3分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <h2 id="开启服务">开启服务</h2>
-                <figure class="highlight jboss-cli">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongod <span class="params">--dbpath</span> <span class="string">/data/db/</span> <span class="params">--port</span> 27017 <span class="params">--fork</span> <span class="params">--logpath</span> <span class="params">--config</span> <span class="params">--nohttpinterface</span></span><br></pre>
+                        <pre><span class="line">mongod --dbpath /data/db/ --port 27017 --fork --logpath --config --nohttpinterface</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -292,14 +292,14 @@
                   <li>auth 开启服务器验证</li>
                 </ul>
                 <p>把配置放置在config文件里，增强复用性</p>
-                <figure class="highlight ini">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attr">port</span> = <span class="number">27017</span></span><br><span class="line"><span class="attr">logpath</span> = /Users/jan/mongdb.log</span><br><span class="line"><span class="attr">auth</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">fork</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">dbpath</span> = /Users/jan/data/db</span><br></pre>
+                        <pre><span class="line">port = 27017</span><br><span class="line">logpath = /Users/jan/mongdb.log</span><br><span class="line">auth = true</span><br><span class="line">fork = true</span><br><span class="line">dbpath = /Users/jan/data/db</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -308,14 +308,14 @@
                 <ul>
                   <li>在mongo环境中关闭</li>
                 </ul>
-                <figure class="highlight sql">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">use</span> <span class="keyword">admin</span></span><br><span class="line">db.shutdownServer()</span><br></pre>
+                        <pre><span class="line">use admin</span><br><span class="line">db.shutdownServer()</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -323,14 +323,14 @@
                 <ul>
                   <li>使用 mongod 命令关闭</li>
                 </ul>
-                <figure class="highlight jboss-cli">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongod  <span class="params">--shutdown</span>  <span class="params">--dbpath</span> <span class="string">/database/mongodb/data/</span></span><br></pre>
+                        <pre><span class="line">mongod  --shutdown  --dbpath /database/mongodb/data/</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -341,14 +341,14 @@
                     <p>给服务器发送一个SIGINT,SIGTERM信号，即 “kill -2 PID,” 或者 “kill -15 PID“</p>
                   </li>
                 </ul>
-                <figure class="highlight tap">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">ps aux | grep mongo</span><br><span class="line">jan            <span class="number"> 12899 </span>  0.4  0.5 <span class="number"> 3046076 </span><span class="number"> 41216 </span>  ??  S    11:44上午   0:00.22 mongod --config ./mongod.config</span><br><span class="line"></span><br><span class="line">kill -2 12899</span><br></pre>
+                        <pre><span class="line">ps aux | grep mongo</span><br><span class="line">jan             12899   0.4  0.5  3046076  41216   ??  S    11:44上午   0:00.22 mongod --config ./mongod.config</span><br><span class="line"></span><br><span class="line">kill -2 12899</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -368,14 +368,14 @@
                 <h2 id="认证">认证</h2>
                 <p>在开启MongoDB 服务时不添加任何参数时，可以对数据库任意操作，而且可以远程访问数据库。如果启动的时候指定—auth参数，可以对数据库进行用户验证。</p>
                 <h3 id="添加帐号">添加帐号</h3>
-                <figure class="highlight stata">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">use</span> <span class="keyword">test</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">db</span>.addUser(<span class="string">"username"</span>,<span class="string">"password"</span>) <span class="comment">//添加</span></span><br><span class="line"><span class="keyword">db</span>.addUser(<span class="string">"read_only"</span>,<span class="string">"username"</span>,<span class="string">"password"</span>) <span class="comment">//添加只能读取权限帐号</span></span><br></pre>
+                        <pre><span class="line">use test</span><br><span class="line"></span><br><span class="line">db.addUser(&quot;username&quot;,&quot;password&quot;) //添加</span><br><span class="line">db.addUser(&quot;read_only&quot;,&quot;username&quot;,&quot;password&quot;) //添加只能读取权限帐号</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -383,55 +383,55 @@
                 <h3 id="更新密码">更新密码</h3>
                 <h3 id="本质">本质</h3>
                 <p>账户信息存在admin.system.users集合里，存储格式为：</p>
-                <figure class="highlight json">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"user"</span>:<span class="string">"xxxx"</span>,</span><br><span class="line">    <span class="attr">"readOnly"</span>:<span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"pwd"</span>:password_hash</span><br><span class="line">&#125;</span><br></pre>
+                        <pre><span class="line">&#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;readOnly&quot;:true,</span><br><span class="line">    &quot;pwd&quot;:password_hash</span><br><span class="line">&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>如果想查询数据库先添加一个授权用户</p>
                 <p>为数据库添加用户</p>
-                <figure class="highlight ruby">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">use admin </span><br><span class="line">db.addUser(<span class="string">"root"</span>,<span class="string">"1234"</span>)</span><br><span class="line">    <span class="meta">&gt;&gt; </span>output</span><br><span class="line">    <span class="meta">&gt;&gt; </span>&#123;</span><br><span class="line">            <span class="string">"user"</span> : <span class="string">"root"</span>,</span><br><span class="line">            <span class="string">"readOnly"</span> : <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"pwd"</span> : <span class="string">"fa0450e8c3e5fff6005de2f88559c3d9"</span>,</span><br><span class="line">            <span class="string">"_id"</span> : ObjectId(<span class="string">"53ca83234b763e5d3dbf15c2"</span>)</span><br><span class="line">        &#125;</span><br></pre>
+                        <pre><span class="line">use admin </span><br><span class="line">db.addUser(&quot;root&quot;,&quot;1234&quot;)</span><br><span class="line">    &gt;&gt; output</span><br><span class="line">    &gt;&gt; &#123;</span><br><span class="line">            &quot;user&quot; : &quot;root&quot;,</span><br><span class="line">            &quot;readOnly&quot; : false,</span><br><span class="line">            &quot;pwd&quot; : &quot;fa0450e8c3e5fff6005de2f88559c3d9&quot;,</span><br><span class="line">            &quot;_id&quot; : ObjectId(&quot;53ca83234b763e5d3dbf15c2&quot;)</span><br><span class="line">        &#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>使用授权用户链接数据库</p>
-                <figure class="highlight ruby">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongo admin -uroot -p1234 </span><br><span class="line">db.system.users.find()</span><br><span class="line"><span class="meta">&gt;&gt;</span> output </span><br><span class="line"><span class="meta">&gt;&gt;</span> &#123; </span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"53ca83234b763e5d3dbf15c2"</span>), </span><br><span class="line">        <span class="string">"user"</span> : <span class="string">"root"</span>, </span><br><span class="line">        <span class="string">"readOnly"</span> : <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"pwd"</span> : <span class="string">"fa0450e8c3e5fff6005de2f88559c3d9"</span> </span><br><span class="line">    &#125;</span><br></pre>
+                        <pre><span class="line">mongo admin -uroot -p1234 </span><br><span class="line">db.system.users.find()</span><br><span class="line">&gt;&gt; output </span><br><span class="line">&gt;&gt; &#123; </span><br><span class="line">        &quot;_id&quot; : ObjectId(&quot;53ca83234b763e5d3dbf15c2&quot;), </span><br><span class="line">        &quot;user&quot; : &quot;root&quot;, </span><br><span class="line">        &quot;readOnly&quot; : false,</span><br><span class="line">        &quot;pwd&quot; : &quot;fa0450e8c3e5fff6005de2f88559c3d9&quot; </span><br><span class="line">    &#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="链接服务">链接服务</h2>
                 <h3 id="本地链接">本地链接</h3>
-                <figure class="highlight nginx">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">mongo</span> -uroot -p1234</span><br></pre>
+                        <pre><span class="line">mongo -uroot -p1234</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -441,99 +441,99 @@
                   <li>p 认证密码</li>
                 </ul>
                 <h3 id="远程链接">远程链接</h3>
-                <figure class="highlight armasm">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="symbol">mongo</span> -uroot -p1234 <span class="built_in">ip</span>:port/dbname</span><br></pre>
+                        <pre><span class="line">mongo -uroot -p1234 ip:port/dbname</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="导出-导入">导出 &amp; 导入</h3>
                 <h4 id="导出">导出</h4>
-                <figure class="highlight stylus">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongoexport -d templates -c page -o templates.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">//远程导出</span></span><br><span class="line">mongoexport -d templates -c template -h <span class="number">10.32</span>.<span class="number">84.119</span>:<span class="number">27017</span> -o  templates.txt</span><br></pre>
+                        <pre><span class="line">mongoexport -d templates -c page -o templates.txt</span><br><span class="line"></span><br><span class="line">//远程导出</span><br><span class="line">mongoexport -d templates -c template -h 10.32.84.119:27017 -o  templates.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>更多help</p>
-                <figure class="highlight ada">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongoexport <span class="comment">--help</span></span><br></pre>
+                        <pre><span class="line">mongoexport --help</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h4 id="导入">导入</h4>
-                <figure class="highlight cpp">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongoimport -d templates -c <span class="keyword">template</span> --file <span class="keyword">template</span>.txt</span><br></pre>
+                        <pre><span class="line">mongoimport -d templates -c template --file template.txt</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>更多help</p>
-                <figure class="highlight ada">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">mongoimport <span class="comment">--help</span></span><br></pre>
+                        <pre><span class="line">mongoimport --help</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h3 id="remote-db">remote db</h3>
                 <p>连接远程终端</p>
-                <figure class="highlight nginx">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">mongo</span> -u admin -p admin <span class="number">192.168.0.197:27017</span>/templates</span><br></pre>
+                        <pre><span class="line">mongo -u admin -p admin 192.168.0.197:27017/templates</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>更多help</p>
-                <figure class="highlight ebnf">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">mongo -h</span></span><br></pre>
+                        <pre><span class="line">mongo -h</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/83c0afa5/">http://meng.uno/articles/83c0afa5/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/83c0afa5/">http://www.meng.uno/articles/83c0afa5/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -669,7 +669,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

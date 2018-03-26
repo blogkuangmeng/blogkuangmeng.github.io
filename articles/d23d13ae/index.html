@@ -21,7 +21,7 @@
   <meta name="keywords" content="phone">
   <meta property="og:type" content="article">
   <meta property="og:title" content="判断是否手机登陆">
-  <meta property="og:url" content="http://meng.uno/articles/d23d13ae/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/d23d13ae/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="需求  项目的网站时做的手机网页，但是没有考虑到自适应pc端，只是在chrome中固定了手机屏幕大小，所以在pc端查看会很丑，布局是乱的；但是重写又很麻烦，所以有必要做一下提醒，让用户手动将网页缩小到手机屏幕大小。  用到  非手机检验和cookie记录  方法  这段代码是使用了cookie来控制的   1. 使用cookie让浏览器记住页面已经打开过一次，当前页面刷新不会弹出提醒。  2. 浏">
   <meta property="og:locale" content="zh-CN">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/d23d13ae/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/d23d13ae/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -263,7 +263,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数419</span>
+	<span class="post-count"> | 字数420</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
@@ -286,31 +286,31 @@
                   <li>浏览器一旦关闭，保存这个记录的cookie文件将被删除。重新打开浏览器弹出窗口会再次出现，从而确保了在原有的窗口基础上只打开一次。</li>
                 </ol>
                 <p>判断非手机登陆方式</p>
-                <figure class="highlight lisp">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(<span class="name">navigator</span>.userAgent))</span><br><span class="line">	alert(<span class="string">"为了提高体验效果，请把页面缩小成手机屏幕大小。\n谢谢合作！"</span>)<span class="comment">;</span></span><br></pre>
+                        <pre><span class="line">if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))</span><br><span class="line">	alert(&quot;为了提高体验效果，请把页面缩小成手机屏幕大小。\n谢谢合作！&quot;);</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <figure class="highlight xml">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	<span class="keyword">try</span>&#123;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">var</span> alertmessage=<span class="string">"为了提高体验效果，请把页面缩小成手机屏幕大小。\n谢谢合作！"</span>;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">var</span> once_per_session=<span class="number">1</span></span></span><br><span class="line"><span class="actionscript">		<span class="function"><span class="keyword">function</span> <span class="title">get_cookie</span><span class="params">(Name)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">		  <span class="keyword">var</span> search = Name + <span class="string">"="</span></span></span><br><span class="line"><span class="actionscript">		  <span class="keyword">var</span> returnvalue = <span class="string">""</span>;</span></span><br><span class="line"><span class="javascript">		  <span class="keyword">if</span> (<span class="built_in">document</span>.cookie.length &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="javascript">			offset = <span class="built_in">document</span>.cookie.indexOf(search)</span></span><br><span class="line"><span class="actionscript">			<span class="keyword">if</span> (offset != <span class="number">-1</span>) &#123;</span></span><br><span class="line"><span class="undefined">			  offset += search.length;</span></span><br><span class="line"><span class="javascript">			  end = <span class="built_in">document</span>.cookie.indexOf(<span class="string">";"</span>, offset);</span></span><br><span class="line"><span class="actionscript">			  <span class="keyword">if</span> (end == <span class="number">-1</span>)</span></span><br><span class="line"><span class="javascript">				 end = <span class="built_in">document</span>.cookie.length;</span></span><br><span class="line"><span class="javascript">			 	 returnvalue=<span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(offset, end))</span></span><br><span class="line"><span class="undefined">			  &#125;</span></span><br><span class="line"><span class="undefined">		   	&#125;</span></span><br><span class="line"><span class="actionscript">		 	<span class="keyword">return</span> returnvalue;</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="actionscript">		<span class="function"><span class="keyword">function</span> <span class="title">alertornot</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">			<span class="keyword">if</span> (get_cookie(<span class="string">'alerted'</span>)==<span class="string">''</span>)&#123;</span></span><br><span class="line"><span class="undefined">		        loadalert();</span></span><br><span class="line"><span class="javascript">				<span class="built_in">document</span>.cookie=<span class="string">"alerted=yes"</span>;</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="actionscript">		<span class="function"><span class="keyword">function</span> <span class="title">loadalert</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">if</span> (!<span class="regexp">/Android|webOS|iPhone|iPod|BlackBerry/i</span>.test(navigator.userAgent))</span></span><br><span class="line"><span class="undefined">				alert(alertmessage);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">if</span> (once_per_session==<span class="number">0</span>)</span></span><br><span class="line"><span class="undefined">			loadalert();</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">else</span></span></span><br><span class="line"><span class="undefined">			alertornot();</span></span><br><span class="line"><span class="actionscript">	&#125; <span class="keyword">catch</span>(e)</span></span><br><span class="line"><span class="undefined">	&#123;</span></span><br><span class="line"><span class="undefined">		alert(e);</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre>
+                        <pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	try&#123;</span><br><span class="line">		var alertmessage=&quot;为了提高体验效果，请把页面缩小成手机屏幕大小。\n谢谢合作！&quot;;</span><br><span class="line">		var once_per_session=1</span><br><span class="line">		function get_cookie(Name) &#123;</span><br><span class="line">		  var search = Name + &quot;=&quot;</span><br><span class="line">		  var returnvalue = &quot;&quot;;</span><br><span class="line">		  if (document.cookie.length &gt; 0) &#123;</span><br><span class="line">			offset = document.cookie.indexOf(search)</span><br><span class="line">			if (offset != -1) &#123;</span><br><span class="line">			  offset += search.length;</span><br><span class="line">			  end = document.cookie.indexOf(&quot;;&quot;, offset);</span><br><span class="line">			  if (end == -1)</span><br><span class="line">				 end = document.cookie.length;</span><br><span class="line">			 	 returnvalue=unescape(document.cookie.substring(offset, end))</span><br><span class="line">			  &#125;</span><br><span class="line">		   	&#125;</span><br><span class="line">		 	return returnvalue;</span><br><span class="line">		&#125;</span><br><span class="line">		function alertornot()&#123;</span><br><span class="line">			if (get_cookie(&apos;alerted&apos;)==&apos;&apos;)&#123;</span><br><span class="line">		        loadalert();</span><br><span class="line">				document.cookie=&quot;alerted=yes&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		function loadalert()&#123;</span><br><span class="line">			if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))</span><br><span class="line">				alert(alertmessage);</span><br><span class="line">		&#125;</span><br><span class="line">		if (once_per_session==0)</span><br><span class="line">			loadalert();</span><br><span class="line">		else</span><br><span class="line">			alertornot();</span><br><span class="line">	&#125; catch(e)</span><br><span class="line">	&#123;</span><br><span class="line">		alert(e);</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/d23d13ae/">http://meng.uno/articles/d23d13ae/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/d23d13ae/">http://www.meng.uno/articles/d23d13ae/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -420,7 +420,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

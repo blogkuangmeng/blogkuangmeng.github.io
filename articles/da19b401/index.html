@@ -21,7 +21,7 @@
   <meta name="keywords" content="web,html5,worker">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Web Worker">
-  <meta property="og:url" content="http://meng.uno/articles/da19b401/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/da19b401/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="js是单线程的语言，由于此特性，我们在处理并发时需要用到一些技巧，如setTimeout()，setInterval()，调用XMLHttpRequest等。但这里的并发只是非阻塞（参照John Resig的文章How JavaScript Timers Work），真正的多线程编程则需要HTML5的web worker。  worker的使用 web worker的使用非常简单，线程之间通讯的a">
   <meta property="og:locale" content="zh-CN">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/da19b401/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/da19b401/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -266,7 +266,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,297</span>
+	<span class="post-count"> | 字数1,298</span>
 	<span class="post-count"> | 预计时间6分钟</span>
 	</a>
               </div>
@@ -294,14 +294,14 @@
                 <p>实例化一个web worker对象，异步加载子线程文件worker.js，其中的代码将执行。</p>
                 <p><code>var worker = new Worker(&quot;worker.js&quot;);</code></p>
                 <p>给worker增加侦听</p>
-                <figure class="highlight oxygene">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span> <span class="params">(<span class="keyword">event</span>)</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">        alert(event.data);</span></span></span><br><span class="line"><span class="function"><span class="comment">    &#125;</span>;</span></span><br></pre>
+                        <pre><span class="line">worker.onmessage = function (event) &#123;</span><br><span class="line">        alert(event.data);</span><br><span class="line">    &#125;;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -310,27 +310,27 @@
                 <p><code>postMessage('hello，imweb');</code></p>
                 <p>在父线程页面就能看到发送过来的信息了。</p>
                 <p>同时，在web worker标准中，是支持对象参数的，也就是说我们能够传递json数据。再看一个稍微复杂点的例子，父线程：</p>
-                <figure class="highlight javascript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"worker.js"</span>);</span><br><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=event.data;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	worker.postMessage(&#123;<span class="string">'cmd'</span>: <span class="string">'start'</span>, <span class="string">'msg'</span>: <span class="string">'start'</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pause</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	worker.postMessage(&#123;<span class="string">'cmd'</span>: <span class="string">'pause'</span>, <span class="string">'msg'</span>: <span class="string">'pause'</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	worker.postMessage(&#123;<span class="string">'cmd'</span>: <span class="string">'stop'</span>, <span class="string">'msg'</span>: <span class="string">'stop'</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">msg</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	worker.postMessage(&#123;<span class="string">'msg'</span>: <span class="string">'hello imweb'</span>&#125;);</span><br><span class="line">&#125;</span><br></pre>
+                        <pre><span class="line">var worker = new Worker(&quot;worker.js&quot;);</span><br><span class="line">worker.onmessage = function (event) &#123;</span><br><span class="line">document.getElementById(&quot;result&quot;).innerHTML=event.data;</span><br><span class="line">&#125;;</span><br><span class="line">function start()&#123;</span><br><span class="line">	worker.postMessage(&#123;&apos;cmd&apos;: &apos;start&apos;, &apos;msg&apos;: &apos;start&apos;&#125;);</span><br><span class="line">&#125;</span><br><span class="line">function pause()&#123;</span><br><span class="line">	worker.postMessage(&#123;&apos;cmd&apos;: &apos;pause&apos;, &apos;msg&apos;: &apos;pause&apos;&#125;);</span><br><span class="line">&#125;</span><br><span class="line">function stop()&#123;</span><br><span class="line">	worker.postMessage(&#123;&apos;cmd&apos;: &apos;stop&apos;, &apos;msg&apos;: &apos;stop&apos;&#125;);</span><br><span class="line">&#125;</span><br><span class="line">function msg()&#123;</span><br><span class="line">	worker.postMessage(&#123;&apos;msg&apos;: &apos;hello imweb&apos;&#125;);</span><br><span class="line">&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>worker.js：</p>
-                <figure class="highlight kotlin">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">self.onmessage = function (e) &#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="keyword">data</span> = e.<span class="keyword">data</span>;</span><br><span class="line">  	switch (<span class="keyword">data</span>.cmd) &#123;</span><br><span class="line">    case <span class="string">'start'</span>:</span><br><span class="line">    	taskStart(); <span class="comment">//大量数据处理</span></span><br><span class="line">      	postMessage(<span class="string">'WORKER DO: '</span> + <span class="keyword">data</span>.msg);</span><br><span class="line">      	<span class="keyword">break</span>;</span><br><span class="line">    case <span class="string">'pause'</span>:</span><br><span class="line">    	taskPause();</span><br><span class="line">      	postMessage(<span class="string">'WORKER DO: '</span> + <span class="keyword">data</span>.msg);</span><br><span class="line">      	<span class="keyword">break</span>;</span><br><span class="line">    case <span class="string">'stop'</span>:</span><br><span class="line">      	postMessage(<span class="string">'WORKER DO: '</span> + <span class="keyword">data</span>.msg);</span><br><span class="line">      	self.close(); <span class="comment">//终止web worker</span></span><br><span class="line">      	<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      	postMessage(<span class="string">'MESSAGE: '</span> + <span class="keyword">data</span>.msg);</span><br><span class="line">  	&#125;;</span><br><span class="line">&#125;;</span><br></pre>
+                        <pre><span class="line">self.onmessage = function (e) &#123;</span><br><span class="line">	var data = e.data;</span><br><span class="line">  	switch (data.cmd) &#123;</span><br><span class="line">    case &apos;start&apos;:</span><br><span class="line">    	taskStart(); //大量数据处理</span><br><span class="line">      	postMessage(&apos;WORKER DO: &apos; + data.msg);</span><br><span class="line">      	break;</span><br><span class="line">    case &apos;pause&apos;:</span><br><span class="line">    	taskPause();</span><br><span class="line">      	postMessage(&apos;WORKER DO: &apos; + data.msg);</span><br><span class="line">      	break;</span><br><span class="line">    case &apos;stop&apos;:</span><br><span class="line">      	postMessage(&apos;WORKER DO: &apos; + data.msg);</span><br><span class="line">      	self.close(); //终止web worker</span><br><span class="line">      	break;</span><br><span class="line">    default:</span><br><span class="line">      	postMessage(&apos;MESSAGE: &apos; + data.msg);</span><br><span class="line">  	&#125;;</span><br><span class="line">&#125;;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -338,27 +338,27 @@
                 <p>从上面的例子可以看到，一是利用对象参数，进程之间能够较灵活的实现控制；二是当woker执行taskStart()处理大量数据时，只在子进程处理，不会给主页面带来阻塞，通常，处理大量数据会消极影响程序的响应能力，而web worker通过这样的方式，能提供一个更流畅更实时的UI。</p>
                 <h2 id="共享worker">共享worker</h2>
                 <p>共享worker允许线程在同源中的多个页面间进行共享，例如：同源中所有页面或脚本可以与同一个共享线程通信。它的实例化与事件侦听的写法与专用worker略有不同,主页面：</p>
-                <figure class="highlight javascript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> SharedWorker(<span class="string">'shared-worker.js'</span>);</span><br><span class="line">worker.port.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    msg = <span class="string">'Someone just said "'</span> + e.data.message + <span class="string">'". That is message number '</span> + e.data.counter;</span><br><span class="line">    <span class="built_in">console</span>.log(msg);</span><br><span class="line">&#125;;</span><br><span class="line">worker.port.postMessage(<span class="string">'hello shared worker!'</span>);</span><br></pre>
+                        <pre><span class="line">var worker = new SharedWorker(&apos;shared-worker.js&apos;);</span><br><span class="line">worker.port.onmessage = function(e) &#123;</span><br><span class="line">    msg = &apos;Someone just said &quot;&apos; + e.data.message + &apos;&quot;. That is message number &apos; + e.data.counter;</span><br><span class="line">    console.log(msg);</span><br><span class="line">&#125;;</span><br><span class="line">worker.port.postMessage(&apos;hello shared worker!&apos;);</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>shared-worker.js:</p>
-                <figure class="highlight actionscript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> connections = [];</span><br><span class="line">onconnect = <span class="function"><span class="keyword">function</span><span class="params">(eConn)</span> </span>&#123;</span><br><span class="line">  		<span class="keyword">var</span> port = eConn.ports[<span class="number">0</span>]; <span class="comment">// 此连接的特有port</span></span><br><span class="line">  	<span class="comment">//当有消息的时候通知所有的连接</span></span><br><span class="line">  	port.onmessage = <span class="function"><span class="keyword">function</span><span class="params">(eMsg)</span> </span>&#123; </span><br><span class="line">      	counter++;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; connections.length; i++)&#123;</span><br><span class="line">          	connections[i].postMessage(&#123;</span><br><span class="line">              	message: eMsg.data,</span><br><span class="line">              	counter: counter</span><br><span class="line">          	&#125;);</span><br><span class="line">      	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	port.start();</span><br><span class="line">  	connections.push(port);</span><br></pre>
+                        <pre><span class="line">var counter = 0;</span><br><span class="line">var connections = [];</span><br><span class="line">onconnect = function(eConn) &#123;</span><br><span class="line">  		var port = eConn.ports[0]; // 此连接的特有port</span><br><span class="line">  	//当有消息的时候通知所有的连接</span><br><span class="line">  	port.onmessage = function(eMsg) &#123; </span><br><span class="line">      	counter++;</span><br><span class="line">      	for (var i=0; i &lt; connections.length; i++)&#123;</span><br><span class="line">          	connections[i].postMessage(&#123;</span><br><span class="line">              	message: eMsg.data,</span><br><span class="line">              	counter: counter</span><br><span class="line">          	&#125;);</span><br><span class="line">      	&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  	port.start();</span><br><span class="line">  	connections.push(port);</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -387,28 +387,28 @@
                   <li>message: 完整的错误信息</li>
                 </ol>
                 <p>如：</p>
-                <figure class="highlight javascript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">worker.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(e.filename+<span class="string">"ERROR on line"</span>+e.lineno+<span class="string">",msg:"</span>+e.message);</span><br><span class="line">&#125;</span><br></pre>
+                        <pre><span class="line">worker.onerror = function(e) &#123;</span><br><span class="line">	console.log(e.filename+&quot;ERROR on line&quot;+e.lineno+&quot;,msg:&quot;+e.message);</span><br><span class="line">&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="web-worker的其他尝试">web worker的其他尝试</h2>
                 <p>对于比较消耗时间的操作，我们可看到web worker能够发挥它的作用。比如：大量数据排序，精确到像素的canvas计算等。而我们又知道，jsonp加载数据时，动态创建script标签，加载和执行这些过程都是阻塞式的，而web worker正好可以异步加载，这会是更快的方式吗？带着这个疑问我做了下面的试验，分别用jsonp和worker的方式去加载文件，计算数据返回时延：</p>
-                <figure class="highlight javascript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tryJsonp</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> d = (<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf();</span><br><span class="line">	<span class="keyword">var</span> jsonp=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);  </span><br><span class="line">    jsonp.type=<span class="string">"text/javascript"</span>;  </span><br><span class="line">    jsonp.src=<span class="string">"worker.js?_="</span>+d;  </span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(jsonp);</span><br><span class="line">    jsonp.onload = jsonp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">	   	<span class="keyword">if</span>(!<span class="keyword">this</span>.readyState||<span class="keyword">this</span>.readyState==<span class="string">'loaded'</span>||<span class="keyword">this</span>.readyState==<span class="string">'complete'</span>)&#123;  </span><br><span class="line">	   		<span class="built_in">console</span>.log(<span class="string">'jsonp: '</span>+ ((<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf() - d));</span><br><span class="line">		&#125;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tryWorker</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> d = (<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf();</span><br><span class="line">	<span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"worker.js"</span>);</span><br><span class="line">	worker.postMessage(&#123;<span class="string">'cmd'</span>: <span class="string">'start'</span>, <span class="string">'msg'</span>: <span class="string">'start'</span>&#125;);</span><br><span class="line">	worker.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'web worker: '</span>+ ((<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf() - d));</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre>
+                        <pre><span class="line">function tryJsonp()&#123;</span><br><span class="line">	var d = (new Date()).valueOf();</span><br><span class="line">	var jsonp=document.createElement(&quot;script&quot;);  </span><br><span class="line">    jsonp.type=&quot;text/javascript&quot;;  </span><br><span class="line">    jsonp.src=&quot;worker.js?_=&quot;+d;  </span><br><span class="line">    document.getElementsByTagName(&quot;head&quot;)[0].appendChild(jsonp);</span><br><span class="line">    jsonp.onload = jsonp.onreadystatechange = function()&#123;  </span><br><span class="line">	   	if(!this.readyState||this.readyState==&apos;loaded&apos;||this.readyState==&apos;complete&apos;)&#123;  </span><br><span class="line">	   		console.log(&apos;jsonp: &apos;+ ((new Date()).valueOf() - d));</span><br><span class="line">		&#125;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function tryWorker()&#123;</span><br><span class="line">	var d = (new Date()).valueOf();</span><br><span class="line">	var worker = new Worker(&quot;worker.js&quot;);</span><br><span class="line">	worker.postMessage(&#123;&apos;cmd&apos;: &apos;start&apos;, &apos;msg&apos;: &apos;start&apos;&#125;);</span><br><span class="line">	worker.onmessage = function (event) &#123;</span><br><span class="line">		console.log(&apos;web worker: &apos;+ ((new Date()).valueOf() - d));</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -418,7 +418,7 @@
                 <p>第二次加载1800k大小的文件，返回结果为：</p>
                 <p><img src="http://www.meng.uno/images/web_worker/2.png" alt="1800k文件重复5次"></p>
                 <p>可以看到对于较小的数据，jsonp还是比web worker要快，这可能是实例化worker对象时带来的影响；而数据偏大时，web worker的加载将会更优，而且它可以异步加载。</p>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/da19b401/">http://meng.uno/articles/da19b401/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/da19b401/">http://www.meng.uno/articles/da19b401/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -539,7 +539,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

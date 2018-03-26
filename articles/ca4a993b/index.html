@@ -21,7 +21,7 @@
   <meta name="keywords" content="Docker">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Docker的基本使用">
-  <meta property="og:url" content="http://meng.uno/articles/ca4a993b/index.html">
+  <meta property="og:url" content="http://www.meng.uno/articles/ca4a993b/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="本博文在观看网易蜂巢推出的玩转Docker镜像视频教程之后总结而成。  基本使用 谈到使用Docker，首先，我们必须要了解Dockerfile。（命名为Dockerfile，不要后缀）  Dockerfile的解读 首先引入一个例子：  1 2 3 4 5 6   FROM hub.c.163.com/bingohuang/debian:163 MAINTAINER bingohuang  RU">
   <meta property="og:locale" content="zh-CN">
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://meng.uno/articles/ca4a993b/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/ca4a993b/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -265,7 +265,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数840</span>
+	<span class="post-count"> | 字数841</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
@@ -300,119 +300,119 @@
                   <li>关键字 <code>ENTRYPOINT</code>，指定容器运行的默认指令（不会被用户指令覆盖）</li>
                 </ul>
                 <h2 id="构建镜像">构建镜像</h2>
-                <figure class="highlight armasm">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="symbol">docker</span> <span class="keyword">build </span>-t XXX:<span class="number">1</span>.<span class="number">0</span> .</span><br></pre>
+                        <pre><span class="line">docker build -t XXX:1.0 .</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="查看镜像">查看镜像</h2>
-                <figure class="highlight ebnf">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">docker images</span></span><br></pre>
+                        <pre><span class="line">docker images</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>输出样式：</p>
-                <figure class="highlight crmsh">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">REPOSITORY                              <span class="keyword">TAG</span>                 <span class="title">DIGEST</span>              IMAGE ID            CREATED             SIZE</span><br></pre>
+                        <pre><span class="line">REPOSITORY                              TAG                 DIGEST              IMAGE ID            CREATED             SIZE</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="本地运行">本地运行</h2>
-                <figure class="highlight applescript">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">docker <span class="built_in">run</span> <span class="comment">--name docker-mario -d -p 1989:80 <span class="doctag">XXX:</span>1.0</span></span><br></pre>
+                        <pre><span class="line">docker run --name docker-mario -d -p 1989:80 XXX:1.0</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>查看运行的镜像：</p>
-                <figure class="highlight ebnf">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">docker ps</span></span><br></pre>
+                        <pre><span class="line">docker ps</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>访问镜像：</p>
-                <figure class="highlight awk">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">open http:<span class="regexp">//</span><span class="number">127</span><span class="regexp">/0/</span><span class="number">0</span><span class="regexp">/1:1989/</span></span><br></pre>
+                        <pre><span class="line">open http://127/0/0/1:1989/</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="上传镜像">上传镜像</h2>
                 <p>登录网易蜂巢：</p>
-                <figure class="highlight stylus">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">docker login -u &#123;你的网易云邮箱账号或手机号码&#125; -<span class="selector-tag">p</span> &#123;你的网易云密码&#125; hub<span class="selector-class">.c</span>.<span class="number">163</span>.com</span><br></pre>
+                        <pre><span class="line">docker login -u &#123;你的网易云邮箱账号或手机号码&#125; -p &#123;你的网易云密码&#125; hub.c.163.com</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>标记本地镜像：</p>
-                <figure class="highlight crmsh">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">docker <span class="keyword">tag</span> <span class="title">&#123;镜像名或ID</span>&#125; hub.c.<span class="number">163</span>.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
+                        <pre><span class="line">docker tag &#123;镜像名或ID&#125; hub.c.163.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>推送至网易云镜像仓库：</p>
-                <figure class="highlight dust">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="xml">docker push hub.c.163.com/</span><span class="template-variable">&#123;你的用户名&#125;</span><span class="xml">/</span><span class="template-variable">&#123;标签名&#125;</span><span class="xml"></span></span><br></pre>
+                        <pre><span class="line">docker push hub.c.163.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -423,14 +423,14 @@
                 <ul>
                   <li>帮助</li>
                 </ul>
-                <figure class="highlight ebnf">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">docker -h</span></span><br></pre>
+                        <pre><span class="line">docker -h</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -438,14 +438,14 @@
                 <ul>
                   <li>获取镜像</li>
                 </ul>
-                <figure class="highlight css">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">docker</span> <span class="selector-tag">pull</span> <span class="selector-tag">NAME</span><span class="selector-attr">[:TAG]</span></span><br><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">docker</span> <span class="selector-tag">pull</span> <span class="selector-tag">centos</span><span class="selector-pseudo">:latest</span></span><br></pre>
+                        <pre><span class="line">sudo docker pull NAME[:TAG]</span><br><span class="line">sudo docker pull centos:latest</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -453,14 +453,14 @@
                 <ul>
                   <li>启动Container盒子</li>
                 </ul>
-                <figure class="highlight dockerfile">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker <span class="keyword">run</span><span class="bash"> [OPTIONS] IMAGE [COMMAND] [ARG...]</span></span><br><span class="line"><span class="bash">sudo docker run -t -i contos /bin/bash</span></span><br></pre>
+                        <pre><span class="line">sudo docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line">sudo docker run -t -i contos /bin/bash</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -468,14 +468,14 @@
                 <ul>
                   <li>查看镜像列表，列出本地的所有images</li>
                 </ul>
-                <figure class="highlight accesslog">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker images <span class="string">[OPTIONS]</span> <span class="string">[NAME]</span></span><br><span class="line">sudo docker images centos</span><br></pre>
+                        <pre><span class="line">sudo docker images [OPTIONS] [NAME]</span><br><span class="line">sudo docker images centos</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -483,14 +483,14 @@
                 <ul>
                   <li>查看容器列表，可看到我们创建过的所有container</li>
                 </ul>
-                <figure class="highlight vim">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker <span class="keyword">ps</span> [OPTIONS]</span><br><span class="line">sudo docker <span class="keyword">ps</span> -<span class="keyword">a</span></span><br></pre>
+                        <pre><span class="line">sudo docker ps [OPTIONS]</span><br><span class="line">sudo docker ps -a</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -498,14 +498,14 @@
                 <ul>
                   <li>删除镜像，从本地删除一个已经下载的镜像</li>
                 </ul>
-                <figure class="highlight css">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">docker</span> <span class="selector-tag">rmi</span> <span class="selector-tag">IMAGE</span> <span class="selector-attr">[IMAGE...]</span></span><br><span class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">docker</span> <span class="selector-tag">rmi</span> <span class="selector-tag">centos</span><span class="selector-pseudo">:latest</span></span><br></pre>
+                        <pre><span class="line">sudo docker rmi IMAGE [IMAGE...]</span><br><span class="line">sudo docker rmi centos:latest</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -513,14 +513,14 @@
                 <ul>
                   <li>移除一个或多个容器实例</li>
                 </ul>
-                <figure class="highlight inform7">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker rm <span class="comment">[OPTIONS]</span> <span class="keyword">CONTAINER</span> <span class="comment">[CONTAINER...]</span></span><br></pre>
+                        <pre><span class="line">sudo docker rm [OPTIONS] CONTAINER [CONTAINER...]</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -528,14 +528,14 @@
                 <ul>
                   <li>移除所有微运行的容器</li>
                 </ul>
-                <figure class="highlight ebnf">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="attribute">sudo docker rm sudo docker ps -aq</span></span><br></pre>
+                        <pre><span class="line">sudo docker rm sudo docker ps -aq</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -543,14 +543,14 @@
                 <ul>
                   <li>停止一个正在运行的容器</li>
                 </ul>
-                <figure class="highlight inform7">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker kill <span class="comment">[OPTIONS]</span> <span class="keyword">CONTAINER</span> <span class="comment">[CONTAINNER...]</span></span><br><span class="line">sudo docker kill 026e</span><br></pre>
+                        <pre><span class="line">sudo docker kill [OPTIONS] CONTAINER [CONTAINNER...]</span><br><span class="line">sudo docker kill 026e</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -558,14 +558,14 @@
                 <ul>
                   <li>重启一个正在运行的容器</li>
                 </ul>
-                <figure class="highlight accesslog">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker restart <span class="string">[OPTIONS]</span> contains<span class="string">[CONTAINER]</span></span><br><span class="line">sudo docker restart 026e</span><br></pre>
+                        <pre><span class="line">sudo docker restart [OPTIONS] contains[CONTAINER]</span><br><span class="line">sudo docker restart 026e</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -573,85 +573,85 @@
                 <ul>
                   <li>停止一个已经停止的容器</li>
                 </ul>
-                <figure class="highlight inform7">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">sudo docker start <span class="comment">[OPTIONS]</span> <span class="keyword">CONTAINER</span> <span class="comment">[CONTAINER..]</span></span><br><span class="line">sudo docker start 026e</span><br></pre>
+                        <pre><span class="line">sudo docker start [OPTIONS] CONTAINER [CONTAINER..]</span><br><span class="line">sudo docker start 026e</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h1>制作镜像</h1>
                 <h2 id="ldd-打印共享依赖库">ldd: 打印共享依赖库</h2>
-                <figure class="highlight lsl">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">ldd  redis<span class="number">-3.0</span><span class="number">.0</span>/src/redis-server</span><br><span class="line">    linux-vdso.so<span class="number">.1</span> =&gt;  (<span class="number">0x00007fffde365000</span>)</span><br><span class="line">    libm.so<span class="number">.6</span> =&gt; /lib/x86_64-linux-gnu/libm.so<span class="number">.6</span> (<span class="number">0x00007f307d5aa000</span>)</span><br><span class="line">    libpthread.so<span class="number">.0</span> =&gt; /lib/x86_64-linux-gnu/libpthread.so<span class="number">.0</span> (<span class="number">0x00007f307d38c000</span>)</span><br><span class="line">    libc.so<span class="number">.6</span> =&gt; /lib/x86_64-linux-gnu/libc.so<span class="number">.6</span> (<span class="number">0x00007f307cfc6000</span>)</span><br><span class="line">    /lib64/ld-linux-x86<span class="number">-64.</span>so<span class="number">.2</span> (<span class="number">0x00007f307d8b9000</span>)</span><br></pre>
+                        <pre><span class="line">ldd  redis-3.0.0/src/redis-server</span><br><span class="line">    linux-vdso.so.1 =&gt;  (0x00007fffde365000)</span><br><span class="line">    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f307d5aa000)</span><br><span class="line">    libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f307d38c000)</span><br><span class="line">    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f307cfc6000)</span><br><span class="line">    /lib64/ld-linux-x86-64.so.2 (0x00007f307d8b9000)</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="打包-so文件">打包<code>.so</code>文件</h2>
-                <figure class="highlight stylus">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">tar ztvf rootfs<span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre>
+                        <pre><span class="line">tar ztvf rootfs.tar.gz</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <p>##制成Dockerfile</p>
-                <figure class="highlight dockerfile">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">ADD</span><span class="bash">  rootfs.tar.gz  /</span></span><br><span class="line"><span class="bash">COPY redis.conf     /etc/redis/redis.conf</span></span><br><span class="line"><span class="bash">EXPOSE 6379</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"redis-server"</span>]</span></span><br></pre>
+                        <pre><span class="line">FROM scratch</span><br><span class="line">ADD  rootfs.tar.gz  /</span><br><span class="line">COPY redis.conf     /etc/redis/redis.conf</span><br><span class="line">EXPOSE 6379</span><br><span class="line">CMD [&quot;redis-server&quot;]</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="执行构建">执行构建</h2>
-                <figure class="highlight armasm">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="symbol">docker</span> <span class="keyword">build </span>-t redis .</span><br></pre>
+                        <pre><span class="line">docker build -t redis .</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
                 <h2 id="测试">测试</h2>
-                <figure class="highlight dockerfile">
+                <figure class="highlight plain">
                   <table>
                     <tr>
                       <td class="gutter">
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -d --name redis redis</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">redis-cli -h $(docker inspect -f <span class="string">'&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> redis)</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">redis-benchmark  -h $(docker inspect -f <span class="string">'&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> redis-05)</span></span><br></pre>
+                        <pre><span class="line">docker run -d --name redis redis</span><br><span class="line"></span><br><span class="line">redis-cli -h $(docker inspect -f &apos;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&apos; redis)</span><br><span class="line"></span><br><span class="line">redis-benchmark  -h $(docker inspect -f &apos;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&apos; redis-05)</span><br></pre>
                       </td>
                     </tr>
                   </table>
                 </figure>
-                <p><br><br>本文链接： <a href="http://meng.uno/articles/ca4a993b/">http://meng.uno/articles/ca4a993b/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/ca4a993b/">http://www.meng.uno/articles/ca4a993b/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -780,7 +780,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.25 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.03.26 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
