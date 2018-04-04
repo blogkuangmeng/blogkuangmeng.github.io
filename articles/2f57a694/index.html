@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>ListView嵌套GridView显示多张图片出现图片重复、错乱、闪烁等问题 | 欢迎来到匡盟盟的博客！</title>
+  <title>正则表达式 | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="场景 为了实现一个订单下多个商品同时评价功能，列表分五种状态（非常满意，满意，一般，较差，不满意）展示，用一个listview，item中有一个GridView，GridView中放置最多五张图片；在listview上下滑动时会出现item中的图片重复、错乱、闪烁等问题。  出现错误 先讲我的错误。遇到问题后Google，参考了一些资料，都是提示要在外层listview的adapter上设置set">
-  <meta name="keywords" content="ListView,GridView">
+  <meta name="description" content="正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。搜索模式可用于文本搜索和文本替换。  什么是正则表达式？  *  正则表达式是由一个字符序列形成的搜索模式。          *  当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。          *  正则表达">
+  <meta name="keywords" content="Web,正则表达式">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="ListView嵌套GridView显示多张图片出现图片重复、错乱、闪烁等问题">
-  <meta property="og:url" content="http://www.meng.uno/articles/bc099606/index.html">
+  <meta property="og:title" content="正则表达式">
+  <meta property="og:url" content="http://www.meng.uno/articles/2f57a694/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="场景 为了实现一个订单下多个商品同时评价功能，列表分五种状态（非常满意，满意，一般，较差，不满意）展示，用一个listview，item中有一个GridView，GridView中放置最多五张图片；在listview上下滑动时会出现item中的图片重复、错乱、闪烁等问题。  出现错误 先讲我的错误。遇到问题后Google，参考了一些资料，都是提示要在外层listview的adapter上设置set">
+  <meta property="og:description" content="正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。搜索模式可用于文本搜索和文本替换。  什么是正则表达式？  *  正则表达式是由一个字符序列形成的搜索模式。          *  当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。          *  正则表达">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:updated_time" content="2018-03-20T10:07:03.296Z">
+  <meta property="og:updated_time" content="2018-04-04T06:54:08.851Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="ListView嵌套GridView显示多张图片出现图片重复、错乱、闪烁等问题">
-  <meta name="twitter:description" content="场景 为了实现一个订单下多个商品同时评价功能，列表分五种状态（非常满意，满意，一般，较差，不满意）展示，用一个listview，item中有一个GridView，GridView中放置最多五张图片；在listview上下滑动时会出现item中的图片重复、错乱、闪烁等问题。  出现错误 先讲我的错误。遇到问题后Google，参考了一些资料，都是提示要在外层listview的adapter上设置set">
+  <meta name="twitter:title" content="正则表达式">
+  <meta name="twitter:description" content="正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。搜索模式可用于文本搜索和文本替换。  什么是正则表达式？  *  正则表达式是由一个字符序列形成的搜索模式。          *  当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。          *  正则表达">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/bc099606/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/2f57a694/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -244,96 +244,148 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-ListView" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-regular-exp" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  ListView嵌套GridView显示多张图片出现图片重复、错乱、闪烁等问题
+                  正则表达式
                 </h1>
               </header>
 
               <div class="article-meta">
-                <a href="/articles/bc099606/" class="article-date">
-	  <time datetime="2017-03-28T16:13:43.000Z" itemprop="datePublished">2017-03-29</time>
+                <a href="/articles/2f57a694/" class="article-date">
+	  <time datetime="2017-04-04T06:44:58.000Z" itemprop="datePublished">2017-04-04</time>
 	</a>
-                <a class="article-category-link" href="/categories/Android/">Android</a>
+                <a class="article-category-link" href="/categories/Web/">Web</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,018</span>
+	<span class="post-count"> | 字数999</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>场景</h1>
-                <p>为了实现一个订单下多个商品同时评价功能，列表分五种状态（非常满意，满意，一般，较差，不满意）展示，用一个listview，item中有一个GridView，GridView中放置最多五张图片；在listview上下滑动时会出现item中的图片重复、错乱、闪烁等问题。</p>
-                <h1>出现错误</h1>
-                <p>先讲我的错误。遇到问题后Google，参考了一些资料，都是提示要在外层listview的adapter上设置setTag(), 然后在内层GridView的adapter上整体和需要标记复用的imageView上setTag()。照此执行了，还是出错；后来在同事指点下，原来外层adapter中设置gridAdapter时只是在没有塞值时<code>gridView.setVisibility(View.GONE)</code>，忘了要在有值的时候<code>gridView.setVisibility(View.VISIBLE)</code>，
-                  所以导致在复用的时候，没有了GridView可复用。
-                </p>
-                <figure class="highlight plain">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">//评价照片 </span><br><span class="line">String evaluateImgs = item.getEvaluateDescriptionImgs(); </span><br><span class="line">MyGridView gridView = vh.getView(R.id.evaluate_image);</span><br><span class="line">EvaluationViewGridAdapter gridAdapter; </span><br><span class="line">if (!StringUtils.isEmpty(evaluateImgs)) &#123; </span><br><span class="line">    //这里是否不需要判断包含`,`，`split`方法是否能自动判断，需要验证</span><br><span class="line">    if (evaluateImgs.contains(&quot;,&quot;)) &#123; </span><br><span class="line">        String[] imgs = evaluateImgs.split(&quot;,&quot;);</span><br><span class="line">        gridAdapter = new EvaluationViewGridAdapter(imgs, mCallback.getContext());</span><br><span class="line">        gridView.setAdapter(gridAdapter);</span><br><span class="line">        //下面这句是我忘了加的</span><br><span class="line">        gridView.setVisibility(View.VISIBLE); </span><br><span class="line">    &#125; else &#123; </span><br><span class="line">        String[] imgs = new String[]&#123;evaluateImgs&#125;;</span><br><span class="line">        gridAdapter = new EvaluationViewGridAdapter(imgs, mCallback.getContext());</span><br><span class="line">        gridView.setAdapter(gridAdapter);</span><br><span class="line">        //下面这句是我忘了加的</span><br><span class="line">        gridView.setVisibility(View.VISIBLE); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; else &#123;  </span><br><span class="line">    gridView.setAdapter(gridAdapter);</span><br><span class="line">    gridView.setVisibility(View.GONE); </span><br><span class="line">&#125;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <blockquote>
-                  <p>教训：这个问题此前已经遇到过，真是不长记性，看来遇到一些常见问题还是要记录下来啊。例如写这个博客。</p>
-                </blockquote>
-                <h1>原因总结</h1>
-                <p>为了提升listview性能，缓存复用了item(某行对应的View)，ListView通过getView()获取每行的item。</p>
-                <p>滑动过程中，a. 如果某行item已经滑出屏幕，若该item不在缓存内，则put进缓存，否则更新缓存； b. 获取滑入屏幕的行item之前会先判断缓存中是否有可用的item，如果有，做为convertView参数传递给adapter的getView。</p>
+                <p><strong><em>正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。搜索模式可用于文本搜索和文本替换。</em></strong></p>
+                <h1>什么是正则表达式？</h1>
                 <ul>
-                  <li>行item图片显示重复：指当前行item显示了之前某行item的图片。</li>
-                  <li>行item图片显示错乱：指某行item显示了不属于该行item的图片。</li>
-                  <li>行item图片显示闪烁：上面b的情况，加载缓慢，还没加载完又滑到下一页，下一页某个item又加载出来了，所以导致图片快速覆盖，显示闪烁效果。</li>
+                  <li>
+                    <p>正则表达式是由一个字符序列形成的搜索模式。</p>
+                  </li>
+                  <li>
+                    <p>当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。</p>
+                  </li>
+                  <li>
+                    <p>正则表达式可以是一个简单的字符，或一个更复杂的模式。</p>
+                  </li>
+                  <li>
+                    <p>正则表达式可用于所有文本搜索和文本替换的操作。</p>
+                  </li>
                 </ul>
-                <h1>解决方法</h1>
-                <h2 id="第一步：listview-adapter-getview写法">第一步：ListView Adapter getView写法</h2>
-                <figure class="highlight plain">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">@Override</span><br><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">	ViewHolder holder;</span><br><span class="line">	if (convertView == null) &#123;</span><br><span class="line">		convertView = inflater.inflate(R.layout.list_item, null);</span><br><span class="line">		holder = new ViewHolder();</span><br><span class="line">		……</span><br><span class="line">		convertView.setTag(holder);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		holder = (ViewHolder)convertView.getTag();</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">	return convertView;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/**</span><br><span class="line"> * ViewHolder</span><br><span class="line"> * </span><br><span class="line"> * @author trinea@trinea.cn 2013-08-01</span><br><span class="line"> */</span><br><span class="line">private static class ViewHolder &#123;</span><br><span class="line">	ImageView appIcon;</span><br><span class="line">	TextView  appName;</span><br><span class="line">	TextView  appInfo;</span><br><span class="line">&#125;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>这里如果写的是convert()方法，则不需要写以上复用，因为父类中会做复用的事。</p>
-                <h2 id="第二步：-gridview-gridadapter-getview写法">第二步： GridView gridAdapter getVIew写法</h2>
-                <p>与上面写法类似；不过需要在用到图片的地方进行判断。</p>
-                <figure class="highlight plain">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">@Override</span><br><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">    ViewHolder holder;</span><br><span class="line">    if (convertView == null) &#123;</span><br><span class="line">    	convertView = inflater.inflate(R.layout.list_item, null);</span><br><span class="line">    	holder = new ViewHolder();</span><br><span class="line">    	……</span><br><span class="line">    	convertView.setTag(holder);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    	holder = (ViewHolder)convertView.getTag();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    /**</span><br><span class="line">    * 解决图片重复错乱闪烁的问题，例如</span><br><span class="line">    */</span><br><span class="line">    //建立一个唯一标示，一般为item的相应String对象</span><br><span class="line">    String file = mListResult.get(position).getFile();</span><br><span class="line">    ImageAware imageAware =new ImageViewAware(holder.iv,false);</span><br><span class="line">    //首先得到要设置的GridView</span><br><span class="line">    holder.iv.setTag(file);</span><br><span class="line">    //判断tag存在否</span><br><span class="line">    if(holder.iv.getTag()!=null&amp;&amp;holder.iv.getTag().equals(file))&#123;</span><br><span class="line">        imageLoader.displayImage(file,imageAware);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return convertView;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/**</span><br><span class="line"> * ViewHolder</span><br><span class="line"> * </span><br><span class="line"> * @author linking123.github.io 2017-03-29</span><br><span class="line"> */</span><br><span class="line">private static class ViewHolder &#123;</span><br><span class="line">	ImageView appIcon;</span><br><span class="line">	TextView  appName;</span><br><span class="line">	TextView  appInfo;</span><br><span class="line">&#125;</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p>一般情况下，走完以上两部可解决问题；解决不了的就要仔细检查一下，有没有像我一样的遗漏问题，小心啊，程序员们。</p>
-                <h1>参考</h1>
+                <h1>使用字符串方法</h1>
+                <p><em>在 JavaScript 中，正则表达式通常用于两个字符串方法 : search() 和 replace()。</em></p>
                 <ul>
-                  <li><a href="http://www.trinea.cn/android/android-listview-display-error-image-when-scroll/" target="_blank" rel="noopener">Android ListView滑动过程中图片显示重复错位闪烁问题解决</a></li>
+                  <li>
+                    <p>search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子字符串的起始位置。</p>
+                  </li>
+                  <li>
+                    <p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子字符串。</p>
+                  </li>
                 </ul>
-                <p>感谢作者们的无私奉献，如有侵权，立马删除。</p>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/bc099606/">http://www.meng.uno/articles/bc099606/</a> 欢迎转载！</p>
+                <h1>search() 方法使用正则表达式</h1>
+                <p><em>使用正则表达式搜索 “w3cschool” 字符串，且不区分大小写：</em></p>
+                <pre><code>varstr =&quot;Visit w3cschool&quot;;
+
+varn = str.search(/w3cschool/i);
+</code></pre>
+                <p><em>输出结果为：</em></p>
+                <pre><code>6
+</code></pre>
+                <h1>replace() 方法使用正则表达式</h1>
+                <p><em>使用正则表达式且不区分大小写将字符串中的 Microsoft 替换为 w3cschool :</em></p>
+                <pre><code>varstr =&quot;Visit Microsoft!&quot;;
+
+varres = str.replace(/microsoft/i,&quot;w3cschool&quot;);
+</code></pre>
+                <p><em>结果输出为:</em></p>
+                <pre><code>Visit w3cschool!
+</code></pre>
+                <h1>正则表达式修饰符</h1>
+                <p><em>修饰符可以在全局搜索中不区分大小写:</em></p>
+                <p><em>修饰符描述</em></p>
+                <pre><code>i       执行对大小写不敏感的匹配。
+
+g      执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
+
+m      执行多行匹配。
+</code></pre>
+                <h1>正则表达式模式</h1>
+                <p><strong><em>方括号用于查找某个范围内的字符：</em></strong></p>
+                <p><em>表达式描述</em></p>
+                <pre><code>[abc]    查找方括号之间的任何字符。
+
+[0-9]    查找任何从 0 至 9 的数字。
+
+(x|y)    查找任何以 | 分隔的选项。
+</code></pre>
+                <h1>元字符是拥有特殊含义的字符</h1>
+                <p><strong><em>元字符描述</em></strong></p>
+                <pre><code>\s：用于匹配单个空格符，包括tab键和换行符；
+\S：用于匹配除单个空格符之外的所有字符；
+\d：用于匹配从0到9的数字；
+\w：用于匹配字母，数字或下划线字符；
+\W：用于匹配所有与\w不匹配的字符；
+. ：用于匹配除换行符之外的所有字符。
+\uxxxx    查找以十六进制数 xxxx 规定的 Unicode 字符。
+</code></pre>
+                <h1>量词</h1>
+                <p><strong><em>量词描述</em></strong></p>
+                <pre><code>n+    匹配任何包含至少一个n的字符串。
+
+n*    匹配任何包含零个或多个n的字符串。
+
+n?    匹配任何包含零个或一个n的字符串。
+</code></pre>
+                <h1>使用 RegExp 对象</h1>
+                <p><strong><em>在 JavaScript 中，RegExp 对象是一个预定义了属性和方法的正则表达式对象。</em></strong></p>
+                <h1>使用 test()</h1>
+                <p><strong><em>test() 方法是一个正则表达式方法。</em></strong></p>
+                <ul>
+                  <li>test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。</li>
+                </ul>
+                <p><strong>以下实例用于搜索字符串中的字符 “e”：</strong></p>
+                <p><strong><em>实例</em></strong></p>
+                <pre><code>varpatt = /e/;
+
+patt.test(&quot;The best things in life are free!&quot;);
+</code></pre>
+                <p><strong><em>字符串中含有 “e”，所以该实例输出为：</em></strong></p>
+                <pre><code>true
+</code></pre>
+                <p><strong><em>你可以不用设置正则表达式的变量，以上两行代码可以合并为一行：</em></strong></p>
+                <pre><code>/e/.test(&quot;The best things in life are free!&quot;)
+</code></pre>
+                <h1>使用 exec()</h1>
+                <ul>
+                  <li>
+                    <p>exec() 方法是一个正则表达式方法。</p>
+                  </li>
+                  <li>
+                    <p>exec() 方法用于检索字符串中的正则表达式的匹配。</p>
+                  </li>
+                </ul>
+                <p><strong>该函数返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。</strong></p>
+                <p><strong><em>以下实例用于搜索字符串中的字母 “e”:</em></strong></p>
+                <p><strong><em>Example 1</em></strong></p>
+                <pre><code>/e/.exec(&quot;The best things in life are free!&quot;);
+</code></pre>
+                <p><strong><em>字符串中含有 “e”，所以该实例输出为:</em></strong></p>
+                <pre><code>e
+</code></pre>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/2f57a694/">http://www.meng.uno/articles/2f57a694/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -397,27 +449,27 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GridView/">GridView</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ListView/">ListView</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li>
                 </ul>
               </footer>
             </div>
 
             <nav id="article-nav">
 
-              <a href="/articles/2f57a694/" id="article-nav-newer" class="article-nav-link-wrap">
+              <a href="/articles/c50121e6/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          正则表达式
+          前端如何反击爬虫
         
       </div>
     </a>
 
 
-              <a href="/articles/83c0afa5/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/articles/bc099606/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">MongDB</div>
+      <div class="article-nav-title">ListView嵌套GridView显示多张图片出现图片重复、错乱、闪烁等问题</div>
     </a>
 
             </nav>
@@ -431,16 +483,17 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">出现错误</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">原因总结</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">解决方法</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：listview-adapter-getview写法"><span class="nav-number">4.1.</span> <span class="nav-text">第一步：ListView Adapter getView写法</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：-gridview-gridadapter-getview写法"><span class="nav-number">4.2.</span> <span class="nav-text">第二步： GridView gridAdapter getVIew写法</span></a></li>
-                  </ol>
-                </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">什么是正则表达式？</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">使用字符串方法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">search() 方法使用正则表达式</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">replace() 方法使用正则表达式</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">正则表达式修饰符</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">正则表达式模式</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">元字符是拥有特殊含义的字符</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">量词</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">使用 RegExp 对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">使用 test()</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">使用 exec()</span></a></li>
               </ol>
 
             </div>
