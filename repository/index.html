@@ -247,13 +247,12 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <div style="width: 100%;height: 100px;text-align: center;" id="temp"></div>
-
           <main class="main" role="main">
             <article class="article article-repository article-type-list" itemscope="">
               <header class="article-header">
-                <h1 class="text-muted">这是我GitHub上的 <span id="repo-count">0</span> 个项目！</h1>
+                <h1 style="font-size:30px;text-align:center;margin-bottom:40px;margin-top:-30px;">这是我GitHub上的 <span id="repo-count">0</span> 个项目！</h1>
               </header>
+              <br>
               <div class="article-body">
                 <div class="repo-content">
                   <div class="blankslate">
@@ -271,11 +270,11 @@
                   <h3 class="repo-title"><a href="{%=clone_url%}" target="_blank" rel="external nofollow noopener noreferrer">{%=full_name%}</a></h3>
                   <p class="repo-body">{%=description%}</p>
                   <div class="repo-meta">
-                    <span class="meta meta-type pull-left" aria-label="{%=language%} project">{%=language%}</span>
+                    <span class="meta meta-type pull-left" aria-label="{%=language%} project">{%=language%} </span>
                     <span class="meta meta-star" aria-label="{%=stargazers_count%} stars"><i class="icon icon-star-fill"></i> {%=stargazers_count%}</span>
                     <span class="meta meta-fork" aria-label="{%=forks_count%} forks"><i class="icon icon-code-fork"></i> {%=forks_count%}</span>
                     <span class="meta meta-last-updated" aria-label="最后更新时间：{%=updated_at%}">
-        <i class="icon icon-clock"></i> <time datetime="{%=updated_at%}">{%=updated_at%}</time></span>
+        <i class="icon icon-clock"></i> <time datetime="{%=updated_at%}"> {%=updated_at%}</time></span>
                   </div>
                 </div>
               </li>
