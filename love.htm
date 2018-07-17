@@ -38,15 +38,7 @@
 
 </div>
 <script>
-//产生随机数函数
-    function RndNum(n){
-      var rnd="";
-      for(var i=0;i<n;i++)
-        rnd+=Math.floor(Math.random()*10);
-      return rnd;
-    }
-
-    var i=RndNum(1);
+    var i=Math.floor(Math.random()*10);
     var ok=false;
     $(document).ready(function(){
         $("#no").click(function(){
@@ -81,10 +73,12 @@
                     break;
                 case 7:
                     alert("保证小奶狗！");
+                    break;
                 default:
                     alert("答应我吧");
+                    break;
             }
-            i=RndNum(1);
+            i=Math.floor(Math.random()*10);
         });
     });
 </script>
