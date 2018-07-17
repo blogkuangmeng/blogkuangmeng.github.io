@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Virtio原理 | 欢迎来到匡盟盟的博客！</title>
+  <title>Java合并List | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -17,22 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
-  <meta name="keywords" content="Linux,虚拟化,Virtio">
+  <meta name="description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
+  <meta name="keywords" content="Java">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Virtio原理">
-  <meta property="og:url" content="http://www.meng.uno/articles/1ae8cec4/index.html">
+  <meta property="og:title" content="Java合并List">
+  <meta property="og:url" content="http://www.meng.uno/articles/66999e7d/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
+  <meta property="og:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/images/virtio/qemu.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/virtio/virtio.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/virtio/liftcycle.jpg">
-  <meta property="og:updated_time" content="2018-04-10T05:46:42.646Z">
+  <meta property="og:updated_time" content="2018-07-17T02:29:34.464Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Virtio原理">
-  <meta name="twitter:description" content="virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
-  <meta name="twitter:image" content="http://www.meng.uno/images/virtio/qemu.jpg">
+  <meta name="twitter:title" content="Java合并List">
+  <meta name="twitter:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -115,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/1ae8cec4/" />
+  <link rel="canonical" href="http://www.meng.uno/articles/66999e7d/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -250,46 +246,65 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-virtio" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-combine-list" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  Virtio原理
+                  Java合并List
                 </h1>
               </header>
 
               <div class="article-meta">
-                <a href="/articles/1ae8cec4/" class="article-date">
-	  <time datetime="2016-05-10T03:41:13.000Z" itemprop="datePublished">2016-05-10</time>
+                <a href="/articles/66999e7d/" class="article-date">
+	  <time datetime="2018-07-15T02:15:54.000Z" itemprop="datePublished">2018-07-15</time>
 	</a>
-                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+                <a class="article-category-link" href="/categories/Java开发Tips/">Java开发Tips</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数814</span>
-	<span class="post-count"> | 预计时间3分钟</span>
+	<span class="post-count"> | 字数746</span>
+	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>virtio简介</h1>
-                <p>virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互的代码(驱动程序)。</p>
-                <h1>QEMU模拟I/O</h1>
-                <p>如果使用QEMU模拟I/O，当guest中的设备驱动程序发起I/O操作请求时，KVM中的I/O操作捕获代码会将这次I/O请求拦截，在经过处理后将这次I/O请求的信息放在I/O共享页，然后通知QEMU程序。QEMU获得I/O操作的具体信息后，交由硬件模拟代码模拟出本次I/O操作，完成后，将结果放回I/O共享页，并通知KVM模块中的I/O操作捕获代码。最后，KVM模块中的捕获代码读取I/O共享页中的操作结果，把结果返回到客户机中。倘若guest通过DMA访问大块I/O时，QEMU不会把操作结果放在I/O共享页中，而是通过内存映射的方式将结果直接写到guest的内存中。</p>
-                <p><img src="http://www.meng.uno/images/virtio/qemu.jpg" alt=""></p>
-                <h1>virtio模拟I/O</h1>
-                <p>下图中，最上面一排(virtio_blk等)是前端驱动，它们是在客户机中存在的驱动程序模块，而后端处理程序是在QEMU中实现的。在前端和后端之间，定义了两层来支持guest和QEMU之间的通信。virtio层是虚拟队列借口，一个前端驱动程序可以使用多个队列。虚拟队列实际上是guest操作系统和hyperviosr的衔接点。而virtio-ring实现了环形缓冲区，它用来保存前端驱动和后端处理程序执行的信息，并且它可以一次性保存前端驱动的多次I/O请求，并且交由后端驱动去批量处理，最后实际调用host中设备驱动实现物理上的I/O操作，这样做就可以实现批量处理，而不是客户机中的每次I/O请求都需要处理一次，从而提高了guest和hypervisor信息交换的效率。</p>
-                <p><img src="http://www.meng.uno/images/virtio/virtio.jpg" alt=""></p>
-                <h1>virtio_blk</h1>
-                <p>在linux中，对于块设备的访问，通常是用一个I/O队列，来维护一系列的bio数据结构，通常一个请求可能包含多个bio结构。bio是上层内核vfs与下层驱动连接的纽带。<br> virtio_blk结构体中的gendisk结构多request_queue队列接收block层的bio请求，按照request_queue队列默认处理过程，bio请求会在io调度层转化为request，然后进入request_queue队列，最后调用virtblk_request将request转化为vbr结构，最后由QEMU接管处理。
-                  <br> QEMU处理过vdr之后，会将它加入到virtio_ring的request队列，并发一个中断给队列，队列的中断响应函数vring_interrupt调用队列的回调函数virtblk_done。
-                  <br> 最后由request_queue注册的complete函数virtblk_request_done处理，通过blk_mq_end_io通告块设备层IO结束。
-                </p>
-                <p><img src="http://www.meng.uno/images/virtio/liftcycle.jpg" alt=""></p>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/1ae8cec4/">http://www.meng.uno/articles/1ae8cec4/</a> 欢迎转载！</p>
+                <h1>问题</h1>
+                <p>在写我的毕业设计时，遇到了这样两个问题：</p>
+                <ol>
+                  <li>给定一个分词结果（List
+                    <string>）与一个知道偏置的专有名词（特定领域命名实体）的结果（List
+                      <stirng>），怎么将两者融合成一个统一的分词结果（List
+                        <string>）。</string>
+                      </stirng>
+                    </string>
+                  </li>
+                  <li>给定一个分词结果（List
+                    <string>）与一条规则（人为规定的分词结果（List
+                      <string>）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List
+                        <string>）。</string>
+                      </string>
+                    </string>
+                  </li>
+                </ol>
+                <p>虽然在算法上没有多少难度，但是在实现上还是挺费时间思考，所以我将我的实现保存起来，以后没准我还会再用到。</p>
+                <h1>方案</h1>
+                <h2 id="合并专有名词">合并专有名词</h2>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">segTemp</span><span class="params">(List&lt;String&gt; tmp, List&lt;Term&gt; area, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; ret = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    <span class="keyword">int</span> area_len = area.size();</span><br><span class="line">    <span class="keyword">if</span> (area_len == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp_index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp_i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; tmp.size(); i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (index == area.get(tmp_i).getOffe()) &#123;</span><br><span class="line">        ret.add(area.get(tmp_i).getRealName());</span><br><span class="line">        index += area.get(tmp_i).getRealName().length();</span><br><span class="line">        i--;</span><br><span class="line">        <span class="keyword">if</span> (tmp_i &lt; area_len - <span class="number">1</span>) &#123;</span><br><span class="line">          tmp_i++;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index &gt; tmp_index) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tmp_index + tmp.get(i).length() &lt;= index) &#123;</span><br><span class="line">          tmp_index += tmp.get(i).length();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ret.add(tmp.get(i).substring(index - tmp_index));</span><br><span class="line">          tmp_index += tmp.get(i).length();</span><br><span class="line">          index = tmp_index;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index + tmp.get(i).length() &lt;= area.get(tmp_i).getOffe()) &#123;</span><br><span class="line">        ret.add(tmp.get(i));</span><br><span class="line">        index += tmp.get(i).length();</span><br><span class="line">        tmp_index += tmp.get(i).length();</span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index + tmp.get(i).length() &gt; area.get(tmp_i).getOffe()</span><br><span class="line">          &amp;&amp; index &lt; area.get(tmp_i).getOffe()) &#123;</span><br><span class="line">        ret.add(tmp.get(i).substring(<span class="number">0</span>, area.get(tmp_i).getOffe() - index));</span><br><span class="line">        index += area.get(tmp_i).getOffe() - index;</span><br><span class="line">        tmp_index += tmp.get(i).length();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 从上一个位置break</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; tmp.size(); j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (index &gt; tmp_index) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tmp_index + tmp.get(j).length() &lt;= index) &#123;</span><br><span class="line">          tmp_index += tmp.get(j).length();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ret.add(tmp.get(j).substring(index - tmp_index));</span><br><span class="line">          tmp_index += tmp.get(j).length();</span><br><span class="line">          index = tmp_index;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ret.add(tmp.get(j));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">  &#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 合并规则</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">match</span><span class="params">(String text, List&lt;String&gt; ori, List&lt;Rule&gt; rule)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(rule.isEmpty())&#123;</span><br><span class="line">			<span class="keyword">return</span> ori;</span><br><span class="line">		&#125;</span><br><span class="line">		List&lt;String&gt; ret = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">for</span>(Rule ru : rule)&#123;</span><br><span class="line">			List&lt;Integer&gt; loc = getLocation(text,ru.toString());</span><br><span class="line">			<span class="keyword">if</span>(loc.isEmpty())&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				flag = <span class="keyword">true</span>;</span><br><span class="line">				<span class="keyword">int</span> num = loc.size();</span><br><span class="line">				<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; num;i++)&#123;</span><br><span class="line">					<span class="keyword">int</span> tmp = loc.get(i);</span><br><span class="line">					<span class="keyword">while</span>(idx+ori.get(j).length() &lt; tmp)&#123;</span><br><span class="line">						ret.add(ori.get(j));</span><br><span class="line">						idx += ori.get(j).length(); </span><br><span class="line">						j++;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(ori.get(j).substring(idx+ori.get(j).length() - tmp) != <span class="keyword">null</span> || !ori.get(j).substring(idx+ori.get(j).length() - tmp).equals(<span class="string">""</span>))&#123;</span><br><span class="line">						ret.add(ori.get(j).substring(idx+ori.get(j).length() - tmp));</span><br><span class="line">						j++;</span><br><span class="line">					&#125;</span><br><span class="line">					ret.addAll(ru.getRule());</span><br><span class="line">					<span class="keyword">while</span>(j&lt;ori.size())&#123;</span><br><span class="line">						<span class="keyword">if</span>(idx + ori.get(j).length() &lt;= tmp+ru.toString().length())&#123;</span><br><span class="line">							idx += ori.get(j).length();</span><br><span class="line">							j++;</span><br><span class="line">						&#125;<span class="keyword">else</span> <span class="keyword">if</span>(idx + ori.get(j).length() &gt; tmp+ru.toString().length() &amp;&amp; idx &lt; tmp + ru.toString().length())&#123;</span><br><span class="line">							idx += ori.get(j).length();</span><br><span class="line">							ret.add(ori.get(j).substring(idx - (tmp + ru.toString().length() )));</span><br><span class="line">							j++;</span><br><span class="line">						&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">							<span class="keyword">break</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">if</span>(j&lt;ori.size())&#123;</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> t = j;t &lt; ori.size();t++)&#123;</span><br><span class="line">						ret.add(ori.get(t));</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				ori = ret;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(flag == <span class="keyword">false</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> ori;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/undefined/">http://www.meng.uno/articles/undefined/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -353,28 +368,17 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Virtio/">Virtio</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li>
                 </ul>
               </footer>
             </div>
 
             <nav id="article-nav">
 
-              <a href="/articles/23b9d6e9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          那些前端安全冷门知识
-        
-      </div>
-    </a>
 
-
-              <a href="/articles/4314a663/" id="article-nav-older" class="article-nav-link-wrap">
+              <a href="/articles/33c755f8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">页缓存（Page Cache）</div>
+      <div class="article-nav-title">Oracle教程</div>
     </a>
 
             </nav>
@@ -388,10 +392,12 @@
               <strong class="toc-title">目录导航</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">virtio简介</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">QEMU模拟I/O</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">virtio模拟I/O</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">virtio_blk</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#合并专有名词"><span class="nav-number">2.1.</span> <span class="nav-text">合并专有名词</span></a></li>
+                  </ol>
+                </li>
               </ol>
 
             </div>
