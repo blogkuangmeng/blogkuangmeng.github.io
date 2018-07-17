@@ -1,9 +1,9 @@
 jQuery(document).ready(function() {
   var QRBox = $('#QRBox');
   var MainBox = $('#MainBox');
-  var BTCQR = 'http://meng.uno/css/images/BTCQR.png'; // 二维码路径
-  var AliPayQR = 'http://meng.uno/css/images/AliPayQR.png';
-  var WeChanQR = 'http://meng.uno/css/images/WeChatQR.png';
+  var BTCQR = 'http://www.meng.uno/css/images/BTCQR.png'; // 二维码路径
+  var AliPayQR = 'http://www.meng.uno/css/images/AliPayQR.png';
+  var WeChanQR = 'http://www.meng.uno/css/images/WeChatQR.png';
 
 
 
