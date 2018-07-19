@@ -130,6 +130,11 @@
 
       }
     });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
   </script>
 
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -267,7 +272,7 @@
 
 
 
-        <div class="homelogoback" style="border: 1px solid #404040;">
+        <div class="homelogoback" onclick="Hide()" style="border: 1px solid #404040;">
           <h1 data-dialog="somedialog" class="trigger">欢迎来到匡盟盟的博客！</h1>
           <h3>Mengmeng Kuang&#39;s Blog!</h3>
           <h5><span class="post-count">匡盟盟已写：215.2k字！</span></h5>
