@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Tag: ajax | 欢迎来到匡盟盟的博客！</title>
+  <title>Tag: Ajax | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
@@ -20,7 +20,7 @@
   <meta name="description" content="Mengmeng Kuang&apos;s Blog!">
   <meta property="og:type" content="website">
   <meta property="og:title" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:url" content="http://www.meng.uno/tags/ajax/index.html">
+  <meta property="og:url" content="http://www.meng.uno/tags/Ajax/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="Mengmeng Kuang&apos;s Blog!">
   <meta property="og:locale" content="zh-CN">
@@ -267,37 +267,11 @@
               <article class="archive-article archive-type-post">
                 <div class="archive-article-inner">
                   <header class="archive-article-header">
-                    <a href="/articles/c039b062/" class="archive-article-date">
-	  <time datetime="2018-02-12T00:55:00.000Z" itemprop="datePublished">2018-02-12</time>
+                    <a href="/articles/2b207973/" class="archive-article-date">
+	  <time datetime="2018-08-15T14:09:21.000Z" itemprop="datePublished">2018-08-15</time>
 	</a>
                     <h1 class="thumb" itemprop="name">
-                      <a class="archive-article-title" href="/articles/c039b062/">pjax: 当ajax遇上pushState</a>
-                    </h1>
-                  </header>
-                </div>
-              </article>
-
-
-
-
-            </div>
-          </section>
-
-
-          <section class="archives-wrap">
-            <div class="archive-year-wrap">
-              <h1><a href="/archives/2016" class="archive-year">2016</a></h1>
-            </div>
-            <div class="archives">
-
-              <article class="archive-article archive-type-post">
-                <div class="archive-article-inner">
-                  <header class="archive-article-header">
-                    <a href="/articles/c2e4dce5/" class="archive-article-date">
-	  <time datetime="2016-02-28T14:21:20.000Z" itemprop="datePublished">2016-02-28</time>
-	</a>
-                    <h1 class="thumb" itemprop="name">
-                      <a class="archive-article-title" href="/articles/c2e4dce5/">XHR及POST数据</a>
+                      <a class="archive-article-title" href="/articles/2b207973/">静态前端页面向静态前端页面跳转并执行AJAX操作将数据写入跳入界面</a>
                     </h1>
                   </header>
                 </div>
@@ -316,7 +290,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2018.08.07 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.08.15 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
@@ -513,6 +487,47 @@
 
   <!-- Go to www.addthis.com/dashboard to customize your tools -->
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a9d5b43ece25231"></script>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>et.js#pubid=ra-5a9d5b43ece25231"></script>
 
 
 
