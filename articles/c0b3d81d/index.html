@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>深度学习基础 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Colyn Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="梯度下降法 梯度下降法的作用/目的/本质  *  参数优化的一种策略，用于寻找局部最小值          *  微积分中使用梯度表示函数增长最快的方向；相应的，神经网络中使用负梯度来指示损失函数下降最快的方向          *  梯度实际上是损失函数对网络中每个参数的偏导所组成的向量，其中计算各偏导的方法即反向传播算法          *  从另一个角度来理解方向这个概念，可以认为负梯度中">
+  <meta name="keywords" content="深度学习,AI">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="深度学习基础">
+  <meta property="og:url" content="http://www.meng.uno/articles/c0b3d81d/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="梯度下降法 梯度下降法的作用/目的/本质  *  参数优化的一种策略，用于寻找局部最小值          *  微积分中使用梯度表示函数增长最快的方向；相应的，神经网络中使用负梯度来指示损失函数下降最快的方向          *  梯度实际上是损失函数对网络中每个参数的偏导所组成的向量，其中计算各偏导的方法即反向传播算法          *  从另一个角度来理解方向这个概念，可以认为负梯度中">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190236.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705134851.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154543.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193955.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180705162841.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213451.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214123.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214846.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215150.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215222.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215308.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180706115540.png">
+  <meta property="og:updated_time" content="2018-08-16T04:31:41.045Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="深度学习基础">
+  <meta name="twitter:description" content="梯度下降法 梯度下降法的作用/目的/本质  *  参数优化的一种策略，用于寻找局部最小值          *  微积分中使用梯度表示函数增长最快的方向；相应的，神经网络中使用负梯度来指示损失函数下降最快的方向          *  梯度实际上是损失函数对网络中每个参数的偏导所组成的向量，其中计算各偏导的方法即反向传播算法          *  从另一个角度来理解方向这个概念，可以认为负梯度中">
+  <meta name="twitter:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://www.meng.uno/articles/c0b3d81d/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">所有文章</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+
+                  <li> <a class="main-nav-link" href="/about">关于我</a> </li>
+
+                  <li> <a class="main-nav-link" href="/comments">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: '文章',
+                              PAGES: '页面',
+                              CATEGORIES: '分类',
+                              TAGS: '标签',
+                              UNTITLED: '空标题',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-DL-深度学习基础" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  深度学习基础
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/c0b3d81d/" class="article-date">
+	  <time datetime="2018-03-04T04:29:41.000Z" itemprop="datePublished">2018-03-04</time>
+	</a>
+                <a class="article-category-link" href="/categories/DeepLearning/">DeepLearning</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数3,947</span>
+	<span class="post-count"> | 预计时间14分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>梯度下降法</h1>
+                <h2 id="梯度下降法的作用-目的-本质">梯度下降法的作用/目的/本质</h2>
+                <ul>
+                  <li>
+                    <p>参数<strong>优化</strong>的一种策略，用于寻找<strong>局部最小值</strong></p>
+                  </li>
+                  <li>
+                    <p>微积分中使用<strong>梯度</strong>表示函数增长最快的方向；相应的，神经网络中使用<strong>负梯度</strong>来指示损失函数下降最快的方向</p>
+                  </li>
+                  <li>
+                    <p><strong>梯度</strong>实际上是损失函数对网络中每个参数的偏导所组成的向量，其中计算各偏导的方法即<strong>反向传播算法</strong></p>
+                  </li>
+                  <li>
+                    <p>从另一个角度来理解<strong>方向</strong>这个概念，可以认为<strong>负梯度</strong>中的每一项实际传达了两个信息：</p>
+                    <ol>
+                      <li>
+                        <p>正负号在告诉输入向量应该调大还是调小——正调大，负调小</p>
+                      </li>
+                      <li>
+                        <p>每一项的相对大小表明每个输入值对函数值的影响程度；换言之，也就是调整各权重对于网络的影响</p>
+                        <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt=""></p>
+                      </li>
+                    </ol>
+                  </li>
+                </ul>
+                <h2 id="随机梯度下降">随机梯度下降</h2>
+                <ul>
+                  <li>基本的梯度下降法要求每次使用<strong>所有训练样本</strong>的平均损失来更新参数</li>
+                  <li>为了<strong>加快计算效率</strong>，一般的做法会首先<strong>打乱</strong>所有训练样本，每次计算梯度时会<strong>随机</strong>抽取其中一<strong>批</strong>(<strong>Batch</strong>)来计算平均损失——这就是“<strong>随机梯度下降</strong>”。
+                    <blockquote>
+                      <p>也有地方将使用<strong>全部</strong>、<strong>一个</strong>、<strong>一批</strong>样本的方法分别称为“<strong>批量梯度下降</strong>”、“<strong>随机梯度下降</strong>”、“<strong>小批量梯度下降</strong>”</p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <h2 id="随机梯度下降中-批-的大小对优化效果的影响">随机梯度下降中“批”的大小对优化效果的影响</h2>
+                <blockquote>
+                  <p>《深度学习》 8.1.3 批量算法和小批量算法</p>
+                </blockquote>
+                <ul>
+                  <li><strong>较大的批能得到更精确的梯度估计</strong>，但回报是小于线性的。</li>
+                  <li><strong>较小的批能带来更好的泛化误差</strong>，泛化误差通常在批大小为 1 时最好。但是，因为梯度估计的高方差，小批量训练需要<strong>较小的学习率</strong>以保持稳定性，这意味着<strong>更长的训练时间</strong>。
+                    <blockquote>
+                      <p>原因可能是由于小批量在学习过程中带来了<strong>噪声</strong>，使产生了一些正则化效果 (Wilson and Martinez, 2003)</p>
+                    </blockquote>
+                  </li>
+                  <li><strong>内存消耗和批的大小成正比</strong>，当批量处理中的所有样本可以并行处理时。</li>
+                  <li>在某些硬件上使用特定大小可以减少运行时间。尤其是在使用 GPU 时，通常使用 <strong>2 的幂数</strong>作为批量大小可以获得更少的运行时间。一般，2 的幂数的<strong>取值范围是 32 到 256</strong>，16 有时在尝试大模型时使用。</li>
+                </ul>
+                <h1>反向传播算法</h1>
+                <h2 id="反向传播的作用-目的-本质">反向传播的作用/目的/本质</h2>
+                <ul>
+                  <li>
+                    <p><strong>反向传播概述</strong>：</p>
+                    <p><strong>梯度下降法</strong>中需要利用损失函数对所有参数的梯度来寻找局部最小值点；</p>
+                    <p>而<strong>反向传播算法</strong>就是用于计算该梯度的具体方法，其本质是利用<strong>链式法则</strong>对每个参数求偏导。</p>
+                  </li>
+                </ul>
+                <h2 id="反向传播的公式推导">反向传播的公式推导</h2>
+                <ul>
+                  <li>
+                    <p>可以用 4 个公式总结反向传播的过程</p>
+                    <p><strong>标量形式</strong>：</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190236.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%7B%5Cpartial&amp;space;%7B%5Ccolor%7BRed%7D&amp;space;a_j"
+                        target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&amp;space;\frac{\partial&amp;space;C}{\partial&amp;space;{\color{Red}&amp;space;a_j</a><sup>{(L)}}}=\frac{\partial&amp;space;C({\color{Red}&amp;space;a_j</sup>{(L)}},y_j)}{\partial&amp;space;{\color{Red}&amp;space;a_j^{(L)}}}&amp;space;\end{aligned})</p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC1--%3E%7D=%7B%5Ccolor%7BTeal%7D%5Csum_%7Bk=0%7D%5E%7Bn_l-1%7D%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;z_k%5E%7B(l+1)%7D%7D%3C!--%EF%BF%BC2--%3E%7D&amp;space;%5Cfrac%3C!--%EF%BF%BC3--%3E%7D%7B%5Cpartial&amp;space;z_k%5E%7B(l+1)%7D%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC4--%3E%7D&amp;space;%5Cend%7Baligned%7D"
+                        target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705134851.png" alt=""></a></p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC5--%3E%7D=%5Cfrac%7B%5Cpartial&amp;space;z_j%5E%7B(l)%7D%7D%3C!--%EF%BF%BC6--%3E%7D%5Cfrac%3C!--%EF%BF%BC7--%3E%7D%7B%5Cpartial&amp;space;z_j%5E%7B(l)%7D%7D%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC8--%3E%7D&amp;space;%5Cend%7Baligned%7D"
+                        target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154543.png" alt=""></a></p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC9--%3E%7D=%5Cfrac%7B%5Cpartial&amp;space;z_j%5E%7B(l)%7D%7D%3C!--%EF%BF%BC10--%3E%7D%5Cfrac%3C!--%EF%BF%BC11--%3E%7D%7B%5Cpartial&amp;space;z_j%5E%7B(l)%7D%7D%5Cfrac%7B%5Cpartial&amp;space;C%7D%3C!--%EF%BF%BC12--%3E%7D&amp;space;%5Cend%7Baligned%7D"
+                        target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png" alt=""></a></p>
+                    <blockquote>
+                      <p>上标 <code>(l)</code> 表示网络的层，<code>(L)</code> 表示输出层（最后一层）；下标 <code>j</code> 和 <code>k</code> 指示神经元的位置；<code>w_jk</code> 表示 <code>l</code> 层的第 <code>j</code> 个神经元与<code>(l-1)</code>层第 <code>k</code> 个神经元连线上的权重</p>
+                    </blockquote>
+                  </li>
+                  <li>
+                    <p><strong>符号说明</strong>，其中：</p>
+                    <ul>
+                      <li>
+                        <p><code>(w,b)</code> 为网络参数：权值和偏置</p>
+                      </li>
+                      <li>
+                        <p><code>z</code> 表示上一层激活值的线性组合</p>
+                      </li>
+                      <li>
+                        <p><code>a</code> 即 “activation”，表示每一层的激活值，上标<code>(l)</code>表示所在隐藏层，<code>(L)</code>表示输出层</p>
+                      </li>
+                      <li>
+                        <p><code>C</code> 表示激活函数，其参数为神经网络输出层的激活值<code>a^(L)</code>，与样本的标签<code>y</code></p>
+                        <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193955.png" alt=""></p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p>以 <strong>均方误差（MSE）</strong> 损失函数为例，有</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;%5Cfrac%7B%5Cpartial&amp;space;C%7D%7B%5Cpartial&amp;space;%7B%5Ccolor%7BRed%7D&amp;space;a_j"
+                        target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&amp;space;\frac{\partial&amp;space;C}{\partial&amp;space;{\color{Red}&amp;space;a_j</a><sup>{(L)}}}&amp;=\frac{\partial&amp;space;C({\color{Red}&amp;space;a_j</sup>{(L)}},y_j)}{\partial&amp;space;{\color{Red}&amp;space;a_j<sup>{(L)}}}&amp;space;\&amp;space;&amp;=\frac{\partial&amp;space;\left&amp;space;(&amp;space;\frac{1}{2}({\color{Red}a_j</sup>{(L)}}-y_j)<sup>2&amp;space;\right&amp;space;)&amp;space;}{\partial&amp;space;{\color{Red}a_j</sup>{(L)}}}={\color{Red}a_j^{(L)}}-y&amp;space;\end{aligned})</p>
+                  </li>
+                  <li>
+                    <p>Nielsen 的课程中提供了另一种更利于计算的表述，本质上是一样的。</p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180705162841.png" alt=""></p>
+                    <blockquote>
+                      <p><a href="http://neuralnetworksanddeeplearning.com/chap2.html#the_four_fundamental_equations_behind_backpropagation" target="_blank" rel="noopener">The four fundamental equations behind backpropagation</a></p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <h1>激活函数</h1>
+                <h2 id="激活函数的作用-为什么要使用非线性激活函数？">激活函数的作用——为什么要使用非线性激活函数？</h2>
+                <ul>
+                  <li>
+                    <p>使用<strong>激活函数</strong>的目的是为了向网络中加入<strong>非线性因素</strong>；</p>
+                    <p>从而加强网络的表示能力，解决<strong>线性模型</strong>无法解决的问题</p>
+                    <blockquote>
+                      <p><a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">神经网络激励函数的作用是什么？有没有形象的解释？</a> - 知乎</p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <p><strong>为什么加入非线性因素能够加强网络的表示能力？——神经网络的万能近似定理</strong></p>
+                <ul>
+                  <li>
+                    <p>神经网络的万能近似定理认为主要神经网络具有至少一个非线性隐藏层，那么只要给予网络足够数量的隐藏单元，它就可以以任意的精度来近似任何<strong>从一个有限维空间到另一个有限维空间</strong>的函数。</p>
+                  </li>
+                  <li>
+                    <p>如果不使用非线性激活函数，那么每一层输出都是上层输入的<strong>线性组合</strong>；</p>
+                    <p>此时无论网络有多少层，其整体也将是线性的，这会导致失去万能近似的性质</p>
+                    <blockquote>
+                      <p>《深度学习》 6.4.1 万能近似性质和深度；</p>
+                    </blockquote>
+                  </li>
+                  <li>
+                    <p>但仅<strong>部分层是纯线性</strong>是可以接受的，这有助于<strong>减少网络中的参数</strong>。</p>
+                    <blockquote>
+                      <p>《深度学习》 6.3.3 其他隐藏单元</p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <h2 id="常见的激活函数">常见的激活函数</h2>
+                <blockquote>
+                  <p>《深度学习》 6.3 隐藏单元</p>
+                </blockquote>
+                <h3 id="整流线性单元-relu">整流线性单元 <code>ReLU</code></h3>
+                <ul>
+                  <li>
+                    <p>公式与图像</p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Cmax(0,z)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213451.png" alt=""></a></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png" alt=""></p>
+                  </li>
+                  <li>
+                    <p>ReLU 通常是激活函数较好的默认选择</p>
+                  </li>
+                </ul>
+                <h4 id="relu-的拓展"><code>ReLU</code> 的拓展</h4>
+                <ul>
+                  <li>
+                    <p><code>ReLU</code> 及其扩展都基于以下公式：</p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z;%5Calpha)&amp;space;=%5Cmax(0,z)+%5Calpha%5Cmin(0,z)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214123.png" alt=""></a></p>
+                    <p>当 <code>α=0</code> 时，即标准的线性整流单元</p>
+                  </li>
+                  <li>
+                    <p><strong>绝对值整流</strong>（absolute value rectification）</p>
+                    <p>固定 <code>α = -1</code>，此时整流函数即<strong>绝对值函数</strong> <code>g(z)=|z|</code></p>
+                  </li>
+                  <li>
+                    <p><strong>渗漏整流线性单元</strong>（Leaky ReLU, Maas et al., 2013）</p>
+                    <p>固定 <code>α</code> 为一个小值，比如 0.01</p>
+                  </li>
+                  <li>
+                    <p><strong>参数化整流线性单元</strong>（parametric ReLU, PReLU, He et al., 2015）</p>
+                    <p>将 <code>α</code> 作为一个可学习的参数</p>
+                  </li>
+                  <li>
+                    <p><strong><code>maxout</code> 单元</strong> (Goodfellow et al., 2013a)</p>
+                    <p><code>maxout</code> 单元 进一步扩展了 <code>ReLU</code>，它是一个可学习的 <code>k</code> 段函数</p>
+                    <p><strong>Keras 简单实现</strong></p>
+                    <figure class="highlight plain">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"># input shape:  [n, input_dim]</span><br><span class="line"># output shape: [n, output_dim]</span><br><span class="line">W = init(shape=[k, input_dim, output_dim])</span><br><span class="line">b = zeros(shape=[k, output_dim])</span><br><span class="line">output = K.max(K.dot(x, W) + b, axis=1)</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>参数数量是普通全连接层的 k 倍</p>
+                      <p><a href="https://blog.csdn.net/hjimce/article/details/50414467" target="_blank" rel="noopener">深度学习（二十三）Maxout网络学习</a> - CSDN博客</p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <h3 id="sigmoid-与-tanh"><code>sigmoid</code> 与 <code>tanh</code></h3>
+                <ul>
+                  <li>
+                    <p><code>sigmoid(z)</code>，常记作 <code>σ(z)</code>:</p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Csigma(z)=%5Cfrac%7B1%7D%7B1+%5Cexp(-z)%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214846.png" alt=""></a></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png" alt=""></p>
+                  </li>
+                  <li>
+                    <p><code>tanh(z)</code> 的图像与 <code>sigmoid(z)</code> 大致相同，区别是<strong>值域</strong>为 <code>(-1, 1)</code></p>
+                  </li>
+                </ul>
+                <h3 id="其他激活函数">其他激活函数</h3>
+                <blockquote>
+                  <p>很多未发布的非线性激活函数也能表现的很好，但没有比流行的激活函数表现的更好。比如使用 <code>cos</code> 也能在 MNIST 任务上得到小于 1% 的误差。通常新的隐藏单元类型只有在被明确证明能够提供显著改进时才会被发布。</p>
+                </blockquote>
+                <ul>
+                  <li>
+                    <p><strong>线性激活函数</strong>：</p>
+                    <p>如果神经网络的每一层都由线性变换组成，那么网络作为一个整体也将是线性的，这会导致失去万能近似的性质。但是，仅<strong>部分层是纯线性</strong>是可以接受的，这可以帮助<strong>减少网络中的参数</strong>。</p>
+                  </li>
+                  <li>
+                    <p><strong>softmax</strong>：</p>
+                    <p>softmax 单元常作为网络的输出层，它很自然地表示了具有 k 个可能值的离散型随机变量的概率分布。</p>
+                  </li>
+                  <li>
+                    <p><strong>径向基函数（radial basis function, RBF）</strong>：</p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=h_i=%5Cexp(-%5Cfrac%7B1%7D%7B%5Csigma_i%5E2%7D%5Cleft&amp;space;%7C&amp;space;W_%7B:,i%7D-x&amp;space;%5Cright&amp;space;%7C%5E2)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215150.png" alt=""></a></p>
+                    <p>在神经网络中很少使用 RBF 作为激活函数，因为它对大部分 x 都饱和到 0，所以很难优化。</p>
+                  </li>
+                  <li>
+                    <p><strong>softplus</strong>：</p>
+                    <p><code>softplus</code> 是 <code>ReLU</code> 的平滑版本。</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215222.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Czeta(z)=%5Clog(1+%5Cexp(z)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(z)=\zeta(z)=\log(1+\exp(z)</a>))</p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png" alt=""></p>
+                    <p>通常不鼓励使用 softplus 函数，大家可能希望它具有优于整流线性单元的性质，但根据经验来看，它并没有。</p>
+                    <blockquote>
+                      <p>(Glorot et al., 2011a) 比较了这两者，发现 ReLU 的结果更好。</p>
+                    </blockquote>
+                  </li>
+                  <li>
+                    <p><strong>硬双曲正切函数（hard tanh）</strong>：</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215308.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(a)=%5Cmax(-1,%5Cmin(1,a)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(a)=\max(-1,\min(1,a)</a>))</p>
+                    <p>它的形状和 tanh 以及整流线性单元类似，但是不同于后者，它是有界的。</p>
+                  </li>
+                </ul>
+                <h2 id="relu-相比-sigmoid-的优势-3"><code>ReLU</code> 相比 <code>sigmoid</code> 的优势 (3)</h2>
+                <ol>
+                  <li><strong>避免梯度消失</strong>***</li>
+                </ol>
+                <ul>
+                  <li><code>sigmoid</code>函数在输入取绝对值非常大的正值或负值时会出现<strong>饱和</strong>现象——在图像上表现为变得很平，此时函数会对输入的微小变化不敏感——从而造成梯度消失；</li>
+                  <li><code>ReLU</code> 的导数始终是一个常数——负半区为 0，正半区为 1——所以不会发生梯度消失现象</li>
+                </ul>
+                <ol start="2">
+                  <li><strong>减缓过拟合</strong>**</li>
+                </ol>
+                <ul>
+                  <li><code>ReLU</code> 在负半区的输出为 0。一旦神经元的激活值进入负半区，那么该激活值就不会产生梯度/不会被训练，造成了网络的稀疏性——<strong>稀疏激活</strong></li>
+                  <li>这有助于减少参数的相互依赖，缓解过拟合问题的发生</li>
+                </ul>
+                <ol start="3">
+                  <li><strong>加速计算</strong>*</li>
+                </ol>
+                <ul>
+                  <li><code>ReLU</code> 的求导不涉及浮点运算，所以速度更快</li>
+                </ul>
+                <blockquote>
+                  <p>总结自知乎两个答案 <a href="https://www.zhihu.com/question/52020211/answer/152378276" target="_blank" rel="noopener">Ans1</a> &amp; <a href="https://www.zhihu.com/question/29021768/answer/43488153" target="_blank" rel="noopener">Ans2</a></p>
+                </blockquote>
+                <p><strong>为什么 ReLU 不是全程可微/可导也能用于基于梯度的学习？</strong></p>
+                <ul>
+                  <li>虽然从数学的角度看 ReLU 在 0 点不可导，因为它的左导数和右导数不相等；</li>
+                  <li>但是在实现时通常会返回左导数或右导数的其中一个，而不是报告一个导数不存在的错误。从而避免了这个问题</li>
+                </ul>
+                <h1>正则化</h1>
+                <h2 id="l1-l2-范数正则化">L1/L2 范数正则化</h2>
+                <blockquote>
+                  <p>《深度学习》 7.1.1 L2 参数正则化 &amp; 7.1.2 - L1 参数正则化</p>
+                  <p><a href="https://blog.csdn.net/jinping_shi/article/details/52433975" target="_blank" rel="noopener">机器学习中正则化项L1和L2的直观理解</a> - CSDN博客</p>
+                </blockquote>
+                <h3 id="l1-l2-范数的作用-异同">L1/L2 范数的作用、异同</h3>
+                <p><strong>相同点</strong></p>
+                <ul>
+                  <li>限制模型的学习能力——通过限制参数的规模，使模型偏好于<strong>权值较小</strong>的目标函数，防止过拟合。</li>
+                </ul>
+                <p><strong>不同点</strong></p>
+                <ul>
+                  <li><strong>L1 正则化</strong>可以产生更<strong>稀疏</strong>的权值矩阵，可以用于特征选择，同时一定程度上防止过拟合；<strong>L2 正则化</strong>主要用于防止模型过拟合</li>
+                  <li><strong>L1 正则化</strong>适用于特征之间有关联的情况；<strong>L2 正则化</strong>适用于特征之间没有关联的情况。</li>
+                </ul>
+                <h3 id="为什么-l1-和-l2-正则化可以防止过拟合？">为什么 L1 和 L2 正则化可以防止过拟合？</h3>
+                <ul>
+                  <li>L1 &amp; L2 正则化会使模型偏好于更小的权值。</li>
+                  <li>更小的权值意味着<strong>更低的模型复杂度</strong>；添加 L1 &amp; L2 正则化相当于为模型添加了某种<strong>先验</strong>，限制了参数的分布，从而降低了模型的复杂度。</li>
+                  <li>模型的复杂度降低，意味着模型对于噪声与异常点的抗干扰性的能力增强，从而提高模型的泛化能力。——直观来说，就是对训练数据的拟合刚刚好，不会过分拟合训练数据（比如异常点，噪声）——<strong>奥卡姆剃刀原理</strong></li>
+                </ul>
+                <h3 id="为什么-l1-正则化可以产生稀疏权值-而-l2-不会？">为什么 L1 正则化可以产生稀疏权值，而 L2 不会？</h3>
+                <ul>
+                  <li>
+                    <p>对目标函数添加范数正则化，训练时相当于在范数的约束下求目标函数 <code>J</code> 的最小值</p>
+                  </li>
+                  <li>
+                    <p>带有<strong>L1 范数</strong>（左）和<strong>L2 范数</strong>（右）约束的二维图示</p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png" alt="">
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png" alt=""></p>
+                    <ul>
+                      <li>图中 <code>J</code> 与 <code>L1</code> 首次相交的点即是最优解。<code>L1</code> 在和每个坐标轴相交的地方都会有“<strong>顶点</strong>”出现，多维的情况下，这些顶点会更多；在顶点的位置就会产生稀疏的解。而 <code>J</code> 与这些“顶点”相交的机会远大于其他点，因此 <code>L1</code> 正则化会产生稀疏的解。</li>
+                      <li><code>L2</code> 不会产生“<strong>顶点</strong>”，因此 <code>J</code> 与 <code>L2</code> 相交的点具有稀疏性的概率就会变得非常小。</li>
+                    </ul>
+                  </li>
+                </ul>
+                <h2 id="dropout-与-bagging-集成方法">Dropout 与 Bagging 集成方法</h2>
+                <blockquote>
+                  <p>《深度学习》 7.12 Dropout</p>
+                </blockquote>
+                <h3 id="bagging-集成方法">Bagging 集成方法</h3>
+                <ul>
+                  <li>
+                    <p><strong>集成方法</strong>的主要想法是分别训练不同的模型，然后让所有模型<strong>表决</strong>最终的输出。</p>
+                    <p>集成方法奏效的原因是不同的模型<strong>通常不会</strong>在测试集上产生相同的误差。</p>
+                    <p>集成模型能至少与它的任一成员表现得一样好。<strong>如果成员的误差是独立的</strong>，集成将显著提升模型的性能。</p>
+                  </li>
+                  <li>
+                    <p><strong>Bagging</strong> 是一种集成策略——具体来说，Bagging 涉及构造 k 个<strong>不同的数据集</strong>。</p>
+                    <p>每个数据集从原始数据集中<strong>重复采样</strong>构成，和原始数据集具有<strong>相同数量</strong>的样例——这意味着，每个数据集以高概率缺少一些来自原始数据集的例子，还包含若干重复的例子</p>
+                    <blockquote>
+                      <p>更具体的，如果采样所得的训练集与原始数据集大小相同，那所得数据集中大概有原始数据集 <code>2/3</code> 的实例</p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <p><strong>集成方法与神经网络</strong>：</p>
+                <ul>
+                  <li>
+                    <p>神经网络能找到足够多的不同的解，意味着他们可以从模型平均中受益——即使所有模型都在同一数据集上训练。</p>
+                    <p>神经网络中<strong>随机初始化</strong>的差异、<strong>批训练数据</strong>的随机选择、<strong>超参数</strong>的差异等<strong>非确定性</strong>实现往往足以使得集成中的不同成员具有<strong>部分独立的误差</strong>。</p>
+                  </li>
+                </ul>
+                <h3 id="dropout-策略">Dropout 策略</h3>
+                <ul>
+                  <li>
+                    <p>简单来说，Dropout 通过<strong>参数共享</strong>提供了一种廉价的 Bagging 集成近似—— Dropout 策略相当于集成了包括所有从基础网络除去部分单元后形成的子网络。</p>
+                  </li>
+                  <li>
+                    <p>通常，<strong>隐藏层</strong>的采样概率为 <code>0.5</code>，<strong>输入</strong>的采样概率为 <code>0.8</code>；超参数也可以采样，但其采样概率一般为 <code>1</code></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png" alt=""></p>
+                  </li>
+                </ul>
+                <p><strong>权重比例推断规则</strong></p>
+                <ul>
+                  <li>权重比例推断规则的目的是确保在测试时一个单元的期望总输入与在训练时该单元的期望总输入大致相同。</li>
+                  <li>实践时，如果使用 <code>0.5</code> 的采样概率，<strong>权重比例规则</strong>相当于在训练结束后<strong>将权重除 2</strong>，然后像平常一样使用模型；等价的，另一种方法是在训练期间将单元的状态乘 2。</li>
+                </ul>
+                <h4 id="dropout-与-bagging-的不同">Dropout 与 Bagging 的不同</h4>
+                <ul>
+                  <li>在 Bagging 的情况下，所有模型都是独立的；而在 Dropout 的情况下，所有模型<strong>共享参数</strong>，其中每个模型继承父神经网络参数的不同子集。</li>
+                  <li>在 Bagging 的情况下，每一个模型都会在其相应训练集上训练到收敛。而在 Dropout 的情况下，通常大部分模型都没有显式地被训练；取而代之的是，在单个步骤中我们训练一小部分的子网络，参数共享会使得剩余的子网络也能有好的参数设定。</li>
+                </ul>
+                <h1>深度学习实践</h1>
+                <h2 id="参数初始化">参数初始化</h2>
+                <ul>
+                  <li>一般使用服从的<strong>高斯分布</strong>（<code>mean=0, stddev=1</code>）或<strong>均匀分布</strong>的随机值作为<strong>权重</strong>的初始化参数；使用 <code>0</code> 作为<strong>偏置</strong>的初始化参数</li>
+                  <li>一些<strong>启发式</strong>方法会根据<strong>输入与输出的单元数</strong>来决定初始值的范围
+                    <ul>
+                      <li>
+                        <p>比如 <code>glorot_uniform</code> 方法 (Glorot and Bengio, 2010)</p>
+                        <p><a href="http://www.codecogs.com/eqnedit.php?latex=W_%7Bi,j%7D%5Csim&amp;space;U%5Cleft&amp;space;(&amp;space;-%5Csqrt&amp;space;%5Cfrac%7B6%7D%7Bn_%7Bin%7D+n_%7Bout%7D%7D,&amp;space;%5Csqrt&amp;space;%5Cfrac%7B6%7D%7Bn_%7Bin%7D+n_%7Bout%7D%7D&amp;space;%5Cright&amp;space;)"
+                            target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180706115540.png" alt=""></a></p>
+                        <blockquote>
+                          <p>Keras 全连接层默认的<strong>权重</strong>初始化方法</p>
+                        </blockquote>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><strong>其他初始化方法</strong>
+                    <ul>
+                      <li>随机正交矩阵（Orthogonal）</li>
+                      <li>截断高斯分布（Truncated normal distribution）</li>
+                    </ul>
+                  </li>
+                </ul>
+                <blockquote>
+                  <p>Keras 提供的所有参数初始化方法：Keras/<a href="https://keras.io/initializers/" target="_blank" rel="noopener">Initializers</a></p>
+                </blockquote>
+                <h1>CNN 卷积神经网络</h1>
+                <h2 id="cnn-与-lstm-的区别">CNN 与 LSTM 的区别</h2>
+                <ul>
+                  <li>CNN更像视觉，天然具有二维整体性；而LSTM更像听觉和语音，总是通过串行的方式来理解整体。
+                    <blockquote>
+                      <p><a href="http://www.dataguru.cn/article-10314-1.html" target="_blank" rel="noopener">首次超越LSTM : Facebook 门卷积网络新模型能否取代递归模型？</a></p>
+                    </blockquote>
+                  </li>
+                </ul>
+                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/undefined/">http://www.meng.uno/articles/undefined/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/aeaab565/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Unix进程的那些事
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/c49b2caf/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">自制简单搜索引擎及Wiser的使用</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">目录导航</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">梯度下降法</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法的作用-目的-本质"><span class="nav-number">1.1.</span> <span class="nav-text">梯度下降法的作用/目的/本质</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">1.2.</span> <span class="nav-text">随机梯度下降</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#随机梯度下降中-批-的大小对优化效果的影响"><span class="nav-number">1.3.</span> <span class="nav-text">随机梯度下降中“批”的大小对优化效果的影响</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">反向传播算法</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播的作用-目的-本质"><span class="nav-number">2.1.</span> <span class="nav-text">反向传播的作用/目的/本质</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播的公式推导"><span class="nav-number">2.2.</span> <span class="nav-text">反向传播的公式推导</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">激活函数</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#激活函数的作用-为什么要使用非线性激活函数？"><span class="nav-number">3.1.</span> <span class="nav-text">激活函数的作用——为什么要使用非线性激活函数？</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#常见的激活函数"><span class="nav-number">3.2.</span> <span class="nav-text">常见的激活函数</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#整流线性单元-relu"><span class="nav-number">3.2.1.</span> <span class="nav-text">整流线性单元 ReLU</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#relu-的拓展"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">ReLU 的拓展</span></a></li>
+                          </ol>
+                        </li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#sigmoid-与-tanh"><span class="nav-number">3.2.2.</span> <span class="nav-text">sigmoid 与 tanh</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#其他激活函数"><span class="nav-number">3.2.3.</span> <span class="nav-text">其他激活函数</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#relu-相比-sigmoid-的优势-3"><span class="nav-number">3.3.</span> <span class="nav-text">ReLU 相比 sigmoid 的优势 (3)</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">正则化</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#l1-l2-范数正则化"><span class="nav-number">4.1.</span> <span class="nav-text">L1/L2 范数正则化</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#l1-l2-范数的作用-异同"><span class="nav-number">4.1.1.</span> <span class="nav-text">L1/L2 范数的作用、异同</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-l1-和-l2-正则化可以防止过拟合？"><span class="nav-number">4.1.2.</span> <span class="nav-text">为什么 L1 和 L2 正则化可以防止过拟合？</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-l1-正则化可以产生稀疏权值-而-l2-不会？"><span class="nav-number">4.1.3.</span> <span class="nav-text">为什么 L1 正则化可以产生稀疏权值，而 L2 不会？</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#dropout-与-bagging-集成方法"><span class="nav-number">4.2.</span> <span class="nav-text">Dropout 与 Bagging 集成方法</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#bagging-集成方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">Bagging 集成方法</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#dropout-策略"><span class="nav-number">4.2.2.</span> <span class="nav-text">Dropout 策略</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#dropout-与-bagging-的不同"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">Dropout 与 Bagging 的不同</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">深度学习实践</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#参数初始化"><span class="nav-number">5.1.</span> <span class="nav-text">参数初始化</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">CNN 卷积神经网络</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#cnn-与-lstm-的区别"><span class="nav-number">6.1.</span> <span class="nav-text">CNN 与 LSTM 的区别</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2018.08.16 <a href="http://www.meng.uno/">匡盟盟</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="/" class="mobile-nav-link">Home</a>
+
+  <a href="/archives" class="mobile-nav-link">Archives</a>
+
+  <a href="/categories" class="mobile-nav-link">Categories</a>
+
+  <a href="/tags" class="mobile-nav-link">Tags</a>
+
+  <a href="/about" class="mobile-nav-link">About</a>
+
+  <a href="/comments" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              一个不满平凡的大龄码农
+            </div>
+            <div class="panel-body">
+              © 2018 匡盟盟 All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a9d5b43ece25231"></script>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
