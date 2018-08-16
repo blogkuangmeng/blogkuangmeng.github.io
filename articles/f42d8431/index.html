@@ -17,114 +17,114 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot and Bengio (2010) 中建议建议使用的标准初始化，其中 m">
+  <meta name="description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  更大的初始值有助于避免冗余的单元；但如果初始值太大，又会造成梯度爆炸。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot">
   <meta name="keywords" content="深度学习,AI">
   <meta property="og:type" content="article">
   <meta property="og:title" content="《深度学习》问题解答">
   <meta property="og:url" content="http://www.meng.uno/articles/f42d8431/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot and Bengio (2010) 中建议建议使用的标准初始化，其中 m">
+  <meta property="og:description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  更大的初始值有助于避免冗余的单元；但如果初始值太大，又会造成梯度爆炸。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610212719.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611172657.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213145.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213218.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213257.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213349.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213428.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610213451.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610214123.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610214502.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610214846.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610214926.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215029.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215150.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215222.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215308.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180608205223.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215339.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215417.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215445.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215522.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215554.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215623.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215656.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215732.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180610131620.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180610132602.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180610194353.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610215812.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611150734.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611171103.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611171213.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180611194550.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180611194704.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611194754.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611195027.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180611195622.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611203427.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180611210928.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611204215.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611204503.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611211649.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611211753.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611214508.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611215422.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611215923.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180611220109.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180612104740.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180612120851.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180612121301.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180612154333.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180612213144.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/conv_no_padding_no_strides_transposed.gif">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/conv_dilation.gif">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613101802.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613150111.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613150711.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613151014.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613164438.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613164637.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613170734.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613171757.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613200023.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613201829.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613211004.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180613211437.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180613211935.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180614103628.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180614104032.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180614111241.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180614111712.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180614203447.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180615111903.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180615150955.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180617140439.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180617141056.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180617141502.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619104551.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619104649.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619104914.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619113501.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619114844.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619193332.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619193540.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619205103.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619214629.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM%E6%88%AA%E5%9B%BE20180619214735.png">
-  <meta property="og:updated_time" content="2018-08-16T04:28:44.135Z">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610212719.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611172657.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213145.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213218.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213257.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213349.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213428.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213451.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214123.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214502.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214846.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214926.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215029.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215150.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215222.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215308.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608205223.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215339.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215417.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215445.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215522.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215554.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215623.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215656.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215732.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610131620.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610132602.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610194353.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215812.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611150734.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611171103.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611171213.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611194550.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611194704.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611194754.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611195027.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611195622.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611203427.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611210928.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611204215.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611204503.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611211649.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611211753.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611214508.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611215422.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611215923.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611220109.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612104740.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612120851.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612121301.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612154333.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612213144.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/conv_no_padding_no_strides_transposed.gif">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/conv_dilation.gif">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613101802.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613150111.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613150711.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613151014.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613164438.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613164637.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613170734.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613171757.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613200023.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613201829.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613211004.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613211437.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613211935.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614103628.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614104032.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614111241.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614111712.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614203447.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180615111903.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180615150955.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617140439.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617141056.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617141502.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104551.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104649.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104914.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619113501.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619114844.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619193332.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619193540.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619205103.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619214629.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619214735.png">
+  <meta property="og:updated_time" content="2018-08-16T04:44:14.686Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="《深度学习》问题解答">
-  <meta name="twitter:description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot and Bengio (2010) 中建议建议使用的标准初始化，其中 m">
-  <meta name="twitter:image" content="http://www.meng.uno/articles/assets/%E5%85%AC%E5%BC%8F_20180610212719.png">
+  <meta name="twitter:description" content="如何设置网络的初始值？* 《深度学习》 8.4 参数初始化策略  一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。  但是，初始值的大小会对优化结果和网络的泛化能力产生较大的影响。  更大的初始值有助于避免冗余的单元；但如果初始值太大，又会造成梯度爆炸。  一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot">
+  <meta name="twitter:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610212719.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -366,8 +366,8 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数25,236</span>
-	<span class="post-count"> | 预计时间90分钟</span>
+	<span class="post-count"> | 字数24,496</span>
+	<span class="post-count"> | 预计时间87分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -378,19 +378,16 @@
                 </blockquote>
                 <p>一般总是使用服从（截断）高斯或均匀分布的随机值，具体是高斯还是均匀分布影响不大，但是也没有详细的研究。</p>
                 <p>但是，<strong>初始值的大小</strong>会对优化结果和网络的泛化能力产生较大的影响。</p>
-                <!-- 更大的初始值有助于避免冗余的单元；但如果初始值太大，又会造成梯度爆炸。 -->
+                <p>更大的初始值有助于避免冗余的单元；但如果初始值太大，又会造成梯度爆炸。</p>
                 <p>一些启发式初始化策略通常是根据输入与输出的单元数来决定初始权重的大小，比如 Glorot and Bengio (2010) 中建议建议使用的标准初始化，其中 m 为输入数，n 为输出数</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=W_%7Bi,j%7D&amp;space;%5Csim&amp;space;U(-%5Csqrt%7B%5Cfrac%7B6%7D%7Bm+n%7D%7D,%5Csqrt%7B%5Cfrac%7B6%7D%7Bm+n%7D%7D)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610212719.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=W_%7Bi,j%7D&amp;space;%5Csim&amp;space;U(-%5Csqrt%7B%5Cfrac%7B6%7D%7Bm+n%7D%7D,%5Csqrt%7B%5Cfrac%7B6%7D%7Bm+n%7D%7D)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610212719.png" alt=""></a></p>
                 <p>还有一些方法推荐使用随机正交矩阵来初始化权重 (Saxe et al., 2013)。</p>
                 <blockquote>
                   <p>常用的初始化策略可以参考 Keras 中文文档：<a href="http://keras-cn.readthedocs.io/en/latest/other/initializations/" target="_blank" rel="noopener">初始化方法Initializers</a></p>
                 </blockquote>
-                <h1>梯度爆炸的解决办法***</h1>
-                <blockquote>
-                  <p><a href="#27-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E7%97%85%E6%80%81%E9%9E%8D%E7%82%B9%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E6%A2%AF%E5%BA%A6%E5%BC%A5%E6%95%A3">27. 如何避免深度学习中的病态，鞍点，梯度爆炸，梯度弥散？***</a></p>
-                </blockquote>
+                <h1>梯度爆炸的解决办法</h1>
                 <p><strong>梯度爆炸</strong>：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611172657.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611172657.png" alt=""></p>
                 <ol>
                   <li>
                     <p><strong>梯度截断</strong>（gradient clipping）——如果梯度超过某个阈值，就对其进行限制</p>
@@ -436,9 +433,6 @@
                   </li>
                   <li>
                     <p>良好的参数初始化策略也能缓解梯度爆炸问题（权重正则化）</p>
-                    <blockquote>
-                      <p><a href="#1-%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%9D%E5%A7%8B%E5%80%BC">1. 如何设置网络的初始值？*</a></p>
-                    </blockquote>
                   </li>
                   <li>
                     <p>使用线性整流激活函数，如 ReLU 等</p>
@@ -506,10 +500,7 @@
                   <p><a href="https://blog.csdn.net/guoyunfei20/article/details/78247263" target="_blank" rel="noopener">https://blog.csdn.net/guoyunfei20/article/details/78247263</a> - CSDN 博客</p>
                   <p>这里给出了一个具体的<a href="https://blog.csdn.net/shmily_skx/article/details/53053870" target="_blank" rel="noopener">例子</a></p>
                 </blockquote>
-                <h1>分段线性单元（如 ReLU）代替 sigmoid 的利弊***</h1>
-                <blockquote>
-                  <p>《深度学习》 6.6 小结</p>
-                </blockquote>
+                <h1>分段线性单元（如 ReLU）代替 sigmoid 的利弊</h1>
                 <ul>
                   <li>
                     <p>当神经网络比较小时，sigmoid 表现更好；</p>
@@ -557,17 +548,17 @@
                 </blockquote>
                 <p>L0: 向量中非零元素的个数</p>
                 <p>L1: 向量中所有元素的绝对值之和</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_1=%5Csum_i%7B%5Cleft&amp;space;%7C&amp;space;x_i&amp;space;%5Cright&amp;space;%7C%7D" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213145.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_1=%5Csum_i%7B%5Cleft&amp;space;%7C&amp;space;x_i&amp;space;%5Cright&amp;space;%7C%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213145.png" alt=""></a></p>
                 <p>L2: 向量中所有元素平方和的开放</p>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_2=%5Csqrt%7B%5Csum_i%7B%5Cleft&amp;space;%7C&amp;space;x_i&amp;space;%5Cright&amp;space;%7C%5E2%7D%7D" target="_blank"
-                    rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213218.png" alt=""></a></p>
+                    rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213218.png" alt=""></a></p>
                 <p>其中 L1 和 L2 范数分别是 Lp (p&gt;=1) 范数的特例：</p>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_p=(%5Csum_i%7B%5Cleft&amp;space;%7C&amp;space;x_i&amp;space;%5Cright&amp;space;%7C%5E2%7D)%5E%7B%5Cfrac%7B1%7D%7Bp%7D%7D"
-                    target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213257.png" alt=""></a></p>
+                    target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213257.png" alt=""></a></p>
                 <p>L∞: 向量中最大元素的绝对值，也称最大范数</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_%5Cinfty=%5Cmax_i%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213349.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C_%5Cinfty=%5Cmax_i%5Cleft&amp;space;%7C&amp;space;x&amp;space;%5Cright&amp;space;%7C" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213349.png" alt=""></a></p>
                 <p>Frobenius 范数：相当于作用于矩阵的 L2 范数</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;A&amp;space;%5Cright&amp;space;%7C_F=%5Csqrt%7B%5Csum_%7Bi,j%7DA_%7Bi,j%7D%5E2%7D" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213428.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cleft&amp;space;%7C&amp;space;A&amp;space;%5Cright&amp;space;%7C_F=%5Csqrt%7B%5Csum_%7Bi,j%7DA_%7Bi,j%7D%5E2%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213428.png" alt=""></a></p>
                 <p><strong>范数的应用</strong>：正则化——权重衰减/参数范数惩罚</p>
                 <p><strong>权重衰减的目的</strong></p>
                 <p>限制模型的学习能力，通过限制参数 θ 的规模（主要是权重 w 的规模，偏置 b 不参与惩罚），使模型偏好于权值较小的目标函数，防止过拟合。</p>
@@ -594,10 +585,10 @@
                 <h1>为什么 L1 正则化可以产生稀疏权值，L2 正则化可以防止过拟合？**</h1>
                 <h2 id="为什么-l1-正则化可以产生稀疏权值-而-l2-不会？">为什么 L1 正则化可以产生稀疏权值，而 L2 不会？</h2>
                 <p>添加 L1 正则化，相当于在 L1范数的约束下求目标函数 J 的最小值，下图展示了二维的情况：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608171710.png" alt=""></p>
                 <p>图中 J 与 L 首次相交的点就是最优解。L1 在和每个坐标轴相交的地方都会有“角”出现（多维的情况下，这些角会更多），在角的位置就会产生稀疏的解。而 J 与这些“角”相交的机会远大于其他点，因此 L1 正则化会产生稀疏的权值。</p>
                 <p>类似的，可以得到带有 L2正则化的目标函数在二维平面上的图形，如下：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608172312.png" alt=""></p>
                 <p>相比 L1，L2 不会产生“角”，因此 J 与 L2 相交的点具有稀疏性的概率就会变得非常小。</p>
                 <blockquote>
                   <p><a href="https://blog.csdn.net/jinping_shi/article/details/52433975" target="_blank" rel="noopener">机器学习中正则化项L1和L2的直观理解</a> - CSDN博客</p>
@@ -610,23 +601,20 @@
                   <p><a href="https://blog.csdn.net/heyongluoyao8/article/details/49429629" target="_blank" rel="noopener">机器学习中防止过拟合的处理方法</a> - CSDN博客</p>
                 </blockquote>
                 <h1>简单介绍常用的激活函数，如 sigmoid、relu、softplus、tanh、RBF 及其应用场景***</h1>
-                <blockquote>
-                  <p>《深度学习》 6.3 隐藏单元</p>
-                </blockquote>
                 <h2 id="整流线性单元-relu">整流线性单元（ReLU）</h2>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Cmax(0,z)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610213451.png" alt=""></a></p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png" alt=""></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Cmax(0,z)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610213451.png" alt=""></a></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608212808.png" alt=""></p>
                 <p>整流线性单元（ReLU）通常是激活函数较好的默认选择。</p>
                 <p>整流线性单元易于优化，因为它们和线性单元非常类似。线性单元和整流线性单元的唯一区别在于整流线性单元在其一半的定义域上输出为零。这使得只要整流线性单元处于激活状态，它的导数都能保持较大。它的梯度不仅大而且一致。整流操作的二阶导数几乎处处为 0，并且在整流线性单元处于激活状态时，它的一阶导数处处为 1。这意味着相比于引入二阶效应的激活函数来说，它的梯度方向对于学习来说更加有用。</p>
                 <p><strong>ReLU 的拓展</strong></p>
                 <p>ReLU 的三种拓展都是基于以下变型：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z,%5Calpha)&amp;space;=%5Cmax(0,z)+%5Calpha%5Cmin(0,z)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610214123.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z,%5Calpha)&amp;space;=%5Cmax(0,z)+%5Calpha%5Cmin(0,z)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214123.png" alt=""></a></p>
                 <p>ReLU 及其扩展都是基于一个原则，那就是如果它们的行为更接近线性，那么模型更容易优化。</p>
                 <ul>
                   <li>
                     <p>绝对值整流（absolute value rectification）</p>
                     <p>固定 α == -1，此时整流函数即一个绝对值函数</p>
-                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)&amp;space;=%5Cleft&amp;space;%7C&amp;space;z&amp;space;%5Cright&amp;space;%7C" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610214502.png" alt=""></a></p>
+                    <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)&amp;space;=%5Cleft&amp;space;%7C&amp;space;z&amp;space;%5Cright&amp;space;%7C" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214502.png" alt=""></a></p>
                     <p>绝对值整流被用于图像中的对象识别 (Jarrett et al., 2009a)，其中寻找在输入照明极性反转下不变的特征是有意义的。</p>
                   </li>
                   <li>
@@ -660,13 +648,13 @@
                 </ul>
                 <h2 id="sigmoid-与-tanh-双曲正切函数">sigmoid 与 tanh（双曲正切函数）</h2>
                 <p>在引入 ReLU 之前，大多数神经网络使用 sigmoid 激活函数：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Csigma(z)=%5Cfrac%7B1%7D%7B1+%5Cexp(-z)%7D" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610214846.png" alt=""></a></p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png" alt=""></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Csigma(z)=%5Cfrac%7B1%7D%7B1+%5Cexp(-z)%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214846.png" alt=""></a></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608195851.png" alt=""></p>
                 <p>或者 tanh（双曲正切函数）：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)&amp;space;=&amp;space;%5Ctanh(z)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610214926.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=g(z)&amp;space;=&amp;space;%5Ctanh(z)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610214926.png" alt=""></a></p>
                 <p>tanh 的图像类似于 sigmoid，区别在其值域为 (-1, 1).</p>
                 <p>这两个函数有如下关系：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Ctanh(z)=2%5Csigma&amp;space;(2z)-1" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215029.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Ctanh(z)=2%5Csigma&amp;space;(2z)-1" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215029.png" alt=""></a></p>
                 <p><strong>sigmoid 函数要点</strong>：</p>
                 <ul>
                   <li>sigmoid 常作为输出单元用来预测二值型变量取值为 1 的概率
@@ -692,23 +680,23 @@
                 <p><strong>softmax</strong>：</p>
                 <p>softmax 单元常作为网络的输出层，它很自然地表示了具有 k 个可能值的离散型随机变量的概率分布。</p>
                 <p><strong>径向基函数（radial basis function, RBF）</strong>：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=h_i=%5Cexp(-%5Cfrac%7B1%7D%7B%5Csigma_i%5E2%7D%5Cleft&amp;space;%7C&amp;space;W_%7B:,i%7D-x&amp;space;%5Cright&amp;space;%7C%5E2)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215150.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=h_i=%5Cexp(-%5Cfrac%7B1%7D%7B%5Csigma_i%5E2%7D%5Cleft&amp;space;%7C&amp;space;W_%7B:,i%7D-x&amp;space;%5Cright&amp;space;%7C%5E2)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215150.png" alt=""></a></p>
                 <p>在神经网络中很少使用 RBF 作为激活函数，因为它对大部分 x 都饱和到 0，所以很难优化。</p>
                 <p><strong>softplus</strong>：</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180610215222.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Czeta(z)=%5Clog(1+%5Cexp(z)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(z)=\zeta(z)=\log(1+\exp(z)</a>))</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png" alt=""></p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215222.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Czeta(z)=%5Clog(1+%5Cexp(z)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(z)=\zeta(z)=\log(1+\exp(z)</a>))</p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608204913.png" alt=""></p>
                 <p>softplus 是 ReLU 的平滑版本。通常不鼓励使用 softplus 函数，大家可能希望它具有优于整流线性单元的点，但根据经验来看，它并没有。</p>
                 <blockquote>
                   <p>(Glorot et al., 2011a) 比较了这两者，发现 ReLU 的结果更好。</p>
                 </blockquote>
                 <p><strong>硬双曲正切函数（hard tanh）</strong>：</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180610215308.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Cmax(-1,%5Cmin(1,a)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(z)=\max(-1,\min(1,a)</a>))</p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215308.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=g(z)=%5Cmax(-1,%5Cmin(1,a)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=g(z)=\max(-1,\min(1,a)</a>))</p>
                 <p>它的形状和 tanh 以及整流线性单元类似，但是不同于后者，它是有界的。</p>
                 <blockquote>
                   <p>Collobert, 2004</p>
                 </blockquote>
                 <h2 id="sigmoid-和-softplus-的一些性质">sigmoid 和 softplus 的一些性质</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180608205223.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180608205223.png" alt=""></p>
                 <blockquote>
                   <p>《深度学习》 3.10 常用函数的有用性质</p>
                 </blockquote>
@@ -729,13 +717,13 @@
                 </ol>
                 <h2 id="自信息与信息熵">自信息与信息熵</h2>
                 <p>自信息（self-information）是一种量化以上性质的函数，定义一个事件 x 的自信息为：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=I(x)=-%5Clog&amp;space;P(x)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215339.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=I(x)=-%5Clog&amp;space;P(x)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215339.png" alt=""></a></p>
                 <blockquote>
                   <p>当该对数的底数为 e 时，单位为奈特（nats，本书标准）；当以 2 为底数时，单位为比特（bit）或香农（shannons）</p>
                 </blockquote>
                 <p>自信息只处理单个的输出。此时，用信息熵（Information-entropy）来对整个概率分布中的不确定性总量进行量化：</p>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=H(%5Cmathrm%7BX%7D)=%5Cmathbb%7BE%7D_%7B%5Cmathrm%7BX%7D&amp;space;%5Csim&amp;space;P%7D%5BI(x)%5D=-%5Csum_%7Bx&amp;space;%5Cin&amp;space;%5Cmathrm%7BX%7D%7DP(x)%5Clog&amp;space;P(x)"
-                    target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215417.png" alt=""></a></p>
+                    target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215417.png" alt=""></a></p>
                 <blockquote>
                   <p>信息熵也称香农熵（Shannon entropy）</p>
                   <p>信息论中，记 <code>0log0 = 0</code></p>
@@ -743,7 +731,7 @@
                 <h2 id="相对熵-kl-散度-与交叉熵">相对熵（KL 散度）与交叉熵</h2>
                 <p>P 对 Q 的 <strong>KL散度</strong>（Kullback-Leibler divergence）：</p>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=D_P(Q)=%5Cmathbb%7BE%7D_%7B%5Cmathrm%7BX%7D%5Csim&amp;space;P%7D%5Cleft&amp;space;%5B&amp;space;%5Clog&amp;space;%5Cfrac%7BP(x)%7D%7BQ(x)%7D&amp;space;%5Cright&amp;space;%5D=%5Csum_%7Bx&amp;space;%5Cin&amp;space;%5Cmathrm%7BX%7D%7DP(x)%5Cleft&amp;space;%5B&amp;space;%5Clog&amp;space;P(x)-%5Clog&amp;space;Q(x)&amp;space;%5Cright&amp;space;%5D"
-                    target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215445.png" alt=""></a></p>
+                    target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215445.png" alt=""></a></p>
                 <p><strong>KL 散度在信息论中度量的是那个直观量</strong>：</p>
                 <p>在离散型变量的情况下， KL 散度衡量的是，当我们使用一种被设计成能够使得概率分布 Q 产生的消息的长度最小的编码，发送包含由概率分布 P 产生的符号的消息时，所需要的额外信息量。</p>
                 <p><strong>KL 散度的性质</strong>：</p>
@@ -753,12 +741,12 @@
                 </ul>
                 <p><strong>交叉熵</strong>（cross-entropy）：</p>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=H_P(Q)=-%5Cmathbb%7BE%7D_%7B%5Cmathrm%7BX%7D%5Csim&amp;space;P%7D%5Clog&amp;space;Q(x)=-%5Csum_%7Bx&amp;space;%5Cin&amp;space;%5Cmathrm%7BX%7D%7DP(x)%5Clog&amp;space;Q(x)" target="_blank"
-                    rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215522.png" alt=""></a></p>
+                    rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215522.png" alt=""></a></p>
                 <blockquote>
                   <p><a href="https://blog.csdn.net/haolexiao/article/details/70142571" target="_blank" rel="noopener">信息量，信息熵，交叉熵，KL散度和互信息（信息增益）</a> - CSDN博客</p>
                 </blockquote>
                 <p><strong>交叉熵与 KL 散度的关系</strong>：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=H_P(Q)=H(P)+D_P(Q)" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215554.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=H_P(Q)=H(P)+D_P(Q)" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215554.png" alt=""></a></p>
                 <p><strong>针对 Q 最小化交叉熵等价于最小化 P 对 Q 的 KL 散度</strong>，因为 Q 并不参与被省略的那一项。</p>
                 <p>最大似然估计中，最小化 KL 散度其实就是在最小化分布之间的交叉熵。</p>
                 <blockquote>
@@ -773,9 +761,9 @@
                   <li><strong>下溢</strong>：一个很小的数被近似为 0</li>
                 </ul>
                 <p>必须对上溢和下溢进行<strong>数值稳定</strong>的一个例子是 <strong>softmax 函数</strong>：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cmathrm%7Bsoftmax%7D(x)=%5Cfrac%7B%5Cexp(x_i)%7D%7B%5Csum_%7Bj=1%7D%5En&amp;space;%5Cexp(x_j)%7D" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215623.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cmathrm%7Bsoftmax%7D(x)=%5Cfrac%7B%5Cexp(x_i)%7D%7B%5Csum_%7Bj=1%7D%5En&amp;space;%5Cexp(x_j)%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215623.png" alt=""></a></p>
                 <p>因为 softmax 解析上的函数值不会因为从输入向量减去或加上<strong>标量</strong>而改变， 于是一个简单的解决办法是对 x：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=x=x-%5Cmax_ix_i" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180610215656.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=x=x-%5Cmax_ix_i" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215656.png" alt=""></a></p>
                 <p>减去 <code>max(x_i)</code> 导致 <code>exp</code> 的最大参数为 <code>0</code>，这排除了上溢的可能性。同样地，分母中至少有一个值为 <code>1=exp(0)</code> 的项，这就排除了因分母下溢而导致被零除的可能性。</p>
                 <p><strong>注意</strong>：虽然解决了分母中的上溢与下溢问题，但是分子中的下溢仍可以导致整体表达式被计算为零。此时如果计算 log softmax(x) 时，依然要注意可能造成的上溢或下溢问题，处理方法同上。</p>
                 <p>当然，大多数情况下，这是底层库开发人员才需要注意的问题。</p>
@@ -799,9 +787,9 @@
                 </blockquote>
                 <h2 id="高斯分布-gaussian-distribution">高斯分布（Gaussian distribution）</h2>
                 <p>高斯分布，即正态分布（normal distribution）：</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180610215732.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=N" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=N</a>(x;\mu,\sigma<sup>2)=\sqrt\frac{1}{2\pi\sigma</sup>2}\exp\left&amp;space;(&amp;space;-\frac{1}{2\sigma<sup>2}(x-\mu)</sup>2&amp;space;\right&amp;space;))</p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215732.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=N" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=N</a>(x;\mu,\sigma<sup>2)=\sqrt\frac{1}{2\pi\sigma</sup>2}\exp\left&amp;space;(&amp;space;-\frac{1}{2\sigma<sup>2}(x-\mu)</sup>2&amp;space;\right&amp;space;))</p>
                 <p>概率密度函数图像：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180610131620.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610131620.png" alt=""></p>
                 <p>其中峰的 <code>x</code> 坐标由 <code>µ</code> 给出，峰的宽度受 <code>σ</code> 控制；特别的，当 <code>µ = 0, σ = 1</code>时，称为标准正态分布</p>
                 <p>正态分布的均值 <code>E = µ</code>；标准差 <code>std = σ</code>，方差为其平方</p>
                 <h2 id="为什么推荐使用高斯分布？">为什么推荐使用高斯分布？</h2>
@@ -816,12 +804,9 @@
                 </ol>
                 <p><strong>多维正态分布</strong></p>
                 <p>正态分布可以推广到 n 维空间，这种情况下被称为<strong>多维正态分布</strong>。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180610132602.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610132602.png" alt=""></p>
                 <p>参数 <code>µ</code> 仍然表示分布的均值，只不过现在是一个向量。参数 Σ 给出了分布的协方差矩阵（一个正定对称矩阵）。</p>
                 <h1>表示学习、自编码器与深度学习**</h1>
-                <blockquote>
-                  <p>《深度学习》 1 引言</p>
-                </blockquote>
                 <p><strong>表示学习</strong>：</p>
                 <p>对于许多任务来说，我们很难知道应该提取哪些特征。解决这个问题的途径之一是使用机器学习来发掘表示本身，而不仅仅把表示映射到输出。这种方法我们称之为<strong>表示学习</strong>（representation learning）。学习到的表示往往比手动设计的表示表现得更好。并且它们只需最少的人工干预，就能让AI系统迅速适应新的任务。</p>
                 <p><strong>自编码器</strong>：</p>
@@ -833,7 +818,7 @@
                 <p>我们期望当输入数据经过编码器和解码器之后<strong>尽可能多地保留信息</strong>，同时希望新的表示有一些好的特性，这也是自编码器的训练目标。</p>
                 <p><strong>深度学习</strong>：</p>
                 <p>深度学习（deep learning）通过简单的表示来表达复杂的表示，以解决表示学习中的核心问题。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180610194353.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610194353.png" alt=""></p>
                 <p>深度学习模型的示意图</p>
                 <p>计算机难以理解原始感观输入数据的含义，如表示为像素值集合的图像，将一组像素映射到对象标识的函数非常复杂。深度学习将所需的复杂映射分解为一系列嵌套的简单映射（每个由模型的不同层描述）来解决这一难题。</p>
                 <p>输入展示在<strong>可见层</strong>（visible layer），这样命名的原因是因为它包含我们能观察到的变量。然后是一系列从图像中提取越来越多抽象特征的<strong>隐藏层</strong>（hidden layer），称为“隐藏”的原因是因为它们的值不在数据中给出。</p>
@@ -856,20 +841,11 @@
                   <li>对于 L1正则化，用于正则化代价函数的惩罚项与通过 MAP 贝叶斯推断最大化的<strong>对数先验项</strong>是等价的</li>
                 </ul>
                 <h1>什么是欠约束，为什么大多数的正则化可以使欠约束下的欠定问题在迭代过程中收敛*</h1>
-                <blockquote>
-                  <p>《深度学习》 7.3 正则化与欠约束问题</p>
-                </blockquote>
                 <h1>为什么考虑在模型训练时对输入 (隐藏单元或权重) 添加方差较小的噪声？*</h1>
-                <blockquote>
-                  <p>《深度学习》 7.5 噪声鲁棒性</p>
-                </blockquote>
                 <p>对于某些模型而言，向输入添加方差极小的噪声等价于对权重施加范数惩罚 (Bishop, 1995a,b)。</p>
                 <p>在一般情况下，<strong>注入噪声比简单地收缩参数强大</strong>。特别是噪声被添加到<strong>隐藏单元</strong>时会更加强大，<strong>Dropout</strong> 方法正是这种做法的主要发展方向。</p>
                 <p>另一种正则化模型的噪声使用方式是将其加到<strong>权重</strong>。这项技术主要用于循环神经网络 (Jim et al., 1996; Graves, 2011)。这可以被解释为关于权重的贝叶斯推断的随机实现。贝叶斯学习过程将权重视为不确定的，并且可以<strong>通过概率分布表示这种不确定性</strong>。向权重添加噪声是反映这种不确定性的一种实用的随机方法。</p>
                 <h1>多任务学习、参数绑定和参数共享***</h1>
-                <blockquote>
-                  <p><a href="#45-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5">45. 迁移学习相关概念</a></p>
-                </blockquote>
                 <h2 id="多任务学习">多任务学习</h2>
                 <blockquote>
                   <p>《深度学习》 7.7 多任务学习</p>
@@ -877,7 +853,7 @@
                 <p>多任务学习 (Caruana, 1993) 是通过<strong>合并多个任务中的样例</strong>（可以视为对参数施加软约束）来提高泛化的一种方式。</p>
                 <p>正如额外的训练样本能够将模型参数推向具有更好泛化能力的值一样，当<strong>模型的一部分被多个额外的任务共享</strong>时，这部分将被约束为良好的值（如果共享合理），通常会带来更好的泛化能力。</p>
                 <p><strong>多任务学习中一种普遍形式</strong>：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png" alt=""></p>
                 <p>多任务学习在深度学习框架中可以以多种方式进行，该图展示了一种普遍形式：任务共享相同输入但涉及不同语义的输出。</p>
                 <p>在该示例中，额外假设顶层隐藏单元 h(1) 和 h(2) 专用于不同的任务——分别预测 y(1) 和 y(2)，而一些<strong>中间层表示</strong> h(shared) 在所有任务之间共享；h(3) 表示无监督学习的情况。</p>
                 <p>这里的基本假设是存在解释输入 x 变化的<strong>共同因素池</strong>，而每个任务与这些因素的<strong>子集</strong>相关联。</p>
@@ -897,7 +873,7 @@
                 <p>考虑以下情形：我们有两个模型执行相同的分类任务（具有相同类别），但输入分布稍有不同。</p>
                 <p>形式地，我们有参数为 w(A) 的模型 A 和参数为 w(B) 的模型 B。这两种模型将输入映射到两个不同但相关的输出： y(A) = f(x;w(A)) 和 y(B) = f(x;w(B))</p>
                 <p>可以想象，这些任务会足够相似（或许具有相似的输入和输出分布），因此我们认为模型参数 w(A) 和 w(B) 应彼此靠近。具体来说，我们可以使用以下形式的参数范数惩罚（这里使用的是 L2 惩罚，也可以使用其他选择）：</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180610215812.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5COmega&amp;space;" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\Omega&amp;space;</a>(w<sup>{(A)},w</sup>{(B)})=\left&amp;space;|&amp;space;w<sup>{(A)}-w</sup>{(B)}&amp;space;\right&amp;space;|^2_2)</p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180610215812.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5COmega&amp;space;" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\Omega&amp;space;</a>(w<sup>{(A)},w</sup>{(B)})=\left&amp;space;|&amp;space;w<sup>{(A)}-w</sup>{(B)}&amp;space;\right&amp;space;|^2_2)</p>
                 <p><strong>参数共享</strong>是这个思路下更流行的做法——强迫部分参数相等</p>
                 <p>和正则化参数使其接近（通过范数惩罚）相比，参数共享的一个显著优点是能够“减少内存”——只有参数（唯一一个集合）的子集需要被存储在内存中，特别是在 CNN 中。</p>
                 <h1>Dropout 与 Bagging 集成方法的关系，Dropout 带来的意义与其强大的原因***</h1>
@@ -911,15 +887,12 @@
                 <p><strong>Bagging</strong>：</p>
                 <p>Bagging（bootstrap aggregating）是通过结合几个模型降低泛化误差的技术 (Breiman, 1994)。</p>
                 <p>具体来说，Bagging 涉及构造 k 个<strong>不同的数据集</strong>。每个数据集从原始数据集中<strong>重复采样</strong>构成，和原始数据集具有<strong>相同数量</strong>的样例。这意味着，每个数据集以高概率缺少一些来自原始数据集的例子，还包含若干重复的例子（更具体的，如果采样所得的训练集与原始数据集大小相同，那所得数据集中大概有原始数据集 <strong>2/3</strong> 的实例）</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611150734.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611150734.png" alt=""></p>
                 <p><strong>图像说明</strong>：该图描述了 Bagging 如何工作。假设我们在上述数据集（包含一个 8、一个 6 和一个 9）上<strong>训练数字 8</strong> 的检测器。假设我们制作了两个不同的重采样数据集。 Bagging 训练程序通过有放回采样构建这些数据集。第一个数据集忽略 9 并重复 8。在这个数据集上，检测器得知数字<strong>顶部有一个环就对应于一个 8</strong>。第二个数据集中，我们忽略 6 并重复 9。在这种情况下，检测器得知数字<strong>底部有一个环就对应于一个 8</strong>。这些单独的分类规则中的每一个都是不可靠的，但如果我们平均它们的输出，就能得到鲁棒的检测器，<strong>只有当 8 的两个环都存在时才能实现最大置信度</strong>。</p>
                 <h2 id="dropout">Dropout</h2>
-                <blockquote>
-                  <p>《深度学习》 7.12 Dropout</p>
-                </blockquote>
                 <p><strong>Dropout 的意义与强大的原因</strong>：</p>
                 <p>简单来说，Dropout (Srivastava et al., 2014) 通过<strong>参数共享</strong>提供了一种廉价的 <strong>Bagging</strong> 集成近似，能够训练和评估<strong>指数级数量</strong>的神经网络。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611152559.png" alt=""></p>
                 <p>Dropout 训练的集成包括所有从基础网络除去部分单元后形成的子网络。具体而言，只需将一些单元的<strong>输出乘零</strong>就能有效地删除一个单元。</p>
                 <p>通常，<strong>隐藏层</strong>的采样概率为 0.5，<strong>输入</strong>的采样概率为 0.8；超参数也可以采样，但其采样概率一般为 1</p>
                 <p><strong>Dropout与Bagging的不同点</strong>：</p>
@@ -931,9 +904,6 @@
                 <p>简单来说，如果我们使用 0.5 的包含概率（keep prob），权重比例规则相当于在训练结束后<strong>将权重除 2</strong>，然后像平常一样使用模型；等价的，另一种方法是在训练期间将单元的状态乘 2。</p>
                 <p>无论哪种方式，我们的目标是确保在测试时一个单元的期望总输入与在训练时该单元的期望总输入是大致相同的（即使近半单位在训练时丢失）。</p>
                 <h1>批梯度下降法（Batch SGD）更新过程中，批的大小会带来怎样的影响**</h1>
-                <blockquote>
-                  <p>《深度学习》 8.1.3 批量算法和小批量算法</p>
-                </blockquote>
                 <p>特别说明：本书中，“<strong>批量</strong>”指使用使用全部训练集；“<strong>小批量</strong>”才用来描述小批量随机梯度下降算法中用到的小批量样本；而<strong>随机梯度下降</strong>（SGD）通常指每次只使用单个样本</p>
                 <p><strong>批的大小</strong>通常由以下几个因素决定：</p>
                 <ul>
@@ -952,13 +922,7 @@
                   <p>异步并行分布式方法 -&gt; 《深度学习》 12.1.3 大规模的分布式实现</p>
                 </blockquote>
                 <h1>如何避免深度学习中的病态，鞍点，梯度爆炸，梯度弥散？***</h1>
-                <blockquote>
-                  <p>《深度学习》 8.2 神经网络优化中的挑战</p>
-                </blockquote>
                 <h2 id="病态-ill-conditioning">病态（ill-conditioning）</h2>
-                <blockquote>
-                  <p>《深度学习》 8.2.1 病态</p>
-                </blockquote>
                 <p><strong>什么是病态？</strong></p>
                 <blockquote>
                   <p><a href="https://blog.csdn.net/foolsnowman/article/details/51614862" target="_blank" rel="noopener">神经网络优化中的病态问题</a> - CSDN博客</p>
@@ -985,23 +949,14 @@
                 <p>对于很多高维非凸函数（神经网络）而言，局部极小值/极大值事实上都<strong>远少于</strong>另一类梯度为零的点：鞍点</p>
                 <p><strong>什么是鞍点？</strong></p>
                 <p>二维和三维中的鞍点：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611171103.png" alt="">
-                  <img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611171213.png" alt=""></p>
-                <blockquote>
-                  <p>《深度学习》 4.3 基于梯度的优化方法</p>
-                </blockquote>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611171103.png" alt="">
+                  <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611171213.png" alt=""></p>
                 <p><strong>鞍点激增对于训练算法来说有哪些影响？</strong></p>
                 <p>对于只使用梯度信息的一阶优化算法（随机梯度下降）而言，目前情况还不清楚。不过，虽然鞍点附近的梯度通常会非常小，但是 Goodfellow et al. (2015) 认为连续的梯度下降<strong>会逃离而不是吸引到鞍点</strong>。</p>
                 <p>对于牛顿法（二阶梯度）而言，鞍点问题会比较明显。不过神经网络中很少使用二阶梯度进行优化。</p>
                 <h2 id="长期依赖与梯度爆炸-消失">长期依赖与梯度爆炸、消失</h2>
-                <blockquote>
-                  <p>《深度学习》 10.11 优化长期依赖</p>
-                </blockquote>
                 <p>当计算图变得很深时（循环神经网络），神经网络优化算法会面临的另外一个难题就是<strong>长期依赖</strong>，由于变深的结构使模型丧失了学习到先前信息的能力，让优化变得极其困难；具体来说，就是会出现<strong>梯度消失</strong>和<strong>梯度爆炸</strong>问题。</p>
                 <p><strong>如何避免梯度爆炸？</strong></p>
-                <blockquote>
-                  <p><a href="#2-%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95">2. 梯度爆炸的解决办法***</a></p>
-                </blockquote>
                 <p><strong>如何缓解梯度消失？</strong></p>
                 <p>梯度截断有助于处理爆炸的梯度，但它无助于梯度消失。</p>
                 <p>一个想法是：在展开循环架构的计算图中，沿着与弧边相关联的梯度乘积接近 1 的部分创建路径——LSTM, GRU 等<strong>门控机制</strong>正是该想法的实现。</p>
@@ -1009,9 +964,9 @@
                   <p>《深度学习》 10.10 长短期记忆和其他门控 RNN</p>
                 </blockquote>
                 <p>另一个想法是：正则化或约束参数，以引导“信息流”；或者说，希望<strong>梯度向量</strong>在反向传播时能维持其幅度。形式上，我们要使</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180611194550.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=</a>(\nabla_{h<sup>{(t)}}L)\frac{\partial&amp;space;h</sup>{(t)}}{\partial&amp;space;h^{(t-1)}})</p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611194550.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=</a>(\nabla_{h<sup>{(t)}}L)\frac{\partial&amp;space;h</sup>{(t)}}{\partial&amp;space;h^{(t-1)}})</p>
                 <p>与梯度向量</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cnabla_%7Bh%5E%7B(t)%7D%7DL" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180611194704.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cnabla_%7Bh%5E%7B(t)%7D%7DL" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611194704.png" alt=""></a></p>
                 <p>一样大。</p>
                 <p><strong>一些具体措施</strong>：</p>
                 <ol>
@@ -1023,22 +978,19 @@
                   </li>
                   <li>
                     <p>在这个目标下， Pascanu et al. (2013a) 提出了以下正则项：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611194754.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611194754.png" alt=""></p>
                     <p>这种方法的一个主要弱点是，在处理数据冗余的任务时如语言模型，它并不像 LSTM 一样有效。</p>
                   </li>
                 </ol>
                 <h1>SGD 以及学习率的选择方法、带动量的 SGD***</h1>
-                <blockquote>
-                  <p>《深度学习》 8.3 基本算法</p>
-                </blockquote>
                 <h2 id="批-随机梯度下降-sgd-与学习率">（批）随机梯度下降（SGD）与学习率</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611195027.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611195027.png" alt=""></p>
                 <p>SGD 及相关的小批量亦或更广义的基于梯度优化的在线学习算法，一个重要的性质是每一步更新的计算时间不依赖训练样本数目的多寡。因为它每个 step 的样本数是固定的。</p>
                 <p>所以即使训练样本数目非常大时，它们也能收敛。对于足够大的数据集， SGD 可能会在处理整个训练集之前就收敛到最终测试集误差的某个固定容差范围内。</p>
                 <p><strong>SGD 与学习率</strong></p>
                 <p>SGD 算法中的一个关键参数是学习率。在实践中，有必要<strong>随着时间的推移逐渐降低学习率</strong>。</p>
                 <p>实践中，一般会线性衰减学习率直到第 τ 次迭代：</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cepsilon_k=(1-%5Calpha)%5Cepsilon_0+%5Calpha%5Cepsilon_%5Ctau" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180611195622.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cepsilon_k=(1-%5Calpha)%5Cepsilon_0+%5Calpha%5Cepsilon_%5Ctau" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611195622.png" alt=""></a></p>
                 <p>其中 α=k/τ。在 τ 步迭代之后，一般使 ϵ 保持常数。</p>
                 <p>使用线性策略时，需要选择的参数有 ϵ_0, ϵ_τ 和 τ</p>
                 <ul>
@@ -1048,73 +1000,54 @@
                 <p><strong>如何设置 ϵ_0？</strong></p>
                 <p>若 ϵ_0 太大，学习曲线将会剧烈振荡，代价函数值通常会明显增加。温和的振荡是良好的，容易在训练随机代价函数（例如使用 Dropout 的代价函数）时出现。<strong>如果学习率太小</strong>，那么学习过程会很缓慢。<strong>如果初始学习率太低</strong>，那么学习可能会卡在一个相当高的代价值。通常，就总训练时间和最终代价值而言，最优初始学习率会高于大约迭代 100 次左右后达到最佳效果的学习率。<strong>因此，通常最好是检测最早的几轮迭代，选择一个比在效果上表现最佳的学习率更大的学习率，但又不能太大导致严重的震荡。</strong></p>
                 <p>学习率可通过试验和误差来选取，通常最好的选择方法是<strong>监测目标函数值随时间变化的学习曲线</strong>——与<strong>其说是科学，这更像是一门艺术</strong>。</p>
-                <blockquote>
-                  <p><a href="#29-%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0%E7%8E%87%E7%AE%97%E6%B3%95-adagradrmspropadam-%E7%AD%89">29. 自适应学习率算法: AdaGrad，RMSProp，Adam 等***</a></p>
-                </blockquote>
                 <h2 id="带动量的-sgd">带动量的 SGD</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611203427.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611203427.png" alt=""></p>
                 <p>从形式上看， 动量算法引入了变量 v 充当速度角色——它代表参数在参数空间移动的方向和速率。速度被设为负梯度的指数衰减平均。</p>
                 <p>之前，步长只是梯度范数乘以学习率。现在，步长取决于梯度序列的大小和排列。当许多连续的梯度指向相同的方向时，步长最大。如果动量算法总是观测到梯度 g，那么它会在方向 −g 上不停加速，直到达到最终速度，其中步长大小为</p>
-                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cfrac%7B%5Cepsilon%5Cleft%7Cg%5Cright%7C%7D%7B1-%5Calpha%7D" target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180611210928.png" alt=""></a></p>
+                <p><a href="http://www.codecogs.com/eqnedit.php?latex=%5Cfrac%7B%5Cepsilon%5Cleft%7Cg%5Cright%7C%7D%7B1-%5Calpha%7D" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180611210928.png" alt=""></a></p>
                 <p>在实践中，α 的一般取值为 0.5, 0.9 和 0.99，分别对应<strong>最大速度</strong> 2倍，10倍和100倍于普通的 SGD 算法。和学习率一样， α 也应该随着时间不断调整（变大），但没有收缩 ϵ 重要。</p>
                 <p><strong>为什么要加入动量？</strong></p>
                 <p>加入的动量主要目的是解决两个问题： Hessian 矩阵的<strong>病态</strong>条件和<strong>随机梯度的方差</strong>。简单来说，就是为了加速学习。</p>
                 <p>虽然动量的加入有助于缓解这些问题，但其代价是引入了另一个超参数。</p>
-                <blockquote>
-                  <p><a href="#29-%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0%E7%8E%87%E7%AE%97%E6%B3%95-adagradrmspropadam-%E7%AD%89">29. 自适应学习率算法: AdaGrad，RMSProp，Adam 等***</a></p>
-                </blockquote>
                 <p>带有动量的 SGD（左/上） 和不带动量的 SGD（右/下）：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611204215.png" alt="">
-                  <img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611204503.png" alt=""></p>
-                <blockquote>
-                  <p>《深度学习》 4.3.1 梯度之上： Jacobian 和 Hessian 矩阵</p>
-                </blockquote>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611204215.png" alt="">
+                  <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611204503.png" alt=""></p>
                 <p>此图说明动量如何克服病态的问题：等高线描绘了一个二次损失函数（具有病态条件的 Hessian 矩阵）。一个病态条件的二次目标函数看起来像一个长而窄的山谷或具有陡峭边的峡谷。带动量的 SGD 能比较正确地纵向穿过峡谷；而普通的梯度步骤则会浪费时间在峡谷的窄轴上来回移动，因为梯度下降无法利用包含在 Hessian 矩阵中的曲率信息。</p>
                 <p><strong>Nesterov 动量</strong></p>
                 <p>受 Nesterov 加速梯度算法 (Nesterov, 1983, 2004) 启发， Sutskever et al. (2013) 提出了动量算法的一个变种。其更新规则如下：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611211649.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611211649.png" alt=""></p>
                 <p>其中参数 α 和 ϵ 发挥了和标准动量方法中类似的作用。Nesterov 动量和标准动量之间的<strong>区别体现在梯度计算</strong>上。下面是完整的 Nesterov 动量算法：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611211753.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611211753.png" alt=""></p>
                 <p>Nesterov 动量中，梯度计算在施加当前速度之后。因此，Nesterov 动量可以解释为往标准动量方法中添加了一个校正因子。</p>
                 <p>在凸批量梯度的情况下， Nesterov 动量将额外误差收敛率从 O(1/k) 改进到 O(1/k^2)。可惜，在随机梯度的情况下， Nesterov 动量没有改进收敛率。</p>
                 <h1>自适应学习率算法：AdaGrad、RMSProp、Adam 等***</h1>
-                <blockquote>
-                  <p>《深度学习》 8.5 自适应学习率算法</p>
-                </blockquote>
                 <p>Delta-bar-delta (Jacobs, 1988) 是一个早期的自适应学习率算法。该方法基于一个很简单的想法，如果损失对于某个给定模型参数的偏导保持相同的符号，那么学习率应该增加。如果对于该参数的偏导变化了符号，那么学习率应减小。当然，这种方法只能应用于全批量优化中（？）。</p>
                 <p>最近，提出了一些增量（或者基于小批量）的算法来自适应模型参数的学习率。</p>
                 <h2 id="adagrad">AdaGrad</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611214508.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611214508.png" alt=""></p>
                 <p>AdaGrad 会独立地适应所有模型参数的学习率。具体来说，就是缩放每个参数反比于其所有梯度历史平方值总和的平方根 (Duchi et al., 2011)。效果上具有损失最大偏导的参数相应地有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。</p>
                 <p><strong>不过</strong>，对于训练深度神经网络模型而言，<strong>从训练开始时</strong>就积累梯度平方会导致有效学习率过早和过量的减小。AdaGrad 在某些深度学习模型上效果不错，但不是全部。</p>
                 <h2 id="rmsprop">RMSProp</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611215422.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611215422.png" alt=""></p>
                 <p>RMSProp 修改自 AdaGrad。AdaGrad 旨在应用于<strong>凸问题</strong>时快速收敛，而 RMSProp 在<strong>非凸</strong>设定下效果更好，改变梯度积累为指数加权的移动平均。</p>
                 <p>RMSProp 使用指数衰减平均以丢弃遥远过去的历史，使其能够在找到凸碗状结构后快速收敛，它就像一个初始化于该碗状结构的 AdaGrad 算法实例。</p>
                 <p>相比于 AdaGrad，使用移动平均引入了一个<strong>新的超参数 ρ</strong>，用来控制移动平均的长度范围。</p>
                 <p>经验上， RMSProp 已被证明是一种有效且实用的深度神经网络优化算法。目前它是深度学习从业者经常采用的优化方法之一。</p>
                 <p><strong>结合 Nesterov 动量的 RMSProp</strong></p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611215923.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611215923.png" alt=""></p>
                 <h2 id="adam">Adam</h2>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180611220109.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180611220109.png" alt=""></p>
                 <p>Adam (Kingma and Ba, 2014) 是另一种学习率自适应的优化算法。</p>
                 <p>首先，在 Adam 中，动量直接并入了梯度一阶矩（指数加权）的估计。将动量加入 RMSProp 最直观的方法是将动量应用于缩放后的梯度。但是结合缩放的动量使用没有明确的理论动机。其次， Adam 包括偏置修正，修正从原点初始化的一阶矩（动量项）和（非中心的）二阶矩的估计。RMSProp 也采用了（非中心的）二阶矩估计，然而缺失了修正因子。因此，不像 Adam， RMSProp 二阶矩估计可能在训练初期有很高的偏置。Adam 通常被认为对超参数的选择相当鲁棒，尽管学习率有时需要从建议的默认修改。</p>
                 <p><strong>如何选择自适应学习率算法？</strong></p>
                 <p>目前在这一点上没有明确的共识。选择哪一个算法似乎主要取决于使用者对算法的熟悉程度（以便调节超参数）。</p>
                 <p>如果不知道选哪个，就用 AdamSGD 吧。</p>
                 <h1>基于二阶梯度的优化方法：牛顿法、共轭梯度、BFGS 等的做法*</h1>
-                <blockquote>
-                  <p>《深度学习》 8.6 二阶近似方法：8.6.1 牛顿法，8.6.2 共轭梯度，8.6.3 BFGS</p>
-                </blockquote>
-                <p>推导很难实际上也很少用，如果你不是数学系的，可以跳过这部分。</p>
                 <h1>批标准化（Batch Normalization）的意义**</h1>
-                <blockquote>
-                  <p>《深度学习》 8.7.1 批标准化</p>
-                </blockquote>
                 <p>批标准化（Batch Normalization, BN, Ioffe and Szegedy, 2015）是为了克服神经网络<strong>层数加深导致难以训练</strong>而出现的一个算法。</p>
                 <p>说到底，BN 还是为了解决<strong>梯度消失/梯度爆炸</strong>问题，特别是梯度消失。</p>
                 <p><strong>BN 算法</strong>：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180612104740.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612104740.png" alt=""></p>
                 <p>BN 算法需要学习两个参数 γ 和 β.</p>
                 <blockquote>
                   <p>Ioffe and Szegedy, 2015, Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</p>
@@ -1125,25 +1058,15 @@
                   <p><a href="https://www.zhihu.com/question/38102762/answer/85238569" target="_blank" rel="noopener">深度学习中 Batch Normalization为什么效果好？</a> - 知乎</p>
                 </blockquote>
                 <h1>神经网络中的卷积，以及卷积的动机：稀疏连接、参数共享、等变表示（平移不变性）***</h1>
-                <blockquote>
-                  <p>《深度学习》 9.2 动机</p>
-                </blockquote>
-                <p>注意：本书所谈的卷积，是包括卷积层、激活层和池化层的统称</p>
                 <p><strong>神经网络中的卷积</strong>：</p>
                 <p>当我们在神经网络中提到卷积时，通常是指由<strong>多个并行卷积</strong>组成的运算。一般而言，每个核只用于提取一种类型的特征，尽管它作用在多个空间位置上。而我们通常希望网络的每一层能够在多个位置提取多种类型的特征。</p>
-                <blockquote>
-                  <p>《深度学习》 9.5 基本卷积函数的变体</p>
-                </blockquote>
                 <p>卷积的一些基本概念：通道（channel）、卷积核（kernel、filter）、步幅（stride，下采样）、填充（padding）</p>
-                <blockquote>
-                  <p><a href="#33-%E5%8D%B7%E7%A7%AF%E4%B8%AD%E9%9B%B6%E5%A1%AB%E5%85%85%E7%9A%84%E5%BD%B1%E5%93%8D%E5%9F%BA%E6%9C%AC%E5%8D%B7%E7%A7%AF%E7%9A%84%E5%8F%98%E4%BD%93">33. 卷积中零填充的影响，基本卷积的变体</a></p>
-                </blockquote>
                 <p><strong>为什么使用卷积？（卷积的动机）</strong></p>
                 <p>卷积运算通过三个重要的思想来帮助改进机器学习系统：<strong>稀疏交互</strong>（sparseinteractions）、<strong>参数共享</strong>（parameter sharing）、<strong>等变表示</strong>（equivariant representations）。</p>
                 <h2 id="稀疏连接-sparse-connectivity">稀疏连接（sparse connectivity）</h2>
                 <p>稀疏连接，也称稀疏交互、稀疏权重。</p>
                 <p>传统的神经网络中每一个输出单元会与每一个输入单元都产生交互。卷积网络改进了这一点，使具有稀疏交互的特征。CNN 通过使核（kernel、filter）的大小远小于输入的大小来达到的这个目的。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180612120851.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612120851.png" alt=""></p>
                 <p>举个例子，当处理一张图像时，输入的图像可能包含成千上万个像素点，但是我们可以通过只占用几十到上百个像素点的核来<strong>检测一些小的、有意义的特征</strong>，例如图像的边缘。</p>
                 <p><strong>稀疏交互的好处</strong>：</p>
                 <ul>
@@ -1152,20 +1075,20 @@
                 </ul>
                 <p>如果有 m 个输入和 n 个输出，那么矩阵乘法需要 <code>m × n</code> 个参数并且相应算法的时间复杂度为 <code>O(m × n)</code>；如果限制每一个输出拥有的连接数为 k，那么稀疏的连接方法只需要 <code>k × n</code> 个参数以及 <code>O(k × n)</code> 的运行时间。而在实际应用中，<strong>k 要比 m 小几个数量级</strong>。</p>
                 <p>虽然看似减少了隐藏单元之间的交互，但实际上处在深层的单元可以间接地连接到全部或者大部分输入。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180612121301.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612121301.png" alt=""></p>
                 <h2 id="参数共享-parameter-sharing">参数共享（parameter sharing）</h2>
                 <p>参数共享是指在一个模型的多个函数中使用相同的参数。作为参数共享的同义词，我们可以说 一个网络含有
                   <strong>绑定的权重</strong>（tied weights）</p>
                 <p>在传统的神经网络中，当计算一层的输出时，权重矩阵的每一个元素只使用一次，当它乘以输入的一个元素后就再也不会用到了。卷积运算中的参数共享保证了我们只需要学习一个参数集合，而不是对于每一位置都需要学习一个单独的参数集合。</p>
                 <p>考虑一个具体的例子——<strong>边缘检测</strong>——来体会稀疏连接+参数共享带来的效率提升：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180612154333.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612154333.png" alt=""></p>
                 <p>两个图像的高度均为 280 个像素。输入图像的宽度为 320 个像素，而输出图像的宽度为 319 个像素（padding=‘VALID’）。对于边缘检测任务而言，只需要一个包含<strong>两个元素的卷积核</strong>就能完成；而为了用矩阵乘法描述相同的变换，需要一个包含 320 × 280 × 319 × 280 ≈ 80亿个元素的矩阵（40亿倍）。</p>
                 <p>同样，使用卷积只需要 319 × 280 × 3 = 267,960 次浮点运算（每个输出像素需要两次乘法和一次加法）；而直接运行矩阵乘法的算法将执行超过 160 亿次浮点运算（60000倍）</p>
                 <h2 id="平移等变-不变性-translation-invariant">平移等变|不变性（translation invariant）</h2>
                 <p>（局部）平移不变性是一个很有用的性质，尤其是当我们关心某个特征<strong>是否出现</strong>而不关心它出现的具体位置时。</p>
                 <p><strong>参数共享</strong>（和池化）使卷积神经网络具有一定的<strong>平移不变性</strong>。这就意味着即使图像经历了一个小的平移，依然会产生相同的特征。例如，分类一个 MNIST 数据集的数字，对它进行任意方向的<strong>平移</strong>（不是旋转），无论最终的位置在哪里，都能正确分类。</p>
                 <blockquote>
-                  <p>池化操作也能够帮助加强网络的平移不变性 &gt; <a href="#35-%E6%B1%A0%E5%8C%96%E6%B1%A0%E5%8C%96pooling%E7%9A%84%E4%BD%9C%E7%94%A8">35. 池化、池化（Pooling）的作用***</a></p>
+                  <p>池化操作也能够帮助加强网络的平移不变性</p>
                 </blockquote>
                 <p><strong>什么是等变性？</strong></p>
                 <ul>
@@ -1179,9 +1102,6 @@
                   <p><a href="http://ufldl.stanford.edu/wiki/index.php/%E6%B1%A0%E5%8C%96#.E6.B1.A0.E5.8C.96.E7.9A.84.E4.B8.8D.E5.8F.98.E6.80.A7" target="_blank" rel="noopener">池化的不变性</a> - Ufldl</p>
                 </blockquote>
                 <h1>卷积中不同零填充的影响**</h1>
-                <blockquote>
-                  <p>《深度学习》 9.5 基本卷积函数的变体</p>
-                </blockquote>
                 <p>在任何卷积网络的实现中都有一个重要性质，那就是能够隐含地<strong>对输入用零进行填充</strong>使得它加宽。如果没有这个性质，会极大得限制网络的表示能力。</p>
                 <p>三种零填充设定，其中 <code>m</code> 和 <code>k</code> 分别为图像的宽度和卷积核的宽度（高度类似）：</p>
                 <ol>
@@ -1211,14 +1131,14 @@
                 <p>通常<strong>零填充的最优数量</strong>（对于测试集的分类正确率）处于 “有效卷积”和 “相同卷积” 之间。</p>
                 <h1>基本卷积的变体：反卷积、空洞卷积***</h1>
                 <p>原书中也描述一些基本卷积的变体：局部卷积、平铺卷积；</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180612213144.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180612213144.png" alt=""></p>
                 <blockquote>
                   <p>从上到下一次为局部卷积、平铺卷积和标准卷积；</p>
                   <p>《深度学习》 9.5 基本卷积函数的变体</p>
                 </blockquote>
                 <p>不过这跟我想的“变体”不太一样（百度都搜不到这两种卷积），下面介绍的是一些我认识中比较流行的卷积变体：</p>
                 <h2 id="转置卷积-反卷积-transposed-convolution">转置卷积|反卷积（Transposed convolution）</h2>
-                <p><img src="../assets/conv_no_padding_no_strides_transposed.gif" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/conv_no_padding_no_strides_transposed.gif" alt=""></p>
                 <blockquote>
                   <p>No padding, no strides, transposed</p>
                 </blockquote>
@@ -1226,7 +1146,7 @@
                   <p><a href="https://www.zhihu.com/question/43609045" target="_blank" rel="noopener">如何理解深度学习中的deconvolution networks？</a> - 知乎</p>
                 </blockquote>
                 <h2 id="空洞卷积-扩张卷积-dilated-convolution">空洞卷积|扩张卷积（Dilated convolution）</h2>
-                <p><img src="../assets/conv_dilation.gif" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/conv_dilation.gif" alt=""></p>
                 <blockquote>
                   <p>No padding, no stride, dilation</p>
                 </blockquote>
@@ -1262,12 +1182,9 @@
                   <li>基于中心像素距离的加权平均</li>
                 </ul>
                 <p>池化操作有助于卷积网络的平移不变性</p>
-                <blockquote>
-                  <p><a href="#323-%E5%B9%B3%E7%A7%BB%E7%AD%89%E5%8F%98%E4%B8%8D%E5%8F%98%E6%80%A7translation-invariant">32.3. 平移等变/不变性（translation invariant）</a></p>
-                </blockquote>
                 <p><strong>使用池化可以看作是增加了一个无限强的先验</strong>：这一层学得的函数必须具有对少量平移的不变性。当这个假设成立时，池化可以极大地提高网络的统计效率。</p>
                 <p>（最大）池化对平移是天然不变的，但池化也能用于学习其他不变性：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613101802.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613101802.png" alt=""></p>
                 <p>这三个过滤器都旨在检测手写的数字 5。每个过滤器尝试匹配稍微<strong>不同方向</strong>的 5。当输入中出现 5 时，无论哪个探测单元被激活，最大池化单元都将产生较大的响应。</p>
                 <p>这种多通道方法只在学习其他变换时是必要的。这个原则在 maxout 网络 (Goodfellow et al., 2013b) 和其他卷积网络中更有影响。</p>
                 <p>池化综合了区域内的 k 个像素的统计特征而不是单个像素，这种方法提高了网络的计算效率，因为下一层少了约 k 倍的输入。</p>
@@ -1279,9 +1196,6 @@
                   <li>《深度学习》 20.6 卷积玻尔兹曼机、20.10.6 卷积生成网络</li>
                 </ul>
                 <h1>卷积与池化的意义、影响（作为一种无限强的先验）**</h1>
-                <blockquote>
-                  <p>《深度学习》 9.4 卷积与池化作为一种无限强的先验</p>
-                </blockquote>
                 <p>一个无限强的先验需要对一些参数的概率置零并且完全禁止对这些参数赋值，无论数据对于这些参数的值给出了多大的支持。</p>
                 <p>如果把卷积网络类比成全连接网络，那么对于这个全连接网络的权重有一个无限强的先验：隐藏单元的权重必须和它邻居的权重相同，但可以在空间上移动；同时要求除了那些处在“感受野”内的权重以外，其余的权重都为零。</p>
                 <p>类似的，使用<strong>池化</strong>也是一个无限强的先验：每一个单元都具有对少量平移的不变性。</p>
@@ -1299,18 +1213,12 @@
                   </li>
                   <li>当我们比较卷积模型的统计学习表现时，只能以基准中的其他卷积模型作为比较的对象</li>
                 </ol>
-                <blockquote>
-                  <p>《深度学习》 5.6 贝叶斯统计（先验概率分布）</p>
-                </blockquote>
                 <h1>RNN 的几种基本设计模式</h1>
-                <blockquote>
-                  <p>《深度学习》 10.2 循环神经网络</p>
-                </blockquote>
                 <p>循环神经网络中一些重要的设计模式包括以下几种：</p>
                 <ol>
                   <li>
                     <p>（*）每个时间步都有输出，并且隐藏单元之间有循环连接的循环网络</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613150111.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613150111.png" alt=""></p>
                     <ul>
                       <li>将 x 值的输入序列映射到输出值 o 的对应序列</li>
                       <li>损失 L 衡量每个 o 与相应的训练目标 y 的距离</li>
@@ -1322,7 +1230,7 @@
                   </li>
                   <li>
                     <p>每个时间步都产生一个输出，只有当前时刻的输出到下个时刻的隐藏单元之间有循环连接的循环网络</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613150711.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613150711.png" alt=""></p>
                     <ul>
                       <li>此类 RNN 的唯一循环是从输出 o 到隐藏层 h 的反馈连接</li>
                       <li>表示能力弱于 RNN_1，单更容易训练</li>
@@ -1330,7 +1238,7 @@
                   </li>
                   <li>
                     <p>隐藏单元之间存在循环连接，但读取整个序列后产生单个输出的循环网络</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613151014.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613151014.png" alt=""></p>
                     <p>这样的网络可以用于概括序列并产生用于进一步处理的固定大小的表示</p>
                   </li>
                 </ol>
@@ -1338,7 +1246,6 @@
                 <p>这些循环网络都将一个输入序列映射到<strong>相同长度</strong>的输出序列</p>
                 <h1>RNN 更新方程（前向传播公式），包括 LSTM、GRU 等***</h1>
                 <blockquote>
-                  <p>《深度学习》 10 序列建模：循环和递归网络</p>
                   <p><a href="https://blog.csdn.net/zhangxb35/article/details/70060295" target="_blank" rel="noopener">RNN, LSTM, GRU 公式总结</a> - CSDN博客</p>
                 </blockquote>
                 <p><strong>基本 RNN</strong></p>
@@ -1349,11 +1256,11 @@
                 <ul>
                   <li>
                     <p>Elman RNN</p>
-                    <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613164438.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;h" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&amp;space;h</a><sup>{(t)}&amp;=\tanh\left(&amp;space;W_hx</sup>{(t)}+U_hh<sup>{(t-1)}&amp;plus;b_h&amp;space;\right)\&amp;space;y</sup>{(t)}&amp;={\rm&amp;space;softmax}\left(&amp;space;W_yh^{(t)}+b_y&amp;space;\right)\&amp;space;\end{aligned})</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613164438.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%5Cbegin%7Baligned%7D&amp;space;h" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&amp;space;h</a><sup>{(t)}&amp;=\tanh\left(&amp;space;W_hx</sup>{(t)}+U_hh<sup>{(t-1)}&amp;plus;b_h&amp;space;\right)\&amp;space;y</sup>{(t)}&amp;={\rm&amp;space;softmax}\left(&amp;space;W_yh^{(t)}+b_y&amp;space;\right)\&amp;space;\end{aligned})</p>
                   </li>
                   <li>
                     <p>Jordan RNN</p>
-                    <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613164637.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%7B%5Cdisplaystyle&amp;space;%7B%5Cbegin%7Baligned%7D&amp;space;h" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex={\displaystyle&amp;space;{\begin{aligned}&amp;space;h</a><sup>{(t)}&amp;=\tanh\left(&amp;space;W_hx</sup>{(t)}+U_hy<sup>{(t-1)}&amp;plus;b_h&amp;space;\right)\&amp;space;y</sup>{(t)}&amp;={\rm&amp;space;softmax}\left(&amp;space;W_yh^{(t)}+b_y&amp;space;\right)&amp;space;\end{aligned}}})</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613164637.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%7B%5Cdisplaystyle&amp;space;%7B%5Cbegin%7Baligned%7D&amp;space;h" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex={\displaystyle&amp;space;{\begin{aligned}&amp;space;h</a><sup>{(t)}&amp;=\tanh\left(&amp;space;W_hx</sup>{(t)}+U_hy<sup>{(t-1)}&amp;plus;b_h&amp;space;\right)\&amp;space;y</sup>{(t)}&amp;={\rm&amp;space;softmax}\left(&amp;space;W_yh^{(t)}+b_y&amp;space;\right)&amp;space;\end{aligned}}})</p>
                   </li>
                 </ul>
                 <blockquote>
@@ -1365,7 +1272,7 @@
                   <p><a href="https://en.wikipedia.org/wiki/Long_short-term_memory#Variants" target="_blank" rel="noopener">Long short-term memory</a> - Wikipedia</p>
                 </blockquote>
                 <p><a href="http://www.codecogs.com/eqnedit.php?latex=%7B%5Cdisplaystyle&amp;space;%7B%5Cbegin%7Baligned%7D&amp;space;f_%7Bt%7D&amp;=%5Csigma(W_%7Bf%7Dx_%7Bt%7D+U_%7Bf%7Dh_%7Bt-1%7D+b_%7Bf%7D)%5C&amp;space;i_%7Bt%7D&amp;=%5Csigma(W_%7Bi%7Dx_%7Bt%7D+U_%7Bi%7Dh_%7Bt-1%7D+b_%7Bi%7D)%5C&amp;space;%5Ctilde%7Bc%7D_%7Bt%7D&amp;=%5Ctanh(W_%7Bc%7Dx_%7Bt%7D+U_%7Bc%7Dh_%7Bt-1%7D+b_%7Bc%7D)%5C&amp;space;c_%7Bt%7D&amp;=f_%7Bt%7D%5Ccirc&amp;space;c_%7Bt-1%7D+i_%7Bt%7D%5Ccirc&amp;space;%5Ctilde%7Bc%7D_%7Bt%7D%5C&amp;space;o_%7Bt%7D&amp;=%5Csigma(W_%7Bo%7Dx_%7Bt%7D+U_%7Bo%7Dh_%7Bt-1%7D+b_%7Bo%7D)%5C&amp;space;h_%7Bt%7D&amp;=o_%7Bt%7D%5Ccirc&amp;space;%5Ctanh(c_%7Bt%7D)&amp;space;%5Cend%7Baligned%7D%7D%7D"
-                    target="_blank" rel="noopener"><img src="../assets/%E5%85%AC%E5%BC%8F_20180613170734.png" alt=""></a></p>
+                    target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613170734.png" alt=""></a></p>
                 <ul>
                   <li>其中 f 为遗忘门（forget），i 为输入门（input），o 为输出门（output）。</li>
                   <li>每个门的输入都是 x 和 h，但是参数都是独立的（参数数量是基本 RNN 的 4 倍）</li>
@@ -1379,16 +1286,13 @@
                 <blockquote>
                   <p><a href="https://en.wikipedia.org/wiki/Gated_recurrent_unit#Architecture" target="_blank" rel="noopener">Gated recurrent unit</a> - Wikipedia</p>
                 </blockquote>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613171757.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%7B%5Cdisplaystyle&amp;space;%7B%5Cbegin%7Baligned%7D&amp;space;z_%7Bt%7D&amp;=%5Csigma(W_%7Bz%7Dx_%7Bt%7D+U_%7Bz%7Dh_%7Bt-1%7D+b_%7Bz%7D)%5C&amp;space;r_%7Bt%7D&amp;=%5Csigma(W_%7Br%7Dx_%7Bt%7D+U_%7Br%7Dh_%7Bt-1%7D+b_%7Br%7D)%5C&amp;space;%5Ctilde%7Bh%7D"
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613171757.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=%7B%5Cdisplaystyle&amp;space;%7B%5Cbegin%7Baligned%7D&amp;space;z_%7Bt%7D&amp;=%5Csigma(W_%7Bz%7Dx_%7Bt%7D+U_%7Bz%7Dh_%7Bt-1%7D+b_%7Bz%7D)%5C&amp;space;r_%7Bt%7D&amp;=%5Csigma(W_%7Br%7Dx_%7Bt%7D+U_%7Br%7Dh_%7Bt-1%7D+b_%7Br%7D)%5C&amp;space;%5Ctilde%7Bh%7D"
                     target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex={\displaystyle&amp;space;{\begin{aligned}&amp;space;z_{t}&amp;=\sigma(W_{z}x_{t}+U_{z}h_{t-1}+b_{z})\&amp;space;r_{t}&amp;=\sigma(W_{r}x_{t}+U_{r}h_{t-1}+b_{r})\&amp;space;\tilde{h}</a><em>t&amp;=\tanh(W</em>{h}x_{t}+U_{h}(r_{t}\circ&amp;space;h_{t-1})+b_{h})\&amp;space;h_{t}&amp;=(1-z_{t})\circ&amp;space;h_{t-1}+z_{t}\circ&amp;space;\tilde{h}_t&amp;space;\end{aligned}}})</p>
                 <ul>
                   <li>其中 z 为更新门（update），r 为重置门（reset）</li>
                   <li>GRU 可以看作是将 LSTM 中的遗忘门和输入门合二为一了</li>
                 </ul>
                 <h1>BPTT（back-propagation through time，通过时间反向传播）**</h1>
-                <blockquote>
-                  <p>《深度学习》 10.2.2 计算循环神经网络的梯度</p>
-                </blockquote>
                 <h1>自编码器在深度学习中的意义*</h1>
                 <p><strong>自编码器的意义</strong>：</p>
                 <ul>
@@ -1397,24 +1301,20 @@
                     <ul>
                       <li>几乎任何带有潜变量并配有一个推断过程（计算给定输入的潜在表示）的生成模型，都可以看作是自编码器的一种特殊形式。</li>
                     </ul>
-                    <blockquote>
-                      <p>《深度学习》 20 深度生成模型，20.10.3 变分自编码器，20.12 生成随机网络</p>
-                    </blockquote>
                   </li>
                 </ul>
                 <p><strong>自编码器的一般结构</strong></p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613200023.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613200023.png" alt=""></p>
                 <ul>
                   <li>自编码器有两个组件：<strong>编码器</strong> f（将 x 映射到 h）和<strong>解码器</strong> g（将 h 映射到 r）</li>
                   <li>一个简单的自编码器试图学习 <code>g(f(x)) = x</code>；换言之，自编码器尝试将输入复制到输出</li>
                   <li>单纯将输入复制到输出没什么用，相反，训练自编码器的目标是获得有用的特征 h。</li>
                 </ul>
                 <p>自编码器的学习过程就是最小化一个损失函数：</p>
-                <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613201829.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7Bx%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{x})</a>)))</p>
+                <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613201829.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7Bx%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{x})</a>)))</p>
                 <h1>自编码器一些常见的变形与应用：正则自编码器、稀疏自编码器、去噪自编码器*</h1>
                 <blockquote>
                   <p><a href="#40-%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%E5%9C%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%84%8F%E4%B9%89">40. 自编码器在深度学习中的意义</a></p>
-                  <p>《深度学习》 14.2 正则自编码器</p>
                 </blockquote>
                 <p><strong>欠完备自编码器</strong></p>
                 <ul>
@@ -1442,7 +1342,7 @@
                   </li>
                   <li>
                     <p>稀疏自编码器简单地在训练时结合编码层的<strong>稀疏惩罚</strong> Ω(h) 和重构误差：</p>
-                    <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613211004.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7Bx%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{x})</a>))+\Omega(\boldsymbol{h})&amp;space;=&amp;space;L(\boldsymbol{x},g(f(\boldsymbol{x})))+\lambda\sum_i\left|h_i\right|)</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613211004.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7Bx%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{x})</a>))+\Omega(\boldsymbol{h})&amp;space;=&amp;space;L(\boldsymbol{x},g(f(\boldsymbol{x})))+\lambda\sum_i\left|h_i\right|)</p>
                   </li>
                   <li>
                     <p>稀疏惩罚不算是一个正则项。这仅仅影响模型关于潜变量的分布。这个观点提供了训练自编码器的另一个动机：这是近似训练生成模型的一种途径。这也给出了为什么自编码器学到的特征是有用的另一个解释：它们描述的潜变量可以解释输入。</p>
@@ -1458,14 +1358,14 @@
                   </li>
                   <li>
                     <p>与传统自编码器不同，去噪自编码器（denoising autoencoder, DAE）最小化：</p>
-                    <p>[<img src="../assets/%E5%85%AC%E5%BC%8F_20180613211437.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7B%5Ctilde%7Bx%7D%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{\tilde{x}})</a>)))</p>
+                    <p>[<img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180613211437.png" alt="">](<a href="http://www.codecogs.com/eqnedit.php?latex=L(%5Cboldsymbol%7Bx%7D,g(f(%5Cboldsymbol%7B%5Ctilde%7Bx%7D%7D)" target="_blank" rel="noopener">http://www.codecogs.com/eqnedit.php?latex=L(\boldsymbol{x},g(f(\boldsymbol{\tilde{x}})</a>)))</p>
                   </li>
                   <li>
                     <p>这里的 x~ 是<strong>被某种噪声损坏</strong>的 x 的副本，去噪自编码器需要预测原始未被损坏数据</p>
                   </li>
                   <li>
                     <p>破坏的过程一般是以某种概率分布（通常是二项分布）将一些值置 0.</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180613211935.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180613211935.png" alt=""></p>
                     <blockquote>
                       <p>《深度学习》 14.2.2 去噪自编码器，14.5 去噪自编码器</p>
                     </blockquote>
@@ -1484,19 +1384,13 @@
                   </li>
                 </ul>
                 <h1>半监督的思想以及在深度学习中的应用*</h1>
-                <blockquote>
-                  <p>《深度学习》 15.3 半监督解释因果关系</p>
-                </blockquote>
                 <h1>分布式表示的概念、应用，与符号表示（one-hot 表示）的区别***</h1>
-                <blockquote>
-                  <p>《深度学习》 15.4 分布式表示</p>
-                </blockquote>
                 <h2 id="什么是分布式表示？">什么是分布式表示？</h2>
                 <ul>
                   <li>
                     <p>所谓分布式表示就是用不同的特征，通过<strong>组合</strong>来表示不同的概念</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180614103628.png" alt="">
-                      <img src="../assets/TIM%E6%88%AA%E5%9B%BE20180614104032.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614103628.png" alt="">
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614104032.png" alt=""></p>
                     <p>（左）是 one-hot 表示（一种稀疏表示），（右）为分布式表示</p>
                     <blockquote>
                       <p><a href="http://baijiahao.baidu.com/s?id=1593632865778730392" target="_blank" rel="noopener">神经网络如何学习分布式表示</a> - 百家号</p>
@@ -1519,8 +1413,8 @@
                   </li>
                 </ul>
                 <p><strong>分布式表示与符号表示</strong>（最近邻）：</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180614111241.png" alt="">
-                  <img src="../assets/TIM%E6%88%AA%E5%9B%BE20180614111712.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614111241.png" alt="">
+                  <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614111712.png" alt=""></p>
                 <ul>
                   <li>两者都在学习如何将输入空间分割成多个区域</li>
                   <li>在输入维度相同的情况下，分布式表示能够比非分布式表示多分配指数级的区域——这一特性可用于解决<strong>维度灾难</strong>问题
@@ -1561,29 +1455,15 @@
                 </blockquote>
                 <p>对于第二点，书中使用了另一种描述：“由维数灾难带来的一个问题是统计挑战，所谓统计挑战指的是 <strong>x 的可能配置数目远大于训练样本的数目</strong>”。</p>
                 <p>为了充分理解这个问题，我们假设输入空间如图所示被分成单元格。</p>
-                <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180614203447.png" alt=""></p>
+                <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180614203447.png" alt=""></p>
                 <ul>
                   <li>当数据的维度增大时（从左向右），我们感兴趣的配置数目会随指数级增长。</li>
                   <li>当空间是低维时，我们可以用由少量单元格去描述这个空间。泛化到新数据点时，通过检测和单元格中的训练样本的相似度，我们可以判断如何处理新数据点。</li>
-                  <li>当空间的维数很大时，很可能发生大量单元格中没有训练样本的情况。此时，基于“<strong>平滑先验</strong>”的简单算法将无力处理这些新的数据。
-                    <blockquote>
-                      <p><a href="#7-%E5%B1%80%E9%83%A8%E4%B8%8D%E5%8F%98%E6%80%A7%E5%B9%B3%E6%BB%91%E5%85%88%E9%AA%8C%E5%8F%8A%E5%85%B6%E5%9C%A8%E5%9F%BA%E4%BA%8E%E6%A2%AF%E5%BA%A6%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B8%8A%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7">7. 局部不变性（平滑先验）及其在基于梯度的学习上的局限性*</a></p>
-                    </blockquote>
-                  </li>
-                  <li>更一般的，O(nd) 个参数（d 个特征，每个特征有 n 种表示）能够明确表示输入空间中 O(n^d) 个不同区域。如果我们没有对数据做任何假设，并且<strong>每个区域使用唯一的符号来表示</strong>，每个符号使用单独的参数去识别空间中的对应区域，那么指定 O(n^d) 个区域将需要 O(n^d) 个样本。
-                    <blockquote>
-                      <p>《深度学习》 15.4 分布式表示</p>
-                    </blockquote>
-                  </li>
+                  <li>当空间的维数很大时，很可能发生大量单元格中没有训练样本的情况。此时，基于“<strong>平滑先验</strong>”的简单算法将无力处理这些新的数据。</li>
+                  <li>更一般的，O(nd) 个参数（d 个特征，每个特征有 n 种表示）能够明确表示输入空间中 O(n^d) 个不同区域。如果我们没有对数据做任何假设，并且<strong>每个区域使用唯一的符号来表示</strong>，每个符号使用单独的参数去识别空间中的对应区域，那么指定 O(n^d) 个区域将需要 O(n^d) 个样本。</li>
                 </ul>
                 <p><strong>如何解决维数灾难？</strong></p>
-                <blockquote>
-                  <p><a href="#433-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E8%A1%A8%E7%A4%BA%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%BB%9F%E8%AE%A1%E4%BC%98%E5%8A%BF">43.3. 什么时候应该使用分布式表示能带来统计优势？</a></p>
-                </blockquote>
                 <h1>迁移学习相关概念：多任务学习、一次学习、零次学习、多模态学习**</h1>
-                <blockquote>
-                  <p>《深度学习》 15.2 迁移学习和领域自适应</p>
-                </blockquote>
                 <p><strong>什么是迁移学习？</strong></p>
                 <ul>
                   <li>迁移学习和领域自适应指的是利用一个任务（例如，分布 P1）中已经学到的内容去改善另一个任务（比如分布 P2）中的泛化情况。
@@ -1604,8 +1484,8 @@
                   </li>
                   <li>
                     <p>迁移学习与多任务学习的一些结构：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180615111903.png" alt="">
-                      <img src="../assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180615111903.png" alt="">
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180610203703.png" alt=""></p>
                     <blockquote>
                       <p>（左）&gt; 《深度学习》 15.2 迁移学习和领域自适应；（右）&gt; 《深度学习》 7.7 多任务学习</p>
                     </blockquote>
@@ -1643,17 +1523,10 @@
                 <ul>
                   <li>
                     <p>与 zero-shot learning 相同的原理可以解释如何能执行<strong>多模态学习</strong>（multimodal learning）</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180615150955.png" alt=""></p>
-                    <blockquote>
-                      <p>《深度学习》 15.2 迁移学习和领域自适应 图 15.3</p>
-                    </blockquote>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180615150955.png" alt=""></p>
                   </li>
                 </ul>
                 <h1>图模型|结构化概率模型相关概念*</h1>
-                <blockquote>
-                  <p>《深度学习》 16 深度学习中的结构化概率模型</p>
-                  <p>答案不完整，更多相关概念请阅读本章</p>
-                </blockquote>
                 <p><strong>有向图模型</strong></p>
                 <ul>
                   <li>
@@ -1661,7 +1534,7 @@
                   </li>
                   <li>
                     <p>描述接力赛例子的有向图模型</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180617140439.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617140439.png" alt=""></p>
                     <ul>
                       <li>Alice 在 Bob 之前开始，所以 Alice 的完成时间 t0 影响了 Bob 的完成时间 t1。</li>
                       <li>Carol 只会在 Bob 完成之后才开始，所以 Bob 的完成时间 t1 直接影响了 Carol 的完成时间 t2。</li>
@@ -1669,14 +1542,14 @@
                   </li>
                   <li>
                     <p>正式地说，变量 x 的有向概率模型是通过有向无环图 G（每个结点都是模型中的随机变量）和一系列<strong>局部条件概率分布</strong>（local conditional probability distribution）来定义的，x 的概率分布可以表示为：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180617141056.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617141056.png" alt=""></p>
                     <ul>
                       <li>其中 大P 表示结点 xi 的所有父结点</li>
                     </ul>
                   </li>
                   <li>
                     <p>上述接力赛例子的概率分布可表示为：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180617141502.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180617141502.png" alt=""></p>
                   </li>
                 </ul>
                 <p><strong>无向图模型</strong></p>
@@ -1728,17 +1601,8 @@
                   <li>结构学习（structure learning）</li>
                 </ul>
                 <h1>深度生成模型、受限玻尔兹曼机（RBM）相关概念*</h1>
-                <blockquote>
-                  <p>《深度学习》 16.7.1 实例：受限玻尔兹曼机、20.1 玻尔兹曼机、20.2 受限玻尔兹曼机</p>
-                </blockquote>
                 <h1>深度学习在图像、语音、NLP等领域的常见作法与基本模型**</h1>
-                <blockquote>
-                  <p>《深度学习》 12 应用</p>
-                </blockquote>
                 <h2 id="计算机视觉-cv">计算机视觉（CV）</h2>
-                <blockquote>
-                  <p>12.2 计算机视觉</p>
-                </blockquote>
                 <p><strong>预处理</strong> 许多应用领域需要复杂精细的预处理，但是 CV 通常只需要相对少的预处理。</p>
                 <p>通常，<strong>标准化</strong>是图像唯一必要的预处理——将图像格式化为具有相同的比例，比如 [0,1] 或者 [-1,1].</p>
                 <p>许多框架需要图像缩放到标准的尺寸。但这不是必须的，一些卷积模型接受可变大小的输入并动态地调整它们的池化区域大小以保持输出大小恒定。</p>
@@ -1750,15 +1614,15 @@
                   </li>
                   <li>
                     <p>整个图像的对比度可以表示为：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619104551.png" alt="">，其中</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619104649.png" alt="">，整个图片的平均强度</p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104551.png" alt="">，其中</p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104649.png" alt="">，整个图片的平均强度</p>
                   </li>
                 </ul>
                 <p><strong>全局对比度归一化</strong>（Global contrast normalization, GCN）</p>
                 <ul>
                   <li>
                     <p>GCN 旨在通过从每个图像中减去其平均值，然后重新缩放其使得其像素上的标准差等于某个常数 s 来防止图像具有变化的对比度。定义为：</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619104914.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619104914.png" alt=""></p>
                     <ul>
                       <li>从大图像中剪切感兴趣的对象所组成的数据集不可能包含任何强度几乎恒定的图像。此时，设置 λ = 0 来忽略小分母问题是安全的。(Goodfellow et al. 2013c)</li>
                       <li>随机剪裁的小图像更可能具有几乎恒定的强度，使得激进的正则化更有用。此时可以加大 λ (ϵ = 0, λ = 10; Coates et al. 2011)</li>
@@ -1773,7 +1637,7 @@
                       </li>
                       <li>
                         <p>而将标准差视为 L2 范数的缩放，可以将 GCN 理解成到球壳的一种映射。这可能是一个有用的属性，因为神经网络往往更好地响应空间方向，而不是精确的位置。</p>
-                        <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619113501.png" alt=""></p>
+                        <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619113501.png" alt=""></p>
                         <ul>
                           <li>(左) 原始的输入数据可能拥有任意的范数。</li>
                           <li>(中) λ = 0 时候的 GCN 可以完美地将所有的非零样本投影到球上。这里我们令 s = 1， ϵ = 10−8。由于我们使用的 GCN 是基于归一化标准差而不是 L2 范数，所得到的球并不是单位球。</li>
@@ -1797,7 +1661,7 @@
                   </li>
                   <li>
                     <p>LCN 确保对比度在每个小窗口上被归一化，而不是作为整体在图像上被归一化。</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619114844.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619114844.png" alt=""></p>
                   </li>
                   <li>
                     <p>LCN 通常可以通过使用可分离卷积来计算特征映射的局部平均值和局部标准差，然后在不同的特征映射上使用逐元素的减法和除法。</p>
@@ -1810,17 +1674,10 @@
                 <p><strong>数据集增强</strong> 数据集增强可以被看作是一种
                   <strong>只对训练集</strong>做预处理的方式。</p>
                 <h2 id="语音识别">语音识别</h2>
-                <blockquote>
-                  <p>12.3 语音识别</p>
-                  <p>本章没什么实际内容，主要介绍了各阶段的主流模型</p>
-                </blockquote>
                 <p>自动语音识别（Automatic Speech Recognition, ASR）任务指的是构造一个函数 f*，使得它能够在给定声学序列 X 的情况下计算最有可能的语言序列 y.</p>
                 <p>令 X = (x(1), x(2), …, x(T)) 表示语音的输入向量，传统做法以 20ms 左右为一帧分割信号；y = (y1, y2, …, yN) 表示目标的输出序列（通常是一个词或者字符的序列。</p>
                 <p>许多语音识别的系统通过特殊的手工设计方法预处理输入信号，从而提取声学特征；也有一些深度学习系统 (Jaitly and Hinton, 2011) 直接从原始输入中学习特征。</p>
                 <h2 id="自然语言处理">自然语言处理</h2>
-                <blockquote>
-                  <p>12.4 自然语言处理</p>
-                </blockquote>
                 <p>相关术语：</p>
                 <ul>
                   <li>n-gram 语言模型</li>
@@ -1846,14 +1703,14 @@
                       </li>
                       <li>
                         <p>基于 n-gram 的模型定义一个条件概率——给定前 n − 1 个标记后的第 n 个标记的条件概率：</p>
-                        <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619193332.png" alt=""></p>
+                        <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619193332.png" alt=""></p>
                       </li>
                       <li>
                         <p>训练 n-gram 模型很简单，因为最大似然估计可以通过简单地统计每个可能的 n-gram 在训练集中<strong>出现的频数</strong>来获得。</p>
                       </li>
                       <li>
                         <p>通常我们同时训练 n-gram 模型和 n − 1 gram 模型。这使得下式可以简单地通过查找两个存储的概率来计算。</p>
-                        <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619193540.png" alt=""></p>
+                        <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619193540.png" alt=""></p>
                       </li>
                     </ul>
                   </li>
@@ -1866,13 +1723,18 @@
                 </ul>
                 <p><strong>神经语言模型</strong>（Neural Language Model, NLM）</p>
                 <ul>
-                  <li>NLM 是一类用来克服维数灾难的语言模型，它使用词的<strong>分布式表示</strong>对自然语言序列建模</li>
-                  <li>NLM 能在识别两个相似词的同时，不丧失将词编码为不同的能力。神经语言模型共享一个词（及其上下文）和其他类似词的统计强度。模型为每个词学习的分布式表示，允许模型处理具有类似共同特征的词来实现这种共享。因为这样的属性很多，所以存在许多泛化的方式，可以将信息从每个训练语句传递到指数数量的语义相关语句。
+                  <li>
+                    <p>NLM 是一类用来克服维数灾难的语言模型，它使用词的<strong>分布式表示</strong>对自然语言序列建模</p>
+                  </li>
+                  <li>
+                    <p>NLM 能在识别两个相似词的同时，不丧失将词编码为不同的能力。神经语言模型共享一个词（及其上下文）和其他类似词的统计强度。模型为每个词学习的分布式表示，允许模型处理具有类似共同特征的词来实现这种共享。因为这样的属性很多，所以存在许多泛化的方式，可以将信息从每个训练语句传递到指数数量的语义相关语句。</p>
                     <ul>
                       <li>例如，如果词 dog 和词 cat 映射到具有许多属性的表示，则包含词 cat 的句子可以告知模型对包含词 dog 的句子做出预测，反之亦然。</li>
                     </ul>
                   </li>
-                  <li>使用分布式表示来改进自然语言处理模型的基本思想不必局限于神经网络。它还可以用于图模型，其中分布式表示是多个潜变量的形式 (Mnih and Hinton, 2007)。</li>
+                  <li>
+                    <p>使用分布式表示来改进自然语言处理模型的基本思想不必局限于神经网络。它还可以用于图模型，其中分布式表示是多个潜变量的形式 (Mnih and Hinton, 2007)。</p>
+                  </li>
                 </ul>
                 <p><strong>词嵌入</strong>（word embedding）</p>
                 <ul>
@@ -1884,7 +1746,7 @@
                   </li>
                   <li>
                     <p>在<strong>嵌入空间</strong>中，经常出现在类似上下文中的词彼此接近。这通常导致具有相似含义的词变得邻近。</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619205103.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619205103.png" alt=""></p>
                     <ul>
                       <li>这些嵌入是为了可视化才表示为 2 维。在实际应用中，嵌入通常具有更高的维度并且可以同时捕获词之间多种相似性。</li>
                     </ul>
@@ -1923,7 +1785,7 @@
                 <ul>
                   <li>
                     <p>编码器和解码器的想法 (Allen 1987; Chrisman 1991; Forcada and Ñeco 1997)很早就应用到了 NMT 中。</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619214629.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619214629.png" alt=""></p>
                   </li>
                   <li>
                     <p>基于 MLP 方法的缺点是需要将序列预处理为固定长度。为了使翻译更加灵活，我们希望模型允许可变的输入长度和输出长度。所以大量的 NMT 模型使用 RNN 作为基本单元。</p>
@@ -1936,7 +1798,7 @@
                   </li>
                   <li>
                     <p>更高效的方法是先读取整个句子或段落（以获得正在表达的上下文和焦点），然后一次翻译一个词，每次聚焦于输入句子的不同部分来收集产生下一个输出词所需的语义细节 (Bahdanau et al., 2015)——<strong>Attention</strong> 机制</p>
-                    <p><img src="../assets/TIM%E6%88%AA%E5%9B%BE20180619214735.png" alt=""></p>
+                    <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180619214735.png" alt=""></p>
                     <ul>
                       <li>由 Bahdanau et al. (2015) 引入的现代注意力机制，本质上是<strong>加权平均</strong>。</li>
                     </ul>
@@ -2046,14 +1908,14 @@
 
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">如何设置网络的初始值？*</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">梯度爆炸的解决办法***</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">梯度爆炸的解决办法</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">神经网络（MLP）的万能近似定理*</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">神经网络中，深度与宽度的关系，及其表示能力的差异**</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">在深度神经网络中，引入了隐藏层（非线性单元），放弃了训练问题的凸性，其意义何在？**</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">稀疏表示，低维表示，独立表示*</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">局部不变性（平滑先验）及其在基于梯度的学习上的局限性*</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">为什么交叉熵损失相比均方误差损失能提高以 sigmoid 和 softmax 作为激活函数的层的性能？**</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">分段线性单元（如 ReLU）代替 sigmoid 的利弊***</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">分段线性单元（如 ReLU）代替 sigmoid 的利弊</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">在做正则化过程中，为什么只对权重做正则惩罚，而不对偏置做权重惩罚*</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">列举常见的一些范数及其应用场景，如 L0、L1、L2、L∞、Frobenius等范数**</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">L1 和 L2 范数的异同***</span></a></li>
