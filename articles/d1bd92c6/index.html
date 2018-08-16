@@ -17,42 +17,42 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="* NLP 概述  * 解决 NLP 问题的一般思路     * NLP 的历史进程     * Seq2Seq 模型     * 评价机制  * 困惑度 (Perplexity, PPX)        * BLEU        * ROUGE                        * 语言模型  * XX 模型的含义     * 概率/统计语言模型 (PLM, SLM)  * 参数的">
+  <meta name="description" content="NLP 概述 解决 NLP 问题的一般思路 1 2 3   这个问题人类可以做好么？   - 可以 -&amp;gt; 记录自己的思路 -&amp;gt; 设计流程让机器完成你的思路   - 很难 -&amp;gt; 尝试从计算机的角度来思考问题   NLP 的历史进程  *  规则系统         * 正则表达式/自动机     * 规则是固定的     * 搜索引擎 1       2       3       4">
   <meta name="keywords" content="NLP,自然语言处理,AI">
   <meta property="og:type" content="article">
   <meta property="og:title" content="自然语言处理（NLP）基础">
   <meta property="og:url" content="http://www.meng.uno/articles/d1bd92c6/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="* NLP 概述  * 解决 NLP 问题的一般思路     * NLP 的历史进程     * Seq2Seq 模型     * 评价机制  * 困惑度 (Perplexity, PPX)        * BLEU        * ROUGE                        * 语言模型  * XX 模型的含义     * 概率/统计语言模型 (PLM, SLM)  * 参数的">
+  <meta property="og:description" content="NLP 概述 解决 NLP 问题的一般思路 1 2 3   这个问题人类可以做好么？   - 可以 -&amp;gt; 记录自己的思路 -&amp;gt; 设计流程让机器完成你的思路   - 很难 -&amp;gt; 尝试从计算机的角度来思考问题   NLP 的历史进程  *  规则系统         * 正则表达式/自动机     * 规则是固定的     * 搜索引擎 1       2       3       4">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180807203305.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180807210029.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180807210133.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180728195601.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180728201614.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180728202629.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180728205525.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180728212554.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180728215749.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180728212444.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180728213300.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180805204149.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180805211530.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180805211644.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180805211936.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180805212222.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180805212441.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180806100950.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_20180806102047.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_2018080695721.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180805234123.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/公式_2018080695819.png">
-  <meta property="og:image" content="http://www.meng.uno/articles/assets/TIM截图20180805231056.png">
-  <meta property="og:updated_time" content="2018-08-16T03:35:12.967Z">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807203305.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807210029.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807210133.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180728195601.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180728201614.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180728202629.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180728205525.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180728212554.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180728215749.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180728212444.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180728213300.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180805204149.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180805211530.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180805211644.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180805211936.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180805212222.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180805212441.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806100950.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806102047.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_2018080695721.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180805234123.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_2018080695819.png">
+  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180805231056.png">
+  <meta property="og:updated_time" content="2018-08-16T03:55:08.368Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="自然语言处理（NLP）基础">
-  <meta name="twitter:description" content="* NLP 概述  * 解决 NLP 问题的一般思路     * NLP 的历史进程     * Seq2Seq 模型     * 评价机制  * 困惑度 (Perplexity, PPX)        * BLEU        * ROUGE                        * 语言模型  * XX 模型的含义     * 概率/统计语言模型 (PLM, SLM)  * 参数的">
-  <meta name="twitter:image" content="http://www.meng.uno/articles/assets/TIM截图20180807203305.png">
+  <meta name="twitter:description" content="NLP 概述 解决 NLP 问题的一般思路 1 2 3   这个问题人类可以做好么？   - 可以 -&amp;gt; 记录自己的思路 -&amp;gt; 设计流程让机器完成你的思路   - 很难 -&amp;gt; 尝试从计算机的角度来思考问题   NLP 的历史进程  *  规则系统         * 正则表达式/自动机     * 规则是固定的     * 搜索引擎 1       2       3       4">
+  <meta name="twitter:image" content="http://www.meng.uno/images/assets/TIM截图20180807203305.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -294,60 +294,12 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,119</span>
-	<span class="post-count"> | 预计时间12分钟</span>
+	<span class="post-count"> | 字数2,956</span>
+	<span class="post-count"> | 预计时间11分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <!-- TOC -->
-                <ul>
-                  <li><a href="#nlp-%E6%A6%82%E8%BF%B0">NLP 概述</a>
-                    <ul>
-                      <li><a href="#%E8%A7%A3%E5%86%B3-nlp-%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%80%E8%88%AC%E6%80%9D%E8%B7%AF">解决 NLP 问题的一般思路</a></li>
-                      <li><a href="#nlp-%E7%9A%84%E5%8E%86%E5%8F%B2%E8%BF%9B%E7%A8%8B">NLP 的历史进程</a></li>
-                      <li><a href="#seq2seq-%E6%A8%A1%E5%9E%8B">Seq2Seq 模型</a></li>
-                      <li><a href="#%E8%AF%84%E4%BB%B7%E6%9C%BA%E5%88%B6">评价机制</a>
-                        <ul>
-                          <li><a href="#%E5%9B%B0%E6%83%91%E5%BA%A6-perplexity-ppx">困惑度 (Perplexity, PPX)</a></li>
-                          <li><a href="#bleu">BLEU</a></li>
-                          <li><a href="#rouge">ROUGE</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="#%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">语言模型</a>
-                    <ul>
-                      <li><a href="#xx-%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%90%AB%E4%B9%89">XX 模型的含义</a></li>
-                      <li><a href="#%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-plm-slm">概率/统计语言模型 (PLM, SLM)</a>
-                        <ul>
-                          <li><a href="#%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%84%E6%A8%A1">参数的规模</a></li>
-                          <li><a href="#%E5%8F%AF%E7%94%A8%E7%9A%84%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B">可用的概率模型</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#n-gram-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">N-gram 语言模型</a>
-                        <ul>
-                          <li><a href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%B8%8E%E5%8F%AF%E5%8C%BA%E5%88%AB%E6%80%A7">可靠性与可区别性</a></li>
-                          <li><a href="#oov-%E9%97%AE%E9%A2%98">OOV 问题</a></li>
-                          <li><a href="#%E5%B9%B3%E6%BB%91%E5%A4%84%E7%90%86-todo">平滑处理 TODO</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#%E7%A5%9E%E7%BB%8F%E6%A6%82%E7%8E%87%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-nplm">神经概率语言模型 (NPLM)</a>
-                        <ul>
-                          <li><a href="#n-gram-%E7%A5%9E%E7%BB%8F%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">N-gram 神经语言模型</a>
-                            <ul>
-                              <li><a href="#n-gram-%E7%A5%9E%E7%BB%8F%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84">N-gram 神经语言模型的网络结构</a></li>
-                            </ul>
-                          </li>
-                          <li><a href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%84%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E9%87%8F">模型参数的规模与运算量</a></li>
-                          <li><a href="#%E7%9B%B8%E6%AF%94-n-gram-%E6%A8%A1%E5%9E%8Bnplm-%E7%9A%84%E4%BC%98%E5%8A%BF">相比 N-gram 模型，NPLM 的优势</a></li>
-                          <li><a href="#nplm-%E4%B8%AD%E7%9A%84-oov-%E9%97%AE%E9%A2%98">NPLM 中的 OOV 问题</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <!-- /TOC -->
                 <h1>NLP 概述</h1>
                 <h2 id="解决-nlp-问题的一般思路">解决 NLP 问题的一般思路</h2>
                 <figure class="highlight tex">
@@ -408,27 +360,29 @@
                             </tr>
                           </table>
                         </figure>
-                        <div align="center"><img src="../assets/TIM截图20180807203305.png" height="200"></div>
+                        <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807203305.png" height="200"></div>
                         <ul>
                           <li>最重要的部分：数据收集、预处理、特征工程</li>
                         </ul>
                       </li>
                       <li>
                         <p>示例</p>
+                        <figure class="highlight tex">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line">任务：</span><br><span class="line">  “豆瓣酱用英语怎么说” =&gt; translate(豆瓣酱，Eng)</span><br><span class="line">流程设计（序列标注）：</span><br><span class="line">  子任务1： 找出目标语言 “豆瓣酱用 **英语** 怎么说”</span><br><span class="line">  子任务2： 找出翻译目标 “ **豆瓣酱** 用英语怎么说”</span><br><span class="line">收集训练数据：</span><br><span class="line">  （子任务1）</span><br><span class="line">  “豆瓣酱用英语怎么说”</span><br><span class="line">  “茄子用英语怎么说”</span><br><span class="line">  “黄瓜怎么翻译成英语”</span><br><span class="line">预处理：</span><br><span class="line">  分词：“豆瓣酱 用 英语 怎么说”</span><br><span class="line">抽取特征：</span><br><span class="line">  （前后各一个词）</span><br><span class="line">  0 茄子：    &lt; _ 用</span><br><span class="line">  0 用：      豆瓣酱 _ 英语</span><br><span class="line">  1 英语：    用 _ 怎么说</span><br><span class="line">  0 怎么说：  英语 _ &gt;</span><br><span class="line">分类器：</span><br><span class="line">  SVM/CRF/HMM/RNN</span><br><span class="line">预测：</span><br><span class="line">  0.1 茄子：    &lt; _ 用</span><br><span class="line">  0.1 用：      豆瓣酱 _ 英语</span><br><span class="line">  0.7 英语：    用 _ 怎么说</span><br><span class="line">  0.1 怎么说：  英语 _ &gt;</span><br><span class="line">评价：</span><br><span class="line">  准确率</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
                       </li>
                     </ul>
                   </li>
                 </ul>
-                <pre><code><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre>
-                </td>
-                <td class="code">
-                  <pre><span class="line">任务：</span><br><span class="line">  “豆瓣酱用英语怎么说” =&gt; translate(豆瓣酱，Eng)</span><br><span class="line"></span><br><span class="line">流程设计（序列标注）：</span><br><span class="line">  子任务1： 找出目标语言 “豆瓣酱用 **英语** 怎么说”</span><br><span class="line">  子任务2： 找出翻译目标 “ **豆瓣酱** 用英语怎么说”</span><br><span class="line"></span><br><span class="line">收集训练数据：</span><br><span class="line">  （子任务1）</span><br><span class="line">  “豆瓣酱用英语怎么说”</span><br><span class="line">  “茄子用英语怎么说”</span><br><span class="line">  “黄瓜怎么翻译成英语”</span><br><span class="line"></span><br><span class="line">预处理：</span><br><span class="line">  分词：“豆瓣酱 用 英语 怎么说”</span><br><span class="line"></span><br><span class="line">抽取特征：</span><br><span class="line">  （前后各一个词）</span><br><span class="line">  0 茄子：    &lt; _ 用</span><br><span class="line">  0 用：      豆瓣酱 _ 英语</span><br><span class="line">  1 英语：    用 _ 怎么说</span><br><span class="line">  0 怎么说：  英语 _ &gt;</span><br><span class="line"></span><br><span class="line">分类器：</span><br><span class="line">  SVM/CRF/HMM/RNN</span><br><span class="line"></span><br><span class="line">预测：</span><br><span class="line">  0.1 茄子：    &lt; _ 用</span><br><span class="line">  0.1 用：      豆瓣酱 _ 英语</span><br><span class="line">  0.7 英语：    用 _ 怎么说</span><br><span class="line">  0.1 怎么说：  英语 _ &gt;</span><br><span class="line"></span><br><span class="line">评价：</span><br><span class="line">  准确率</span><br></pre>
-                </td>
-                </tr>
-                </table>
-                </figure>
-                </code>
-                </pre>
                 <ul>
                   <li>
                     <p>概率系统的优/缺点</p>
@@ -453,17 +407,14 @@
                   </li>
                 </ul>
                 <h2 id="seq2seq-模型">Seq2Seq 模型</h2>
-                <blockquote>
-                  <p><a href="./NLP-%E5%BA%8F%E5%88%97%E5%BB%BA%E6%A8%A1.md">NLP-序列建模</a></p>
-                </blockquote>
                 <ul>
                   <li>
                     <p>大部分自然语言问题都可以使用 Seq2Seq 模型解决</p>
-                    <div align="center"><img src="../assets/TIM截图20180807210029.png" height="200"></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807210029.png" height="200"></div>
                   </li>
                   <li>
                     <p><strong>“万物”皆 Seq2Seq</strong></p>
-                    <div align="center"><img src="../assets/TIM截图20180807210133.png" height="300"></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807210133.png" height="300"></div>
                   </li>
                 </ul>
                 <h2 id="评价机制">评价机制</h2>
@@ -472,11 +423,7 @@
                   <p><a href="https://en.wikipedia.org/wiki/Perplexity" target="_blank" rel="noopener">Perplexity</a> - Wikipedia</p>
                 </blockquote>
                 <ul>
-                  <li>在信息论中，perplexity 用于度量一个<strong>概率分布</strong>或<strong>概率模型</strong>预测样本的好坏程度
-                    <blockquote>
-                      <p>机器学习/<a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/README.md#%E4%BF%A1%E6%81%AF%E8%AE%BA">信息论</a></p>
-                    </blockquote>
-                  </li>
+                  <li>在信息论中，perplexity 用于度量一个<strong>概率分布</strong>或<strong>概率模型</strong>预测样本的好坏程度</li>
                 </ul>
                 <p>
                 </p>
@@ -485,21 +432,21 @@
                 <ul>
                   <li>
                     <p><strong>概率分布</strong>（离散）的困惑度</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;{\displaystyle&space;2^{H(p)}=2^{-\sum&space;_{x}p(x)\log&space;_{2}p(x)}}" target="_blank" rel="noopener"><img src="../assets/公式_20180728195601.png"></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;{\displaystyle&space;2^{H(p)}=2^{-\sum&space;_{x}p(x)\log&space;_{2}p(x)}}" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180728195601.png"></a></div>
                     <blockquote>
                       <p>其中 <code>H(p)</code> 即<strong>信息熵</strong></p>
                     </blockquote>
                   </li>
                   <li>
                     <p><strong>概率模型</strong>的困惑度</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;{\displaystyle&space;b^{-{\frac&space;{1}{N}}\sum&space;_{i=1}^{N}\log&space;_{b}q(x_{i})}}" target="_blank" rel="noopener"><img src="../assets/公式_20180728201614.png"></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;{\displaystyle&space;b^{-{\frac&space;{1}{N}}\sum&space;_{i=1}^{N}\log&space;_{b}q(x_{i})}}" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180728201614.png"></a></div>
                     <blockquote>
                       <p>通常 <code>b=2</code></p>
                     </blockquote>
                   </li>
                   <li>
                     <p><strong>指数部分</strong>也可以是<strong>交叉熵</strong>的形式，此时困惑度相当于交叉熵的指数形式</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;2^{H(\tilde{p},q)}&space;=&space;2^{-\sum_x\tilde{p}(x)\log_{2}q(x)}" target="_blank" rel="noopener"><img src="../assets/公式_20180728202629.png"></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;2^{H(\tilde{p},q)}&space;=&space;2^{-\sum_x\tilde{p}(x)\log_{2}q(x)}" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180728202629.png"></a></div>
                     <blockquote>
                       <p>其中 <code>p~</code> 为<strong>测试集</strong>中的经验分布——<code>p~(x) = n/N</code>，其中 <code>n</code> 为 x 的出现次数，N 为测试集的大小</p>
                     </blockquote>
@@ -510,7 +457,7 @@
                   <li>
                     <p>在 <strong>NLP</strong> 中，困惑度常作为<strong>语言模型</strong>的评价指标</p>
                     <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;\begin{aligned}&space;\mathrm{PPX}(W_{test})&space;&=2^{-\sum_{i=1}^{|V|}\tilde{p}(w_i)\log_{2}q(w_i)}\\&space;&=2^{-\sum_{i=1}^{|V|}\frac{\mathrm{cnt}(w_i)}{N}\log_{2}q(w_i)}&space;\end{aligned}"
-                        target="_blank" rel="noopener"><img src="../assets/公式_20180728205525.png"></a></div>
+                        target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180728205525.png"></a></div>
                   </li>
                   <li>
                     <p>直观来说，就是下一个<strong>候选词数目</strong>的期望值——</p>
@@ -527,18 +474,18 @@
                   </li>
                   <li>
                     <p>计算公式</p>
-                    <div align="center"><img src="../assets/TIM截图20180728212554.png" height=""></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180728212554.png" height=""></div>
                     <p>其中</p>
-                    <div style="position:relative;left:25%"><img src="../assets/TIM截图20180728215749.png" height=""></div>
-                    <div style="position:relative;left:25%"><img src="../assets/TIM截图20180728212444.png" height=""></div>
-                    <!-- <div style="position:relative;left:25%"><img src="../assets/TIM截图20180728212444.png" height="" /></div> -->
+                    <div style="position:relative;left:25%"><img src="http://www.meng.uno/images/assets/TIM截图20180728215749.png" height=""></div>
+                    <div style="position:relative;left:25%"><img src="http://www.meng.uno/images/assets/TIM截图20180728212444.png" height=""></div>
+                    <!-- <div style="position:relative;left:25%"><img src="http://www.meng.uno/images/assets/TIM截图20180728212444.png" height="" /></div> -->
                     <blockquote>
                       <p><code>c</code> 为生成句子的长度；<code>r</code> 为参考句子的长度——目的是<strong>惩罚</strong>长度过短的候选句子</p>
                     </blockquote>
                   </li>
                   <li>
                     <p>为了计算方便，会加一层 <code>log</code></p>
-                    <div align="center"><img src="../assets/TIM截图20180728213300.png" height=""></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180728213300.png" height=""></div>
                     <blockquote>
                       <p>通常 <code>N=4, w_n=1/4</code></p>
                     </blockquote>
@@ -601,9 +548,9 @@
                 <ul>
                   <li>
                     <p>以上过程可以形式化为：</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(W)=p(w_1^T)=p(w_1,w_2,...,w_T" target="_blank" rel="noopener"><img src="../assets/公式_20180805204149.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(W)=p(w_1^T)=p(w_1,w_2,...,w_T" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180805204149.png" height=""></a></div>
                     <p>根据贝叶斯公式，有</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_1^T)=p(w_1)\cdot&space;p(w_2|w_1)\cdot&space;p(w_3|w_1^2)\cdots&space;p(w_T|w_1^{T-1})" target="_blank" rel="noopener"><img src="../assets/公式_20180805211530.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_1^T)=p(w_1)\cdot&space;p(w_2|w_1)\cdot&space;p(w_3|w_1^2)\cdots&space;p(w_T|w_1^{T-1})" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180805211530.png" height=""></a></div>
                   </li>
                   <li>
                     <p>其中每个条件概率就是<strong>模型的参数</strong>；如果这个参数都是已知的，那么就能得到整个序列的概率了</p>
@@ -626,20 +573,20 @@
                   </li>
                   <li>
                     <p>基于马尔可夫假设，N-gram 语言模型认为一个词出现的概率只与它前面的 n-1 个词相关</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|w_1,..,w_{k-1})\approx&space;p(w_k|w_{k-n&plus;1},..,w_{k-1})" target="_blank" rel="noopener"><img src="../assets/公式_20180805211644.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|w_1,..,w_{k-1})\approx&space;p(w_k|w_{k-n&plus;1},..,w_{k-1})" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180805211644.png" height=""></a></div>
                   </li>
                   <li>
                     <p>根据<strong>条件概率公式</strong>与<strong>大数定律</strong>，当语料的规模足够大时，有</p>
                     <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|w_{k-n&plus;1}^{k-1})=\frac{p(w_{k-n&plus;1}^k)}{p(w_{k-n&plus;1}^{k-1})}\approx&space;\frac{\mathrm{count}(w_{k-n&plus;1}^k)}{\mathrm{count}(w_{k-n&plus;1}^{k-1})}" target="_blank"
-                        rel="noopener"><img src="../assets/公式_20180805211936.png" height=""></a></div>
+                        rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180805211936.png" height=""></a></div>
                   </li>
                   <li>
                     <p>以 <code>n=2</code> 即 bi-gram 为例，有</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|w_{k-1})=\frac{p(w_{k-1},w_k)}{p(w_{k-1})}\approx&space;\frac{\mathrm{count}(w_{k-1},w_k)}{\mathrm{count}(w_{k-1})}" target="_blank" rel="noopener"><img src="../assets/公式_20180805212222.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|w_{k-1})=\frac{p(w_{k-1},w_k)}{p(w_{k-1})}\approx&space;\frac{\mathrm{count}(w_{k-1},w_k)}{\mathrm{count}(w_{k-1})}" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180805212222.png" height=""></a></div>
                   </li>
                   <li>
                     <p>假设词表的规模 <code>N=200000</code>（汉语的词汇量），模型参数与 `n· 的关系表</p>
-                    <div align="center"><img src="../assets/TIM截图20180805212441.png" height=""></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180805212441.png" height=""></div>
                   </li>
                 </ul>
                 <h3 id="可靠性与可区别性">可靠性与可区别性</h3>
@@ -687,7 +634,7 @@
                 <ul>
                   <li>
                     <p>神经概率语言模型依然是一个概率语言模型，它通过<strong>神经网络</strong>来计算概率语言模型中每个参数</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w|{\color{Red}\text{context}(w)})=g(i_w,{\color{Red}V_{context}})" target="_blank" rel="noopener"><img src="../assets/公式_20180806100950.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w|{\color{Red}\text{context}(w)})=g(i_w,{\color{Red}V_{context}})" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180806100950.png" height=""></a></div>
                     <ul>
                       <li>其中 <code>g</code> 表示神经网络，<code>i_w</code> 为 <code>w</code> 在词表中的序号，<code>context(w)</code> 为 <code>w</code> 的上下文，<code>V_context</code> 为上下文构成的特征向量。</li>
                       <li><code>V_context</code> 由上下文的<strong>词向量</strong>进一步组合而成</li>
@@ -698,7 +645,7 @@
                 <ul>
                   <li>
                     <p>这是一个经典的神经概率语言模型，它沿用了 N-gram 模型中的思路，将 <code>w</code> 的前 <code>n-1</code> 个词作为 <code>w</code> 的上下文 <code>context(w)</code>，而 <code>V_context</code> 由这 <code>n-1</code> 个词的词向量拼接而成，即</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|{\color{Red}w_{k-n&plus;1}^{k-1}})=g(i_{w_k},{\color{Red}[c(w_{k-n&plus;1});...;c(w_{k-1})]})" target="_blank" rel="noopener"><img src="../assets/公式_20180806102047.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=p(w_k|{\color{Red}w_{k-n&plus;1}^{k-1}})=g(i_{w_k},{\color{Red}[c(w_{k-n&plus;1});...;c(w_{k-1})]})" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_20180806102047.png" height=""></a></div>
                     <ul>
                       <li>其中 <code>c(w)</code> 表示 <code>w</code> 的词向量</li>
                       <li>不同的神经语言模型中 <code>context(w)</code> 可能不同，比如 Word2Vec 中的 CBOW 模型</li>
@@ -736,9 +683,9 @@
                   </li>
                   <li>
                     <p>整个模型可以概括为如下公式：</p>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=y=U\cdot\tanh(Wx&plus;p)&plus;q" target="_blank" rel="noopener"><img src="../assets/公式_2018080695721.png" height=""></a></div>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=y=U\cdot\tanh(Wx&plus;p)&plus;q" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_2018080695721.png" height=""></a></div>
                     <br>
-                    <div align="center"><img src="../assets/TIM截图20180805234123.png" height="200"></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180805234123.png" height="200"></div>
                   </li>
                 </ul>
                 <blockquote>
@@ -746,12 +693,12 @@
                 </blockquote>
                 <blockquote>
                   <blockquote>
-                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=y=U\cdot\tanh(W_1x&plus;p)&plus;W_2x&plus;q" target="_blank" rel="noopener"><img src="../assets/公式_2018080695819.png" height=""></a></div><br>
+                    <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=y=U\cdot\tanh(W_1x&plus;p)&plus;W_2x&plus;q" target="_blank" rel="noopener"><img src="http://www.meng.uno/images/assets/公式_2018080695819.png" height=""></a></div><br>
                   </blockquote>
                 </blockquote>
                 <blockquote>
                   <blockquote>
-                    <div align="center"><img src="../assets/TIM截图20180805231056.png" height=""></div>
+                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180805231056.png" height=""></div>
                   </blockquote>
                 </blockquote>
                 <h3 id="模型参数的规模与运算量">模型参数的规模与运算量</h3>
