@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.meng.uno/"/>
-  <updated>2018-10-02T03:04:39.000Z</updated>
+  <updated>2018-10-27T12:54:04.000Z</updated>
   <id>http://www.meng.uno/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FastSP: linear time calculation of alignment accuracy</title>
+    <link href="http://www.meng.uno/articles/bd4539a2/"/>
+    <id>http://www.meng.uno/articles/bd4539a2/</id>
+    <published>2018-10-27T12:31:08.000Z</published>
+    <updated>2018-10-27T12:54:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1>A General Observation</h1><p><img src="http://www.meng.uno/images/fastsp/1.jpg" alt="Observation"></p><p>From the result, we could see that:</p><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>      </td>      <td class="code">        <pre><span class="line">SP-Score: 19/26 = 0.7307…</span><br><span class="line">Modeler: 19/27 = 0.7037…</span><br><span class="line">SP-FN: (26 - 19)/26 = 0.2692….</span><br><span class="line">SP-FP: (27 - 19)/27 = 0.2962….</span><br><span class="line">TC: 3/8 = 0.375</span><br></pre>      </td>    </tr>  </table></figure><h1>Approach</h1><p>From the last section, we know our propose is to calculate:</p><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>      </td>      <td class="code">        <pre><span class="line">1. Number of shared homologies.</span><br><span class="line">2. Number of homologies in the reference alignment.</span><br><span class="line">3. Number of homologies in the estimated alignment.</span><br><span class="line">4. Number of correctly aligned columns.</span><br><span class="line">5. Number of aligned columns in the reference alignment.</span><br></pre>      </td>    </tr>  </table></figure><p>At the same time, we have a general thinking which is:</p><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>      </td>      <td class="code">        <pre><span class="line">2,3 —&gt; 1</span><br><span class="line">5 is the easiest</span><br><span class="line">1 — &gt; 4</span><br><span class="line">``` </span><br><span class="line"> </span><br><span class="line">First of all, it gives these definitions:</span><br></pre>      </td>    </tr>  </table></figure><p>Si represent the i-th sequence in the alignment. Ai represent the i-th alignment. Ni,j represent the j-th site in Si.</p><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>      </td>      <td class="code">        <pre><span class="line"></span><br><span class="line">I will give you an example:</span><br><span class="line"></span><br><span class="line">![Example](http://www.meng.uno/images/fastsp/2.jpg)</span><br><span class="line"></span><br><span class="line">Then, we could know these (Explaining an example):</span><br><span class="line"></span><br><span class="line">![Approach](http://www.meng.uno/images/fastsp/3.jpg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Algorithm</span><br><span class="line">This section is for programming.</span><br><span class="line"></span><br><span class="line">Let&apos;s look at some difinitions first:</span><br></pre>      </td>    </tr>  </table></figure><p>n represent the number of sequences in the alignment. k represent the biggest length of sequences in the alignment. S[i,j] represent a n•k matrix which equals (a, b) means Ni,j appears in site a for the reference alignment and in site b for the estimated  alignment. bx represent the number of non-gapped entries in the x-th site. mi represent the number of elements in the i-th equivalence class. Nx represent the number of homologies in the estimated alignment that are shared with the x-th site in the  reference alignment.<br> hi represent the number of homologous pairs in alignment Ai.</p><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre>      </td>      <td class="code">        <pre><span class="line">Explaining them by this example:</span><br><span class="line"></span><br><span class="line">![Example](http://www.meng.uno/images/fastsp/4.jpg)</span><br><span class="line"></span><br><span class="line">The pseudo code is like this:</span><br><span class="line"></span><br><span class="line">![Pseudo Code](http://www.meng.uno/images/fastsp/5.jpg)</span><br><span class="line"></span><br><span class="line">Make a mapping:</span><br><span class="line"></span><br><span class="line">![Mapping](http://www.meng.uno/images/fastsp/6.jpg)</span><br><span class="line"></span><br><span class="line">The result could be:</span><br></pre>      </td>    </tr>  </table></figure><p>SP-Score: N/h1 Modeler: N/h2 TC: cor_num/k</p><pre><code># EvaluationCalculating the matrix S: `O(nk)`Calculating combination number: `O(1)`Calculating each Nx: `O(n)`As for the FOR loop: `O(nk)`**So:**The time complexity is `O(n•k)`.The space complexity is `O(n•k)`.Comparing to the other programs:![evaluation](http://www.meng.uno/images/fastsp/7.jpg)&lt;br&gt;&lt;br&gt;本文链接： [http://www.meng.uno/articles/undefined/](http://www.meng.uno/articles/undefined/) 欢迎转载！</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      A General Observation
+
+
+From the result, we could see that:
+
+1
+2
+3
+4
+5
+
+
+SP-Score: 19/26 = 0.7307…
+Modeler: 19/27 = 0.7037…
+SP-FN: (26 - 19)/26 = 0.2692….
+SP-FP: (27 - 19)/27 = 0.2962….
+TC: 3/8 = 0.375
+
+
+Approach
+From the last section, we know our propose is to calculate:
+
+1
+2
+3
+4
+5
+
+
+1. Number of s
+    
+    </summary>
+    
+      <category term="Bioinformatics" scheme="http://www.meng.uno/categories/Bioinformatics/"/>
+    
+    
+      <category term="MSA" scheme="http://www.meng.uno/tags/MSA/"/>
+    
+      <category term="Bioinformatics" scheme="http://www.meng.uno/tags/Bioinformatics/"/>
+    
+      <category term="Accuracy" scheme="http://www.meng.uno/tags/Accuracy/"/>
+    
+  </entry>
   
   <entry>
     <title>Implementation details of TensorFlow</title>
@@ -42,9 +97,9 @@
     
       <category term="AI" scheme="http://www.meng.uno/tags/AI/"/>
     
-      <category term="Deep Learning" scheme="http://www.meng.uno/tags/Deep-Learning/"/>
-    
       <category term="TensorFlow" scheme="http://www.meng.uno/tags/TensorFlow/"/>
+    
+      <category term="Deep Learning" scheme="http://www.meng.uno/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -757,38 +812,6 @@ The Profile of the Project
       <category term="Genome" scheme="http://www.meng.uno/tags/Genome/"/>
     
       <category term="ENCODE" scheme="http://www.meng.uno/tags/ENCODE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于比特币（Bitcoin）</title>
-    <link href="http://www.meng.uno/articles/7bfe1542/"/>
-    <id>http://www.meng.uno/articles/7bfe1542/</id>
-    <published>2018-02-14T11:47:44.000Z</published>
-    <updated>2018-02-14T12:14:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1>比特币术语</h1><h2 id="比特币">比特币</h2><p>首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内容。”</p><p>而没有大写的bitcoin则表示一个记账单位。例如：“我今天转出了10个bitcoin。”该单位通常也简写为BTC或XBT。</p><h2 id="比特币地址">比特币地址</h2><p>比特币地址就像一个物理地址或者电子邮件地址。这是别人付给你比特币时你唯一需要提供的信息。然而一个重要的区别是，每个地址应该只用于单笔交易。</p><h2 id="对等式网络">对等式网络</h2><p>对等式网络是指，通过允许单个节点与其他节点直接交互，从而实现整个系统像有组织的集体一样运作的系统 。对于比特币来说，比特币网络以这样一种方式构建——每个用户都在传播其他用户的交易。而且重要的是，不需要银行作为第三方。</p><h2 id="哈希率">哈希率</h2><p>哈希率是衡量比特币网络处理能力的测量单位。为保证安全，比特币网络必须进行大量的数学运算。当网络达到10Th/秒的哈希率时，就意味着它能够进行每秒10万亿次的计算。</p><h2 id="交易确认">交易确认</h2><p>交易确认意味着一笔交易已经被网络处理且不太可能被撤销。当交易被包含进一个块时会收到一个确认，后续的每一个块都对应一个确认。对于小金额交易单个确认便可视为安全，然而对于比如1000美元的大金额交易，等待6个以上的确认比较合理。每一个确认都成指数级地降低交易撤销的风险。</p><h2 id="块链">块链</h2><p>块链是一个按时间顺序排列的比特币交易公共记录。块链由所有比特币用户共享。它被用来验证比特币交易的永久性并防止双重消费。</p><h2 id="密码学">密码学</h2><p>密码学是数学的一个分支，它让我们创造出可以提供很高安全性的数学证明。电子商务和网上银行也用到了密码学。对于比特币来说，密码学用来保证任何人都不可能使用他人钱包里的资金，或者破坏块链。密码学也用来给钱包加密，这样没有密码就用不了钱包。</p><h2 id="签名">签名</h2><p>密码学签名是一个让人可以证明所有权的数学机制。对于比特币来说，一个比特币钱包和它的私钥通过一些数学魔法关联到一起。当你的比特币软件用对应的私钥为一笔交易签名，整个网络都能知道这个签名和已花费的比特币相匹配。但是，世界上没有人可以猜到你的私钥来窃取你辛苦赚来的比特币。</p><h2 id="钱包">钱包</h2><p>比特币钱包大致实体钱包在比特币网络中的等同物。钱包中实际上包含了你的私钥，可以让你消费块链中分配给钱包的比特币。和真正的钱包一样，每个比特币钱包都可以显示它所控制的所有比特币的总余额，并允许你将一定金额的比特币付给某人。这与商家进行扣款的信用卡不同。</p><h2 id="区块">区块</h2><p>一个块是块链中的一条记录，包含并确认待处理的交易。平均约每10分钟就有一个包含交易的新块通过挖矿的方式添加到块链中。</p><h2 id="双重消费">双重消费</h2><p>如果一个不怀好意的用户试图将比特币同时支付给两个不同的收款人，就被称为双重消费。比特币挖矿和块链将就两比交易中那笔获得确认并被视为有效在网络上达成一致。</p><h2 id="私钥">私钥</h2><p>私钥是一个证明你有权从一个特定的钱包消费比特币的保密数据块，是通过一个密码学签名来实现的 。如果你使用的是钱包软件，你的私钥就存储在你的计算机内；如果使用的是在线钱包，你的私钥就存储在远程服务器上。千万不能泄露私钥，因为它们可以让你消费对应比特币钱包里的比特币。</p><h2 id="挖矿">挖矿</h2><p>比特币挖矿是利用计算机硬件为比特币网络做数学计算进行交易确认和提高安全性的过程。作为对他们服务的奖励，矿工可以得到他们所确认的交易中包含的手续费，以及新创建的比特币。挖矿是一个专业的、竞争激烈的市场，奖金按照完成的计算量分割。并非所有的比特币用户都挖矿，挖矿赚钱也并不容易。</p><h2 id="bit">Bit</h2><p>Bit是标明一个比特币的次级单位的常用单位 -1,000,000 bit 等于1 比特币 (BTC 或 B⃦).，这个单位对于标示小费、商品和服务价格更方便。</p><h2 id="btc">BTC</h2><p>BTC 是用于标示一个比特币 (B⃦). 的常用单位。</p><h1>比特币账户</h1><p>我们可以在<code>bitcoin.org</code>上选择自己的钱包。我在这里向大家展示使用一个浏览器插件<code>GreenAddress</code>，下载链接是：<code>https://chrome.google.com/webstore/detail/greenaddress/dgbimgjoijjemhdamicmljbncacfndmp/related</code></p><h2 id="注册">注册</h2><p>打开安装好的<code>GreenAddress</code>，没有账户点击右上角，开始注册。</p><p><img src="http://www.meng.uno/images/bitcoins/1.jpg" alt="BITCOIN"></p><p><strong>打码的位置请保存下来，应该需要用它来登录</strong></p><p>接着是验证你保存没保存（想的还很周到）。</p><p>再就是添加两步验证，这个比较常见了，我只选了“邮件”验证，推荐是选两个，要不然总是有warning。</p><p><img src="http://www.meng.uno/images/bitcoins/2.jpg" alt="BITCOIN"></p><h2 id="使用">使用</h2><p>接着就进入主界面了，有很多配置需要大家自己去查看，主界面显示了你的“Bitcoin URI”，分享这个，别人就可以向你转钱了，应该。</p><p><img src="http://www.meng.uno/images/bitcoins/3.jpg" alt="BITCOIN"></p><p><strong>最后强调一下，我的比特币地址是：3CEzyZnpij4WnrAsHhhcaoD1Kf5JqSAEGj</strong></p><p><br><br>本文链接： <a href="http://www.meng.uno/articles/7bfe1542/">http://www.meng.uno/articles/7bfe1542/</a> 欢迎转载！</p>]]></content>
-    
-    <summary type="html">
-    
-      比特币术语
-比特币
-首字母大写的Bitcoin用来表示比特币的概念或整个比特币网络本身。例如：“今天我学了些有关Bitcoin协议的内容。”
-
-而没有大写的bitcoin则表示一个记账单位。例如：“我今天转出了10个bitcoin。”该单位通常也简写为BTC或XBT。
-
-比特币地址
-比特币地址就像一个物理地址或者电子邮件地址。这是别人付给你比特币时你唯一需要提供的信息。然而一个重要的区别是，每个地址应该只用于单笔交易。
-
-对等式网络
-对等式网络是指，通过允许单个节点与其他节点直接交互，从而实现整个系统像有组织的集体一样运作的系统 。对于比特币来说，比特币网络以这样一种方式构建——每个用户都在传
-    
-    </summary>
-    
-    
-      <category term="比特币" scheme="http://www.meng.uno/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
-    
-      <category term="Bitcoin" scheme="http://www.meng.uno/tags/Bitcoin/"/>
     
   </entry>
   
