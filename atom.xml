@@ -97,9 +97,9 @@ From the last section, we know our propose is to calculate:
     
       <category term="AI" scheme="http://www.meng.uno/tags/AI/"/>
     
-      <category term="Deep Learning" scheme="http://www.meng.uno/tags/Deep-Learning/"/>
-    
       <category term="TensorFlow" scheme="http://www.meng.uno/tags/TensorFlow/"/>
+    
+      <category term="Deep Learning" scheme="http://www.meng.uno/tags/Deep-Learning/"/>
     
   </entry>
   
