@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>欢迎来到匡盟盟的博客！</title>
   
-  <subtitle>Colyn 崛起正当时！</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.meng.uno/"/>
@@ -10,7 +10,7 @@
   <id>http://www.meng.uno/</id>
   
   <author>
-    <name>匡盟盟</name>
+    <name>匡盟盟, Mengmeng Kuang</name>
     
   </author>
   
