@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.meng.uno/"/>
-  <updated>2019-04-10T11:35:40.000Z</updated>
+  <updated>2019-04-10T11:39:30.000Z</updated>
   <id>http://www.meng.uno/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.meng.uno/articles/5b828fc2/"/>
     <id>http://www.meng.uno/articles/5b828fc2/</id>
     <published>2019-04-10T06:36:02.000Z</published>
-    <updated>2019-04-10T11:35:40.000Z</updated>
+    <updated>2019-04-10T11:39:30.000Z</updated>
     
-    <content type="html"><![CDATA[<p>##基础</p><h3 id="神经网络">神经网络</h3><p><img src="../images/code/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.png" alt="神经网络">  <img src="../images/code/%E7%BD%91%E7%BB%9C.png" alt="网络"></p><h3 id="线性代数">线性代数</h3><p><img src="../images/code/liner.png" alt="linear"></p><h3 id="python基础">Python基础</h3><p><img src="../images/code/sci.png" alt="sci"></p><h3 id="scipy科学计算">scipy科学计算</h3><p><img src="../images/code/scipy.png" alt="scipy"></p><h3 id="spark">Spark</h3><p><img src="../images/code/spark.jpeg" alt="spark"></p><h2 id="数据保存及可视化">数据保存及可视化</h2><h3 id="numpy">numpy</h3><p><img src="../images/code/np.png" alt="np"></p><h3 id="pandas">pandas</h3><p><img src="../images/code/pd.png" alt="pd"></p><h3 id="bokeh">bokeh</h3><p><img src="../images/code/bokeh.png" alt="bokeh"></p><h2 id="画图">画图</h2><h3 id="matplotlib">matplotlib</h3><p><img src="../images/code/matplot.png" alt="matplot"></p><h3 id="ggplot">ggplot</h3><p><img src="../images/code/datavis.jpeg" alt="data vis">  <img src="../images/code/gg.jpeg" alt="ggplot"></p><h2 id="机器学习">机器学习</h2><h3 id="sk-learn">sk-learn</h3><p><img src="../images/code/sk.png" alt="sk">  <img src="../images/code/scikit.png" alt="scikit"></p><h3 id="keras">Keras</h3><p><img src="../images/code/keras.jpeg" alt="keras"></p><h3 id="tensorflow">TensorFlow</h3><p><img src="../images/code/TF.png" alt="TF"></p><h2 id="算法">算法</h2><h3 id="数据结构">数据结构</h3><p><img src="../images/code/datastruct.png" alt="datastruct"></p><h3 id="复杂度">复杂度</h3><p><img src="../images/code/O().png" alt="O()"></p><h3 id="排序算法">排序算法</h3><p><img src="../images/code/sort.png" alt="sort"></p><p><br><br>本文链接： <a href="http://www.meng.uno/articles/undefined/">http://www.meng.uno/articles/undefined/</a> 欢迎转载！</p>]]></content>
+    <content type="html"><![CDATA[<p>##基础</p><h3 id="神经网络">神经网络</h3><p><img src="http://www.meng.uno/images/code/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.png" alt="神经网络">  <img src="http://www.meng.uno/images/code/%E7%BD%91%E7%BB%9C.png" alt="网络"></p><h3 id="线性代数">线性代数</h3><p><img src="http://www.meng.uno/images/code/liner.png" alt="linear"></p><h3 id="python基础">Python基础</h3><p><img src="http://www.meng.uno/images/code/sci.png" alt="sci"></p><h3 id="scipy科学计算">scipy科学计算</h3><p><img src="http://www.meng.uno/images/code/scipy.png" alt="scipy"></p><h3 id="spark">Spark</h3><p><img src="http://www.meng.uno/images/code/spark.jpeg" alt="spark"></p><h2 id="数据保存及可视化">数据保存及可视化</h2><h3 id="numpy">numpy</h3><p><img src="http://www.meng.uno/images/code/np.png" alt="np"></p><h3 id="pandas">pandas</h3><p><img src="http://www.meng.uno/images/code/pd.png" alt="pd"></p><h3 id="bokeh">bokeh</h3><p><img src="http://www.meng.uno/images/code/bokeh.png" alt="bokeh"></p><h2 id="画图">画图</h2><h3 id="matplotlib">matplotlib</h3><p><img src="http://www.meng.uno/images/code/matplot.png" alt="matplot"></p><h3 id="ggplot">ggplot</h3><p><img src="http://www.meng.uno/images/code/datavis.jpeg" alt="data vis">  <img src="http://www.meng.uno/images/code/gg.jpeg" alt="ggplot"></p><h2 id="机器学习">机器学习</h2><h3 id="sk-learn">sk-learn</h3><p><img src="http://www.meng.uno/images/code/sk.png" alt="sk">  <img src="http://www.meng.uno/images/code/scikit.png" alt="scikit"></p><h3 id="keras">Keras</h3><p><img src="http://www.meng.uno/images/code/keras.jpeg" alt="keras"></p><h3 id="tensorflow">TensorFlow</h3><p><img src="http://www.meng.uno/images/code/TF.png" alt="TF"></p><h2 id="算法">算法</h2><h3 id="数据结构">数据结构</h3><p><img src="http://www.meng.uno/images/code/datastruct.png" alt="datastruct"></p><h3 id="复杂度">复杂度</h3><p><img src="http://www.meng.uno/images/code/O().png" alt="O()"></p><h3 id="排序算法">排序算法</h3><p><img src="http://www.meng.uno/images/code/sort.png" alt="sort"></p><p><br><br>本文链接： <a href="http://www.meng.uno/articles/5b828fc2/">http://www.meng.uno/articles/5b828fc2/</a> 欢迎转载！</p>]]></content>
     
     <summary type="html">
     
@@ -83,7 +83,7 @@ TensorFlow
 
 
 
-本文链接： http://www.meng.uno/articles/undefined/ 欢迎转载！
+本文链接： http://www.meng.uno/articles/5b828fc2/ 欢迎转载！
     
     </summary>
     
