@@ -173,11 +173,11 @@
     Ra = A.jQuery,
     Sa = A.$,
     s = A.document,
-    T, Ta = /^[^<]*(<[\w\w]+>)[^>]*$|^#([\w-]+)$/,
+    T, Ta = /^[^<]*(<[\w\W]+>)[^>]*$|^#([\w-]+)$/,
     Ua = /^.[^:#\[\.,]*$/,
     Va = /\S/,
     Wa = /^(\s|\u00A0)+|(\s|\u00A0)+$/g,
-    Xa = /^<(\w+)\s*\ ?="">(?:<\ \1="">)?$/,
+    Xa = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,
     P = navigator.userAgent,
     xa = false,
     Q = [],
@@ -519,7 +519,7 @@
       d = s.createElement("div"),
       f = "script" + J();
     d.style.display = "none";
-    d.innerHTML = "   <link><table></table><a href="/a" style="color:red;float:left;opacity:.55;">a</a><input type="checkbox">";
+    d.innerHTML = "   <link/><table></table><a href='/a' style='color:red;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
     var e = d.getElementsByTagName("*"),
       j = d.getElementsByTagName("a")[0];
     if (!(!e || !e.length || !j)) {
@@ -564,7 +564,7 @@
         d.cloneNode(true).fireEvent("onclick")
       }
       d = s.createElement("div");
-      d.innerHTML = "<input type="radio" name="radiotest" checked="checked">";
+      d.innerHTML = "<input type='radio' name='radiotest' checked='checked'/>";
       a = s.createDocumentFragment();
       a.appendChild(d.firstChild);
       c.support.checkClone = a.cloneNode(true).cloneNode(true).lastChild.checked;
@@ -2027,7 +2027,7 @@
     (function() {
       var g = s.createElement("div"),
         h = "script" + (new Date).getTime();
-      g.innerHTML = "<a name="" + h + "">";
+      g.innerHTML = "<a name='" + h + "'/>";
       var l = s.documentElement;
       l.insertBefore(g, l.firstChild);
       if (s.getElementById(h)) {
@@ -2055,7 +2055,7 @@
         }
         return l
       };
-      g.innerHTML = "<a href="#"></a>";
+      g.innerHTML = "<a href='#'></a>";
       if (g.firstChild && typeof g.firstChild.getAttribute !== "undefined" && g.firstChild.getAttribute("href") !== "#") n.attrHandle.href = function(h) {
         return h.getAttribute("href", 2)
       };
@@ -2064,7 +2064,7 @@
     s.querySelectorAll && function() {
       var g = k,
         h = s.createElement("div");
-      h.innerHTML = "<p class="TEST"></p>";
+      h.innerHTML = "<p class='TEST'></p>";
       if (!(h.querySelectorAll && h.querySelectorAll(".TEST").length === 0)) {
         k = function(m, q, p, v) {
           q = q || s;
@@ -2079,7 +2079,7 @@
     }();
     (function() {
       var g = s.createElement("div");
-      g.innerHTML = "<div class="test e"></div><div class="test"></div>";
+      g.innerHTML = "<div class='test e'></div><div class='test'></div>";
       if (!(!g.getElementsByClassName || g.getElementsByClassName("e").length === 0)) {
         g.lastChild.className = "e";
         if (g.getElementsByClassName("e").length !== 1) {
@@ -2303,10 +2303,17 @@
     V = /^\s+/,
     Ka = /(<([\w:]+)[^>]*?)\/>/g,
     hb = /^(?:area|br|col|embed|hr|img|input|link|meta|param)$/i,
-    La = /<([\w:]+) ,="" ib="/<tbody/i," jb="/<|&#?\w+;/," ta="/<script|<object|<embed|<option|<style/i," ua="/checked\s*(?:[^=]|=\s*.checked.)/i," ma="function(a," b,="" d)="" {="" return="" hb.test(d)="" ?="" a="" :="" b="" +="" "="">"
+    La = /<([\w:]+)/,
+    ib = /<tbody/i,
+    jb = /<|&#?\w+;/,
+    ta = /<script|<object|<embed|<option|<style/i,
+    ua = /checked\s*(?:[^=]|=\s*.checked.)/i,
+    Ma = function(a, b, d) {
+      return hb.test(d) ?
+        a : b + "></" + d + ">"
     },
     F = {
-      option: [1, "<select multiple="multiple">", "</select>"],
+      option: [1, "<select multiple='multiple'>", "</select>"],
       legend: [1, "<fieldset>", "</fieldset>"],
       thead: [1, "<table>", "</table>"],
       tr: [2, "<table><tbody>", "</tbody></table>"],
@@ -2706,7 +2713,7 @@
     }
   }
   var sb = J(),
-    tb = /<script(.|\s)*?\ script="">/gi,
+    tb = /<script(.|\s)*?\/script>/gi,
     ub = /select|textarea/i,
     vb = /color|date|datetime|email|hidden|month|number|password|range|search|tel|text|time|url|week/i,
     N = /=\?(&|$)/,
@@ -2741,7 +2748,7 @@
         dataType: "html",
         data: b,
         complete: function(i, o) {
-          if (o === "success" || o === "notmodified") j.html(e ? c("<div>").append(i.responseText.replace(tb, "")).find(e) : i.responseText);
+          if (o === "success" || o === "notmodified") j.html(e ? c("<div />").append(i.responseText.replace(tb, "")).find(e) : i.responseText);
           d && j.each(d, [i.responseText, o, i])
         }
       });
@@ -3051,7 +3058,7 @@
             var f;
             if (la[d]) f = la[d];
             else {
-              var e = c("<" +="" d="" "="">").appendTo("body");
+              var e = c("<" + d + " />").appendTo("body");
               f = e.css("display");
               if (f === "none") f = "block";
               e.remove();
@@ -3388,7 +3395,7 @@
         height: "1px",
         visibility: "hidden"
       });
-      b.innerHTML = "<div style="position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;"><div></div></div><table style="position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;" cellpadding="0" cellspacing="0"><tr><td></td></tr></table>";
+      b.innerHTML = "<div style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;'><div></div></div><table style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>";
       a.insertBefore(b, a.firstChild);
       d = b.firstChild;
       f = d.firstChild;
@@ -3495,4 +3502,4 @@
     }
   });
   A.jQuery = A.$ = c
-})(window);</"></div></script(.|\s)*?\></table></([\w:]+)></([\w:]+)[^></a></\></(\w+)\s*\></]*(<[\w\w]+>
+})(window);

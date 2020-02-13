@@ -71,7 +71,8 @@ function startHeartAnimation() {
       d.html("");
       var e = setInterval(function() {
         var f = c.substr(b, 1);
-        if (f == "<") {="" b="c.indexOf("">", b) + 1
+        if (f == "<") {
+          b = c.indexOf(">", b) + 1
         } else {
           b++
         }
@@ -126,4 +127,4 @@ function adjustCodePosition() {
 
 function showLoveU() {
   $("#loveu").fadeIn(3000)
-};</")>
+};
