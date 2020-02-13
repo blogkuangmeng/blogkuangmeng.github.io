@@ -340,11 +340,11 @@ RNN/LSTM 本身的问题(3)
       <category term="DeepLearning" scheme="http://www.meng.uno/categories/DeepLearning/"/>
     
     
+      <category term="AI" scheme="http://www.meng.uno/tags/AI/"/>
+    
       <category term="CNN" scheme="http://www.meng.uno/tags/CNN/"/>
     
       <category term="深度学习" scheme="http://www.meng.uno/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="AI" scheme="http://www.meng.uno/tags/AI/"/>
     
   </entry>
   
@@ -436,9 +436,9 @@ alter user scott identified by tiger;
       <category term="DeepLearning" scheme="http://www.meng.uno/categories/DeepLearning/"/>
     
     
-      <category term="深度学习" scheme="http://www.meng.uno/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="AI" scheme="http://www.meng.uno/tags/AI/"/>
+    
+      <category term="深度学习" scheme="http://www.meng.uno/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
