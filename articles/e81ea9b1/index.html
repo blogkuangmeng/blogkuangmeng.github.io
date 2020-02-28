@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:updated_time" content="2019-03-20T13:24:29.000Z">
+  <meta property="og:updated_time" content="2020-02-28T13:37:02.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux中的Namespace">
   <meta name="twitter:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
@@ -287,8 +287,8 @@
                 <h1>IPC namespaces</h1>
                 <p>IPC namespaces(CLONE_NEWIPC)隔离inter-process communication resources，也即跨进程的通讯资源，System V IPC，以及POSIX message queues。这些IPC机制的共性时，IPC objects是由特殊机制来进行识别的，而不是文件系统的路径。在每个namespaces当中，又有其自身所拥有的System V IPC标识符和POSIX message queue filesystem。</p>
                 <h1>PID namespaces</h1>
-                <p>PID namespaces(CLONE_NEWPID)隔离进程ID空间，也就是说，不同PID命名空间的进程，可以拥有相同的PID。这样做的一个好处是，容器能够在不同的hosts之间转移，但是又能够保持其中的进程ID不变。而且PID namespace能够允许每个容器拥有自己的init(pid 1)，对初始化、孤儿进程等事件进行处理。<br> 从一个PID namespace的角度来看，一个进程拥有两个PID：namespace内部的PID，以及namespace外部的，host上的PID。PID
-                  namespaces也是可以层叠的，从进程所归属的PID命名空间开始，一直到根PID namespace，它都有一个PID；一个进程只能看到处于它所在PID namespace当中的，以及更下层的其他进程。</p>
+                <p>PID namespaces(CLONE_NEWPID)隔离进程ID空间，也就是说，不同PID命名空间的进程，可以拥有相同的PID。这样做的一个好处是，容器能够在不同的hosts之间转移，但是又能够保持其中的进程ID不变。而且PID namespace能够允许每个容器拥有自己的init(pid 1)，对初始化、孤儿进程等事件进行处理。</p>
+                <p>从一个PID namespace的角度来看，一个进程拥有两个PID：namespace内部的PID，以及namespace外部的，host上的PID。PID namespaces也是可以层叠的，从进程所归属的PID命名空间开始，一直到根PID namespace，它都有一个PID；一个进程只能看到处于它所在PID namespace当中的，以及更下层的其他进程。</p>
                 <h2 id="userspace-api">Userspace API</h2>
                 <p>为了创建一个新的namespace，进程需要调用clone系统调用，并且使用CLONE_NEWPID标识位。<br> 在一个新的namespace当中，第一个task的PID是1，它也就是这个namespace的init，以及child_reaper。但这个init是可以死亡的，此时这个namespace都会终止。
                   <br> 在把tasks分割出来之后，还必须对proc进行处理，让它只显示当前task可见的PID。为了实现这个目的，procfs应该在每个namespace被使用一次。
@@ -315,11 +315,11 @@ struct upid numbers[0];
                   <br> __nr()：对“全局”的PID进行操作，这里全局指的是在整个系统中也是独一无二的。pid_nr会告诉你struct pid的global PID，这只在PID值不会离开kernel时使用。<br> __vnr()：对“virtual”PID进行操作，也就是进程可见的ID，例如task_pid_vnr会告诉你一个task的PID。
                   <br> _nr_ns()：对指定namespace中的PID进行处理，如果希望得到某个task的PID，可以通过task_pid_nr_ns来获得pid number，在用find_task_by_pid_ns来找到这个task。这个方法在系统调用中很常见，特别是当PID来自用户空间时。在这种情况下，task可能是在另一个namespace中的。</p>
                 <h1>network namespaces</h1>
-                <p>network namespaces(CLONE_NEWNET)将系统中与网络相关的资源隔离。也就是说，每个namespace当中拥有自身的网络设备、IP地址、IP路由表，端口号等。<br> network namespaces让containers能够被应用到网络的层面上。每个container能够拥有自身的网络设备、并且其应用能够被绑定到namespace中特有的端口号上，对于特定的container，还可以设置特殊的路由规则。例如，可以在同一个host系统上，运行多个用container包含的servers，并且它们都绑定了80端口。</p>
+                <p>network namespaces(CLONE_NEWNET)将系统中与网络相关的资源隔离。也就是说，每个namespace当中拥有自身的网络设备、IP地址、IP路由表，端口号等。</p>
+                <p>network namespaces让containers能够被应用到网络的层面上。每个container能够拥有自身的网络设备、并且其应用能够被绑定到namespace中特有的端口号上，对于特定的container，还可以设置特殊的路由规则。例如，可以在同一个host系统上，运行多个用container包含的servers，并且它们都绑定了80端口。</p>
                 <h1>User namespaces</h1>
-                <p>user namespaces(CLONE_NEWUSER)将用户和group ID空间隔离。这也就是说，在一个user namespace内外，同一个进程点user和group id可以是不同的。例如，一个进程可以在一个user namespace外部，拥有一个普通的、无特权的user ID；而在在namespace中拥有UID 0。也就是说在namespace当中拥有root权限，但在namespace外部则不行。<br> 从Linux 3.8开始，无特权的进程能够创建它们自身的user
-                  namespaces，这为应用提供了新的可能：由于一个进程能够在其user namespaces中拥有root权限，那么它们就能够去使用那些本身只能由root用户使用的功能。但这确实会带来一些安全问题。
-                </p>
+                <p>user namespaces(CLONE_NEWUSER)将用户和group ID空间隔离。这也就是说，在一个user namespace内外，同一个进程点user和group id可以是不同的。例如，一个进程可以在一个user namespace外部，拥有一个普通的、无特权的user ID；而在在namespace中拥有UID 0。也就是说在namespace当中拥有root权限，但在namespace外部则不行。</p>
+                <p>从Linux 3.8开始，无特权的进程能够创建它们自身的user namespaces，这为应用提供了新的可能：由于一个进程能够在其user namespaces中拥有root权限，那么它们就能够去使用那些本身只能由root用户使用的功能。但这确实会带来一些安全问题。</p>
                 <h1>C++中的namespace</h1>
                 <p>编程语言中的namespace，虽然拥有相同的名称，其含义是完全不同的。但主要的思想是一致的，这里的命名空间也就是将空间内定义的内容放在一个盒子里，而命名空间也就是这个区域，using namespace 空间名，就将区域引入到了操作范围之内。<br> 这里，namespace是一种描述逻辑分组的机制，比如可以将某些属于同一个任务的类声明在同一个命名空间当中。标准C++库当中的所有内容，都被定义在命名空间std当中了。
                 </p>
@@ -329,9 +329,8 @@ struct upid numbers[0];
                 <p>通过clone，可以创建一个namespace，它是一个创建新的process的系统调用。其函数原型为：</p>
                 <pre><code>int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);
 </code></pre>
-                <p>clone可以看作fork()的通用版本，其功能能够通过flags参数CLONE_*来控制，这些参数包含了parent和child是否共享虚拟内存、打开文件描述符等。而如果参数中CLONE_NEW位被指定了，那么就会创建一个新的，对应类型的namespace，而新的进程则成为这个namespace中的一个成员。<br> 和大多数其他的namespaces一样，创建一个UTS namespace是需要特权的，例如CAP_SYS_ADMIN，这对于避免需要设置user
-                  ID的应用来说是有必要的：如果能够使用任意的hostname，那么一个非特权用户就能够破坏lock file的作用，或者能够改变应用的行为。
-                </p>
+                <p>clone可以看作fork()的通用版本，其功能能够通过flags参数CLONE_*来控制，这些参数包含了parent和child是否共享虚拟内存、打开文件描述符等。而如果参数中CLONE_NEW位被指定了，那么就会创建一个新的，对应类型的namespace，而新的进程则成为这个namespace中的一个成员。</p>
+                <p>和大多数其他的namespaces一样，创建一个UTS namespace是需要特权的，例如CAP_SYS_ADMIN，这对于避免需要设置user ID的应用来说是有必要的：如果能够使用任意的hostname，那么一个非特权用户就能够破坏lock file的作用，或者能够改变应用的行为。</p>
                 <h2 id="proc-里的文件">/proc/里的文件</h2>
                 <p>对于每一个进程来说，都有一个/proc/PID/ns目录，这其中每一种类型的namespace，都对应了一个文件。从linux 3.9开始，这些文件都被符号链接，作为处理这个进程相关namespace的handler。</p>
                 <pre><code>$ ls -l /proc/$$/ns         # $$ is replaced by shell's PID
@@ -343,7 +342,8 @@ lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 pid -&gt; pid:[4026531836]
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 user -&gt; user:[4026531837]
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 uts -&gt; uts:[4026531838]
 </code></pre>
-                <p>这些符号链接的作用之一，就是用来检查两个进程是否处于同一个命名空间当中。kernel保证如果两个进程在同一个namespace当中，那么/proc/PID/ns中的inode number就会是一致的。inode numbers能够通过stat()系统调用来得到。<br> 但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。 如果这个符号链接被打开，那么即使namespace中的进程全部终止了，namespace也不会消被清除。
+                <p>这些符号链接的作用之一，就是用来检查两个进程是否处于同一个命名空间当中。kernel保证如果两个进程在同一个namespace当中，那么/proc/PID/ns中的inode number就会是一致的。inode numbers能够通过stat()系统调用来得到。</p>
+                <p>但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。 如果这个符号链接被打开，那么即使namespace中的进程全部终止了，namespace也不会消被清除。
                 </p>
                 <h2 id="setns">setns</h2>
                 <p>setns可以被用来加入一个已存在的namespace。保持一个没有任何进程的namespace，是因为随时可以加入新的进程到这个namespace当中去，这也是setns系统调用的作用。其函数原型为：</p>
@@ -492,7 +492,7 @@ if(fork() == 0)
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.13 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.28 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

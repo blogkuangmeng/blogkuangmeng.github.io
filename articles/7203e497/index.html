@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1. RNN 需要更多的资源来训练，它和 硬件加速不匹配 训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非常多的内存带宽。添加">
+  <meta name="description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1.  RNN 需要更多的资源来训练，它和 硬件加速不匹配          训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非">
   <meta name="keywords" content="CNN,深度学习,AI">
   <meta property="og:type" content="article">
   <meta property="og:title" content="CNN">
   <meta property="og:url" content="http://www.meng.uno/articles/7203e497/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1. RNN 需要更多的资源来训练，它和 硬件加速不匹配 训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非常多的内存带宽。添加">
+  <meta property="og:description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1.  RNN 需要更多的资源来训练，它和 硬件加速不匹配          训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180720101423.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/no_padding_no_strides.gif">
@@ -46,10 +46,10 @@
   <meta property="og:image" content="http://www.meng.uno/images/assets/门卷积.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180720113735.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180720120400.png">
-  <meta property="og:updated_time" content="2018-08-16T04:23:00.000Z">
+  <meta property="og:updated_time" content="2020-02-28T13:57:42.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CNN">
-  <meta name="twitter:description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1. RNN 需要更多的资源来训练，它和 硬件加速不匹配 训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非常多的内存带宽。添加">
+  <meta name="twitter:description" content="为什么使用 CNN 代替 RNN 关于序列建模，是时候抛弃RNN和LSTM了 | 机器之心 [英文原文]  RNN/LSTM 本身的问题(3)   1.  RNN 需要更多的资源来训练，它和 硬件加速不匹配          训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非">
   <meta name="twitter:image" content="http://www.meng.uno/images/assets/TIM截图20180720101423.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -292,7 +292,7 @@
 	<span id="busuanzi_container_page_pv">
 		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,420</span>
+	<span class="post-count"> | 字数1,414</span>
 	<span class="post-count"> | 预计时间5分钟</span>
 	</a>
               </div>
@@ -304,17 +304,20 @@
                 </blockquote>
                 <p><strong>RNN/LSTM 本身的问题(3)</strong></p>
                 <ol>
-                  <li>RNN 需要更多的资源来训练，它和 硬件加速不匹配
+                  <li>
+                    <p>RNN 需要更多的资源来训练，它和 硬件加速不匹配</p>
                     <blockquote>
                       <p>训练 RNN 和 LSTM 非常困难，因为计算能力受到内存和带宽等的约束。简单来说，每个 LSTM 单元需要四个仿射变换，且每一个时间步都需要运行一次，这样的仿射变换会要求非常多的内存带宽。<strong>添加更多的计算单元很容易，但添加更多的内存带宽却很难</strong>——这与目前的硬件加速技术不匹配，一个可能的解决方案就是让计算在存储器设备中完成。</p>
                     </blockquote>
                   </li>
-                  <li>RNN 容易发生<strong>梯度消失</strong>，即使是 LSTM
+                  <li>
+                    <p>RNN 容易发生<strong>梯度消失</strong>，即使是 LSTM</p>
                     <blockquote>
                       <p>在长期信息访问当前处理单元之前，需要按顺序地通过所有之前的单元。这意味着它很容易遭遇梯度消失问题；LSTM 一定程度上解决了这个问题，但 LSTM 网络中依然存在顺序访问的序列路径——直观来说，LSTM 能跳过一段信息中不太重要的部分，但如果整段信息都很重要，它依然需要完整的顺序访问，此时就跟 RNN 没有区别了。</p>
                     </blockquote>
                   </li>
-                  <li><strong>注意力机制模块</strong>（记忆模块）的应用
+                  <li>
+                    <p><strong>注意力机制模块</strong>（记忆模块）的应用</p>
                     <ul>
                       <li>注意力机制模块可以同时<strong>前向预测</strong>和<strong>后向回顾</strong>。</li>
                       <li><strong>分层注意力编码器</strong>（Hierarchical attention encoder）</li>
@@ -325,9 +328,7 @@
                   </li>
                 </ol>
                 <p><strong>任务角度</strong></p>
-                <ol>
-                  <li>从任务本身考虑，我认为也是 CNN 更有利，LSTM 因为能记忆比较长的信息，所以在推断方面有不错的表现（直觉）；但是在事实类问答中，并不需要复杂的推断，答案往往藏在一个 <strong>n-gram 短语</strong>中，而 CNN 能很好的对 n-gram 建模。</li>
-                </ol>
+                <p>从任务本身考虑，我认为也是 CNN 更有利，LSTM 因为能记忆比较长的信息，所以在推断方面有不错的表现（直觉）；但是在事实类问答中，并不需要复杂的推断，答案往往藏在一个 <strong>n-gram 短语</strong>中，而 CNN 能很好的对 n-gram 建模。</p>
                 <h1>常见的卷积结构</h1>
                 <blockquote>
                   <p><a href="https://zhuanlan.zhihu.com/p/28186857" target="_blank" rel="noopener">一文了解各种卷积结构原理及优劣</a> - 知乎 &amp; vdumoulin/
@@ -404,7 +405,8 @@
                 </table>
                 <h2 id="空洞卷积">空洞卷积</h2>
                 <ul>
-                  <li>空洞卷积（Atrous Convolutions）也称扩张卷积（Dilated Convolutions）、膨胀卷积。
+                  <li>空洞卷积（Atrous Convolutions）也称扩张卷积（Dilated Convolutions）、膨胀卷积。</li>
+                  <li>
                     <div align="center"><img src="http://www.meng.uno/images/assets/conv_dilation.gif" height="200"><br>No padding, no strides.</div>
                   </li>
                 </ul>
@@ -426,8 +428,7 @@
                 </ul>
                 <h2 id="keras-实现">Keras 实现</h2>
                 <ul>
-                  <li>
-                    <p>Keras 中通过在卷积层中加入参数 <code>dilation_rate</code>实现</p>
+                  <li>Keras 中通过在卷积层中加入参数 <code>dilation_rate</code>实现
                     <figure class="highlight python">
                       <table>
                         <tr>
@@ -440,9 +441,9 @@
                         </tr>
                       </table>
                     </figure>
-                    <p>TODO: 维度变化</p>
                   </li>
                 </ul>
+                <!--  TODO: 维度变化 -->
                 <h1>门卷积</h1>
                 <blockquote>
                   <p><a href="https://blog.csdn.net/stdcoutzyx/article/details/55004458" target="_blank" rel="noopener">卷积新用之语言模型</a> - CSDN博客</p>
@@ -474,7 +475,6 @@
                 <ul>
                   <li>减缓梯度消失</li>
                   <li>解决语言顺序依存问题（？ TODO）</li>
-                  <li></li>
                 </ul>
                 <h2 id="门卷积是如何防止梯度消失的">门卷积是如何防止梯度消失的</h2>
                 <ul>
@@ -624,7 +624,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.13 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.28 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值  hid">
+  <meta name="description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值   *">
   <meta name="keywords" content="H5,Title,焦点">
   <meta property="og:type" content="article">
   <meta property="og:title" content="H5网页失去焦点Title改变的方法">
   <meta property="og:url" content="http://www.meng.uno/articles/7794c7e7/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值  hid">
+  <meta property="og:description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值   *">
   <meta property="og:locale" content="zh-CN">
-  <meta property="og:updated_time" content="2018-03-08T06:47:36.000Z">
+  <meta property="og:updated_time" content="2020-02-28T13:59:36.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="H5网页失去焦点Title改变的方法">
-  <meta name="twitter:description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值  hid">
+  <meta name="twitter:description" content="今天要讲的其实是一个API：visibilitychange  这个 API 本身非常简单，由以下三部分组成。  document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。  document.visibilityState：表示下面 4 个可能状态的值   *">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -282,10 +282,12 @@
                 <p>这个 API 本身非常简单，由以下三部分组成。</p>
                 <p>document.hidden：表示页面是否隐藏的布尔值。页面隐藏包括 页面在后台标签页中 或者 浏览器最小化 （注意，页面被其他软件遮盖并不算隐藏，比如打开的 sublime 遮住了浏览器）。</p>
                 <p>document.visibilityState：表示下面 4 个可能状态的值</p>
-                <p>hidden：页面在后台标签页中或者浏览器最小化</p>
-                <p>visible：页面在前台标签页中</p>
-                <p>prerender：页面在屏幕外执行预渲染处理 document.hidden 的值为 true</p>
-                <p>unloaded：页面正在从内存中卸载</p>
+                <ul>
+                  <li>hidden：页面在后台标签页中或者浏览器最小化</li>
+                  <li>visible：页面在前台标签页中</li>
+                  <li>prerender：页面在屏幕外执行预渲染处理 document.hidden 的值为 true</li>
+                  <li>unloaded：页面正在从内存中卸载</li>
+                </ul>
                 <p>Visibilitychange事件：当文档从可见变为不可见或者从不可见变为可见时，会触发该事件。</p>
                 <p>这样，我们可以监听 Visibilitychange 事件，当该事件触发时，获取 document.hidden 的值，根据该值进行页面一些事件的处理。</p>
                 <figure class="highlight html">
@@ -412,7 +414,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.13 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.02.28 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
