@@ -21,10 +21,10 @@
   <meta name="keywords" content="Hexo,博客">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Hexo搭建博客小Tips">
-  <meta property="og:url" content="http://www.meng.uno/articles/d892151/index.html">
+  <meta property="og:url" content="http://home.meng.uno/articles/d892151/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="Hexo + GitHub 可能是一组比较简单的搭建博客的方式了。在使用Hexo的这么长的时间里，我发现很多不舒适的问题，通过搜索与探索，基本解决，现在分享出来。  添加404页面 有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加404.html，就可以实现出错自动跳转到404界面了，关于404">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="EN">
   <meta property="og:updated_time" content="2019-03-20T13:27:29.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Hexo搭建博客小Tips">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/d892151/" />
+  <link rel="canonical" href="http://home.meng.uno/articles/d892151/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -175,15 +175,15 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">首页</a> </li>
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://posts.meng.uno">所有文章</a> </li>
+                  <li> <a class="main-nav-link" href="http://posts.meng.uno">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">分类</a> </li>
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">标签</a> </li>
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">关于我</a> </li>
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
 
                   <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
 
@@ -198,7 +198,7 @@
                         <div class="ins-search-mask"></div>
                         <div class="ins-search-container">
                           <div class="ins-input-wrapper">
-                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
                             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                           </div>
                           <div class="ins-section-wrapper">
@@ -210,11 +210,11 @@
                         (function(window) {
                           var INSIGHT_CONFIG = {
                             TRANSLATION: {
-                              POSTS: '文章',
-                              PAGES: '页面',
-                              CATEGORIES: '分类',
-                              TAGS: '标签',
-                              UNTITLED: '空标题',
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
                             },
                             ROOT_URL: '/',
                             CONTENT_URL: '/content.json',
@@ -268,7 +268,7 @@
                 <a class="article-category-link" href="/categories/随笔/">随笔</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	<span class="post-count"> | 字数486</span>
 	<span class="post-count"> | 预计时间2分钟</span>
@@ -280,7 +280,7 @@
                   <p>Hexo + GitHub 可能是一组比较简单的搭建博客的方式了。在使用Hexo的这么长的时间里，我发现很多不舒适的问题，通过搜索与探索，基本解决，现在分享出来。</p>
                 </blockquote>
                 <h1>添加404页面</h1>
-                <p>有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加<code>404.html</code>，就可以实现出错自动跳转到404界面了，关于404界面的书写，大家可以直接下载我的404页面：<a href="http://www.meng.uno/404.html">http://www.meng.uno/404.html</a></p>
+                <p>有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加<code>404.html</code>，就可以实现出错自动跳转到404界面了，关于404界面的书写，大家可以直接下载我的404页面：<a href="http://www.meng.uno/404.html" target="_blank" rel="noopener">http://www.meng.uno/404.html</a></p>
                 <h1>排除编译某文件</h1>
                 <h2 id="排除html等格式">排除HTML等格式</h2>
                 <p>在添加了404页面后，最简单的方法就是将<code>404.html</code>放到本地博客的<code>public</code>目录下。但是有个问题，也是最重要的，就是每次<code>hexo clean</code>之后，<code>public/</code>文件夹就会被删除，这样的话每次都需要粘贴进去，自然费时费力。</p>
@@ -306,7 +306,7 @@
                   <li>将<code>Readme.md</code>改名<code>Read.mdown</code>；（完美）</li>
                   <li>在<code>_config.yml</code>文件中添加<code>skip_render:\n - README.md</code>。（这种方法也适用于其他文件）</li>
                 </ul>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/d892151/">http://www.meng.uno/articles/d892151/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/d892151/">http://home.meng.uno/articles/d892151/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -338,7 +338,7 @@
                 <script>
                   var a = new Donate({
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
                     wechatImage: 'http://www.meng.uno/money/wechat.JPG',
                     alipayImage: 'http://www.meng.uno/money/alipay.JPG'
@@ -379,7 +379,7 @@
             <nav id="article-nav">
 
               <a href="/articles/67934c43/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           神奇的Latex
@@ -389,7 +389,7 @@
 
 
               <a href="/articles/c2e4dce5/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">XHR及POST数据</div>
     </a>
 
@@ -401,7 +401,7 @@
 
           <aside id="toc-sidebar">
             <div id="toc" class="toc-article">
-              <strong class="toc-title">目录导航</strong>
+              <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">添加404页面</span></a></li>
@@ -429,7 +429,7 @@
 
             <p class="busuanzi_uv">
 
-              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 

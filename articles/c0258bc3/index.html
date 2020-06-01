@@ -21,10 +21,10 @@
   <meta name="keywords" content="LLVM,编译安全">
   <meta property="og:type" content="article">
   <meta property="og:title" content="LLVM与Pass">
-  <meta property="og:url" content="http://www.meng.uno/articles/c0258bc3/index.html">
+  <meta property="og:url" content="http://home.meng.uno/articles/c0258bc3/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="LLVM简介 传统的编译器，采用的是针对单语言源代码，生成对应平台机器码的方式，类似于：    而LLVM则采用了一种多前端，多后端的方式，如下：    在LLVM当中，LLVM IR是一种low-level的，虚拟指令集。所有的前端语言都能够生成LLVM，从而能够被统一的进行处理。在LLVM当中，还提供了对LLVM IR Optimization进行优化的方式，能够对现有的源码进行搜索，匹配对应">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/llvm/SimpleCompiler.png">
   <meta property="og:image" content="http://www.meng.uno/images/llvm/RetargetableCompiler.png">
   <meta property="og:image" content="http://www.meng.uno/images/llvm/X86Target.png">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/c0258bc3/" />
+  <link rel="canonical" href="http://home.meng.uno/articles/c0258bc3/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -179,15 +179,15 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">首页</a> </li>
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://posts.meng.uno">所有文章</a> </li>
+                  <li> <a class="main-nav-link" href="http://posts.meng.uno">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">分类</a> </li>
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">标签</a> </li>
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">关于我</a> </li>
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
 
                   <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
 
@@ -202,7 +202,7 @@
                         <div class="ins-search-mask"></div>
                         <div class="ins-search-container">
                           <div class="ins-input-wrapper">
-                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
                             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                           </div>
                           <div class="ins-section-wrapper">
@@ -214,11 +214,11 @@
                         (function(window) {
                           var INSIGHT_CONFIG = {
                             TRANSLATION: {
-                              POSTS: '文章',
-                              PAGES: '页面',
-                              CATEGORIES: '分类',
-                              TAGS: '标签',
-                              UNTITLED: '空标题',
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
                             },
                             ROOT_URL: '/',
                             CONTENT_URL: '/content.json',
@@ -272,7 +272,7 @@
                 <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	<span class="post-count"> | 字数639</span>
 	<span class="post-count"> | 预计时间2分钟</span>
@@ -298,7 +298,7 @@
                 <p>pass是基于中间语言llvm IR来进行的。因此它用来对.bc文件进行优化，例如：</p>
                 <pre><code>opt -load /lib/LLVMLbpass.so -lbpass &lt;foo.bc&gt; /dev/null
 </code></pre>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/c0258bc3/">http://www.meng.uno/articles/c0258bc3/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/c0258bc3/">http://home.meng.uno/articles/c0258bc3/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -330,7 +330,7 @@
                 <script>
                   var a = new Donate({
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
                     wechatImage: 'http://www.meng.uno/money/wechat.JPG',
                     alipayImage: 'http://www.meng.uno/money/alipay.JPG'
@@ -371,7 +371,7 @@
             <nav id="article-nav">
 
               <a href="/articles/a7561c66/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           减少HTTP请求
@@ -381,7 +381,7 @@
 
 
               <a href="/articles/a4b4101b/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Linux文件系统</div>
     </a>
 
@@ -393,7 +393,7 @@
 
           <aside id="toc-sidebar">
             <div id="toc" class="toc-article">
-              <strong class="toc-title">目录导航</strong>
+              <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">LLVM简介</span></a></li>
@@ -417,7 +417,7 @@
 
             <p class="busuanzi_uv">
 
-              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 

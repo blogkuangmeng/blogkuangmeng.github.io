@@ -21,10 +21,10 @@
   <meta name="keywords" content="设计模式">
   <meta property="og:type" content="article">
   <meta property="og:title" content="责任链模式及OkHttp实现">
-  <meta property="og:url" content="http://www.meng.uno/articles/7c56e6ba/index.html">
+  <meta property="og:url" content="http://home.meng.uno/articles/7c56e6ba/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="责任链模式 责任链模式是对一个事件的处理方法,所有能对事件进行处理的对象按顺序形成一个链表.事件经过链表中每个处理对象轮流处理.如果有返回值.则返回也是顺着这条链表反向返回.这个链表是先进后出模式.   * 在现实中的责任链模型之一就是网络连接.对与程序猿而言,七层或五层的网络连接模型是肯定知道的.  当一个网络请求发出时,需要经过应用层-&amp;gt;传输层-&amp;gt;网络层-&amp;gt;连接层-&amp;gt;物理层  收到响应后正好反">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="EN">
   <meta property="og:updated_time" content="2018-03-24T14:39:26.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="责任链模式及OkHttp实现">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/7c56e6ba/" />
+  <link rel="canonical" href="http://home.meng.uno/articles/7c56e6ba/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -175,15 +175,15 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">首页</a> </li>
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://posts.meng.uno">所有文章</a> </li>
+                  <li> <a class="main-nav-link" href="http://posts.meng.uno">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">分类</a> </li>
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">标签</a> </li>
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">关于我</a> </li>
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
 
                   <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
 
@@ -198,7 +198,7 @@
                         <div class="ins-search-mask"></div>
                         <div class="ins-search-container">
                           <div class="ins-input-wrapper">
-                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
                             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                           </div>
                           <div class="ins-section-wrapper">
@@ -210,11 +210,11 @@
                         (function(window) {
                           var INSIGHT_CONFIG = {
                             TRANSLATION: {
-                              POSTS: '文章',
-                              PAGES: '页面',
-                              CATEGORIES: '分类',
-                              TAGS: '标签',
-                              UNTITLED: '空标题',
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
                             },
                             ROOT_URL: '/',
                             CONTENT_URL: '/content.json',
@@ -268,7 +268,7 @@
                 <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	<span class="post-count"> | 字数1,697</span>
 	<span class="post-count"> | 预计时间7分钟</span>
@@ -374,7 +374,7 @@
                 <p><code>NetParams</code>类用与收集参数,最后转换成网络请求所用的格式</p>
                 <p>当点击完成时,遍历所有的条目,传递<code>NetParams</code>对象.最后把这个对象传递给网络请求的类.</p>
                 <p>在传递时进行可以进行参数检查,错误时可以中断传递,提示错误.我这里是通过手动抛异常来中断的.在外部统一<code>catch</code>处理.如果用<code>Rxjava</code>可以不用<code>catch</code>,在<code>onError</code>里统一管理.如<code>Observer.error(new 自定义异常(中断提示信息))</code></p>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/7c56e6ba/">http://www.meng.uno/articles/7c56e6ba/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/7c56e6ba/">http://home.meng.uno/articles/7c56e6ba/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -406,7 +406,7 @@
                 <script>
                   var a = new Donate({
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
                     wechatImage: 'http://www.meng.uno/money/wechat.JPG',
                     alipayImage: 'http://www.meng.uno/money/alipay.JPG'
@@ -446,7 +446,7 @@
             <nav id="article-nav">
 
               <a href="/articles/6a064a82/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Android通知及RemoteViews
@@ -456,7 +456,7 @@
 
 
               <a href="/articles/bbcf5ff7/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Lambda表达式</div>
     </a>
 
@@ -468,7 +468,7 @@
 
           <aside id="toc-sidebar">
             <div id="toc" class="toc-article">
-              <strong class="toc-title">目录导航</strong>
+              <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">责任链模式</span></a></li>
@@ -492,7 +492,7 @@
 
             <p class="busuanzi_uv">
 
-              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 

@@ -21,10 +21,10 @@
   <meta name="keywords" content="call,apply,bind">
   <meta property="og:type" content="article">
   <meta property="og:title" content="JS中call、apply、bind的用法">
-  <meta property="og:url" content="http://www.meng.uno/articles/3171f70f/index.html">
+  <meta property="og:url" content="http://home.meng.uno/articles/3171f70f/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="今天看博客时，看到了这样的一段js代码：  1   var bind = Function.prototype.call.bind(Function.prototype.bind);   上面那段代码涉及到了call、bind，所以我想先区别一下call、apply、bind的用法。这三个方法的用法非常相似，将函数绑定到上下文中，即用来改变函数中this的指向。举个例子：  1 2 3 4 5 6">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="EN">
   <meta property="og:updated_time" content="2020-02-28T14:01:55.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS中call、apply、bind的用法">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/3171f70f/" />
+  <link rel="canonical" href="http://home.meng.uno/articles/3171f70f/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -175,15 +175,15 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">首页</a> </li>
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://posts.meng.uno">所有文章</a> </li>
+                  <li> <a class="main-nav-link" href="http://posts.meng.uno">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">分类</a> </li>
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">标签</a> </li>
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">关于我</a> </li>
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
 
                   <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
 
@@ -198,7 +198,7 @@
                         <div class="ins-search-mask"></div>
                         <div class="ins-search-container">
                           <div class="ins-input-wrapper">
-                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
                             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                           </div>
                           <div class="ins-section-wrapper">
@@ -210,11 +210,11 @@
                         (function(window) {
                           var INSIGHT_CONFIG = {
                             TRANSLATION: {
-                              POSTS: '文章',
-                              PAGES: '页面',
-                              CATEGORIES: '分类',
-                              TAGS: '标签',
-                              UNTITLED: '空标题',
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
                             },
                             ROOT_URL: '/',
                             CONTENT_URL: '/content.json',
@@ -268,7 +268,7 @@
                 <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	<span class="post-count"> | 字数1,173</span>
 	<span class="post-count"> | 预计时间5分钟</span>
@@ -502,7 +502,7 @@
                   </table>
                 </figure>
                 <p><code>bind</code>函数中的上下文与<code>Function.prototype.call.bind(Function.prototype.bind)</code>中是一样的。</p>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/3171f70f/">http://www.meng.uno/articles/3171f70f/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/3171f70f/">http://home.meng.uno/articles/3171f70f/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -534,7 +534,7 @@
                 <script>
                   var a = new Donate({
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
                     wechatImage: 'http://www.meng.uno/money/wechat.JPG',
                     alipayImage: 'http://www.meng.uno/money/alipay.JPG'
@@ -576,7 +576,7 @@
             <nav id="article-nav">
 
               <a href="/articles/dbf56532/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Matlab基本函数
@@ -586,7 +586,7 @@
 
 
               <a href="/articles/23b9d6e9/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">那些前端安全冷门知识</div>
     </a>
 
@@ -598,9 +598,9 @@
 
           <aside id="toc-sidebar">
             <div id="toc" class="toc-article">
-              <strong class="toc-title">目录导航</strong>
+              <strong class="toc-title">Contents</strong>
 
-              <ol class="nav">空</ol>
+              <ol class="nav">None</ol>
 
             </div>
           </aside>
@@ -618,7 +618,7 @@
 
             <p class="busuanzi_uv">
 
-              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 

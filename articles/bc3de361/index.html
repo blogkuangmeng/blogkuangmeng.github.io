@@ -21,10 +21,10 @@
   <meta name="keywords" content="js,图片加载">
   <meta property="og:type" content="article">
   <meta property="og:title" content="说到加载图片，我们可以谈些什么">
-  <meta property="og:url" content="http://www.meng.uno/articles/bc3de361/index.html">
+  <meta property="og:url" content="http://home.meng.uno/articles/bc3de361/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。  第一步：滚屏加载 这是最容易想到的点，也是一开始就准备做的。  随web体验的进步，滚屏加载代替分页加载的情形越来越多。也就是先预留图片位置，而不去加载图片，直到这个预留区域滚动到屏幕中，用户能看见了，才去加载图片。如此一来，有“按需加载”的意味，由于图片加载延后，不抢占带宽，在打开页面的首屏会快很多。我们称之为“懒加载(l">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="EN">
   <meta property="og:updated_time" content="2018-03-20T06:59:57.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="说到加载图片，我们可以谈些什么">
@@ -111,7 +111,7 @@
 
 
 
-  <link rel="canonical" href="http://www.meng.uno/articles/bc3de361/" />
+  <link rel="canonical" href="http://home.meng.uno/articles/bc3de361/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -175,15 +175,15 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">首页</a> </li>
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://posts.meng.uno">所有文章</a> </li>
+                  <li> <a class="main-nav-link" href="http://posts.meng.uno">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">分类</a> </li>
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">标签</a> </li>
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">关于我</a> </li>
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
 
                   <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
 
@@ -198,7 +198,7 @@
                         <div class="ins-search-mask"></div>
                         <div class="ins-search-container">
                           <div class="ins-input-wrapper">
-                            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
                             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
                           </div>
                           <div class="ins-section-wrapper">
@@ -210,11 +210,11 @@
                         (function(window) {
                           var INSIGHT_CONFIG = {
                             TRANSLATION: {
-                              POSTS: '文章',
-                              PAGES: '页面',
-                              CATEGORIES: '分类',
-                              TAGS: '标签',
-                              UNTITLED: '空标题',
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
                             },
                             ROOT_URL: '/',
                             CONTENT_URL: '/content.json',
@@ -268,7 +268,7 @@
                 <a class="article-category-link" href="/categories/web/">web</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	<span class="post-count"> | 字数1,411</span>
 	<span class="post-count"> | 预计时间6分钟</span>
@@ -352,7 +352,7 @@
                 </figure>
                 <p>我们会让浏览器试着加载一张非常小的base64格式的webp图片，如果能够正常加载，说明是支持webp的。</p>
                 <p>并且，会把测试记录在cookie里，所以第二次直接从cookie里读结果，基本不会影响性能。完成了最重要的检查，我们就可以放心让服务器返回不同格式的图片了。</p>
-                <p><br><br>本文链接： <a href="http://www.meng.uno/articles/bc3de361/">http://www.meng.uno/articles/bc3de361/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/bc3de361/">http://home.meng.uno/articles/bc3de361/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
@@ -384,7 +384,7 @@
                 <script>
                   var a = new Donate({
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: '打赏支持', // 可选参数，打赏按钮文字
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
                     wechatImage: 'http://www.meng.uno/money/wechat.JPG',
                     alipayImage: 'http://www.meng.uno/money/alipay.JPG'
@@ -425,7 +425,7 @@
             <nav id="article-nav">
 
               <a href="/articles/9da0578c/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           HTML5实现刮奖效果
@@ -435,7 +435,7 @@
 
 
               <a href="/articles/dd0e4c80/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">数学建模常用的十大算法</div>
     </a>
 
@@ -447,7 +447,7 @@
 
           <aside id="toc-sidebar">
             <div id="toc" class="toc-article">
-              <strong class="toc-title">目录导航</strong>
+              <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">第一步：滚屏加载</span></a></li>
@@ -473,7 +473,7 @@
 
             <p class="busuanzi_uv">
 
-              访客数 : <span id="busuanzi_value_site_uv"></span> | 访问量 : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
