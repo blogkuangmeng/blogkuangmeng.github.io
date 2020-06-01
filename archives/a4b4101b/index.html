@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Linux文件系统 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="虚拟文件系统(VFS)是linux的内核软件层，它能够为各种文件系统提供通用的接口，例如linux，unix，windows系统。它是一个位于应用程序和具体文件之间的中间层。VFS引入了一个通用文件模型，它能够表示所有支持的文件系统，它包含有超级块对象、索引节点对象、文件对象、目录项对象。  超级块对象 super_block存放已安装文件系统的有关信息，对基于磁盘的文件系统，它通常对应于存放在磁">
+  <meta name="keywords" content="Linux,文件系统">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Linux文件系统">
+  <meta property="og:url" content="http://home.meng.uno/archives/a4b4101b/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="虚拟文件系统(VFS)是linux的内核软件层，它能够为各种文件系统提供通用的接口，例如linux，unix，windows系统。它是一个位于应用程序和具体文件之间的中间层。VFS引入了一个通用文件模型，它能够表示所有支持的文件系统，它包含有超级块对象、索引节点对象、文件对象、目录项对象。  超级块对象 super_block存放已安装文件系统的有关信息，对基于磁盘的文件系统，它通常对应于存放在磁">
+  <meta property="og:locale" content="EN">
+  <meta property="og:updated_time" content="2018-04-10T05:46:42.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux文件系统">
+  <meta name="twitter:description" content="虚拟文件系统(VFS)是linux的内核软件层，它能够为各种文件系统提供通用的接口，例如linux，unix，windows系统。它是一个位于应用程序和具体文件之间的中间层。VFS引入了一个通用文件模型，它能够表示所有支持的文件系统，它包含有超级块对象、索引节点对象、文件对象、目录项对象。  超级块对象 super_block存放已安装文件系统的有关信息，对基于磁盘的文件系统，它通常对应于存放在磁">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/archives/a4b4101b/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-linux-file" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Linux文件系统
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/archives/a4b4101b/" class="article-date">
+	  <time datetime="2016-08-01T08:54:49.000Z" itemprop="datePublished">2016-08-01</time>
+	</a>
+                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,486</span>
+	<span class="post-count"> | 预计时间9分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>虚拟文件系统(VFS)是linux的内核软件层，它能够为各种文件系统提供通用的接口，例如linux，unix，windows系统。它是一个位于应用程序和具体文件之间的中间层。VFS引入了一个通用文件模型，它能够表示所有支持的文件系统，它包含有超级块对象、索引节点对象、文件对象、目录项对象。</p>
+                </blockquote>
+                <h1>超级块对象</h1>
+                <p>super_block存放已安装文件系统的有关信息，对基于磁盘的文件系统，它通常对应于存放在磁盘上的文件系统控制块。对于一个特定的文件系统，超级块的格式是固定的。每一个文件系统都对应一个超级块，它们都会链接到一个超级块链表，而文件系统中的每个文件在打开时都需要在内存分配一个inode结构它们都要链接到超级块。</p>
+                <h1>索引节点对象</h1>
+                <p>文件系统处理文件所需要的所有信息，都放在索引节点的数据结构中。对于每个文件来说，索引节点对文件是唯一的,其数据结构是inode。要访问一个文件时，一定要通过它的索引才知道它是什么类型的文件(inode有一个union包含了这个信息)。inode包含了文件的各种信息。它还包含一个dentry结构的队列，可以通过它找到与这个文件相联系的所有dentry结构，指向超级块的指针等。每个索引节点对象也包含在文件系统的双向循环链表中，这个链表的头保存在超级块对象中。同时，inodes也存放在一个散列表中，用来加快对索引对象的搜索。</p>
+                <h1>文件对象</h1>
+                <p>文件对象用来描述一个进程怎样与一个打开的文件进行交互，它是在文件被打开的时候创建的，由一个file数据结构来描述。其存放的主要信息是文件指针，即文件中当前的位置。使用中的文件对象，包含在超级块所确立的链表中。其中的f_list字段包含了前一个/后一个对象的指针。</p>
+                <h1>目录项对象</h1>
+                <p>VFS把每个目录看作由若干子目录和文件组成的一个普通文件。在目录项被读入内存后，VFS就用一个dentry结构来表示它。对于进程查找路径中的每一个分量，都为其创建一个目录项分量。每个分量都和其对应的索引节点相联系。由于目录项对象可能会经常使用，因此linux使用目录项高速缓存，它包含一个不同状态的目录项对象集合，以及一个用于快速的散列表。</p>
+                <h1>文件操作函数的调用</h1>
+                <p>由于每个文件系统都有其自身的文件操作集合，VFS将inode从磁盘装入内存时，会把文件操作的指针存放在数据结构file_operation中(定义在fs.h中)，而该结构的地址存放在索引节点对象的i_fop字段中。进程打开文件时，VFS就用存放在索引节点中的地址初始化新文件对象的f_op字段，使得后续操作能够继续调用这些文件操作函数。f_op是指向文件操作表的指针。事实上除了file_operations,还有dentry_operations和inode_operations，super_operations，但它们通常只在打开文件的过程中使用，不像file_operations结构中那些函数常用。</p>
+                <h1>进程与文件</h1>
+                <p>已打开的文件，是属于进程的一项“财产”，归具体的进程所有。在进程的task_struct中，包含两个数据结构.</p>
+                <pre><code>struct fs_struct *fs;
+struct files_struct *files;
+</code></pre>
+                <p>其中，fs_struct是关于文件系统的信息，它反映的主要是带有全局性的，对具体进程而言的信息，与具体打开的文件关系不大。fs_struct里面包含有一个指针pwd，它总是指向进程的“当前工作目录”，每当进程进入不同目录时，内核就使进程的pwd指向这个目录在内存中的dentry，而root指针则指向进程的根目录(还有一个altroot，指向“替换跟目录”)。files_struct是关于已打开文件的信息，它的主体是一个file结构数组，每打开一个文件后，进程就通过一个fid来访问这个文件，这个fid实际上就是它在file数组中的下标。</p>
+                <h1>文件系统的安装和拆卸</h1>
+                <p>每当将一个存储设备安装到现有文件系统中的某个节点时，内核都要为之建立一个vfsmount结构，它既包含了该设备的信息，又包含了有关安装点的信息。因此fs_struct中的pwdmnt总是指向一个vfsmount结构。 与传统的Unix内核不同，linuc允许同一个文件系统被安装许多次。对于每个安装操作，内核通过一个vfsmount数据结构来保存安装点和安装标志等信息。这个vfsmount数据结构保存在几个双向循环链表中：父文件系统vfsmount描述符的地址和安装点dentry的地址索引散列表；属于每一命名空间的已安装文件系统描述符形成的双向循环链表；每一个已安装文件系统已安装的文件形成等双向循环链表。
+                </p>
+                <h2 id="安装普通文件系统">安装普通文件系统</h2>
+                <p>mount系统调用用来安装一个普通文件系统。它的服务例程sys_mount()向下调用了do_mount，并最后由do_kern_mount()函数完成了安装操作的核心。do_kern_mount首先会查找对应的文件系统类型，然后分配一个新的已安装文件系统的描述符mnt，并初始化一个新的超级块(如果get_sb能够在链表中找到对应的超级块对象，说明这个设备被安装了多次，直接返回这个已有超级块的地址)，以及mnt中的一些字段。最后，它会把这个描述符插入到合适的链表中去。在完成这些工作后，该函数将mnt返回。</p>
+                <h2 id="安装根文件系统">安装根文件系统</h2>
+                <p>根文件系统的安装与普通文件系统安装是不同的，它是系统初始化的关键部分。它分为两个部分，首先是安装特殊rootfs文件系统，它提供一个作为初始安装点的空目录；随后内核在空目录上安装实际根文件系统。为什么要先安装rootfs？因为它允许内核轻易地改变实际根文件系统，而内核会逐个安装卸载许多个根文件系统。<br> 在rootfs安装阶段，do_kern_mount会调用rootfs_get_sb，为其分配特殊的超级块。随后为进程0分配namespace，将其根目录和当前工作目录设置为根文件系统。
+                  <br> 在实际安装阶段，内核调用mount_root函数，在rootfs初始根文件系统中创建设备文件/dev/root。调用sys_chdr(“root”)改变进程的当前目录，然后移动rootfs上的安装文件系统和安装点。而rootfs也并没有被卸载，只是隐藏在根目录下而已。
+                </p>
+                <h2 id="卸载文件系统">卸载文件系统</h2>
+                <p>unmount系统调用由来卸载一个文件系统。相应的sys_unmount例程对文件名和一组标志进行处理。首先需要对安装点路径名进行查找，随后调用do_unount，根据标志位进行相应的处理。unmount_tree会卸载文件系统(及其所有子文件系统)。最后，内核会减少相应文件系统根目录的目录项对象和已安装文件系统描述符的引用计数器值。</p>
+                <h1>路径名查找</h1>
+                <p>进程识别一个文件时，需要分析路径名，并且把它拆分成一个文件名序列。首先需要区分这个路径是相对路径还是绝对路径。这个可以通过路径名的第一个字符是否是“/”来确定。绝对路径从进程的根目录开始搜索，否则从进程的当前目录开始搜索。<br> 在这个过程中，内核会检查依次检查序列中的每一项，找到与它匹配的目录项，以获得相应的索引节点；再读取这个索引节点的目录文件，继续检查下去。但这个过程没有想象的那么简单：每个目录的访问权都需要检查，文件名可能是与任意一个路径名对应的符号链接，符号链接会包括循环，查找可能会延伸到其他的文件系统。
+                  <br> 路径名查找接受一个文件名指针，一个标志，以及一个nameidata数据结构的地址，这个nameidata存放了查找操作的结果。nameidata中的dentry和mnt分别指向所解析的最后一个路径分量的目录项对象和已安装文件系统对象。
+                </p>
+                <h1>文件打开/读写</h1>
+                <p>文件打开和关闭，核心是对一个fd进行操作。这个fd也就是指向文件对象的指针数组task_struct-&gt;files-&gt;fd中分配给新文件的索引。创建一个新的文件对象，然后将它放在fd数组中。 文件读写是对于文件自身来说的，因此其相关的信息存储在inode中。linux中，对于文件的读写，实际上是对缓冲区直接进行的，而不是直接在文件上操作。对文件的操作由内核中的线程kflushd来完成，它们相当于一道流水线上的两道工序。
+                </p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/archives/a4b4101b/">http://home.meng.uno/archives/a4b4101b/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件系统/">文件系统</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/archives/c0258bc3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LLVM与Pass
+        
+      </div>
+    </a>
+
+
+              <a href="/archives/8e9f2014/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">完全动态最大匹配的简单确定性算法</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">超级块对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">索引节点对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">文件对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">目录项对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">文件操作函数的调用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">进程与文件</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">文件系统的安装和拆卸</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#安装普通文件系统"><span class="nav-number">7.1.</span> <span class="nav-text">安装普通文件系统</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#安装根文件系统"><span class="nav-number">7.2.</span> <span class="nav-text">安装根文件系统</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#卸载文件系统"><span class="nav-number">7.3.</span> <span class="nav-text">卸载文件系统</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">路径名查找</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">文件打开/读写</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

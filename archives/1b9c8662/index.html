@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>文件系统 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="虚拟文件系统（VFS）的思想和作用 实际上，看到Virtaul，我们就应该想到VFS的作用，是虚拟出一个中间层，来实现某些部分的统一处理。实际上，VFS要解决的是，让应用能够“以一种通用的方式”，去访问不同类型的文件系统：    可以看到，对于不同类型的文件系统、网络文件系统、伪文件系统，应用对它们的操作接口都是一致的,而底层的驱动则会完成实际的区分工作。  通用文件模型 VFS通过一个通用文件模">
+  <meta name="keywords" content="Linux,文件系统">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="文件系统">
+  <meta property="og:url" content="http://home.meng.uno/archives/1b9c8662/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="虚拟文件系统（VFS）的思想和作用 实际上，看到Virtaul，我们就应该想到VFS的作用，是虚拟出一个中间层，来实现某些部分的统一处理。实际上，VFS要解决的是，让应用能够“以一种通用的方式”，去访问不同类型的文件系统：    可以看到，对于不同类型的文件系统、网络文件系统、伪文件系统，应用对它们的操作接口都是一致的,而底层的驱动则会完成实际的区分工作。  通用文件模型 VFS通过一个通用文件模">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/VFS.png">
+  <meta property="og:image" content="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B.png">
+  <meta property="og:image" content="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/%E9%93%BE%E6%8E%A5.png">
+  <meta property="og:updated_time" content="2018-04-10T05:46:42.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="文件系统">
+  <meta name="twitter:description" content="虚拟文件系统（VFS）的思想和作用 实际上，看到Virtaul，我们就应该想到VFS的作用，是虚拟出一个中间层，来实现某些部分的统一处理。实际上，VFS要解决的是，让应用能够“以一种通用的方式”，去访问不同类型的文件系统：    可以看到，对于不同类型的文件系统、网络文件系统、伪文件系统，应用对它们的操作接口都是一致的,而底层的驱动则会完成实际的区分工作。  通用文件模型 VFS通过一个通用文件模">
+  <meta name="twitter:image" content="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/VFS.png">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/archives/1b9c8662/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-file" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  文件系统
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/archives/1b9c8662/" class="article-date">
+	  <time datetime="2017-01-14T05:39:44.000Z" itemprop="datePublished">2017-01-14</time>
+	</a>
+                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数3,529</span>
+	<span class="post-count"> | 预计时间13分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>虚拟文件系统（VFS）的思想和作用</h1>
+                <p>实际上，看到<strong>Virtaul</strong>，我们就应该想到VFS的作用，是虚拟出一个中间层，来实现某些部分的<strong>统一处理</strong>。实际上，VFS要解决的是，让应用能够“以一种通用的方式”，去访问不同类型的文件系统：</p>
+                <p><img src="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/VFS.png" alt=""></p>
+                <p>可以看到，对于不同类型的文件系统、网络文件系统、伪文件系统，应用对它们的操作接口都是一致的,而底层的驱动则会完成实际的区分工作。</p>
+                <h1>通用文件模型</h1>
+                <p>VFS通过一个通用文件模型，来表示一个文件系统，它从顶层到底层，一共维护四个数据结构。这里我们通过磁盘文件系统来举例子说明：</p>
+                <ul>
+                  <li>file：文件<strong>对象</strong>。如果一个进程要和一个对象进行交互，那么久要在访问期间存放一个文件对象在内核内存中。</li>
+                  <li>dentry：目录项<strong>对象</strong>。用来存放目录项和对应文件链接信息，每个磁盘文件系统，都有特殊的方式，将该类信息存在磁盘上。</li>
+                  <li>inode：索引节点<strong>对象</strong>。用来存放关于具体文件的一般信息，对基于磁盘的文件系统来说，通常对应于存放在磁盘上的文件控制块，其节点号唯一标识文件系统中的文件。</li>
+                  <li>superblock：超级块<strong>对象</strong>。对应安装的文件系统的信息，他对应磁盘上的文件系统控制块。</li>
+                </ul>
+                <p><img src="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+                <p>这张图反映出了在一次访问中，各个对象是如何参与到过程中去的。这里我为什么要把<strong>对象</strong>给加粗呢？VFS实际采用的是一种面向对象的方式（虽然它是用C语言写的）。每个object，都有一系列的“操作方式”，VFS为这些对象提供了“统一的”接口，而具体的文件系统则提供了千差万别的实现方式，这是由一个函数指针表来实现的。</p>
+                <h1>文件对象</h1>
+                <p>这里我们从文件对象开始说。如果留意进程的<code>task_struct</code>（定义在sched.h当中），你会发现一个<code>fs_struct</code>结构，以及一个<code>files_struct</code>结构。</p>
+                <p>其中<code>fs_struct</code>保存了当前点工作目录和根目录：</p>
+                <pre><code>struct fs_struct {
+int users;
+spinlock_t lock;
+seqcount_t seq;
+int umask;
+int in_exec;
+struct path root, pwd;
+};
+</code></pre>
+                <p>而<code>files_struct</code>结构则保存了当前进程所打开的所有文件，它们保存在<code>fdtable</code>中：</p>
+                <pre><code>struct fdtable {
+unsigned int max_fds;
+struct file __rcu **fd;      /* current fd array */
+unsigned long *close_on_exec;
+unsigned long *open_fds;
+struct rcu_head rcu;
+};
+</code></pre>
+                <p>当<code>open()</code>系统调用发生时，文件描述符实际上是fd中的下标。现在我们终于看到<code>file</code>结构了，这里我只列出了重要的部分：</p>
+                <pre><code>struct file {
+union {
+	struct llist_node	fu_llist;
+	struct rcu_head 	fu_rcuhead;
+} f_u;
+struct path		f_path;
+struct inode		*f_inode;	/* cached value */
+const struct file_operations	*f_op;  
+
+struct mutex		f_pos_lock;
+loff_t			f_pos;
+
+} __attribute__((aligned(4)));	
+</code></pre>
+                <p>这里，<code>loff_t</code>是平时我们用来在文件读写上用于定位的指针，显然这个值必须放在file当中，因为可能会有几个进程同时访问一个文件。<br> 而
+                  <code>f_op</code>正反映出了“通用文件模型的”特点，它保存了文件操作的对应指针；这个值是在进程打开文件时，从文件索引节点中的i_fop中复制的。</p>
+                <p>当然在<code>file</code>中我们也看到了<code>dentry</code>和<code>inode</code>的影子：<code>f_path</code>包含了<code>dentry *</code>，而*f_indoe也是file的一个域，它们分别指向了对应文件点dentry对象和inode对象，我们将会在接下来对它们进行详细的说明。</p>
+                <h1>目录项对象</h1>
+                <p>在上一节中，我们知道了文件对象描述了应用和文件的联系。这里，目录项是用来描述具体的文件系统中的目录项的，他的作用是：<strong>用来快速找到一个路径，并且与文件相关联</strong>。假设进程需要查找一个路径，那么路径中的每一个分量，都会有一个目录项与之对应。并且，目录项会把每个分量和它对应的索引节点联系起来。<code>dentry</code>的定义如下：</p>
+                <pre><code>struct dentry {
+unsigned int d_flags;		
+seqcount_t d_seq;		
+struct hlist_bl_node d_hash;	/* 哈希链表 */
+struct dentry *d_parent;	/* 父目录项 */
+struct qstr d_name;			/* 目录名 */
+struct inode *d_inode;		/* 对应的索引节点 */
+unsigned char d_iname[DNAME_INLINE_LEN];	/* small names */
+
+struct lockref d_lockref;	/* per-dentry lock and refcount */
+const struct dentry_operations *d_op;	/* dentry操作 */
+struct super_block *d_sb;	/* 文件的超级块对象 */
+unsigned long d_time;		
+void *d_fsdata;			
+
+struct list_head d_lru;		/* LRU list */
+struct list_head d_child;	/* child of parent list */
+struct list_head d_subdirs;	/* our children */
+
+union {
+	struct hlist_node d_alias;	/* inode alias list */
+ 	struct rcu_head d_rcu;
+} d_u;
+};  
+</code></pre>
+                <p>这里可以看到，除开自身的名称、引用计数等，目录项对象中有这些关键的结构：<code>d_op</code>描述了目录项所对应的操作（通用模型的特点）；<code>d_sb</code>则是 文件的超级块对象，至于<code>d_inode</code>则是这个目录项关联的索引节点（当然它们并不是一一对应的关系）。注意，这里还有个很重要的变量：<code>d_lockref</code>，它其实就是一个计数器，说明了这个目录项对象的引用次数。</p>
+                <p>目录项对象保存在<strong>dentry cache</strong>中。linux操作系统为了提高目录项对象的处理效率，设计了这个高速缓存。这是因为，从磁盘中读取目录项，并且构造相应的目录项对象是需要花费大量的时间的，因此，在完成对目录项对象的操作之后，在内存中（尽量）保存它们具有很重要的意义。这个dentry cache，其本质是一个哈希链表，它定义在list_bl.h当中（它的hash计算在<code>d_hash</code>中完成）。我注意到，对于每一个dentry，都有一个d_flags，它的可能的值，定义在dcache.h当中。因为dentry
+                  cache的大小也是有限的，因此我们也不可能无限制地把dentry保存在cache中。因此linux首先把dentry的状态进行了定义：
+                </p>
+                <ul>
+                  <li>free：该状态目录项对象不包含有效信息，未被VFS使用</li>
+                  <li>unused：目前没有被内核使用，d_count的值为0，d_inode仍然指向相关的索引节点</li>
+                  <li>in use：正在被使用，d_count的值大于0，d_inode仍然指向相关的索引节点</li>
+                  <li>negative：与目录项关联的索引节点不存在，相应的磁盘索引节点已经被删除（d_inode为负数）。</li>
+                </ul>
+                <p>那么对于unused和negative这一类目录项，linux使用了一个LRU（最近最少使用）的双向链表，一旦dentry cache的大小吃紧，就从这个LRU链表中删除dentry。</p>
+                <h1>索引节点对象</h1>
+                <p>索引节点对象，是VFS当中最为重要的一个数据结构。它的作用是<strong>表示文件的相关信息</strong>。这里的相关信息，不包括文件本身的内容，而是诸如文件大小、拥有者、创建时间等信息。在一个文件被首次访问时，内核会在内存中构造它的索引节点对象。我们在操作系统中，可以任意修改一个文件的名字，但是索引节点和文件是一一对应的（由索引节点号标识），只要文件存在它就会存在（注意，超级块对象和索引节点对象在硬盘上都是有对应的实体数据结构的，在使用时利用硬盘上的内容，在内存中构造索引节点对象）。目录项是用来找到一个对应的索引节点实体，而具体与文件关联的工作则是由索引节点完成的。</p>
+                <p>让我们来看看索引节点的数据结构（只取了重要的部分），其定义在fs.h当中：</p>
+                <pre><code>struct inode {
+    struct hlist_node    i_hash;     /* 散列表，用于快速查找inode */
+    struct list_head    i_list;        /* 相同状态索引节点链表 */
+    struct list_head    i_sb_list;  /* 文件系统中所有节点链表  */
+    struct list_head    i_dentry;   /* 目录项链表 */
+    unsigned long        i_ino;      /* 节点号 */
+    atomic_t        i_count;        /* 引用计数 */
+    unsigned int        i_nlink;    /* 硬链接数 */
+    uid_t            i_uid;          /* 使用者id */
+    gid_t            i_gid;          /* 使用组id */
+    struct timespec        i_atime;    /* 最后访问时间 */
+    struct timespec        i_mtime;    /* 最后修改时间 */
+    struct timespec        i_ctime;    /* 最后改变时间 */
+    const struct inode_operations    *i_op;  /* 索引节点操作函数 */
+    const struct file_operations    *i_fop;    /* 缺省的索引节点操作 */
+    struct super_block    *i_sb;              /* 相关的超级块 */
+    struct address_space    *i_mapping;     /* 相关的地址映射 */
+    struct address_space    i_data;         /* 设备地址映射 */
+    unsigned int        i_flags;            /* 文件系统标志 */
+    void            *i_private;             /* fs 私有指针 */
+    unsigned long i_state;
+};
+</code></pre>
+                <p>可以看到，inode同样采用了多个链表来保存。<code>i_hash</code>用来快速查找inode，<code>i_list</code>则是相同状态索引结点形成的双链表，这包含有未用索引节点链表，正在使用索引节点链表和脏索引节点链表等。</p>
+                <p><code>i_dentry</code>是所有使用该节点的dentry链表。值得注意的是，inode不仅仅包含了自身索引节点的操作函数<code>i_op</code>，还有指向（缺省）文件操作的指针<code>i_fop</code>。当然，inode还会和super_block有联系。</p>
+                <p><code>i_sb</code>是索引节点所在的超级块，而i_sb_list则是超级块中的所有节点的链表。</p>
+                <p>当在某个目录下创建、打开一个文件时，内核就会调用<code>create()</code>为这个文件创建一个inode。VFS通过inode的i_op-&gt;create()函数来完成这个工作；它将目录的inode、新打开文件的dentry、访问权限作为参数；<code>lookup()</code>函数用来查找指定文件的dentry，<code>link()</code>和<code>symlink()</code>分别用来创建硬链接和软链接。</p>
+                <h1>超级块对象</h1>
+                <p>与前面几类对象不同的是，超级块对象表述的内容更加庞大一些：它表示的是一个“已安装的文件系统”。它在文件系统安装时建立，在文件系统卸载时删除。其定义在fs.h当中，这里我只列举出了较为关键的域。</p>
+                <pre><code>struct super_block {
+        struct list_head        s_list;         //超级块链表的指针
+        dev_t                   s_dev;          //设备标识符
+        unsigned char           s_blocksize_bits;
+        unsigned long           s_blocksize;
+        loff_t                  s_maxbytes;     //文件的最长长度
+        struct file_system_type *s_type;
+        const struct super_operations   *s_op;  //超级块的操作
+        const struct dquot_operations   *dq_op; 
+        const struct quotactl_ops       *s_qcop;
+        const struct export_operations *s_export_op;
+        unsigned long           s_flags;	//安装标识
+        struct dentry           *s_root;	//根目录的目录项
+        int                     s_count;
+        const struct xattr_handler **s_xattr;
+        struct list_head        s_inodes;       //所有的inodes链（打开文件的inodes链）
+
+        struct block_device     *s_bdev;	//块设备
+  	    char s_id[32];                          //块设备名称
+        u8 s_uuid[16];                          //UUID	        fmode_t                 s_mode;
+
+        char *s_subtype;
+        const struct dentry_operations *s_d_op; //default d_op for dentries
+        void *s_fs_indo; 	//文件系统的信息指针
+    	};
+</code></pre>
+                <p>在linux中，每个超级块代表一个已安装的文件系统。所有的超级块链表，是以一种双向环形链表的形式链接在一起的。其<code>prev</code>、<code>next</code>保存在<code>list_head</code>域中。超级块对象中，保存有其根目录的<code>dentry</code>，以及其所有的<code>inode</code>。<code>s_fs_info</code>则指向了文件系统的超级块信息。而对于超级块来说，同样定义有<code>s_op</code>，也即超级块的操作表。</p>
+                <p>超级块一般是储存在磁盘的特定扇区当中，但如果是基于内存对文件系统，比如proc、sysfs，则是保存在内存当中，而超级块对象，则是在使用时创建的，它保存在内存中。</p>
+                <h1>硬链接和软链接与复制</h1>
+                <p>linux里面，可以把文件分成三个部分：文件名（dentry），inode，数据。</p>
+                <p>复制的定义很明确，就是为这三个部分，都创建一个新的副本。</p>
+                <ul>
+                  <li>硬链接的本质是一个“文件名”，一个文件可能有多个“文件名”，inode并不包含文件名，而只是有一个索引节点号。硬链接实际上就是为链接文件创建一个新的dentry，并将dentry写入父目录的数据中，而硬链接所对应的inode依然没有变。所以删除硬链接只是删除了dentry，而inode结点数减少1而已。</li>
+                  <li>软链接就是一个普通的文件，只不过它的数据保存的是另一个文件的路径。软链接的创建，调用了<code>__ext4_new_inode()</code>来创建一个新的inode，并把<code>dentry-&gt;name</code>作为了它的内容。也就是说，软链接也同时创建了这三个部分。</li>
+                </ul>
+                <p>二者的区别在哪里呢？首先，硬链接共享了inode，因此它不能跨文件系统；但是软链接不受这个限制。由于相同的原因，硬链接只能对存在的文件进行创建，而软链接不是。而且硬链接有可能会在目录中引入循环，所以不能指向目录；但软链接不会，因为它有一个inode实体可以跟踪。不过不论删除软链接还是硬链接，都不会对原文件、具有相同inode号的文件造成影响。但如果原文件被删除，软链接会变成死链接，硬链接不会，因为inode的计数并没有变成0。</p>
+                <p><img src="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/%E9%93%BE%E6%8E%A5.png" alt=""></p>
+                <h1>路径名查找</h1>
+                <p>每当进程需要识别一个文件时，就把它的文件路径名，传递给某个VFS系统调用，比如<code>open()</code>。在路径查找中，有个辅助的数据结构：<code>nameidata</code>，它用来向函数传递参数，并且保存查找的结果：</p>
+                <pre><code>struct nameidata {
+	struct path	path;
+	struct qstr	last;
+	struct path	root;
+	struct inode	*inode; /* path.dentry.d_inode */
+	unsigned int	flags;
+	unsigned	seq, m_seq;
+	int		last_type;
+	unsigned	depth;
+	struct file	*base;
+	char *saved_names[MAX_NESTED_LINKS + 1];
+};
+</code></pre>
+                <p>在查找完成后，<code>path</code>中保存了目录项，<code>depth</code>表示了当前路径的深度，<code>saved_names</code>保存了符号链接处理中的路径名。</p>
+                <p>路径查找的复杂性，主要体现在VFS系统的一些特点上：（1）必须对目录的访问权限进行检查；（2）文件名可能是符号链接；（3）要考虑符号链接可能带来的循环引用；（4）文件名可能是文件系统的安装点（5）路径名和进程的命名空间有关等。</p>
+                <p>路径名查找的入口是<code>path_lookup()</code>，它调用了<code>filename_lookup()</code>。这个函数对nameidata进行了简单的填充，随后调用<code>lookupat()</code>。</p>
+                <p><code>lookupat()</code>函数中通过一个循环，和<code>path_init()</code>函数，逐级向下进行查找，检查目录的访问权限，并且考虑符号链接等情况。</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/archives/1b9c8662/">http://home.meng.uno/archives/1b9c8662/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件系统/">文件系统</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/archives/5ae627d/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          STL简介
+        
+      </div>
+    </a>
+
+
+              <a href="/archives/1d60a972/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">信号</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">虚拟文件系统（VFS）的思想和作用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">通用文件模型</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">文件对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">目录项对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">索引节点对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">超级块对象</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">硬链接和软链接与复制</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">路径名查找</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
