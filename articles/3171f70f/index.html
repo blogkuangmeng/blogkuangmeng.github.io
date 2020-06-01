@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>JS中call、apply、bind的用法 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="今天看博客时，看到了这样的一段js代码：  1   var bind = Function.prototype.call.bind(Function.prototype.bind);   上面那段代码涉及到了call、bind，所以我想先区别一下call、apply、bind的用法。这三个方法的用法非常相似，将函数绑定到上下文中，即用来改变函数中this的指向。举个例子：  1 2 3 4 5 6">
+  <meta name="keywords" content="call,apply,bind">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JS中call、apply、bind的用法">
+  <meta property="og:url" content="http://home.meng.uno/articles/3171f70f/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="今天看博客时，看到了这样的一段js代码：  1   var bind = Function.prototype.call.bind(Function.prototype.bind);   上面那段代码涉及到了call、bind，所以我想先区别一下call、apply、bind的用法。这三个方法的用法非常相似，将函数绑定到上下文中，即用来改变函数中this的指向。举个例子：  1 2 3 4 5 6">
+  <meta property="og:locale" content="EN">
+  <meta property="og:updated_time" content="2020-02-28T14:01:55.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JS中call、apply、bind的用法">
+  <meta name="twitter:description" content="今天看博客时，看到了这样的一段js代码：  1   var bind = Function.prototype.call.bind(Function.prototype.bind);   上面那段代码涉及到了call、bind，所以我想先区别一下call、apply、bind的用法。这三个方法的用法非常相似，将函数绑定到上下文中，即用来改变函数中this的指向。举个例子：  1 2 3 4 5 6">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/3171f70f/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-js_call_apply_bind" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  JS中call、apply、bind的用法
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/3171f70f/" class="article-date">
+	  <time datetime="2016-06-07T10:45:27.000Z" itemprop="datePublished">2016-06-07</time>
+	</a>
+                <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,173</span>
+	<span class="post-count"> | 预计时间5分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <p>今天看博客时，看到了这样的一段js代码：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.call.bind(Function.prototype.bind);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>上面那段代码涉及到了<code>call</code>、<code>bind</code>，所以我想先区别一下<code>call</code>、<code>apply</code>、<code>bind</code>的用法。这三个方法的用法非常相似，将函数绑定到上下文中，即用来改变函数中<code>this</code>的指向。举个例子：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var zlw = &#123;</span><br><span class="line">    name: &quot;zlw&quot;,</span><br><span class="line">    sayHello: function (age) &#123;</span><br><span class="line">         console.log(&quot;hello, i am &quot;, this.name + &quot; &quot; + age &quot; years old&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var  xlj = &#123;</span><br><span class="line">    name: &quot;xlj&quot;,</span><br><span class="line">&#125;;</span><br><span class="line">zlw.sayHello(24);// hello, i am zlw 24 years old</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>下面看看<code>call</code>、<code>apply</code>方法的用法：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">zlw.sayHello.call(xlj, 24);// hello, i am xlj 24 years old</span><br><span class="line">zlw.sayHello.apply(xlj, [24]);// hello, i am xlj 24 years old</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>结果都相同。从写法上我们就能看出二者之间的异同。相同之处在于，第一个参数都是要绑定的上下文，后面的参数是要传递给调用该方法的函数的。不同之处在于，<code>call</code>方法传递给调用函数的参数是逐个列出的，而<code>apply</code>则是要写在数组中。</p>
+                <p>我们再来看看<code>bind</code>方法的用法：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">zlw.sayHello.bind(xlj, 24)(); //hello, i am xlj 24 years old</span><br><span class="line">zlw.sayHello.bind(xlj, [24])(); //hello, i am xlj 24 years old</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>bind</code>方法传递给调用函数的参数可以逐个列出，也可以写在数组中。<code>bind</code>方法与<code>call</code>、<code>apply</code>最大的不同就是前者返回一个绑定上下文的函数，而后两者是直接执行了函数。由于这个原因，上面的代码也可以这样写:</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">zlw.sayHello.bind(xlj)(24); //hello, i am xlj 24 years old</span><br><span class="line">zlw.sayHello.bind(xlj)([24]); //hello, i am xlj 24 years old</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>bind</code>方法还可以这样写<code>fn.bind(obj, arg1)(arg2)</code>。</p>
+                <p>用一句话总结<code>bind</code>的用法：该方法创建一个新函数，称为绑定函数，绑定函数会以创建它时传入<code>bind</code>方法的第一个参数作为<code>this</code>，传入bind方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
+                <p>现在回到开始的那段代码：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.call.bind(Function.prototype.bind);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>我们可以这样理解这段代码：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = fn.bind(obj)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>fn</code>相当于<code>Function.prototype.call</code>，<code>obj</code>相当于<code>Function.prototype.bind</code>。而<code>fn.bind(obj)</code>一般可以写成这样<code>obj.fn</code>，为什么呢？因为<code>fn</code>绑定了<code>obj</code>，<code>fn</code>中的<code>this</code>就指向了<code>obj</code>。我们知道，函数中<code>this</code>的指向一般是指向调用该函数的对象。所以那段代码可以写成这样:</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.bind.call;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>大家想一想<code>Function.prototype.call.bind(Function.prototype.bind)</code>返回的是什么？</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">console.log(Function.prototype.call.bind(Function.prototype.bind)) // call()</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>返回的是<code>call</code>函数，但这个<code>call</code>函数中的上下文的指向是<code>Function.prototype.bind</code>。这个<code>call</code>函数可以这样用</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.call.bind(Function.prototype.bind);</span><br><span class="line">var zlw = &#123;</span><br><span class="line">    name: &quot;zlw&quot;</span><br><span class="line">&#125;;</span><br><span class="line">function hello () &#123;</span><br><span class="line">    console.log(&quot;hello, I am &quot;, this.name);</span><br><span class="line">&#125;</span><br><span class="line">bind(hello, zlw)() // hello, I am zlw</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>大家可能会感到疑惑，为什么是这样写<code>bind(hello, zlw)</code>而不是这样写<code>bind(zlw, hello)</code>？既然<code>Function.prototype.call.bind(Function.prototype.bind)</code>相当于<code>Function.prototype.bind.call</code>，那么先来看下<code>Function.prototype.bind.call</code>怎么用。<code>call</code>的用法大家都知道：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">Function.prototype.bind.call(obj, arg)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>其实就相当于<code>obj.bind(arg)</code>。我们需要的是<code>hello</code>函数绑定对象<code>zlw</code>，即<code>hello.bind(zlw)</code>也就是<code>Function.prototype.bind.call(hello, zlw)</code>，所以应该这样写<code>bind(hello, zlw)</code>。</p>
+                <p>现在又有一个疑问，既然<code>Function.prototype.call.bind(Function.prototype.bind)</code>相当于<code>Function.prototype.bind.call</code>，我们为什么要这么写：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.call.bind(Function.prototype.bind);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>而不直接这样写呢：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.bind.call;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>先来看一个例子：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var name = &quot;xlj&quot;;</span><br><span class="line">var zlw = &#123;</span><br><span class="line">    name: &quot;zlw&quot;</span><br><span class="line">    hello: function () &#123;</span><br><span class="line">        console.log(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">zlw.hello(); // zlw</span><br><span class="line">var hello = zlw.hello;</span><br><span class="line">hello(); // xlj</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>有些人可能会意外，<code>hello()</code>的结果应该是<code>zlw</code>才对啊。其实，将<code>zlw.hello</code>赋值给变量<code>hello</code>，再调用<code>hello()</code>，<code>hello</code>函数中的<code>this</code>已经指向了<code>window</code>，与<code>zlw.hello</code>不再是同一个上下文，而全局变量<code>name</code>是<code>window</code>的一个属性，所以结果就是<code>xlj</code>。再看下面的代码：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var hello = zlw.hello.bind(zlw);</span><br><span class="line">hello(); // zlw</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>结果是<code>zlw</code>，这时<code>hello</code>函数与<code>zlw.hello</code>是同一个上下文。其实上面的疑惑已经解开了，直接这样写：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.bind.call;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>bind</code>函数中的上下文已经与<code>Function.prototype.bind.call</code>中的不一样了，所以使用<code>bind</code>函数会出错。而这样写</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">var bind = Function.prototype.call.bind(Function.prototype.bind);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>bind</code>函数中的上下文与<code>Function.prototype.call.bind(Function.prototype.bind)</code>中是一样的。</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/3171f70f/">http://home.meng.uno/articles/3171f70f/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply/">apply</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/call/">call</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/dbf56532/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Matlab基本函数
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/23b9d6e9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">那些前端安全冷门知识</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">None</ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

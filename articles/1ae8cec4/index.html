@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Virtio原理 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="Virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
+  <meta name="keywords" content="Linux,虚拟化,Virtio">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Virtio原理">
+  <meta property="og:url" content="http://home.meng.uno/articles/1ae8cec4/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="Virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/virtio/qemu.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/virtio/virtio.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/virtio/liftcycle.jpg">
+  <meta property="og:updated_time" content="2019-03-20T13:25:55.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Virtio原理">
+  <meta name="twitter:description" content="Virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
+  <meta name="twitter:image" content="http://www.meng.uno/images/virtio/qemu.jpg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/1ae8cec4/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-virtio" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Virtio原理
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/1ae8cec4/" class="article-date">
+	  <time datetime="2016-05-10T03:41:13.000Z" itemprop="datePublished">2016-05-10</time>
+	</a>
+                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数814</span>
+	<span class="post-count"> | 预计时间3分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>Virtio简介</h1>
+                <p>virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互的代码(驱动程序)。</p>
+                <h1>QEMU模拟I/O</h1>
+                <p>如果使用QEMU模拟I/O，当guest中的设备驱动程序发起I/O操作请求时，KVM中的I/O操作捕获代码会将这次I/O请求拦截，在经过处理后将这次I/O请求的信息放在I/O共享页，然后通知QEMU程序。QEMU获得I/O操作的具体信息后，交由硬件模拟代码模拟出本次I/O操作，完成后，将结果放回I/O共享页，并通知KVM模块中的I/O操作捕获代码。最后，KVM模块中的捕获代码读取I/O共享页中的操作结果，把结果返回到客户机中。倘若guest通过DMA访问大块I/O时，QEMU不会把操作结果放在I/O共享页中，而是通过内存映射的方式将结果直接写到guest的内存中。</p>
+                <p><img src="http://www.meng.uno/images/virtio/qemu.jpg" alt=""></p>
+                <h1>Virtio模拟I/O</h1>
+                <p>下图中，最上面一排(virtio_blk等)是前端驱动，它们是在客户机中存在的驱动程序模块，而后端处理程序是在QEMU中实现的。在前端和后端之间，定义了两层来支持guest和QEMU之间的通信。virtio层是虚拟队列借口，一个前端驱动程序可以使用多个队列。虚拟队列实际上是guest操作系统和hyperviosr的衔接点。而virtio-ring实现了环形缓冲区，它用来保存前端驱动和后端处理程序执行的信息，并且它可以一次性保存前端驱动的多次I/O请求，并且交由后端驱动去批量处理，最后实际调用host中设备驱动实现物理上的I/O操作，这样做就可以实现批量处理，而不是客户机中的每次I/O请求都需要处理一次，从而提高了guest和hypervisor信息交换的效率。</p>
+                <p><img src="http://www.meng.uno/images/virtio/virtio.jpg" alt=""></p>
+                <h1>virtio_blk</h1>
+                <p>在linux中，对于块设备的访问，通常是用一个I/O队列，来维护一系列的bio数据结构，通常一个请求可能包含多个bio结构。bio是上层内核vfs与下层驱动连接的纽带。<br> virtio_blk结构体中的gendisk结构多request_queue队列接收block层的bio请求，按照request_queue队列默认处理过程，bio请求会在io调度层转化为request，然后进入request_queue队列，最后调用virtblk_request将request转化为vbr结构，最后由QEMU接管处理。
+                  <br> QEMU处理过vdr之后，会将它加入到virtio_ring的request队列，并发一个中断给队列，队列的中断响应函数vring_interrupt调用队列的回调函数virtblk_done。
+                  <br> 最后由request_queue注册的complete函数virtblk_request_done处理，通过blk_mq_end_io通告块设备层IO结束。
+                </p>
+                <p><img src="http://www.meng.uno/images/virtio/liftcycle.jpg" alt=""></p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/1ae8cec4/">http://home.meng.uno/articles/1ae8cec4/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Virtio/">Virtio</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/23b9d6e9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          那些前端安全冷门知识
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/4314a663/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">页缓存（Page Cache）</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Virtio简介</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">QEMU模拟I/O</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Virtio模拟I/O</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">virtio_blk</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

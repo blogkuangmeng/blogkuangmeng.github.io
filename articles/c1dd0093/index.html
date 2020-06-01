@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>浅析VR/AR+：医疗 | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="VR/AR介绍 虚拟现实技术（VR）是一种可以创建和体验虚拟世界的计算机仿真系统，它利用计算机生成一种模拟环境，是一种多源信息融合的、交互式的三维动态视景和实体行为的系统仿真使用户沉浸到该环境中。  VR是仿真技术的一个重要方向，是仿真技术与计算机图形学人机接口技术多媒体技术传感技术网络技术等多种技术的集合，是一门富有挑战性的交叉技术前沿学科和研究领域。VR主要包括模拟环境、感知、自然技能和传感设">
+  <meta name="keywords" content="VR,AR,医疗">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="浅析VR&#x2F;AR+：医疗">
+  <meta property="og:url" content="http://home.meng.uno/articles/c1dd0093/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="VR/AR介绍 虚拟现实技术（VR）是一种可以创建和体验虚拟世界的计算机仿真系统，它利用计算机生成一种模拟环境，是一种多源信息融合的、交互式的三维动态视景和实体行为的系统仿真使用户沉浸到该环境中。  VR是仿真技术的一个重要方向，是仿真技术与计算机图形学人机接口技术多媒体技术传感技术网络技术等多种技术的集合，是一门富有挑战性的交叉技术前沿学科和研究领域。VR主要包括模拟环境、感知、自然技能和传感设">
+  <meta property="og:locale" content="EN">
+  <meta property="og:updated_time" content="2018-02-14T11:13:32.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="浅析VR&#x2F;AR+：医疗">
+  <meta name="twitter:description" content="VR/AR介绍 虚拟现实技术（VR）是一种可以创建和体验虚拟世界的计算机仿真系统，它利用计算机生成一种模拟环境，是一种多源信息融合的、交互式的三维动态视景和实体行为的系统仿真使用户沉浸到该环境中。  VR是仿真技术的一个重要方向，是仿真技术与计算机图形学人机接口技术多媒体技术传感技术网络技术等多种技术的集合，是一门富有挑战性的交叉技术前沿学科和研究领域。VR主要包括模拟环境、感知、自然技能和传感设">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/c1dd0093/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-vr-ar-medicine" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  浅析VR/AR+：医疗
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/c1dd0093/" class="article-date">
+	  <time datetime="2017-11-18T13:07:15.000Z" itemprop="datePublished">2017-11-18</time>
+	</a>
+                <a class="article-category-link" href="/categories/人机交互/">人机交互</a>
+                <a class="article-category-link" href="/categories/人机交互/AR/">AR</a><a class="article-category-link" href="/categories/人机交互/AR/VR/">VR</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数10,370</span>
+	<span class="post-count"> | 预计时间36分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>VR/AR介绍</h1>
+                <p>虚拟现实技术（VR）是一种可以创建和体验虚拟世界的计算机仿真系统，它利用计算机生成一种模拟环境，是一种多源信息融合的、交互式的三维动态视景和实体行为的系统仿真使用户沉浸到该环境中。</p>
+                <p>VR是仿真技术的一个重要方向，是仿真技术与计算机图形学人机接口技术多媒体技术传感技术网络技术等多种技术的集合，是一门富有挑战性的交叉技术前沿学科和研究领域。VR主要包括模拟环境、感知、自然技能和传感设备等方面。模拟环境是由计算机生成的、实时动态的三维立体逼真图像。感知是指理想的VR应该具有一切人所具有的感知。除计算机图形技术所生成的视觉感知外，还有听觉、触觉、力觉、运动等感知，甚至还包括嗅觉和味觉等，也称为多感知。自然技能是指人的头部转动，眼睛、手势、或其他人体行为动作，由计算机来处理与参与者的动作相适应的数据，并对用户的输入作出实时响应，并分别反馈到用户的五官。传感设备是指三维交互设备。</p>
+                <p>而增强现实技术（AR）是一种实时地计算摄影机影像的位置及角度并加上相应图像、视频、3D模型的技术，这种技术的目标是在屏幕上把虚拟世界套在现实世界并进行互动。AR最早是于1990年提出的，之后随着电子产品运算能力的提升，其应用也是用途愈广。尤其是近两年来AR技术可谓是备受关注！现在的市场中由于可穿戴设备的出现，以及手机性能的进一步提升，AR技术也是持续升温。</p>
+                <p>AR是一种将真实世界信息和虚拟世界信息“无缝”集成的新技术，是把原本在现实世界的一定时间空间范围内很难体验到的实体信息（视觉信息,声音,味道,触觉等），通过电脑等科学技术，模拟仿真后再叠加，将虚拟的信息应用到真实世界，被人类感官所感知，从而达到超越现实的感官体验。真实的环境和虚拟的物体实时地叠加到了同一个画面或空间同时存在。不仅展现了真实世界的信息,而且将虚拟的信息同时显示出来，两种信息相互补充、叠加。在视觉化的AR实现中，用户利用头盔显示器，把真实世界与电脑图形多重合成在一起，便可以看到真实的世界围绕着它。</p>
+                <p>在接下来的叙述中，我将在第二部分分析VR/AR对于医生角度的应用，第三部分分析在病人角度的应用，第四部分是在医疗教育方面的应用，其他相关的研究我将在第五部分陈述，现阶段研究的不足将在第六部分分析，最后两部分是一点我的个人感想和本文结论。</p>
+                <h1>对于医生的应用</h1>
+                <h2 id="模拟手术">模拟手术</h2>
+                <p>虚拟手术作为一个虚拟现实领域的重要研究方向，正成为科学家们的关注焦点。它是集现代医学、计算机图形学、计算机视觉、生物力学、材料学、机器人等诸多学科为一体的新型交叉研究领域。医生可以通过虚拟现实技术来模拟、指导医学手术所涉及的各种过程，包括手术计划制定、手术排练演习、手术教学、手术技能训练、术中引导手术、术后康复等。</p>
+                <p>80%的手术失误是人为因素引起的，因此手术训练极其重要。以前医生手术训练都只能在病人身上做，所以经常说有名的医生都是踏过多少人的血液才走过来的，这样付出的代价实在太大。在VR/AR技术飞速发展并广泛应用的今天，模拟手术在医生训练过程中非常重要的应用就是，医生可以在不接触实际病人的前提下模拟各种手术场景，模拟的场景可能比真实遇到的情况还要多，这样模拟训练的效果实际上就超过了真实的练刀。一方面，模拟训练可以在任何地方、任何时间反复模拟，深化印象，这个优点在实际病人身上是不可能也不允许做的，因为病人的资源是有限的。模拟手术就是把每个可能的手术场景都呈现在你的面前，每个人得到的机会都是无穷次的，医生可以反复看、反复练，并且对病人没有伤害。如果从这点来讲，一个经过模拟训练的医生再给病人做手术时，他的学习周期就会很短很短，这个实际上是对病人利益的极大保护。当前模拟手术在中国也已经有了，像强生公司、科汇公司的外科培训中心已经有腹腔镜的模拟，也有介入手术的模拟，当然还有达芬奇手术的模拟，但这种模拟还不是真实场景的，也就是说未来在VR技术里面，可以完全进入到手术室，然后在真实的场景里面进行模拟手术，那就更加接近于现实。</p>
+                <p>大家应该知道在体育运动里，比如足球、体操，都有慢动作回放，有动作捕捉去分析运动员动作是否做到位了，失误的原因是什么。这个技术同样可以用到外科手术里。通过运动捕捉或者手势识别和VR技术，在外科大夫进行学习或尝试以后，可以复原手术，看到手术的过程，如果有失误，原因是什么。这种回放能极大的帮助医生改进他们的技术。</p>
+                <h2 id="远程干预-指导">远程干预/指导</h2>
+                <p>世界上首例实验性远程手术已经在1999年成功地进行。虚拟手术与远程干预将能够使在手术室中的外科医生能实时地获得远程专家的交互式会诊。交互工具可以使顾问医生把靶点投影于患者身上来帮助指导主刀外科医生的操作，甚或通过遥控帮助操纵仪器。这能使专家们技能的发挥不受空间距离的限制。如果VR技术在这一方面继续发展的话，可能会出现以后医生不用到医院上班，无论在任何地方都可以实施手术。缓解了当今医院基础设施不足的现状。同时，有些相同的手术，某专家可以通过VR技术远程指导，这样就打破了一个时间段只能进行一项手术的限制，大大提高医疗的效率。</p>
+                <h2 id="精确操作">精确操作</h2>
+                <p>如上文已经提到的达芬奇机器人，还有很多像这种医生能够远程控制其操作的手术设备，通过使用这些设备，能够在实际的手术中，避免因为医生长时间工作造成的身体情况变化而带来的手术质量参差不起的问题（例如某医生一天手术过多，太过劳累，这样后来的手术必然会质量下降）。如果使用了VR技术，远程控制诸如达芬奇机器人一样的手术设备，不管医生自己身体状况如何，只要控制到位，那些手术设备是不会因为工作时间长就产生不适的，这样也能保证手术质量优秀。同时，一个医生只有两只手，所以有些手术需要助手，而使用那些设备之后，一个医生可以控制很多只手，这样就能够协调统一，对手术质量有百利而无一害。</p>
+                <h2 id="协助执行日常任务">协助执行日常任务</h2>
+                <p>医生需要经常查看病人的病情，而在现在的医疗设施情况下，对于一个医生，可能得通过“查房”一间一间地去病房里与病人交流，而且交流记录难免会记忆不清或者甚至搞混了。有了VR技术虚拟医生协助真实医生实现这些复杂的工作，效率必然会大大提高。医生甚至都不用出办公室，只需要观察相应的VR反馈就可以基本实现之前的“查房”任务。这样一来就可以大大减轻医生的负担，必然会对医生的日常工作效率产生积极的影响。这些虚拟医生与病人交流的数据可以保存用来对之后的反馈对比，当然可以用其他机器学习的方法来进行一些预测之类的计算。并且基于大数据，可能这些虚拟医生对单个病人情况的分析会比真实的医生更专业，因为医生也不是能对每个症状都了如指掌的。</p>
+                <p>有些病人（例如老人和小孩等）可能在认识自己病情上有欠缺，例如忘记吃药，每次吃多少药等，在传统的方案中，要么有专人提醒，要么在显眼的地方做上标记提醒，总之效率不高或者费时费人力。当我们在某种小的设备上加上VR/AR提醒，以一个三维立体的形象的形式来提醒病人，既省时又省人力，效率相对还比较高。</p>
+                <h2 id="获得医药信息">获得医药信息</h2>
+                <p>医生可能不能记住每种药物的作用，以及每种药物的使用方式，假如能通过VR技术将每种药的使用信息都记录下来，通过相关的设备，让医生在给病人开药的时候头脑里能对这种药的所有情况都回顾一遍，同时还可以与几种相似的药做对比，找出最好的组合，避免偶尔的误用药。</p>
+                <h2 id="获取用户机体信息">获取用户机体信息</h2>
+                <p>在现在正常的医学治疗步骤中，医生想要检查病人某部位的病变情况，只能使用诸如CT、CTA等基于切片的二维人体部位图像，这种图像相对来讲专业要求度较高，对人体伤害较大，同时准确性也不能得到保障。将VR应用于此种工作，我们可以得到人体某部位的三维立体真实大小的模型，这样一来医生的判断会更加准确而且这种图识别起来相对不需要那么复杂的专业知识。</p>
+                <h2 id="血管照明-辅助手术">血管照明（辅助手术）</h2>
+                <p>这算是一种比较专业地说法，和辅助手术概念比较类似，简而言之就是通过PC应用软件帮助医务人员在手术中能够查看隐藏的血管。此前，心脏病专家借助谷歌眼镜疏通了一位49岁男患者阻塞的右冠状动脉。冠状动脉成像（CTA）和三维数据呈现在智能眼镜的显示器上，根据这些实时放大图像，医生可以方便地将血液导流到动脉。不同于传统手术，AR的介入就像一个”AR放大镜”，直接放大手术创口，患者的彩超、MRI、CT图像等将直接映在手术部位，让医生能够看到肉眼难以分辨的细微情况，获得“透视”功能，大大提高手术操作的效率和舒适度。</p>
+                <h2 id="损伤评估">损伤评估</h2>
+                <p>在传统的医疗实践中，如果病人就诊，医生为了确定病人病情只能通过明显的外表特征或者患者的口头表述来确定，而这样的手法往往会带来误判或者病情程度判断不清等问题，特别是那种很难表述清楚的内科疾病。运用虚拟现实技术，我们可以针对不同的疾病设定不同的诊断场景，让用户在特定场景中将应该表现出来的病症全部表现出来，这样一来有利于增大诊断的准确性。</p>
+                <h1>对于病人的应用</h1>
+                <h2 id="智能康复系统">智能康复系统</h2>
+                <p>基于Kinnect等运动捕捉设备所设计出的很多结合VR/AR技术的智能康复系统，这些系统能够很好的帮助病人进行相应的康复训练。在之前我所看到的一个例子中， 病人只需要带上相应的可穿戴传感器就可以将自己的动作传到相应的计算机进而在计算机显示屏上显示用户的动作以及在显示屏中出现的影像之间的交互。在我所看到的实例中，他们只是能做到在场景中增加一些物体（例如长方体等），让病人在虚拟的环境中模拟各种体力锻炼。这样一来，我们就不需要实际花费很多的金钱来布置训练场景，而且VR所形成的场景还可以很轻易得更换，不用为维护实际的场景而花费很多精力。</p>
+                <p>调查显示，以色列的研究人员开发出一套“电脑辅助康复环境系统”，通过模拟划船、打球、慢跑等各种情景，来帮助残障人士改善平衡能力，恢复身体的运动机能。足部神经受损的博罗夫斯基就在接受“电脑辅助康复环境系统”的治疗。现在系统模拟的是“海上冲浪”，大屏幕上显示的是冲浪的场景，博罗夫斯基脚下的踏板会根据设置好的程序相应的摇动，他必须通过调节身体的姿势来保持平衡。同时，连接在他身上的传感器还能把各种身体体征数据传回电脑，以便医生调整训练强度和难度。丰富的影像和新颖的训练方式，让患者像在做游戏一样，更能提高患者本身的主动性和积极性，加强训练效果，缩短住院时间，加快康复过程。无论从时间、人力还是金钱上讲，VR/AR技术的使用必然会在康复系统上带来一场新的革命。</p>
+                <h2 id="帮助治疗某些疾病">帮助治疗某些疾病</h2>
+                <p>有些疾病（例如某种危险情况恐惧症），需要病人在再临其境时才可能克服，但如果让患者在现实中的危险环境再次体验，可能会有安全性问题，而且相同的场景很难真实地完美还原。如果使用VR技术，就可以在基本不耗费后期资源的情况下反复体验相同的场景，在现实中，用户也不会有任何的伤害，而且可调节范围比较广，毕竟是电脑虚拟程序，恐怖程度、危险指数等都可以随心所欲地变化，与现实相比真的是有巨大的优势。</p>
+                <p>截肢者中最常见的烦恼就是幻肢痛——患者感到被切断的肢体仍在，且在该处发生疼痛。疼痛多在断肢的远端出现，疼痛性质有多种，如电击、切割、撕裂或烧伤等。对幻肢痛的发生原理，目前尚无统一意见，西医亦乏有效疗法。很有可能大脑对肢体仍然存有意识，即使它已经不存在了。尽管这样的问题发生存在一定的频率，但至今没有一种有效地方法适用于所有的截肢者。在使用VR技术治疗过程中研究人员使用头戴式耳机和一个传感器将患者带入虚拟的世界，患者可以感受到自己的肢体还在，并可以控制虚拟肢体从事某项工作或游戏。这样就能很好的解决这一疾病，有研究表明对这种疾病VR治疗作用十分显著。</p>
+                <p>VR对创伤后应激障碍也同样有很好的治疗作用。在对从伊拉克和阿富汗返回患有创伤后应激障碍的士兵所进行的VR治疗过程中，VR设备会将会把士兵带回中东的一个小镇，让他们再次“经历”战争和死亡，使其在适当的压力下逐渐学会处理，控制自己的情绪。虽然很多人对于这种治疗方式存在争议，支持者说使用虚拟现实技术与其他的治疗方式相结合会达到非常很理想的治疗效果。</p>
+                <p>VR可以帮助治疗的心理障碍并不仅仅局限于创伤后应激障碍。还有些心理问题（例如自闭症、害羞等），是一个杀人于无形的凶手，目前呈现向低龄化蔓延的趋势。虚拟现实可能也会成为这个问题的解决方案之一。如果有人能既为患者保守秘密有能很好的与用户交流，对治疗这些疾病肯定是有很大的好处的，但是现实中不可能存在这样的一个完美的“倾听者”，即使有，价钱也是不菲的。如果VR/AR能够起到这样的作用那必然会是又一大医学进展。</p>
+                <p>很多心理治疗师和精神专家常用的方式是通过在治疗过程中去引导患者回忆或者想象场景，以此来达到治疗的目的。VR的好处在于它能够让这种环境场景变得可视化和标准化。因此在心理治疗领域，比如说创伤应急、障碍症、恐惧症、自闭症、恐高症、幽闭症、公开演讲恐惧症、密集恐惧症等都可以通过VR技术的环境再现以达到治疗的目的。再比如说，焦虑症、注意力缺陷以及精神分裂症也可以通过VR来虚拟特定的人或是特效来改善相关的一些症状。</p>
+                <h2 id="虚拟问诊">虚拟问诊</h2>
+                <p>在国内外，好的医生都是十分欠缺的，然而相同的疾病缺屡见不鲜，可以说很多小病完全可以在还是在早期的时候就通过及时就诊可以避免出现的，在之前的这么多年，很多搜索引擎也都在做相关的疾病问答系统，可悲的是大多受金钱诱惑，为金钱奴役，不干正事反而虚假宣传。VR技术的出现，必然在医疗问答方面带来很大的革新，患者可以通过VR设备与虚拟的医生直接进行交谈，不仅避免了文字表述不清的问题，而且也避免受网页上那么多的虚假广告的诱惑，更是给人一种如见真实医生的舒适的感觉，而且VR医生会比现实中医生更有耐心，更专职为你一人服务。</p>
+                <h2 id="缓解疼痛">缓解疼痛</h2>
+                <p>读到这样一个故事，“2017年年初，美国的一位脂肪瘤患者开刀时，因为平时血压过高，医生只为她注射了少量镇静剂。医生为她戴上了VR设备，在手术过程中患者一直在玩一个埃及探险的游戏。手术过程中，监测仪器显示患者的一切生命体征参数，都非常平稳。在整个手术过程中，患者的血压不仅没有提升，反而下降了。手术完成后，患者表示她几乎没有感到疼痛。”我觉得有了这个实例，我不需要过多的解释，已经能够很好的说明VR在缓解病人疼痛上的作用了吧。无独有偶，接受重度烧伤治疗是一段痛苦的经历。伤口清理和绷带变化都会引发疼痛，即便使用吗啡等麻醉药物，仍有86%的病人会感到或多或少的疼痛，并且大量使用还会对身体造成一定伤害。1996年，华盛顿大学人机界面技术实验室（HITLab）研究人员发现孩子们在玩游戏时是越来越全神贯注后，想出了为治疗烧伤提供VR游戏，假设沉浸在游戏中会为病人带来积极疗效，他们会更专注于游戏，而减轻对疼痛的注意力。据调查，社会行为医学2011年发布的调查展示了浸入式游戏作为止痛剂的强大作用。并且现在这项技术已经被美国军方使用，帮助受伤的士兵接受治疗。</p>
+                <p>当然在平时的生活中，VR也是能够起到很好的。当我们沉浸在一个虚拟的美好的游戏环境中时，我们可以忘记暂时的伤痛，这是一个常识，也是VR能在这一方面得到巨大应用的一个原因。</p>
+                <h2 id="戒瘾">戒瘾</h2>
+                <p>当今社会的另一大“疾病”，不是身体上的，更大多数是心理上的，例如网瘾、烟瘾甚至毒瘾。在以前的戒瘾所，采取的唯一方式就是物理上的隔离，在VR技术快速发展的今天，我们完全可以通过VR将患者的精力集中到正确的角度上，不仅可以将效果提高，而且省时省力。查阅资料发现，我国相关法律已经开始涉足使用VR进行戒毒活动了。</p>
+                <p>当然，其实在这里VR可能成为一把双刃剑，可能能将用户的注意力从其他那些及其不正常的生活习惯中解救出来，但是可能又会让用户陷入“VR瘾”中，现在我们还无法证明这个“VR瘾”和其他的“网瘾”、“烟瘾”等孰轻孰重，所以此法需要慎重使用。</p>
+                <h2 id="vr-ar与视觉结合">VR/AR与视觉结合</h2>
+                <p>VR本身就是可以直接作用于人的视觉，视觉治疗方案与VR技术很容易匹配。现在升学、工作压力，导致大部分人都有眼部疾病或视觉障碍。VR在治疗眼部的疾病，比如儿童的斜视、近视以及立体视力的缺陷上有很好的效果。虽然在不久之前就有对近视等疾病的物理治疗方案，但是大多费时费力，而且没有听说有什么可观的进展。但是VR/AR的到来就完全不同了，大大提高了效率而且效果明显提高。同时可以制作一种VR设备用来缓解疲劳的眼球，当我们工作或者学习很长时间之后，可以用它来对眼球“做做操”。虽然我们都明白久看之后需要远眺一会，或者看看绿色的动西，但是迫于现实，我们可能很难做到（例如哈尔滨的冬天没有绿树。），但是这一切都可以用VR设备来实现。</p>
+                <h2 id="缓解术前压力">缓解术前压力</h2>
+                <p>接受手术的患者到了陌生环境，难免会有应激反应。他们可能觉得在手术室外等候，麻药还没有生效的时候，他们有强烈的紧张感和恐惧感，甚至有了濒临死亡的体验。现在想一想，这种体验对每个人来说都是非常不好的。虽然术前医生和患者有充足时间做沟通，但是单纯靠用嘴讲、用图、甚至手画示意图，都是一件非常累的事情，因为手术的复杂性和专业性，包括一些专有名词，对患者来说真的是选择性记忆，他们有可能听了上半句，就忘了下半句，甚至把最主要的东西漏掉，支离破碎地理会医生的意思，即使再出色的现场描述也比不过真实环境的真实还原。如果运用VR技术，在手术开始前给患者放一段容易让他放松的内容，让他在进手术室之前，大致了解手术室和手术过程是什么样子的，就能消除他对未知环境的恐惧。我相信这对患者来说是人文的关怀，这在提高医学服务水平里面可以得到有效的应用。</p>
+                <h2 id="隐私保护">隐私保护</h2>
+                <p>现在我国的搜索引擎在医疗上很不受人看好的一个主要原因就是其泄露用户隐私的现象太严重，所以很少有人真正愿意相信搜出来的东西。加入VR/AR元素进入我们的生活，我们可以与虚拟形象进行完全不用担心泄露隐私的情况下的交流。</p>
+                <h1>医疗教育的应用</h1>
+                <h2 id="手术教学">手术教学</h2>
+                <p>伴随互联网的继续发展，如果医学手术教育能够通过VR/AR技术实现，至少在解剖学课程上可以实现意想不到的效果。在相关的设计中，例如心脏的VR模型可以做的特别逼真，让学生可以把心脏托在手里面，随时都可以转圈、打开肌肉看，血流都可以看，这就可以大大缩短医学生的学习周期（而且可以打破时间、地点的限制来学习）。尤其对于外科医生来讲，外科医生很重要的工作就是解剖。局部解剖以前医学生只能通过书本来学习，看到的都是平面的东西，脑子里很少有立体的概念，无法产生互动，进而需要很长的时间来消化知识，甚至很多时候大多数医学生并不能形成很好的立体的模型在脑子中，所以这就是很多庸医出现的根源。VR/AR技术的出现使得医学生在真正操刀做手术之前，就能获得局部解剖的经验，能够有效提高手术的安全性和成功率。而如果医学生通过VR/AR技术实现解剖模拟，学习速度会大大加快，同时降低学习的成本。当然AR在医学教育的应用并不仅仅是在解剖学上面，在生理生化方面都是可以通过VR技术模拟场景的。如果我们可以获得很形象的信息的话，对医生的知识拓展和学习速度都会急剧加快。</p>
+                <p>据早在1993年的统计里，全球市场上出现的805个虚拟现实应用系统中就有49个应用于医学，主要应用在虚拟人体、医学图像学、药物分子研究等方面。大家都知道，在传统的医学教育中，如人体标本解剖和各种手术实训，大都受到标本、场地等限制，实训费用高昂。而且医学生不能通过反复在病人身上进行操作来提高临床实践能力、临床实践具有较大风险。而VR的直观和体验特性却可以很好地解决以上问题。目前在医学教育上应用较多的有虚拟人体解剖学、手术训练教学、虚拟实验室、虚拟医院等。类别也从内容、软件到硬件，甚至还有从事交叉研发的，比如，Oculus涉足了内容、硬件和软件等方面，微软HoloLens则是软硬件结合等。</p>
+                <p>利用VR技术来做外科手术培训另一个重要的特点是，大大节约了成本。在外科领域，医疗知识每隔6~8年就要翻一番，所以外科大夫在专业教育上尤其是在继续教育上需要不断追求对新技术的学习，这种新技术的学习成本是高昂的，方法是复杂的。而VR技术可以在某种程度上帮助大家学习或者熟悉这种新技术。</p>
+                <h2 id="教学用具改革">教学用具改革</h2>
+                <p>传统解剖学挂图和大部分多媒体课件上应用的教学图片都是二维模式，缺少直观的、立体的体验，造成了解剖学习的困难。模型、标本虽具有立体结构，但形式单一、僵硬，不能满足多角度、多层次的教学和实训需求。而虚拟人体解剖图，可在显示人体组织器官解剖结构的同时，显示其断面解剖结构，并可以任意旋转，提供器官或结构在人体空间中的准确定位、三维测量数据和立体图像。此前，美国加州健康科学西部大学（波莫纳）开设了一个虚拟现实学习中心，该中心拥有四种VR技术、zSpace显示屏、Anatomage虚拟解剖台、Oculus
+                  Rift和iPad上的斯坦福大学解剖模型，旨在帮助学生利用VR学习牙科、骨科、兽医、物理治疗和护理等知识。
+                </p>
+                <h1>相关研究进展</h1>
+                <p>尽管业内不少人将2016/2017年称之为“VR发展元年”，若追溯VR发展的历史，早在1932年，Aldous Huxley在其推出的科幻小说《美丽新世界》中即对虚拟现实概念进行了描述。而直到1968年计算机科学家Ivan Sutherland开发了“达摩克利斯之剑”，使得VR设备具备了基本的雏形。随后，VR设备开始应用在一些专精领域，如宇航员的训练活动中。直到1987年，任天堂推出了Famicom3D System眼镜之后，Virtual Boy等设备将VR概念正式带入民用领域。而随着近些年来，视频技术以及移动硬件领域的不断发展，民用VR平台也根据使用者的不同呈现出了分化的状态，包括以游戏平台作为计算平台的专属VR平台、以PC作为计算平台的综合体感VR平台、以及以移动设备作为计算与显示窗口的VR眼镜。</p>
+                <p>硬件厂商方面，在对各类VR设备的研发加大投入力度，VR头盔，眼镜，以及附属的传感器设备在过去的一年中纷纷涌现。</p>
+                <p>视频平台方面，除了传统视频上传方式外，各大视频平台均开放了“全景视频”的上传接口，用于鼓励视频制作团队为平台增加全景类视频的内容量。但由于目前全景视频的制作与存储成本非常高，能够完成全景视频录制与制作的团队并不多，所以目前多数存留在VR平台端的视频实际为3D的“沉浸式”的视频内容。除此之外，部分平台采取聚合方式，将目前市面上鲜见的VR视频内容加以收集整理，集中呈现在用户面前。而技术方案提供方虽然距离用户较远，却是目前推进整个VR行业发展的最为重要的一方，技术方案将成型的算法，图像引擎等输出给视频平台或硬件厂商，以增强用户在两方的使用体感。</p>
+                <h1>存在的问题</h1>
+                <p>VR在医疗应用方面，相比用作练习、模拟来讲还是很欠缺的。AR in China 最近期的统计，如今国内从事AR应用开发的企业有200多家，其中80%倾向和已开发游戏类应用，剩余的也多偏向影视、购物等生活类应用。而专注在医健领域的应用，根据公开信息推测目前不超过10家。而在海外，据 CBInsights、CrunchBase、AngelList 网站的综合数据查询，目前有30家左右初创公司正专注在AR医疗应用领域。其中9家初创公司获得融资，总融资额达5.52亿美元，获投率达到了30%。AR在医健领域的应用还处于蓝海探索期。</p>
+                <p>纯粹的VR在医疗领域还是有很大欠缺的。在现在的VR辅助手术中，医生只能利用AR技术的一些优势，并不能完全交给VR来做，还需要加上传统方法，一边做手术一边对着电脑屏幕比对着看。</p>
+                <p>VR用于治疗方式的缺点是患者的想象和回忆难于把控，所以效果很难评估。</p>
+                <p>而且现在的VR在显示和精确度方面还是有很大的提升空间的。特别实在医疗领域，准确度至关重要。</p>
+                <p>对于医生而言，还有适应问题，这些新技术对于有经验的外科医生及其他专业医护人员来讲，“适应”是最大的挑战。</p>
+                <p>虽然VR技术在医学上应用后能够减少现实中的直接的隐私泄露，但是如果VR数据泄露将导致比现在信息泄露更严重的后果，毕竟VR可以记录整个人的信息而不仅仅是文字信息。</p>
+                <p>VR的一个很大的问题就是基础硬件设备的体验问题。如果要让医生或者被治疗者长时间呆在虚拟环境中，很容易产生一些生理不适的症状。</p>
+                <p>虽然说VR在医学上的应用很丰富，尤其是在心理治疗方面颇有成效。但是考虑到治疗的针对性和VR内容制作难度等各种问题，这种辅助治疗方法在现阶段很难进行大规模的应用。</p>
+                <p>医疗行业需要的是严谨的专业知识和态度，所以对于内容的要求也就相应的提高。如果要开发出一套模拟的人体用来交互培训，需要的是具备医学加上合理内容开发的复合型人才。而且考虑到医学诊断的高精度要求，许多器官或者组织的建模都要非常精细，不能有一丝的马虎，而现在的VR医疗应用更多的还是停留在头戴式VR视频方面。</p>
+                <p>其他要面临的困难还有：治疗和评估标准没有相关的评估标准、应用系统的交互性和易用性还不够完美。虚拟现实系统设备及其外设性价比例失衡，设备相对比较昂贵,致使大规模应用的时机还不够成熟。</p>
+                <h1>个人感想</h1>
+                <p>虽然最近VR/AR技术越来越火，相关研究也相当多，涉及的行业也是相当全面，但是在现在的情况下，绝大多数成就集中在仿真、游戏上，在医疗领域还是存在很多问题，还有很长的路要走。但希望不要又只能火两年而已。</p>
+                <p>在医疗工作的各个领域推广VR技术的应用，可以节省大量的时间与资源，从而更快捷、更安全的挽救生命。国际上由于虚拟现实技术的发展而发展起来的医疗电子设备正以每年10%的速度增长。随着计算机、多媒体技术、传感技术、通讯技术的发展以及各国对虚拟现实技术的日益重视，相信这一技术在医学上的应用在将来会取得更大的发展，它的发展前景非常诱人。可以预言，虚拟现实技术在医学中更广泛、更深入的应用将会给传统医疗带来革命性的变化。</p>
+                <p>在我们国家，新一轮的医疗体制改革如火如荼，传统的医疗体系已经岌岌可危，惟有引入新的信息技术才能适应时代要求。而且，新的医疗体制改革凸现了“社区医疗”的概念。“社区医疗”在全球医疗信息化中对应其第三个阶段，区域医疗信息网络（GMIS），是继医院管理系统（HMIS）、临床医疗信息系统（CIS）之后的阶段。美国所有医疗机构均实现了信息化管理，而中国尚处在初级阶段。将来中国的趋势必然是走向医疗信息化（e-Health）。为了实现这一战略目标，虚拟现实技术就是最佳的操作工具。因此，虚拟现实技术将在中国的“医改”过程中以及今后医疗事业的发展中扮演更加积极、重要的角色。</p>
+                <p>医疗VR是一个给人无限遐想的领域，它不再只存在于科幻小说爱好者的想象中，而是已经走进了临床研究者和现实生活中的医疗工作者的视野。虽然这是一个全新的领域，还不为大众所知，但是医疗VR技术是对患者的生活和医生的工作都可以产生积极影响的应用。我相信VR必将为医学领域带来一场大变革。</p>
+                <h1>结论</h1>
+                <p>VR/AR作为目前比较新潮的技术，在医学领域作用空前。其在医疗上无论从医生角度、患者角度还是医学教育角度都有着十分巨大的作用。现在相关的科学研究也发展迅速，当然也是存在很多的不足，尤其是我们国家在这方面的研究还很欠缺。在今后的一段时间内，我国的VR开发者还是应该多学习和借鉴国外的先进经验，同时保持在这方面的热情，相信在不久的将来，VR/AR定会在医学领域大大地大放异彩。</p>
+                <h1>参考文献</h1>
+                <ol>
+                  <li>刘建武, 叶志前, 陆金芳. 虚拟现实在医学中的应用进展[J]. 国际生物医学工程杂志, 2000(6):321-324.</li>
+                  <li>王海舜, 潘利庆. 虚拟现实技术在医学中的应用[J]. 计算机应用, 1998, 22(6):49-54.</li>
+                  <li>刘聚卑, 庄天戈. 虚拟现实在医学上的应用[J]. 北京生物医学工程, 2000, 19(1):47-54.</li>
+                  <li>谭珂, 郭光友, 王勇军,等. 虚拟现实技术在医学手术仿真训练中的应用[J]. 解放军医学院学报, 2002, 23(1):77-79.</li>
+                  <li>范立冬, 李曙光, 张治刚. 虚拟现实技术在医学训练中的应用[J]. 创伤外科杂志, 2008, 10(6):568-570.</li>
+                  <li>谭海珠, 杨棉华, 陈丹芸,等. 虚拟现实技术在医学中的发展与应用[J]. 中华医学教育探索杂志, 2005, 4(6):410-412.</li>
+                  <li>张晗 虚拟现实技术在医学教育中的应用探讨[J]. 西北医学教育, 2010, 18(1):48-51.</li>
+                  <li>孙秀伟, 阎丽, 李彦锋. 虚拟现实技术(VR)在医疗中的应用展望[J]. 临床医学工程, 2007(5):17-20.</li>
+                  <li>吴奇, 程薇曦. 虚拟现实技术在医学手术中的实现与应用[J]. 重庆医学, 2008, 37(21):2489-2491.</li>
+                  <li>李舫, 宋志坚. HMD式光学穿透技术在医学增强现实中的研究进展[J]. 中国数字医学, 2012, 07(1):14-20.</li>
+                  <li>孙国臣, 余新光, 陈晓雷,等. 基于多模态功能神经导航的虚拟现实及增强现实技术在神经外科教学中的应用[J]. 中国医学教育技术, 2015(1):66-69.</li>
+                  <li>李潜. 增强现实技术为医学教育开拓无限未来[J]. 电脑知识与技术, 2012, 08(2):481-482.</li>
+                  <li>张军毅. 医学增强现实建模及可视化研究[D]. 首都医科大学, 2008.</li>
+                  <li>赵娜, 杨谊平. 增强现实技术与手术模拟[J]. 中华医学丛刊, 2004(4):58-59.</li>
+                  <li>Wang S, Parsons M, Stonemclean J, et al. Augmented Reality as a Telemedicine Platform for Remote Procedural Training.[J]. Sensors, 2017, 17(10):2294.</li>
+                  <li>Noll C, Jan U V, Raap U, et al. Mobile Augmented Reality as a Feature for Self-Oriented, Blended Learning in Medicine: Randomized Controlled Trial[J]. Jmir Mhealth &amp; Uhealth, 2017, 5(9):e139.</li>
+                  <li>Mero M, Susin A, Aplicada D M. Deformable 3D Objects for a VR medical application[J]. 2007.</li>
+                  <li>Crossan A, Brewster S, Reid S, et al. Multi-session VR Medical Training: The HOPS Simulator[J]. People and Computers XVI - Memorable Yet Invisible, 2002:213–226.</li>
+                  <li>Bezerra A. Evaluation of VR medical training applications under the focus of professionals of the health area[C]// ACM Symposium on Applied Computing. ACM, 2009:821-825.</li>
+                  <li>JLM Vazquez, BK Wiederhold, I Miller, et al. Virtual Reality Assisted Anesthesia (VRAA) during Upper Gastrointestinal Endoscopy: Report of 115 Cases— Analysis of Physiological Responses, 2017</li>
+                </ol>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/c1dd0093/">http://home.meng.uno/articles/c1dd0093/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/">AR</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VR/">VR</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/医疗/">医疗</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/55e262ef/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Software Verification Approaches
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/649482ba/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">中文分词小赛数据</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">VR/AR介绍</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">对于医生的应用</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#模拟手术"><span class="nav-number">2.1.</span> <span class="nav-text">模拟手术</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#远程干预-指导"><span class="nav-number">2.2.</span> <span class="nav-text">远程干预/指导</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#精确操作"><span class="nav-number">2.3.</span> <span class="nav-text">精确操作</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#协助执行日常任务"><span class="nav-number">2.4.</span> <span class="nav-text">协助执行日常任务</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#获得医药信息"><span class="nav-number">2.5.</span> <span class="nav-text">获得医药信息</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#获取用户机体信息"><span class="nav-number">2.6.</span> <span class="nav-text">获取用户机体信息</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#血管照明-辅助手术"><span class="nav-number">2.7.</span> <span class="nav-text">血管照明（辅助手术）</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#损伤评估"><span class="nav-number">2.8.</span> <span class="nav-text">损伤评估</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">对于病人的应用</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#智能康复系统"><span class="nav-number">3.1.</span> <span class="nav-text">智能康复系统</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#帮助治疗某些疾病"><span class="nav-number">3.2.</span> <span class="nav-text">帮助治疗某些疾病</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟问诊"><span class="nav-number">3.3.</span> <span class="nav-text">虚拟问诊</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#缓解疼痛"><span class="nav-number">3.4.</span> <span class="nav-text">缓解疼痛</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#戒瘾"><span class="nav-number">3.5.</span> <span class="nav-text">戒瘾</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#vr-ar与视觉结合"><span class="nav-number">3.6.</span> <span class="nav-text">VR/AR与视觉结合</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#缓解术前压力"><span class="nav-number">3.7.</span> <span class="nav-text">缓解术前压力</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#隐私保护"><span class="nav-number">3.8.</span> <span class="nav-text">隐私保护</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">医疗教育的应用</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#手术教学"><span class="nav-number">4.1.</span> <span class="nav-text">手术教学</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#教学用具改革"><span class="nav-number">4.2.</span> <span class="nav-text">教学用具改革</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">相关研究进展</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">存在的问题</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">个人感想</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">结论</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

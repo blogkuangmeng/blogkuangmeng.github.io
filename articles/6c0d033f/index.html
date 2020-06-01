@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>主成分分析（PCA） | 欢迎来到匡盟盟的博客！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="实验要求 实验目标 实现一个PCA模型，能够对给定数据进行降维（即找到其中的主成分）  实验过程 首先人工生成一些数据（如三维数据），让它们主要分布在低维空间中，如首先让某个维度的方差远小于其它维度，然后对这些数据旋转。生成这些数据后，用你的PCA方法进行主成分提取。  找一个人脸数据（小点样本量），用你实现PCA方法对该数据降维，找出一些主成分，然后用这些主成分对每一副人脸图像进行重建，比较一些">
+  <meta name="keywords" content="机器学习">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="主成分分析（PCA）">
+  <meta property="og:url" content="http://home.meng.uno/articles/6c0d033f/index.html">
+  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:description" content="实验要求 实验目标 实现一个PCA模型，能够对给定数据进行降维（即找到其中的主成分）  实验过程 首先人工生成一些数据（如三维数据），让它们主要分布在低维空间中，如首先让某个维度的方差远小于其它维度，然后对这些数据旋转。生成这些数据后，用你的PCA方法进行主成分提取。  找一个人脸数据（小点样本量），用你实现PCA方法对该数据降维，找出一些主成分，然后用这些主成分对每一副人脸图像进行重建，比较一些">
+  <meta property="og:locale" content="EN">
+  <meta property="og:updated_time" content="2018-02-17T02:11:23.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="主成分分析（PCA）">
+  <meta name="twitter:description" content="实验要求 实验目标 实现一个PCA模型，能够对给定数据进行降维（即找到其中的主成分）  实验过程 首先人工生成一些数据（如三维数据），让它们主要分布在低维空间中，如首先让某个维度的方差远小于其它维度，然后对这些数据旋转。生成这些数据后，用你的PCA方法进行主成分提取。  找一个人脸数据（小点样本量），用你实现PCA方法对该数据降维，找出一些主成分，然后用这些主成分对每一副人脸图像进行重建，比较一些">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/6c0d033f/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">留言板</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-pca" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  主成分分析（PCA）
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/6c0d033f/" class="article-date">
+	  <time datetime="2016-12-17T03:52:21.000Z" itemprop="datePublished">2016-12-17</time>
+	</a>
+                <a class="article-category-link" href="/categories/AI/">AI</a>
+                <a class="article-category-link" href="/categories/AI/机器学习/">机器学习</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数2,237</span>
+	<span class="post-count"> | 预计时间9分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h2 id="实验要求">实验要求</h2>
+                <h3 id="实验目标">实验目标</h3>
+                <p>实现一个PCA模型，能够对给定数据进行降维（即找到其中的主成分）</p>
+                <h3 id="实验过程">实验过程</h3>
+                <p>首先人工生成一些数据（如三维数据），让它们主要分布在低维空间中，如首先让某个维度的方差远小于其它维度，然后对这些数据旋转。生成这些数据后，用你的PCA方法进行主成分提取。</p>
+                <p>找一个人脸数据（小点样本量），用你实现PCA方法对该数据降维，找出一些主成分，然后用这些主成分对每一副人脸图像进行重建，比较一些它们与原图像有多大差别（用信噪比衡量）。</p>
+                <h2 id="实验准备">实验准备</h2>
+                <h3 id="降维的必要">降维的必要</h3>
+                <p>多重共线性–预测变量之间相互关联。多重共线性会导致解空间的不稳定，从而可能导致结果的不连贯。</p>
+                <p>高维空间本身具有稀疏性。一维正态分布有68%的值落于正负标准差之间，而在十维空间上只有0.02%。</p>
+                <p>过多的变量会妨碍查找规律的建立。</p>
+                <p>仅在变量层面上分析可能会忽略变量之间的潜在联系。例如几个预测变量可能落入仅反映数据某一方面特征的一个组内。</p>
+                <h3 id="降维的目的">降维的目的</h3>
+                <ul>
+                  <li>减少预测变量的个数</li>
+                  <li>确保这些变量是相互独立的</li>
+                  <li>提供一个框架来解释结果</li>
+                  <li>降维的方法</li>
+                  <li>主成分分析</li>
+                  <li>因子分析</li>
+                  <li>用户自定义复合</li>
+                </ul>
+                <h2 id="有关pca">有关PCA</h2>
+                <h3 id="pca概念">PCA概念</h3>
+                <p>主成分分析 （ Principal Component Analysis ， PCA ）或者主元分析。是一种掌握事物主要矛盾的统计分析方法，它可以从多元事物中解析出主要影响因素，揭示事物的本质，简化复杂的问题。计算主成分的目的是将高维数据投影到较低维空间。给定 n 个变量的 m 个观察值，形成一个 n * m 的数据矩阵， n 通常比较大。对于一个由多个变量描述的复杂事物，人们难以认识，那么是否可以抓住事物主要方面进行重点分析呢？如果事物的主要方面刚好体现在几个主要变量上，我们只需要将这几个变量分离出来，进行详细分析。但是，在一般情况下，并不能直接找出这样的关键变量。这时我们可以用原有变量的线性组合来表示事物的主要方面，
+                  PCA 就是这样一种分析方法。</p>
+                <h3 id="pca作用范围">PCA作用范围</h3>
+                <p>PCA 主要用于数据降维，对于一系列例子的特征组成的多维向量，多维向量里的某些元素本身没有区分性，比如某个元素在所有的例子中都为1，或者与1差距不大，那么这个元素本身就没有区分性，用它做特征来区分，贡献会非常小。所以我们的目的是找那些变化大的元素，即方差大的那些维，而去除掉那些变化不大的维，从而使特征留下的都是“精品”，而且计算量也变小了。 对于一个K维的特征来说，相当于它的每一维特征与其他维都是正交的（相当于在多维坐标系中，坐标轴都是垂直的），那么我们可以变化这些维的坐标系，从而使这个特征在某些维上方差大，而在某些维上方差很小。</p>
+                <h3 id="pca的算法步骤">PCA的算法步骤</h3>
+                <ol>
+                  <li>
+                    <p>设有m条n维数据。</p>
+                  </li>
+                  <li>
+                    <p>将原始数据按列组成n行m列矩阵X</p>
+                  </li>
+                  <li>
+                    <p>将X的每一行（代表一个属性字段）进行零均值化，即减去这一行的均值</p>
+                  </li>
+                  <li>
+                    <p>求出协方差矩阵C=1/mXX’</p>
+                  </li>
+                  <li>
+                    <p>求出协方差矩阵的特征值及对应的特征向量</p>
+                  </li>
+                  <li>
+                    <p>将特征向量按对应特征值大小从上到下按行排列成矩阵，取前k行组成矩阵P</p>
+                  </li>
+                  <li>
+                    <p>Y=PX即为降维到k维后的数据</p>
+                  </li>
+                </ol>
+                <h2 id="实验环境">实验环境</h2>
+                <p>Spyder 作为Python开发的集成开发环境； 编程语言：Python 3.5 操作系统：macOS Sierra</p>
+                <h2 id="小结">小结</h2>
+                <h3 id="pca的应用分析">PCA的应用分析</h3>
+                <p>对于一个训练集，100个对象模板，特征是10维，那么它可以建立一个100*10的矩阵，作为样本。求这个样本的协方差矩阵，得到一个10*10的协方差矩阵，然后求出这个协方差矩阵的特征值和特征向量，应该有10个特征值和特征向量，我们根据特征值的大小，取前四个特征值所对应的特征向量，构成一个10*4的矩阵，这个矩阵就是我们要求的特征矩阵，100*10的样本矩阵乘以这个10*4的特征矩阵，就得到了一个100*4的新的降维之后的样本矩阵，每个特征的维数下降了。当给定一个测试的特征集之后，比如1*10维的特征，乘以上面得到的10*4的特征矩阵，便可以得到一个1*4的特征，用这个特征去分类。所以做PCA实际上是求得这个投影矩阵，用高维的特征乘以这个投影矩阵，便可以将高维特征的维数下降到指定的维数。</p>
+                <p>在进行基因表达数据分析时，一个重要问题是确定每个实验数据是否是独立的，如果每次实验数据之间不是独立的，则会影响基因表达数据分析结果的准确性。对于利用基因芯片所检测到的基因表达数据，如果用 PCA 方法进行分析，可以将各个基因作为变量，也可以将实验条件作为变量。当将基因作为变量时，通过分析确定一组“主要基因元素”，它们能够很好地说明基因的特征，解释实验现象；当将实验条件作为变量时，通过分析确定一组“主要实验因素”，它们能够很好地刻画实验条件的特征，解释基因的行为。</p>
+                <p>PCA作为基础的数学分析方法，其实际应用十分广泛，比如人口统计学、数量地理学、分子动力学模拟、数学建模、数理分析等学科中均有应用，是一种常用的多变量分析方法。</p>
+                <h3 id="pca优缺点">PCA优缺点</h3>
+                <h4 id="优点：">优点：</h4>
+                <p>以方差衡量信息的无监督学习，不受样本标签限制；</p>
+                <p>各主成分之间正交，可消除原始数据成分间的相互影响； 可减少指标选择的工作量；
+                </p>
+                <p>用少数指标代替多数指标，利用PCA降维是最常用的算法； 计算方法简单，易于实现。
+                </p>
+                <h4 id="缺点：">缺点：</h4>
+                <p>主成分解释其含义往往具有一定的模糊性，不如原始样本完整；</p>
+                <p>贡献率小的主成分往往可能含有对样本差异的重要信息；</p>
+                <p>特征值矩阵的正交向量空间是否唯一有待讨论；</p>
+                <p>属于无监督学习。</p>
+                <h2 id="代码">代码</h2>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Tue Nov 29 15:51:25 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">#全局变量定义区</span><br><span class="line">XLabel = list()</span><br><span class="line">YLabel = list()</span><br><span class="line">phi = [<span class="number">0</span>., <span class="number">0</span>.]</span><br><span class="line">#自己定义的矩阵转换函数</span><br><span class="line">def Transport(matrix):</span><br><span class="line">        temp = list()</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">            temp.append(list())</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">                temp[i].append(matrix[j][i])</span><br><span class="line">        return temp</span><br><span class="line">#加载文件（可以通过更改文件名来加载不同的测试数据）</span><br><span class="line">data_set = open(<span class="string">'testSet.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> data_set.readlines():</span><br><span class="line">    data_line = line.strip().split()</span><br><span class="line">    tmpx = <span class="attribute">float</span>(data_line[<span class="number">0</span>])</span><br><span class="line">    tmpy = <span class="attribute">float</span>(data_line[<span class="number">1</span>])</span><br><span class="line">    phi[<span class="number">0</span>] += tmpx</span><br><span class="line">    phi[<span class="number">1</span>] += tmpy</span><br><span class="line">    XLabel.append(tmpx)</span><br><span class="line">    YLabel.append(tmpy)</span><br><span class="line">phi[<span class="number">0</span>] = phi[<span class="number">0</span>]/<span class="number">100.0</span></span><br><span class="line">phi[<span class="number">1</span>] = phi[<span class="number">1</span>]/<span class="number">100.0</span></span><br><span class="line">data_set.close()</span><br><span class="line">#加载结束</span><br><span class="line">temp_x = list()</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">     temp_x.append([XLabel[i]-phi[<span class="number">0</span>], YLabel[i]-phi[<span class="number">1</span>]])</span><br><span class="line">temp_x_ = Transport(temp_x)</span><br><span class="line">sigma = np.dot(temp_x_, temp_x)</span><br><span class="line">D,V= np<span class="selector-class">.linalg</span><span class="selector-class">.eig</span>(sigma)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">     <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">         V<span class="selector-class">.real</span>[i][j] *= -<span class="number">1</span></span><br><span class="line">temp_v_ = Transport(V.real)</span><br><span class="line">tr1 = list()</span><br><span class="line">tr1.append(XLabel)</span><br><span class="line">tr1.append(YLabel)</span><br><span class="line">tr1 = Transport(tr1)</span><br><span class="line">xr1 = np.dot(tr1, temp_v_[<span class="number">0</span>])</span><br><span class="line">xr2 = np.dot(phi, temp_v_[<span class="number">1</span>])</span><br><span class="line">xr = tr1</span><br><span class="line">#        print xr</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">      xr[i][<span class="number">0</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">      xr[i][<span class="number">1</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">#        print xr</span><br><span class="line">plt.plot(XLabel, YLabel, <span class="string">'r+'</span>)</span><br><span class="line">temp_xr = Transport(xr)</span><br><span class="line">plt.plot(temp_xr[<span class="number">0</span>], temp_xr[<span class="number">1</span>], <span class="string">'b*'</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">     plt.plot([XLabel[i],xr[i][<span class="number">0</span>]], [YLabel[i],xr[i][<span class="number">1</span>]])</span><br><span class="line">plt.axis([-<span class="number">8</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line">plt<span class="selector-class">.xlabel</span> = <span class="string">'x'</span></span><br><span class="line">plt<span class="selector-class">.ylabel</span> = <span class="string">'y'</span></span><br><span class="line">plt.show()</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/6c0d033f/">http://home.meng.uno/articles/6c0d033f/</a> 欢迎转载！</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/1af17fd9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          多项式拟合曲线——最小二乘法
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/177fbbcc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用EM算法优化的GMM</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">1.</span> <span class="nav-text">实验要求</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#实验目标"><span class="nav-number">1.1.</span> <span class="nav-text">实验目标</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#实验过程"><span class="nav-number">1.2.</span> <span class="nav-text">实验过程</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#实验准备"><span class="nav-number">2.</span> <span class="nav-text">实验准备</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#降维的必要"><span class="nav-number">2.1.</span> <span class="nav-text">降维的必要</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#降维的目的"><span class="nav-number">2.2.</span> <span class="nav-text">降维的目的</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#有关pca"><span class="nav-number">3.</span> <span class="nav-text">有关PCA</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#pca概念"><span class="nav-number">3.1.</span> <span class="nav-text">PCA概念</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#pca作用范围"><span class="nav-number">3.2.</span> <span class="nav-text">PCA作用范围</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#pca的算法步骤"><span class="nav-number">3.3.</span> <span class="nav-text">PCA的算法步骤</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#实验环境"><span class="nav-number">4.</span> <span class="nav-text">实验环境</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#pca的应用分析"><span class="nav-number">5.1.</span> <span class="nav-text">PCA的应用分析</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#pca优缺点"><span class="nav-number">5.2.</span> <span class="nav-text">PCA优缺点</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#优点："><span class="nav-number">5.2.1.</span> <span class="nav-text">优点：</span></a></li>
+                        <li class="nav-item nav-level-4"><a class="nav-link" href="#缺点："><span class="nav-number">5.2.2.</span> <span class="nav-text">缺点：</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">6.</span> <span class="nav-text">代码</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.06.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              欢迎来到匡盟盟的博客！
+            </div>
+            <div class="panel-body">
+              A second year MPhil candidate in CS at HKU
+            </div>
+            <div class="panel-body">
+              © 2020 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
