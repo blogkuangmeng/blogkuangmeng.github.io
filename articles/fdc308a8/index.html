@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-08-27T14:20:08.000Z">
+  <meta property="og:updated_time" content="2020-08-27T14:55:48.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,756</span>
-	<span class="post-count"> | 预计时间20分钟</span>
+	<span class="post-count"> | 字数3,906</span>
+	<span class="post-count"> | 预计时间21分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -328,6 +328,23 @@
                 </figure>
                 <h2 id="分析-v2">分析</h2>
                 <p>类似于Excel之中排序，主排序标准和次排序标准。</p>
+                <h1>0/1背包</h1>
+                <blockquote>
+                  <p>0/1背包作为经典的动态规划问题，经常考察，但是只要掌握状态转移方程，动态规划基本上很少的代码就可以写出来。</p>
+                </blockquote>
+                <h2 id="代码-v3">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">def Package(W, V, max_w):</span><br><span class="line">    len_w = len(W)    </span><br><span class="line">    dp = [[0 for i in range(max_w + 1)] for j in range(len_w)]</span><br><span class="line">    for i in range(len_w):</span><br><span class="line">        for j in range(max_w + 1):</span><br><span class="line">            if W[i] &gt; j:</span><br><span class="line">                dp[i][j] = dp[i - 1][j]</span><br><span class="line">            else:</span><br><span class="line">                dp[i][j] = max(dp[i - 1][j - W[i]] + V[i], dp[i - 1][j])</span><br><span class="line">    return dp[-1][-1]</span><br><span class="line">W = [10, 20, 20, 30]</span><br><span class="line">V = [12, 18, 17, 32]</span><br><span class="line">max_w = 50</span><br><span class="line">print(Package(W, V, max_w))</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h1>根据输入操作数字串</h1>
                 <blockquote>
                   <p>Input: 一行n和m，代表长度为n的值为下标的数字串；m行不同的操作。（1：将串首元素移动到最尾；2：交换第“2 × i + 1”和第“2 × i + 2”号元素，其中i从1开始。）</p>
@@ -335,7 +352,7 @@
                 <blockquote>
                   <p>Output: 操作结束的数字串</p>
                 </blockquote>
-                <h2 id="代码-v3">代码</h2>
+                <h2 id="代码-v4">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -360,7 +377,7 @@
                 <blockquote>
                   <p>Output: 面积（保留6位小数）</p>
                 </blockquote>
-                <h2 id="代码-v4">代码</h2>
+                <h2 id="代码-v5">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -382,7 +399,7 @@
                 <blockquote>
                   <p>Ouput: 从1到n的全组合，并且每种组合从组合中选一个代表的总可能数。</p>
                 </blockquote>
-                <h2 id="代码-v5">代码</h2>
+                <h2 id="代码-v6">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -404,7 +421,7 @@
                 <blockquote>
                   <p>Output: 链接相同元素的节点对的数量</p>
                 </blockquote>
-                <h2 id="代码-v6">代码</h2>
+                <h2 id="代码-v7">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -423,7 +440,7 @@
                 <blockquote>
                   <p>蛇形输出或者蛇形赋值在很多地方都出现了，在此提供一个模板。</p>
                 </blockquote>
-                <h2 id="代码-v7">代码</h2>
+                <h2 id="代码-v8">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -443,7 +460,7 @@
                 <blockquote>
                   <p>Output: 包含连续两个“abcde”或者不包含“abcde”的子串最长长度。</p>
                 </blockquote>
-                <h2 id="代码-v8">代码</h2>
+                <h2 id="代码-v9">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -463,7 +480,7 @@
                 <blockquote>
                   <p>Output: 如果两个字符串相同或者分隔成子串相同，则输出“true”，否则输出“false”。</p>
                 </blockquote>
-                <h2 id="代码-v9">代码</h2>
+                <h2 id="代码-v10">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -485,7 +502,7 @@
                 <blockquote>
                   <p>Output: 从第一行走到最后一行最大的和。</p>
                 </blockquote>
-                <h2 id="代码-v10">代码</h2>
+                <h2 id="代码-v11">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -507,7 +524,7 @@
                 <blockquote>
                   <p>Output: 回字形写入斐波拉契数列的<code>n × n</code>矩阵。</p>
                 </blockquote>
-                <h2 id="代码-v11">代码</h2>
+                <h2 id="代码-v12">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -526,7 +543,7 @@
                 <blockquote>
                   <p>求一堆数中前K大的数。 一般可以使用小顶堆来实现。用数组保存堆的时候：左子树 = 父节点 × 2；右子树 = 父节点 × 2 + 1。</p>
                 </blockquote>
-                <h2 id="代码-v12">代码</h2>
+                <h2 id="代码-v13">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -543,7 +560,7 @@
                 <blockquote>
                   <p>简单版的归并排序。</p>
                 </blockquote>
-                <h2 id="代码-v13">代码</h2>
+                <h2 id="代码-v14">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -560,7 +577,7 @@
                 <blockquote>
                   <p>快速排序作为排序的代表，原型或者其变型经常被考察。</p>
                 </blockquote>
-                <h2 id="代码-v14">代码</h2>
+                <h2 id="代码-v15">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -577,7 +594,7 @@
                 <blockquote>
                   <p>一个行、列都递增的矩阵中查找某个数。</p>
                 </blockquote>
-                <h2 id="代码-v15">代码</h2>
+                <h2 id="代码-v16">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -597,7 +614,7 @@
                 <blockquote>
                   <p>Output: 分别输出m个以对应下标分割的子区间的连续不为0的最大和。</p>
                 </blockquote>
-                <h2 id="代码-v16">代码</h2>
+                <h2 id="代码-v17">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -617,7 +634,7 @@
                 <blockquote>
                   <p>Output: &quot;CHINA&quot;的个数。</p>
                 </blockquote>
-                <h2 id="代码-v17">代码</h2>
+                <h2 id="代码-v18">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -639,7 +656,7 @@
                 <blockquote>
                   <p>Output: Good的数量</p>
                 </blockquote>
-                <h2 id="代码-v18">代码</h2>
+                <h2 id="代码-v19">代码</h2>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -758,93 +775,98 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v2"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">根据输入操作数字串</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">0/1背包</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v3"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v3"><span class="nav-number">3.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">计算面积</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">根据输入操作数字串</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v4"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v4"><span class="nav-number">4.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v3"><span class="nav-number">4.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">全组合</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">计算面积</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v5"><span class="nav-number">5.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v5"><span class="nav-number">5.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v4"><span class="nav-number">5.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">求图中链接相同元素的节点对的数量</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">全组合</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v6"><span class="nav-number">6.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v6"><span class="nav-number">6.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v5"><span class="nav-number">6.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">蛇形输出</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">求图中链接相同元素的节点对的数量</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v7"><span class="nav-number">7.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v6"><span class="nav-number">7.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">子串长度</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">蛇形输出</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v8"><span class="nav-number">8.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">字符串分割相等</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">子串长度</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v9"><span class="nav-number">9.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v7"><span class="nav-number">9.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">杨辉三角</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">字符串分割相等</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v10"><span class="nav-number">10.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v8"><span class="nav-number">10.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v7"><span class="nav-number">10.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">回字形写入斐波拉契数列</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">杨辉三角</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v11"><span class="nav-number">11.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v9"><span class="nav-number">11.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v8"><span class="nav-number">11.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">前K大的数</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">回字形写入斐波拉契数列</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v12"><span class="nav-number">12.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v9"><span class="nav-number">12.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">13.</span> <span class="nav-text">两个有序的整数列表合并</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">13.</span> <span class="nav-text">前K大的数</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v13"><span class="nav-number">13.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">14.</span> <span class="nav-text">快速排序</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">14.</span> <span class="nav-text">两个有序的整数列表合并</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v14"><span class="nav-number">14.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">15.</span> <span class="nav-text">矩阵查找</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">15.</span> <span class="nav-text">快速排序</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v15"><span class="nav-number">15.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">16.</span> <span class="nav-text">连续不为0的区间和最大</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">16.</span> <span class="nav-text">矩阵查找</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v16"><span class="nav-number">16.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">17.</span> <span class="nav-text">矩阵中“CHINA”的个数</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">17.</span> <span class="nav-text">连续不为0的区间和最大</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v17"><span class="nav-number">17.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v10"><span class="nav-number">17.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">18.</span> <span class="nav-text">字符串中“Good”的数量</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">18.</span> <span class="nav-text">矩阵中“CHINA”的个数</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v18"><span class="nav-number">18.1.</span> <span class="nav-text">代码</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v11"><span class="nav-number">18.2.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v10"><span class="nav-number">18.2.</span> <span class="nav-text">分析</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">19.</span> <span class="nav-text">字符串中“Good”的数量</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v19"><span class="nav-number">19.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v11"><span class="nav-number">19.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
               </ol>
