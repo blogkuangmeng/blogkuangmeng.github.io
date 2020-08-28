@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-08-27T14:55:48.000Z">
+  <meta property="og:updated_time" content="2020-08-28T06:29:12.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,906</span>
-	<span class="post-count"> | 预计时间21分钟</span>
+	<span class="post-count"> | 字数4,161</span>
+	<span class="post-count"> | 预计时间22分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -671,6 +671,28 @@
                 </figure>
                 <h2 id="分析-v11">分析</h2>
                 <p>字符串中存在某种子序列，做法大致相同。</p>
+                <h1>矩阵的递增序列</h1>
+                <blockquote>
+                  <p>Input: <code>n × n</code>矩阵。</p>
+                </blockquote>
+                <blockquote>
+                  <p>Output: 最长递增序列的长度</p>
+                </blockquote>
+                <h2 id="代码-v20">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">n = int(input())</span><br><span class="line">matrix = [[0 for i in range(n)] for j in range(n)]</span><br><span class="line">for i in range(n):</span><br><span class="line">    line = input().strip().split(&apos; &apos;)</span><br><span class="line">    for j in range(n):</span><br><span class="line">        matrix[i][j] = int(line[j])</span><br><span class="line">dfs = [[0 for i in range(n)] for j in range(n)]</span><br><span class="line">x_d = [0, 0, 1, -1]</span><br><span class="line">y_d = [1, -1, 0, 0]</span><br><span class="line">def DFS(x, y, dfs):</span><br><span class="line">    if dfs[x][y] != 0:</span><br><span class="line">        return dfs[x][y]</span><br><span class="line">    for i in range(len(x_d)):</span><br><span class="line">        new_x = x + x_d[i]</span><br><span class="line">        new_y = y + y_d[i]</span><br><span class="line">        if new_x &gt;= 0 and new_y &gt;= 0 and new_x &lt; n and new_y &lt; n:</span><br><span class="line">            if matrix[new_x][new_y] &gt; matrix[x][y]:</span><br><span class="line">                dfs[x][y] = max(DFS(new_x, new_y, dfs) + 1, dfs[x][y])</span><br><span class="line">            else:</span><br><span class="line">                dfs[x][y] = max(1, dfs[x][y])</span><br><span class="line">    return dfs[x][y]</span><br><span class="line">for i in range(n):</span><br><span class="line">    for j in range(n):</span><br><span class="line">        dfs[i][j] = DFS(i, j, dfs)</span><br><span class="line">print(max(max(dfs)))</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="分析-v12">分析</h2>
+                <p>一个很明显的思路就是从某点出发，DFS查找最长的递增路径，但是考虑到某些节点可能在之前已经遍历过，可以使用其保存的信息。</p>
                 <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fdc308a8/">http://home.meng.uno/articles/fdc308a8/</a> 欢迎转载！</p>
 
               </div>
@@ -869,6 +891,12 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v11"><span class="nav-number">19.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">20.</span> <span class="nav-text">矩阵的递增序列</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v20"><span class="nav-number">20.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v12"><span class="nav-number">20.2.</span> <span class="nav-text">分析</span></a></li>
+                  </ol>
+                </li>
               </ol>
 
             </div>
@@ -883,7 +911,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.08.27 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.08.28 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
