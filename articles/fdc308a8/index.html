@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-08-28T07:10:05.000Z">
+  <meta property="og:updated_time" content="2020-08-28T09:55:07.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数4,286</span>
-	<span class="post-count"> | 预计时间23分钟</span>
+	<span class="post-count"> | 字数4,887</span>
+	<span class="post-count"> | 预计时间26分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -713,6 +713,50 @@
                     </tr>
                   </table>
                 </figure>
+                <h1>机器人行走</h1>
+                <blockquote>
+                  <p>Input: 有t组测试，每一组机器人从(0, 0)位置朝向向上，向右为x轴正方向，向下为y轴正方向，指令有：向左转(L)，向右转®，前进N步或者到头(G N)以及打印当前位置§。</p>
+                </blockquote>
+                <blockquote>
+                  <p>Output: 打印每个Case的编号以及执行P指令之后的输出。</p>
+                </blockquote>
+                <h2 id="代码-v22">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">t = int(input())</span><br><span class="line">cur_x = 0</span><br><span class="line">cur_y = 0</span><br><span class="line">cur_t = 1</span><br><span class="line">Turns = [&apos;L&apos;, &apos;U&apos;, &apos;R&apos;, &apos;D&apos;]</span><br><span class="line">step_x = [0, -1, 0, 1]</span><br><span class="line">step_y = [-1, 0, 1, 0]</span><br><span class="line">def Turn(cur_t, turn):</span><br><span class="line">    if turn == &apos;R&apos;:</span><br><span class="line">        cur_t += 1 % len(Turns)</span><br><span class="line">    else:</span><br><span class="line">        cur_t -= 1 % len(Turns)</span><br><span class="line">    return cur_t  </span><br><span class="line">def Walk(cur_x, cur_y, cur_t, step, n):</span><br><span class="line">    if cur_x + step * step_x[cur_t] &gt;= 0 and cur_x + step * step_x[cur_t] &lt; n and cur_y + step * step_y[cur_t] &gt;= 0 and cur_y + step * step_y[cur_t] &lt; n:</span><br><span class="line">        return cur_x + step * step_x[cur_t], cur_y + step * step_y[cur_t]</span><br><span class="line">    elif cur_x + step * step_x[cur_t] &lt; 0:</span><br><span class="line">        cur_x = 0</span><br><span class="line">    elif cur_y + step * step_y[cur_t] &lt; 0:</span><br><span class="line">        cur_x = 0</span><br><span class="line">    elif cur_x + step * step_x[cur_t] &gt;= n:</span><br><span class="line">        cur_x = n - 1</span><br><span class="line">    elif cur_y + step * step_y[cur_t] &gt;= n:</span><br><span class="line">        cur_y = n - 1   </span><br><span class="line">    return cur_x, cur_y</span><br><span class="line">ret = &apos;&apos;  </span><br><span class="line">for times in range(t):</span><br><span class="line">    ret += &apos;Case #&apos; + str(times + 1) + &apos;:\n&apos;</span><br><span class="line">    n_m = input().strip().split(&apos; &apos;)</span><br><span class="line">    n = int(n_m[0])</span><br><span class="line">    m = int(n_m[1])</span><br><span class="line">    cur_x = 0</span><br><span class="line">    cur_y = 0</span><br><span class="line">    cur_t = 1</span><br><span class="line">    for i in range(m):</span><br><span class="line">        line = input().strip().split(&apos; &apos;)</span><br><span class="line">        if line[0] == &apos;L&apos; or line[0] == &apos;R&apos;:</span><br><span class="line">            cur_t = Turn(cur_t, line[0])</span><br><span class="line">        elif line[0] == &apos;G&apos;:</span><br><span class="line">            cur_x, cur_y = Walk(cur_x, cur_y, cur_t, int(line[1]), n)</span><br><span class="line">        elif line[0] == &apos;P&apos;:</span><br><span class="line">            ret += str(cur_y) + &apos; &apos; + str(cur_x) + &apos;\n&apos;</span><br><span class="line">print(ret)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>将0/1表示的字符串根据莫斯密码转化成字符串</h1>
+                <blockquote>
+                  <p>以‘1’表示摩斯密码中的‘·’，以‘111’表示摩斯密码中的‘-’。 以‘0’表示莫斯密码中的分割。 以‘000’表示不同字符摩斯密码的分割。 以‘0000000’表示不同单词的分割。
+                  </p>
+                </blockquote>
+                <blockquote>
+                  <p>Input: 以0/1表示的字符串</p>
+                </blockquote>
+                <blockquote>
+                  <p>Output: 转化后的字符串</p>
+                </blockquote>
+                <h2 id="代码-v23">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">line = input().strip()</span><br><span class="line">ret = &apos;&apos;</span><br><span class="line">last = 0</span><br><span class="line">letter = &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&apos;</span><br><span class="line">ms = [&apos;01&apos;, &apos;1000&apos;, &apos;1010&apos;, &apos;100&apos;, &apos;0&apos;, &apos;0010&apos;, &apos;110&apos;, &apos;0000&apos;, &apos;00&apos;, &apos;0111&apos;, &apos;101&apos;, &apos;0100&apos;, &apos;11&apos;, &apos;10&apos;, &apos;111&apos;, &apos;0110&apos;, &apos;1101&apos;, &apos;010&apos;, &apos;000&apos;, &apos;1&apos;, &apos;001&apos;, &apos;0001&apos;, &apos;011&apos;, &apos;1001&apos;, &apos;1011&apos;, &apos;1100&apos;, &apos;01111&apos;, &apos;00111&apos;, &apos;00011&apos;, &apos;00001&apos;, &apos;0000&apos;, &apos;10000&apos;, &apos;11000&apos;, &apos;11100&apos;, &apos;11110&apos;, &apos;11111&apos;]</span><br><span class="line">def DealC(line):</span><br><span class="line">    chr = &apos;&apos;</span><br><span class="line">    for i in line.split(&apos;0&apos;):</span><br><span class="line">        if i == &apos;1&apos;:</span><br><span class="line">            chr += &apos;0&apos;</span><br><span class="line">        else:</span><br><span class="line">            chr += &apos;1&apos;</span><br><span class="line">    for i in range(len(ms)):</span><br><span class="line">        if ms[i] == chr:</span><br><span class="line">            return letter[i]</span><br><span class="line">def DealL(line):</span><br><span class="line">    ret = &apos;&apos;</span><br><span class="line">    lst = 0</span><br><span class="line">    for i in range(len(line) - 3):</span><br><span class="line">        if line[i: i + 3] == &apos;000&apos;:</span><br><span class="line">            ret += str(DealC(line[lst: i]))</span><br><span class="line">            lst = i + 3</span><br><span class="line">    ret += str(DealC(line[lst:]))</span><br><span class="line">    return ret</span><br><span class="line">for i in range(len(line) - 7):</span><br><span class="line">    if line[i:i + 7] == &apos;0000000&apos;:</span><br><span class="line">        ret += str(DealL(line[last: i])) + &apos; &apos;</span><br><span class="line">        last = i + 7</span><br><span class="line">ret += str(DealL(line[last:]))</span><br><span class="line">print(ret)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fdc308a8/">http://home.meng.uno/articles/fdc308a8/</a> 欢迎转载！</p>
 
               </div>
@@ -920,6 +964,16 @@
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">21.</span> <span class="nav-text">不重叠区间</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v21"><span class="nav-number">21.1.</span> <span class="nav-text">代码</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">22.</span> <span class="nav-text">机器人行走</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v22"><span class="nav-number">22.1.</span> <span class="nav-text">代码</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">23.</span> <span class="nav-text">将0/1表示的字符串根据莫斯密码转化成字符串</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v23"><span class="nav-number">23.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
               </ol>
