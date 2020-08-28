@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-08-28T06:29:12.000Z">
+  <meta property="og:updated_time" content="2020-08-28T07:10:05.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数4,161</span>
-	<span class="post-count"> | 预计时间22分钟</span>
+	<span class="post-count"> | 字数4,286</span>
+	<span class="post-count"> | 预计时间23分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -693,6 +693,26 @@
                 </figure>
                 <h2 id="分析-v12">分析</h2>
                 <p>一个很明显的思路就是从某点出发，DFS查找最长的递增路径，但是考虑到某些节点可能在之前已经遍历过，可以使用其保存的信息。</p>
+                <h1>不重叠区间</h1>
+                <blockquote>
+                  <p>Input: n个不同区间。</p>
+                </blockquote>
+                <blockquote>
+                  <p>Output: 去掉多少区间之后，剩下的区间构成不重叠区间。</p>
+                </blockquote>
+                <h2 id="代码-v21">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">interval_list = []</span><br><span class="line">n = int(input())</span><br><span class="line">for i in range(n):</span><br><span class="line">    line = input().strip().split(&apos; &apos;)</span><br><span class="line">    interval_list.append([int(line[0]), int(line[1])])</span><br><span class="line">interval_list = sorted(interval_list, key = lambda item:item[1])</span><br><span class="line">dp = [1 for i in range(n)]</span><br><span class="line">for i in range(n):</span><br><span class="line">    for j in range(i - 1, -1, -1):</span><br><span class="line">        if interval_list[i][0] &gt;= interval_list[j][1]:</span><br><span class="line">            dp[i] = max(dp[j] + 1, dp[i])</span><br><span class="line">        else:</span><br><span class="line">            dp[i] = max(dp[i], dp[j])</span><br><span class="line">print(n - dp[-1])</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fdc308a8/">http://home.meng.uno/articles/fdc308a8/</a> 欢迎转载！</p>
 
               </div>
@@ -895,6 +915,11 @@
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v20"><span class="nav-number">20.1.</span> <span class="nav-text">代码</span></a></li>
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v12"><span class="nav-number">20.2.</span> <span class="nav-text">分析</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">21.</span> <span class="nav-text">不重叠区间</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v21"><span class="nav-number">21.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
               </ol>
