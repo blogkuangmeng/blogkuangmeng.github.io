@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-09-04T15:12:44.000Z">
+  <meta property="og:updated_time" content="2020-09-05T14:51:15.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数5,413</span>
-	<span class="post-count"> | 预计时间29分钟</span>
+	<span class="post-count"> | 字数5,611</span>
+	<span class="post-count"> | 预计时间30分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -821,6 +821,22 @@
                     </tr>
                   </table>
                 </figure>
+                <h1>非递归版二叉树深度</h1>
+                <h2 id="代码-v27">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">num =int(input())</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val = None, left = None,right = None):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left = left</span><br><span class="line">        self.right = right</span><br><span class="line">def Depth(root):</span><br><span class="line">    if root == None:</span><br><span class="line">        return 0</span><br><span class="line">    else:</span><br><span class="line">        queue = []</span><br><span class="line">        depth = 0</span><br><span class="line">        queue.append(root)</span><br><span class="line">        while len(queue):</span><br><span class="line">            depth += 1</span><br><span class="line">            cur = len(queue)</span><br><span class="line">            tmp = 0</span><br><span class="line">            while(tmp &lt; cur):</span><br><span class="line">                tmp += 1</span><br><span class="line">                node = queue.pop(0)</span><br><span class="line">                if node.left != None:</span><br><span class="line">                    queue.append(node.left)</span><br><span class="line">                if node.right != None:</span><br><span class="line">                    queue.append(node.right)</span><br><span class="line">        return depth</span><br><span class="line">treenode = [None for i in range(num)]</span><br><span class="line">for i in range(num):</span><br><span class="line">    treenode[i] = TreeNode(i)</span><br><span class="line">for i in range(num):</span><br><span class="line">    if i * 2 + 1 &lt; num:</span><br><span class="line">        treenode[i].left = treenode[i * 2 + 1]</span><br><span class="line">    if i * 2 + 2 &lt; num:</span><br><span class="line">        treenode[i].right = treenode[i * 2 + 2]</span><br><span class="line">print(Depth(treenode[0]))</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="分析-v15">分析</h2>
+                <p>二叉树深度就是二叉树层数，所以可以使用层序遍历二叉树实现。</p>
                 <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fdc308a8/">http://home.meng.uno/articles/fdc308a8/</a> 欢迎转载！</p>
 
               </div>
@@ -1057,6 +1073,12 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v26"><span class="nav-number">26.1.</span> <span class="nav-text">代码</span></a></li>
                   </ol>
                 </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">27.</span> <span class="nav-text">非递归版二叉树深度</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v27"><span class="nav-number">27.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v15"><span class="nav-number">27.2.</span> <span class="nav-text">分析</span></a></li>
+                  </ol>
+                </li>
               </ol>
 
             </div>
@@ -1071,7 +1093,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.09.04 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.09.05 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
