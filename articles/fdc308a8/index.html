@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-09-05T14:51:15.000Z">
+  <meta property="og:updated_time" content="2020-10-14T13:20:54.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="2021届自己参加的秋招笔试题记录">
   <meta name="twitter:description" content="2021届秋招正如火如荼地进行着，截止目前，我已经参加了绝大部分互联网企业的秋招，我想将自己写过的代码保存一下，供以后再来回味。 代码基本都是用Python写的，有些并没有100%AC。   不匹配括号数量 Input: 包含若干(, ), [, ]的字符串。  Output: 不能配对的括号的数量。  代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
@@ -271,8 +271,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数5,611</span>
-	<span class="post-count"> | 预计时间30分钟</span>
+	<span class="post-count"> | 字数5,780</span>
+	<span class="post-count"> | 预计时间31分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -837,6 +837,22 @@
                 </figure>
                 <h2 id="分析-v15">分析</h2>
                 <p>二叉树深度就是二叉树层数，所以可以使用层序遍历二叉树实现。</p>
+                <h1>数组中出现超过一半的数字</h1>
+                <h2 id="代码-v28">代码</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">def majorityElement(nums: List[int]) -&gt; int:</span><br><span class="line">        dp = [0] * len(nums)</span><br><span class="line">        dp[0] = 1</span><br><span class="line">        votes = nums[0]</span><br><span class="line">        for i in range(1, len(nums)):</span><br><span class="line">            if dp[i - 1] == 0:</span><br><span class="line">                votes = nums[i]</span><br><span class="line">                dp[i] = 1</span><br><span class="line">                continue</span><br><span class="line">            if votes == nums[i]:</span><br><span class="line">                dp[i] = dp[i - 1] + 1</span><br><span class="line">            else:</span><br><span class="line">                dp[i] = dp[i - 1] - 1</span><br><span class="line">        return votes</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="分析-v16">分析</h2>
+                <p>每一步设定当前值为“大于一半的数”并将此时的值记为“+1”，往后遇到不同的值在该值上“-1”，遇到值为0，则将前面的序列舍弃，重新开始计数。最终在序列扫描一遍之后的假设“大于一半的数”的值即为最终结果。</p>
                 <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fdc308a8/">http://home.meng.uno/articles/fdc308a8/</a> 欢迎转载！</p>
 
               </div>
@@ -1088,6 +1104,12 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v15"><span class="nav-number">27.2.</span> <span class="nav-text">分析</span></a></li>
                   </ol>
                 </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">28.</span> <span class="nav-text">数组中出现超过一半的数字</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码-v28"><span class="nav-number">28.1.</span> <span class="nav-text">代码</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#分析-v16"><span class="nav-number">28.2.</span> <span class="nav-text">分析</span></a></li>
+                  </ol>
+                </li>
               </ol>
 
             </div>
@@ -1102,7 +1124,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.09.30 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.10.14 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
