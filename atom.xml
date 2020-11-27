@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://home.meng.uno/"/>
-  <updated>2020-09-30T06:39:21.000Z</updated>
+  <updated>2020-11-27T05:10:46.000Z</updated>
   <id>http://home.meng.uno/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Commonly used Shell commands</title>
+    <link href="http://home.meng.uno/articles/61f3f0dd/"/>
+    <id>http://home.meng.uno/articles/61f3f0dd/</id>
+    <published>2020-11-27T04:08:20.000Z</published>
+    <updated>2020-11-27T05:10:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1>统计文件夹中文件数量</h1><h2 id="当前文件夹下文件个数-不包括文件夹">当前文件夹下文件个数[不包括文件夹]</h2><p><code>$ ls -l |grep &quot;^-&quot;|wc -l</code></p><h2 id="当前目录下文件夹个数">当前目录下文件夹个数</h2><p><code>$ ls -lR | grep &quot;^d&quot; | wc -l</code></p><h2 id="当前文件夹下文件数目-包括子目录">当前文件夹下文件数目[包括子目录]</h2><p><code>$ ls -lR| grep &quot;^-&quot; | wc -l</code></p><h1>登录服务器</h1><p><code>$ ssh [-p 端口] username@host_address #Enter后输入密码</code></p><h1>conda虚拟环境</h1><h2 id="新建环境">新建环境</h2><p><code>$ conda create -n 环境名 python=X.X #X.X = 2.7、3.6等</code></p><h2 id="激活环境">激活环境</h2><p><code>$ source activate 环境名</code></p><h2 id="环境中安装额外的包">环境中安装额外的包</h2><p><code>$ conda install -n 环境名 packages</code></p><h2 id="删除环境中的某个包">删除环境中的某个包</h2><p><code>$ conda remove --name 环境名  package</code></p><h2 id="关闭虚拟环境">关闭虚拟环境</h2><p><code>$ source deactivate</code></p><h2 id="删除环境">删除环境</h2><p><code>$ conda remove -n 环境名 --all</code></p><h1>文件链接</h1><p><code>$ ln -s 源 目的</code></p><h1>查寻文件或命令的路径</h1><h2 id="文件中字符串的查寻">文件中字符串的查寻</h2><p><code>$ grep string file</code></p><h2 id="显示命令的路径">显示命令的路径</h2><p><code>$ whereis command</code></p><h2 id="显示命令的路径-及使用者所定义的别名">显示命令的路径，及使用者所定义的别名</h2><p><code>$ which command</code></p><h2 id="显示命令功能的摘要">显示命令功能的摘要</h2><p><code>$ whatis command</code></p><h2 id="搜寻指定路径下某文件的路径">搜寻指定路径下某文件的路径</h2><p><code>$ find path -name filename -print</code></p><h1>查看进程并关闭</h1><figure class="highlight plain">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>      </td>      <td class="code">        <pre><span class="line">$ ps [-aux] </span><br><span class="line"># -x自己的，</span><br><span class="line"># -au所有用户的，</span><br><span class="line"># -aux系统内部和所有用户的</span><br></pre>      </td>    </tr>  </table></figure><p><code>$ kill [-9] PID(进程号)</code></p><h2 id="查看后台运行的进程">查看后台运行的进程</h2><p><code>$ jobs</code></p><p><code>$ kill %n #n为jobs查询出的后台作业号</code></p><h1>命令记录表</h1><h2 id="设定命令记录表长度">设定命令记录表长度</h2><p><code>$ set history = 长度</code></p><h2 id="查看命令记录表的内容">查看命令记录表的内容</h2><p><code>$ history</code></p><h2 id="重复执行前一个命令">重复执行前一个命令</h2><p><code>$ !!</code></p><h2 id="重复执行命令记录表命令编号n的命令">重复执行命令记录表命令编号n的命令</h2><p><code>$ !n</code></p><h2 id="重复前面执行过的以-xxx-为起始字符串的命令">重复前面执行过的以’xxx’为起始字符串的命令</h2><p><code>$ !xxx</code></p><p><br><br>本文链接： <a href="http://home.meng.uno/articles/61f3f0dd/">http://home.meng.uno/articles/61f3f0dd/</a> 欢迎转载！</p>]]></content>
+    
+    <summary type="html">
+    
+      统计文件夹中文件数量
+当前文件夹下文件个数[不包括文件夹]
+$ ls -l |grep &quot;^-&quot;|wc -l
+
+当前目录下文件夹个数
+$ ls -lR | grep &quot;^d&quot; | wc -l
+
+当前文件夹下文件数目[包括子目录]
+$ ls -lR| grep &quot;^-&quot; | wc -l
+
+登录服务器
+$ ssh [-p 端口] username@host_address #Enter后输入密码
+
+conda虚拟环境
+新建环境
+$ conda create -n 环境名 python=X.X #X.X = 2.7、3.6等
+
+激活环境
+$ source activate 环境名
+
+环境中安装额外的
+    
+    </summary>
+    
+      <category term="shell" scheme="http://home.meng.uno/categories/shell/"/>
+    
+      <category term="软件工程" scheme="http://home.meng.uno/categories/shell/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="shell" scheme="http://home.meng.uno/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>MPhil历程总结</title>
