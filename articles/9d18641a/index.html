@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然后，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta name="description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
   <meta name="keywords" content="NLP,Attention">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Attention and Self Attention">
   <meta property="og:url" content="http://home.meng.uno/articles/9d18641a/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然后，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta property="og:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://meng.uno/images/self-attention/1.png">
   <meta property="og:image" content="http://meng.uno/images/self-attention/3.gif">
@@ -37,10 +37,10 @@
   <meta property="og:image" content="http://meng.uno/images/self-attention/11.jpg">
   <meta property="og:image" content="http://meng.uno/images/self-attention/12.jpg">
   <meta property="og:image" content="http://meng.uno/images/self-attention/13.jpg">
-  <meta property="og:updated_time" content="2020-12-01T13:11:23.000Z">
+  <meta property="og:updated_time" content="2020-12-01T13:17:34.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Attention and Self Attention">
-  <meta name="twitter:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然后，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta name="twitter:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
   <meta name="twitter:image" content="http://meng.uno/images/self-attention/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -283,7 +283,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,344</span>
+	<span class="post-count"> | 字数1,343</span>
 	<span class="post-count"> | 预计时间5分钟</span>
 	</a>
               </div>
@@ -294,7 +294,7 @@
                 <video id="video" controls preload="" poster="">
       <source id="mp4" src="http://meng.uno/images/self-attention/1.mp4" type="video/mp4">
 </video>
-                <p>然后，采用<code>RNN</code>的<code>Seq2Seq</code>结构因为<code>RNN</code>中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，<code>Attention</code>机制被引入了。<code>Attention</code>机制跟人类翻译文章时候的思路有些类似，即将注意力关注于我们翻译部分对应的上下文。此机制打破了只能利用<code>Encoder</code>最终单一向量结果的限制，从而使模型可以集中在所有对于下一个目标单词重要的输入信息上，使模型效果得到极大的改善。还有一个优点是，我们通过观察<code>Attention</code>权重矩阵的变化，可以更好地知道哪部分翻译对应哪部分源文字，有助于更好的理解模型工作机制</p>
+                <p>然而，采用<code>RNN</code>的<code>Seq2Seq</code>结构因为<code>RNN</code>中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，<code>Attention</code>机制被引入了。<code>Attention</code>机制跟人类翻译文章时候的思路有些类似，即将注意力关注于我们翻译部分对应的上下文。此机制打破了只能利用<code>Encoder</code>最终单一向量结果的限制，从而使模型可以集中在所有对于下一个目标单词重要的输入信息上，使模型效果得到极大的改善。还有一个优点是，我们通过观察<code>Attention</code>权重矩阵的变化，可以更好地知道哪部分翻译对应哪部分源文字，有助于更好的理解模型工作机制。</p>
                 <p><code>Attention</code>机制实际上是对<code>Query</code>, <code>Key</code>, <code>Value</code> 的运算，其整体流程可以用下图来表示。</p>
                 <p><img src="http://meng.uno/images/self-attention/1.png" alt="Arctecture of Attention"></p>
                 <p>其中：</p>
@@ -303,12 +303,12 @@
                   <li>阶段二是使用<code>softmax</code>对结果归一化；</li>
                   <li>阶段三是上阶段输出值和<code>Value</code>做运算。</li>
                 </ul>
-                <p><code>F()</code>运算可以是：$Q^{T}K$, $Q<sup>{T}W_{a}K$或者$v_{a}</sup>{T} tanh(W_{a} concat(Q, K))$。</p>
+                <p><code>F()</code>运算可以是：$$Q^{T}K$$, $$Q^{T}W_{a}K$$ 或者 $$v_{a}^{T} tanh(W_{a} concat(Q, K))$$。</p>
                 <h1>Self Attention</h1>
                 <p>如果<code>Attention</code>机制中的<code>Key</code>, <code>Value</code>以及<code>Query</code>都来着同一个分布，我们称之为<code>Self-Attention</code>。</p>
                 <p>接下来，结合网上的一个例子，我们从数据输入、计算<code>Key</code>, <code>Value</code>和<code>Query</code>、再到具体的三阶段计算来认识<code>Self-Attention</code>。</p>
                 <h2 id="数据准备">数据准备</h2>
-                <p>我们准备了三个输入，每个输入维度为<code>4</code>。如下图。</p>
+                <p>我们准备了三个输入，每个输入维度为<code>4</code>。如下：</p>
                 <figure class="highlight plain">
                   <table>
                     <tr>
@@ -428,7 +428,7 @@
                 <p><code>BERT</code>的网络架构是完全重用<code>Transformer</code>的<code>Encoder</code>部分，一个创新亮点就是训练中使用的目标函数，也就是<code>Loss function</code>的定义。这个创新虽小但是很关键。<code>BERT</code>的<code>Loss function</code>由两个子任务的<code>Loss</code>相加而得。第一个任务就是把一个句中的几个字<code>mask</code>掉，然后让模型去预测这几个字，看它的正确率。第二个<code>Loss</code>来源于预测两个句子是不是上下句。这是为了让模型拥有句子层面的语义相关性的判断。为了增加鲁棒性，这两个句子都有可能不是整句，而是片段。</p>
                 <p>除此之外，<code>BERT</code>的<code>Input Embedding</code>也是一大亮点，其考虑到<code>Attention</code>并没有考虑的位置信息，增加了<code>Segment Embeddings</code>和<code>Position Embeddings</code>，他们和<code>Token Embeddings</code>的和作为<code>Input Embeddings</code>。</p>
                 <p><img src="http://meng.uno/images/self-attention/13.jpg" alt="BERT Input Embedding"></p>
-                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/undefined/">http://home.meng.uno/articles/undefined/</a> 欢迎转载！</p>
+                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/9d18641a/">http://home.meng.uno/articles/9d18641a/</a> 欢迎转载！</p>
 
               </div>
               <footer class="article-footer">
