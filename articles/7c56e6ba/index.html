@@ -18,14 +18,14 @@
 
 
   <meta name="description" content="责任链模式 责任链模式是对一个事件的处理方法,所有能对事件进行处理的对象按顺序形成一个链表.事件经过链表中每个处理对象轮流处理.如果有返回值.则返回也是顺着这条链表反向返回.这个链表是先进后出模式.   * 在现实中的责任链模型之一就是网络连接.对与程序猿而言,七层或五层的网络连接模型是肯定知道的.  当一个网络请求发出时,需要经过应用层-&amp;gt;传输层-&amp;gt;网络层-&amp;gt;连接层-&amp;gt;物理层  收到响应后正好反">
-  <meta name="keywords" content="设计模式">
+  <meta name="keywords" content="设计模式,OkHttp">
   <meta property="og:type" content="article">
   <meta property="og:title" content="责任链模式及OkHttp实现">
   <meta property="og:url" content="http://home.meng.uno/articles/7c56e6ba/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="责任链模式 责任链模式是对一个事件的处理方法,所有能对事件进行处理的对象按顺序形成一个链表.事件经过链表中每个处理对象轮流处理.如果有返回值.则返回也是顺着这条链表反向返回.这个链表是先进后出模式.   * 在现实中的责任链模型之一就是网络连接.对与程序猿而言,七层或五层的网络连接模型是肯定知道的.  当一个网络请求发出时,需要经过应用层-&amp;gt;传输层-&amp;gt;网络层-&amp;gt;连接层-&amp;gt;物理层  收到响应后正好反">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2018-03-24T14:39:26.000Z">
+  <meta property="og:updated_time" content="2020-12-02T01:59:29.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="责任链模式及OkHttp实现">
   <meta name="twitter:description" content="责任链模式 责任链模式是对一个事件的处理方法,所有能对事件进行处理的对象按顺序形成一个链表.事件经过链表中每个处理对象轮流处理.如果有返回值.则返回也是顺着这条链表反向返回.这个链表是先进后出模式.   * 在现实中的责任链模型之一就是网络连接.对与程序猿而言,七层或五层的网络连接模型是肯定知道的.  当一个网络请求发出时,需要经过应用层-&amp;gt;传输层-&amp;gt;网络层-&amp;gt;连接层-&amp;gt;物理层  收到响应后正好反">
@@ -265,7 +265,7 @@
                 <a href="/articles/7c56e6ba/" class="article-date">
 	  <time datetime="2017-02-25T08:37:13.000Z" itemprop="datePublished">2017-02-25</time>
 	</a>
-                <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+                <a class="article-category-link" href="/categories/Software-Engineering/">Software Engineering</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
@@ -438,6 +438,7 @@
                 </div>
 
                 <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OkHttp/">OkHttp</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li>
                 </ul>
               </footer>
@@ -488,7 +489,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

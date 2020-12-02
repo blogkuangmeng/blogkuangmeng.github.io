@@ -18,14 +18,14 @@
 
 
   <meta name="description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中：  bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
-  <meta name="keywords" content="操作系统">
+  <meta name="keywords" content="Linux,操作系统,启动引导">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Linux 0.11启动引导">
   <meta property="og:url" content="http://home.meng.uno/articles/6c138ff9/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
   <meta property="og:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中：  bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2018-02-09T10:46:20.000Z">
+  <meta property="og:updated_time" content="2020-12-02T02:00:27.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux 0.11启动引导">
   <meta name="twitter:description" content="Linux引导启动程序程序在boot目录下，有bootset.s, head.s和setup.s（编译后），其中：  bootset.s 系统启动时首先是进入实模式，从地址0xffff0（这地址映射的rom-bios在内存的地址）处开始执行bios代码，然后执行系统检测（也就是自检过程）,然后初始化实模式的中断向量表(实模式中断向量在内存物理地址0处)。然后将启动设备的第一个扇区（512字节，也就">
@@ -265,7 +265,7 @@
                 <a href="/articles/6c138ff9/" class="article-date">
 	  <time datetime="2016-12-16T06:52:23.000Z" itemprop="datePublished">2016-12-16</time>
 	</a>
-                <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+                <a class="article-category-link" href="/categories/Operation-System/">Operation System</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
@@ -352,6 +352,8 @@
                 </div>
 
                 <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/启动引导/">启动引导</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li>
                 </ul>
               </footer>
@@ -402,7 +404,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
