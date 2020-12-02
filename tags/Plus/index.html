@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>String的“+”操作分析 | 欢迎来到匡盟盟的博客！</title>
+  <title>Tag: Plus | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -17,18 +17,16 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。  结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
-  <meta name="keywords" content="String,Plus">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="String的“+”操作分析">
-  <meta property="og:url" content="http://home.meng.uno/articles/fc57b387/index.html">
+  <meta name="description" content="Mengmeng Kuang&apos;s Blog!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:url" content="http://home.meng.uno/tags/Plus/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。  结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
+  <meta property="og:description" content="Mengmeng Kuang&apos;s Blog!">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T02:18:18.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="String的“+”操作分析">
-  <meta name="twitter:description" content="起源 昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。  结论 我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。">
+  <meta name="twitter:title" content="欢迎来到匡盟盟的博客！">
+  <meta name="twitter:description" content="Mengmeng Kuang&apos;s Blog!">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -95,6 +93,8 @@
 
 
 
+  <link rel="stylesheet" href="/css/archive.css">
+
 
 
   <link rel="stylesheet" href="/css/vdonate.css">
@@ -102,16 +102,13 @@
 
 
 
-  <!-- 
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
- -->
+  <!--  -->
 
 
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/fc57b387/" />
+  <link rel="canonical" href="http://home.meng.uno/tags/plus/" />
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -147,7 +144,7 @@
 </head>
 
 
-<body data-spy="scroll" data-target="#toc" data-offset="50">
+<body>
 
 
 
@@ -167,7 +164,7 @@
 
 
               <a class="brand" style="
-                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                 border-width: 0px;  margin-top: 0px;">
                   <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="124px" height="124px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
@@ -251,157 +248,38 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-string_plus" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
-            <div id="articleInner" class="article-inner">
+          <div style="margin-top: 150px; width: 100%"></div>
 
 
-              <header class="article-header">
-                <h1 class="thumb" class="article-title" itemprop="name">
-                  String的“+”操作分析
-                </h1>
-              </header>
 
-              <div class="article-meta">
-                <a href="/articles/fc57b387/" class="article-date">
+
+
+
+
+
+
+          <section class="archives-wrap">
+            <div class="archive-year-wrap">
+              <h1><a href="/archives/2016" class="archive-year">2016</a></h1>
+            </div>
+            <div class="archives">
+
+              <article class="archive-article archive-type-post">
+                <div class="archive-article-inner">
+                  <header class="archive-article-header">
+                    <a href="/articles/fc57b387/" class="archive-article-date">
 	  <time datetime="2016-11-01T08:39:36.000Z" itemprop="datePublished">2016-11-01</time>
 	</a>
-                <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
-                <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数297</span>
-	<span class="post-count"> | 预计时间1分钟</span>
-	</a>
-              </div>
-              <div class="article-entry" itemprop="articleBody">
-
-                <h2 id="起源">起源</h2>
-                <p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p>
-                <h2 id="结论">结论</h2>
-                <p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。 我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。
-                </p>
-                <h2 id="策略">策略</h2>
-                <p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p>
-                <h2 id="操作">操作</h2>
-                <figure class="highlight">
-                  <table>
-                    <tr>
-                      <td class="gutter">
-                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-                      </td>
-                      <td class="code">
-                        <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </figure>
-                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/fc57b387/">http://home.meng.uno/articles/fc57b387/</a> 欢迎转载！</p>
-
-              </div>
-              <footer class="article-footer">
-
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-
-                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
-                <script type="text/javascript">
-                  wpac_init = window.wpac_init || [];
-                  wpac_init.push({
-                    widget: 'Rating',
-                    id: 9986
-                  });
-                  (function() {
-                    if ('WIDGETPACK_LOADED' in window) return;
-                    WIDGETPACK_LOADED = true;
-                    var mc = document.createElement('script');
-                    mc.type = 'text/javascript';
-                    mc.async = true;
-                    mc.src = 'https://embed.widgetpack.com/widget.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(mc, s.nextSibling);
-                  })();
-                </script>
-
-                <div id="donation_div"></div>
-
-                <script src="/js/vdonate.js"></script>
-                <script>
-                  var a = new Donate({
-                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-                    btnText: 'Donate', // 可选参数，打赏按钮文字
-                    el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
-                  });
-                </script>
-
-
-                <div id="comment">
-                  <!-- 来必力City版安装代码 -->
-                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
-                    <script type="text/javascript">
-                      (function(d, s) {
-                        var j, e = d.getElementsByTagName(s)[0];
-
-                        if (typeof LivereTower === 'function') {
-                          return;
-                        }
-
-                        j = d.createElement(s);
-                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                        j.async = true;
-
-                        e.parentNode.insertBefore(j, e);
-                      })(document, 'script');
-                    </script>
-                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
-                  </div>
-                  <!-- City版安装代码已完成 -->
+                    <h1 class="thumb" itemprop="name">
+                      <a class="archive-article-title" href="/articles/fc57b387/">String的“+”操作分析</a>
+                    </h1>
+                  </header>
                 </div>
+              </article>
 
-                <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Plus/">Plus</a></li>
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li>
-                </ul>
-              </footer>
-            </div>
-
-            <nav id="article-nav">
-
-              <a href="/articles/e3b9b515/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Mac sudo命令无法使用
-        
-      </div>
-    </a>
-
-
-              <a href="/articles/f12d3e70/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">将多个input合并成一个字符串提交给后台</div>
-    </a>
-
-            </nav>
-
-          </article>
-
-          <!-- Table of Contents -->
-
-          <aside id="toc-sidebar">
-            <div id="toc" class="toc-article">
-              <strong class="toc-title">Contents</strong>
-
-              <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#策略"><span class="nav-number">3.</span> <span class="nav-text">策略</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">4.</span> <span class="nav-text">操作</span></a></li>
-              </ol>
 
             </div>
-          </aside>
+          </section>
         </section>
 
       </div>
@@ -520,8 +398,6 @@
 
 
 
-        <script src="/js/dialog.js"></script>
-
 
         <!-- Google Analytics -->
         <script type="text/javascript">
@@ -605,8 +481,6 @@
 
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-
-  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
 
 
 

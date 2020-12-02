@@ -3736,7 +3736,7 @@ chmod 440 /etc/sudoers
     <link href="http://home.meng.uno/articles/fc57b387/"/>
     <id>http://home.meng.uno/articles/fc57b387/</id>
     <published>2016-11-01T08:39:36.000Z</published>
-    <updated>2020-12-02T02:06:01.000Z</updated>
+    <updated>2020-12-02T02:18:18.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="起源">起源</h2><p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p><h2 id="结论">结论</h2><p>我查到的信息之一这样说：因为“+”拼接字符串，每拼接一次都是再内存重新开辟一个新的内存区域（堆里边）,然后把得到的新的字符串存在这块内存，字符串如果很大，循环次多又多，那么浪费了很多时间和空间的开销。 我查到的信息之二这么说：当拼接次数较少时，其实编译器会将其优化为StringBuilder类型，只是当拼接次数特别多时，编译器优化时将会产生过多的StringBuilder类型，从而导致空间浪费。</p><h2 id="策略">策略</h2><p>当拼接次数较少时，我们可以直接使用“+”操作，而当拼接数量较大时，我们最好使用StringBuilder类型。</p><h2 id="操作">操作</h2><figure class="highlight">  <table>    <tr>      <td class="gutter">        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>      </td>      <td class="code">        <pre><span class="line">StringBuilder SB = new StringBuilder();</span><br><span class="line">SB.append(……);</span><br><span class="line">String Result = SB.toString();</span><br></pre>      </td>    </tr>  </table></figure><p><br><br>本文链接： <a href="http://home.meng.uno/articles/fc57b387/">http://home.meng.uno/articles/fc57b387/</a> 欢迎转载！</p>]]></content>
     
@@ -3756,7 +3756,7 @@ chmod 440 /etc/sudoers
     
       <category term="String" scheme="http://home.meng.uno/tags/String/"/>
     
-      <category term="+" scheme="http://home.meng.uno/tags//"/>
+      <category term="Plus" scheme="http://home.meng.uno/tags/Plus/"/>
     
   </entry>
   
