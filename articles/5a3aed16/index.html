@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>自然语言处理（NLP）之词向量 | 欢迎来到匡盟盟的博客！</title>
+  <title>Word2Vec and GloVe | 欢迎来到匡盟盟的博客！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 TODO word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语">
-  <meta name="keywords" content="NLP,词向量,自然语言处理">
+  <meta name="description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
+  <meta name="keywords" content="Word2Vec,GloVe,词向量,自然语言处理">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="自然语言处理（NLP）之词向量">
+  <meta property="og:title" content="Word2Vec and GloVe">
   <meta property="og:url" content="http://home.meng.uno/articles/5a3aed16/index.html">
   <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
-  <meta property="og:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 TODO word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语">
+  <meta property="og:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806115820.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806120054.png">
@@ -55,10 +55,10 @@
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152459.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152530.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807094759.png">
-  <meta property="og:updated_time" content="2020-12-02T01:55:54.000Z">
+  <meta property="og:updated_time" content="2020-12-08T03:01:13.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="自然语言处理（NLP）之词向量">
-  <meta name="twitter:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 TODO word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语">
+  <meta name="twitter:title" content="Word2Vec and GloVe">
+  <meta name="twitter:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
   <meta name="twitter:image" content="http://www.meng.uno/images/assets/公式_20180806115820.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -288,7 +288,7 @@
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  自然语言处理（NLP）之词向量
+                  Word2Vec and GloVe
                 </h1>
               </header>
 
@@ -301,7 +301,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,858</span>
+	<span class="post-count"> | 字数3,856</span>
 	<span class="post-count"> | 预计时间16分钟</span>
 	</a>
               </div>
@@ -314,7 +314,7 @@
                   <li>词向量是神经语言模型的<strong>副产品</strong>。</li>
                   <li>词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等</li>
                 </ul>
-                <h2 id="词向量的理解-todo">词向量的理解 TODO</h2>
+                <h2 id="词向量的理解">词向量的理解</h2>
                 <blockquote>
                   <p><a href="https://blog.csdn.net/itplus/article/details/37969817" target="_blank" rel="noopener">word2vec 中的数学原理详解（三）背景知识</a> - CSDN博客</p>
                 </blockquote>
@@ -324,7 +324,6 @@
                 <p><strong>分布式表示</strong> (distributed representation)</p>
                 <ul>
                   <li>分布式假设</li>
-                  <li>TODO</li>
                   <li>常见的分布式表示方法
                     <ul>
                       <li>潜在语义分析 (Latent Semantic Analysis, LSA)
@@ -890,7 +889,8 @@
                 </div>
 
                 <ul class="article-tag-list">
-                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GloVe/">GloVe</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Word2Vec/">Word2Vec</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词向量/">词向量</a></li>
                 </ul>
@@ -928,7 +928,7 @@
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#什么是词向量-词嵌入"><span class="nav-number">1.1.</span> <span class="nav-text">什么是词向量/词嵌入</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#词向量的理解-todo"><span class="nav-number">1.2.</span> <span class="nav-text">词向量的理解 TODO</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#词向量的理解"><span class="nav-number">1.2.</span> <span class="nav-text">词向量的理解</span></a></li>
                   </ol>
                 </li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Word2Vec</span></a>
@@ -1007,7 +1007,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2020.12.08 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
