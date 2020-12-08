@@ -236,6 +236,27 @@
               };
             </script>
 
+
+            <div class="item">
+
+              <img id="carousel-img3" src="/css/images/bg5.jpg">
+            </div>
+
+            <!-- 自适应大图 -->
+            <script>
+              var img3 = new Image();
+              var imageTag3 = document.getElementById("carousel-img3");
+              img3.src = imageTag3.src;
+              img3.onload = function() {
+                if (img3.width / img3.height <= document.body.clientWidth / document.body.clientHeight) {
+                  imageTag3.style.width = document.body.clientWidth + "px";
+                } else {
+                  imageTag3.style.height = document.body.clientHeight + "px";
+                  imageTag3.style.marginLeft = -(document.body.clientHeight * img3.width / img3.height - document.body.clientWidth) / 2 + "px";
+                }
+              };
+            </script>
+
           </div>
         </div>
 
