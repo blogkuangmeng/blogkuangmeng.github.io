@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>文件系统 | 欢迎来到匡盟盟的博客！</title>
+  <title>文件系统 | Welcome to Mengmeng Kuang&#39;s Blog!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -22,7 +22,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="文件系统">
   <meta property="og:url" content="http://home.meng.uno/articles/1b9c8662/index.html">
-  <meta property="og:site_name" content="欢迎来到匡盟盟的博客！">
+  <meta property="og:site_name" content="Welcome to Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="虚拟文件系统（VFS）的思想和作用 实际上，看到Virtaul，我们就应该想到VFS的作用，是虚拟出一个中间层，来实现某些部分的统一处理。实际上，VFS要解决的是，让应用能够“以一种通用的方式”，去访问不同类型的文件系统：    可以看到，对于不同类型的文件系统、网络文件系统、伪文件系统，应用对它们的操作接口都是一致的,而底层的驱动则会完成实际的区分工作。  通用文件模型 VFS通过一个通用文件模">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/VFS.png">
@@ -38,7 +38,7 @@
   <meta property="fb:admins" content="kuangmengmeng">
   <meta property="fb:app_id" content="1559086807462632">
 
-  <link rel="alternate" href="/atom.xml" title="欢迎来到匡盟盟的博客！" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Welcome to Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
 
 
 
@@ -274,7 +274,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,529</span>
+	<span class="post-count"> | 字数3,530</span>
 	<span class="post-count"> | 预计时间13分钟</span>
 	</a>
               </div>
@@ -459,7 +459,7 @@ union {
                 <p>路径查找的复杂性，主要体现在VFS系统的一些特点上：（1）必须对目录的访问权限进行检查；（2）文件名可能是符号链接；（3）要考虑符号链接可能带来的循环引用；（4）文件名可能是文件系统的安装点（5）路径名和进程的命名空间有关等。</p>
                 <p>路径名查找的入口是<code>path_lookup()</code>，它调用了<code>filename_lookup()</code>。这个函数对nameidata进行了简单的填充，随后调用<code>lookupat()</code>。</p>
                 <p><code>lookupat()</code>函数中通过一个循环，和<code>path_init()</code>函数，逐级向下进行查找，检查目录的访问权限，并且考虑符号链接等情况。</p>
-                <p><br><br>本文链接： <a href="http://home.meng.uno/articles/1b9c8662/">http://home.meng.uno/articles/1b9c8662/</a> 欢迎转载！</p>
+                <p><br><br>“The link of this page:” <a href="http://home.meng.uno/articles/1b9c8662/">http://home.meng.uno/articles/1b9c8662/</a> Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -749,7 +749,7 @@ union {
           </div>
           <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
-              欢迎来到匡盟盟的博客！
+              Welcome to Mengmeng Kuang&#39;s Blog!
             </div>
             <div class="panel-body">
               An MPhil graduate in Computer Science from HKU
