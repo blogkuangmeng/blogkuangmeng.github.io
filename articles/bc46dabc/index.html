@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎光临匡盟盟的博客！">
   <meta property="og:description" content="x64寄存器 x64体系提供了16个通用寄存器，以及16个通用寄存器，以及16个浮点寄存器XMM/YMM寄存器。这些寄存器分为两类：   * 易失寄存器：由调用方假想的临时寄存器，并要在调用过程中销毁。  * 非易失寄存器：需要在整个函数调用过程中保留其值，一旦使用，必须由调用方保存。  也就是说，易失寄存器被定义为随时会改变，不用恢复它的初始值。但是如果要嵌入一些汇编语句，还是要对它们进行保护和">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T01:39:39.000Z">
+  <meta property="og:updated_time" content="2020-12-08T10:08:12.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux系统参数传递">
   <meta name="twitter:description" content="x64寄存器 x64体系提供了16个通用寄存器，以及16个通用寄存器，以及16个浮点寄存器XMM/YMM寄存器。这些寄存器分为两类：   * 易失寄存器：由调用方假想的临时寄存器，并要在调用过程中销毁。  * 非易失寄存器：需要在整个函数调用过程中保留其值，一旦使用，必须由调用方保存。  也就是说，易失寄存器被定义为随时会改变，不用恢复它的初始值。但是如果要嵌入一些汇编语句，还是要对它们进行保护和">
@@ -270,7 +270,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数940</span>
+	<span class="post-count"> | 字数955</span>
 	<span class="post-count"> | 预计时间4分钟</span>
 	</a>
               </div>
@@ -411,22 +411,18 @@
                 </table>
                 <h1>参数传递</h1>
                 <p>可以看出，在Linux中，前6个参数都是利用寄存器来进行传递的。那么参数多于6个的情况下，是如何传递的呢？首先<strong>参数按照从左到右的顺序，依次使用寄存器</strong>，在寄存器被使用完后，参数<strong>从右到左依次入栈，使用堆栈进行参数的传递</strong>。此处有一个例子：</p>
-                <pre><code>typedef struct {
-int a, b;
-double d;
-} structparm;
-structparm s;
-int e, f, g, h, i, j, k;
-long double ld;
-double m, n;
-__m256 y;
-extern void func (int e, int f,
-structparm s, int g, int h,
-long double ld, double m,
-__m256 y,
-double n, int i, int j, int k);
-func (e, f, s, g, h, ld, m, y, n, i, j, k);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">typedef struct &#123;</span><br><span class="line">int a, b;</span><br><span class="line">double d;</span><br><span class="line">&#125; structparm;</span><br><span class="line">structparm s;</span><br><span class="line">int e, f, g, h, i, j, k;</span><br><span class="line">long double ld;</span><br><span class="line">double m, n;</span><br><span class="line">__m256 y;</span><br><span class="line">extern void func (int e, int f,</span><br><span class="line">structparm s, int g, int h,</span><br><span class="line">long double ld, double m,</span><br><span class="line">__m256 y,</span><br><span class="line">double n, int i, int j, int k);</span><br><span class="line">func (e, f, s, g, h, ld, m, y, n, i, j, k);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>那么，在这个函数的调用中，寄存器的使用情况如下：</p>
                 <table>
                   <thead>

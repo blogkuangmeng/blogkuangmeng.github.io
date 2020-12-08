@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎光临匡盟盟的博客！">
   <meta property="og:description" content="内核同步 对于内核，其实有一个很形象的理解：我们可以把内核理解成一个服务器，它为自身和用户提供各种服务。因此它必须要保证每项服务在处理时，不会互相造成影响，也就是解决“并发”的问题。自身的请求，也即中断；客户的请求，也即用户态的系统调用或异常。内核的同步，就是对内核中的任务进行调度，使它们按照正确的方式运行。  内核抢占 这里，“内核抢占”指的是进程A在内核态运行时，被具有更高优先级的进程B取代，">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T01:51:07.000Z">
+  <meta property="og:updated_time" content="2020-12-08T10:15:10.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="内核同步">
   <meta name="twitter:description" content="内核同步 对于内核，其实有一个很形象的理解：我们可以把内核理解成一个服务器，它为自身和用户提供各种服务。因此它必须要保证每项服务在处理时，不会互相造成影响，也就是解决“并发”的问题。自身的请求，也即中断；客户的请求，也即用户态的系统调用或异常。内核的同步，就是对内核中的任务进行调度，使它们按照正确的方式运行。  内核抢占 这里，“内核抢占”指的是进程A在内核态运行时，被具有更高优先级的进程B取代，">
@@ -270,8 +270,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数3,060</span>
-	<span class="post-count"> | 预计时间11分钟</span>
+	<span class="post-count"> | 字数3,158</span>
+	<span class="post-count"> | 预计时间12分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -307,133 +307,118 @@
                 <p>自旋锁是一类特别广泛使用的同步技术，如果内核控制路径必须访问共享数据结构，或者访问临界区，那么就需要为自己获取一个自旋锁；只有资源是空闲时，获取才能成功；当它释放了锁之后，其他内核控制路径就可以进入房间了。那么自旋锁的意义是什么？它是多处理器环境下一种特殊的锁；如果执行路径发现自旋锁是锁着的，或反复在周围进行“旋转”，反复执行循环，直到锁被释放（忙等）。</p>
                 <p>自旋锁保护的临界区通常是禁止内核抢占的，如果在单CPU环境下，自旋锁仅仅能够禁止或启用内核抢占，并不能起到锁的作用。当然，忙等时还是可以被抢占的，只有上锁后才会禁止抢占。</p>
                 <p>ps：阿里巴巴的面试官问过我一个问题，**自旋锁的本质是什么？**我当时猜测了一下，回答了原子操作，但没有能够进一步地进行解释。这里应该结合源码进行说明。可以看到对<code>xadd</code>就是一个标准的源子加操作。linux内核使用了两种实现。其一是“标签自旋锁”，<code>raw_spin_lock</code>最后会调用：</p>
-                <pre><code> static inline void __raw_spin_lock(raw_spinlock_t *lock)
- {
-    preempt_disable();		//禁止了抢占
-    spin_acquire(&amp;lock-&gt;dep_map, 0, 0, _RET_IP_);
-    LOCK_CONTENDED(lock, do_raw_spin_trylock, do_raw_spin_lock);
- }
-
- arch_spin_lock(arch_spinlock_t *lock)
- {
- 	register struct __raw_tickets inc = {.tail = TICKET_LOCK_INC};//这个值是0
- 	inc = xadd(&amp;lock-&gt;tickets, inc);	//xadd是原子加，在多CPU时会上锁
- 										//获取标签，同时把序号＋1  
- 	if(likely(inc.head == inc.tail))	//标签到自己了，取锁成功了
- 		goto out;
- 	for(;;){							//否则就不断循环，直到轮到自己
- 		unsigned count = SPIN_THRESHOLD;
- 		
- 		do{
- 			inc.head = READ_ONCE(lock-&gt;tickets.head);
- 			if(__tickets_equal(inc.head, inc.tail))//判断是否到自己的标签了
- 			goto clear_slowpath;
- 			cpu_relax();
- 		}while(--count);
- 		__ticket_lock_spinning(lock, inc.tail);
- 	}
- 	clear_slowpath:
- 		__ticket_check_and_clear_slowpath(lock, inc.head);
- 	cout:
- 		barrier();
- }
- 
- arch_spinlock_t的结构如下，实际上就是一个u16数
- typedef struct arch_spinlock {
-          union {
-                  __ticketpair_t head_tail;
-                  struct __raw_tickets {
-                          __ticket_t head, tail;
-                  } tickets;
-          };
-  } arch_spinlock_t; 
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">static inline void __raw_spin_lock(raw_spinlock_t *lock)</span><br><span class="line">&#123;</span><br><span class="line">      preempt_disable();		//禁止了抢占</span><br><span class="line">      spin_acquire(&amp;lock-&gt;dep_map, 0, 0, _RET_IP_);</span><br><span class="line">      LOCK_CONTENDED(lock, do_raw_spin_trylock, do_raw_spin_lock);</span><br><span class="line">&#125;</span><br><span class="line">arch_spin_lock(arch_spinlock_t *lock)</span><br><span class="line">&#123;</span><br><span class="line">	register struct __raw_tickets inc = &#123;.tail = TICKET_LOCK_INC&#125;;//这个值是0</span><br><span class="line">	inc = xadd(&amp;lock-&gt;tickets, inc);	//xadd是原子加，在多CPU时会上锁</span><br><span class="line">										//获取标签，同时把序号＋1  </span><br><span class="line">	if(likely(inc.head == inc.tail))	//标签到自己了，取锁成功了</span><br><span class="line">		goto out;</span><br><span class="line">	for(;;)&#123;							//否则就不断循环，直到轮到自己</span><br><span class="line">		unsigned count = SPIN_THRESHOLD;</span><br><span class="line">		do&#123;</span><br><span class="line">			inc.head = READ_ONCE(lock-&gt;tickets.head);</span><br><span class="line">			if(__tickets_equal(inc.head, inc.tail))//判断是否到自己的标签了</span><br><span class="line">			goto clear_slowpath;</span><br><span class="line">			cpu_relax();</span><br><span class="line">		&#125;while(--count);</span><br><span class="line">		__ticket_lock_spinning(lock, inc.tail);</span><br><span class="line">	&#125;</span><br><span class="line">	clear_slowpath:</span><br><span class="line">		__ticket_check_and_clear_slowpath(lock, inc.head);</span><br><span class="line">	cout:</span><br><span class="line">		barrier();</span><br><span class="line">&#125;</span><br><span class="line">arch_spinlock_t的结构如下，实际上就是一个u16数</span><br><span class="line">typedef struct arch_spinlock &#123;</span><br><span class="line">         union &#123;</span><br><span class="line">                 __ticketpair_t head_tail;</span><br><span class="line">                 struct __raw_tickets &#123;</span><br><span class="line">                         __ticket_t head, tail;</span><br><span class="line">                 &#125; tickets;</span><br><span class="line">         &#125;;</span><br><span class="line"> &#125; arch_spinlock_t;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>另一种是一种更加复杂的实现，被称为“排队自旋锁”。排队自旋锁基于每CPU变量实现，其实现比基于标签对实现更公平。</p>
                 <h1>读－拷贝－更新</h1>
                 <p>用来保护在多数情况下，被多个CPU读的数据结构，而设计的另一种同步技术，其特点是允许多个读和写并发执行，并且不使用锁。那么它如何在共享数据读前提下，实现同步呢？RCU只保护被动态分配，并且通过指针引用的数据结构，并且在RCU临界区内，禁止睡眠。RCU的做法是，在写操作时，拷贝一份原来的副本，在副本上进行修改，并且在修改完成后进行更新，将旧的指针更新为新的指针。</p>
                 <h1>信号量</h1>
                 <p>在linux中，有两种信号量，一种是给内核使用的内核信号量，另一种是给用户态进程使用的IPC信号量。这里我们只讨论内核信号量。其实信号量和自旋锁在“上锁”这一点上是类似的，如果锁关闭了，那么就不允许内核控制路径继续执行；只不过它不会像自旋锁一样，在原地“忙等”，而是将相应的进程挂起；只有资源可用了，进程才能继续运行。也正因为“睡眠”的特性，信号量<strong>不能用在中断处理程序和延迟处理函数</strong>上，只有允许睡眠的情况下，才能够使用信号量。</p>
                 <p><strong>内核</strong>信号量的定义在semaphore.h当中：</p>
-                <pre><code>struct semaphore {
-     raw_spinlock_t          lock;		//保护信号量的自旋锁
-     unsigned int            count;
-     struct list_head        wait_list;
-};
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct semaphore &#123;</span><br><span class="line">	     raw_spinlock_t          lock;		//保护信号量的自旋锁</span><br><span class="line">	     unsigned int            count;</span><br><span class="line">	     struct list_head        wait_list;</span><br><span class="line">	&#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>很神奇的，这里看到了<code>raw_spinlock_t</code>的影子。这其实是一个由Real-time linux引入的命名问题；这里我们只需要明白：尽可能使用spin_lock；绝对不允许被抢占和休眠的地方，使用raw_spin_lock，否则使用spin_lock，信号量的底层，使用了自旋锁来实现。</p>
                 <p>信号量的后两个域，<code>count</code>和<code>wait_list</code>分别是现有资源数和等待获取资源的进程序列。对于信号量，内核定义了这些API：</p>
-                <pre><code>void down(struct semaphore *sem);
-void up(struct semaphore *sem);
-int  down_interruptible(struct semaphore *sem);
-int  down_killable(struct semaphore *sem);
-int  down_trylock(struct semaphore *sem);
-int  down_timeout(struct semaphore *sem, long jiffies);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">void down(struct semaphore *sem);</span><br><span class="line">void up(struct semaphore *sem);</span><br><span class="line">int  down_interruptible(struct semaphore *sem);</span><br><span class="line">int  down_killable(struct semaphore *sem);</span><br><span class="line">int  down_trylock(struct semaphore *sem);</span><br><span class="line">int  down_timeout(struct semaphore *sem, long jiffies);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这里看看<code>down</code>函数：</p>
-                <pre><code>void down(struct semaphore *sem)
-{
-    unsigned long flags;
-
-    raw_spin_lock_irqsave(&amp;sem-&gt;lock, flags);
-    if (likely(sem-&gt;count &gt; 0))
-            sem-&gt;count--;
-    else
-            __down(sem);
-    raw_spin_unlock_irqrestore(&amp;sem-&gt;lock, flags);
-}
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">void down(struct semaphore *sem)</span><br><span class="line">&#123;</span><br><span class="line">       unsigned long flags;</span><br><span class="line">       raw_spin_lock_irqsave(&amp;sem-&gt;lock, flags);</span><br><span class="line">       if (likely(sem-&gt;count &gt; 0))</span><br><span class="line">               sem-&gt;count--;</span><br><span class="line">       else</span><br><span class="line">               __down(sem);</span><br><span class="line">       raw_spin_unlock_irqrestore(&amp;sem-&gt;lock, flags);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>可以看到，这里自旋锁的作用实际上是保证count不被同时操作；而如果count大于0，则可以减少它的值，表示获取了这个锁，否则会<code>__down_common</code>，这个函数在不发生错误大情况下，会调用这样一段函数：</p>
-                <pre><code>raw_spin_unlock_irq(&amp;sem-&gt;lock);
-timeout = schedule_timeout(timeout);
-raw_spin_lock_irq(&amp;sem-&gt;lock);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">raw_spin_unlock_irq(&amp;sem-&gt;lock);</span><br><span class="line">timeout = schedule_timeout(timeout);</span><br><span class="line">raw_spin_lock_irq(&amp;sem-&gt;lock);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这个函数是在timer.c代码中定义的。<code>schedule_timeout</code>函数将当前的任务置为休眠到设置的超时为止，这也就是信号量和自旋锁不同之处了，它允许进程的休眠。</p>
                 <p>而对于<code>up</code>函数来说，释放锁，增加count之后，会马上会检查是否有进程在等待资源：</p>
-                <pre><code>static noinline void __sched __up(struct semaphore *sem)
-{
-    struct semaphore_waiter *waiter = list_first_entry(&amp;sem-&gt;wait_list,
-                                            struct semaphore_waiter, list);
-    list_del(&amp;waiter-&gt;list);
-    waiter-&gt;up = true;
-    wake_up_process(waiter-&gt;task);
-}
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">static noinline void __sched __up(struct semaphore *sem)</span><br><span class="line">&#123;</span><br><span class="line">       struct semaphore_waiter *waiter = list_first_entry(&amp;sem-&gt;wait_list,</span><br><span class="line">                                               struct semaphore_waiter, list);</span><br><span class="line">       list_del(&amp;waiter-&gt;list);</span><br><span class="line">       waiter-&gt;up = true;</span><br><span class="line">       wake_up_process(waiter-&gt;task);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这样看来，其实信号量和自旋锁最大的不同就只有两个：自旋锁的忙等与信号量的休眠，资源的数量。</p>
                 <h1>互斥量</h1>
                 <p>虽然《深入理解linux内核》这本书中没有写，但是内核中也是有互斥量的；实际上它相当于count ＝ 1的信号量。互斥量的定义为：</p>
-                <pre><code>struct mutex {
-    atomic_t                count;
-    spinlock_t              wait_lock;
-    struct list_head        wait_list;
-#if defined(CONFIG_DEBUG_MUTEXES) || defined(CONFIG_MUTEX_SPIN_ON_OWNER)
-    struct task_struct      *owner;
-#endif
-#ifdef CONFIG_MUTEX_SPIN_ON_OWNER
-    struct optimistic_spin_queue osq;
-#endif
-#ifdef CONFIG_DEBUG_MUTEXES
-    void                    *magic;
-#endif
-#ifdef CONFIG_DEBUG_LOCK_ALLOC
-    struct lockdep_map      dep_map;
-#endif
-};
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct mutex &#123;</span><br><span class="line">       atomic_t                count;</span><br><span class="line">       spinlock_t              wait_lock;</span><br><span class="line">       struct list_head        wait_list;</span><br><span class="line">#if defined(CONFIG_DEBUG_MUTEXES) || defined(CONFIG_MUTEX_SPIN_ON_OWNER)</span><br><span class="line">       struct task_struct      *owner;</span><br><span class="line">#endif</span><br><span class="line">#ifdef CONFIG_MUTEX_SPIN_ON_OWNER</span><br><span class="line">       struct optimistic_spin_queue osq;</span><br><span class="line">#endif</span><br><span class="line">#ifdef CONFIG_DEBUG_MUTEXES</span><br><span class="line">       void                    *magic;</span><br><span class="line">#endif</span><br><span class="line">#ifdef CONFIG_DEBUG_LOCK_ALLOC</span><br><span class="line">       struct lockdep_map      dep_map;</span><br><span class="line">#endif</span><br><span class="line">&#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>可以看到它同样依赖于自旋锁实现，也包含一个进程的等待队列。我们来看看互斥量的上锁操作：</p>
-                <pre><code>void __sched mutex_lock(struct mutex *lock)
-{
-    might_sleep();
-    __mutex_fastpath_lock(&amp;lock-&gt;count, __mutex_lock_slowpath);
-    mutex_set_owner(lock);
-}
-
-这里__mutex_fastpath_lock最终会调用一段汇编代码：
-asm_volatile_goto(LOCK_PREFIX &quot;   decl %0\n&quot;
-                          &quot;   jns %l[exit]\n&quot;
-                          : : &quot;m&quot; (v-&gt;counter)
-                          : &quot;memory&quot;, &quot;cc&quot;
-                          : exit);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">void __sched mutex_lock(struct mutex *lock)</span><br><span class="line">&#123;</span><br><span class="line">       might_sleep();</span><br><span class="line">       __mutex_fastpath_lock(&amp;lock-&gt;count, __mutex_lock_slowpath);</span><br><span class="line">       mutex_set_owner(lock);</span><br><span class="line">&#125;</span><br><span class="line">这里__mutex_fastpath_lock最终会调用一段汇编代码：</span><br><span class="line">asm_volatile_goto(LOCK_PREFIX &quot;   decl %0\n&quot;</span><br><span class="line">                             &quot;   jns %l[exit]\n&quot;</span><br><span class="line">                             : : &quot;m&quot; (v-&gt;counter)</span><br><span class="line">                             : &quot;memory&quot;, &quot;cc&quot;</span><br><span class="line">                             : exit);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>也就是原子操作，修改mutex的counter，而mutex中的自旋锁，是为了保护<code>wait_list</code>而存在的，只是起到一个辅助作用，这点和信号量不太一样。</p>
                 <h1>读写自旋锁/顺序锁/信号量</h1>
                 <p>为了增加内核到并发能力，操作系统还设置了读写自旋锁。读写自旋锁允许多个内存控制路径，同时<strong>读</strong>同一个数据结构，但如果相对这个结构进行写操作，那么它必须首先获取读写自旋锁的写锁，写锁能让当前的路径独占访问这个资源。</p>

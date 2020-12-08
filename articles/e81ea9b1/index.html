@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="欢迎光临匡盟盟的博客！">
   <meta property="og:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T01:43:32.000Z">
+  <meta property="og:updated_time" content="2020-12-08T10:24:18.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux中的Namespace">
   <meta name="twitter:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
@@ -270,7 +270,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,388</span>
+	<span class="post-count"> | 字数2,415</span>
 	<span class="post-count"> | 预计时间9分钟</span>
 	</a>
               </div>
@@ -295,22 +295,18 @@
                 </p>
                 <h2 id="internal-api">Internal API</h2>
                 <p>一个task所拥有的所有PID都在struct pid中被描述了。这个数据结构如下：</p>
-                <pre><code>struct upid {
-int nr;					/* moved from struct pid */
-struct pid_namespace *ns;		/* the namespace this value
-					 * is visible in
-					 */
-struct hlist_node pid_chain;		/* moved from struct pid */
-};
-
-struct pid {
-atomic_t count;
-struct hlist_head tasks[PIDTYPE_MAX];
-struct rcu_head rcu;
-int level;				/* the number of upids */
-struct upid numbers[0];
-};
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct upid &#123;</span><br><span class="line">int nr;					/* moved from struct pid */</span><br><span class="line">struct pid_namespace *ns;		/* the namespace this value is visible in */</span><br><span class="line">struct hlist_node pid_chain;		/* moved from struct pid */</span><br><span class="line">   &#125;;</span><br><span class="line">   struct pid &#123;</span><br><span class="line">atomic_t count;</span><br><span class="line">struct hlist_head tasks[PIDTYPE_MAX];</span><br><span class="line">struct rcu_head rcu;</span><br><span class="line">int level;				/* the number of upids */</span><br><span class="line">struct upid numbers[0];</span><br><span class="line">   &#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这里，struct upid表示PID值，它储存在hash当中，并且拥有PID值。为了转换得到这个pid值，可以使用task_pid_nr,pid_nr_ns(),find_task_by_vpid等函数。<br> 这些函数的后缀有一些规律：
                   <br> __nr()：对“全局”的PID进行操作，这里全局指的是在整个系统中也是独一无二的。pid_nr会告诉你struct pid的global PID，这只在PID值不会离开kernel时使用。<br> __vnr()：对“virtual”PID进行操作，也就是进程可见的ID，例如task_pid_vnr会告诉你一个task的PID。
                   <br> _nr_ns()：对指定namespace中的PID进行处理，如果希望得到某个task的PID，可以通过task_pid_nr_ns来获得pid number，在用find_task_by_pid_ns来找到这个task。这个方法在系统调用中很常见，特别是当PID来自用户空间时。在这种情况下，task可能是在另一个namespace中的。</p>
@@ -327,39 +323,68 @@ struct upid numbers[0];
                 <p>namespace的API包含3个系统调用——clone，unshare，setns，以及一系列的/proc文件。为了指定操作的namespace类型，这3个系统调用都使用了一个CLONE_NEW常量(CLONE_NEWIPC,CLONE_NEWNS,etc)。</p>
                 <h2 id="clone">Clone</h2>
                 <p>通过clone，可以创建一个namespace，它是一个创建新的process的系统调用。其函数原型为：</p>
-                <pre><code>int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>clone可以看作fork()的通用版本，其功能能够通过flags参数CLONE_*来控制，这些参数包含了parent和child是否共享虚拟内存、打开文件描述符等。而如果参数中CLONE_NEW位被指定了，那么就会创建一个新的，对应类型的namespace，而新的进程则成为这个namespace中的一个成员。</p>
                 <p>和大多数其他的namespaces一样，创建一个UTS namespace是需要特权的，例如CAP_SYS_ADMIN，这对于避免需要设置user ID的应用来说是有必要的：如果能够使用任意的hostname，那么一个非特权用户就能够破坏lock file的作用，或者能够改变应用的行为。</p>
                 <h2 id="proc-里的文件">/proc/里的文件</h2>
                 <p>对于每一个进程来说，都有一个/proc/PID/ns目录，这其中每一种类型的namespace，都对应了一个文件。从linux 3.9开始，这些文件都被符号链接，作为处理这个进程相关namespace的handler。</p>
-                <pre><code>$ ls -l /proc/$$/ns         # $$ is replaced by shell's PID
-total 0
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 ipc -&gt; ipc:[4026531839]
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 mnt -&gt; mnt:[4026531840]
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 net -&gt; net:[4026531956]
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 pid -&gt; pid:[4026531836]
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 user -&gt; user:[4026531837]
-lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 uts -&gt; uts:[4026531838]
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">$ ls -l /proc/$$/ns         # $$ is replaced by shell&apos;s PID</span><br><span class="line">   total 0</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 ipc -&gt; ipc:[4026531839]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 mnt -&gt; mnt:[4026531840]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 net -&gt; net:[4026531956]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 pid -&gt; pid:[4026531836]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 user -&gt; user:[4026531837]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 uts -&gt; uts:[4026531838]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这些符号链接的作用之一，就是用来检查两个进程是否处于同一个命名空间当中。kernel保证如果两个进程在同一个namespace当中，那么/proc/PID/ns中的inode number就会是一致的。inode numbers能够通过stat()系统调用来得到。</p>
                 <p>但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。 如果这个符号链接被打开，那么即使namespace中的进程全部终止了，namespace也不会消被清除。
                 </p>
                 <h2 id="setns">setns</h2>
                 <p>setns可以被用来加入一个已存在的namespace。保持一个没有任何进程的namespace，是因为随时可以加入新的进程到这个namespace当中去，这也是setns系统调用的作用。其函数原型为：</p>
-                <pre><code>int setns(int fd, int nstype);
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">int setns(int fd, int nstype);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>更准确的说，setns解除一个进程和之前对应nstype的namespace的联系，并且将其关联到新的，对应类型的namespace中去。这里，fd指定了对应的namespace，它是/proc/PID/ns目录下的一个文件描述符。而nstype则会用来检查fd指向的namespace的类型。<br> 利用setns和execve，能够构造一个很有效的工具：一个加入指定namespace然后再namespace中执行一条命令的程序。
                   <br> 从linux 3.8开始，setns能够加入任何类型的namespace。</p>
                 <h2 id="unshare">unshare</h2>
                 <p>unshare用来离开namespace。<br> unshare的功能类似于clone，它创建一个新的namespaces，并且让调用者称为这个命名空间的一部分。它的主要目的，是在不创建新的进程或线程的前提下，完成namespace的分离工作。
                 </p>
-                <pre><code>clone()
-和
-if(fork() == 0)
-	unshare()
-是等价的
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">clone()</span><br><span class="line">和</span><br><span class="line">if(fork() == 0)</span><br><span class="line">	unshare()</span><br><span class="line">是等价的</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/e81ea9b1/">http://home.meng.uno/articles/e81ea9b1/</a> . Welcome to reproduce it!</p>
 
               </div>

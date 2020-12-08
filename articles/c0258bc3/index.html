@@ -28,7 +28,7 @@
   <meta property="og:image" content="http://www.meng.uno/images/llvm/SimpleCompiler.png">
   <meta property="og:image" content="http://www.meng.uno/images/llvm/RetargetableCompiler.png">
   <meta property="og:image" content="http://www.meng.uno/images/llvm/X86Target.png">
-  <meta property="og:updated_time" content="2020-12-02T01:54:53.000Z">
+  <meta property="og:updated_time" content="2020-12-08T10:20:04.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LLVM与Pass">
   <meta name="twitter:description" content="LLVM简介 传统的编译器，采用的是针对单语言源代码，生成对应平台机器码的方式，类似于：    而LLVM则采用了一种多前端，多后端的方式，如下：    在LLVM当中，LLVM IR是一种low-level的，虚拟指令集。所有的前端语言都能够生成LLVM，从而能够被统一的进行处理。在LLVM当中，还提供了对LLVM IR Optimization进行优化的方式，能够对现有的源码进行搜索，匹配对应">
@@ -274,7 +274,7 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数641</span>
+	<span class="post-count"> | 字数642</span>
 	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
@@ -296,8 +296,18 @@
                 <p>llvm是需要编写、编译、加载和执行的，它相当于一个可以加载的模块。<br> 如果想编写一个模块，可以再llvm/lib/Transform当中创建对应的目录，并且在Transform以及目标文件夹下同时修改两个CMakeLists。在编译时，llvm的编译链会自动生成对应的pass。
                 </p>
                 <p>pass是基于中间语言llvm IR来进行的。因此它用来对.bc文件进行优化，例如：</p>
-                <pre><code>opt -load /lib/LLVMLbpass.so -lbpass &lt;foo.bc&gt; /dev/null
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">opt -load /lib/LLVMLbpass.so -lbpass &lt;foo.bc&gt; /dev/null</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/c0258bc3/">http://home.meng.uno/articles/c0258bc3/</a> . Welcome to reproduce it!</p>
 
               </div>

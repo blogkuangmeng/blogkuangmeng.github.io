@@ -27,7 +27,7 @@
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/%E8%BF%9B%E7%A8%8B/%E4%BF%A1%E5%8F%B7.gif">
   <meta property="og:image" content="http://www.meng.uno/images/%E8%BF%9B%E7%A8%8B/%E6%A0%88.gif">
-  <meta property="og:updated_time" content="2020-12-02T02:04:41.000Z">
+  <meta property="og:updated_time" content="2020-12-08T10:29:15.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="信号">
   <meta name="twitter:description" content="信号 信号用来通知进程异步事件，可以把它理解为对中断的一种模拟。它是一个很小的消息，用来达到两个目的：   * 告知进程发生了一个特定的事件；  * 强迫进程执行自身所包含的信号处理程序。  linux预先定义了一些常规信号，并为它们定义了一些缺省操作。除此之外，还有一类实时信号，它们需要排队进行处理，我们也可以自己定义信号和信号处理方式。  既然信号是和进程相关的，那么task_struct中就">
@@ -273,8 +273,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,313</span>
-	<span class="post-count"> | 预计时间5分钟</span>
+	<span class="post-count"> | 字数1,414</span>
+	<span class="post-count"> | 预计时间6分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -287,126 +287,48 @@
                 </ul>
                 <p>linux预先定义了一些常规信号，并为它们定义了一些缺省操作。除此之外，还有一类实时信号，它们需要排队进行处理，我们也可以自己定义信号和信号处理方式。</p>
                 <p>既然信号是和进程相关的，那么<code>task_struct</code>中就必然包含有与信号相关的域了。</p>
-                <pre><code>task_struct{
-	...
-	struct signal_struct *signal;		//进程信号描述符
-	struct sighand_struct *sighand;		//进程信号处理程序描述符
-	sigset_t blocked;					//被阻塞信号掩码
-	sigset_t real_bloced;				//被阻塞信号临时掩码
-	struct sigpending pending;			//存放私有挂起信号
-	...
-}
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">task_struct&#123;</span><br><span class="line">	...</span><br><span class="line">	struct signal_struct *signal;		//进程信号描述符</span><br><span class="line">	struct sighand_struct *sighand;		//进程信号处理程序描述符</span><br><span class="line">	sigset_t blocked;					//被阻塞信号掩码</span><br><span class="line">	sigset_t real_bloced;				//被阻塞信号临时掩码</span><br><span class="line">	struct sigpending pending;			//存放私有挂起信号</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p><img src="http://www.meng.uno/images/%E8%BF%9B%E7%A8%8B/%E4%BF%A1%E5%8F%B7.gif" alt=""></p>
                 <h1>信号的产生</h1>
                 <p>信号是由内核函数产生的，它们完成信号处理的第一步，也即更新一个/多个进程的描述符。产生的信号并不直接传递，而是根据信号的类型、目标进程的状态唤醒进程，让它们来接收信号。内核提供了一组产生信号的函数，包括为进程、线程组产生信号等，但它们最终都会调用<code>__send_signal()</code>。当然，在调用<code>__send_signal()</code>之前，会检查这个信号是否应该被忽略（进程没有被跟踪、信号被阻塞，显示忽略信号）</p>
-                <pre><code>static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
-		int group, int from_ancestor_ns)
-{
-struct sigpending *pending;
-struct sigqueue *q;	
-int override_rlimit;
-int ret = 0, result;
-
-assert_spin_locked(&amp;t-&gt;sighand-&gt;siglock);
-
-result = TRACE_SIGNAL_IGNORED;
-if (!prepare_signal(sig, t,
-		from_ancestor_ns || (info == SEND_SIG_FORCED)))
-	goto ret;
-//获取进程或线程组的私有挂起队列
-pending = group ? &amp;t-&gt;signal-&gt;shared_pending : &amp;t-&gt;pending;
-
-//这个信号已经挂起了，忽略它
-result = TRACE_SIGNAL_ALREADY_PENDING;
-if (legacy_queue(pending, sig))
-	goto ret;
-
-result = TRACE_SIGNAL_DELIVERED;
-//如果是kernel内部的某些强制信号，就立马执行
-if (info == SEND_SIG_FORCED)
-	goto out_set;
-
-//如果没有超过挂起信号的上限
-if (sig &lt; SIGRTMIN)
-	override_rlimit = (is_si_special(info) || info-&gt;si_code &gt;= 0);
-else
-	override_rlimit = 0;
-
-//产生一个sigqueue对象，并把它加入到队列中去
-q = __sigqueue_alloc(sig, t, GFP_ATOMIC | __GFP_NOTRACK_FALSE_POSITIVE,
-	override_rlimit);
-if (q) {
-	list_add_tail(&amp;q-&gt;list, &amp;pending-&gt;list);
-	switch ((unsigned long) info) {
-	case (unsigned long) SEND_SIG_NOINFO:
-		q-&gt;info.si_signo = sig;
-		q-&gt;info.si_errno = 0;
-		q-&gt;info.si_code = SI_USER;
-		q-&gt;info.si_pid = task_tgid_nr_ns(current,
-						task_active_pid_ns(t));
-		q-&gt;info.si_uid = from_kuid_munged(current_user_ns(), current_uid());
-		break;
-	case (unsigned long) SEND_SIG_PRIV:
-		q-&gt;info.si_signo = sig;
-		q-&gt;info.si_errno = 0;
-		q-&gt;info.si_code = SI_KERNEL;
-		q-&gt;info.si_pid = 0;
-		q-&gt;info.si_uid = 0;
-		break;
-	default:
-		copy_siginfo(&amp;q-&gt;info, info);
-		if (from_ancestor_ns)
-			q-&gt;info.si_pid = 0;
-		break;
-	}
-
-	//......
-}
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,</span><br><span class="line">		int group, int from_ancestor_ns)</span><br><span class="line">&#123;</span><br><span class="line">struct sigpending *pending;</span><br><span class="line">struct sigqueue *q;	</span><br><span class="line">int override_rlimit;</span><br><span class="line">int ret = 0, result;</span><br><span class="line">assert_spin_locked(&amp;t-&gt;sighand-&gt;siglock);</span><br><span class="line">result = TRACE_SIGNAL_IGNORED;</span><br><span class="line">if (!prepare_signal(sig, t,</span><br><span class="line">		from_ancestor_ns || (info == SEND_SIG_FORCED)))</span><br><span class="line">	goto ret;</span><br><span class="line">//获取进程或线程组的私有挂起队列</span><br><span class="line">pending = group ? &amp;t-&gt;signal-&gt;shared_pending : &amp;t-&gt;pending;</span><br><span class="line">//这个信号已经挂起了，忽略它</span><br><span class="line">result = TRACE_SIGNAL_ALREADY_PENDING;</span><br><span class="line">if (legacy_queue(pending, sig))</span><br><span class="line">	goto ret;</span><br><span class="line">result = TRACE_SIGNAL_DELIVERED;</span><br><span class="line">//如果是kernel内部的某些强制信号，就立马执行</span><br><span class="line">if (info == SEND_SIG_FORCED)</span><br><span class="line">	goto out_set;</span><br><span class="line">//如果没有超过挂起信号的上限</span><br><span class="line">if (sig &lt; SIGRTMIN)</span><br><span class="line">	override_rlimit = (is_si_special(info) || info-&gt;si_code &gt;= 0);</span><br><span class="line">else</span><br><span class="line">	override_rlimit = 0;</span><br><span class="line">//产生一个sigqueue对象，并把它加入到队列中去</span><br><span class="line">q = __sigqueue_alloc(sig, t, GFP_ATOMIC | __GFP_NOTRACK_FALSE_POSITIVE,</span><br><span class="line">	override_rlimit);</span><br><span class="line">if (q) &#123;</span><br><span class="line">	list_add_tail(&amp;q-&gt;list, &amp;pending-&gt;list);</span><br><span class="line">	switch ((unsigned long) info) &#123;</span><br><span class="line">	case (unsigned long) SEND_SIG_NOINFO:</span><br><span class="line">		q-&gt;info.si_signo = sig;</span><br><span class="line">		q-&gt;info.si_errno = 0;</span><br><span class="line">		q-&gt;info.si_code = SI_USER;</span><br><span class="line">		q-&gt;info.si_pid = task_tgid_nr_ns(current,</span><br><span class="line">						task_active_pid_ns(t));</span><br><span class="line">		q-&gt;info.si_uid = from_kuid_munged(current_user_ns(), current_uid());</span><br><span class="line">		break;</span><br><span class="line">	case (unsigned long) SEND_SIG_PRIV:</span><br><span class="line">		q-&gt;info.si_signo = sig;</span><br><span class="line">		q-&gt;info.si_errno = 0;</span><br><span class="line">		q-&gt;info.si_code = SI_KERNEL;</span><br><span class="line">		q-&gt;info.si_pid = 0;</span><br><span class="line">		q-&gt;info.si_uid = 0;</span><br><span class="line">		break;</span><br><span class="line">	default:</span><br><span class="line">		copy_siginfo(&amp;q-&gt;info, info);</span><br><span class="line">		if (from_ancestor_ns)</span><br><span class="line">			q-&gt;info.si_pid = 0;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">	//......</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>在信号产生之后，linux会调用<code>signal_wake_up()</code>通知进程，告知有新的挂起信号到来，如果当前进程占有了CPU，那么就可以立即执行；否则则要强制进行重新调度。</p>
                 <h1>信号的传递</h1>
                 <p>在信号产生之后，如何确保挂起的信号被正确的处理呢？进程在信号产生时，可能并不在CPU上运行。在进程恢复用户态执行时，会进行检查，如果存在非阻塞的挂起信号，就调用<code>do_signal()</code>，这个函数会逐个助理挂起的非阻塞信号，而信号的处理则进一步调用<code>handle_signal()</code>。</p>
-                <pre><code>handle_signal(struct ksignal *ksig, struct pt_regs *regs)
-{
-	bool stepping, failed;
-	struct fpu *fpu = &amp;current-&gt;thread.fpu;
-
-	//是否处于系统调用中
-	if (syscall_get_nr(current, regs) &gt;= 0) {
-		//系统调用被打断了，没有执行完，需要重新执行
-		switch (syscall_get_error(current, regs)) {
-		case -ERESTART_RESTARTBLOCK:
-		case -ERESTARTNOHAND:
-			regs-&gt;ax = -EINTR;
-			break;
-
-		case -ERESTARTSYS:
-			if (!(ksig-&gt;ka.sa.sa_flags &amp; SA_RESTART)) {
-				regs-&gt;ax = -EINTR;
-				break;
-			}
-		/* fallthrough */
-		case -ERESTARTNOINTR:
-			regs-&gt;ax = regs-&gt;orig_ax;
-			regs-&gt;ip -= 2;
-			break;
-		}
-	}
-
-	//设置栈帧
-	failed = (setup_rt_frame(ksig, regs) &lt; 0);
-	if (!failed) {
-		regs-&gt;flags &amp;= ~(X86_EFLAGS_DF|X86_EFLAGS_RF|X86_EFLAGS_TF);
-		/*
-		 * Ensure the signal handler starts with the new fpu state.
-		 */
-		if (fpu-&gt;fpstate_active)
-			fpu__clear(fpu);
-	}
-	signal_setup_done(failed, ksig, stepping);
-}
-</code></pre>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">handle_signal(struct ksignal *ksig, struct pt_regs *regs)</span><br><span class="line">&#123;</span><br><span class="line">	bool stepping, failed;</span><br><span class="line">	struct fpu *fpu = &amp;current-&gt;thread.fpu;</span><br><span class="line">	//是否处于系统调用中</span><br><span class="line">	if (syscall_get_nr(current, regs) &gt;= 0) &#123;</span><br><span class="line">		//系统调用被打断了，没有执行完，需要重新执行</span><br><span class="line">		switch (syscall_get_error(current, regs)) &#123;</span><br><span class="line">		case -ERESTART_RESTARTBLOCK:</span><br><span class="line">		case -ERESTARTNOHAND:</span><br><span class="line">			regs-&gt;ax = -EINTR;</span><br><span class="line">			break;</span><br><span class="line">		case -ERESTARTSYS:</span><br><span class="line">			if (!(ksig-&gt;ka.sa.sa_flags &amp; SA_RESTART)) &#123;</span><br><span class="line">				regs-&gt;ax = -EINTR;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		/* fallthrough */</span><br><span class="line">		case -ERESTARTNOINTR:</span><br><span class="line">			regs-&gt;ax = regs-&gt;orig_ax;</span><br><span class="line">			regs-&gt;ip -= 2;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//设置栈帧</span><br><span class="line">	failed = (setup_rt_frame(ksig, regs) &lt; 0);</span><br><span class="line">	if (!failed) &#123;</span><br><span class="line">		regs-&gt;flags &amp;= ~(X86_EFLAGS_DF|X86_EFLAGS_RF|X86_EFLAGS_TF);</span><br><span class="line">		/*</span><br><span class="line">		 * Ensure the signal handler starts with the new fpu state.</span><br><span class="line">		 */</span><br><span class="line">		if (fpu-&gt;fpstate_active)</span><br><span class="line">			fpu__clear(fpu);</span><br><span class="line">	&#125;</span><br><span class="line">	signal_setup_done(failed, ksig, stepping);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <p>这里存在一个问题：<code>handle_signal()</code>处于内核态中，但信号处理程序是在用户态定义的，因此这里存在着堆栈转换的问题。linux采用的方法是：把内核态堆栈中的硬件上下文，拷贝到当前进程的用户态堆栈中。而当信号处理程序完成时，会自动调用<code>sigreturn()</code>把硬件上下文拷贝回内核态堆栈中，并且恢复用户态堆栈中的内容。这里需要构造一个用户态栈帧：</p>
                 <p><img src="http://www.meng.uno/images/%E8%BF%9B%E7%A8%8B/%E6%A0%88.gif" alt=""></p>
                 <p>首先内核需要把内核栈中的内容复制到用户态堆栈中去，把内核态堆栈的返回地址修改为信号处理程序的入口。注意，为了让信号处理程序结束时，能够清除栈上的内容，用户态堆栈还应该放入一个信号处理程序的返回地址，它指向<code>__kernel_sigreturn()</code>，把硬件上下文拷贝到内核态堆栈，然后把这个栈帧删除，随后从内核态返回到用户态继续执行。</p>
