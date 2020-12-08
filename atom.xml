@@ -4128,9 +4128,9 @@ XCHG 交换字或字节.( 至
       <category term="Programming Language" scheme="http://home.meng.uno/categories/Programming-Language/"/>
     
     
-      <category term="ASM" scheme="http://home.meng.uno/tags/ASM/"/>
-    
       <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="ASM" scheme="http://home.meng.uno/tags/ASM/"/>
     
   </entry>
   
@@ -5106,11 +5106,11 @@ jg
       <category term="Programming Language" scheme="http://home.meng.uno/categories/Programming-Language/"/>
     
     
-      <category term="破解" scheme="http://home.meng.uno/tags/%E7%A0%B4%E8%A7%A3/"/>
+      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
     
       <category term="ASM" scheme="http://home.meng.uno/tags/ASM/"/>
     
-      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
+      <category term="破解" scheme="http://home.meng.uno/tags/%E7%A0%B4%E8%A7%A3/"/>
     
   </entry>
   
