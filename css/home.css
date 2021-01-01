@@ -27,7 +27,8 @@ html {
 #random-index .title {
   font-size: 28px;
   font-weight: 900;
-  font-color: #34495e; // text-shadow: 0 2px rgb(127, 140, 141);
+  font-color: #34495e;
+  // text-shadow: 0 2px rgb(127, 140, 141);
   padding-bottom: 5px;
   cursor: pointer;
 }
@@ -141,7 +142,6 @@ html {
     opacity: .7;
     filter: alpha(opacity=70);
 }*/
-
 .intro-navigate>p {
   text-align: center;
   margin: 0px;
@@ -169,6 +169,7 @@ html {
   line-height: 60px;
 }
 
+
 .blur {
   filter: url(blur.svg#blur);
   /* FireFox, Chrome, Opera */
@@ -177,6 +178,7 @@ html {
   -moz-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(5px);
+
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false);
   /* IE6~IE9 */
 }
@@ -293,43 +295,54 @@ footer>.container>.row>p>a:hover {
   .homelogoback {
     display: none;
   }
+
   .homelogo {
     display: none;
   }
+
   .pagination-lg>li>a,
   .pagination-lg>li>span {
     padding: 10px 12px;
     font-size: 16px;
   }
+
   .navigater-list>a {
     padding: 5px;
     line-height: 40px;
   }
+
   .homelogoback>h1>a {
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 5px;
   }
+
   .homelogoback>h3 {
     font-size: 0px;
     display: none;
   }
+
   .trigger {
     pointer-events: none;
     cursor: default;
   }
+
   h1 {
     font-size: 1.5em;
   }
+
   h2 {
     font-size: 1.3em;
   }
+
   h3 {
     font-size: 1.2em;
   }
+
   h4 {
     font-size: 1.1em;
   }
+
 }
 
 @media (max-width: 400px) {
@@ -339,9 +352,11 @@ footer>.container>.row>p>a:hover {
     top: 30%;
     letter-spacing: 4px;
   }
+
   .homelogoback {
     display: none;
   }
+
   .homelogo {
     display: none;
   }

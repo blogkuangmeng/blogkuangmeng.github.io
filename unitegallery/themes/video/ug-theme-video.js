@@ -253,11 +253,11 @@ function UGTheme_video() {
 
     switch (g_temp.panel_position) {
       default:
-        case "right":
+      case "right":
         g_functions.placeElement(objPanelElement, "right", 0);
-      break;
+        break;
       case "bottom":
-          g_functions.placeElement(objPanelElement, 0, "bottom");
+        g_functions.placeElement(objPanelElement, 0, "bottom");
         break;
     }
 

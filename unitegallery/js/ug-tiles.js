@@ -1741,14 +1741,14 @@ function UGTiles() {
 
     switch (g_options.tiles_type) {
       default:
-        case "columns":
+      case "columns":
         runColumnsType();
-      break;
+        break;
       case "justified":
-          runJustifiedType();
+        runJustifiedType();
         break;
       case "nested":
-          runNestedType();
+        runNestedType();
         break;
     }
 

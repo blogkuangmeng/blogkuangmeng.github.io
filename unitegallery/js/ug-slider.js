@@ -1086,14 +1086,14 @@ function UGSlider() {
 
     switch (transition) {
       default:
-        case "fade":
+      case "fade":
         transitionFade(objItem);
-      break;
+        break;
       case "slide":
-          transitionSlide(direction, objItem);
+        transitionSlide(direction, objItem);
         break;
       case "lightbox_open": //fade transition without animation
-          transitionFade(objItem, false, true);
+        transitionFade(objItem, false, true);
         break;
     }
 
@@ -1813,32 +1813,32 @@ function UGSlider() {
     var loaderClass;
     switch (g_options.slider_loader_type) {
       default:
-        case 1:
+      case 1:
         loaderClass = "ug-loader1";
-      break;
+        break;
       case 2:
-          loaderClass = "ug-loader2";
+        loaderClass = "ug-loader2";
         break;
       case 3:
-          loaderClass = "ug-loader3";
+        loaderClass = "ug-loader3";
         break;
       case 4:
-          loaderClass = "ug-loader4";
+        loaderClass = "ug-loader4";
         break;
       case 5:
-          loaderClass = "ug-loader5";
+        loaderClass = "ug-loader5";
         break;
       case 6:
-          loaderClass = "ug-loader6";
+        loaderClass = "ug-loader6";
         break;
       case 7:
-          loaderClass = "ug-loader7";
+        loaderClass = "ug-loader7";
         break;
       case 8:
-          loaderClass = "ug-loader8";
+        loaderClass = "ug-loader8";
         break;
       case 9:
-          loaderClass = "ug-loader9";
+        loaderClass = "ug-loader9";
         break;
     }
 

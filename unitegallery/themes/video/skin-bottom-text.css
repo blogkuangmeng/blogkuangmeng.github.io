@@ -1,4 +1,6 @@
 @CHARSET "ISO-8859-1";
+
+
 /* ----- Strip Panel ------- */
 
 .ug-videoskin-bottom-text .ug-strip-panel {
@@ -15,6 +17,7 @@
   cursor: pointer;
   text-align: left;
 }
+
 
 .ug-videoskin-bottom-text .ug-thumb-wrapper:last-child {
   border-bottom: none;

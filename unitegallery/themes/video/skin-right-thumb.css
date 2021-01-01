@@ -1,4 +1,5 @@
 @CHARSET "ISO-8859-1";
+
 /* ----- Strip Panel ------- */
 
 .ug-videoskin-right-thumb .ug-strip-panel {
@@ -34,6 +35,7 @@
 
 /* ----- Thumb Inner data ------- */
 
+
 .ug-videoskin-right-thumb .ug-thumb-icon {
   width: 72px;
   height: 40px;
@@ -51,6 +53,7 @@
   float: left;
   padding-left: 15px;
 }
+
 
 .ug-videoskin-right-thumb .ug-thumb-inner {
   padding-top: 12px;
@@ -75,7 +78,6 @@
 }
 
 /* ----- Under 960 ------- */
-
 .ug-under-960.ug-videoskin-right-thumb .ug-thumb-wrapper {
   width: 320px;
 }
@@ -91,6 +93,7 @@
   padding-top: 0px;
   line-height: normal;
 }
+
 
 /* ----- Under 780 ------- */
 
@@ -113,6 +116,7 @@
   padding-top: 0px;
   line-height: normal;
 }
+
 
 /* ----- Under 480 ------- */
 

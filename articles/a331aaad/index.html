@@ -170,16 +170,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -274,21 +274,20 @@
 
               <div class="article-meta">
                 <a href="/articles/a331aaad/" class="article-date">
-	  <time datetime="2018-01-13T13:57:16.000Z" itemprop="datePublished">2018-01-13</time>
-	</a>
+                  <time datetime="2018-01-13T13:57:16.000Z" itemprop="datePublished">2018-01-13</time>
+                </a>
                 <a class="article-category-link" href="/categories/Operation-System/">Operation System</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数714</span>
-	<span class="post-count"> | 预计时间4分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数714</span>
+                  <span class="post-count"> | 预计时间4分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <p>DynamoRIO is a dynamic binary piling/translation platform. Through it, you can manipulate the running code of a program, that is, it can simulate running a program and allow you to transform and control any place of the running code. It
-                  is used for dynamic analysis, optimization and translation of programs.</p>
+                <p>DynamoRIO is a dynamic binary piling/translation platform. Through it, you can manipulate the running code of a program, that is, it can simulate running a program and allow you to transform and control any place of the running code. It is used for dynamic analysis, optimization and translation of programs.</p>
                 <p>DynamoRIO is a cooperation project between HP and MIT. Dynamo comes from HP’s laboratory, RIO (Runtime Introspection and Optimization) comes from MIT’s computer science laboratory. The history is shown as follows.</p>
                 <p><img src="http://www.meng.uno/images/rio/1.png" alt="RIO"></p>
                 <h2 id="architecture">Architecture</h2>
@@ -299,27 +298,19 @@
                 <p>The process flow is as follows. The original program goes through the “basic block builder”, “trace selector”, “basic block cache” and “trace cache” to get the emulation propose.</p>
                 <p><img src="http://www.meng.uno/images/rio/4.png" alt="RIO"></p>
                 <h2 id="efficiency">Efficiency</h2>
-                <p>DynamoRIO is separated from the code of applications by the “context switch” as shown in the picture above. The applications’ code is copied to the instruction cache. The code in these caches will execute as native code. Until a jump instruction
-                  is encountered, the applications’ “machine state” will be saved, and the control will turn back to DynamoRIO to find the basic block where the jump instruction is located. DynamoRIO is much faster than pure emulations by “code cache”.</p>
+                <p>DynamoRIO is separated from the code of applications by the “context switch” as shown in the picture above. The applications’ code is copied to the instruction cache. The code in these caches will execute as native code. Until a jump instruction is encountered, the applications’ “machine state” will be saved, and the control will turn back to DynamoRIO to find the basic block where the jump instruction is located. DynamoRIO is much faster than pure emulations by “code cache”.</p>
                 <p><img src="http://www.meng.uno/images/rio/5.png" alt="RIO"></p>
-                <p>There are several improvements in this project. The picture above is the first one — Basic Block Cache. If you copy each basic block into a code cache and run it natively, it greatly reduces the overhead of interpreting, however, we still
-                  need to explain each jump instruction, and then return to DynamoRIO to find the target instruction. If a target instruction already exists in the code cache and is referred to by a direct jump instruction, DynamoRIO can directly jump
-                  to the target instruction in the code cache to avoid the overhead of the context switch, which is called “Linking Direct Branches”.</p>
+                <p>There are several improvements in this project. The picture above is the first one — Basic Block Cache. If you copy each basic block into a code cache and run it natively, it greatly reduces the overhead of interpreting, however, we still need to explain each jump instruction, and then return to DynamoRIO to find the target instruction. If a target instruction already exists in the code cache and is referred to by a direct jump instruction, DynamoRIO can directly jump to the target instruction in the code cache to avoid the overhead of the context switch, which is called “Linking Direct Branches”.</p>
                 <p><img src="http://www.meng.uno/images/rio/6.png" alt="RIO"></p>
                 <p>The next improvement is “Linking Indirect Branches” since a conditional branch instruction can not be linked like a direct jump instruction because it has more than one goal and needs to make decisions and find the list’s jump target.</p>
                 <p><img src="http://www.meng.uno/images/rio/7.png" alt="RIO"></p>
-                <p>Some basic blocks, which are often executed sequentially, are combined into one execution stream to reduce the number of branches and increase the locality of the program. It reduces some overhead of indirect branch search, because it
-                  has put indirect brach in this trace as well. This is also the last improvement — Trace Building.</p>
+                <p>Some basic blocks, which are often executed sequentially, are combined into one execution stream to reduce the number of branches and increase the locality of the program. It reduces some overhead of indirect branch search, because it has put indirect brach in this trace as well. This is also the last improvement — Trace Building.</p>
                 <p><img src="http://www.meng.uno/images/rio/8.png" alt="RIO"></p>
                 <h2 id="transparency">Transparency</h2>
-                <p>It has three transparency principles which are “As few changes as possible”, “Hide necessary changes” and “Separate resources”. Changes in these areas are few: application code, stored addresses, threads and application data. Changes in
-                  these fields are hidden: application addresses, address space, error transparency and code cache consistency. This picture shows the principle 3 well. DynamoRIO’s own code also uses share libraries when loading applications, which may
-                  cause some conflicts if the application also uses the same library. The solution is that, DynamoRIO doesn’t use the library directly, calling system call on Linux and calling system call via windows win32 API profile.</p>
+                <p>It has three transparency principles which are “As few changes as possible”, “Hide necessary changes” and “Separate resources”. Changes in these areas are few: application code, stored addresses, threads and application data. Changes in these fields are hidden: application addresses, address space, error transparency and code cache consistency. This picture shows the principle 3 well. DynamoRIO’s own code also uses share libraries when loading applications, which may cause some conflicts if the application also uses the same library. The solution is that, DynamoRIO doesn’t use the library directly, calling system call on Linux and calling system call via windows win32 API profile.</p>
                 <p><img src="http://www.meng.uno/images/rio/9.png" alt="RIO"></p>
-                <p>The heap memory allocated by DynamoRIO itself is distinguished from the heap memory requested by the application. In addition, DynamoRIO uses its own I/O routines for input and output to avoid conflicts with the applications’ I/O buffers.
-                  What’s more, since the use of shared locks can also cause conflicts between DynamoRIO and applications, it also has synchronization transparency.</p>
-                <p>To avoid conflicts with applications, DynamoRIO doesn’t create its own thread, instead spawns threads in the application process to distinguish between its own status and applications’ status via a “Context Switch” as the first picture
-                  shows. Further more, it chooses to leave the stack of application processes intact, creating a private stack of each thread.</p>
+                <p>The heap memory allocated by DynamoRIO itself is distinguished from the heap memory requested by the application. In addition, DynamoRIO uses its own I/O routines for input and output to avoid conflicts with the applications’ I/O buffers. What’s more, since the use of shared locks can also cause conflicts between DynamoRIO and applications, it also has synchronization transparency.</p>
+                <p>To avoid conflicts with applications, DynamoRIO doesn’t create its own thread, instead spawns threads in the application process to distinguish between its own status and applications’ status via a “Context Switch” as the first picture shows. Further more, it chooses to leave the stack of application processes intact, creating a private stack of each thread.</p>
                 <h2 id="comprehensive">Comprehensive</h2>
                 <p>All data streams must go through handlers generated by the dispatcher. The data flow is like this.</p>
                 <p><img src="http://www.meng.uno/images/rio/10.png" alt="RIO"></p>
@@ -398,19 +389,19 @@
             <nav id="article-nav">
 
               <a href="/articles/93227351/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          微积分(Calculus)
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  微积分(Calculus)
+
+                </div>
+              </a>
 
 
               <a href="/articles/d911b12b/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Zsh配置与使用</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Zsh配置与使用</div>
+              </a>
 
             </nav>
 
@@ -446,7 +437,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -473,7 +465,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -526,55 +518,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

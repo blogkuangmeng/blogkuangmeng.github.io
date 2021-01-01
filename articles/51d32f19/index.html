@@ -161,16 +161,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -265,16 +265,16 @@
 
               <div class="article-meta">
                 <a href="/articles/51d32f19/" class="article-date">
-	  <time datetime="2018-02-12T12:18:15.000Z" itemprop="datePublished">2018-02-12</time>
-	</a>
+                  <time datetime="2018-02-12T12:18:15.000Z" itemprop="datePublished">2018-02-12</time>
+                </a>
                 <a class="article-category-link" href="/categories/Application/">Application</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数2,146</span>
-	<span class="post-count"> | 预计时间9分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数2,146</span>
+                  <span class="post-count"> | 预计时间9分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -461,7 +461,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="comment">#获取URL的包</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="comment">#获取字符集编码方式</span></span><br><span class="line"><span class="keyword">import</span> chardet</span><br><span class="line"><span class="comment">#正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment">#Request 对象</span></span><br><span class="line">req = urllib.request.Request(<span class="string">"http://meng.uno/"</span>)</span><br><span class="line">data = <span class="keyword">None</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment">#得到Response</span></span><br><span class="line">    response = urllib.request.urlopen(req,data)</span><br><span class="line">    <span class="comment">#读出response == 请求文件的全部字符</span></span><br><span class="line">    html = response.read()</span><br><span class="line">    <span class="comment">#获取这个response的编码方式</span></span><br><span class="line">    charset = chardet.detect(html)</span><br><span class="line">    print(<span class="string">"编码方式："</span>,charset)</span><br><span class="line">    <span class="comment">#以这种编码方式解码打印</span></span><br><span class="line">    html = html.decode(charset.get(<span class="string">"encoding"</span>))</span><br><span class="line">    print(html)</span><br><span class="line">    urls = re.findall(<span class="string">'href=\"https*://w*\.*meng\.uno/.*?\"'</span>, html,re.S)</span><br><span class="line">    uris = re.findall(<span class="string">'href=\"/[^/].*?[^\.]\"'</span>,html, re.S)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> urls:</span><br><span class="line">        print(item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> uris:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">".html"</span> <span class="keyword">in</span> item:</span><br><span class="line">            print(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'.'</span> <span class="keyword">in</span> item:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line"><span class="keyword">except</span> urllib.error.HTTPError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="keyword">if</span> hasattr(e, <span class="string">'code'</span>):</span><br><span class="line">        print(<span class="string">"HTTPError"</span>)</span><br><span class="line">        print(e.code)</span><br><span class="line">    <span class="keyword">elif</span> hasattr(e, <span class="string">'reason'</span>):</span><br><span class="line">        print(<span class="string">"URLError"</span>)</span><br><span class="line">        print(e.reason)</span><br></pre>
+                        <pre><span class="line"><span class="comment">#获取URL的包</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="comment">#获取字符集编码方式</span></span><br><span class="line"><span class="keyword">import</span> chardet</span><br><span class="line"><span class="comment">#正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment">#Request 对象</span></span><br><span class="line">req = urllib.request.Request(<span class="string">"http://meng.uno/"</span>)</span><br><span class="line">data = <span class="literal">None</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment">#得到Response</span></span><br><span class="line">    response = urllib.request.urlopen(req,data)</span><br><span class="line">    <span class="comment">#读出response == 请求文件的全部字符</span></span><br><span class="line">    html = response.read()</span><br><span class="line">    <span class="comment">#获取这个response的编码方式</span></span><br><span class="line">    charset = chardet.detect(html)</span><br><span class="line">    print(<span class="string">"编码方式："</span>,charset)</span><br><span class="line">    <span class="comment">#以这种编码方式解码打印</span></span><br><span class="line">    html = html.decode(charset.get(<span class="string">"encoding"</span>))</span><br><span class="line">    print(html)</span><br><span class="line">    urls = re.findall(<span class="string">'href=\"https*://w*\.*meng\.uno/.*?\"'</span>, html,re.S)</span><br><span class="line">    uris = re.findall(<span class="string">'href=\"/[^/].*?[^\.]\"'</span>,html, re.S)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> urls:</span><br><span class="line">        print(item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> uris:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">".html"</span> <span class="keyword">in</span> item:</span><br><span class="line">            print(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'.'</span> <span class="keyword">in</span> item:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line"><span class="keyword">except</span> urllib.error.HTTPError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="keyword">if</span> hasattr(e, <span class="string">'code'</span>):</span><br><span class="line">        print(<span class="string">"HTTPError"</span>)</span><br><span class="line">        print(e.code)</span><br><span class="line">    <span class="keyword">elif</span> hasattr(e, <span class="string">'reason'</span>):</span><br><span class="line">        print(<span class="string">"URLError"</span>)</span><br><span class="line">        print(e.reason)</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -487,7 +487,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="comment">#python系统关于队列的包</span></span><br><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="comment">#获取URL的包</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="comment">#获取字符集编码方式</span></span><br><span class="line"><span class="keyword">import</span> chardet</span><br><span class="line"><span class="comment">#正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">initial_page = <span class="string">"http://www.meng.uno"</span></span><br><span class="line"></span><br><span class="line">url_queue = queue.Queue()</span><br><span class="line">seen = set()</span><br><span class="line"></span><br><span class="line">seen.add(initial_page)</span><br><span class="line">url_queue.put(initial_page)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_urls</span><span class="params">(url)</span>:</span></span><br><span class="line">    req = urllib.request.Request(url)</span><br><span class="line">    <span class="comment">#得到Response</span></span><br><span class="line">    response = urllib.request.urlopen(req)</span><br><span class="line">    <span class="comment">#读出response == 请求文件的全部字符</span></span><br><span class="line">    html = response.read()</span><br><span class="line">    <span class="comment">#获取这个response的编码方式</span></span><br><span class="line">    charset = chardet.detect(html)</span><br><span class="line">    <span class="comment">#以这种编码方式解码打印</span></span><br><span class="line">    html = html.decode(charset.get(<span class="string">"encoding"</span>))</span><br><span class="line">    urls = re.findall(<span class="string">'href=\"https*://w*\.*meng\.uno/.*?\"'</span>, html,re.S)</span><br><span class="line">    uris = re.findall(<span class="string">'href=\"/[^/].*?[^\.]\"'</span>,html, re.S)</span><br><span class="line">    tempseen = set()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> urls:</span><br><span class="line">        tempseen.add(item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> uris:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">".html"</span> <span class="keyword">in</span> item:</span><br><span class="line">            tempseen.add(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'.'</span> <span class="keyword">in</span> item:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tempseen.add(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">return</span> tempseen</span><br><span class="line">            </span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>): <span class="comment">#一直进行直到海枯石烂</span></span><br><span class="line">    <span class="keyword">if</span> url_queue.qsize()&gt;<span class="number">0</span>:</span><br><span class="line">        current_url = url_queue.get()    <span class="comment">#拿出队例中第一个的url</span></span><br><span class="line">        print(current_url)               <span class="comment">#把这个url代表的网页存储好</span></span><br><span class="line">        <span class="keyword">for</span> next_url <span class="keyword">in</span> extract_urls(current_url): <span class="comment">#提取把这个url里链向的url</span></span><br><span class="line">            <span class="keyword">if</span> next_url <span class="keyword">not</span> <span class="keyword">in</span> seen:      </span><br><span class="line">                seen.add(next_url)</span><br><span class="line">                url_queue.put(next_url)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre>
+                        <pre><span class="line"><span class="comment">#python系统关于队列的包</span></span><br><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="comment">#获取URL的包</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="comment">#获取字符集编码方式</span></span><br><span class="line"><span class="keyword">import</span> chardet</span><br><span class="line"><span class="comment">#正则表达式</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">initial_page = <span class="string">"http://www.meng.uno"</span></span><br><span class="line"></span><br><span class="line">url_queue = queue.Queue()</span><br><span class="line">seen = set()</span><br><span class="line"></span><br><span class="line">seen.add(initial_page)</span><br><span class="line">url_queue.put(initial_page)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_urls</span><span class="params">(url)</span>:</span></span><br><span class="line">    req = urllib.request.Request(url)</span><br><span class="line">    <span class="comment">#得到Response</span></span><br><span class="line">    response = urllib.request.urlopen(req)</span><br><span class="line">    <span class="comment">#读出response == 请求文件的全部字符</span></span><br><span class="line">    html = response.read()</span><br><span class="line">    <span class="comment">#获取这个response的编码方式</span></span><br><span class="line">    charset = chardet.detect(html)</span><br><span class="line">    <span class="comment">#以这种编码方式解码打印</span></span><br><span class="line">    html = html.decode(charset.get(<span class="string">"encoding"</span>))</span><br><span class="line">    urls = re.findall(<span class="string">'href=\"https*://w*\.*meng\.uno/.*?\"'</span>, html,re.S)</span><br><span class="line">    uris = re.findall(<span class="string">'href=\"/[^/].*?[^\.]\"'</span>,html, re.S)</span><br><span class="line">    tempseen = set()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> urls:</span><br><span class="line">        tempseen.add(item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> uris:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">".html"</span> <span class="keyword">in</span> item:</span><br><span class="line">            tempseen.add(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'.'</span> <span class="keyword">in</span> item:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tempseen.add(<span class="string">"http://www.meng.uno"</span>+item[<span class="number">6</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">return</span> tempseen</span><br><span class="line">            </span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>): <span class="comment">#一直进行直到海枯石烂</span></span><br><span class="line">    <span class="keyword">if</span> url_queue.qsize()&gt;<span class="number">0</span>:</span><br><span class="line">        current_url = url_queue.get()    <span class="comment">#拿出队例中第一个的url</span></span><br><span class="line">        print(current_url)               <span class="comment">#把这个url代表的网页存储好</span></span><br><span class="line">        <span class="keyword">for</span> next_url <span class="keyword">in</span> extract_urls(current_url): <span class="comment">#提取把这个url里链向的url</span></span><br><span class="line">            <span class="keyword">if</span> next_url <span class="keyword">not</span> <span class="keyword">in</span> seen:      </span><br><span class="line">                seen.add(next_url)</span><br><span class="line">                url_queue.put(next_url)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -566,19 +566,19 @@
             <nav id="article-nav">
 
               <a href="/articles/7bfe1542/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          关于比特币（Bitcoin）
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  关于比特币（Bitcoin）
+
+                </div>
+              </a>
 
 
               <a href="/articles/61c2f1f1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">.length与length()的区别</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">.length与length()的区别</div>
+              </a>
 
             </nav>
 
@@ -623,7 +623,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -650,7 +651,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -703,55 +704,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

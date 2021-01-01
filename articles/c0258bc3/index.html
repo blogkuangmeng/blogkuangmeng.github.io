@@ -163,16 +163,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -267,16 +267,16 @@
 
               <div class="article-meta">
                 <a href="/articles/c0258bc3/" class="article-date">
-	  <time datetime="2016-08-11T06:48:40.000Z" itemprop="datePublished">2016-08-11</time>
-	</a>
+                  <time datetime="2016-08-11T06:48:40.000Z" itemprop="datePublished">2016-08-11</time>
+                </a>
                 <a class="article-category-link" href="/categories/Operation-System/">Operation System</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数642</span>
-	<span class="post-count"> | 预计时间2分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数642</span>
+                  <span class="post-count"> | 预计时间2分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -285,16 +285,17 @@
                 <p><img src="http://www.meng.uno/images/llvm/SimpleCompiler.png" alt=""></p>
                 <p>而LLVM则采用了一种多前端，多后端的方式，如下：</p>
                 <p><img src="http://www.meng.uno/images/llvm/RetargetableCompiler.png" alt="Retargetable"></p>
-                <p>在LLVM当中，LLVM IR是一种low-level的，虚拟指令集。所有的前端语言都能够生成LLVM，从而能够被统一的进行处理。在LLVM当中，还提供了对LLVM IR Optimization进行优化的方式，能够对现有的源码进行搜索，匹配对应的pattern，从而进行指令的替换、修改。<br> LLVM中，每个过程都是从Pass继承来的，LLVM优化器提供了许多passes，每个都写的很简洁，它们被编译成了库文件，并且在编译的时候被调用。这些库提供了分析和变换的能力，并且既能独立运作，又能合作。
-                </p>
+                <p>在LLVM当中，LLVM IR是一种low-level的，虚拟指令集。所有的前端语言都能够生成LLVM，从而能够被统一的进行处理。在LLVM当中，还提供了对LLVM IR Optimization进行优化的方式，能够对现有的源码进行搜索，匹配对应的pattern，从而进行指令的替换、修改。<br>
+                  LLVM中，每个过程都是从Pass继承来的，LLVM优化器提供了许多passes，每个都写的很简洁，它们被编译成了库文件，并且在编译的时候被调用。这些库提供了分析和变换的能力，并且既能独立运作，又能合作。</p>
                 <h1>代码生成</h1>
-                <p>那么LLVM这种“多对多”的编译方式，是如何将LLVM IR转化为机器码的呢？LLVM将代码的生成划分成了多个独立的过程：指令选择、寄存器生成，调度，代码布局优化，生成汇编代码。这样不同的平台，也能够利用自己的优势，对相同的LLVM IR进行优化。 LLVM采用了一种“mix and match”的方式，允许target作者，对于架构做出明确的指示，例如对寄存器的使用、限制做出明确的指示。LLVM利用Target-8description文件来指定对应架构的特性、使用的指令、寄存器。</p>
+                <p>那么LLVM这种“多对多”的编译方式，是如何将LLVM IR转化为机器码的呢？LLVM将代码的生成划分成了多个独立的过程：指令选择、寄存器生成，调度，代码布局优化，生成汇编代码。这样不同的平台，也能够利用自己的优势，对相同的LLVM IR进行优化。
+                  LLVM采用了一种“mix and match”的方式，允许target作者，对于架构做出明确的指示，例如对寄存器的使用、限制做出明确的指示。LLVM利用Target-8description文件来指定对应架构的特性、使用的指令、寄存器。</p>
                 <p><img src="http://www.meng.uno/images/llvm/X86Target.png" alt="X86Target"></p>
                 <p>而LLVM利用<strong>tblgen</strong>工具从这些.md文件当中，能够读取出足够的信息，并且在instruction selection、register allocator等过程中，选择处理的过程。而.cpp文件，则是实现一些特定的过程，例如浮点指针栈。</p>
                 <h1>LLVM pass</h1>
                 <p>LLVM pass完成编译器的变换、优化工作；它们是Pass的子类，根据不同的需要，可以选择去继承ModulePass，CallGraphSCCPass，FunctionPass，或者LoopPass，RegionPass和BasicBlockPass等。</p>
-                <p>llvm是需要编写、编译、加载和执行的，它相当于一个可以加载的模块。<br> 如果想编写一个模块，可以再llvm/lib/Transform当中创建对应的目录，并且在Transform以及目标文件夹下同时修改两个CMakeLists。在编译时，llvm的编译链会自动生成对应的pass。
-                </p>
+                <p>llvm是需要编写、编译、加载和执行的，它相当于一个可以加载的模块。<br>
+                  如果想编写一个模块，可以再llvm/lib/Transform当中创建对应的目录，并且在Transform以及目标文件夹下同时修改两个CMakeLists。在编译时，llvm的编译链会自动生成对应的pass。</p>
                 <p>pass是基于中间语言llvm IR来进行的。因此它用来对.bc文件进行优化，例如：</p>
                 <figure class="highlight plain">
                   <table>
@@ -381,19 +382,19 @@
             <nav id="article-nav">
 
               <a href="/articles/c779c554/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          VBA常用语法
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  VBA常用语法
+
+                </div>
+              </a>
 
 
               <a href="/articles/a4b4101b/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Linux文件系统</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Linux文件系统</div>
+              </a>
 
             </nav>
 
@@ -427,7 +428,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -454,7 +456,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -507,55 +509,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

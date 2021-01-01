@@ -197,15 +197,15 @@ function UGTextPanel() {
 
     switch (g_options.textpanel_text_valign) {
       default:
-        case "top":
+      case "top":
         positionElementsTop(false); //no animation in this case
-      break;
+        break;
       case "bottom":
-          positionElementBottom();
+        positionElementBottom();
         break;
       case "center":
-          case "middle":
-          positionElementsMiddle();
+      case "middle":
+        positionElementsMiddle();
         break;
     }
 

@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
+  <meta name="description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List）与一个知道偏置的专有名词（特定领域命名实体）的结果（List），怎么将两者融合成一个统一的分词结果（List）。  2. 给定一个分词结果（List）与一条规则（人为规定的分词结果（List）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List）。  虽然在算法上没有多少难度，但是在实现上还是挺费时间">
   <meta name="keywords" content="Java,List">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Java合并List">
   <meta property="og:url" content="http://home.meng.uno/articles/66999e7d/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
+  <meta property="og:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List）与一个知道偏置的专有名词（特定领域命名实体）的结果（List），怎么将两者融合成一个统一的分词结果（List）。  2. 给定一个分词结果（List）与一条规则（人为规定的分词结果（List）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List）。  虽然在算法上没有多少难度，但是在实现上还是挺费时间">
   <meta property="og:locale" content="EN">
   <meta property="og:updated_time" content="2020-12-02T01:42:11.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java合并List">
-  <meta name="twitter:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List ）与一个知道偏置的专有名词（特定领域命名实体）的结果（List ），怎么将两者融合成一个统一的分词结果（List ）。  2. 给定一个分词结果（List ）与一条规则（人为规定的分词结果（List ）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List ）。  虽然在算法上没有多少难度，但是在实现上">
+  <meta name="twitter:description" content="问题 在写我的毕业设计时，遇到了这样两个问题：   1. 给定一个分词结果（List）与一个知道偏置的专有名词（特定领域命名实体）的结果（List），怎么将两者融合成一个统一的分词结果（List）。  2. 给定一个分词结果（List）与一条规则（人为规定的分词结果（List）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List）。  虽然在算法上没有多少难度，但是在实现上还是挺费时间">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -159,16 +159,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -263,33 +263,27 @@
 
               <div class="article-meta">
                 <a href="/articles/66999e7d/" class="article-date">
-	  <time datetime="2018-07-15T02:15:54.000Z" itemprop="datePublished">2018-07-15</time>
-	</a>
+                  <time datetime="2018-07-15T02:15:54.000Z" itemprop="datePublished">2018-07-15</time>
+                </a>
                 <a class="article-category-link" href="/categories/Software-Engineering/">Software Engineering</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数737</span>
-	<span class="post-count"> | 预计时间4分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数737</span>
+                  <span class="post-count"> | 预计时间4分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <h1>问题</h1>
                 <p>在写我的毕业设计时，遇到了这样两个问题：</p>
                 <ol>
-                  <li>给定一个分词结果（List
-                    <string>）与一个知道偏置的专有名词（特定领域命名实体）的结果（List
-                      <stirng>），怎么将两者融合成一个统一的分词结果（List
-                        <string>）。</string>
+                  <li>给定一个分词结果（List<string>）与一个知道偏置的专有名词（特定领域命名实体）的结果（List<stirng>），怎么将两者融合成一个统一的分词结果（List<string>）。</string>
                       </stirng>
                     </string>
                   </li>
-                  <li>给定一个分词结果（List
-                    <string>）与一条规则（人为规定的分词结果（List
-                      <string>）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List
-                        <string>）。</string>
+                  <li>给定一个分词结果（List<string>）与一条规则（人为规定的分词结果（List<string>）），怎么将规则整合到分词结果中，得到一个统一的分词结果（List<string>）。</string>
                       </string>
                     </string>
                   </li>
@@ -395,19 +389,19 @@
             <nav id="article-nav">
 
               <a href="/articles/349dc05d/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          知识图谱（Knowledge Graph）
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  知识图谱（Knowledge Graph）
+
+                </div>
+              </a>
 
 
               <a href="/articles/7203e497/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">一些常见的Coverlutional Neural Networks (CNNs)</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">一些常见的Coverlutional Neural Networks (CNNs)</div>
+              </a>
 
             </nav>
 
@@ -445,7 +439,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -472,7 +467,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -525,55 +520,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

@@ -899,8 +899,7 @@
                       (c.port || k) == (Ja[b][1] || k) && 0 == c.path.indexOf(Ja[b][2])) {
                       f = !0;
                       break a
-                    }
-                f = !1
+                    } f = !1
               }
               f && !ld() && (a.Pa = Ia(c.url))
             }
@@ -936,8 +935,7 @@
           if (void 0 != f[a][Be[d]]) {
             c = !1;
             break
-          }
-        c && (f[a] = void 0)
+          } c && (f[a] = void 0)
       }
     }
 
@@ -956,8 +954,7 @@
               for (var fa = e[Bd], Ke = "", Le = void 0, Me = void 0, ga = void 0, Le = 0; Le < fa.length; Le++) Me = fa.charAt(Le), ga = k[Me], Ke += void 0 != ga ? ga : Me;
               f += Ke;
               c.push(f)
-            }
-          b += "(" + c.join("*") + ")";
+            } b += "(" + c.join("*") + ")";
           c = !1
         } else c = !0;
       return b
@@ -1166,8 +1163,7 @@
           if (-1 < d.indexOf(b[e])) {
             a = !1;
             break a
-          }
-        Pd(a, void 0,
+          } Pd(a, void 0,
           d, void 0, void 0, void 0, "(referral)", "referral", void 0, "/" + c.path);a = !0
       }
       return a
@@ -1184,8 +1180,7 @@
                 if (c == d[Be]) {
                   c = !0;
                   break a
-                }
-              c = !1
+                } c = !1
             }
             return [e[2] || e[0], f, c]
           }
@@ -1552,7 +1547,8 @@
     this.set(fb, !1);
     this.set(yb, 50);
     this.set(gb, !1);
-    this.set(hb, !0);
+    this.set(hb,
+      !0);
     this.set(ib, !0);
     this.set(jb, !0);
     this.set(kb, !0);

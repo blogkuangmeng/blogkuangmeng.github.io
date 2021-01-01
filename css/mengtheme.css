@@ -1,10 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:200,600,700,400);
+
 @font-face {
   font-weight: normal;
   font-style: normal;
   font-family: 'codropsicons';
   src: url('../fonts/codropsicons/codropsicons.eot');
-  src: url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'), url('../fonts/codropsicons/codropsicons.woff') format('woff'), url('../fonts/codropsicons/codropsicons.ttf') format('truetype'), url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+  src: url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+    url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+    url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
 
 *,
@@ -127,7 +131,6 @@ button.trigger {
 }
 
 /* Header */
-
 .codrops-header {
   padding: 2.75em 0 3em;
   letter-spacing: -1px;
@@ -170,7 +173,6 @@ button.trigger {
 }
 
 /* To Navigation Style */
-
 .codrops-links {
   text-transform: uppercase;
   font-size: 1.25em;
@@ -210,7 +212,6 @@ button.trigger {
 }
 
 /* Related demos */
-
 .related {
   margin-top: 8em;
   clear: both;
@@ -221,6 +222,8 @@ button.trigger {
 .related>a {
   display: inline-block;
 }
+
+
 
 .icon {
   display: inline-block;
@@ -612,6 +615,7 @@ button.trigger {
   content: "\e612";
 }
 
+
 .main {
   position: relative;
   min-height: 100vh;
@@ -627,6 +631,7 @@ button.trigger {
 .main:after {
   clear: both;
 }
+
 
 /*
  * Main content

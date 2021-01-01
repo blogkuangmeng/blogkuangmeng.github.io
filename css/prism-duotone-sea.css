@@ -16,9 +16,11 @@ pre[class*="language-"] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
+
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
+
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -44,7 +46,6 @@ code[class*="language-"] ::selection {
 }
 
 /* Code blocks */
-
 pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
@@ -52,7 +53,6 @@ pre[class*="language-"] {
 }
 
 /* Inline code */
-
 :not(pre)>code[class*="language-"] {
   padding: .1em;
   border-radius: .3em;
@@ -154,7 +154,6 @@ pre>code.highlight {
 /* overrides color-values for the Line Numbers plugin
  * http://prismjs.com/plugins/line-numbers/
  */
-
 .line-numbers .line-numbers-rows {
   border-right-color: #1f2932;
 }
@@ -166,7 +165,6 @@ pre>code.highlight {
 /* overrides color-values for the Line Highlight plugin
 * http://prismjs.com/plugins/line-highlight/
 */
-
 .line-highlight {
   background: rgba(10, 163, 112, 0.2);
   background: -webkit-linear-gradient(left, rgba(10, 163, 112, 0.2) 70%, rgba(10, 163, 112, 0));

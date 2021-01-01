@@ -1,5 +1,6 @@
 /*------ Unite Gallery Alexis Skin -------*/
 
+
 .---------Slider_Arrows-------- {}
 
 .ug-arrow-left.ug-skin-alexis,
@@ -24,6 +25,7 @@
   background-position: 0px -70px;
 }
 
+
 .---------Slider_Bullets-------- {}
 
 .ug-bullets.ug-skin-alexis .ug-bullet {
@@ -38,10 +40,10 @@
   background-position: bottom left;
 }
 
+
 .---------Slider_Buttons-------- {}
 
 /* --- play button -- */
-
 .ug-button-play.ug-skin-alexis {
   position: absolute;
   background-image: url('images/button_playpause.png');
@@ -86,6 +88,7 @@
   background-position: 0px -105px;
 }
 
+
 .---------Zoom_Panel-------- {}
 
 /* --- zoom panel --- */
@@ -125,6 +128,7 @@
   cursor: default;
 }
 
+
 .---------Grid_Panel_Arrows-------- {}
 
 /*--- down arrow ---*/
@@ -144,6 +148,7 @@
 .ug-gallery-wrapper .ug-grid-panel .grid-arrow-down.ug-skin-alexis.ug-button-disabled {
   background-position: 0px -50px;
 }
+
 
 /*--- up arrow ---*/
 
@@ -217,6 +222,7 @@
   background-position: 0px -60px;
 }
 
+
 /*--- right arrow - horizontal panel type ---*/
 
 .ug-gallery-wrapper .ug-grid-panel .grid-arrow-right-hortype.ug-skin-alexis {
@@ -234,6 +240,7 @@
 .ug-gallery-wrapper .ug-grid-panel .grid-arrow-right-hortype.ug-skin-alexis.ug-button-disabled {
   background-position: 0px -60px;
 }
+
 
 .---------Strip_Panel_Arrows-------- {}
 
@@ -265,6 +272,7 @@
 .ug-strip-panel .ug-strip-arrow-right.ug-skin-alexis.ug-button-hover .ug-strip-arrow-tip {
   background-position: 0px -7px;
 }
+
 
 /* up and down arrows */
 
@@ -304,7 +312,6 @@
 .---------Panel_Handle_Tip-------- {}
 
 /* left and right handle */
-
 .ug-gallery-wrapper .ug-handle-tip-left.ug-skin-alexis,
 .ug-gallery-wrapper .ug-handle-tip-right.ug-skin-alexis {
   width: 37px;
@@ -336,11 +343,13 @@
 
 .ug-gallery-wrapper .ug-handle-tip-left.ug-skin-alexis.ug-button-closed.ug-button-hover {
   background-position: 0px 0px;
+
 }
 
 .ug-gallery-wrapper .ug-handle-tip-right.ug-skin-alexis.ug-button-closed.ug-button-hover {
   background-position: 0px 0px;
 }
+
 
 /* top and bottom handle */
 

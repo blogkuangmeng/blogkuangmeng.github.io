@@ -32,6 +32,7 @@
   background-position: 0px -150px;
 }
 
+
 /* --- fullscreen button single mode-- */
 
 .ug-theme-default .ug-default-button-fullscreen-single {
@@ -55,6 +56,7 @@
 .ug-theme-default .ug-default-button-fullscreen-single.ug-fullscreenmode.ug-button-hover {
   background-position: 0px -150px;
 }
+
 
 /* --- play button -- */
 
@@ -103,6 +105,7 @@
 .ug-theme-default .ug-default-button-play-single.ug-stop-mode.ug-button-hover {
   background-position: 0px -150px;
 }
+
 
 /* --- hide panel button -- */
 

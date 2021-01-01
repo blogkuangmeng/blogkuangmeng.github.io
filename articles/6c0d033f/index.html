@@ -159,16 +159,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -263,16 +263,16 @@
 
               <div class="article-meta">
                 <a href="/articles/6c0d033f/" class="article-date">
-	  <time datetime="2016-12-17T03:52:21.000Z" itemprop="datePublished">2016-12-17</time>
-	</a>
+                  <time datetime="2016-12-17T03:52:21.000Z" itemprop="datePublished">2016-12-17</time>
+                </a>
                 <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数2,051</span>
-	<span class="post-count"> | 预计时间8分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数2,051</span>
+                  <span class="post-count"> | 预计时间8分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -296,8 +296,7 @@
                 </ul>
                 <h1>有关PCA</h1>
                 <h2 id="pca概念">PCA概念</h2>
-                <p>主成分分析 （ Principal Component Analysis ， PCA ）或者主元分析。是一种掌握事物主要矛盾的统计分析方法，它可以从多元事物中解析出主要影响因素，揭示事物的本质，简化复杂的问题。计算主成分的目的是将高维数据投影到较低维空间。给定 n 个变量的 m 个观察值，形成一个 n * m 的数据矩阵， n 通常比较大。对于一个由多个变量描述的复杂事物，人们难以认识，那么是否可以抓住事物主要方面进行重点分析呢？如果事物的主要方面刚好体现在几个主要变量上，我们只需要将这几个变量分离出来，进行详细分析。但是，在一般情况下，并不能直接找出这样的关键变量。这时我们可以用原有变量的线性组合来表示事物的主要方面，
-                  PCA 就是这样一种分析方法。</p>
+                <p>主成分分析 （ Principal Component Analysis ， PCA ）或者主元分析。是一种掌握事物主要矛盾的统计分析方法，它可以从多元事物中解析出主要影响因素，揭示事物的本质，简化复杂的问题。计算主成分的目的是将高维数据投影到较低维空间。给定 n 个变量的 m 个观察值，形成一个 n * m 的数据矩阵， n 通常比较大。对于一个由多个变量描述的复杂事物，人们难以认识，那么是否可以抓住事物主要方面进行重点分析呢？如果事物的主要方面刚好体现在几个主要变量上，我们只需要将这几个变量分离出来，进行详细分析。但是，在一般情况下，并不能直接找出这样的关键变量。这时我们可以用原有变量的线性组合来表示事物的主要方面， PCA 就是这样一种分析方法。</p>
                 <h2 id="pca作用范围">PCA作用范围</h2>
                 <p>PCA 主要用于数据降维，对于一系列例子的特征组成的多维向量，多维向量里的某些元素本身没有区分性，比如某个元素在所有的例子中都为1，或者与1差距不大，那么这个元素本身就没有区分性，用它做特征来区分，贡献会非常小。所以我们的目的是找那些变化大的元素，即方差大的那些维，而去除掉那些变化不大的维，从而使特征留下的都是“精品”，而且计算量也变小了。 对于一个K维的特征来说，相当于它的每一维特征与其他维都是正交的（相当于在多维坐标系中，坐标轴都是垂直的），那么我们可以变化这些维的坐标系，从而使这个特征在某些维上方差大，而在某些维上方差很小。</p>
                 <h2 id="pca的算法步骤">PCA的算法步骤</h2>
@@ -353,7 +352,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Tue Nov 29 15:51:25 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">#全局变量定义区</span><br><span class="line">XLabel = list()</span><br><span class="line">YLabel = list()</span><br><span class="line">phi = [<span class="number">0</span>., <span class="number">0</span>.]</span><br><span class="line">#自己定义的矩阵转换函数</span><br><span class="line">def Transport(matrix):</span><br><span class="line">        temp = list()</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">            temp.append(list())</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">                temp[i].append(matrix[j][i])</span><br><span class="line">        return temp</span><br><span class="line">#加载文件（可以通过更改文件名来加载不同的测试数据）</span><br><span class="line">data_set = open(<span class="string">'testSet.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> data_set.readlines():</span><br><span class="line">    data_line = line.strip().split()</span><br><span class="line">    tmpx = <span class="attribute">float</span>(data_line[<span class="number">0</span>])</span><br><span class="line">    tmpy = <span class="attribute">float</span>(data_line[<span class="number">1</span>])</span><br><span class="line">    phi[<span class="number">0</span>] += tmpx</span><br><span class="line">    phi[<span class="number">1</span>] += tmpy</span><br><span class="line">    XLabel.append(tmpx)</span><br><span class="line">    YLabel.append(tmpy)</span><br><span class="line">phi[<span class="number">0</span>] = phi[<span class="number">0</span>]/<span class="number">100.0</span></span><br><span class="line">phi[<span class="number">1</span>] = phi[<span class="number">1</span>]/<span class="number">100.0</span></span><br><span class="line">data_set.close()</span><br><span class="line">#加载结束</span><br><span class="line">temp_x = list()</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">     temp_x.append([XLabel[i]-phi[<span class="number">0</span>], YLabel[i]-phi[<span class="number">1</span>]])</span><br><span class="line">temp_x_ = Transport(temp_x)</span><br><span class="line">sigma = np.dot(temp_x_, temp_x)</span><br><span class="line">D,V= np<span class="selector-class">.linalg</span><span class="selector-class">.eig</span>(sigma)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">     <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">         V<span class="selector-class">.real</span>[i][j] *= -<span class="number">1</span></span><br><span class="line">temp_v_ = Transport(V.real)</span><br><span class="line">tr1 = list()</span><br><span class="line">tr1.append(XLabel)</span><br><span class="line">tr1.append(YLabel)</span><br><span class="line">tr1 = Transport(tr1)</span><br><span class="line">xr1 = np.dot(tr1, temp_v_[<span class="number">0</span>])</span><br><span class="line">xr2 = np.dot(phi, temp_v_[<span class="number">1</span>])</span><br><span class="line">xr = tr1</span><br><span class="line">#        print xr</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">      xr[i][<span class="number">0</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">      xr[i][<span class="number">1</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">#        print xr</span><br><span class="line">plt.plot(XLabel, YLabel, <span class="string">'r+'</span>)</span><br><span class="line">temp_xr = Transport(xr)</span><br><span class="line">plt.plot(temp_xr[<span class="number">0</span>], temp_xr[<span class="number">1</span>], <span class="string">'b*'</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">     plt.plot([XLabel[i],xr[i][<span class="number">0</span>]], [YLabel[i],xr[i][<span class="number">1</span>]])</span><br><span class="line">plt.axis([-<span class="number">8</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line">plt<span class="selector-class">.xlabel</span> = <span class="string">'x'</span></span><br><span class="line">plt<span class="selector-class">.ylabel</span> = <span class="string">'y'</span></span><br><span class="line">plt.show()</span><br></pre>
+                        <pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Tue Nov 29 15:51:25 2016</span></span><br><span class="line"><span class="string">@author: kuangmeng</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib<span class="selector-class">.pyplot</span> as plt</span><br><span class="line">#全局变量定义区</span><br><span class="line">XLabel = list()</span><br><span class="line">YLabel = list()</span><br><span class="line">phi = [<span class="number">0</span>., <span class="number">0</span>.]</span><br><span class="line">#自己定义的矩阵转换函数</span><br><span class="line">def Transport(matrix):</span><br><span class="line">        temp = list()</span><br><span class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</span><br><span class="line">            temp.append(list())</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix)):</span><br><span class="line">                temp[i].append(matrix[j][i])</span><br><span class="line">        return temp</span><br><span class="line">#加载文件（可以通过更改文件名来加载不同的测试数据）</span><br><span class="line">data_set = open(<span class="string">'testSet.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> data_set.readlines():</span><br><span class="line">    data_line = line.strip().split()</span><br><span class="line">    tmpx = <span class="attribute">float</span>(data_line[<span class="number">0</span>])</span><br><span class="line">    tmpy = <span class="attribute">float</span>(data_line[<span class="number">1</span>])</span><br><span class="line">    phi[<span class="number">0</span>] += tmpx</span><br><span class="line">    phi[<span class="number">1</span>] += tmpy</span><br><span class="line">    XLabel.append(tmpx)</span><br><span class="line">    YLabel.append(tmpy)</span><br><span class="line">phi[<span class="number">0</span>] = phi[<span class="number">0</span>]/<span class="number">100.0</span></span><br><span class="line">phi[<span class="number">1</span>] = phi[<span class="number">1</span>]/<span class="number">100.0</span></span><br><span class="line">data_set.close()</span><br><span class="line">#加载结束</span><br><span class="line">temp_x = list()</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">     temp_x.append([XLabel[i]-phi[<span class="number">0</span>], YLabel[i]-phi[<span class="number">1</span>]])</span><br><span class="line">temp_x_ = Transport(temp_x)</span><br><span class="line">sigma = np.dot(temp_x_, temp_x)</span><br><span class="line">D,V= np<span class="selector-class">.linalg</span>.eig(sigma)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">     <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">         V<span class="selector-class">.real</span>[i][j] *= -<span class="number">1</span></span><br><span class="line">temp_v_ = Transport(V.real)</span><br><span class="line">tr1 = list()</span><br><span class="line">tr1.append(XLabel)</span><br><span class="line">tr1.append(YLabel)</span><br><span class="line">tr1 = Transport(tr1)</span><br><span class="line">xr1 = np.dot(tr1, temp_v_[<span class="number">0</span>])</span><br><span class="line">xr2 = np.dot(phi, temp_v_[<span class="number">1</span>])</span><br><span class="line">xr = tr1</span><br><span class="line">#        print xr</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">      xr[i][<span class="number">0</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">      xr[i][<span class="number">1</span>] = np.dot(xr1[i], V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">0</span>])+np.dot(xr2, V<span class="selector-class">.real</span>[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line">#        print xr</span><br><span class="line">plt.plot(XLabel, YLabel, <span class="string">'r+'</span>)</span><br><span class="line">temp_xr = Transport(xr)</span><br><span class="line">plt.plot(temp_xr[<span class="number">0</span>], temp_xr[<span class="number">1</span>], <span class="string">'b*'</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(len(XLabel)):</span><br><span class="line">     plt.plot([XLabel[i],xr[i][<span class="number">0</span>]], [YLabel[i],xr[i][<span class="number">1</span>]])</span><br><span class="line">plt.axis([-<span class="number">8</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line">plt<span class="selector-class">.xlabel</span> = <span class="string">'x'</span></span><br><span class="line">plt<span class="selector-class">.ylabel</span> = <span class="string">'y'</span></span><br><span class="line">plt.show()</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -432,19 +431,19 @@
             <nav id="article-nav">
 
               <a href="/articles/7dac38a/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          使用SVM识别手写数字
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  使用SVM识别手写数字
+
+                </div>
+              </a>
 
 
               <a href="/articles/177fbbcc/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">使用EM算法优化的GMM</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">使用EM算法优化的GMM</div>
+              </a>
 
             </nav>
 
@@ -501,7 +500,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -528,7 +528,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -581,55 +581,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

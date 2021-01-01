@@ -166,16 +166,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -270,16 +270,16 @@
 
               <div class="article-meta">
                 <a href="/articles/6f93935a/" class="article-date">
-	  <time datetime="2018-03-17T06:05:52.000Z" itemprop="datePublished">2018-03-17</time>
-	</a>
+                  <time datetime="2018-03-17T06:05:52.000Z" itemprop="datePublished">2018-03-17</time>
+                </a>
                 <a class="article-category-link" href="/categories/Data-Mining/">Data Mining</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数3,817</span>
-	<span class="post-count"> | 预计时间16分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数3,817</span>
+                  <span class="post-count"> | 预计时间16分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -345,10 +345,14 @@
                 </ul>
                 <p>基于模型的协同过滤推荐就是基于样本的用户喜好信息，训练一个推荐模型，然后根据实时的用户喜好的信息进行预测，计算推荐。</p>
                 <p>基于协同过滤的推荐机制是现今应用最为广泛的推荐机制，它有以下几个显著的优点：</p>
-                <p>它不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可理解的，所以这种方法也是领域无关的。 这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好 而它也存在以下几个问题：
-                </p>
-                <p>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”的问题。 推荐的效果依赖于用户历史偏好数据的多少和准确性。 在大部分的实现中，用户历史偏好是用稀疏矩阵进行存储的，而稀疏矩阵上的计算有些明显的问题，包括可能少部分人的错误偏好会对推荐的准确度有很大的影响等等。 对于一些特殊品味的用户不能给予很好的推荐。 由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致这个方法不够灵活。
-                </p>
+                <p>它不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可理解的，所以这种方法也是领域无关的。
+                  这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好
+                  而它也存在以下几个问题：</p>
+                <p>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”的问题。
+                  推荐的效果依赖于用户历史偏好数据的多少和准确性。
+                  在大部分的实现中，用户历史偏好是用稀疏矩阵进行存储的，而稀疏矩阵上的计算有些明显的问题，包括可能少部分人的错误偏好会对推荐的准确度有很大的影响等等。
+                  对于一些特殊品味的用户不能给予很好的推荐。
+                  由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致这个方法不够灵活。</p>
                 <h2 id="代码实现">代码实现</h2>
                 <p>基于用户的CF：</p>
                 <figure class="highlight java">
@@ -371,7 +375,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span>  itemgetter</span><br><span class="line">random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemBasedCF</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.trainset = &#123;&#125;</span><br><span class="line">        self.testset = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        self.n_sim_movie = <span class="number">20</span></span><br><span class="line">        self.n_rec_movie = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">        self.movie_sim_mat = &#123;&#125;</span><br><span class="line">        self.movie_popular = &#123;&#125;</span><br><span class="line">        self.movie_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'Similar movie number = %d'</span> % self.n_sim_movie, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'Recommendend movie number = %d'</span> % self.n_rec_movie,file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loadfile</span><span class="params">(filename)</span>:</span></span><br><span class="line">        fp = open(filename, <span class="string">'r'</span>)</span><br><span class="line">        <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(fp):</span><br><span class="line">            <span class="keyword">yield</span> line.strip(<span class="string">'\r\n'</span>)</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">print</span> (<span class="string">'load %s(%s)'</span> %(filename,i), file = sys.stderr)</span><br><span class="line">        fp.close()</span><br><span class="line">        print(<span class="string">'load %s succ'</span> %filename, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_dataset</span><span class="params">(self, filename, pivot = <span class="number">0.7</span>)</span>:</span></span><br><span class="line">        trainset_len = <span class="number">0</span></span><br><span class="line">        testset_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> self.loadfile(filename):</span><br><span class="line">            user, movie, rating , _= line.split(<span class="string">'::'</span>)</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; pivot:</span><br><span class="line">                self.trainset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.trainset[user][movie] = int(rating)</span><br><span class="line">                trainset_len += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.testset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.testset[user][movie] = int(rating)</span><br><span class="line">                testset_len += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'split succ , trainset is %d , testset is %d'</span>  %(trainset_len,testset_len) , file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calc_movie_sim</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> movie <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">not</span> <span class="keyword">in</span> self.movie_popular:</span><br><span class="line">                    self.movie_popular[movie] = <span class="number">0</span></span><br><span class="line">                self.movie_popular[movie] += <span class="number">1</span></span><br><span class="line">        print(<span class="string">'count movies number and pipularity succ'</span>,file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        self.movie_count = len(self.movie_popular)</span><br><span class="line">        print(<span class="string">'total movie number = %d'</span> %self.movie_count, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        itemsim_mat = self.movie_sim_mat</span><br><span class="line">        print(<span class="string">'building co-rated users matrix'</span>, file = sys.stderr)</span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> m1 <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">for</span> m2 <span class="keyword">in</span> movies:</span><br><span class="line">                    <span class="keyword">if</span> m1 == m2:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    itemsim_mat.setdefault(m1,&#123;&#125;)</span><br><span class="line">                    itemsim_mat[m1].setdefault(m2,<span class="number">0</span>)</span><br><span class="line">                    itemsim_mat[m1][m2] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'build co-rated users matrix succ'</span>, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calculating movie similarity matrix'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        simfactor_count = <span class="number">0</span></span><br><span class="line">        PRINT_STEP = <span class="number">2000000</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m1, related_movies <span class="keyword">in</span> itemsim_mat.items():</span><br><span class="line">            <span class="keyword">for</span> m2, count <span class="keyword">in</span> related_movies.items():</span><br><span class="line">                itemsim_mat[m1][m2] = count / math.sqrt(self.movie_popular[m1] * self.movie_popular[m2])</span><br><span class="line">                simfactor_count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> simfactor_count % PRINT_STEP == <span class="number">0</span>:</span><br><span class="line">                    print(<span class="string">'calcu movie similarity factor(%d)'</span> %simfactor_count, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calcu similiarity succ'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recommend</span><span class="params">(self,user)</span>:</span></span><br><span class="line">        K = self.n_sim_movie</span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line">        rank = &#123;&#125;</span><br><span class="line">        watched_movies = self.trainset[user]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> movie, rating <span class="keyword">in</span> watched_movies.items():</span><br><span class="line">            <span class="keyword">for</span> related_movie, similarity_factor <span class="keyword">in</span> sorted(self.movie_sim_mat[movie].items(), key=itemgetter(<span class="number">1</span>),</span><br><span class="line">                                                           reverse=<span class="keyword">True</span>)[<span class="number">0</span>:K]:</span><br><span class="line">                <span class="keyword">if</span> related_movie <span class="keyword">in</span> watched_movies:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                rank.setdefault(related_movie, <span class="number">0</span>)</span><br><span class="line">                rank[related_movie] += similarity_factor * rating</span><br><span class="line">        <span class="keyword">return</span> sorted(rank.items(), key=itemgetter(<span class="number">1</span>), reverse=<span class="keyword">True</span>)[<span class="number">0</span>:N]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evaluate</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'evaluation start'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line"></span><br><span class="line">        hit = <span class="number">0</span></span><br><span class="line">        rec_count = <span class="number">0</span></span><br><span class="line">        test_count = <span class="number">0</span></span><br><span class="line">        all_rec_movies = set()</span><br><span class="line">        popular_sum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, user <span class="keyword">in</span> enumerate(self.trainset):</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">500</span> == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">'recommend for %d users '</span> %i , file = sys.stderr)</span><br><span class="line">            test_movies = self.testset.get(user,&#123;&#125;)</span><br><span class="line">            rec_movies = self.recommend(user)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> movie, _ <span class="keyword">in</span> rec_movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">in</span> test_movies:</span><br><span class="line">                    hit += <span class="number">1</span></span><br><span class="line">                all_rec_movies.add(movie)</span><br><span class="line">                popular_sum += math.log(<span class="number">1</span> + self.movie_popular[movie])</span><br><span class="line"></span><br><span class="line">            rec_count += N</span><br><span class="line">            test_count += len(test_movies)</span><br><span class="line"></span><br><span class="line">            precision = hit / (<span class="number">1.0</span> * rec_count)</span><br><span class="line">            recall = hit / (<span class="number">1.0</span> * test_count)</span><br><span class="line">            coverage = len(all_rec_movies) / (<span class="number">1.0</span> * self.movie_count)</span><br><span class="line">            popularity = popular_sum / (<span class="number">1.0</span> * rec_count)</span><br><span class="line"></span><br><span class="line">            print(<span class="string">'precision is %.4f\t recall is %.4f \t coverage is %.4f \t popularity is %.4f'</span></span><br><span class="line">                  %(precision,recall,coverage,popularity), file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ratingfile = os.path.join(<span class="string">'ml-1m'</span>, <span class="string">'ratings.dat'</span>)</span><br><span class="line">    itemcf = ItemBasedCF()</span><br><span class="line">    itemcf.generate_dataset(ratingfile)</span><br><span class="line">    itemcf.calc_movie_sim()</span><br><span class="line">    itemcf.evaluate()</span><br></pre>
+                        <pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span>  itemgetter</span><br><span class="line">random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemBasedCF</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.trainset = &#123;&#125;</span><br><span class="line">        self.testset = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        self.n_sim_movie = <span class="number">20</span></span><br><span class="line">        self.n_rec_movie = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">        self.movie_sim_mat = &#123;&#125;</span><br><span class="line">        self.movie_popular = &#123;&#125;</span><br><span class="line">        self.movie_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'Similar movie number = %d'</span> % self.n_sim_movie, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'Recommendend movie number = %d'</span> % self.n_rec_movie,file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loadfile</span><span class="params">(filename)</span>:</span></span><br><span class="line">        fp = open(filename, <span class="string">'r'</span>)</span><br><span class="line">        <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(fp):</span><br><span class="line">            <span class="keyword">yield</span> line.strip(<span class="string">'\r\n'</span>)</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">100000</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">print</span> (<span class="string">'load %s(%s)'</span> %(filename,i), file = sys.stderr)</span><br><span class="line">        fp.close()</span><br><span class="line">        print(<span class="string">'load %s succ'</span> %filename, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_dataset</span><span class="params">(self, filename, pivot = <span class="number">0.7</span>)</span>:</span></span><br><span class="line">        trainset_len = <span class="number">0</span></span><br><span class="line">        testset_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> self.loadfile(filename):</span><br><span class="line">            user, movie, rating , _= line.split(<span class="string">'::'</span>)</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; pivot:</span><br><span class="line">                self.trainset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.trainset[user][movie] = int(rating)</span><br><span class="line">                trainset_len += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.testset.setdefault(user,&#123;&#125;)</span><br><span class="line">                self.testset[user][movie] = int(rating)</span><br><span class="line">                testset_len += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'split succ , trainset is %d , testset is %d'</span>  %(trainset_len,testset_len) , file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">calc_movie_sim</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> movie <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">not</span> <span class="keyword">in</span> self.movie_popular:</span><br><span class="line">                    self.movie_popular[movie] = <span class="number">0</span></span><br><span class="line">                self.movie_popular[movie] += <span class="number">1</span></span><br><span class="line">        print(<span class="string">'count movies number and pipularity succ'</span>,file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        self.movie_count = len(self.movie_popular)</span><br><span class="line">        print(<span class="string">'total movie number = %d'</span> %self.movie_count, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        itemsim_mat = self.movie_sim_mat</span><br><span class="line">        print(<span class="string">'building co-rated users matrix'</span>, file = sys.stderr)</span><br><span class="line">        <span class="keyword">for</span> user, movies <span class="keyword">in</span> self.trainset.items():</span><br><span class="line">            <span class="keyword">for</span> m1 <span class="keyword">in</span> movies:</span><br><span class="line">                <span class="keyword">for</span> m2 <span class="keyword">in</span> movies:</span><br><span class="line">                    <span class="keyword">if</span> m1 == m2:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    itemsim_mat.setdefault(m1,&#123;&#125;)</span><br><span class="line">                    itemsim_mat[m1].setdefault(m2,<span class="number">0</span>)</span><br><span class="line">                    itemsim_mat[m1][m2] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">'build co-rated users matrix succ'</span>, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calculating movie similarity matrix'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        simfactor_count = <span class="number">0</span></span><br><span class="line">        PRINT_STEP = <span class="number">2000000</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m1, related_movies <span class="keyword">in</span> itemsim_mat.items():</span><br><span class="line">            <span class="keyword">for</span> m2, count <span class="keyword">in</span> related_movies.items():</span><br><span class="line">                itemsim_mat[m1][m2] = count / math.sqrt(self.movie_popular[m1] * self.movie_popular[m2])</span><br><span class="line">                simfactor_count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> simfactor_count % PRINT_STEP == <span class="number">0</span>:</span><br><span class="line">                    print(<span class="string">'calcu movie similarity factor(%d)'</span> %simfactor_count, file = sys.stderr)</span><br><span class="line">        print(<span class="string">'calcu similiarity succ'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recommend</span><span class="params">(self,user)</span>:</span></span><br><span class="line">        K = self.n_sim_movie</span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line">        rank = &#123;&#125;</span><br><span class="line">        watched_movies = self.trainset[user]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> movie, rating <span class="keyword">in</span> watched_movies.items():</span><br><span class="line">            <span class="keyword">for</span> related_movie, similarity_factor <span class="keyword">in</span> sorted(self.movie_sim_mat[movie].items(), key=itemgetter(<span class="number">1</span>),</span><br><span class="line">                                                           reverse=<span class="literal">True</span>)[<span class="number">0</span>:K]:</span><br><span class="line">                <span class="keyword">if</span> related_movie <span class="keyword">in</span> watched_movies:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                rank.setdefault(related_movie, <span class="number">0</span>)</span><br><span class="line">                rank[related_movie] += similarity_factor * rating</span><br><span class="line">        <span class="keyword">return</span> sorted(rank.items(), key=itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)[<span class="number">0</span>:N]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evaluate</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'evaluation start'</span>, file = sys.stderr)</span><br><span class="line"></span><br><span class="line">        N = self.n_rec_movie</span><br><span class="line"></span><br><span class="line">        hit = <span class="number">0</span></span><br><span class="line">        rec_count = <span class="number">0</span></span><br><span class="line">        test_count = <span class="number">0</span></span><br><span class="line">        all_rec_movies = set()</span><br><span class="line">        popular_sum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, user <span class="keyword">in</span> enumerate(self.trainset):</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">500</span> == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">'recommend for %d users '</span> %i , file = sys.stderr)</span><br><span class="line">            test_movies = self.testset.get(user,&#123;&#125;)</span><br><span class="line">            rec_movies = self.recommend(user)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> movie, _ <span class="keyword">in</span> rec_movies:</span><br><span class="line">                <span class="keyword">if</span> movie <span class="keyword">in</span> test_movies:</span><br><span class="line">                    hit += <span class="number">1</span></span><br><span class="line">                all_rec_movies.add(movie)</span><br><span class="line">                popular_sum += math.log(<span class="number">1</span> + self.movie_popular[movie])</span><br><span class="line"></span><br><span class="line">            rec_count += N</span><br><span class="line">            test_count += len(test_movies)</span><br><span class="line"></span><br><span class="line">            precision = hit / (<span class="number">1.0</span> * rec_count)</span><br><span class="line">            recall = hit / (<span class="number">1.0</span> * test_count)</span><br><span class="line">            coverage = len(all_rec_movies) / (<span class="number">1.0</span> * self.movie_count)</span><br><span class="line">            popularity = popular_sum / (<span class="number">1.0</span> * rec_count)</span><br><span class="line"></span><br><span class="line">            print(<span class="string">'precision is %.4f\t recall is %.4f \t coverage is %.4f \t popularity is %.4f'</span></span><br><span class="line">                  %(precision,recall,coverage,popularity), file = sys.stderr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ratingfile = os.path.join(<span class="string">'ml-1m'</span>, <span class="string">'ratings.dat'</span>)</span><br><span class="line">    itemcf = ItemBasedCF()</span><br><span class="line">    itemcf.generate_dataset(ratingfile)</span><br><span class="line">    itemcf.calc_movie_sim()</span><br><span class="line">    itemcf.evaluate()</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -450,19 +454,19 @@
             <nav id="article-nav">
 
               <a href="/articles/82a6b55c/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          几个常见的社区推荐算法
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  几个常见的社区推荐算法
+
+                </div>
+              </a>
 
 
               <a href="/articles/dde60b3a/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JVM的垃圾回收机制</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">JVM的垃圾回收机制</div>
+              </a>
 
             </nav>
 
@@ -511,7 +515,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -538,7 +543,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -591,55 +596,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

@@ -240,16 +240,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -344,16 +344,16 @@
 
               <div class="article-meta">
                 <a href="/articles/8193f764/" class="article-date">
-	  <time datetime="2018-04-04T04:29:41.000Z" itemprop="datePublished">2018-04-04</time>
-	</a>
+                  <time datetime="2018-04-04T04:29:41.000Z" itemprop="datePublished">2018-04-04</time>
+                </a>
                 <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数7,953</span>
-	<span class="post-count"> | 预计时间27分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数7,953</span>
+                  <span class="post-count"> | 预计时间27分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -379,7 +379,8 @@
                   <li>
                     <p>输入层也可以看做是一组神经元，它的激活值就是输入本身</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211850.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701214914.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701214914.png" alt="">
+                    </p>
                     <blockquote>
                       <p>基本的神经网络只能处理向量型的输入，所以需要将这个 28*28 的像素图（矩阵），重排成长为 784 的向量</p>
                       <p>如果使用卷积神经网络，则可以直接处理矩阵型的输入</p>
@@ -471,7 +472,8 @@
                     <p><strong>怎样的数学公式能够表达出这个含义？</strong></p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702112135.png" alt="">
                       <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113031.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113631.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113631.png" alt="">
+                    </p>
                     <ul>
                       <li>
                         <p>考虑对所有输入单元加权求和</p>
@@ -515,7 +517,8 @@
                       <p>偏置和权重统称为网络参数</p>
                     </blockquote>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702150309.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt="">
+                    </p>
                     <blockquote>
                       <p>每一层都带有自己的权重与偏置，这样一个小小的网络，就有 13002 个参数</p>
                     </blockquote>
@@ -659,7 +662,8 @@
                   <li>
                     <p>比如这样定义单个样本的损失：</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702194825.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195301.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195301.png" alt="">
+                    </p>
                     <ul>
                       <li>当网络分类正确时，这个值就越小</li>
                       <li>这里使用的损失函数为“均方误差”（mean-square error, MSE）</li>
@@ -703,7 +707,8 @@
                     <p>如果函数只有一个极值点，那么直接利用微积分即可</p>
                     <p>如果函数很复杂的话，问题就不那么直接了，更遑论上万个参数的情况</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702202810.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203041.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203041.png" alt="">
+                    </p>
                   </li>
                   <li>
                     <p><strong>一个启发式的思路是</strong>：先随机选择一个值，然后考虑向左还是向右，函数值会减小；</p>
@@ -761,7 +766,8 @@
                       <li>
                         <p>每一项的相对大小表明每个输入值对函数值的影响程度；换言之，也就是调整各权重对于网络的影响</p>
                         <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt="">
-                          <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703104845.png" alt=""></p>
+                          <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703104845.png" alt="">
+                        </p>
                       </li>
                     </ol>
                   </li>
@@ -885,7 +891,8 @@
                   <li>
                     <p>利用<strong>权重与所有输入像素对应相乘</strong>的方法，可以还原每个神经元对应的图案</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115843.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115823.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115823.png" alt="">
+                    </p>
                     <blockquote>
                       <p>期望（左）与现实（右）</p>
                     </blockquote>
@@ -945,7 +952,8 @@
                   <li>
                     <p>一个简单的<strong>直觉</strong>是：激活值<strong>变动的幅度</strong>应该与<strong>当前值和目标值之间的误差</strong>成正比</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210401.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210941.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210941.png" alt="">
+                    </p>
                     <blockquote>
                       <p>我们希望第三个输出值增大，其他减小</p>
                       <p>显然，这里增加 “2” 的激活值比减少 “8” 的激活值更重要；因为后者已经接近它的目标了</p>
@@ -1010,7 +1018,8 @@
                     <p>上面只是讨论了单个样本对所有参数的影响，实践时，需要同时考虑每个样本对权重与偏置的修改，然后将它们期望的平均作为每个参数的变化量；</p>
                     <p>不严格的来说，这就是梯度下降中的需要的“<strong>负梯度</strong>”</p>
                     <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180704111911.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180704112743.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180704112743.png" alt="">
+                    </p>
                     <blockquote>
                       <p><code>η</code> 表示倍数</p>
                     </blockquote>
@@ -1159,14 +1168,15 @@
                     <p><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190236.png" alt=""></p>
                     <p><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705134851.png" alt="">
                       <img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154543.png" alt="">
-                      <img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png" alt=""></p>
+                      <img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png" alt="">
+                    </p>
                     <blockquote>
                       <p>其中，上标 <code>(l)</code> 表示网络的层次，<code>(L)</code> 表示输出层（最后一层）；下标 <code>j</code> 和 <code>k</code> 指示神经元的位置；</p>
                       <p><code>w_jk</code> 表示 <code>l</code> 层的第 <code>j</code> 个神经元与<code>(l-1)</code>层第 <code>k</code> 个神经元连线上的权重</p>
                     </blockquote>
                     <p>以 <strong>均方误差（MSE）</strong> 损失函数为例，有</p>
-                    <p><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png" alt=""><br> 根据以上公式，就可以反向求出所有损失函数对所有参数的偏导了
-                    </p>
+                    <p><img src="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png" alt=""><br>
+                      根据以上公式，就可以反向求出所有损失函数对所有参数的偏导了</p>
                   </li>
                   <li>
                     <p><strong>矢量形式</strong>：</p>
@@ -1259,19 +1269,19 @@
             <nav id="article-nav">
 
               <a href="/articles/7203e497/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          一些常见的Coverlutional Neural Networks (CNNs)
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  一些常见的Coverlutional Neural Networks (CNNs)
+
+                </div>
+              </a>
 
 
               <a href="/articles/82a6b55c/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">几个常见的社区推荐算法</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">几个常见的社区推荐算法</div>
+              </a>
 
             </nav>
 
@@ -1341,7 +1351,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -1368,7 +1379,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -1421,55 +1432,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

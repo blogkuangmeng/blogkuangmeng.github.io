@@ -163,16 +163,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -267,23 +267,24 @@
 
               <div class="article-meta">
                 <a href="/articles/dcffa0c0/" class="article-date">
-	  <time datetime="2016-02-20T04:18:29.000Z" itemprop="datePublished">2016-02-20</time>
-	</a>
+                  <time datetime="2016-02-20T04:18:29.000Z" itemprop="datePublished">2016-02-20</time>
+                </a>
                 <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数1,698</span>
-	<span class="post-count"> | 预计时间6分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数1,698</span>
+                  <span class="post-count"> | 预计时间6分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <h1>虚函数与多态</h1>
                 <p>继承和多态，是面向对象中老生常谈的话题。C++中，我们也可以经常看到<code>virtaul</code>、<code>override</code>这样的关键字；这正是虚函数的标志。虚函数就是为了解决多态的问题：如果要使用一个基类的指针，根据对象的不同类型去调用相应的函数，就需要使用虚函数了。通俗的说也就是同一个入口，却能够调用不同的方法。</p>
                 <p>通常，对于虚函数的调用，往往在运行时才能确定调用哪个版本的函数。这是由于基类的指针或者引用，其动态类型必须在运行的时候才能确定（它具体指向了什么类型）。而“动态绑定”就指的在运行时，根据对象的类型，调用具体方法的过程，这个过程正是通过<strong>虚函数表</strong>实现的。<br>
-                  <strong>抽象基类</strong>指的是有<strong>纯虚函数</strong>的类。纯虚函数，指的是没有函数体的函数，通常通过在函数体的位置写上<code>=0</code>来表示。对于抽象基类，是不能直接创建一个对象的；但是可以创建它它们的派生类的对象：只要它们覆盖了纯虚函数。纯虚函数表示这个函数的具体实现全部交给派生类去做。</p>
+                  <strong>抽象基类</strong>指的是有<strong>纯虚函数</strong>的类。纯虚函数，指的是没有函数体的函数，通常通过在函数体的位置写上<code>=0</code>来表示。对于抽象基类，是不能直接创建一个对象的；但是可以创建它它们的派生类的对象：只要它们覆盖了纯虚函数。纯虚函数表示这个函数的具体实现全部交给派生类去做。
+                </p>
                 <h1>虚函数表与虚函数的调用</h1>
                 <p>那么，“动态绑定”是如何实现的呢？这便是借助于虚函数表来实现。对于每个具有虚函数的类，都会有一个对应的虚函数表vtable，其代码和对应内存结构如下所示：</p>
                 <pre><code>class A {
@@ -346,8 +347,8 @@ class C : public A, public B {
   \   /
     D
 </code></pre>
-                <p>虚继承是在继承时，在基类类型前面加上<code>virtual</code>关键字。虚继承能够解决基类多副本的问题：在任何派生类当中，虚基类都是通过一个共享对象来表示的，它们通过指针去访问这个基类中的内容；它不用去保存多份基类的拷贝，而是只需要多出一个指向基类子对象的指针。从内存布局上来说，在虚表的负offset位置，会保存一个指针指向虚基类对象。<br> 也就是说继承自A的虚函数和对象，全部只保存一份在D自身的子对象中，相比不使用虚继承，它删除了B1和B2当中的（2份）基类成员；它自己则需要保存一份基类成员和偏移指针；而如果要用B1和B2的指针或者引用去访问一个D对象时，那么访问A的成员则需要通过间接引用来访问；也就是说子对象需要有一个
-                  <strong>偏移量</strong>，指示在内存中，基类的位置。其内存布局一般如下：</p>
+                <p>虚继承是在继承时，在基类类型前面加上<code>virtual</code>关键字。虚继承能够解决基类多副本的问题：在任何派生类当中，虚基类都是通过一个共享对象来表示的，它们通过指针去访问这个基类中的内容；它不用去保存多份基类的拷贝，而是只需要多出一个指向基类子对象的指针。从内存布局上来说，在虚表的负offset位置，会保存一个指针指向虚基类对象。<br>
+                  也就是说继承自A的虚函数和对象，全部只保存一份在D自身的子对象中，相比不使用虚继承，它删除了B1和B2当中的（2份）基类成员；它自己则需要保存一份基类成员和偏移指针；而如果要用B1和B2的指针或者引用去访问一个D对象时，那么访问A的成员则需要通过间接引用来访问；也就是说子对象需要有一个<strong>偏移量</strong>，指示在内存中，基类的位置。其内存布局一般如下：</p>
                 <table>
                   <thead>
                     <tr>
@@ -474,19 +475,19 @@ class C : public A, public B {
             <nav id="article-nav">
 
               <a href="/articles/70440106/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          在Gulp中使用BrowserSync
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  在Gulp中使用BrowserSync
+
+                </div>
+              </a>
 
 
               <a href="/articles/d23d13ae/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">判断是否手机登陆</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">判断是否手机登陆</div>
+              </a>
 
             </nav>
 
@@ -522,7 +523,8 @@ class C : public A, public B {
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -549,7 +551,7 @@ class C : public A, public B {
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -602,55 +604,69 @@ class C : public A, public B {
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

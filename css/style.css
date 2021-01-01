@@ -420,26 +420,32 @@ body {
 }
 
 @media screen and (max-width: 879px) {
+
   .article-entry h1,
   .widget h1 {
     font-size: 22px;
   }
+
   .article-entry h2,
   .widget h2 {
     font-size: 20px;
   }
+
   .article-entry h3,
   .widget h3 {
     font-size: 18px;
   }
+
   .article-entry h4,
   .widget h4 {
     font-size: 16px;
   }
+
   .article-entry h5,
   .widget h5 {
     font-size: 1em;
   }
+
   .article-entry h6,
   .widget h6 {
     font-size: 1em;
@@ -620,6 +626,7 @@ body {
 
 @media all and (transform-3d),
 (-webkit-transform-3d) {
+
   .carousel-fade .carousel-inner>.item.next,
   .carousel-fade .carousel-inner>.item.active.right {
     left: 0;
@@ -630,6 +637,7 @@ body {
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+
   .carousel-fade .carousel-inner>.item.prev,
   .carousel-fade .carousel-inner>.item.active.left {
     left: 0;
@@ -640,6 +648,7 @@ body {
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+
   .carousel-fade .carousel-inner>.item.next.left,
   .carousel-fade .carousel-inner>.item.prev.right,
   .carousel-fade .carousel-inner>.item.active {
@@ -801,6 +810,7 @@ body {
 }
 
 @media screen and (max-width: 879px) {
+
   .search-form-input,
   .search-form-input.ins-search-input,
   .search-form-input.st-ui-search-input,
@@ -981,6 +991,7 @@ body {
 }
 
 @media screen and (max-width: 879px) {
+
   .article-date,
   .article-category-link,
   .article-views,
@@ -1340,6 +1351,7 @@ a.article-title:hover {
   #article-nav {
     margin: 50px 0;
   }
+
   #article-nav:before {
     width: 8px;
     height: 8px;
@@ -2238,6 +2250,7 @@ pre .javascript .function {
     padding: 15px 20px;
     font-weight: bold;
   }
+
   .mobile-nav-link:hover {
     color: #fff;
   }

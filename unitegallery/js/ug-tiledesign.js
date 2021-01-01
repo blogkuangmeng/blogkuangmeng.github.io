@@ -650,11 +650,11 @@ function UGTileDesign() {
     switch (g_options.tile_size_by) {
       default: //global ratio
         ratio = g_temp.ratioByHeight;
-      break;
+        break;
       case t.sizeby.IMAGE_RATIO:
 
-          if (!objTile)
-            throw new Error("tile should be given for tile ratio");
+        if (!objTile)
+          throw new Error("tile should be given for tile ratio");
 
         var item = t.getItemByTile(objTile);
 
@@ -670,7 +670,7 @@ function UGTileDesign() {
 
         break;
       case t.sizeby.CUSTOM:
-          return null;
+        return null;
         break;
     }
 
@@ -1390,18 +1390,18 @@ function UGTileDesign() {
 
     switch (resizeMode) {
       default:
-        case t.resizemode.FULL:
+      case t.resizemode.FULL:
         t.triggerSizeChangeEvent(objTile, true);
-      break;
+        break;
       case t.resizemode.WRAPPER_ONLY:
-          return (true);
+        return (true);
         break;
       case t.resizemode.VISIBLE_ELEMENTS:
 
-          if (g_temp.funcCustomTileHtml) {
-            t.triggerSizeChangeEvent(objTile, true);
-            return (true);
-          }
+        if (g_temp.funcCustomTileHtml) {
+          t.triggerSizeChangeEvent(objTile, true);
+          return (true);
+        }
 
         //resize images
         positionElements_images(objTile, newWidth, newHeight, true);

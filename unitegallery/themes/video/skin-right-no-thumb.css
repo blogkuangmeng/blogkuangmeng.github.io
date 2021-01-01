@@ -1,4 +1,7 @@
 @CHARSET "ISO-8859-1";
+
+
+
 /* ----- Strip Panel ------- */
 
 .ug-videoskin-right-no-thumb .ug-strip-panel {
@@ -15,6 +18,7 @@
   cursor: pointer;
   text-align: left;
 }
+
 
 .ug-videoskin-right-no-thumb .ug-thumb-wrapper:last-child {
   border-bottom: none;
@@ -90,8 +94,8 @@
   background-position: center;
 }
 
-/* ----- Under 960 ------- */
 
+/* ----- Under 960 ------- */
 .ug-under-960.ug-videoskin-right-no-thumb .ug-thumb-wrapper {
   width: 320px;
 }
@@ -132,6 +136,7 @@
   display: none;
 }
 
+
 /* ----- Under 480 ------- */
 
 .ug-under-480.ug-videoskin-right-no-thumb .ug-thumb-wrapper {
@@ -151,6 +156,7 @@
   padding-right: 5px;
   padding-top: 12px;
 }
+
 
 .ug-under-480.ug-videoskin-right-no-thumb .ug-video-buttons-panel {
   display: block;

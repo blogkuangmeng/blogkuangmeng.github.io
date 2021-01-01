@@ -190,16 +190,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -294,16 +294,16 @@
 
               <div class="article-meta">
                 <a href="/articles/5a3aed16/" class="article-date">
-	  <time datetime="2017-07-05T12:09:21.000Z" itemprop="datePublished">2017-07-05</time>
-	</a>
+                  <time datetime="2017-07-05T12:09:21.000Z" itemprop="datePublished">2017-07-05</time>
+                </a>
                 <a class="article-category-link" href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数3,858</span>
-	<span class="post-count"> | 预计时间16分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数3,858</span>
+                  <span class="post-count"> | 预计时间16分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -463,8 +463,7 @@
                       <li>在词表中采样时也应该遵循这个</li>
                     </ul>
                   </li>
-                  <li>因此，负采样算法实际上就是一个<strong>带权采样</strong>过程
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806161221.png" height="200"></div>
+                  <li>因此，负采样算法实际上就是一个<strong>带权采样</strong>过程<div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806161221.png" height="200"></div>
                   </li>
                 </ul>
                 <h3 id="word2vec-中的做法">Word2Vec 中的做法</h3>
@@ -488,8 +487,8 @@
                     <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806170618.png" height=""></div>
                   </li>
                   <li>
-                    <p>采样时，每次生成一个 <code>[1, M-1]</code> 之间的整数 <code>i</code>，则 <code>Table(i)</code> 就对应一个样本；<br> 当采样到正例时，跳过
-                    </p>
+                    <p>采样时，每次生成一个 <code>[1, M-1]</code> 之间的整数 <code>i</code>，则 <code>Table(i)</code> 就对应一个样本；<br>
+                      当采样到正例时，跳过</p>
                   </li>
                   <li>
                     <p>特别的，Word2Vec 在计算 <code>len(w)</code> 时做了一些改动——为 <code>count(·)</code> 加了一个<strong>指数</strong></p>
@@ -523,15 +522,13 @@
                 <p><strong>Sub-sampling 技巧</strong></p>
                 <ul>
                   <li>源码中使用 Sub-sampling 技巧来解决高频词的问题，能带来 2~10 倍的训练速度提升，同时提高低频词的词向量精度</li>
-                  <li>给定一个词频阈值 <code>t</code>，将 <code>w</code> 以 <code>p(w)</code> 的概率舍弃，<code>p(w)</code> 的计算如下
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806175337.png" height=""></div>
+                  <li>给定一个词频阈值 <code>t</code>，将 <code>w</code> 以 <code>p(w)</code> 的概率舍弃，<code>p(w)</code> 的计算如下<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806175337.png" height=""></div>
                   </li>
                 </ul>
                 <p><strong>Word2Vec 中的Sub-sampling</strong></p>
                 <ul>
                   <li>显然，Sub-Sampling 只会针对 出现频次大于 <code>t</code> 的词</li>
-                  <li>特别的，Word2Vec 使用如下公式计算 <code>p(w)</code>，效果是类似的
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806193111.png" height=""></div>
+                  <li>特别的，Word2Vec 使用如下公式计算 <code>p(w)</code>，效果是类似的<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806193111.png" height=""></div>
                   </li>
                 </ul>
                 <h3 id="自适应学习率">自适应学习率</h3>
@@ -633,8 +630,7 @@
                     <p><code>f(x)</code> 是一个权重函数，为了限制高频词和防止 <code>x_ij = 0</code></p>
                     <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807151212.png" height=""></div>
                     <ul>
-                      <li>当 <code>x_ij = 0</code> 时，有
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180807151738.png" height=""></div>
+                      <li>当 <code>x_ij = 0</code> 时，有<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180807151738.png" height=""></div>
                       </li>
                     </ul>
                   </li>
@@ -660,7 +656,8 @@
                 <h2 id="glove-与-word2vec-的区别">GloVe 与 Word2Vec 的区别</h2>
                 <ul>
                   <li>
-                    <p>Word2Vec 本质上是一个神经网络；<br> Glove 也利用了<strong>反向传播</strong>来更新词向量，但是结构要更简单，所以 GloVe 的速度更快</p>
+                    <p>Word2Vec 本质上是一个神经网络；<br>
+                      Glove 也利用了<strong>反向传播</strong>来更新词向量，但是结构要更简单，所以 GloVe 的速度更快</p>
                   </li>
                   <li>
                     <p>Glove 认为 Word2Vec 对高频词的处理还不够，导致速度慢；GloVe 认为共现矩阵可以解决这个问题</p>
@@ -668,15 +665,17 @@
                       <p>实际 Word2Vec 已结有了一些对高频词的措施</p>
                     </blockquote>
                     <ul>
-                      <li>从效果上看，虽然 GloVe 的训练速度更快，但是<strong>词向量的性能</strong>在通用性上要弱一些：<br> 在一些任务上表现优于 Word2Vec，但是在更多的任务上要比 Word2Vec 差</li>
+                      <li>从效果上看，虽然 GloVe 的训练速度更快，但是<strong>词向量的性能</strong>在通用性上要弱一些：<br>
+                        在一些任务上表现优于 Word2Vec，但是在更多的任务上要比 Word2Vec 差</li>
                     </ul>
                   </li>
                 </ul>
                 <h1>FastText</h1>
                 <ul>
                   <li>
-                    <p>FastText 是从 Word2Vec 的 CBOW 模型演化而来的；<br> 从网络的角度来看，两者的模型基本一致；区别仅在于两者的分类目标不同；
-                      <br> 具体来说，FastText 的分类目标是文档的标签，CBOW 则是中心词的标签</p>
+                    <p>FastText 是从 Word2Vec 的 CBOW 模型演化而来的；<br>
+                      从网络的角度来看，两者的模型基本一致；区别仅在于两者的分类目标不同；<br>
+                      具体来说，FastText 的分类目标是文档的标签，CBOW 则是中心词的标签</p>
                     <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807094759.png" height=""></div>
                   </li>
                   <li>
@@ -900,19 +899,19 @@
             <nav id="article-nav">
 
               <a href="/articles/81b224e1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          中断
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  中断
+
+                </div>
+              </a>
 
 
               <a href="/articles/41311c08/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">静态链接</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">静态链接</div>
+              </a>
 
             </nav>
 
@@ -1011,7 +1010,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -1038,7 +1038,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -1091,55 +1091,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

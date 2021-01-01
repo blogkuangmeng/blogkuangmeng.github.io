@@ -1647,16 +1647,14 @@
                       p.push(D);
                       y = true
                     }
-                  }
-              if (I !== w) {
+                  } if (I !== w) {
                 l || (v = p);
                 g = g.replace(n.match[H], "");
                 if (!y) return [];
                 break
               }
             }
-          }
-        if (g === q)
+          } if (g === q)
           if (y == null) k.error(g);
           else break;
         q = g
@@ -1700,8 +1698,7 @@
                 for (;
                   (p = p.previousSibling) && p.nodeType !== 1;);
                 g[m] = l || p && p.nodeName.toLowerCase() === h ? p || false : p === h
-              }
-            l && k.filter(h, g, true)
+              } l && k.filter(h, g, true)
           },
           ">": function(g, h) {
             var l = typeof h === "string";
@@ -2410,8 +2407,7 @@
             c.cleanData([f])
           }
           f.parentNode && f.parentNode.removeChild(f)
-        }
-      return this
+        } return this
     },
     empty: function() {
       for (var a = 0, b;
@@ -2575,8 +2571,7 @@
           else {
             e[j].nodeType === 1 && e.splice.apply(e, [j + 1, 0].concat(c.makeArray(e[j].getElementsByTagName("script"))));
             d.appendChild(e[j])
-          }
-      return e
+          } return e
     },
     cleanData: function(a) {
       for (var b, d, f = c.cache, e = c.event.special, j = c.support.deleteExpando, i = 0, o;

@@ -1337,16 +1337,16 @@ function UGLightbox() {
 
     switch (g_options.gallery_mousewheel_role) {
       default:
-        case "zoom":
+      case "zoom":
         var slideType = g_objSlider.getSlideType();
-      if (slideType != "image")
-        event.preventDefault();
-      break;
-      case "none":
+        if (slideType != "image")
           event.preventDefault();
         break;
+      case "none":
+        event.preventDefault();
+        break;
       case "advance":
-          g_gallery.onGalleryMouseWheel(event, delta, deltaX, deltaY);
+        g_gallery.onGalleryMouseWheel(event, delta, deltaX, deltaY);
         break;
     }
 

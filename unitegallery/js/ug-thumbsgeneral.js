@@ -921,17 +921,17 @@ function UGThumbsGeneral() {
 
     switch (mode) {
       default:
-        case t.type.GET_THUMBS_ALL:
+      case t.type.GET_THUMBS_ALL:
         var objThumbs = g_objParent.children(thumbClass)
-      break;
+        break;
       case t.type.GET_THUMBS_NO_RATIO:
-          var objThumbs = g_objParent.children(thumbClass).not(classRatio);
+        var objThumbs = g_objParent.children(thumbClass).not(classRatio);
         break;
       case t.type.GET_THUMBS_RATIO:
-          var objThumbs = g_objParent.children(thumbClass + classRatio);
+        var objThumbs = g_objParent.children(thumbClass + classRatio);
         break;
       case t.type.GET_THUMBS_NEW:
-          var objThumbs = g_objParent.children("." + g_temp.classNewThumb);
+        var objThumbs = g_objParent.children("." + g_temp.classNewThumb);
         break;
     }
 

@@ -85,13 +85,13 @@ function UGTheme_tiles() {
 
     switch (g_options.theme_appearance_order) {
       default:
-        case "normal":
+      case "normal":
         break;
       case "shuffle":
-          g_gallery.shuffleItems();
+        g_gallery.shuffleItems();
         break;
       case "keep":
-          g_options.tiles_keep_order = true;
+        g_options.tiles_keep_order = true;
         break;
     }
 

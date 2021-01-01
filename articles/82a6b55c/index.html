@@ -170,16 +170,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -274,16 +274,16 @@
 
               <div class="article-meta">
                 <a href="/articles/82a6b55c/" class="article-date">
-	  <time datetime="2018-03-18T11:03:48.000Z" itemprop="datePublished">2018-03-18</time>
-	</a>
+                  <time datetime="2018-03-18T11:03:48.000Z" itemprop="datePublished">2018-03-18</time>
+                </a>
                 <a class="article-category-link" href="/categories/Data-Mining/">Data Mining</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数1,515</span>
-	<span class="post-count"> | 预计时间6分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数1,515</span>
+                  <span class="post-count"> | 预计时间6分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
@@ -324,7 +324,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HITSIterator</span>:</span></span><br><span class="line">    __doc__ = <span class="string">'''计算一张图中的hub,authority值'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dg)</span>:</span></span><br><span class="line">        self.max_iterations = <span class="number">100</span>  <span class="comment"># 最大迭代次数</span></span><br><span class="line">        self.min_delta = <span class="number">0.0001</span>  <span class="comment"># 确定迭代是否结束的参数</span></span><br><span class="line">        self.graph = dg</span><br><span class="line"></span><br><span class="line">        self.hub = &#123;&#125;</span><br><span class="line">        self.authority = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">            self.hub[node] = <span class="number">1</span></span><br><span class="line">            self.authority[node] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hits</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        计算每个页面的hub,authority值</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.graph:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        flag = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.max_iterations):</span><br><span class="line">            change = <span class="number">0.0</span>  <span class="comment"># 记录每轮的变化值</span></span><br><span class="line">            norm = <span class="number">0</span>  <span class="comment"># 标准化系数</span></span><br><span class="line">            tmp = &#123;&#125;</span><br><span class="line">            <span class="comment"># 计算每个页面的authority值</span></span><br><span class="line">            tmp = self.authority.copy()</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.authority[node] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> incident_page <span class="keyword">in</span> self.graph.incidents(node):  <span class="comment"># 遍历所有“入射”的页面</span></span><br><span class="line">                    self.authority[node] += self.hub[incident_page]</span><br><span class="line">                norm += pow(self.authority[node], <span class="number">2</span>)</span><br><span class="line">            <span class="comment"># 标准化</span></span><br><span class="line">            norm = sqrt(norm)</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.authority[node] /= norm</span><br><span class="line">                change += abs(tmp[node] - self.authority[node])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 计算每个页面的hub值</span></span><br><span class="line">            norm = <span class="number">0</span></span><br><span class="line">            tmp = self.hub.copy()</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.hub[node] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor_page <span class="keyword">in</span> self.graph.neighbors(node):  <span class="comment"># 遍历所有“出射”的页面</span></span><br><span class="line">                    self.hub[node] += self.authority[neighbor_page]</span><br><span class="line">                norm += pow(self.hub[node], <span class="number">2</span>)</span><br><span class="line">            <span class="comment"># 标准化</span></span><br><span class="line">            norm = sqrt(norm)</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.hub[node] /= norm</span><br><span class="line">                change += abs(tmp[node] - self.hub[node])</span><br><span class="line"></span><br><span class="line">            print(<span class="string">"This is NO.%s iteration"</span> % (i + <span class="number">1</span>))</span><br><span class="line">            print(<span class="string">"authority"</span>, self.authority)</span><br><span class="line">            print(<span class="string">"hub"</span>, self.hub)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> change &lt; self.min_delta:</span><br><span class="line">                flag = <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            print(<span class="string">"finished in %s iterations!"</span> % (i + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"finished out of 100 iterations!"</span>)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"The best authority page: "</span>, max(self.authority.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>]))</span><br><span class="line">        print(<span class="string">"The best hub page: "</span>, max(self.hub.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    dg = digraph()</span><br><span class="line"></span><br><span class="line">    dg.add_nodes([<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>])</span><br><span class="line"></span><br><span class="line">    dg.add_edge((<span class="string">"A"</span>, <span class="string">"C"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"A"</span>, <span class="string">"D"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"B"</span>, <span class="string">"D"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"C"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"D"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"B"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"E"</span>, <span class="string">"A"</span>))</span><br><span class="line"></span><br><span class="line">    hits = HITSIterator(dg)</span><br><span class="line">    hits.hits()</span><br></pre>
+                        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HITSIterator</span>:</span></span><br><span class="line">    __doc__ = <span class="string">'''计算一张图中的hub,authority值'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dg)</span>:</span></span><br><span class="line">        self.max_iterations = <span class="number">100</span>  <span class="comment"># 最大迭代次数</span></span><br><span class="line">        self.min_delta = <span class="number">0.0001</span>  <span class="comment"># 确定迭代是否结束的参数</span></span><br><span class="line">        self.graph = dg</span><br><span class="line"></span><br><span class="line">        self.hub = &#123;&#125;</span><br><span class="line">        self.authority = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">            self.hub[node] = <span class="number">1</span></span><br><span class="line">            self.authority[node] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hits</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        计算每个页面的hub,authority值</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.graph:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.max_iterations):</span><br><span class="line">            change = <span class="number">0.0</span>  <span class="comment"># 记录每轮的变化值</span></span><br><span class="line">            norm = <span class="number">0</span>  <span class="comment"># 标准化系数</span></span><br><span class="line">            tmp = &#123;&#125;</span><br><span class="line">            <span class="comment"># 计算每个页面的authority值</span></span><br><span class="line">            tmp = self.authority.copy()</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.authority[node] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> incident_page <span class="keyword">in</span> self.graph.incidents(node):  <span class="comment"># 遍历所有“入射”的页面</span></span><br><span class="line">                    self.authority[node] += self.hub[incident_page]</span><br><span class="line">                norm += pow(self.authority[node], <span class="number">2</span>)</span><br><span class="line">            <span class="comment"># 标准化</span></span><br><span class="line">            norm = sqrt(norm)</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.authority[node] /= norm</span><br><span class="line">                change += abs(tmp[node] - self.authority[node])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 计算每个页面的hub值</span></span><br><span class="line">            norm = <span class="number">0</span></span><br><span class="line">            tmp = self.hub.copy()</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.hub[node] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> neighbor_page <span class="keyword">in</span> self.graph.neighbors(node):  <span class="comment"># 遍历所有“出射”的页面</span></span><br><span class="line">                    self.hub[node] += self.authority[neighbor_page]</span><br><span class="line">                norm += pow(self.hub[node], <span class="number">2</span>)</span><br><span class="line">            <span class="comment"># 标准化</span></span><br><span class="line">            norm = sqrt(norm)</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> self.graph.nodes():</span><br><span class="line">                self.hub[node] /= norm</span><br><span class="line">                change += abs(tmp[node] - self.hub[node])</span><br><span class="line"></span><br><span class="line">            print(<span class="string">"This is NO.%s iteration"</span> % (i + <span class="number">1</span>))</span><br><span class="line">            print(<span class="string">"authority"</span>, self.authority)</span><br><span class="line">            print(<span class="string">"hub"</span>, self.hub)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> change &lt; self.min_delta:</span><br><span class="line">                flag = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            print(<span class="string">"finished in %s iterations!"</span> % (i + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"finished out of 100 iterations!"</span>)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"The best authority page: "</span>, max(self.authority.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>]))</span><br><span class="line">        print(<span class="string">"The best hub page: "</span>, max(self.hub.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    dg = digraph()</span><br><span class="line"></span><br><span class="line">    dg.add_nodes([<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>])</span><br><span class="line"></span><br><span class="line">    dg.add_edge((<span class="string">"A"</span>, <span class="string">"C"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"A"</span>, <span class="string">"D"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"B"</span>, <span class="string">"D"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"C"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"D"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"B"</span>, <span class="string">"E"</span>))</span><br><span class="line">    dg.add_edge((<span class="string">"E"</span>, <span class="string">"A"</span>))</span><br><span class="line"></span><br><span class="line">    hits = HITSIterator(dg)</span><br><span class="line">    hits.hits()</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -412,19 +412,19 @@
             <nav id="article-nav">
 
               <a href="/articles/8193f764/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          神经网络、梯度下降和反向传播
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  神经网络、梯度下降和反向传播
+
+                </div>
+              </a>
 
 
               <a href="/articles/6f93935a/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">商品推荐：协同过滤</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">商品推荐：协同过滤</div>
+              </a>
 
             </nav>
 
@@ -464,7 +464,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -491,7 +492,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -544,55 +545,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

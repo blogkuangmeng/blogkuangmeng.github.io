@@ -159,16 +159,16 @@
           <div class="navbar-inner">
             <div class="container">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
 
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
-                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
               </a>
 
 
@@ -263,27 +263,24 @@
 
               <div class="article-meta">
                 <a href="/articles/e38d3f1c/" class="article-date">
-	  <time datetime="2017-12-22T12:15:00.000Z" itemprop="datePublished">2017-12-22</time>
-	</a>
+                  <time datetime="2017-12-22T12:15:00.000Z" itemprop="datePublished">2017-12-22</time>
+                </a>
                 <a class="article-category-link" href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
                 <a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	<span class="post-count"> | 字数3,442</span>
-	<span class="post-count"> | 预计时间14分钟</span>
-	</a>
+                  <span id="busuanzi_container_page_pv">
+                    PV:<span id="busuanzi_value_page_pv"></span>
+                  </span>
+                  <span class="post-count"> | 字数3,442</span>
+                  <span class="post-count"> | 预计时间14分钟</span>
+                </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
                 <h2 id="国内研究">国内研究</h2>
                 <p>国内研究中文分词的科研单位主要有：中科院、清华、北大、北京语言学院、东北大学、MSRA、IBM研究院以及<strong>哈工大</strong>等。</p>
                 <p>国内主要的成熟的分词系统：ICTCLAS（汉语词法分析系统）、海量信息、盘古分词、结巴分词、BosonNLP以及**哈工大语言云（LTP-Cloud）**等。</p>
-                <p>国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。国内分词算法上的进展主要有：2005年，哈工大[13]在分词阶段以基于词的n-gram方法为核心。先将词按照词典初步切分，并从训练语料统计得到3-gram信息，动态规划计算哪条切分路径最优。但在命名实体识别、新词识别、消除分词歧义部分使用ME模型。2007年，赵海等人[19]研究了基于子串标注的分词算法，在Bakeoff-2005测试集上准确度较高。2009年，[3]利用一种基于N元语法的汉语自动分词系统,
-                  将分词与标注结合起来, 用词性标注来参与评价分词结果。[34]提出了一种字词联合解码的分词方法，算法中使用了字、词信息，充分发挥由字构词识别未登录词的能力。2010年，[35]提出基于词边界分类的分词方法，该方法对字符之间的边界进行分类，判断是否为词的边界，从而达到分词目的。[36]将基于字的生成模型与基于字的判别模型进行联合。2014年，[29]对[28]的模型做了重要改进，引入了标签向量来更精细地刻画标签之间的转移关系，其改进程度类似于引入Markov特征到最大熵模型之中。2015年，为了更完整精细地对分词上下文建模，[30]提出了一种带有自适应门结构的递归神经网络(GRNN)抽取n-gram特征，其中的两种定制的门结构（重置门、更新门）被用来控制n-gram信息的融合和抽取。2016年，[31]将GRNN和LSTM联合起来使用。该模型中，先用双向LSTM提取上下文敏感的局部信息，然后在滑动窗口内将这些局部信息用带门结构的递归神经网络融合起来，最后用作标签分类的依据。[32]提出了一种基于转移的模型用于分词，并将传统的特征模版和神经网络自动提取的特征结合起来，在神经网络自动提取的特征和传统的离散特征的融合方法做了尝试。2017年，[33]通过简化网络结构，混合字词输入以及使用早期更新（early
-                  update）等收敛性更好的训练策略，设计了一个基于贪心搜索(greedy search)的快速分词系统。该算法与之前的深度学习算法相比不仅在速度上有了巨大提升，分词精度也得到了进一定提高。</p>
-                <p>在领域自适应方面相关研究比较少，2008年，[45]利用并发展针对单个汉字的构词能力和构词模式公式, 计算词的构词能力和词的构词模式, 并以此作为新词发现的规则, 对科技领域做了新词发现和新技术发现的实验。2012年，[41]通过将外部词典信息融入统计分词模型 (使用CRF 统计模型)来实现领域自适应性。在确定一个领域并给出这个领域的文献数据集合的前提下，[44]主要从这两个步骤进行新词发现：首先对特定领域的文献集合进行分词处理，在进行分词处理方面使用了基于统计的N-Gram方法，较为有效地找出了词典中所不存在地新词汇；第二个步骤为新的专业词汇的抽取，这是一个根据已有专业词汇来发现未知专业词汇的过程，目的从第一步中所产生的新的词汇中抽取出新的属于目标领域的专业词汇，在这个步骤中，使用了Apriori方法。2013年，[40]实现了基于生语料的领域自适应分词模型和双语引导的汉语分词，并提出融合多种分词结果的方法，通过构建格状(Lattice)结构并使用动态规划算法得到较佳汉语分词结果。2015年，[39]提出Active
-                  Learning与n-gram统计特征相结合，通过对目标领域文本与已有标注语料差异统计分析，选择含有最多未标记过得语言现象的小规模语料优先进行人工标注的方法，此法验证在科技文献上有所提高。[43]提出使用卡方统计 量以及边界熵提升未登录词的处理能力，并结合自学习和协同学习策略进一步改善字标注分词方法在领域适应性方面的性能。2016年，[42]提出一种条件随机场与领域词典相结合的方法提高领域自适应性，并根据构词规则提出了固定词串消解，动词消解，词概率消解三种方法消除歧义。</p>
+                <p>国内在中文分词算法的研究上进展颇丰，参与的科研机构也比较多，使用的方法也比较杂乱，从[1]—[19]可以看出。国内分词算法上的进展主要有：2005年，哈工大[13]在分词阶段以基于词的n-gram方法为核心。先将词按照词典初步切分，并从训练语料统计得到3-gram信息，动态规划计算哪条切分路径最优。但在命名实体识别、新词识别、消除分词歧义部分使用ME模型。2007年，赵海等人[19]研究了基于子串标注的分词算法，在Bakeoff-2005测试集上准确度较高。2009年，[3]利用一种基于N元语法的汉语自动分词系统, 将分词与标注结合起来, 用词性标注来参与评价分词结果。[34]提出了一种字词联合解码的分词方法，算法中使用了字、词信息，充分发挥由字构词识别未登录词的能力。2010年，[35]提出基于词边界分类的分词方法，该方法对字符之间的边界进行分类，判断是否为词的边界，从而达到分词目的。[36]将基于字的生成模型与基于字的判别模型进行联合。2014年，[29]对[28]的模型做了重要改进，引入了标签向量来更精细地刻画标签之间的转移关系，其改进程度类似于引入Markov特征到最大熵模型之中。2015年，为了更完整精细地对分词上下文建模，[30]提出了一种带有自适应门结构的递归神经网络(GRNN)抽取n-gram特征，其中的两种定制的门结构（重置门、更新门）被用来控制n-gram信息的融合和抽取。2016年，[31]将GRNN和LSTM联合起来使用。该模型中，先用双向LSTM提取上下文敏感的局部信息，然后在滑动窗口内将这些局部信息用带门结构的递归神经网络融合起来，最后用作标签分类的依据。[32]提出了一种基于转移的模型用于分词，并将传统的特征模版和神经网络自动提取的特征结合起来，在神经网络自动提取的特征和传统的离散特征的融合方法做了尝试。2017年，[33]通过简化网络结构，混合字词输入以及使用早期更新（early update）等收敛性更好的训练策略，设计了一个基于贪心搜索(greedy search)的快速分词系统。该算法与之前的深度学习算法相比不仅在速度上有了巨大提升，分词精度也得到了进一定提高。</p>
+                <p>在领域自适应方面相关研究比较少，2008年，[45]利用并发展针对单个汉字的构词能力和构词模式公式, 计算词的构词能力和词的构词模式, 并以此作为新词发现的规则, 对科技领域做了新词发现和新技术发现的实验。2012年，[41]通过将外部词典信息融入统计分词模型 (使用CRF 统计模型)来实现领域自适应性。在确定一个领域并给出这个领域的文献数据集合的前提下，[44]主要从这两个步骤进行新词发现：首先对特定领域的文献集合进行分词处理，在进行分词处理方面使用了基于统计的N-Gram方法，较为有效地找出了词典中所不存在地新词汇；第二个步骤为新的专业词汇的抽取，这是一个根据已有专业词汇来发现未知专业词汇的过程，目的从第一步中所产生的新的词汇中抽取出新的属于目标领域的专业词汇，在这个步骤中，使用了Apriori方法。2013年，[40]实现了基于生语料的领域自适应分词模型和双语引导的汉语分词，并提出融合多种分词结果的方法，通过构建格状(Lattice)结构并使用动态规划算法得到较佳汉语分词结果。2015年，[39]提出Active Learning与n-gram统计特征相结合，通过对目标领域文本与已有标注语料差异统计分析，选择含有最多未标记过得语言现象的小规模语料优先进行人工标注的方法，此法验证在科技文献上有所提高。[43]提出使用卡方统计 量以及边界熵提升未登录词的处理能力，并结合自学习和协同学习策略进一步改善字标注分词方法在领域适应性方面的性能。2016年，[42]提出一种条件随机场与领域词典相结合的方法提高领域自适应性，并根据构词规则提出了固定词串消解，动词消解，词概率消解三种方法消除歧义。</p>
                 <h2 id="国外研究">国外研究</h2>
                 <p>国外研究中文分词的主要科研机构有：斯坦福、SUTD、UC Berkeley、CMU、CityU等。</p>
                 <p>国外成熟的分词系统有：Core NLP（斯坦福 NLP Group）、Zpar（SUTD）、Basis Technology、Open NLP (Apache 基金会)等。</p>
@@ -313,17 +310,14 @@
                 <p>[20] Nianwen Xue. Chinese Word Segmentation as Character Tagging. Computational Linguistics and Chinese Language Processing, 8(1), 2003, pp. 29–48.</p>
                 <p>[21] Hwee Tou Ng and Jin Kiat Low. Chinese part-of-speech tagging: One-at-a-time or all-at-once? word-based or character-based? In Conference on Empirical Methods in Natural Language Processing, 2004, pp. 277–284.</p>
                 <p>[22] Jin Kiat Low, Hwee Tou Ng, and Wenyuan Guo. A maximum entropy approach to Chinese word segmentation. In Proceedings of the SIGHAN Workshop on Chinese Language Processing, 2005, pp. 448–455.</p>
-                <p>[23] Huihsin Tseng, Pichuan Chang, Galen Andrew, Daniel Jurafsky, and Christopher Manning. A conditional random field word segmenter for SIGHAN bakeoff 2005. In Proceedings of the SIGHAN workshop on Chinese language Processing, vol. 171,
-                  2005.</p>
+                <p>[23] Huihsin Tseng, Pichuan Chang, Galen Andrew, Daniel Jurafsky, and Christopher Manning. A conditional random field word segmenter for SIGHAN bakeoff 2005. In Proceedings of the SIGHAN workshop on Chinese language Processing, vol. 171, 2005.</p>
                 <p>[24] Fuchun Peng, Fangfang Feng, and Andrew McCallum. Chinese segmentation and new word detection using conditional random fields. In Proceedings of the international conference on Computational Linguistics, 2004, pp. 562–569.</p>
                 <p>[25] Galen Andrew. A hybrid Markov/semi-Markov conditional random field for sequence segmentation. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2006, pp. 465– 472.</p>
-                <p>[26] Ruiqiang Zhang, Genichiro Kikui, and Eiichiro Sumita. Subword-based tagging for confidence-dependent Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the international
-                  conference on Computational Linguistics, 2006, pp. 961–968.</p>
+                <p>[26] Ruiqiang Zhang, Genichiro Kikui, and Eiichiro Sumita. Subword-based tagging for confidence-dependent Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the international conference on Computational Linguistics, 2006, pp. 961–968.</p>
                 <p>[27] Hai Zhao and Chunyu Kit. Integrating Unsupervised and Supervised Word Segmentation: the Role of Goodness Measures. Information Sciences, 181(1), 2011, pp. 163–183.</p>
                 <p>[28] Xiaoqing Zheng, Hanyang Chen, and Tianyu Xu. Deep learning for Chinese word segmentation and POS tagging. In Proceedings of the Conference on Empirical Methods in Natural Language Processing, 2013, pp.647–657.</p>
                 <p>[29] Wenzhe Pei, Tao Ge, and Baobao Chang. Max-margin tensor neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2014, pp. 293–303.</p>
-                <p>[30] Xinchi Chen, Xipeng Qiu, Chenxi Zhu, and Xuanjing Huang. Gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the 7th International
-                  Joint Conference on Natural Language Processing, 2015a, pp. 1744–1753.</p>
+                <p>[30] Xinchi Chen, Xipeng Qiu, Chenxi Zhu, and Xuanjing Huang. Gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing, 2015a, pp. 1744–1753.</p>
                 <p>[31] Jingjing Xu and Xu Sun. Dependency-based gated recursive neural network for Chinese word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), 2016, pp. 567–572.</p>
                 <p>[32] Meishan Zhang, Yue Zhang, and Guohong Fu. Transition-based neural word segmentation. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2016, pp. 421–431.</p>
                 <p>[33] Deng Cai, Hai Zhao, Zhisong Zhang, Yuan Xin, Yongjian Wu, and Feiyue Huang. Fast and accurate neural word segmentation for Chinese. In Proceedings of the Annual Meeting of the Association for Computational Linguistics, 2017.</p>
@@ -412,19 +406,19 @@
             <nav id="article-nav">
 
               <a href="/articles/d911b12b/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Zsh配置与使用
-        
-      </div>
-    </a>
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  Zsh配置与使用
+
+                </div>
+              </a>
 
 
               <a href="/articles/55e262ef/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Software Verification Approaches</div>
-    </a>
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Software Verification Approaches</div>
+              </a>
 
             </nav>
 
@@ -458,7 +452,8 @@
 
             <p class="busuanzi_uv">
 
-              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+              UV : <span id="busuanzi_value_site_uv"></span> |
+              PV : <span id="busuanzi_value_site_pv"></span>
 
             </p>
 
@@ -485,7 +480,7 @@
                 })
             </script>
 
-            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
             <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
             <script type="text/javascript">
@@ -538,55 +533,69 @@
     <!-- mathjax config similar to math.stackexchange -->
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
-    </script>
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
-    </script>
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
 
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
-      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
 
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-        <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-        <script src="/js/dialog.js"></script>
+    <script src="/js/scripts.js"></script>
 
 
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-          ga('create', 'UA-113947925-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
 
 
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-        </script>
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

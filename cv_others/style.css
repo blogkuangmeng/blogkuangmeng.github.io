@@ -8,12 +8,10 @@ URL:http://www.chris-creed.com
 /* Colors:Blue - #0b8bbb // Orange - #e86e14 */
 
 @import "reset.css";
-/* -------------------- */
 
+/* -------------------- */
 /* -- General Styles -- */
-
 /* -------------------- */
-
 #wraps {
   font-family: Helvetica, "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   padding: 100px 0 0 0;
@@ -65,7 +63,6 @@ URL:http://www.chris-creed.com
 	line-height:22px;
 	margin:0 0 15px 0;
 } */
-
 .ac {
   text-decoration: none;
   color: #0b8bbb;
@@ -94,12 +91,10 @@ URL:http://www.chris-creed.com
 /*li {
 color:#555;
 }*/
-
 /*ul li {
 list-style-type: square;
 margin: 0.8em 1em 0.8em 0.5em;
 }*/
-
 .lines {
   clear: both;
   border-bottom: 3px #eee solid;
@@ -108,11 +103,8 @@ margin: 0.8em 1em 0.8em 0.5em;
 }
 
 /* ------------ */
-
 /* -- headers -- */
-
 /* ------------ */
-
 #headers {
   float: left;
   margin: 0 0 70px 0;
@@ -186,11 +178,8 @@ margin: 0.8em 1em 0.8em 0.5em;
 }
 
 /* ------------- */
-
 /* -- contents -- */
-
 /* ------------- */
-
 #contents .cv-section {
   margin: 0 7.5px 15px 7.5px;
 }
@@ -247,6 +236,7 @@ margin: 0.8em 1em 0.8em 0.5em;
   #wraps {
     display: none;
   }
+
   #warning {
     display: block;
     padding-top: 100px;

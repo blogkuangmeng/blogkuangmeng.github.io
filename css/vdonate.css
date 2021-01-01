@@ -139,6 +139,7 @@
   0% {
     transform: scale(0)
   }
+
   100% {
     transform: scale(1)
   }
@@ -149,6 +150,7 @@
     padding: 20px;
     width: 100%
   }
+
   #donate-modal-container .donate-modal-background .donate-image {
     width: 100%
   }

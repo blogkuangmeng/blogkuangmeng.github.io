@@ -1878,8 +1878,7 @@
                   a < r.length && (s = 1 == (r[a] >>> o & 1));
                   var l = u(n, f - c);
                   l && (s = !s), h[n][f - c] = s, o -= 1, -1 == o && (a += 1, o = 7)
-                }
-              if (n += e, 0 > n || n >= d) {
+                } if (n += e, 0 > n || n >= d) {
                 n -= e, e = -e;
                 break
               }
@@ -2615,8 +2614,7 @@ function(r) {
             }),
             i = encodeURIComponent(void 0 === t[o] ? t[n] : t[o]);
           e = e.replace(new RegExp("{{" + n.toUpperCase() + "}}", "g"), i)
-        }
-      return e
+        } return e
     }
 
     function a() {
@@ -2765,7 +2763,8 @@ function(r) {
           clearTimeout(B);
           l == ~~l ? (k = a.allowPageScroll, C != l && b.trigger("slimscroll", 0 == ~~l ? "top" : "bottom")) : k = !1;
           C = l;
-          u >= b.outerHeight() ? k = !0 : (c.stop(!0, !0).fadeIn("fast"), a.railVisible && m.stop(!0, !0).fadeIn("fast"))
+          u >= b.outerHeight() ? k = !0 : (c.stop(!0,
+            !0).fadeIn("fast"), a.railVisible && m.stop(!0, !0).fadeIn("fast"))
         }
 
         function p() {

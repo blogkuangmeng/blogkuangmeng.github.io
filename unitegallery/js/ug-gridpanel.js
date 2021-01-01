@@ -477,14 +477,14 @@ function UGGridPanel() {
 
     switch (g_options.gridpanel_grid_align) {
       default:
-        case "top":
+      case "top":
         gridY = g_options.gridpanel_padding_border_top + objArrowSize.height + g_options.gridpanel_arrows_padding_vert;
-      break;
+        break;
       case "middle":
-          gridY = "middle";
+        gridY = "middle";
         break;
       case "bottom":
-          gridY = g_temp.panelHeight - objGridSize.height - objArrowSize.height - g_options.gridpanel_padding_border_bottom - g_options.gridpanel_arrows_padding_vert;
+        gridY = g_temp.panelHeight - objGridSize.height - objArrowSize.height - g_options.gridpanel_padding_border_bottom - g_options.gridpanel_arrows_padding_vert;
         break;
     }
 
@@ -499,20 +499,20 @@ function UGGridPanel() {
     //place arrows
     switch (g_options.gridpanel_arrows_align_vert) {
       default:
-        case "center":
-        case "middle":
+      case "center":
+      case "middle":
         prevArrowY = (objGridSize.top - objArrowSize.height) / 2;
-      nextArrowY = objGridSize.bottom + (g_temp.panelHeight - objGridSize.bottom - objArrowSize.height) / 2;
-      nextArrowPaddingY = 0;
-      break;
+        nextArrowY = objGridSize.bottom + (g_temp.panelHeight - objGridSize.bottom - objArrowSize.height) / 2;
+        nextArrowPaddingY = 0;
+        break;
       case "grid":
-          prevArrowY = objGridSize.top - objArrowSize.height - g_options.gridpanel_arrows_padding_vert_vert
+        prevArrowY = objGridSize.top - objArrowSize.height - g_options.gridpanel_arrows_padding_vert_vert
         nextArrowY = objGridSize.bottom + g_options.gridpanel_arrows_padding_vert;
         nextArrowPaddingY = 0;
         break;
       case "border":
-          case "borders":
-          prevArrowY = g_options.gridpanel_padding_border_top;
+      case "borders":
+        prevArrowY = g_options.gridpanel_padding_border_top;
         nextArrowY = "bottom";
         nextArrowPaddingY = g_options.gridpanel_padding_border_bottom;
         break;
@@ -552,12 +552,13 @@ function UGGridPanel() {
       case "middle":
 
         switch (g_options.gridpanel_arrows_align_vert) {
-          default: var elementsHeight = objGridSize.height + g_options.gridpanel_arrows_padding_vert + objArrowSize.height;
-          gridY = (g_temp.panelHeight - elementsHeight) / 2;
-          break;
+          default:
+            var elementsHeight = objGridSize.height + g_options.gridpanel_arrows_padding_vert + objArrowSize.height;
+            gridY = (g_temp.panelHeight - elementsHeight) / 2;
+            break;
           case "border":
-              case "borders":
-              var remainHeight = g_temp.panelHeight - objArrowSize.height - g_options.gridpanel_padding_border_bottom;
+          case "borders":
+            var remainHeight = g_temp.panelHeight - objArrowSize.height - g_options.gridpanel_padding_border_bottom;
             gridY = (remainHeight - objGridSize.height) / 2;
             break;
         }
@@ -578,18 +579,18 @@ function UGGridPanel() {
 
     switch (g_options.gridpanel_arrows_align_vert) {
       default:
-        case "center":
-        case "middle":
+      case "center":
+      case "middle":
         arrowsY = objGridSize.bottom + (g_temp.panelHeight - objGridSize.bottom - objArrowSize.height) / 2;
-      arrowsPaddingY = 0;
-      break;
+        arrowsPaddingY = 0;
+        break;
       case "grid":
-          arrowsY = objGridSize.bottom + g_options.gridpanel_arrows_padding_vert;
+        arrowsY = objGridSize.bottom + g_options.gridpanel_arrows_padding_vert;
         arrowsPaddingY = 0;
         break;
       case "border":
-          case "borders":
-          arrowsY = "bottom";
+      case "borders":
+        arrowsY = "bottom";
         arrowsPaddingY = g_options.gridpanel_padding_border_bottom;
         break;
     }
@@ -631,15 +632,15 @@ function UGGridPanel() {
 
     switch (g_options.gridpanel_grid_align) {
       default:
-        case "left":
+      case "left":
         gridX = g_options.gridpanel_padding_border_left + g_options.gridpanel_arrows_padding_hor + objArrowSize.width;
-      break;
+        break;
       case "middle":
-          case "center":
-          gridX = "center";
+      case "center":
+        gridX = "center";
         break;
       case "right":
-          gridX = g_temp.panelWidth - objGridSize.width - objArrowSize.width - g_options.gridpanel_padding_border_right - g_options.gridpanel_arrows_padding_hor;
+        gridX = g_temp.panelWidth - objGridSize.width - objArrowSize.width - g_options.gridpanel_padding_border_right - g_options.gridpanel_arrows_padding_hor;
         break;
     }
 
@@ -651,31 +652,31 @@ function UGGridPanel() {
     //place arrows, count Y
     switch (g_options.gridpanel_arrows_align_vert) {
       default:
-        case "center":
-        case "middle":
+      case "center":
+      case "middle":
         arrowsY = (objGridSize.height - objArrowSize.height) / 2 + objGridSize.top;
-      break;
+        break;
       case "top":
-          arrowsY = g_options.gridpanel_padding_border_top + g_options.gridpanel_arrows_padding_vert;
+        arrowsY = g_options.gridpanel_padding_border_top + g_options.gridpanel_arrows_padding_vert;
         break;
       case "bottom":
-          arrowsY = g_temp.panelHeight - g_options.gridpanel_padding_border_bottom - g_options.gridpanel_arrows_padding_vert - objArrowSize.height;
+        arrowsY = g_temp.panelHeight - g_options.gridpanel_padding_border_bottom - g_options.gridpanel_arrows_padding_vert - objArrowSize.height;
         break;
     }
 
     //get arrows X
     switch (g_options.gridpanel_arrows_align_hor) {
       default:
-        case "borders":
+      case "borders":
         prevArrowX = g_options.gridpanel_padding_border_left;
-      nextArrowX = g_temp.panelWidth - g_options.gridpanel_padding_border_right - objArrowSize.width;
-      break;
+        nextArrowX = g_temp.panelWidth - g_options.gridpanel_padding_border_right - objArrowSize.width;
+        break;
       case "grid":
-          prevArrowX = objGridSize.left - g_options.gridpanel_arrows_padding_hor - objArrowSize.width;
+        prevArrowX = objGridSize.left - g_options.gridpanel_arrows_padding_hor - objArrowSize.width;
         nextArrowX = objGridSize.right + g_options.gridpanel_arrows_padding_hor;
         break;
       case "center":
-          prevArrowX = (objGridSize.left - objArrowSize.width) / 2;
+        prevArrowX = (objGridSize.left - objArrowSize.width) / 2;
         nextArrowX = objGridSize.right + (g_temp.panelWidth - objGridSize.right - objArrowSize.width) / 2;
         break;
     }
@@ -695,15 +696,15 @@ function UGGridPanel() {
 
     switch (g_options.gridpanel_grid_align) {
       default:
-        case "left":
+      case "left":
         gridX = g_options.gridpanel_padding_border_left;
-      break;
+        break;
       case "middle":
-          case "center":
-          gridX = "center";
+      case "center":
+        gridX = "center";
         break;
       case "right":
-          gridX = g_temp.panelWidth - objGridSize.width - g_options.gridpanel_padding_border_right;
+        gridX = g_temp.panelWidth - objGridSize.width - g_options.gridpanel_padding_border_right;
         break;
     }
 

@@ -890,17 +890,17 @@ function UniteGalleryMain() {
 
     switch (g_options.gallery_images_preload_type) {
       default:
-        case "minimal":
+      case "minimal":
         break;
       case "all":
 
-          jQuery(g_arrItems).each(function() {
-            preloadItemImage(this);
-          });
+        jQuery(g_arrItems).each(function() {
+          preloadItemImage(this);
+        });
 
         break;
       case "visible":
-          jQuery(g_arrItems).each(function() {
+        jQuery(g_arrItems).each(function() {
           var objItem = this;
           var isVisible = g_objThumbs.isItemThumbVisible(objItem);
 
@@ -926,13 +926,13 @@ function UniteGalleryMain() {
 
     switch (g_options.gallery_images_preload_type) {
       default:
-        case "minimal":
+      case "minimal":
         break;
       case "all":
-          preloadItemImage(objItem);
+        preloadItemImage(objItem);
         break;
       case "visible":
-          var isVisible = g_objThumbs.isItemThumbVisible(objItem);
+        var isVisible = g_objThumbs.isItemThumbVisible(objItem);
         if (isVisible == true)
           preloadItemImage(objItem);
         break;

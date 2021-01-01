@@ -675,8 +675,9 @@ function UGVimeoAPI() {
       return (false);
 
     switch (command) {
-      default: g_player.api(command);
-      break;
+      default:
+        g_player.api(command);
+        break;
     }
 
   }
