@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="神经网络的结构 示例：一个用于数字手写识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
+  <meta name="description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
   <meta name="keywords" content="神经网络,梯度下降,反向传播">
   <meta property="og:type" content="article">
   <meta property="og:title" content="神经网络、梯度下降和反向传播">
   <meta property="og:url" content="http://home.meng.uno/articles/8193f764/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="神经网络的结构 示例：一个用于数字手写识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
+  <meta property="og:description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211429.png">
@@ -105,10 +105,10 @@
   <meta property="og:image" content="http://www.meng.uno/images/assets/%E5%85%AC%E5%BC%8F_20180705162633.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180705162841.png">
   <meta property="og:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180705164018.png">
-  <meta property="og:updated_time" content="2021-01-01T16:08:09.000Z">
+  <meta property="og:updated_time" content="2021-01-01T18:38:28.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="神经网络、梯度下降和反向传播">
-  <meta name="twitter:description" content="神经网络的结构 示例：一个用于数字手写识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
+  <meta name="twitter:description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   *  简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
   <meta name="twitter:image" content="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -358,7 +358,7 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <h1>神经网络的结构</h1>
-                <p><strong>示例：一个用于数字手写识别的神经网络</strong></p>
+                <p><strong>示例：一个用于手写数字识别的神经网络</strong></p>
                 <p><img src="http://www.meng.uno/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png" alt=""></p>
                 <blockquote>
                   <p>这个示例相当于深度学习领域中的 “Hello World”.</p>
