@@ -1,0 +1,256 @@
+/*
+Template Name:Azuka HTML Template
+Description:A CV/Resume HTML Template
+Author:Chris Creed
+URL:http://www.chris-creed.com
+*/
+
+/* Colors:Blue - #0b8bbb // Orange - #e86e14 */
+
+@import "reset.css";
+/* -------------------- */
+
+/* -- General Styles -- */
+
+/* -------------------- */
+
+#wraps {
+  font-family: Helvetica, "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  padding: 100px 0 0 0;
+  margin: 0 auto;
+  /*max-width: 800px;*/
+}
+
+#warning {
+  display: none;
+}
+
+#nameme {
+  font-size: 30px;
+  margin: 0 0 30px 0;
+  letter-spacing: -1px;
+}
+
+.tr1c td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.lefttdc {
+  vertical-align: middle;
+  text-align: right;
+}
+
+.midtdc {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.righttdc {
+  vertical-align: middle;
+  text-align: left;
+}
+
+/*
+.h3c{
+	font-size:24px;
+	margin:30px 0 2px 0;
+}
+.h4c{
+	font-size:20px;
+	margin:3px 0 1px 0;
+}
+.pc{
+	font-size:18px;
+	line-height:22px;
+	margin:0 0 15px 0;
+} */
+
+.ac {
+  text-decoration: none;
+  color: #0b8bbb;
+}
+
+.ac:hover {
+  color: #13227a;
+}
+
+.ulc {
+  list-style-type: square;
+  padding: 0;
+  margin: 1em;
+  margin-left: 40px;
+}
+
+.lic {
+  color: #e86e14;
+}
+
+.lic span {
+  color: #555;
+  /* text color */
+}
+
+/*li {
+color:#555;
+}*/
+
+/*ul li {
+list-style-type: square;
+margin: 0.8em 1em 0.8em 0.5em;
+}*/
+
+.lines {
+  clear: both;
+  border-bottom: 3px #eee solid;
+  /*border-bottom:2px #e86e14 solid;*/
+  /* border-bottom:2px #eee solid;*/
+}
+
+/* ------------ */
+
+/* -- headers -- */
+
+/* ------------ */
+
+#headers {
+  float: left;
+  margin: 0 0 70px 0;
+}
+
+#headers #headers-contents {
+  float: left;
+  width: 680px;
+  height: 300px;
+}
+
+#headers #headers-contents h1 {
+  margin: 0 0 2px 0;
+  color: #444;
+}
+
+#headers #headers-contents h2 {
+  color: #0b8bbb;
+  /* font-size:28px; */
+}
+
+#headers #headers-contents p {
+  /* font-size:15px; */
+  margin: 0 0 0 1px;
+}
+
+#headers #contact-details {
+  float: left;
+  margin: 18px 0 0 0;
+}
+
+#headers #headers-contents .contact {
+  /* font-size:16px; */
+  color: #888;
+  margin: 0;
+}
+
+#headers #headers-contents .contact span {
+  color: #444;
+  width: 75px;
+  float: left;
+}
+
+#headers #headers-photos {
+  float: right;
+  margin-top: -300px;
+}
+
+#photos {
+  width: 250px;
+  height: 250px;
+  float: right;
+  right: 0;
+  cursor: pointer;
+  transition: all 0.6s !important;
+}
+
+#photos:hover {
+  transform: scale(1.4) !important;
+}
+
+#kmm {
+  width: 250px;
+  height: 100px;
+}
+
+.kmm {
+  float: right;
+  margin-right: 270px;
+  margin-top: -320px;
+}
+
+/* ------------- */
+
+/* -- contents -- */
+
+/* ------------- */
+
+#contents .cv-section {
+  margin: 0 7.5px 15px 7.5px;
+}
+
+#contents .cv-section .h3c {
+  /* font-size:28px; */
+  color: #444;
+  margin: 45px 0 30px 0;
+}
+
+#contents .cv-section h4.title {
+  font-size: 18px;
+  color: #e86e14;
+  margin: 0 0 -26px 0;
+}
+
+.h5c {
+  font-size: 16px;
+  margin: 15px 0 5px 0;
+}
+
+#contents .cv-section h4.meta {
+  /* font-size:22px; */
+  color: #777;
+}
+
+#contents .cv-section p {
+  /* font-size:15px; */
+  color: #555;
+  letter-spacing: 0;
+}
+
+#contents .cv-section-item {
+  padding: 0 0 1px 0;
+}
+
+.abstracts {
+  display: none;
+  /* font-size: 12pt; */
+  line-height: 13pt;
+  padding: 5px 10px;
+  margin: 10px 0px 10px 10px;
+}
+
+#mail {
+  color: #000;
+}
+
+#phone {
+  color: #000;
+}
+
+@media (max-width: 800px) {
+  #wraps {
+    display: none;
+  }
+  #warning {
+    display: block;
+    padding-top: 100px;
+    text-align: center;
+    /* font-size: 20px; */
+  }
+}

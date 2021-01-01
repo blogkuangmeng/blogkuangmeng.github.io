@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Lambda表达式 | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="Java8已经更新了好久了。变化很大，其中最广为人知的就是Lambda表达式。  Lambda表示式 Lambda的基本格式为()-&amp;gt;内容,以箭头为分隔，左边为参数区，右边为代码区。  可以把它看成是一个临时定义的方法，没有方法名，默认为public,根据代码区里的有没有return来决定返回值．如果没有return则是void。   1. 单行代码可以省略return  2. 多行代码使用{}来">
+  <meta name="keywords" content="Java,language">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lambda表达式">
+  <meta property="og:url" content="http://home.meng.uno/articles/bbcf5ff7/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="Java8已经更新了好久了。变化很大，其中最广为人知的就是Lambda表达式。  Lambda表示式 Lambda的基本格式为()-&amp;gt;内容,以箭头为分隔，左边为参数区，右边为代码区。  可以把它看成是一个临时定义的方法，没有方法名，默认为public,根据代码区里的有没有return来决定返回值．如果没有return则是void。   1. 单行代码可以省略return  2. 多行代码使用{}来">
+  <meta property="og:locale" content="EN">
+  <meta property="og:updated_time" content="2021-01-01T16:27:49.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lambda表达式">
+  <meta name="twitter:description" content="Java8已经更新了好久了。变化很大，其中最广为人知的就是Lambda表达式。  Lambda表示式 Lambda的基本格式为()-&amp;gt;内容,以箭头为分隔，左边为参数区，右边为代码区。  可以把它看成是一个临时定义的方法，没有方法名，默认为public,根据代码区里的有没有return来决定返回值．如果没有return则是void。   1. 单行代码可以省略return  2. 多行代码使用{}来">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/bbcf5ff7/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-Lambda" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Lambda表达式
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/bbcf5ff7/" class="article-date">
+	  <time datetime="2017-02-25T08:20:58.000Z" itemprop="datePublished">2017-02-25</time>
+	</a>
+                <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,929</span>
+	<span class="post-count"> | 预计时间8分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>Java8已经更新了好久了。变化很大，其中最广为人知的就是<code>Lambda</code>表达式。</p>
+                </blockquote>
+                <h1>Lambda表示式</h1>
+                <p><code>Lambda</code>的基本格式为<code>()-&gt;内容</code>,以箭头为分隔，左边为参数区，右边为代码区。</p>
+                <p>可以把它看成是一个临时定义的方法，没有方法名，默认为<code>public</code>,根据代码区里的有没有<code>return</code>来决定返回值．如果没有<code>return</code>则是<code>void</code>。</p>
+                <ol>
+                  <li>单行代码可以省略return</li>
+                  <li>多行代码使用<code>{}</code>来包裹.</li>
+                  <li>代码内可以引用外部局部变量，实际上是隐式的把变量变成<code>final</code></li>
+                </ol>
+                <p>网上用得最多的例子就是<code>(x,y)-&gt;x+y;</code>,很蛋疼的例子，当初看<code>Junit</code>单元测试时也是这样的例子。</p>
+                <p>来个实际点的例子吧：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text==<span class="keyword">null</span>||<span class="string">""</span>.eqauls(text)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用Lambda是</span></span><br><span class="line">(text)-&gt;<span class="keyword">return</span> text==<span class="keyword">null</span>||<span class="string">""</span>.eqauls(text);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>看到这里估计很多人会觉得更蛋疼了。明明<code>Lambda</code>使用是的匿名内部类的简写，为什么要拿方法来做比较，另外明明有方法可以调用，何必要用<code>Lambda</code>。</p>
+                <h1>Lambda的起源</h1>
+                <p>曾经无数次的羡慕<code>js</code>有闭包，可以把方法当做参数来传递。在项目中有很多类都存在着很类似的方法：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getIds</span><span class="params">(List&lt;T&gt; list)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(list==<span class="keyword">null</span>||list.isEmpty)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span>(T t:list)&#123;</span><br><span class="line">        String id=doSomething(t)</span><br><span class="line">        builder.append(<span class="string">","</span>).append(id);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> builder.deleteCharAt(<span class="number">0</span>).toString();</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>想抽取一下,奈何每个类里<code>T</code>不同，<code>doSomething</code>的实现也不同．<code>T</code>可以用泛型，<code>doSomething（T t）</code>这个方法怎么传呢？</p>
+                <p>面向接口吧。我们可以定义一个接口来干这个事：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetId</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">getId</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>上面的方法就可以抽到工具类中了：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">String <span class="title">getIds</span><span class="params">(List&lt;T&gt; list,GetId&lt;T&gt; interf)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(list==<span class="keyword">null</span>||list.isEmpty)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(T t:list)&#123;</span><br><span class="line">            String id=interf.getId(t);</span><br><span class="line">            builder.append(<span class="string">","</span>).append(id);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> builder.deleteCharAt(<span class="number">0</span>).toString();</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>说来说去好像不关<code>Lambda</code>什么的事呀．实际上上面的例子就是Lambda的起源。</p>
+                <p>随着函数式编程广为程序员喜爱，Java也在考虑加入函数式编程．但有两个问题，一　做为一个强类型语言，类型转换有点蛋疼，二　不能把方法当成参数(有返回值的还好，<code>void</code>方法当参数是相当的无语的)。</p>
+                <p><code>Java</code>考虑了半天，使用了上面的例子的逻辑来处理，用接口来包装方法，把接口当参数来代替。</p>
+                <p>上面的例子中。在类中调用如下：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String ids=Utils.getIds(List&lt;XXX&gt; list,<span class="keyword">new</span> GetId&lt;XXX&gt;()&#123;</span><br><span class="line">    getId(XXX x)&#123;</span><br><span class="line">        <span class="keyword">return</span> ooxx(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这是一个参数，如果是多个参数那不要吓死人：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String ids=Utils.getIds(List&lt;XXX&gt; list,</span><br><span class="line">    <span class="keyword">new</span> GetId&lt;XXX&gt;()&#123;</span><br><span class="line">        getId(XXX x)&#123;</span><br><span class="line">            <span class="keyword">return</span> ooxx(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    <span class="keyword">new</span> GetId&lt;XXX&gt;()&#123;getId(XXX x)&#123;</span><br><span class="line">        <span class="keyword">return</span> xxoo(x);</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    <span class="keyword">new</span> GetId&lt;XXX&gt;()&#123;getId(XXX x)&#123;</span><br><span class="line">        <span class="keyword">return</span> oxox(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>所以<code>Lambda</code>第一个作用就体现出来了简化书写，好写好看。如：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String ids=Utils.getIds(List&lt;XXX&gt; list,(x)-&gt;ooxx(x));</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这里有点奇怪<code>x</code>是什么呢？其实完整的应该是：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String ids=Utils.getIds(List&lt;XXX&gt; list,(XXX x)-&gt;ooxx(x));</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这里就体现了<code>lambda</code>的牛逼之处<strong>类型推导</strong>(准确来说是Java8的特性),编译时推导参数类型和返回类型。</p>
+                <p>最上面那个坑爹的例子估计很多人都会像我当初一样蒙Ｂ。<code>(x,y)-&gt;x+y;</code>,这ｘ和ｙ是什么的东西？</p>
+                <p>实际上这个例子应该是<code>(int x,int y)-&gt;return x+y;</code>，这样看就清楚多了，传两个int,返回其和。</p>
+                <p>再给个实际点的例子吧：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">String[] strings=&#123;<span class="string">"xx"</span>,<span class="string">"oo"</span>,<span class="string">"xxoo"</span>&#125;;</span><br><span class="line"><span class="comment">//传统的排序是这样的</span></span><br><span class="line">Arrays.sort(strings,<span class="keyword">new</span> Comparetor&lt;String&gt;()&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(String s1,String s2)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> s1.length-s2.length;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//使用lambda是这样的</span></span><br><span class="line">Arrays.sort(strings,(String s1,String s2)-&gt;<span class="keyword">return</span> s1.length-s2.length);</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">Arrays.sort(strings,(s1,s2)-&gt;s1.length-s2.length);</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">Arrays.sort(strings,(s1,s2)-&gt;&#123;</span><br><span class="line">    <span class="keyword">int</span> x= s1.length;</span><br><span class="line">    <span class="keyword">int</span> y=s2.length;</span><br><span class="line">    <span class="keyword">return</span> x-y;</span><br><span class="line">&#125;);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>Lambda的实现</h1>
+                <p><code>lambda</code>的原理就是以把接口当参数传递的方式来形成闭包．所以这个接口只能定义一个方法，这种接口叫<code>函数接口</code>.这种接口可以隐式转为<code>lambda</code>。</p>
+                <p>为了防止该接口的单方法性被破坏，<code>Java8</code>定义了一个注解<code>FunctionInterface</code>，Java库中所有这种接口都已经添加了这个注解。如：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="meta">@FunctionInterface</span></span><br><span class="line"><span class="keyword">public</span> Interface Runable&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>当然，自己也可以定义函数接口，很简单，只要是单方法都可以。最好是加上注解，防止自己或别人去添加新的方法。</p>
+                <p>另外Java8中提供了很多常用的接口，免得自己去创建。这些接口放在<code>java.utils.function</code>包里。</p>
+                <p>默认的接口可接收和返回的基本数据只有<code>int</code>,<code>long</code>,<code>double</code>三种，<code>String</code>视为对象。</p>
+                <ol>
+                  <li>Custmer一家，提供了<code>void</code>类的接口，可以接收单个或两个的基本数据类型或对象的参数(无参的有现成的<code>Runable</code>)。如：</li>
+                </ol>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Custmer</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">apply</span><span class="params">(T t)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">interface BiConsumer&lt;T,U&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">apply</span><span class="params">(T t,U u)</span></span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>另外还支持对象+基本数据类型的参数。</p>
+                <ol start="2">
+                  <li>
+                    <p>Predicate一家，提供了可接收1-2个基本数据类型或对象的参数，返回<code>boolean</code>的接口(无参的是<code>booleanSupplier</code>接口)。</p>
+                  </li>
+                  <li>
+                    <p>Function,Oprator,Supplier一家，提供了接收0-2个参数，返回基本数据类型或对象的接口。</p>
+                    <ul>
+                      <li>Function一家可接收1-2个参数，返回的是对象</li>
+                      <li>Supplier一家不接收参数，返回基本数据类型和对象</li>
+                      <li>Operator一家接收1-2个参数，返回同类型的数据。<code>unary</code>前缀的是接收一个参数，<code>binary</code>前缀的是接收两个参数。那个坑爹的<code>(x,y)-&gt;x+y</code>的例子就是由<code>IntBinaryOperator</code>接口来实现的。</li>
+                    </ul>
+                  </li>
+                </ol>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IntBinaryOperator</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">applyAsInt</span><span class="params">(<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>默认提供的接口，如果是两个基本数据类型的参数，则参数的类型都必须是相同的.也就是说两个以内的参数基本上不用自己定义函数接口了。上面的例子就可以这样写：</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">String <span class="title">getIds</span><span class="params">(List&lt;T&gt; list,Function&lt;T,String&gt; interf)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(list==<span class="keyword">null</span>||list.isEmpty)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span>(T t:list)&#123;</span><br><span class="line">            String id=interf.apply(t);</span><br><span class="line">            builder.append(<span class="string">","</span>).append(id);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> builder.deleteCharAt(<span class="number">0</span>).toString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用时如下　</span></span><br><span class="line">Utils.getIds(list,t-&gt;ooxx(t);)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1>函数式编程</h1>
+                <p>函数式编程需要可以把函数当成参数，在<code>Java</code>中所有的东西都是需要有类型的，只有函数自身是没有的。<code>Lambda</code>以间接的方式提供了函数的类型，及类型的推导，为函数式编程清扫了最大的障碍。再配合新提供的<code>Stream</code>，在<code>Java</code>中终与可以愉快的的使用函数式编程了。</p>
+                <p>然而，没有Lambda,没有Java8， <code>Rxjava</code>一样可以愉快的函数式编程。</p>
+                <h1>Lambda表达式与匿名类的区别</h1>
+                <p>使用匿名类与 Lambda 表达式的一大区别在于关键词的使用。对于匿名类，关键词<code>this</code>解读为匿名类，而对于 Lambda 表达式，关键词<code>this</code>解读为写就 Lambda 的外部类。</p>
+                <p><code>Lambda</code> 表达式与匿名类的另一不同在于两者的编译方法。<code>Java</code> 编译器编译 <code>Lambda</code> 表达式并将他们转化为类里面的私有函数，它使用 <code>Java 7</code> 中新加的<code>invokedynamic</code>指令动态绑定该方法。</p>
+                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/bbcf5ff7/">http://home.meng.uno/articles/bbcf5ff7/</a> . Welcome to reproduce it!</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/">language</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/7c56e6ba/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          责任链模式及OkHttp实现
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/5ae627d/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">标准模板库（STL）</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Lambda表示式</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Lambda的起源</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Lambda的实现</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">函数式编程</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Lambda表达式与匿名类的区别</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2021 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

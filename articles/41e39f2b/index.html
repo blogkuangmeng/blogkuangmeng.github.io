@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>内存管理 | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="页框管理与伙伴系统 这里的内存管理，指的是内核如何分配（为自己）动态内存。linux把页框作为一个管理的基本单位，用数据结构page对其进行描述。而所有的page则放在一个mem_map数组当中，进行管理。但计算机存在着一些限制，因此linux把内存划分为了几个管理区，包括ZONE_DMA、ZONE_NORMAL、ZONE_HIGHMEM等；而对页框的分配和释放，也是按照分区来进行管理的：">
+  <meta name="keywords" content="Linux,内存">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="内存管理">
+  <meta property="og:url" content="http://home.meng.uno/articles/41e39f2b/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="页框管理与伙伴系统 这里的内存管理，指的是内核如何分配（为自己）动态内存。linux把页框作为一个管理的基本单位，用数据结构page对其进行描述。而所有的page则放在一个mem_map数组当中，进行管理。但计算机存在着一些限制，因此linux把内存划分为了几个管理区，包括ZONE_DMA、ZONE_NORMAL、ZONE_HIGHMEM等；而对页框的分配和释放，也是按照分区来进行管理的：">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%A1%B5%E6%A1%86%E5%88%86%E9%85%8D.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E5%88%86%E9%85%8D%E5%99%A8.png">
+  <meta property="og:image" content="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E7%AE%A1%E7%90%86.png">
+  <meta property="og:updated_time" content="2020-12-08T10:21:19.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="内存管理">
+  <meta name="twitter:description" content="页框管理与伙伴系统 这里的内存管理，指的是内核如何分配（为自己）动态内存。linux把页框作为一个管理的基本单位，用数据结构page对其进行描述。而所有的page则放在一个mem_map数组当中，进行管理。但计算机存在着一些限制，因此linux把内存划分为了几个管理区，包括ZONE_DMA、ZONE_NORMAL、ZONE_HIGHMEM等；而对页框的分配和释放，也是按照分区来进行管理的：">
+  <meta name="twitter:image" content="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%A1%B5%E6%A1%86%E5%88%86%E9%85%8D.jpg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/41e39f2b/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/avatar.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                  <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-memory" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  内存管理
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/41e39f2b/" class="article-date">
+	  <time datetime="2016-03-11T05:15:43.000Z" itemprop="datePublished">2016-03-11</time>
+	</a>
+                <a class="article-category-link" href="/categories/Operation-System/">Operation System</a>
+                <a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	<span class="post-count"> | 字数1,911</span>
+	<span class="post-count"> | 预计时间7分钟</span>
+	</a>
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>页框管理与伙伴系统</h1>
+                <p>这里的内存管理，指的是内核如何分配（为自己）动态内存。linux把页框作为一个管理的基本单位，用数据结构<code>page</code>对其进行描述。而所有的<code>page</code>则放在一个<code>mem_map</code>数组当中，进行管理。但计算机存在着一些限制，因此linux把内存划分为了几个管理区，包括ZONE_DMA、ZONE_NORMAL、ZONE_HIGHMEM等；而对页框的分配和释放，也是按照分区来进行管理的：</p>
+                <p><img src="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%A1%B5%E6%A1%86%E5%88%86%E9%85%8D.jpg" alt=""></p>
+                <p>在每个分区之内，页框由<strong>伙伴系统</strong>来进行处理。伙伴系统主要是为了解决“外碎片”的问题：当请求和释放不断发生的时候，就很有可能导致操作系统中发生存在空闲的小块页框，但是没有大块连续页框的问题。伙伴系统把空闲页分组成11个块链表，分别包含1，2，4，6,…,1024个连续的页框。每当有两个连续的大小为b的页框出现时（并且起始地址满足一个倍数条件），它们就被视为伙伴，伙伴系统就会把它们合并成大小为2b的页框。在页分配时，如果当前大小b的<code>free_list</code>中找不到空闲的页框，就会从2b的链表中寻找空闲页块，并且进行分割，将它分为两个大小为b的页块。</p>
+                <p>每个伙伴系统，管理的是<code>mem_map</code>的一个子集。在管理区描述符中，有一个<code>struct free_area</code>，它用来辅助伙伴系统：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct free_area &#123;</span><br><span class="line">   	struct list_head        free_list[MIGRATE_TYPES];</span><br><span class="line">	unsigned long           nr_free;</span><br><span class="line">&#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><code>free_list</code>是用来连接空闲页的链表数组，而nr_free则是当前内存区中空闲页块的个数。</p>
+                <h1>反碎片</h1>
+                <p>当然，上面说到的只是最基本的伙伴系统，但它并没有完全解决碎片的问题。linux中还采用了一种反碎片的机制，它根据已内存页的类型来工作：</p>
+                <ul>
+                  <li>不可移动页：在内存中有固定的位置，不能移动到其他地方（kernel的大多数内存页）</li>
+                  <li>可移动页：用户空间的页，只要更新页表项即可</li>
+                  <li>可回收页：在内存缺少时，可以进行回收的页，例如从文件映射的页 （以及一些其他类型）
+                  </li>
+                </ul>
+                <p>如果根据页的可移动性，将其进行分组，避免可回收页和不可回收页的交叉组织（例如在可移动页中间有不可移动页），并且在某个类型的页分配失败时，会从备用列表中寻找相应的页，这个顺序定义在page_alloc.c当中。</p>
+                <h1>内存分配方法</h1>
+                <p>分配内存通常可以调用一下几个函数：</p>
+                <ul>
+                  <li>alloc_pages/alloc_page：分配若干个页，返回第一个struct page</li>
+                  <li>get_zeroed_page：分配一个struct page，并且将内存填0</li>
+                  <li>get_free_pages/get_free_page：返回值是虚拟地址</li>
+                  <li>get_dma_pages：分配一个适用于DMA的页</li>
+                </ul>
+                <p>还有一些基于伙伴系统的方法，它们可能会借助页表进行映射，例如vmalloc，kmalloc。</p>
+                <p>内存分配时，通常要指定一个掩码<code>gfp_mask</code>，它定义了页所位于的区域、页在I/O和vfs上的操作，以及对分配操作的规定（阻塞、I/O、文件系统等）。</p>
+                <p>释放不再使用的页，同样可以采用struct page或者虚拟地址作为参数：</p>
+                <ul>
+                  <li>free_page/free_pages：以struct page为参数</li>
+                  <li>__free_page/__free_pages：以虚拟地址为参数</li>
+                </ul>
+                <h1>页框高速缓存</h1>
+                <p>（为了避免混淆，我把所有硬件的高速缓存称为cache）</p>
+                <p>内核经常会请求、释放单个页框，为了提高系统的性能，每个内存管理区都有一个每CPU的页框高速缓存，它包含一些预先分配的页框，能够用来满足CPU发出的单个页框请求。注意，这个页框高速缓存，和硬件上的cache的概念不同，但它们有一点小小的关联。由于每个CPU有自己的cache，那么假设一个进程刚刚释放了一个页，那么这个页就有很大概率还在cache当中。页框高速缓存保存热页（刚释放的，很可能在cache当中的页）和冷页（释放时间比较长的页）。其实对于分配热页来说，很好理解：用在cache中的页可以减少开销；但如果说是DMA设备使用，就要分配冷页了，因为它不会用到cache。</p>
+                <h1>slab分配器</h1>
+                <p>前面所说的伙伴系统，是用“页”为单位来进行，显然太大了；所以需要把页进一步拆分，变成更小的单位。slab分配器不仅仅提供小内存块，它还作为一个缓存使用，主要是针对那些经常分配、释放的对象：例如内核中的<code>fs_struct</code>数据结构，可能经常会分配和释放；那么slab就将释放的内存块保存在一个列表里面，而不是返回给伙伴系统。这样一来，再次分配新的内存块时，就不需要经过伙伴系统了，而且这些内存块还很可能在cache里面。</p>
+                <p><img src="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E5%88%86%E9%85%8D%E5%99%A8.png" alt=""></p>
+                <p>slab分配器包含几个部分：高速缓存<code>kmem_cache</code>，slab，以及slab中所包含的对象。每个高速缓存只负责一种对象类型，它由多个<code>slab</code>构成。<code>kmem_cache</code>当中有三个slab链表，分别对应用尽的slab、部分空闲的slab，和空闲的slab，还有一个<code>array_cache *</code>数组，它保存cpu最后释放的那些很可能处于“热”状态的对象。</p>
+                <p>而对于每个slab，则组织了一系列的object；它包含了空闲对象，正在使用的对象。那么为什么不直接用<code>kmem_cache</code>管理对象，要增加出<code>slab</code>这一层呢？这明显是为了更好的管理内存：通过<code>slab</code>，可以让内存的使用更平均，或者能够更好的管理空闲的页。</p>
+                <p>在新版本的内核中，<code>slab</code>由<code>kmem_cache_node</code>来管理，它包含3个链表<code>slabs_partial</code>，<code>slabs_full</code>和<code>slabs_free</code>。每个slab是一个或多个连续页帧的集合，每个objects由链表串联，现在slab中的object直接由<code>page</code>中的<code>freelist</code>来管理了。</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct kmem_cache_node &#123;</span><br><span class="line">spinlock_t list_lock;</span><br><span class="line">#ifdef CONFIG_SLAB</span><br><span class="line">struct list_head slabs_partial;	/* partial list first, better asm code */</span><br><span class="line">struct list_head slabs_full;</span><br><span class="line">struct list_head slabs_free;</span><br><span class="line">unsigned long free_objects;</span><br><span class="line">unsigned int free_limit;</span><br><span class="line">unsigned int colour_next;	/* Per-node cache coloring */</span><br><span class="line">struct array_cache *shared;	/* shared per node */</span><br><span class="line">struct alien_cache **alien;	/* on other nodes */</span><br><span class="line">unsigned long next_reap;	/* updated without locking */</span><br><span class="line">int free_touched;		/* updated without locking */</span><br><span class="line">#endif</span><br><span class="line">#ifdef CONFIG_SLUB</span><br><span class="line">unsigned long nr_partial;</span><br><span class="line">struct list_head partial;</span><br><span class="line">#ifdef CONFIG_SLUB_DEBUG</span><br><span class="line">atomic_long_t nr_slabs;</span><br><span class="line">atomic_long_t total_objects;</span><br><span class="line">struct list_head full;</span><br><span class="line">#endif</span><br><span class="line">#endif</span><br><span class="line">&#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><img src="http://www.meng.uno/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E7%AE%A1%E7%90%86.png" alt=""></p>
+                <p>值得一提的是，<code>kmalloc</code>的实现也是也是基于slab来实现的，它包含一个数组，存放了一些用于不同长度的slab缓存，这也就是我们所说的“内存池”。</p>
+                <h1>slab着色</h1>
+                <p>slab着色与颜色并没有关系，它要解决的问题与硬件高速缓存有关。硬件高速缓存倾向于把大小一样的对象放在高速缓存内的相同偏移位置；而不同slab当中相同偏移量的对象，就会映射在高速缓存的同一行当中；这样高速缓存可能就会频繁的对同一高速缓存行进行更新，从而造成性能损失。</p>
+                <p>slab着色就是给每个slab分配一个随机的“颜色”，把它作为slab中对象需要移动的特定偏移量来使用，这样对象就会被放置到不同的缓存行。</p>
+                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/41e39f2b/">http://home.meng.uno/articles/41e39f2b/</a> . Welcome to reproduce it!</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存/">内存</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/bc46dabc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux系统参数传递
+        
+      </div>
+    </a>
+
+
+              <a href="/articles/67934c43/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">神奇的Latex</div>
+    </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">页框管理与伙伴系统</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">反碎片</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">内存分配方法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">页框高速缓存</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">slab分配器</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">slab着色</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p class="busuanzi_uv">
+
+              UV : <span id="busuanzi_value_site_uv"></span> | PV : <span id="busuanzi_value_site_pv"></span>
+
+            </p>
+
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png"/></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for(i=0; i
+      < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax' ; } }); </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+        <script src="/js/scripts.js"></script>
+
+
+
+
+        <script src="/js/dialog.js"></script>
+
+
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-113947925-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+        </script>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2021 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
