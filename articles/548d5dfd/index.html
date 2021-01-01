@@ -39,7 +39,7 @@
   <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1_rf7sOAKL1JjSZFoXXagCFXa.png">
   <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB1KsyYsiFTMKJjSZFAXXckJpXa.png">
   <meta property="og:image" content="https://gw.alicdn.com/tfscom/TB19bzdm3oQMeJjy1XaXXcSsFXa.png">
-  <meta property="og:updated_time" content="2021-01-01T16:17:04.000Z">
+  <meta property="og:updated_time" content="2021-01-01T17:01:31.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Eclipse的代码自动规范">
   <meta name="twitter:description" content="不知道大家在用Eclipse的时候有没有感觉到，当代码量一大就看不懂自己代码了呢？有人可能要说了，eclipse不是自己带有格式化代码工具吗？确实如此，但是我们可能想使用更高级的自动化工具，例如Google—Java-Style和Ali-CodeAnalysis。这篇博文，我将展示如何使用eclipse自带的自动化代码规范工具，以及怎么配置Google-Java-Style和Ali-CodeAna">
@@ -348,21 +348,21 @@
                 <p>目前不支持代码实时检测，需要手动触发，希望更多的人加入进来一起把咱们的插件做得越来越好，尽量提升研发的使用体验。</p>
                 <h3 id="代码扫描">代码扫描</h3>
                 <p>可以通过右键菜单、Toolbar按钮两种方式手动触发代码检测。同时结果面板中可以对部分实现了QuickFix功能的规则进行快速修复。</p>
-                <h4 id="触发扫描">触发扫描</h4>
+                <h3 id="触发扫描">触发扫描</h3>
                 <p>在当前编辑的文件中点击右键，可以在弹出的菜单中触发对该文件的检测。</p>
                 <p><img src="https://gw.alicdn.com/tfscom/TB1XGo8iPihSKJjy0FeXXbJtpXa.png" alt=""></p>
                 <p>在左侧的Project目录树种点击右键，可以触发对整个工程或者选择的某个目录、文件进行检测。</p>
                 <p><img src="https://gw.alicdn.com/tfscom/TB18UsJi2NZWeJjSZFpXXXjBFXa.png" alt=""></p>
                 <p>也可以通过Toolbar中的按钮来触发检测，目前Toolbar的按钮触发的检测范围与您IDE当时的焦点有关，如当前编辑的文件或者是Project目录树选中的项，是不是感觉与右键菜单的检测范围类似呢。</p>
                 <p><img src="https://gw.alicdn.com/tfscom/TB1vt1oifBNTKJjSszcXXbO2VXa.png" alt=""></p>
-                <h4 id="扫描结果">扫描结果</h4>
+                <h3 id="扫描结果">扫描结果</h3>
                 <p>简洁的结果面板，按规则等级分类，等级-&gt;规则-&gt;文件-&gt;违规项。同时还提供一个查看规则详情的界面。</p>
                 <p>清除结果标记更方便，支持上面提到的4条规则QuickFix。</p>
                 <p><img src="https://gw.alicdn.com/tfscom/TB1_uFJi6ihSKJjy0FlXXadEXXa.png" alt=""></p>
-                <h4 id="查看所有规则">查看所有规则</h4>
+                <h3 id="查看所有规则">查看所有规则</h3>
                 <p><img src="https://gw.alicdn.com/tfscom/TB1UNTnmYsTMeJjSszhXXcGCFXa.png" alt="">
                   <img src="https://gw.alicdn.com/tfscom/TB1_rf7sOAKL1JjSZFoXXagCFXa.png" alt=""></p>
-                <h4 id="国际化">国际化</h4>
+                <h3 id="国际化">国际化</h3>
                 <p><img src="https://gw.alicdn.com/tfscom/TB1KsyYsiFTMKJjSZFAXXckJpXa.png" alt=""></p>
                 <p><img src="https://gw.alicdn.com/tfscom/TB19bzdm3oQMeJjy1XaXXcSsFXa.png" alt=""></p>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/548d5dfd/">http://home.meng.uno/articles/548d5dfd/</a> . Welcome to reproduce it!</p>
@@ -477,14 +477,11 @@
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#插件使用"><span class="nav-number">3.1.</span> <span class="nav-text">插件使用</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#代码扫描"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码扫描</span></a>
-                          <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#触发扫描"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">触发扫描</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#扫描结果"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">扫描结果</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有规则"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">查看所有规则</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#国际化"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">国际化</span></a></li>
-                          </ol>
-                        </li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#代码扫描"><span class="nav-number">3.1.1.</span> <span class="nav-text">代码扫描</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#触发扫描"><span class="nav-number">3.1.2.</span> <span class="nav-text">触发扫描</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#扫描结果"><span class="nav-number">3.1.3.</span> <span class="nav-text">扫描结果</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有规则"><span class="nav-number">3.1.4.</span> <span class="nav-text">查看所有规则</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#国际化"><span class="nav-number">3.1.5.</span> <span class="nav-text">国际化</span></a></li>
                       </ol>
                     </li>
                   </ol>
