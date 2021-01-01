@@ -4267,11 +4267,11 @@ if (!/Android|web
       <category term="Application" scheme="http://home.meng.uno/categories/Application/"/>
     
     
+      <category term="Android" scheme="http://home.meng.uno/tags/Android/"/>
+    
       <category term="menu" scheme="http://home.meng.uno/tags/menu/"/>
     
       <category term="toolbar" scheme="http://home.meng.uno/tags/toolbar/"/>
-    
-      <category term="Android" scheme="http://home.meng.uno/tags/Android/"/>
     
   </entry>
   
