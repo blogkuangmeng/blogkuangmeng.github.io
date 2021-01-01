@@ -27,7 +27,9 @@
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/noises/1.jpeg">
   <meta property="og:image" content="http://www.meng.uno/images/noises/2.jpg">
-  <meta property="og:updated_time" content="2021-01-01T15:05:12.000Z">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/3.png">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/4.png">
+  <meta property="og:updated_time" content="2021-01-01T15:12:05.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)">
   <meta name="twitter:description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
@@ -266,14 +268,14 @@
 
               <div class="article-meta">
                 <a href="/articles/undefined/" class="article-date">
-	  <time datetime="2021-01-01T15:03:57.000Z" itemprop="datePublished">2021-01-01</time>
+	  <time datetime="2019-01-01T15:03:57.000Z" itemprop="datePublished">2019-01-01</time>
 	</a>
                 <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
                 <a class="article-views">
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,562</span>
+	<span class="post-count"> | 字数1,497</span>
 	<span class="post-count"> | 预计时间6分钟</span>
 	</a>
               </div>
@@ -344,7 +346,7 @@
                   <li>数据平滑法</li>
                 </ol>
                 <p>当我们将<code>t</code>时刻前后<code>n</code>个值求平均，作为当前时刻的平滑之后的值时，得：</p>
-                <p>$$p_{t}=\frac{\sum_{i=1}<sup>{n}\left(g_{t-i}+g_{t+i}\right)+g_{t}-\sum_{i=1}</sup>{n}\left(\varepsilon_{t-i}+\varepsilon_{t+i}\right)-\varepsilon_{t}}{2 n+1}=\frac{\sum_{i=1}^{n}\left(x_{t-i}+x_{t+i}\right)+x_{t}}{2 n+1}$$</p>
+                <p><img src="http://www.meng.uno/images/noises/3.png" alt="Average"></p>
                 <p>因为根据我们的假设，噪声服从0为均值的正态分布，其期望为0：</p>
                 <p>$$\sum_{i=1}^{n}\left(\varepsilon_{t-i}+\varepsilon_{t+i}\right)+\varepsilon_{t} = 0$$</p>
                 <ol start="2">
@@ -367,7 +369,7 @@
                 </figure>
                 <h2 id="泛化误差与三者的关系">泛化误差与三者的关系</h2>
                 <p>可以证明泛化误差与偏差、方差以及噪声的数学期望的关系为：</p>
-                <p>$$E(e)=\operatorname{bias}<sup>{2}(\boldsymbol{x})+\operatorname{var}(\boldsymbol{x})+\varepsilon</sup>{2}$$</p>
+                <p><img src="http://www.meng.uno/images/noises/4.png" alt="Relation"></p>
 
               </div>
               <footer class="article-footer">
@@ -441,10 +443,19 @@
 
             <nav id="article-nav">
 
+              <a href="/articles/5b828fc2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          机器学习&amp;深度学习速查表
+        
+      </div>
+    </a>
 
-              <a href="/articles/9d18641a/" id="article-nav-older" class="article-nav-link-wrap">
+
+              <a href="/articles/bd4539a2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Attention and Self Attention</div>
+      <div class="article-nav-title">FastSP: linear time calculation of alignment accuracy</div>
     </a>
 
             </nav>
