@@ -1292,38 +1292,6 @@ public static Long getCrc32(Contex
   </entry>
   
   <entry>
-    <title>Deep Learning上手工具</title>
-    <link href="http://home.meng.uno/articles/99be2c50/"/>
-    <id>http://home.meng.uno/articles/99be2c50/</id>
-    <published>2018-01-10T14:43:43.000Z</published>
-    <updated>2020-12-02T02:08:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。</p><p><img src="http://www.meng.uno/images/tools_dp.png" alt="DL"></p><p>谷歌开发的<code>Tensorflow</code>，微软的<code>CNTK</code>以及<code>Theano</code>都是为深度学习而开发的库，它们促进了使用<code>GPU</code>计算。他们并不难，但与<code>Keras</code>相比，他们仍然非常复杂。<code>Keras</code>只是使用底层深度学习库的界面。使用<code>Keras</code>就像玩乐高一样简单。我建议初学者从<code>Keras</code>开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。</p><p><br><br>The link of this page is <a href="http://home.meng.uno/articles/99be2c50/">http://home.meng.uno/articles/99be2c50/</a> . Welcome to reproduce it!</p>]]></content>
-    
-    <summary type="html">
-    
-      现在Deep Learning太火了，以至于没有任何计算机基础的人都想使用它，那么对于新手，甚至连Python代码都写不好的DL爱好者，有什么上手工具么？选择合适的工具可以帮助学习更快，很巧的是，有很多不同的工具可供选择，下图列出了常用的工具。
-
-
-
-谷歌开发的Tensorflow，微软的CNTK以及Theano都是为深度学习而开发的库，它们促进了使用GPU计算。他们并不难，但与Keras相比，他们仍然非常复杂。Keras只是使用底层深度学习库的界面。使用Keras就像玩乐高一样简单。我建议初学者从Keras开始，因为我们可以快速了解深度学习可以做些什么，并积极进行一些有趣的项目。
-
-
-
-Th
-    
-    </summary>
-    
-      <category term="Deep Learning" scheme="http://home.meng.uno/categories/Deep-Learning/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://home.meng.uno/tags/Deep-Learning/"/>
-    
-      <category term="上手工具" scheme="http://home.meng.uno/tags/%E4%B8%8A%E6%89%8B%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
     <title>跨领域分词国内外研究现状</title>
     <link href="http://home.meng.uno/articles/e38d3f1c/"/>
     <id>http://home.meng.uno/articles/e38d3f1c/</id>
@@ -3764,9 +3732,9 @@ XCHG 交换字或字节.( 至
       <category term="Programming Language" scheme="http://home.meng.uno/categories/Programming-Language/"/>
     
     
-      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
-    
       <category term="ASM" scheme="http://home.meng.uno/tags/ASM/"/>
+    
+      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
     
   </entry>
   
@@ -4618,11 +4586,11 @@ jg
       <category term="Programming Language" scheme="http://home.meng.uno/categories/Programming-Language/"/>
     
     
-      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
+      <category term="破解" scheme="http://home.meng.uno/tags/%E7%A0%B4%E8%A7%A3/"/>
     
       <category term="ASM" scheme="http://home.meng.uno/tags/ASM/"/>
     
-      <category term="破解" scheme="http://home.meng.uno/tags/%E7%A0%B4%E8%A7%A3/"/>
+      <category term="汇编" scheme="http://home.meng.uno/tags/%E6%B1%87%E7%BC%96/"/>
     
   </entry>
   
