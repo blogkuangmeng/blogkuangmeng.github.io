@@ -25,7 +25,7 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="Java8已经更新了好久了。变化很大，其中最广为人知的就是Lambda表达式。  Lambda表示式 Lambda的基本格式为()-&amp;gt;内容,以箭头为分隔，左边为参数区，右边为代码区。  可以把它看成是一个临时定义的方法，没有方法名，默认为public,根据代码区里的有没有return来决定返回值．如果没有return则是void。   1. 单行代码可以省略return  2. 多行代码使用{}来">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T01:52:37.000Z">
+  <meta property="og:updated_time" content="2021-01-01T16:27:49.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Lambda表达式">
   <meta name="twitter:description" content="Java8已经更新了好久了。变化很大，其中最广为人知的就是Lambda表达式。  Lambda表示式 Lambda的基本格式为()-&amp;gt;内容,以箭头为分隔，左边为参数区，右边为代码区。  可以把它看成是一个临时定义的方法，没有方法名，默认为public,根据代码区里的有没有return来决定返回值．如果没有return则是void。   1. 单行代码可以省略return  2. 多行代码使用{}来">
@@ -270,8 +270,8 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数1,795</span>
-	<span class="post-count"> | 预计时间7分钟</span>
+	<span class="post-count"> | 字数1,929</span>
+	<span class="post-count"> | 预计时间8分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -488,7 +488,10 @@
                 </figure>
                 <h1>函数式编程</h1>
                 <p>函数式编程需要可以把函数当成参数，在<code>Java</code>中所有的东西都是需要有类型的，只有函数自身是没有的。<code>Lambda</code>以间接的方式提供了函数的类型，及类型的推导，为函数式编程清扫了最大的障碍。再配合新提供的<code>Stream</code>，在<code>Java</code>中终与可以愉快的的使用函数式编程了。</p>
-                <p>然而，没有Lambda,没有Java8,我用<code>Rxjava</code>一样可以愉快的函数式编程。</p>
+                <p>然而，没有Lambda,没有Java8， <code>Rxjava</code>一样可以愉快的函数式编程。</p>
+                <h1>Lambda表达式与匿名类的区别</h1>
+                <p>使用匿名类与 Lambda 表达式的一大区别在于关键词的使用。对于匿名类，关键词<code>this</code>解读为匿名类，而对于 Lambda 表达式，关键词<code>this</code>解读为写就 Lambda 的外部类。</p>
+                <p><code>Lambda</code> 表达式与匿名类的另一不同在于两者的编译方法。<code>Java</code> 编译器编译 <code>Lambda</code> 表达式并将他们转化为类里面的私有函数，它使用 <code>Java 7</code> 中新加的<code>invokedynamic</code>指令动态绑定该方法。</p>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/bbcf5ff7/">http://home.meng.uno/articles/bbcf5ff7/</a> . Welcome to reproduce it!</p>
 
               </div>
@@ -573,7 +576,7 @@
 
               <a href="/articles/5ae627d/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">STL简介</div>
+      <div class="article-nav-title">标准模板库（STL）</div>
     </a>
 
             </nav>
@@ -591,6 +594,7 @@
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Lambda的起源</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Lambda的实现</span></a></li>
                 <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">函数式编程</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Lambda表达式与匿名类的区别</span></a></li>
               </ol>
 
             </div>
@@ -605,7 +609,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

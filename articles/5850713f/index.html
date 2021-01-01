@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Git学习小结 | Mengmeng Kuang&#39;s Blog!</title>
+  <title>Git小结与Git Large File Storage | Mengmeng Kuang&#39;s Blog!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -17,18 +17,20 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="从Git官方教程出发 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge">
-  <meta name="keywords" content="软件工程,Git">
+  <meta name="description" content="Git指令目录 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge  13">
+  <meta name="keywords" content="软件工程,Git,GitHub,超大文件">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Git学习小结">
+  <meta property="og:title" content="Git小结与Git Large File Storage">
   <meta property="og:url" content="http://home.meng.uno/articles/5850713f/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="从Git官方教程出发 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge">
+  <meta property="og:description" content="Git指令目录 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge  13">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2020-12-02T01:44:00.000Z">
+  <meta property="og:image" content="http://www.meng.uno/images/git-lfs/1.png">
+  <meta property="og:updated_time" content="2021-01-01T16:49:52.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Git学习小结">
-  <meta name="twitter:description" content="从Git官方教程出发 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge">
+  <meta name="twitter:title" content="Git小结与Git Large File Storage">
+  <meta name="twitter:description" content="Git指令目录 进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：  建立项目  1. init  2. clone  基本操作  3. add  4. status  5. diff  6. commit  7. reset  8. rm  9. mv  分支管理  10. branch  11. checkout  12. merge  13">
+  <meta name="twitter:image" content="http://www.meng.uno/images/git-lfs/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -257,7 +259,7 @@
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  Git学习小结
+                  Git小结与Git Large File Storage
                 </h1>
               </header>
 
@@ -270,13 +272,13 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数190</span>
+	<span class="post-count"> | 字数287</span>
 	<span class="post-count"> | 预计时间1分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>从Git官方教程出发</h1>
+                <h1>Git指令目录</h1>
                 <p>进入git教程官网我们可以发现，主要从这几个方面来讲解的（几乎所有你能搜到的博客都是这么一成不变！）：</p>
                 <h2 id="建立项目">建立项目</h2>
                 <ol>
@@ -311,7 +313,22 @@
                   <li>remote</li>
                   <li>submodule</li>
                 </ol>
-                <p>看到这里，我们基本的git学习就可以结束了，要问为什么我只写标题而不写内容，我只想说，我写这篇博客只是为了通过自己写一遍命令来复习一遍而已。😝</p>
+                <h1>Git Large File Storage</h1>
+                <blockquote>
+                  <p>基本没有什么人不知道Git了吧，也没有多少人不知道GitHub，但是谈到GitHub如何存储大文件（100MB以上），又有多少人知道呢？</p>
+                </blockquote>
+                <p>今天，我要给大家介绍一种，不用分割文件即可实现让GitHub存储我们的大文件的方案 —— <code>Git Large File Storage</code>。</p>
+                <p>首先，给出官网：<a href="https://git-lfs.github.com/" target="_blank" rel="noopener">Git Large File Storage</a>。</p>
+                <p>使用方法：</p>
+                <ol>
+                  <li>下载并安装：（Mac下：<code>brew install git-lfs</code>）</li>
+                  <li>进入Git仓库，安装lfs：<code>git lfs install</code></li>
+                  <li>设置要跟踪的大文件：<code>git lfs track &quot;*.file&quot;</code></li>
+                  <li>添加<code>.gitattributes</code>进Git仓库：<code>git add .gitattributes</code></li>
+                  <li>正常的Git提交到GitHub！</li>
+                </ol>
+                <p>其业务逻辑：</p>
+                <p><img src="http://www.meng.uno/images/git-lfs/1.png" alt=""></p>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/5850713f/">http://home.meng.uno/articles/5850713f/</a> . Welcome to reproduce it!</p>
 
               </div>
@@ -377,6 +394,8 @@
 
                 <ul class="article-tag-list">
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/超大文件/">超大文件</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件工程/">软件工程</a></li>
                 </ul>
               </footer>
@@ -410,7 +429,7 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">从Git官方教程出发</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Git指令目录</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#建立项目"><span class="nav-number">1.1.</span> <span class="nav-text">建立项目</span></a></li>
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">1.2.</span> <span class="nav-text">基本操作</span></a></li>
@@ -418,6 +437,7 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#分享与更新"><span class="nav-number">1.4.</span> <span class="nav-text">分享与更新</span></a></li>
                   </ol>
                 </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Git Large File Storage</span></a></li>
               </ol>
 
             </div>
@@ -432,7 +452,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

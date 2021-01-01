@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>再探HTTPS | Mengmeng Kuang&#39;s Blog!</title>
+  <title>HTTPS | Mengmeng Kuang&#39;s Blog!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -17,13 +17,13 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="再探HTTPS 之前有一篇笔记是浅谈HTTPS的，但是比较简单的记录了下，也是懵懵懂懂的，索性把文献都翻出来，查阅一番，较为深入的理解下。  HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于">
+  <meta name="description" content="HTTPS HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于 HTTP 本身不具备加密的功能，所以也无法做到对通信整体（使用 HTTP 协议通信的请求和响应的内容）进行加密。即，HTTP 报文">
   <meta name="keywords" content="web,https,ssl">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="再探HTTPS">
+  <meta property="og:title" content="HTTPS">
   <meta property="og:url" content="http://home.meng.uno/articles/87267df0/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="再探HTTPS 之前有一篇笔记是浅谈HTTPS的，但是比较简单的记录了下，也是懵懵懂懂的，索性把文献都翻出来，查阅一番，较为深入的理解下。  HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于">
+  <meta property="og:description" content="HTTPS HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于 HTTP 本身不具备加密的功能，所以也无法做到对通信整体（使用 HTTP 协议通信的请求和响应的内容）进行加密。即，HTTP 报文">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/https/qieting.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/https/weizhuang.jpg">
@@ -36,10 +36,10 @@
   <meta property="og:image" content="http://www.meng.uno/images/https/ca.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/https/httpslianlu.jpg">
   <meta property="og:image" content="http://www.meng.uno/images/https/httpsxingneng.jpg">
-  <meta property="og:updated_time" content="2020-12-02T01:48:19.000Z">
+  <meta property="og:updated_time" content="2021-01-01T16:54:04.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="再探HTTPS">
-  <meta name="twitter:description" content="再探HTTPS 之前有一篇笔记是浅谈HTTPS的，但是比较简单的记录了下，也是懵懵懂懂的，索性把文献都翻出来，查阅一番，较为深入的理解下。  HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于">
+  <meta name="twitter:title" content="HTTPS">
+  <meta name="twitter:description" content="HTTPS HTTP在安全方面的不足  * 通信使用明文（不加密），内容可能会被窃听  * 不验证通信方的身份，因此有可能遭遇伪装  * 无法证明报文的完整性，所以有可能已遭篡改  这些问题不仅在 HTTP 上出现，其他未加密的协议中也会存在这类问题  窃听   由于 HTTP 本身不具备加密的功能，所以也无法做到对通信整体（使用 HTTP 协议通信的请求和响应的内容）进行加密。即，HTTP 报文">
   <meta name="twitter:image" content="http://www.meng.uno/images/https/qieting.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -269,7 +269,7 @@
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  再探HTTPS
+                  HTTPS
                 </h1>
               </header>
 
@@ -282,14 +282,13 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数2,201</span>
+	<span class="post-count"> | 字数2,148</span>
 	<span class="post-count"> | 预计时间8分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>再探HTTPS</h1>
-                <p>之前有一篇笔记是浅谈HTTPS的，但是比较简单的记录了下，也是懵懵懂懂的，索性把文献都翻出来，查阅一番，较为深入的理解下。</p>
+                <h1>HTTPS</h1>
                 <h2 id="http在安全方面的不足">HTTP在安全方面的不足</h2>
                 <ul>
                   <li>通信使用明文（不加密），内容可能会被窃听</li>
@@ -464,7 +463,7 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">再探HTTPS</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">HTTPS</span></a>
                   <ol class="nav-child">
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#http在安全方面的不足"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP在安全方面的不足</span></a>
                       <ol class="nav-child">
@@ -509,7 +508,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 

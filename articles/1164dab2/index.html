@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Java异常结构层次图 | Mengmeng Kuang&#39;s Blog!</title>
+  <title>Java异常与处理原则 | Mengmeng Kuang&#39;s Blog!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
@@ -17,19 +17,19 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。    The link of this page is http://home.meng.uno/articles/">
+  <meta name="description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。  异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子">
   <meta name="keywords" content="Java,Exception">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Java异常结构层次图">
+  <meta property="og:title" content="Java异常与处理原则">
   <meta property="og:url" content="http://home.meng.uno/articles/1164dab2/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。    The link of this page is http://home.meng.uno/articles/">
+  <meta property="og:description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。  异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/ehd.jpeg">
-  <meta property="og:updated_time" content="2020-12-02T01:49:38.000Z">
+  <meta property="og:updated_time" content="2021-01-01T16:20:00.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Java异常结构层次图">
-  <meta name="twitter:description" content="在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。    The link of this page is http://home.meng.uno/articles/">
+  <meta name="twitter:title" content="Java异常与处理原则">
+  <meta name="twitter:description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。  异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子">
   <meta name="twitter:image" content="http://www.meng.uno/images/ehd.jpeg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
@@ -253,13 +253,13 @@
       <div id="content" class="outer">
 
         <section id="main" style="float:none;">
-          <article id="post-java-exceptions-hierarchy" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-java-exceptions" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
             <div id="articleInner" class="article-inner">
 
 
               <header class="article-header">
                 <h1 class="thumb" class="article-title" itemprop="name">
-                  Java异常结构层次图
+                  Java异常与处理原则
                 </h1>
               </header>
 
@@ -272,16 +272,48 @@
 	<span id="busuanzi_container_page_pv">
 		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
-	<span class="post-count"> | 字数87</span>
-	<span class="post-count"> | 预计时间1分钟</span>
+	<span class="post-count"> | 字数377</span>
+	<span class="post-count"> | 预计时间2分钟</span>
 	</a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
+                <h1>异常结构层次</h1>
                 <p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p>
                 <p><img src="http://www.meng.uno/images/ehd.jpeg" alt="DEH"></p>
                 <p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p>
                 <p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>
+                <h1>异常处理</h1>
+                <p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p>
+                <h2 id="调用方法必须处理被调用方法抛出的异常">调用方法必须处理被调用方法抛出的异常</h2>
+                <p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="超类可以用来捕获或处理子类异常">超类可以用来捕获或处理子类异常</h2>
+                <p>可以使用如下代码验证。</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">exceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exception exception;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> myException myexception;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            callDoOne(); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doOne</span><span class="params">()</span> <span class="keyword">throws</span> myException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> myexception;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">callDoOne</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        doOne();</span><br><span class="line">        <span class="keyword">throw</span> exception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这也就是为什么catch子句只有一个父类在语法上安全的原因。</p>
                 <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/1164dab2/">http://home.meng.uno/articles/1164dab2/</a> . Welcome to reproduce it!</p>
 
               </div>
@@ -379,7 +411,15 @@
             <div id="toc" class="toc-article">
               <strong class="toc-title">Contents</strong>
 
-              <ol class="nav">None</ol>
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">异常结构层次</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#调用方法必须处理被调用方法抛出的异常"><span class="nav-number">2.1.</span> <span class="nav-text">调用方法必须处理被调用方法抛出的异常</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#超类可以用来捕获或处理子类异常"><span class="nav-number">2.2.</span> <span class="nav-text">超类可以用来捕获或处理子类异常</span></a></li>
+                  </ol>
+                </li>
+              </ol>
 
             </div>
           </aside>
@@ -393,7 +433,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.01 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.01.02 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p class="busuanzi_uv">
 
