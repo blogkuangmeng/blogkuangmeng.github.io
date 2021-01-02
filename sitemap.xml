@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://home.meng.uno/hexo-admin-ehc-images.json</loc>
+    
+    <lastmod>2021-01-02T04:13:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://home.meng.uno/articles/undefined/</loc>
     
     <lastmod>2021-01-01T21:16:49.000Z</lastmod>
