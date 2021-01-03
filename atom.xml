@@ -276,6 +276,37 @@ The link of this page is http://home.meng.uno/articles/5b828fc2/ . Welcome to re
   </entry>
   
   <entry>
+    <title>Recurrent Neural Networks (RNNs)</title>
+    <link href="http://home.meng.uno/articles/undefined/"/>
+    <id>http://home.meng.uno/articles/undefined/</id>
+    <published>2019-01-03T16:09:04.000Z</published>
+    <updated>2021-01-03T16:15:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1>循环神经网络（RNNs）</h1><h2 id="背景">背景</h2><h2 id="形式">形式</h2><h2 id="问题">问题</h2><h3 id="针对此问题的拓展">针对此问题的拓展</h3><h1>长短期记忆网络（Long Short Term Memory Network, LSTM）</h1><h1>其他<code>RNN/LSTM</code>的变型</h1><h2 id="gru">GRU</h2>]]></content>
+    
+    <summary type="html">
+    
+      循环神经网络（RNNs）
+背景
+形式
+问题
+针对此问题的拓展
+长短期记忆网络（Long Short Term Memory Network, LSTM）
+其他RNN/LSTM的变型
+GRU
+    
+    </summary>
+    
+      <category term="Deep Learning" scheme="http://home.meng.uno/categories/Deep-Learning/"/>
+    
+    
+      <category term="RNN" scheme="http://home.meng.uno/tags/RNN/"/>
+    
+      <category term="LSTM" scheme="http://home.meng.uno/tags/LSTM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)</title>
     <link href="http://home.meng.uno/articles/undefined/"/>
     <id>http://home.meng.uno/articles/undefined/</id>
