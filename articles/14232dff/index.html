@@ -18,7 +18,7 @@
 
 
   <meta name="description" content="循环神经网络（RNNs） 背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq2">
-  <meta name="keywords" content="RNN,LSTM">
+  <meta name="keywords" content="RNN,LSTM,GRU,Peephole">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Recurrent Neural Networks (RNNs)">
   <meta property="og:url" content="http://home.meng.uno/articles/14232dff/index.html">
@@ -27,10 +27,15 @@
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/1.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/2.png">
+  <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/f1.png">
+  <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/f2.png">
+  <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/f3.png">
+  <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/f4.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/3.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/4.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/5.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/6.png">
+  <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/f5.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/7.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/8.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/12.png">
@@ -39,7 +44,7 @@
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/9.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/10.png">
   <meta property="og:image" content="http://www.meng.uno/images/rnn-lstm/11.png">
-  <meta property="og:updated_time" content="2021-01-03T18:09:18.000Z">
+  <meta property="og:updated_time" content="2021-01-03T18:22:01.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Recurrent Neural Networks (RNNs)">
   <meta name="twitter:description" content="循环神经网络（RNNs） 背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq2">
@@ -285,8 +290,8 @@
                   <span id="busuanzi_container_page_pv">
                     PV:<span id="busuanzi_value_page_pv"></span>
                   </span>
-                  <span class="post-count"> | 字数1,372</span>
-                  <span class="post-count"> | 预计时间6分钟</span>
+                  <span class="post-count"> | 字数1,271</span>
+                  <span class="post-count"> | 预计时间5分钟</span>
                 </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
@@ -301,29 +306,21 @@
                 <h2 id="形式">形式</h2>
                 <p>其数学形式可以表示为：</p>
                 <p>$$
-                  h_{t}=\sigma\left(x_{t} \times w_{x t}+h_{t-1} \times w_{h t}+b\right)
+                  h_{t}=\sigma\left(x_{t} \times W_{x t}+h_{t-1} \times W_{h t}+b\right)
                   $$</p>
                 <p>其时间片<code>t - 1</code>的输出不仅作为该时刻的预测值，同时也作为<code>t</code>时间片的隐状态。</p>
-                <p>(当然，也可以将传递状态和输出分开，这时预测值的形式为：$$y_{t}=\sigma(\mathrm{W}<em>{t} &amp; h</em>{t})$$)</p>
+                <p>(当然，也可以将传递状态和输出分开，这时预测值的形式为：$$y_{t}=\sigma(W_{t} \times h_{t})$$)</p>
                 <h2 id="反向传播">反向传播</h2>
                 <p>RNN中反向传播使用的是名为<code>Back Propagation Through Time (BPTT)</code>方法，损失<code>loss</code>对参数<code>W</code>的梯度等于<code>loss</code>在各时间步对<code>w</code>偏导数的之和。用公式表示如下。</p>
-                <p>$$
-                  \frac{\partial E}{\partial W<sup>{h}}=\sum_{i=1}</sup>{t} \frac{\partial E}{\partial y^{t}} \frac{\partial y_{t}}{\partial h_{t}} \frac{\partial h_{t}}{\partial h^{i}} \frac{\partial h_{i}}{\partial W^{h}}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/rnn-lstm/f1.png" alt="F1"></p>
                 <p>同时还有：</p>
-                <p>$$
-                  \frac{\partial h_{t}}{\partial h<sup>{i}}=\prod_{k=i+1}</sup>{t} \frac{\partial h_{k}}{\partial h^{k-1}}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/rnn-lstm/f2.png" alt="F2"></p>
                 <p>与</p>
-                <p>$$
-                  \frac{\partial h_{k}}{\partial h<sup>{k-1}}=\sigma</sup>{\prime} W^{h}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/rnn-lstm/f3.png" alt="F3"></p>
                 <p>详细的反向传播过程参考 <a href="http://www.meng.uno/utils/rnn-grad.pdf" target="_blank" rel="noopener">RNN BPTT</a>。</p>
                 <h2 id="问题">问题</h2>
                 <p>在反向传播的时候，在求时间片<code>t</code>到<code>i</code>的偏导时，结合以上两个式子，可以得到：</p>
-                <p>$$
-                  \frac{\partial h_{t}}{\partial h<sup>{i}}=\prod</sup>{t-i} \sigma^{\prime} W^{h}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/rnn-lstm/f4.png" alt="F4"></p>
                 <p>当<code>t - i</code>比较大时，问题来了，当$$\sigma^{\prime} W^{h} &gt; 1$$时，连乘的结果会比较大（梯度爆炸），相反，如果$$\sigma^{\prime} W^{h} &lt; 1$$，则会得到一个很小的值（梯度消失）。这种现象叫做RNNs的“长期依赖”。</p>
                 <h3 id="解决方案">解决方案</h3>
                 <ol>
@@ -371,9 +368,7 @@
                 <p>在图示中的位置如下：</p>
                 <p><img src="http://www.meng.uno/images/rnn-lstm/6.png" alt="LSTM Structure"></p>
                 <p>状态更新值$$\tilde{C}_{t}$$的数学表达式以及图示如下：</p>
-                <p>$$
-                  \tilde{C}<em>{t}=\tanh \left(W</em>{C} \cdot\left[h_{t-1}, x_{t}\right]+b_{C}\right)
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/rnn-lstm/f5.png" alt="F5"></p>
                 <p><img src="http://www.meng.uno/images/rnn-lstm/7.png" alt="LSTM Structure"></p>
                 <p>最后，预测值$$y_t$$和生成下个时间片的输入$$h_t$$，我们需要如下计算：</p>
                 <p>$$
@@ -465,7 +460,9 @@
                 </div>
 
                 <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GRU/">GRU</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/">LSTM</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Peephole/">Peephole</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li>
                 </ul>
               </footer>
