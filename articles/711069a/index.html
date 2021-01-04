@@ -17,18 +17,18 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP,EBP,">
-  <meta name="keywords" content="ASM,汇编,代码规范">
+  <meta name="description" content="基本指令 数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP">
+  <meta name="keywords" content="代码规范,汇编,ASM">
   <meta property="og:type" content="article">
   <meta property="og:title" content="汇编指令与代码规范">
   <meta property="og:url" content="http://home.meng.uno/articles/711069a/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP,EBP,">
+  <meta property="og:description" content="基本指令 数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2021-01-01T18:33:04.000Z">
+  <meta property="og:updated_time" content="2021-01-04T07:33:26.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="汇编指令与代码规范">
-  <meta name="twitter:description" content="数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP,EBP,">
+  <meta name="twitter:description" content="基本指令 数据传输指令 通用数据传送指令 MOV 传送字或字节.  MOVSX 先符号扩展,再传送.  MOVZX 先零扩展,再传送.  PUSH 把字压入堆栈.  POP 把字弹出堆栈.  PUSHA 把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.  POPA 把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.  PUSHAD 把EAX,ECX,EDX,EBX,ESP">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -270,14 +270,15 @@
                   <span id="busuanzi_container_page_pv">
                     PV:<span id="busuanzi_value_page_pv"></span>
                   </span>
-                  <span class="post-count"> | 字数3,457</span>
-                  <span class="post-count"> | 预计时间13分钟</span>
+                  <span class="post-count"> | 字数4,039</span>
+                  <span class="post-count"> | 预计时间15分钟</span>
                 </a>
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>数据传输指令</h1>
-                <h2 id="通用数据传送指令">通用数据传送指令</h2>
+                <h1>基本指令</h1>
+                <h2 id="数据传输指令">数据传输指令</h2>
+                <h3 id="通用数据传送指令">通用数据传送指令</h3>
                 <p>MOV 传送字或字节.</p>
                 <p>MOVSX 先符号扩展,再传送.</p>
                 <p>MOVZX 先零扩展,再传送.</p>
@@ -310,14 +311,14 @@
                   例: LGS DI,string ;把段地址:偏移地址存到GS:DI.</p>
                 <p>LSS 传送目标指针,把指针内容装入SS.
                   例: LSS DI,string ;把段地址:偏移地址存到SS:DI.</p>
-                <h2 id="标志传送指令">标志传送指令.</h2>
+                <h3 id="标志传送指令">标志传送指令.</h3>
                 <p>LAHF 标志寄存器传送,把标志装入AH.</p>
                 <p>SAHF 标志寄存器传送,把AH内容装入标志寄存器.</p>
                 <p>PUSHF 标志入栈.</p>
                 <p>POPF 标志出栈.</p>
                 <p>PUSHD 32位标志入栈.</p>
                 <p>POPD 32位标志出栈.</p>
-                <h1>算术运算指令</h1>
+                <h2 id="算术运算指令">算术运算指令</h2>
                 <p>ADD 加法.</p>
                 <p>ADC 带进位加法.</p>
                 <p>INC 加 1.</p>
@@ -342,7 +343,7 @@
                 <p>CWD 字转换为双字. (把AX中的字的符号扩展到DX中去)</p>
                 <p>CWDE 字转换为双字. (把AX中的字符号扩展到EAX中去)</p>
                 <p>CDQ 双字扩展. (把EAX中的字的符号扩展到EDX中去)</p>
-                <h1>逻辑运算指令</h1>
+                <h2 id="逻辑运算指令">逻辑运算指令</h2>
                 <p>AND 与运算.</p>
                 <p>or 或运算.</p>
                 <p>XOR 异或运算.</p>
@@ -358,7 +359,7 @@
                 <p>RCR 通过进位的循环右移.</p>
                 <p><strong>以上八种移位指令,其移位次数可达255次. 移位一次时, 可直接用操作码. 如 SHL AX,1.移位&gt;1次时, 则由寄存器CL给出移位次数.如 MOV CL,04</strong></p>
                 <p>SHL AX,CL</p>
-                <h1>串指令</h1>
+                <h2 id="串指令">串指令</h2>
                 <p>DS:SI 源串段寄存器 :源串变址.</p>
                 <p>ES:DI 目标串段寄存器:目标串变址.</p>
                 <p>CX 重复次数计数器.</p>
@@ -378,12 +379,12 @@
                 <p>REPNE/REPNZ 当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.</p>
                 <p>REPC 当CF=1且CX/ECX&lt;&gt;0时重复.</p>
                 <p>REPNC 当CF=0且CX/ECX&lt;&gt;0时重复.</p>
-                <h1>程序转移指令</h1>
-                <h2 id="无条件转移指令-长转移">无条件转移指令 (长转移)</h2>
+                <h2 id="程序转移指令">程序转移指令</h2>
+                <h3 id="无条件转移指令-长转移">无条件转移指令 (长转移)</h3>
                 <p>JMP 无条件转移指令</p>
                 <p>CALL 过程调用</p>
                 <p>RET/RETF过程返回.</p>
-                <h2 id="条件转移指令-短转移-128到-127的距离内">条件转移指令 (短转移,-128到+127的距离内)</h2>
+                <h3 id="条件转移指令-短转移-128到-127的距离内">条件转移指令 (短转移,-128到+127的距离内)</h3>
                 <p><strong>当且仅当(SF XOR OF)=1时,OP1&lt;OP2</strong></p>
                 <p>JA/JNBE 不小于或不等于时转移.</p>
                 <p>JAE/JNB 大于或等于转移.</p>
@@ -405,17 +406,17 @@
                 <p>JO 溢出转移.</p>
                 <p>JP/JPE 奇偶性为偶数时转移.</p>
                 <p>JS 符号位为 “1” 时转移.</p>
-                <h2 id="循环控制指令-短转移">循环控制指令(短转移)</h2>
+                <h3 id="循环控制指令-短转移">循环控制指令(短转移)</h3>
                 <p>LOOP CX不为零时循环.</p>
                 <p>LOOPE/LOOPZ CX不为零且标志Z=1时循环.</p>
                 <p>LOOPNE/LOOPNZ CX不为零且标志Z=0时循环.</p>
                 <p>JCXZ CX为零时转移.</p>
                 <p>JECXZ ECX为零时转移.</p>
-                <h2 id="中断指令">中断指令</h2>
+                <h3 id="中断指令">中断指令</h3>
                 <p>INT 中断指令</p>
                 <p>INTO 溢出中断</p>
                 <p>IRET 中断返回</p>
-                <h2 id="处理器控制指令">处理器控制指令</h2>
+                <h3 id="处理器控制指令">处理器控制指令</h3>
                 <p>HLT 处理器暂停, 直到出现中断或复位信号才继续.</p>
                 <p>WAIT 当芯片引线TEST为高电平时使CPU进入等待状态.</p>
                 <p>ESC 转换到外处理器.</p>
@@ -428,7 +429,7 @@
                 <p>CLD 清方向标志位.</p>
                 <p>STI 置中断允许位.</p>
                 <p>CLI 清中断允许位.</p>
-                <h1>伪指令</h1>
+                <h2 id="伪指令">伪指令</h2>
                 <p>DW 定义字(2字节).</p>
                 <p>PROC 定义过程.</p>
                 <p>ENDP 过程结束.</p>
@@ -436,7 +437,7 @@
                 <p>ASSUME 建立段寄存器寻址.</p>
                 <p>ENDS 段结束.</p>
                 <p>END 程序结束.</p>
-                <h1>处理机控制指令</h1>
+                <h2 id="处理机控制指令">处理机控制指令</h2>
                 <h2 id="标志处理指令">标志处理指令</h2>
                 <p>CLC（进位位置0指令）</p>
                 <p>CMC（进位位求反指令）</p>
@@ -450,6 +451,106 @@
                 <p>WAIT（等待）</p>
                 <p>ESC（换码）</p>
                 <p>LOCK（封锁）</p>
+                <h1>破解中常用的汇编指令</h1>
+                <p>基本上多数破解的思路是一样的，就是将本来判断为true的时候干的事情改为逻辑值为false就做，因此常常需要替换一些汇编命令：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">cmp <span class="selector-tag">a</span>,<span class="selector-tag">b</span> 比较a与b</span><br><span class="line">mov <span class="selector-tag">a</span>,<span class="selector-tag">b</span> 把b的值送给a</span><br><span class="line">ret 返回主程序</span><br><span class="line">nop 无作用,英文“no operation”的简写，意思是“do nothing”(机器码<span class="number">90</span>)</span><br><span class="line">call 调用子程序</span><br><span class="line">je 或jz 若相等则跳(机器码<span class="number">74</span> 或<span class="number">0</span>F84)</span><br><span class="line">jne或jnz 若不相等则跳(机器码<span class="number">75</span>或<span class="number">0</span>F85)</span><br><span class="line">jmp 无条件跳(机器码EB)</span><br><span class="line">jb 若小于则跳</span><br><span class="line">ja 若大于则跳</span><br><span class="line">jg 若大于则跳</span><br><span class="line">jge 若大于等于则跳</span><br><span class="line">jl 若小于则跳</span><br><span class="line">jle 若小于等于则跳</span><br><span class="line">pop 出栈</span><br><span class="line">push 压栈</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="常见机器码的修改">常见机器码的修改</h2>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">74=&gt;75 74=&gt;90 74=&gt;EB</span><br><span class="line">75=&gt;74 75=&gt;90 75=&gt;EB</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>jnz -&gt; nop</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">75-&gt;90(相应的机器码修改)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>jnz -&gt; jmp</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">75 -&gt; EB(相应的机器码修改)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>jnz -&gt; jz</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">75-&gt;74 (正常) </span><br><span class="line">0F 85 -&gt; 0F 84(特殊情况下,有时,相应的机器码修改)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h3 id="修改为jmp">修改为jmp</h3>
+                <p>je(jne,jz,jnz) =&gt;jmp相应的机器码EB （出错信息向上找到的第一个跳转）jmp的作用是绝对跳，无条件跳，从而跳过下面的出错信息。</p>
+                <p>出错信息，例如：注册码不对，sorry,未注册版不能…，“Function Not Avaible in Demo” 或 “Command Not Avaible” 或 &quot;Can’t save in Shareware/Demo&quot;等 （我们希望把它跳过，不让它出现）。</p>
+                <h3 id="修改为nop">修改为nop</h3>
+                <p>je(jne,jz,jnz) =&gt;nop相应的机器码90 （正确信息向上找到的第一个跳转） nop的作用是抹掉这个跳转，使这个跳转无效，失去作用，从而使程序顺利来到紧跟其后的正确信息处。</p>
+                <p>正确信息，例如：注册成功，谢谢您的支持等（我们希望它不被跳过，让它出现，程序一定要顺利来到这里）。</p>
+                <p>出错信息（我们希望不要跳到这里，不让它出现）它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据。</p>
+                <p>例如使用windbg时候：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">0:000&gt; dd 0c366b28 l4</span><br><span class="line">0c366b28  7e830c74 940f0108 c0b60fc0 01b805eb</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>执行<code>ed 0c366b28 7e830c75</code></p>
+                <p>修改为:</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">0:000&gt; dd 0c366b28 l4</span><br><span class="line">0c366b28  7e830c75 940f0108 c0b60fc0 01b805eb</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
                 <h1>代码规范</h1>
                 <p>随着程序功能的增加和版本的提高，程序越来越复杂，源文件也越来越多，风格规范的源程序会对软件的升级、修改和维护带来极大的方便，要想开发一个成熟的软件产品，必须在编写源程序的时候就有条不紊，细致严谨。</p>
                 <p>在编程中，在程序排版、注释、命名和可读性等问题上都有一定的规范，虽然编写可读性良好的代码并不是必然的要求（世界上还有难懂代码比赛，看谁的代码最不好读懂！），但好的代码风格实际上是为自己将来维护和使用这些代码节省时间。</p>
@@ -651,43 +752,57 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">数据传输指令</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">基本指令</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#通用数据传送指令"><span class="nav-number">1.1.</span> <span class="nav-text">通用数据传送指令</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出端口传送指令"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出端口传送指令</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#目的地址传送指令"><span class="nav-number">1.3.</span> <span class="nav-text">目的地址传送指令.</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#标志传送指令"><span class="nav-number">1.4.</span> <span class="nav-text">标志传送指令.</span></a></li>
-                  </ol>
-                </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">算术运算指令</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算指令</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">串指令</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">程序转移指令</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#无条件转移指令-长转移"><span class="nav-number">5.1.</span> <span class="nav-text">无条件转移指令 (长转移)</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#条件转移指令-短转移-128到-127的距离内"><span class="nav-number">5.2.</span> <span class="nav-text">条件转移指令 (短转移,-128到+127的距离内)</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#循环控制指令-短转移"><span class="nav-number">5.3.</span> <span class="nav-text">循环控制指令(短转移)</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#中断指令"><span class="nav-number">5.4.</span> <span class="nav-text">中断指令</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#处理器控制指令"><span class="nav-number">5.5.</span> <span class="nav-text">处理器控制指令</span></a></li>
-                  </ol>
-                </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">伪指令</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">处理机控制指令</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#标志处理指令"><span class="nav-number">7.1.</span> <span class="nav-text">标志处理指令</span></a></li>
-                  </ol>
-                </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">代码规范</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#变量和函数的命名"><span class="nav-number">8.1.</span> <span class="nav-text">变量和函数的命名</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数据传输指令"><span class="nav-number">1.1.</span> <span class="nav-text">数据传输指令</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#匈牙利表示法"><span class="nav-number">8.1.1.</span> <span class="nav-text">匈牙利表示法</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#对匈牙利表示法的补充"><span class="nav-number">8.1.2.</span> <span class="nav-text">对匈牙利表示法的补充</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#通用数据传送指令"><span class="nav-number">1.1.1.</span> <span class="nav-text">通用数据传送指令</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码的书写格式"><span class="nav-number">8.2.</span> <span class="nav-text">代码的书写格式</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出端口传送指令"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出端口传送指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#目的地址传送指令"><span class="nav-number">1.3.</span> <span class="nav-text">目的地址传送指令.</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#排版方式"><span class="nav-number">8.2.1.</span> <span class="nav-text">排版方式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#标志传送指令"><span class="nav-number">1.3.1.</span> <span class="nav-text">标志传送指令.</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#算术运算指令"><span class="nav-number">1.4.</span> <span class="nav-text">算术运算指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算指令"><span class="nav-number">1.5.</span> <span class="nav-text">逻辑运算指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#串指令"><span class="nav-number">1.6.</span> <span class="nav-text">串指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#程序转移指令"><span class="nav-number">1.7.</span> <span class="nav-text">程序转移指令</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#无条件转移指令-长转移"><span class="nav-number">1.7.1.</span> <span class="nav-text">无条件转移指令 (长转移)</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#条件转移指令-短转移-128到-127的距离内"><span class="nav-number">1.7.2.</span> <span class="nav-text">条件转移指令 (短转移,-128到+127的距离内)</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#循环控制指令-短转移"><span class="nav-number">1.7.3.</span> <span class="nav-text">循环控制指令(短转移)</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#中断指令"><span class="nav-number">1.7.4.</span> <span class="nav-text">中断指令</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#处理器控制指令"><span class="nav-number">1.7.5.</span> <span class="nav-text">处理器控制指令</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#伪指令"><span class="nav-number">1.8.</span> <span class="nav-text">伪指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#处理机控制指令"><span class="nav-number">1.9.</span> <span class="nav-text">处理机控制指令</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#标志处理指令"><span class="nav-number">1.10.</span> <span class="nav-text">标志处理指令</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">破解中常用的汇编指令</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#常见机器码的修改"><span class="nav-number">2.1.</span> <span class="nav-text">常见机器码的修改</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#修改为jmp"><span class="nav-number">2.1.1.</span> <span class="nav-text">修改为jmp</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#修改为nop"><span class="nav-number">2.1.2.</span> <span class="nav-text">修改为nop</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">代码规范</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#变量和函数的命名"><span class="nav-number">3.1.</span> <span class="nav-text">变量和函数的命名</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#匈牙利表示法"><span class="nav-number">3.1.1.</span> <span class="nav-text">匈牙利表示法</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#对匈牙利表示法的补充"><span class="nav-number">3.1.2.</span> <span class="nav-text">对匈牙利表示法的补充</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#代码的书写格式"><span class="nav-number">3.2.</span> <span class="nav-text">代码的书写格式</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#排版方式"><span class="nav-number">3.2.1.</span> <span class="nav-text">排版方式</span></a></li>
                       </ol>
                     </li>
                   </ol>
