@@ -18,7 +18,7 @@
 
 
   <meta name="description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。  激活函数的主">
-  <meta name="keywords" content="Activation,Sigmoid,Tanh,ReLU,LeakyReLU,pReLU,ELU,Maxout">
+  <meta name="keywords" content="Activation,Sigmoid,Tanh,ReLU,LeakyReLU,pReLU,ELU,Maxout,Softmax,Softplus">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Activation Functions">
   <meta property="og:url" content="http://home.meng.uno/articles/7af9d25d/index.html">
@@ -26,12 +26,15 @@
   <meta property="og:description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。  激活函数的主">
   <meta property="og:locale" content="EN">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/1.png">
+  <meta property="og:image" content="http://www.meng.uno/images/activation-func/7.png">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/2.png">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/3.png">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/4.png">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/5.png">
+  <meta property="og:image" content="http://www.meng.uno/images/activation-func/8.png">
+  <meta property="og:image" content="http://www.meng.uno/images/activation-func/9.png">
   <meta property="og:image" content="http://www.meng.uno/images/activation-func/6.png">
-  <meta property="og:updated_time" content="2021-01-04T16:02:24.000Z">
+  <meta property="og:updated_time" content="2021-01-04T16:09:43.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Activation Functions">
   <meta name="twitter:description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。  激活函数的主">
@@ -277,7 +280,7 @@
                   <span id="busuanzi_container_page_pv">
                     PV:<span id="busuanzi_value_page_pv"></span>
                   </span>
-                  <span class="post-count"> | 字数815</span>
+                  <span class="post-count"> | 字数771</span>
                   <span class="post-count"> | 预计时间3分钟</span>
                 </a>
               </div>
@@ -286,7 +289,7 @@
                 <h1>背景</h1>
                 <p>在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。</p>
                 <h1>激活函数的主要形式</h1>
-                <p>在此从形式以及存在的问题方面介绍几种常用的激活函数，<code>Sigmoid</code>，<code>tanh</code>，<code>ReLU</code>，<code>LeakyReLU</code>，<code>pReLU</code>，<code>ELU</code>以及<code>Maxout</code>。</p>
+                <p>在此从形式以及存在的问题方面介绍几种常用的激活函数，<code>Sigmoid</code>，<code>tanh</code>，<code>ReLU</code>（包括<code>LeakyReLU</code>，<code>pReLU</code>，<code>ELU</code>），<code>Maxout</code>，<code>Softmax</code>以及<code>Softplus</code>。</p>
                 <h2 id="sigmoid">Sigmoid</h2>
                 <h3 id="形式">形式</h3>
                 <p>我们从Sigmoid（S形曲线）激活函数说起，刚开始认识Sigmoid可能是从Logistic Regression开始，它的形式如下：</p>
@@ -304,9 +307,7 @@
                 <h2 id="tanh">tanh</h2>
                 <h3 id="形式-v2">形式</h3>
                 <p>其作为改进版的Sigmoid，数学形式及对应的曲线如下：</p>
-                <p>$$
-                  \tanh(x)=\frac{\sinh x}{\cosh x}=\frac{e<sup>{x}-e</sup>{-x}}{e<sup>{x}+e</sup>{-x}}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/activation-func/7.png" alt="tanh"></p>
                 <p><img src="http://www.meng.uno/images/activation-func/2.png" alt="tanh"></p>
                 <h3 id="问题-v2">问题</h3>
                 <ol>
@@ -319,10 +320,10 @@
                 <h3 id="问题-v3">问题</h3>
                 <ol>
                   <li>非zero-centered。</li>
-                  <li>在负数区域被killed的现象叫做Dead ReLU。</li>
+                  <li>在负数区域被killed的现象叫做Dying ReLU。</li>
                 </ol>
                 <h3 id="针对relu的改进">针对ReLU的改进</h3>
-                <p>为了解决Dead ReLU问题，有两种比较常用的解决方案。</p>
+                <p>为了解决Dying ReLU问题，有三种比较常用的解决方案。</p>
                 <h4 id="leakyrelu">LeakyReLU</h4>
                 <p>LeakyReLU的思想是直接将<code>x ≤ 0</code>的部分修改为较小的<code>0.01x</code>，于是整体的形式就变成了<code>f(x) = max(0.01x, x)</code>。</p>
                 <p><img src="http://www.meng.uno/images/activation-func/4.png" alt="LeakyReLU"></p>
@@ -334,14 +335,10 @@
                 <h2 id="maxout">Maxout</h2>
                 <p>Maxout是通过分段线性函数来拟合所有可能的凸函数来作为激活函数的，但是由于线性函数是可学习，所以实际上是可以学出来的激活函数。具体操作是对所有线性取最大，也就是把若干直线的交点作为分段的界，然后每一段取最大。</p>
                 <p>其形式为：</p>
-                <p>$$
-                  h_{i}(x)=\max <em>{j \in[1, k]}(x^{T} W</em>{\cdots i j}+b_{i j})
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/activation-func/8.png" alt="Maxout"></p>
                 <h2 id="softmax">Softmax</h2>
                 <p>也称归一化指数函数，其一般形式为：</p>
-                <p>$$
-                  \sigma(\mathbf{z})<em>{i}=\frac{e<sup>{z_{i}}}{\sum_{j=1}</sup>{K} e^{z</em>{j}}}
-                  $$</p>
+                <p><img src="http://www.meng.uno/images/activation-func/9.png" alt="Softmax"></p>
                 <p>Sigmoid函数如果用来分类的话，只能进行二分类，而Softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
                 <h2 id="softplus">Softplus</h2>
                 <p>其一般形式为：</p>
@@ -349,7 +346,7 @@
                   f(x) = \ln \left(1+e^{x}\right)
                   $$</p>
                 <p><img src="http://www.meng.uno/images/activation-func/6.png" alt="Softplus"></p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/undefined/">http://home.meng.uno/articles/undefined/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/7af9d25d/">http://home.meng.uno/articles/7af9d25d/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -419,6 +416,8 @@
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maxout/">Maxout</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReLU/">ReLU</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sigmoid/">Sigmoid</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Softmax/">Softmax</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Softplus/">Softplus</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tanh/">Tanh</a></li>
                   <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pReLU/">pReLU</a></li>
                 </ul>
