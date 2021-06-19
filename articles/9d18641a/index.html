@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Attention and Self Attention | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客">
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I">
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL">
+
+
+  <meta name="description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta name="keywords" content="Attention,Self-Attention,Transformer,BERT,Seq2Seq">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Attention and Self Attention">
+  <meta property="og:url" content="http://home.meng.uno/articles/9d18641a/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/1.png">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/3.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/4.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/5.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/6.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/7.png">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/8.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/10.gif">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/9.jpg">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/11.jpg">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/12.jpg">
+  <meta property="og:image" content="http://meng.uno/images/self-attention/13.jpg">
+  <meta property="og:updated_time" content="2020-12-02T01:43:44.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Attention and Self Attention">
+  <meta name="twitter:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
+  <meta name="twitter:image" content="http://meng.uno/images/self-attention/1.png">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/9d18641a/">
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+</html>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-self-attention" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Attention and Self Attention
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/9d18641a/" class="article-date">
+                  <time datetime="2020-12-01T09:56:52.000Z" itemprop="datePublished">2020-12-01</time>
+                </a>
+                <a class="article-category-link" href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1>Attention</h1>
+                <p><code>Seq2Seq</code>结构在一些<code>End2End</code>问题上能取得非常好的结果，其结构一般由<code>Encoder</code>和<code>Decoder</code>组成，其运行流程如下视频所示。</p>
+                <video id="video" controls preload="" poster="">
+                  <source id="mp4" src="http://meng.uno/images/self-attention/1.mp4" type="video/mp4">
+                </video>
+                <p>然而，采用<code>RNN</code>的<code>Seq2Seq</code>结构因为<code>RNN</code>中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，<code>Attention</code>机制被引入了。<code>Attention</code>机制跟人类翻译文章时候的思路有些类似，即将注意力关注于我们翻译部分对应的上下文。此机制打破了只能利用<code>Encoder</code>最终单一向量结果的限制，从而使模型可以集中在所有对于下一个目标单词重要的输入信息上，使模型效果得到极大的改善。还有一个优点是，我们通过观察<code>Attention</code>权重矩阵的变化，可以更好地知道哪部分翻译对应哪部分源文字，有助于更好的理解模型工作机制。</p>
+                <p><code>Attention</code>机制实际上是对<code>Query</code>, <code>Key</code>, <code>Value</code> 的运算，其整体流程可以用下图来表示。</p>
+                <p><img src="http://meng.uno/images/self-attention/1.png" alt="Arctecture of Attention"></p>
+                <p>其中：</p>
+                <ul>
+                  <li>阶段一是<code>Query</code>与<code>Key</code>进行某种<code>F()</code>运算；</li>
+                  <li>阶段二是使用<code>softmax</code>对结果归一化；</li>
+                  <li>阶段三是上阶段输出值和<code>Value</code>做运算。</li>
+                </ul>
+                <p><code>F()</code>运算可以是：$$Q^{T}K$$, $$Q^{T}W_{a}K$$ 或者 $$v_{a}^{T} tanh(W_{a} concat(Q, K))$$。</p>
+                <h1>Self Attention</h1>
+                <p>如果<code>Attention</code>机制中的<code>Key</code>, <code>Value</code>以及<code>Query</code>都来着同一个分布，我们称之为<code>Self-Attention</code>。</p>
+                <p>接下来，结合网上的一个例子，我们从数据输入、计算<code>Key</code>, <code>Value</code>和<code>Query</code>、再到具体的三阶段计算来认识<code>Self-Attention</code>。</p>
+                <h2 id="数据准备">数据准备</h2>
+                <p>我们准备了三个输入，每个输入维度为<code>4</code>。如下：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">Input 1: [1, 0, 1, 0] </span><br><span class="line">Input 2: [0, 2, 0, 2]</span><br><span class="line">Input 3: [1, 1, 1, 1]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="计算key-value以及query">计算<code>Key</code>,<code>Value</code>以及<code>Query</code></h2>
+                <p>假设我们希望<code>Key</code>, <code>Value</code>, <code>Query</code>的尺寸为3。而由于现在每个输入的尺寸均为4，这意味着每组权重的形状都必须为<code>4×3</code>。</p>
+                <h3 id="计算key">计算<code>Key</code></h3>
+                <p>我们假定<code>Key</code>的权重为：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">[[0, 0, 1],</span><br><span class="line">[1, 1, 0],</span><br><span class="line">[0, 1, 0],</span><br><span class="line">[1, 1, 0]]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>则通过矩阵乘法，我们可以得到<code>Key</code>为：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">               [0, 0, 1]</span><br><span class="line">[1, 0, 1, 0]   [1, 1, 0]   [0, 1, 1]</span><br><span class="line">[0, 2, 0, 2] x [0, 1, 0] = [4, 4, 0]</span><br><span class="line">[1, 1, 1, 1]   [1, 1, 0]   [2, 3, 1]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>此过程如下图所示：</p>
+                <p><img src="http://meng.uno/images/self-attention/3.gif" alt="Key"></p>
+                <h3 id="计算value">计算<code>Value</code></h3>
+                <p>同理，<code>Value</code>权重及计算如下：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">               [0, 2, 0]</span><br><span class="line">[1, 0, 1, 0]   [0, 3, 0]   [1, 2, 3] </span><br><span class="line">[0, 2, 0, 2] x [1, 0, 3] = [2, 8, 0]</span><br><span class="line">[1, 1, 1, 1]   [1, 1, 0]   [2, 6, 3]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>此过程也有图片展示:</p>
+                <p><img src="http://meng.uno/images/self-attention/4.gif" alt="Value"></p>
+                <h3 id="计算query">计算<code>Query</code></h3>
+                <p>同样的方式可以计算<code>Query</code>：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">               [1, 0, 1]</span><br><span class="line">[1, 0, 1, 0]   [1, 0, 0]   [1, 0, 2]</span><br><span class="line">[0, 2, 0, 2] x [0, 0, 1] = [2, 2, 2]</span><br><span class="line">[1, 1, 1, 1]   [0, 1, 1]   [2, 1, 3]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>动图表示此过程如下：</p>
+                <p><img src="http://meng.uno/images/self-attention/5.gif" alt="Query"></p>
+                <p>至此，我们可以得到来自同一分布的<code>Key</code>, <code>Value</code>以及<code>Query</code>。</p>
+                <h2 id="三阶段计算">三阶段计算</h2>
+                <h3 id="f-运算"><code>F()</code>运算</h3>
+                <p>在此，我们选择点乘作为我们的<code>F()</code>。对于第一个<code>Query</code>，我们可以得到其注意力得分：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">            [0, 4, 2]</span><br><span class="line">[1, 0, 2] x [1, 4, 3] = [2, 4, 4]</span><br><span class="line">            [1, 0, 1]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>过程如下：</p>
+                <p><img src="http://meng.uno/images/self-attention/6.gif" alt="Attention Score"></p>
+                <h3 id="softmax归一化"><code>softmax</code>归一化</h3>
+                <video id="video" controls preload="" poster="">
+                  <source id="mp4" src="http://meng.uno/images/self-attention/7.mp4" type="video/mp4">
+                </video>
+                <p>以上视频展示了<code>softmax</code>的过程，<code>softmax</code>本身是这样一个公式：</p>
+                <p><img src="http://meng.uno/images/self-attention/7.png" alt="Softmax formula"></p>
+                <h3 id="得到attention-value">得到<code>Attention Value</code></h3>
+                <p>针对某一个<code>Query</code>，其经过以上两步之后的输出与<code>Value</code>分别想乘并结果想加，可以得到对应位置的<code>Attention Value</code>，在本实例中得到第一个值的过程大致如下：</p>
+                <p><img src="http://meng.uno/images/self-attention/8.gif" alt="Attention Value"></p>
+                <p>分别得到三个<code>Query</code>对应的三个<code>Attention Value</code>的过程如下：</p>
+                <p><img src="http://meng.uno/images/self-attention/10.gif" alt="Attention Value all"></p>
+                <p>至此，<code>Self-Attention</code>的全流程以及实例完毕。</p>
+                <h1>Applications</h1>
+                <p><code>Attention</code>机制引入以来，主要用在以下三个场景中。</p>
+                <h2 id="sequence-to-sequence">Sequence to sequence</h2>
+                <p><img src="http://meng.uno/images/self-attention/9.jpg" alt="Attention Seq2Seq"></p>
+                <p>引入了<code>Attention</code>的<code>Seq2Seq</code>结构如上图，<code>Encoder</code>不再是只保存最终的状态，而是保存整个<code>Attention Value</code>矩阵，在<code>Decoder</code>时，可以更好的得到所需要的结果。</p>
+                <h2 id="transformer">Transformer</h2>
+                <p><code>Transformer</code>是另一个使用到<code>Attention</code>的模型，更具体的说是<code>Multi-head Attention</code>。其结构图如下所示：</p>
+                <p><img src="http://meng.uno/images/self-attention/11.jpg" alt="Transformer"></p>
+                <p>其中，<code>Multi-head Attention</code>是通过<code>h</code>个不同的线性变换对<code>Query</code>，<code>Key</code>以及<code>Value</code>进行投影，最后将不同的<code>Attention</code>结果拼接起来。其与加了<code>mask</code>的<code>Attention</code>原理如下图。</p>
+                <p><img src="http://meng.uno/images/self-attention/12.jpg" alt="Multi-head Attention"></p>
+                <h2 id="bert">BERT</h2>
+                <p><code>BERT</code>的网络架构是完全重用<code>Transformer</code>的<code>Encoder</code>部分，一个创新亮点就是训练中使用的目标函数，也就是<code>Loss function</code>的定义。这个创新虽小但是很关键。<code>BERT</code>的<code>Loss function</code>由两个子任务的<code>Loss</code>相加而得。第一个任务就是把一个句中的几个字<code>mask</code>掉，然后让模型去预测这几个字，看它的正确率。第二个<code>Loss</code>来源于预测两个句子是不是上下句。这是为了让模型拥有句子层面的语义相关性的判断。为了增加鲁棒性，这两个句子都有可能不是整句，而是片段。</p>
+                <p>除此之外，<code>BERT</code>的<code>Input Embedding</code>也是一大亮点，其考虑到<code>Attention</code>并没有考虑的位置信息，增加了<code>Segment Embeddings</code>和<code>Position Embeddings</code>，他们和<code>Token Embeddings</code>的和作为<code>Input Embeddings</code>。</p>
+                <p><img src="http://meng.uno/images/self-attention/13.jpg" alt="BERT Input Embedding"></p>
+                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/9d18641a/">http://home.meng.uno/articles/9d18641a/</a> . Welcome to reproduce it!</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attention/">Attention</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BERT/">BERT</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Self-Attention/">Self-Attention</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seq2Seq/">Seq2Seq</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/">Transformer</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+
+              <a href="/articles/bf7d2a9d/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">MPhil历程以及两年的香港生活总结</div>
+              </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Attention</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Self Attention</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#数据准备"><span class="nav-number">2.1.</span> <span class="nav-text">数据准备</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#计算key-value以及query"><span class="nav-number">2.2.</span> <span class="nav-text">计算Key,Value以及Query</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#计算key"><span class="nav-number">2.2.1.</span> <span class="nav-text">计算Key</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#计算value"><span class="nav-number">2.2.2.</span> <span class="nav-text">计算Value</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#计算query"><span class="nav-number">2.2.3.</span> <span class="nav-text">计算Query</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#三阶段计算"><span class="nav-number">2.3.</span> <span class="nav-text">三阶段计算</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#f-运算"><span class="nav-number">2.3.1.</span> <span class="nav-text">F()运算</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#softmax归一化"><span class="nav-number">2.3.2.</span> <span class="nav-text">softmax归一化</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#得到attention-value"><span class="nav-number">2.3.3.</span> <span class="nav-text">得到Attention Value</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Applications</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#sequence-to-sequence"><span class="nav-number">3.1.</span> <span class="nav-text">Sequence to sequence</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#transformer"><span class="nav-number">3.2.</span> <span class="nav-text">Transformer</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#bert"><span class="nav-number">3.3.</span> <span class="nav-text">BERT</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.06.19 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2021 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

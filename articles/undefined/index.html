@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise) | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客">
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I">
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL">
+
+
+  <meta name="description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
+  <meta name="keywords" content="机器学习,噪声,偏差,方差">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)">
+  <meta property="og:url" content="http://home.meng.uno/articles/undefined/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/1.jpeg">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/2.jpg">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/3.png">
+  <meta property="og:image" content="http://www.meng.uno/images/noises/4.png">
+  <meta property="og:updated_time" content="2021-01-01T15:12:05.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)">
+  <meta name="twitter:description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
+  <meta name="twitter:image" content="http://www.meng.uno/images/noises/1.jpeg">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/undefined/">
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+</html>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="article-noises" style="width: 75%; float:left;" class="article article-type-article" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/undefined/" class="article-date">
+                  <time datetime="2019-01-01T15:03:57.000Z" itemprop="datePublished">2019-01-01</time>
+                </a>
+                <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。</p>
+                </blockquote>
+                <h2 id="偏差-bias">偏差（Bias）</h2>
+                <p>Bias是用所有可能的训练数据集训练出的<strong>所有模型</strong>的输出的平均值与<strong>真实模型</strong>的输出值之间的差异。
+                  其衡量了学习算法的<strong>期望预测</strong>与<strong>真实结果</strong>的偏离程度，即刻画了学习算法本身的拟合能力。
+                  其计算可以由下式表示：</p>
+                <p>$$
+                  [h(x)-f(x)]
+                  $$</p>
+                <p>其中，<code>f(x)</code>代表真实值，而<code>h(x)</code>代表算法的预测结果。</p>
+                <h2 id="方差-variance">方差（Variance）</h2>
+                <p>Variance是不同的训练数据集训练出的<strong>模型输出值</strong>之间的差异。
+                  其度量了同样大小的<strong>训练集的变动</strong>所导致的学习性能的变化，即刻画了数据扰动所造成的影响。
+                  其期望的计算可以用下式表示：</p>
+                <p>$$E_{P}\left[(h(\mathrm{x})-\bar{h}(\mathrm{x}))^{2}\right]$$</p>
+                <p>其中，<code>h(x)</code>指的是某一次训练的输出值。</p>
+                <h2 id="偏差与方差的关系">偏差与方差的关系</h2>
+                <p>两者的关系可以由下图表示：</p>
+                <p><img src="http://www.meng.uno/images/noises/1.jpeg" alt="bias and variance"></p>
+                <p>这幅图可以看出，两者可以组成四种关系，这四种关系也对应着机器学习模型的四种不同表现。</p>
+                <ul>
+                  <li>Low Bias, Low Variance: 好模型；</li>
+                  <li>High Bias, High Variance: 差模型；</li>
+                  <li>High Bias, Low Variance: 欠拟合；</li>
+                  <li>Low Bias, High Variance: 过拟合。</li>
+                </ul>
+                <p>于是，从偏差、方差的角度解释过拟合、欠拟合：</p>
+                <ul>
+                  <li>欠拟合：模型不能适配训练样本，有一个很大的偏差。</li>
+                  <li>过拟合：模型很好的适配训练样本，但在测试集上有一个很大的方差。</li>
+                </ul>
+                <h3 id="减小偏差-方差的方法">减小偏差、方差的方法</h3>
+                <ol>
+                  <li>
+                    <p>首先，第一个角度当然是从处理欠拟合和过拟合出发，这个角度的策略有很多，例如下面列举的几条。</p>
+                    <ul>
+                      <li>欠拟合：寻找更好的特征以及增大特征的维度；</li>
+                      <li>过拟合：增大训练集，减少数据维度，正则化，交叉验证等。</li>
+                    </ul>
+                  </li>
+                </ol>
+                <ol start="2">
+                  <li>
+                    <p>另一个角度就是集成学习，而集成学习有两个主要的分支<code>Bagging</code>和<code>Boosting</code>。</p>
+                    <ul>
+                      <li>Bagging: 这种集成的思想本身就是取多个预测结果的众数，从一定程度上是为了减小方差；</li>
+                      <li>Boosting:这种集成思想是不断的调整学习的方向，自然是为了不断的减小偏差。</li>
+                    </ul>
+                  </li>
+                </ol>
+                <h2 id="偏差-方差窘境-bias-variance-dilemma">偏差-方差窘境（bias-variance dilemma）</h2>
+                <p>能得到方差和偏差都很小的模型当然是最好的结果，但是事实是我们总是要取得两者的一个平衡，两者的关系可以用下图表示，这也被称为偏差-方差窘境。</p>
+                <p><img src="http://www.meng.uno/images/noises/2.jpg" alt="bias-variance dilemma"></p>
+                <p>随着模型复杂度的提升，Bias会不断减小，但是Variance会不断增大，泛化误差将会呈现出先减小后增大的趋势，这个泛化误差的最小值点当然是我们的追求，所以我们在训练一个机器学习模型的时候需要平衡偏差与方差。</p>
+                <h2 id="噪声-noise">噪声（Noise）</h2>
+                <p>噪声的数学期望可以由下式表示：</p>
+                <p>$$E_{D}\left[\left(u_{D}-y\right)^{2}\right]$$</p>
+                <p>噪声的存在是机器学习算法所无法解决的问题，数据的质量决定了学习的上限。假设在数据已经给定的情况下，此时上限已定，我们要做的就是尽可能的接近这个上限。</p>
+                <h3 id="怎么减小噪声">怎么减小噪声</h3>
+                <p>因为噪声是数据本身的问题，所以减小噪声自然要从提高数据质量上做文章。一般而言，我们假设数据或者噪声都服从正态分布，其中噪声服从以0为均值的正态分布。且数据由正式值和噪声的和组成。即：</p>
+                <p>$$g_{t}=x_{t}+\varepsilon_{t}$$</p>
+                <ol>
+                  <li>数据平滑法</li>
+                </ol>
+                <p>当我们将<code>t</code>时刻前后<code>n</code>个值求平均，作为当前时刻的平滑之后的值时，得：</p>
+                <p><img src="http://www.meng.uno/images/noises/3.png" alt="Average"></p>
+                <p>因为根据我们的假设，噪声服从0为均值的正态分布，其期望为0：</p>
+                <p>$$\sum_{i=1}^{n}\left(\varepsilon_{t-i}+\varepsilon_{t+i}\right)+\varepsilon_{t} = 0$$</p>
+                <ol start="2">
+                  <li>数据过滤法</li>
+                </ol>
+                <p>既然数据服从正态分布，即：</p>
+                <p>$$\frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right)$$</p>
+                <p>那么，根据数学知识我们知道，当数据距离期望越远的时候，其越容易成为噪声点，于是我们可以将值偏离期望一定值（例如三倍标准差）的数据过滤掉。具体代码可以参考下例：</p>
+                <figure class="highlight plain">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">class ReduceNoise():</span><br><span class="line">    def __init__(self, data):</span><br><span class="line">        self.data = data</span><br><span class="line">        self.len = len(data)</span><br><span class="line">        self.dim = len(data[0])</span><br><span class="line">    def getAvg(self, mat):</span><br><span class="line">        num = [0.0] * self.dim</span><br><span class="line">        for i in range(self.dim):</span><br><span class="line">            for j in mat:</span><br><span class="line">                num[i] += j[i]</span><br><span class="line">            num[i] = num[i] / self.len</span><br><span class="line">        return num</span><br><span class="line">    def getVar(self, average, mat):</span><br><span class="line">        ListMat = []</span><br><span class="line">        for i in mat:</span><br><span class="line">            ListMat.append(list(map(lambda x: x[0] - x[1], zip(average, i))))</span><br><span class="line">        num = [0] * self.dim</span><br><span class="line">        for j in range(self.dim):</span><br><span class="line">            for i in ListMat:</span><br><span class="line">                num[j] += i[j] * i[j]</span><br><span class="line">            num[j] /= self.len</span><br><span class="line">        return num</span><br><span class="line">    def getSD(self, mat):</span><br><span class="line">        return list(map(lambda x:x**0.5,mat))</span><br><span class="line">    def reduce(self):</span><br><span class="line">        average = self.getAvg(self.data)</span><br><span class="line">        variance = self.getVar(average, self.data)</span><br><span class="line">        sd = self.getSD(variance)</span><br><span class="line">        section = list(map(lambda x: x[0] + 3*x[1], zip(average, sd)))</span><br><span class="line">        noiseMat = []</span><br><span class="line">        nonoiseMat=[]</span><br><span class="line">        for i in self.data:</span><br><span class="line">            for j in range(self.dim):</span><br><span class="line">                if i[j] &gt; section[j]:</span><br><span class="line">                    noiseMat.append(i)</span><br><span class="line">                    break</span><br><span class="line">                if j == (self.dim - 1):</span><br><span class="line">                    nonoiseMat.append(i)</span><br><span class="line">        return noiseMat, nonoiseMat</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="泛化误差与三者的关系">泛化误差与三者的关系</h2>
+                <p>可以证明泛化误差与偏差、方差以及噪声的数学期望的关系为：</p>
+                <p><img src="http://www.meng.uno/images/noises/4.png" alt="Relation"></p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/偏差/">偏差</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/噪声/">噪声</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方差/">方差</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/14232dff/" id="article-nav-newer" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  Recurrent Neural Networks (RNNs)
+
+                </div>
+              </a>
+
+
+              <a href="/articles/bd4539a2/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">FastSP: linear time calculation of alignment accuracy</div>
+              </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#偏差-bias"><span class="nav-number">1.</span> <span class="nav-text">偏差（Bias）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#方差-variance"><span class="nav-number">2.</span> <span class="nav-text">方差（Variance）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#偏差与方差的关系"><span class="nav-number">3.</span> <span class="nav-text">偏差与方差的关系</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#减小偏差-方差的方法"><span class="nav-number">3.1.</span> <span class="nav-text">减小偏差、方差的方法</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#偏差-方差窘境-bias-variance-dilemma"><span class="nav-number">4.</span> <span class="nav-text">偏差-方差窘境（bias-variance dilemma）</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#噪声-noise"><span class="nav-number">5.</span> <span class="nav-text">噪声（Noise）</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#怎么减小噪声"><span class="nav-number">5.1.</span> <span class="nav-text">怎么减小噪声</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#泛化误差与三者的关系"><span class="nav-number">6.</span> <span class="nav-text">泛化误差与三者的关系</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.06.19 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2021 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

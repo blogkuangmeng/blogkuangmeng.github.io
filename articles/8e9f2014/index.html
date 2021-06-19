@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>完全动态最大匹配的简单确定性算法 | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客">
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I">
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL">
+
+
+  <meta name="description" content="Simple Deterministic Algorithms for Fully Dynamic Maximal Matching  解决的问题 这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“">
+  <meta name="keywords" content="算法设计,最大匹配,确定性算法,动态">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="完全动态最大匹配的简单确定性算法">
+  <meta property="og:url" content="http://home.meng.uno/articles/8e9f2014/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="Simple Deterministic Algorithms for Fully Dynamic Maximal Matching  解决的问题 这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“">
+  <meta property="og:locale" content="EN">
+  <meta property="og:image" content="http://www.meng.uno/images/match/1.png">
+  <meta property="og:image" content="http://www.meng.uno/images/match/2.png">
+  <meta property="og:image" content="http://www.meng.uno/images/match/3.png">
+  <meta property="og:image" content="http://www.meng.uno/images/match/4.png">
+  <meta property="og:updated_time" content="2020-12-02T01:41:28.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="完全动态最大匹配的简单确定性算法">
+  <meta name="twitter:description" content="Simple Deterministic Algorithms for Fully Dynamic Maximal Matching  解决的问题 这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“">
+  <meta name="twitter:image" content="http://www.meng.uno/images/match/1.png">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <link rel="publisher" href="mengmengkuang">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="http://home.meng.uno/articles/8e9f2014/">
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+</head>
+
+</html>
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+
+                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+                      <script src="/js/insight.js"></script>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-biggest-match" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  完全动态最大匹配的简单确定性算法
+                </h1>
+              </header>
+
+              <div class="article-meta">
+                <a href="/articles/8e9f2014/" class="article-date">
+                  <time datetime="2016-07-16T12:40:27.000Z" itemprop="datePublished">2016-07-16</time>
+                </a>
+                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>Simple Deterministic Algorithms for Fully Dynamic Maximal Matching</p>
+                </blockquote>
+                <h1>解决的问题</h1>
+                <p>这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“图”分成[1]一般图，[2]低荫度[4]图 两种来处理。而对于每种图，处理步骤与方法基本一致，每种图都有——“插入”、“删除”两种操作，所不同的就是每种图所对应的情况（Case）不同而已。</p>
+                <h1>采用的思想</h1>
+                <p>这篇算法总体采用了分治的思想在每个小的情况下又有贪心算法的影子，本来“3/2-近似最大基数匹配（MCM）”这个问题相当难解决，而且已知算法中，要么时间复杂度为O(n)，要么为O((n+m)√2/2)而且相当复杂，情况相当多。这篇算法一个很大的优点就是，思路清晰，作者将自己设计算法的思路，无遗地展现在读者面前。说起思路清晰，也就是分的情况条例清晰，也就是我们所说的分治思想。本来一个大问题不好求解，但我们可以通过将其分解为等价的几个小问题分别求解。</p>
+                <p>就像这篇算法，将“完全动态最大匹配”分为一般图与低荫度图两个部分来分别阐述，让算法在一般情况以及特殊情况都能游刃有余。</p>
+                <p>在应对每一大类图的各种操作（插入或删除）时，由于仍旧很复杂，所以作者又一次运用分治思想，将他们每个具体的操作继续分解为更小的几种情况，同时做到面面俱到，条理清晰。</p>
+                <p>在每一个小的情况下，遍历所有情况，找出能使匹配最大的情况，属于贪心的范畴，对于贪心算法，由于每种情况实在所要找的节点较少，所以我也认为贪心是比较不错的选择，而且，我们没必要在这样的小点上过于纠结。</p>
+                <h1>基本算法描述</h1>
+                <h2 id="一般图">一般图</h2>
+                <h3 id="定义v-1-2-n-表示图的顶点的集合">定义V={1,2……n}表示图的顶点的集合</h3>
+                <p>为了简单处理，假定√n为整数；</p>
+                <p>定义G = (G0,G1……)表示图的集合，而且定义G0为空图，Gi由Gi-1得到；</p>
+                <p>对于每一个时间跨度i,Gi=(V,Ei),mi=|Ei| （m表示图中的边数）。</p>
+                <h3 id="数据结构">数据结构</h3>
+                <p>M 存储在AVL树中（支持O(logn)时间复杂度的插入、删除）每个节点v处保存mate(v)返回当前匹配中的邻接顶点；</p>
+                <p>N(v) 存储在AVL树中（v∈V）用于存储节点v的邻接顶点，变量deg(v)存储v的度（无向图）（支持O(logn)时间复杂度的插入、删除以及取出r邻接顶点在O®时间复杂度内）；</p>
+                <p>F(v)（v∈V）用于保存v的自由邻接节点（支持O(1)时间复杂度下的插入、删除以及如果有自由邻接顶点就返回TRUE的has-free(v)操作，O(√n)时间复杂度下的返回任意自由邻接顶点的get-free(v)操作），为了很好的得出F(v)，还另外加了一个长度为n的Boolean型数组来表明当前自由邻接顶点、一个长度为√n的范围在[√n<em>j+1,√n</em>(j+1)]的计数数组来保存位置j处的自由邻接顶点的数目、一个变量来存储总的自由邻接节点数。</p>
+                <p>一个最大堆Fmax存储所有的以自身的度为权的自由节点（支持O(logn)时间内的插入、删除、update-key、find-max操作）。</p>
+                <h3 id="具体算法">具体算法</h3>
+                <p>初始化图后，定义三个不变量，每次程序循环运行结束都不会突破这些不变量：</p>
+                <ul>
+                  <li>
+                    <p>不变量1：所有节点度不超过√(2m+2n)；</p>
+                  </li>
+                  <li>
+                    <p>不变量2：在第i次循环变为自由节点的节点度不超过√(2m)；</p>
+                  </li>
+                  <li>
+                    <p>不变量3：M是最大匹配，而且没有长度为3的增光路径。</p>
+                  </li>
+                </ul>
+                <p>然后进行循环，每次循环对边ei进行操作。</p>
+                <h4 id="插入边ei-u-v-的操作">插入边ei={u,v}的操作</h4>
+                <p>首先更新相关的数据结构：N(u),N(v),deg(u),deg(v),Fmax以及u、v的值。</p>
+                <p>然后分如下四种情况讨论：</p>
+                <ul>
+                  <li>u、v都已匹配，此时无需操作；</li>
+                  <li>u、v都是自由节点，这种情况下涉及更新M与Fmax，将u、v从F(x)中移除，花费O(√n+m)时间；</li>
+                  <li>u是自由的而v已被匹配，这种境况下，找到最大匹配集M中与v匹配的节点x=mate(v),再找到与x邻接的自由顶点w，如果能找到，则将匹配(x,v)移除，而将（u,v)、(x,w)加入。操作时间也在O(√n+m)内；</li>
+                  <li>v是自由的而v已被匹配，这种情况与上一种相对称。</li>
+                </ul>
+                <h4 id="删除边ei-u-v-的操作">删除边ei={u,v}的操作</h4>
+                <p>删除操作主要分为两种情况：</p>
+                <ul>
+                  <li>ei ∉ M 唯一要做的事就是，将u从F(v)，v从F(u)中删去；</li>
+                  <li>ei∈M 由分为两种情况讨论：
+                    <ul>
+                      <li>deg(u)≤√(2m) 时，我们必须通过aug-path(u)来所搜一条以u为起点的长度为3的增广路径，如果没有找到，那么直接标定v为自由节点即可，如果找到，定义u的自由邻接节点为w，w的邻接顶点为y，y的自由临界顶点为x，将{u,w}和{y,x}添加到匹配中而将{w,y}删除，同样的方法处理v。</li>
+                      <li>deg(u)&gt;√(2m) 时，此时u不能自由，因为它的度太高。保持u匹配，我们通过surrogate(u)来获取u的代替节点，我们称呼为su，改变它的状态为自由，然后像在a)中处理u一样处理su。</li>
+                    </ul>
+                  </li>
+                </ul>
+                <h2 id="对于低荫度图">对于低荫度图</h2>
+                <p>在这部分中，考虑的是荫度不大于c的图，而c由下式确定：</p>
+                <p><img src="http://www.meng.uno/images/match/1.png" alt="Match"></p>
+                <p>其中E(U)表示U中的边数。</p>
+                <p>由于图较稀疏，所以将每条边都带上方向，构成△-方向无向图</p>
+                <h3 id="数据结构-v2">数据结构</h3>
+                <p>与一般图基本相同。</p>
+                <h3 id="具体算法-v2">具体算法</h3>
+                <p>主要从：定向、插入、删除，几个部分来阐述：</p>
+                <h4 id="定向">定向</h4>
+                <p>在每一步中，都通过运行算法A，来保证当前图是△-方向的。像如下算法中那样更新F和D，如果有t条边在定向，我们需要O(t)时间。</p>
+                <h4 id="插入边ei-u-v-的操作-v2">插入边ei={u,v}的操作</h4>
+                <p>由于出度最多为△，所以插入时间O(△)。</p>
+                <h4 id="删除边ei-u-v-的操作-v2">删除边ei={u,v}的操作</h4>
+                <p>未匹配的边被删除没什么可以操作的，但是当匹配的边被删除就有趣了，这里必须找到u(v)的匹配节点，时间复杂度仍为O(△)。</p>
+                <h1>算法分析的结论</h1>
+                <p>分析这个算法，其时间复杂度确实是平摊条件[4]下O(√m)(m表示图的边数)；</p>
+                <p>其空间复杂度为O(m+n)。</p>
+                <p>这个算法确实能在最短的时间内的出“3/2-近似最大基数匹配（MCM）”。</p>
+                <h1>用一个例子说明相关算法</h1>
+                <p>为了较好的说明这个算法，我仅就自己画的一个图做些简要的分析，有遗漏之处实属算法没理解透：</p>
+                <p>（图如下，分别由6个顶点、7条边组成，由于算法本身要求图中点、边数目较多，而简短的语言无法描述清楚，所以选择这样一个简单的图来叙述）</p>
+                <p><img src="http://www.meng.uno/images/match/2.png" alt="Match"></p>
+                <p>以下模拟算法过程：（只举例说明）</p>
+                <p>由文章知，该算法要处理动态图的最大匹配问题，首先初始化G0为空，我们按e0—e6的顺序向图中添加边，然后删除边。</p>
+                <ul>
+                  <li>将e0（AB）加入，直接将此边加入最大匹配M；</li>
+                  <li>将e1（AC）加入，不操作；</li>
+                  <li>将e2（BC）加入，不操作；</li>
+                  <li>将e3（CE）加入，直接将此边加入M；</li>
+                  <li>将e4（BF）加入，不操作；</li>
+                  <li>将e5（EF）加入，不操作；</li>
+                  <li>将e6加入，将此边加入M，同时将e3从M中删除，将e4加入，将e0删除，将e1加入M。</li>
+                </ul>
+                <p>得到如下的最大匹配：</p>
+                <p><img src="http://www.meng.uno/images/match/3.png" alt="Match"></p>
+                <p>删除边时：</p>
+                <p>（由于删边不容易看出来，所以仅将出现可见变化时的情况列出。）</p>
+                <ul>
+                  <li>删除e0，不操作；</li>
+                  <li>删除e1,将e1从最大匹配M中删除；</li>
+                  <li>删除e4，将e2加入M，将e4删除。</li>
+                </ul>
+                <p>得到的匹配如下：</p>
+                <p><img src="http://www.meng.uno/images/match/4.png" alt="Match"></p>
+                <p>通过以上两个实例（一个删除、一个插入），基本能模拟本文关于动态最大匹配的一般算法。</p>
+                <h1>认识与看法</h1>
+                <h2 id="已有算法的问题所在">已有算法的问题所在</h2>
+                <ol>
+                  <li>
+                    <p>算法提到对于低荫度图，给每条边改成有向边处理，然后用贪心算法求解，但是算法并未给出如何判断一个图是否是低荫度图，而且即使有了一个标准，那么当一个图先是低荫度图，后来因为添加一条边之后，成了算法判断的非低荫度图，之后再添加边……如此一来，后面添加边的匹配操作，仍然会按低荫度图处理，这样一来时间复杂度就明显升高了。与此相反，当一个图先是普通图，当减去一条边后，成了低荫度图，再继续减去边……后来虽然形成了低荫度图，但是仍然按普通图来处理的。——我的意思是，当加边/减边（一个更新操作）在普通图与低荫度图之间轮换时，算法会因每次都错开最好情况而用的时间急剧升高。在实际应用中，这种情况应该会很常见，所以我认为这个问题还是相当严峻的。</p>
+                  </li>
+                  <li>
+                    <p>算法一直在说向图G，但这是一个“抽象”的概念，文中并没有提及这个图是怎么存储的，也没有提及添加/删除边是怎么进行的。我觉得这虽然是不起眼的一部分，但是它实现的好坏，却是后来算法的高效进行与否的保证。（在第四次作业中我将详细分析不同存储结构存储的图的不同之处，以及哪种存储对此算法的实现最有益。）</p>
+                  </li>
+                </ol>
+                <h2 id="已有算法可改进之处">已有算法可改进之处</h2>
+                <ol>
+                  <li>算法中提到对点的度按降序排列，但如果两个点的度完全一样，或者所有点的度完全一样时，这样的处理难免有些草率，和普通匹配算法没有这一处理操作的算法过程相似，甚至多了偶尔的不必要交换（当度相同时的交换），于是我想到，能不能通过增加一个标志位来改进交换同时由于考虑到一般情况下，顶点的度有大部分是相同的，所以可以考虑改进一下排序操作，找一个比较稳定的排序是比较好的。</li>
+                  <li>算法用AVL树来存储匹配，这一点感觉是比较好的操作，但是当存储每个点的邻接点时，不仅又用AVL树来存储，而且需要用另外一个变量存储该顶点的度，而且每次插入/删除边（一个更新操作）都可能需要调整AVL树，于是，我想能不能用更好的适用于随机搜索（插入、删除）的数据结构，例如：散列表来存储邻接顶点呢？这样一来，搜索的时间由O(logN)减小到O(1)，空间基本不会增加，反而减少一个整型空间（每个顶点减少一个，共N个），插入/删除边的时间大约也是O(1)，这样一来就比以前的算法要改进了一些（具体实现，见作业四）。</li>
+                  <li>算法中提到用一个数据结构F(v)来存储顶点v的邻接顶点中未匹配的顶点，及其信息。然后算法提到一个长度为n（n表示所有顶点数量）的数组以及一个长度√n的计数数组。这种处理，在原则上是没有什么错误的，但是长度为n或者√n的数组没法实现每次插入顶点时就没法用了，为了实现完全动态匹配，我们需要用一个更好的数据结构来完成这一操作（当然对于本算法，这一改进并没有什么作用，但是想到可以为算法进行拓展，所以这个改进是必要的），我想到的数据结构是动态表——一种最省空间，且扩充/缩减时间O(1)（由摊还分析可证）的数据结构。</li>
+                  <li>当数据量较大，短时间有较多条边需要插入/删除时，（通过插入操作来说明）每次操作，都是先将边加入存储边的数据结构，然后再依次更新其他相邻节点的邻接信息，以及边的信息。最后再分情况（动态规划）依次判断以及做出调整，简单来讲，整个判断过程分为三个部分，而且这三个部分是相互独立的，所以假如有N次插入，那么就有3N步，正常情况（该算法原来描述那样）。在一次插入边的操作结束后，存储边的数据结构便空闲下来，而第二次边的插入还没有开始。中间这部分时间浪费严重（当大数据来临时）。</li>
+                </ol>
+                <h2 id="已有算法不适用之处">已有算法不适用之处</h2>
+                <ol>
+                  <li>算法一开始是通过一个空的数据结构开始插入边，来建立匹配，假如已有一个大数据的图（数据在外存，一般来说数据量过大，没法一次性装入内存）或者，由于数据量过大，没法普通存储（或者为了省空间、减小出错率）而用压缩图来存储，如果仍然用现有的算法来做，是极其困难的。也许可以实现，但是也困难重重，我仅将其归为不适用的一类。</li>
+                </ol>
+                <h1>改进意见</h1>
+                <ul>
+                  <li>针对第一处问题。为了在每一步都使算法做到最优，那么在低荫度图与普通图的转换接口处，就应该更加重视，为了解决这个问题，我觉得，可以在每增加/删除一条边（一个更新操作）时增加一次判断，即：max[|E(U)|/(|U|-1)]&gt;C时，就进行普通图的操作，否则进行低荫度图的操作，其中C为预设的荫度的分界线。同时，首先对普通图的操作，或者对低荫度图的操作，当第一次出现两种图混合时，再初始化另一种图的存储结构，这样一来如果一直是基于两者中一种图的更新操作，就不需要那么大的空间开销。</li>
+                </ul>
+                <p>在原算法，没有这一判断时，相对现在的改进，在每一次更新操作的时间上先是少一步，但当更新操作在多次往往复复地在两种图之间转换时，虽然改进多了一次判断，但是避免了两种图用同一种算法实现的时间消耗，算法改进的正确性及合理性得证。</p>
+                <ul>
+                  <li>针对第二处问题。我觉得这里的问题是作者的一个疏忽，当然在这个算法中，选用哪种数据结构来存储图，确实不是那么好选择的。选用邻接矩阵时，虽然边的信息清晰明了，但是，当数据量增大时，空间开销也是挺大的。若选用邻接表，减少了空间开销，但是，当每次统计某个节点的邻接顶点时，显得有些麻烦，邻接多重表，十字链表等弊端就更多与优点了。于是，在此改进中，我仅仅提出“邻接矩阵”与“邻接表”这两种存储图的数据结构来存储这个算法有关的图，这样，相对来说，比其他数据结构要简单，以及开销较小（时间/空间上）。</li>
+                </ul>
+                <p>这两种图的存储结构，都可以实现边的插入/删除在O(1)时间内，并且相对其他存储结构还比较好实现，于是正确性得证。</p>
+                <ul>
+                  <li>针对第一处不足。我觉得可以增加一个标志位（整型）来实现对同一个度的不同节点做一下区分，第一次度为某个值的顶点标记为1，以后如果再有和这个点度相同的标记为2，……以此类推，每次为了保证度越高的节点越先匹配，不仅要判断度的大小，同时当度相等时，还要判断标志位，标志位越小（越大也行）就越优先保持匹配。</li>
+                </ul>
+                <p>这一改进，使该算法对多顶点度相等的图，效果明显，当然当顶点度基本都不相同时，这一改进显得一无是处，反而增加空间开销。但就对程序改进角度讲，这样做着实可以在某些情况下，增加算法正确性，减少算法时间复杂性，我觉得这可以作为改进合理性的证明。</p>
+                <ul>
+                  <li>针对第二处不足。我觉得可以用散列表来存储每个顶点的邻接点信息，这样一来，可以减少一个整型变量空间，同时使搜索某个点是否与另一个点邻接能够在O(1)时间内完成（这也是散列表的最大的用处）。当然，散列表的构造也有很多方式，这里可以假设之前每个顶点都有一个ID或者有一个单独的可区分的标识。当以顺序ID来标记每个顶点时，可以用直接寻址法；当以单独的可区分标识来标记每个顶点时，可以用数据分析法来确定散列函数。</li>
+                </ul>
+                <p>该改进的正确性，可以通过散列表在搜索上的正确性来证明，同时在空间复杂性上可能比以前算法要多（当然也可能相同），但在搜索时间上，对原有算法改进是十分显著的。由此，改进的合理性由此得证。</p>
+                <ul>
+                  <li>针对第三处不足。这一点属于“个人爱好”，为什么这么说呢？因为这一改进对原有算法不会产生一丁点的影响，但是却为程序可拓展性做了一点贡献。用动态表代替原有长度固定的数组，当顶点个数增多时，可以避免每次不够用又重新手动申请空间的弊端。可以说，动态表这一数据结构完美适应了顶点可变的情况，当边减少时，那些独立的顶点，可以通过某种方式，将其删去，以减少空间复杂性，同时，顶点减少，搜索更快；当边增多时，如果某些顶点原来没有记录，再在动态表中将其加入，丝毫不用担心空间分配麻烦问题。</li>
+                </ul>
+                <p>动态表实现简单，效率高，事实上它和普通数组相比基本没有效率损失。我觉得即使是原算法思想（即使没边，也有顶点）也可以用动态表代替数组。</p>
+                <ul>
+                  <li>针对第四处不足。当大数据来临时，我将每次的匹配过程看成三部分，这让我想起了《计算机组成原理》中关于指令流水线的介绍，我发现该算法中三部分之间互相无关联，于是，我就想能不能仿照指令流水线的方式，来改进已有算法的三段匹配过程呢？也就是说，当第一条边插入时，我顺序开始执行那三段操作，当执行完第二段时，第二次插入已经可以开始执行了……依次类推，当大量数据进行同一个操作（插入/删除边）时，就可以成倍地减少时间复杂性（将三段融合成一段）。</li>
+                </ul>
+                <p>这一改进符合并行性要求，而且可以证明，原来程序的三段互不影响，那么这个改进就显得在大数据上大有用武之处。</p>
+                <ul>
+                  <li>针对第一处不适。由于该算法是每次（动态）加入边，而现实是需要先初始化一个图，而且还可能是大量的数据的图，所以该算法不适用之处就显现出来了。虽然如果将已经存在的大数据图里的边一个个挑出来再加入，可以完成此操作，但是考虑时间将会是特别大的。于是想到，能不能给该算法在加一点能够对静态图匹配的内容，以便其能够在大数据上发挥作用。</li>
+                </ul>
+                <p>如今，数据已进入海量时代，应对大数据冲击，已经成为考验所有算法好坏的一个标准，于是对此算法往大数据上适应，是十分有必要的。</p>
+                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/8e9f2014/">http://home.meng.uno/articles/8e9f2014/</a> . Welcome to reproduce it!</p>
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+                <script src="/js/vdonate.js"></script>
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
+                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                  });
+                </script>
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+                <ul class="article-tag-list">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态/">动态</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最大匹配/">最大匹配</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/确定性算法/">确定性算法</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法设计/">算法设计</a></li>
+                </ul>
+              </footer>
+            </div>
+
+            <nav id="article-nav">
+
+              <a href="/articles/a4b4101b/" id="article-nav-newer" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  Linux文件系统
+
+                </div>
+              </a>
+
+
+              <a href="/articles/711069a/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">汇编指令与代码规范</div>
+              </a>
+
+            </nav>
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">解决的问题</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">采用的思想</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">基本算法描述</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#一般图"><span class="nav-number">3.1.</span> <span class="nav-text">一般图</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#定义v-1-2-n-表示图的顶点的集合"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义V={1,2……n}表示图的顶点的集合</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据结构</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#具体算法"><span class="nav-number">3.1.3.</span> <span class="nav-text">具体算法</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#插入边ei-u-v-的操作"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#删除边ei-u-v-的操作"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#对于低荫度图"><span class="nav-number">3.2.</span> <span class="nav-text">对于低荫度图</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构-v2"><span class="nav-number">3.2.1.</span> <span class="nav-text">数据结构</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#具体算法-v2"><span class="nav-number">3.2.2.</span> <span class="nav-text">具体算法</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#定向"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">定向</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#插入边ei-u-v-的操作-v2"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">插入边ei={u,v}的操作</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#删除边ei-u-v-的操作-v2"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">删除边ei={u,v}的操作</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">算法分析的结论</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">用一个例子说明相关算法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">认识与看法</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法的问题所在"><span class="nav-number">6.1.</span> <span class="nav-text">已有算法的问题所在</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法可改进之处"><span class="nav-number">6.2.</span> <span class="nav-text">已有算法可改进之处</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#已有算法不适用之处"><span class="nav-number">6.3.</span> <span class="nav-text">已有算法不适用之处</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">改进意见</span></a></li>
+              </ol>
+
+            </div>
+          </aside>
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2021.06.19 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <a href="http://webscan.360.cn/index/checkwebsite/url/www.meng.uno"><img border="0" height=27px width=74px src="/css/images/webscan.png" /></a>
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+    </div>
+    <!-- <nav id="mobile-nav">
+
+  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+
+  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+
+  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+
+  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+
+  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+
+  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+
+</nav> -->
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2021 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

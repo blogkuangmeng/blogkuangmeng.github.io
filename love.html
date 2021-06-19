@@ -1,0 +1,107 @@
+﻿<html>
+<head>
+	<!-- hexo-inject:begin -->
+	<!-- hexo-inject:end -->
+	<meta charset="utf-8">
+	<title>狗仔仔，情人节快乐！</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('digital-7_mono.ttf') format("truetype");
+		}
+		a{text-decoration:none;}
+	</style>
+	<link href="http://www.meng.uno/css/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.meng.uno/js/jquery.js"></script>
+	<script type="text/javascript" src="http://www.meng.uno/js/garden.js"></script>
+	<script type="text/javascript" src="http://www.meng.uno/js/functions.js"></script>
+	<link rel="icon" href="http://www.meng.uno/css/images/logo.png">
+	<link rel="apple-touch-icon" href="http://www.meng.uno/css/images/logo.png">
+</head>
+
+<body>
+	<div id="mainDiv">
+		<div id="content" style="auto auto">
+			<div id="code">
+				<span class="comments">/***</span><br />
+				<span class="space"/><span class="comments">* 我们在一起的这些天，</span><br />
+				<span class="space"/><span class="comments">* 让你吃了不少苦，</span><br />
+				<span class="space"/><span class="comments">* 但老公绝对是最爱你的，</span><br />
+				<span class="space"/><span class="comments">* 狗仔！</span><br />	
+				<span class="space"/><span class="comments">***/</span><br />
+				Boy i = <span class="keyword">new</span> KMM(<span class="string"></span>);<br />
+				Girl u = <span class="keyword">new</span> GLF(<span class="string"></span>);<br />
+				<span class="comments">//2018.12.05=>>我们在一起的日子O(∩_∩)O~ </span><br />
+				i.Love(u);<br />
+				<span class="comments">/* 没错，从那天起，每时每刻都在想你！*/</span><br />
+				i.Miss();<br />
+				<span class="comments">/* 以后,还会想你，每一分，每一秒！*/</span><br />
+				i.Miss(u)++;<br />
+				<span class="comments">/* 我想好好照顾你！*/</span><br />
+				i.WantToTakeCareOf(u);<br />
+				<span class="comments">/* 我想一直这样照顾你！*/</span><br />
+				<span class="keyword">boolean</span> isPatient = <span class="keyword">true</span>;<br />
+				<span class="keyword">while</span> (isPatient) {<br />
+				<span class="placeholder" /><span class="comments">/* 我会一直等你! */</span><br />
+				<span class="placeholder"/>i.WaitFor(u);<br />
+				<span class="placeholder"/><span class="comments">/* 直到你答应老公！*/</span><br />
+				<span class="placeholder"/>isPatient = u.Promise();<br />
+				}<br/>
+				<span class="comments">// 你就是我人生的转折 ==>> Because of you!</span><br />
+				i.StudyFor(u);<br/>
+				i.FightFor(u);<br/>
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+					  I have fallen in love with you for
+					  <div id="elapseClock"></div> 
+					</div>
+					<div id="loveu">
+						Love you forever and ever.<br/>
+						<div class="signature">-- 傻仔</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="copyright">
+			<br><br>
+			Copyright © Mengmeng Kuang 2020.02.14
+		</div>
+<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2018, 12, 05);
+		together.setHours(22);
+		together.setMinutes(0);
+		together.setSeconds(0);
+		together.setMilliseconds(0);
+		
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+		    document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+
+			timeElapse(together);
+			setInterval(function () {
+				timeElapse(together);
+			}, 500);
+
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
+</body>
+</html>
