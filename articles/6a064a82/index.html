@@ -22,7 +22,7 @@
   <meta name="keywords" content="Android,RemoteViews">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Android通知及RemoteViews">
-  <meta property="og:url" content="http://home.meng.uno/articles/6a064a82/index.html">
+  <meta property="og:url" content="http://blog.mkuang.hk/articles/6a064a82/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="通知 通知创建和使用的流程  * 创建Notification.Builder的实例  * 通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知  * 获取NotificationManager来发送通知.  1 2 3 4 5   Notification.Builder builder = new Notification.Builder(getApplica">
   <meta property="og:locale" content="EN">
@@ -112,7 +112,7 @@
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/6a064a82/">
+  <link rel="canonical" href="http://blog.mkuang.hk/articles/6a064a82/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -178,17 +178,17 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/articles">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+                  <li> <a class="main-nav-link" href="/comments">Comments</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -623,7 +623,7 @@
                   通过NotificationManager的 <strong>notify()</strong> 方法发送到系统的NotificationService中。</p>
                 <p>系统的NotificationService里维护着各种Notification,实际上一个id对应着一个RemoteViews。</p>
                 <p>系统在自己的进程里创建和更新通知.当通知被点击时,在系统进程中会根据PendingIntent来启动指定的Activity,Service,及BroadcasterReceiver。</p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/6a064a82/">http://home.meng.uno/articles/6a064a82/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/6a064a82/">http://blog.mkuang.hk/articles/6a064a82/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -657,8 +657,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
+                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
                   });
                 </script>
 
@@ -773,7 +773,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.01.16 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -834,17 +834,17 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
 
-  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+  <a href="/articles" class="mobile-nav-link">Archives</a>
 
-  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+  <a href="/categories" class="mobile-nav-link">Categories</a>
 
-  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+  <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
 
-  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+  <a href="/comments" class="mobile-nav-link">Comments</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->

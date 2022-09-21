@@ -22,7 +22,7 @@
   <meta name="keywords" content="Linux,内核同步">
   <meta property="og:type" content="article">
   <meta property="og:title" content="内核同步">
-  <meta property="og:url" content="http://home.meng.uno/articles/e41a0c57/index.html">
+  <meta property="og:url" content="http://blog.mkuang.hk/articles/e41a0c57/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="内核同步 对于内核，其实有一个很形象的理解：我们可以把内核理解成一个服务器，它为自身和用户提供各种服务。因此它必须要保证每项服务在处理时，不会互相造成影响，也就是解决“并发”的问题。自身的请求，也即中断；客户的请求，也即用户态的系统调用或异常。内核的同步，就是对内核中的任务进行调度，使它们按照正确的方式运行。  内核抢占 这里，“内核抢占”指的是进程A在内核态运行时，被具有更高优先级的进程B取代，">
   <meta property="og:locale" content="EN">
@@ -112,7 +112,7 @@
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/e41a0c57/">
+  <link rel="canonical" href="http://blog.mkuang.hk/articles/e41a0c57/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -178,17 +178,17 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/articles">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+                  <li> <a class="main-nav-link" href="/comments">Comments</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -425,7 +425,7 @@
                 <p>在前面提到的原语中，很多在实现的时候，都禁止了了本地的中断，这就保证了当前内核控制路径能够继续执行，例如<code>raw_spin_lock_irqsave</code>和<code>raw_spin_lock_irqrestore</code>。不过禁止本地中断不能阻止其他CPU
                   访问共享数据，因此通常和自旋锁结合使用。</p>
                 <p>而可延迟函数同样可以禁止和激活，这是由preempt_count字段中的值决定的。</p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/e41a0c57/">http://home.meng.uno/articles/e41a0c57/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/e41a0c57/">http://blog.mkuang.hk/articles/e41a0c57/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -459,8 +459,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
+                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
                   });
                 </script>
 
@@ -548,7 +548,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.01.16 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -609,17 +609,17 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
 
-  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+  <a href="/articles" class="mobile-nav-link">Archives</a>
 
-  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+  <a href="/categories" class="mobile-nav-link">Categories</a>
 
-  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+  <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
 
-  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+  <a href="/comments" class="mobile-nav-link">Comments</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->

@@ -22,7 +22,7 @@
   <meta name="keywords" content="Java,Length,Substring,StringBuilder,string-plus,Lambda">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Java开发中的小细节">
-  <meta property="og:url" content="http://home.meng.uno/articles/61c2f1f1/index.html">
+  <meta property="og:url" content="http://blog.mkuang.hk/articles/61c2f1f1/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content=".length与length()的区别 当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道.length与length()的区别喻原因呢？  上面问题的答案是：   * 数组使用.length属性  * 字符串使用length()方法  为什么数组有.length属性？ 在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，">
   <meta property="og:locale" content="EN">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/61c2f1f1/">
+  <link rel="canonical" href="http://blog.mkuang.hk/articles/61c2f1f1/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -181,17 +181,17 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/articles">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+                  <li> <a class="main-nav-link" href="/comments">Comments</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -568,7 +568,7 @@
                 <h2 id="lambda表达式与匿名类的区别"><code>Lambda</code>表达式与匿名类的区别</h2>
                 <p>使用匿名类与 Lambda 表达式的一大区别在于关键词的使用。对于匿名类，关键词<code>this</code>解读为匿名类，而对于 Lambda 表达式，关键词<code>this</code>解读为写就 Lambda 的外部类。</p>
                 <p><code>Lambda</code> 表达式与匿名类的另一不同在于两者的编译方法。<code>Java</code> 编译器编译 <code>Lambda</code> 表达式并将他们转化为类里面的私有函数，它使用 <code>Java 7</code> 中新加的<code>invokedynamic</code>指令动态绑定该方法。</p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/61c2f1f1/">http://home.meng.uno/articles/61c2f1f1/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/61c2f1f1/">http://blog.mkuang.hk/articles/61c2f1f1/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -602,8 +602,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
+                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
                   });
                 </script>
 
@@ -718,7 +718,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.01.16 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -779,17 +779,17 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
 
-  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+  <a href="/articles" class="mobile-nav-link">Archives</a>
 
-  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+  <a href="/categories" class="mobile-nav-link">Categories</a>
 
-  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+  <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
 
-  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+  <a href="/comments" class="mobile-nav-link">Comments</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->

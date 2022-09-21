@@ -22,7 +22,7 @@
   <meta name="keywords" content="Linux,系统安全,操作系统">
   <meta property="og:type" content="article">
   <meta property="og:title" content="中断">
-  <meta property="og:url" content="http://home.meng.uno/articles/81b224e1/index.html">
+  <meta property="og:url" content="http://blog.mkuang.hk/articles/81b224e1/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="什么是中断？ 中断是能够打断CPU指令序列的事件，它是在CPU内外，由硬件产生的电信号。CPU接收到中断后，就会向OS反映这个信号，从而由OS就会对新到来的数据进行处理。不同的事件，其对应的中断不同，而OS则是通过中断号(也即IRQ线)来找到对应的处理方法。不同体系中，中断可能是固定好的，也可能是动态分配的。  中断产生后，首先会告诉中断控制器。中断控制器负责收集所有中断源的中断，它能够控制中断源">
   <meta property="og:locale" content="EN">
@@ -131,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/81b224e1/">
+  <link rel="canonical" href="http://blog.mkuang.hk/articles/81b224e1/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -197,17 +197,17 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/articles">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+                  <li> <a class="main-nav-link" href="/comments">Comments</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -452,7 +452,7 @@
                 <p>软中断是一种提高运行效率的手段，其核心思想是把不紧迫懂、可以延时处理的中断部分，在中断上下文外，由操作系统自行安排运行时机来运行。tasklet则是建立在软中断之上来实现的，它是I/O驱动中实现可延迟函数的主要方法。对于挂起的软中断，内核会用<code>ksoftirqd</code>进行检查和运行。</p>
                 <h1>工作队列</h1>
                 <p>工作队列是内核中，另外一种将工作推后的形式。其特点在于，它允许<strong>重新调度</strong>和<strong>睡眠</strong>。其本质就是将工作交给内核线程处理。如果推后执行的任务需要睡眠、或者延时指定的时间再触发，则使用这种形式比较好；倘若推后的任务需要在一个tick内处理，那么还是选择软中断或者tasklet的形式比较好。</p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/81b224e1/">http://home.meng.uno/articles/81b224e1/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/81b224e1/">http://blog.mkuang.hk/articles/81b224e1/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -486,8 +486,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
+                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
                   });
                 </script>
 
@@ -586,7 +586,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.01.16 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -647,17 +647,17 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
 
-  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+  <a href="/articles" class="mobile-nav-link">Archives</a>
 
-  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+  <a href="/categories" class="mobile-nav-link">Categories</a>
 
-  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+  <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
 
-  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+  <a href="/comments" class="mobile-nav-link">Comments</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->

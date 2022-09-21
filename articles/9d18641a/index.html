@@ -22,7 +22,7 @@
   <meta name="keywords" content="Attention,Self-Attention,Transformer,BERT,Seq2Seq">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Attention and Self Attention">
-  <meta property="og:url" content="http://home.meng.uno/articles/9d18641a/index.html">
+  <meta property="og:url" content="http://blog.mkuang.hk/articles/9d18641a/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="Attention Seq2Seq结构在一些End2End问题上能取得非常好的结果，其结构一般由Encoder和Decoder组成，其运行流程如下视频所示。  然而，采用RNN的Seq2Seq结构因为RNN中存在长程梯度消失的问题，很难将较长输入的序列转化为定长的向量而保存所有的有效信息。所以随着句子的长度的增加，这种结构的效果会显著下降。为了解决这一由长序列到定长向量转化而造成的信息损失的瓶颈，">
   <meta property="og:locale" content="EN">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://home.meng.uno/articles/9d18641a/">
+  <link rel="canonical" href="http://blog.mkuang.hk/articles/9d18641a/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -191,17 +191,17 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://home.meng.uno">Home</a> </li>
+                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://articles.meng.uno">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/articles">Archives</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://categories.meng.uno">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://tags.meng.uno">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://about.meng.uno">About</a> </li>
+                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://comments.meng.uno">Comments</a> </li>
+                  <li> <a class="main-nav-link" href="/comments">Comments</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -425,7 +425,7 @@
                 <p><code>BERT</code>的网络架构是完全重用<code>Transformer</code>的<code>Encoder</code>部分，一个创新亮点就是训练中使用的目标函数，也就是<code>Loss function</code>的定义。这个创新虽小但是很关键。<code>BERT</code>的<code>Loss function</code>由两个子任务的<code>Loss</code>相加而得。第一个任务就是把一个句中的几个字<code>mask</code>掉，然后让模型去预测这几个字，看它的正确率。第二个<code>Loss</code>来源于预测两个句子是不是上下句。这是为了让模型拥有句子层面的语义相关性的判断。为了增加鲁棒性，这两个句子都有可能不是整句，而是片段。</p>
                 <p>除此之外，<code>BERT</code>的<code>Input Embedding</code>也是一大亮点，其考虑到<code>Attention</code>并没有考虑的位置信息，增加了<code>Segment Embeddings</code>和<code>Position Embeddings</code>，他们和<code>Token Embeddings</code>的和作为<code>Input Embeddings</code>。</p>
                 <p><img src="http://meng.uno/images/self-attention/13.jpg" alt="BERT Input Embedding"></p>
-                <p><br><br>The link of this page is <a href="http://home.meng.uno/articles/9d18641a/">http://home.meng.uno/articles/9d18641a/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/9d18641a/">http://blog.mkuang.hk/articles/9d18641a/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -459,8 +459,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://www.meng.uno/money/wechat.JPG',
-                    alipayImage: 'http://www.meng.uno/money/alipay.JPG'
+                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
+                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
                   });
                 </script>
 
@@ -558,7 +558,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.01.16 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -619,17 +619,17 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://home.meng.uno" class="mobile-nav-link">Home</a>
+  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
 
-  <a href="http://articles.meng.uno" class="mobile-nav-link">Archives</a>
+  <a href="/articles" class="mobile-nav-link">Archives</a>
 
-  <a href="http://categories.meng.uno" class="mobile-nav-link">Categories</a>
+  <a href="/categories" class="mobile-nav-link">Categories</a>
 
-  <a href="http://tags.meng.uno" class="mobile-nav-link">Tags</a>
+  <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://about.meng.uno" class="mobile-nav-link">About</a>
+  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
 
-  <a href="http://comments.meng.uno" class="mobile-nav-link">Comments</a>
+  <a href="/comments" class="mobile-nav-link">Comments</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
