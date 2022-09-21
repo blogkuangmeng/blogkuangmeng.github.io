@@ -26,41 +26,41 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806115820.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806120054.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806120247.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806141616.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806144052.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806150816.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806150727.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806151406.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806161221.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806165417.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806165750.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806170618.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806162119.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180806172158.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806173111.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806175337.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806193111.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180806200601.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/共现矩阵.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807144435.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180807150747.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807151212.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/公式_20180807151738.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152158.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152241.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152306.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152431.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152459.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807152530.png">
-  <meta property="og:image" content="http://www.meng.uno/images/assets/TIM截图20180807094759.png">
-  <meta property="og:updated_time" content="2020-12-08T03:01:13.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806115820.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806120054.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806120247.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806141616.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806144052.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806150816.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806150727.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806151406.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806161221.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806165417.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806165750.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806170618.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806162119.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180806172158.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806173111.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806175337.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806193111.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180806200601.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/共现矩阵.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807144435.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180807150747.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807151212.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/公式_20180807151738.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152158.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152241.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152306.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152431.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152459.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807152530.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/assets/TIM截图20180807094759.png">
+  <meta property="og:updated_time" content="2022-09-21T16:06:28.552Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Word2Vec and GloVe">
   <meta name="twitter:description" content="背景知识 什么是词向量/词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
-  <meta name="twitter:image" content="http://www.meng.uno/images/assets/公式_20180806115820.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/assets/公式_20180806115820.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -347,16 +347,16 @@
                       <li>
                         <p>每个训练样本为一个二元组 <code>(x, y)</code>，其中 <code>x</code>为特征，<code>y</code>为标签</p>
                         <p>假设上下文窗口的大小 <code>context_window =5</code>，即</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806115820.png" height=""></div>
+                        <div align="center"><img src="/images/assets/公式_20180806115820.png" height=""></div>
                         <p>或者说 <code>skip_window = 2</code>，有 <code>context_window = skip_window*2 + 1</code></p>
                       </li>
                       <li>
                         <p>CBOW 的训练样本为：</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806120054.png" height=""></div>
+                        <div align="center"><img src="/images/assets/公式_20180806120054.png" height=""></div>
                       </li>
                       <li>
                         <p>SG 的训练样本为：</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806120247.png" height=""></div>
+                        <div align="center"><img src="/images/assets/公式_20180806120247.png" height=""></div>
                       </li>
                       <li>
                         <p>一般来说，<code>skip_window &lt;= 10</code></p>
@@ -375,7 +375,7 @@
                   </li>
                   <li>
                     <p>【<strong>输出层</strong>】输出层对应一棵<strong>哈夫曼树</strong>，以词表中词作为叶子节点，各词的出现频率作为权重——共 <code>N</code> 个叶子节点，<code>N-1</code> 个非叶子节点</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806141616.png" height="400"></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180806141616.png" height="400"></div>
                     <ul>
                       <li>【输入层】前者使用的是 <code>w</code> 的前 <code>n-1</code> 个词，后者使用 <code>w</code> 两边的词
                         <blockquote>
@@ -401,18 +401,18 @@
                   </li>
                   <li>
                     <p>示例：求 <code>P(&quot;足球&quot;|context(&quot;足球&quot;))</code></p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806144052.png" height="400"></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180806144052.png" height="400"></div>
                     <ul>
                       <li>
                         <p>从根节点到“足球”所在的叶子节点，需要经过 4 个分支，每次分支相当于一次<strong>二分类</strong>（逻辑斯蒂回归，二元Softmax）</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806150816.png" height=""></div>
+                        <div align="center"><img src="/images/assets/公式_20180806150816.png" height=""></div>
                         <blockquote>
                           <p>这里遵从原文，将 0 作为正类，1 作为负类</p>
                         </blockquote>
                       </li>
                       <li>
                         <p>而 <code>P(&quot;足球&quot;|context(&quot;足球&quot;))</code> 就是每次分类正确的概率之积，即</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806150727.png" height=""></div>
+                        <div align="center"><img src="/images/assets/公式_20180806150727.png" height=""></div>
                         <blockquote>
                           <p>这里每个非叶子都对应一个参数 <code>θ_i</code></p>
                         </blockquote>
@@ -433,7 +433,7 @@
                 <ul>
                   <li>
                     <p>这里保留了【投影层】，但实际上只是一个恒等变换</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806151406.png" height="400"></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180806151406.png" height="400"></div>
                   </li>
                   <li>
                     <p>从模型的角度看：CBOW 与 SG 模型的区别仅在于 <code>x_w</code> 的构造方式不同，前者是 <code>context(w)</code> 的词向量累加；后者就是 <code>w</code> 的词向量</p>
@@ -460,28 +460,28 @@
                       <li>在词表中采样时也应该遵循这个</li>
                     </ul>
                   </li>
-                  <li>因此，负采样算法实际上就是一个<strong>带权采样</strong>过程<div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806161221.png" height="200"></div>
+                  <li>因此，负采样算法实际上就是一个<strong>带权采样</strong>过程<div align="center"><img src="/images/assets/TIM截图20180806161221.png" height="200"></div>
                   </li>
                 </ul>
                 <h3 id="word2vec-中的做法">Word2Vec 中的做法</h3>
                 <ul>
                   <li>
                     <p>记</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806165417.png" height=""></div>
+                    <div align="center"><img src="/images/assets/公式_20180806165417.png" height=""></div>
                   </li>
                   <li>
                     <p>以这 <code>N+1</code> 个点对区间 <code>[0,1]</code> 做非等距切分</p>
                   </li>
                   <li>
                     <p>引入的一个在区间 <code>[0,1]</code> 上的 <code>M</code> 等距切分，其中 <code>M &gt;&gt; N</code></p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806165750.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180806165750.png" height=""></div>
                     <blockquote>
                       <p>源码中取 <code>M = 10^8</code></p>
                     </blockquote>
                   </li>
                   <li>
                     <p>然后对两个切分做投影，得到映射关系</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806170618.png" height=""></div>
+                    <div align="center"><img src="/images/assets/公式_20180806170618.png" height=""></div>
                   </li>
                   <li>
                     <p>采样时，每次生成一个 <code>[1, M-1]</code> 之间的整数 <code>i</code>，则 <code>Table(i)</code> 就对应一个样本；<br>
@@ -489,7 +489,7 @@
                   </li>
                   <li>
                     <p>特别的，Word2Vec 在计算 <code>len(w)</code> 时做了一些改动——为 <code>count(·)</code> 加了一个<strong>指数</strong></p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806162119.png" height=""></div>
+                    <div align="center"><img src="/images/assets/公式_20180806162119.png" height=""></div>
                   </li>
                 </ul>
                 <h2 id="一些源码细节">一些源码细节</h2>
@@ -497,11 +497,11 @@
                 <ul>
                   <li>
                     <p>类似带权采样的策略，用<strong>查表</strong>来代替计算</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180806172158.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180806172158.png" height=""></div>
                   </li>
                   <li>
                     <p>具体计算公式如下</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806173111.png" height=""></div>
+                    <div align="center"><img src="/images/assets/公式_20180806173111.png" height=""></div>
                     <blockquote>
                       <p>因为 <code>σ(x)</code> 函数的饱和性，当 <code>x &lt; -6 || x &gt; 6</code> 时，函数值基本不变了</p>
                     </blockquote>
@@ -519,20 +519,20 @@
                 <p><strong>Sub-sampling 技巧</strong></p>
                 <ul>
                   <li>源码中使用 Sub-sampling 技巧来解决高频词的问题，能带来 2~10 倍的训练速度提升，同时提高低频词的词向量精度</li>
-                  <li>给定一个词频阈值 <code>t</code>，将 <code>w</code> 以 <code>p(w)</code> 的概率舍弃，<code>p(w)</code> 的计算如下<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806175337.png" height=""></div>
+                  <li>给定一个词频阈值 <code>t</code>，将 <code>w</code> 以 <code>p(w)</code> 的概率舍弃，<code>p(w)</code> 的计算如下<div align="center"><img src="/images/assets/公式_20180806175337.png" height=""></div>
                   </li>
                 </ul>
                 <p><strong>Word2Vec 中的Sub-sampling</strong></p>
                 <ul>
                   <li>显然，Sub-Sampling 只会针对 出现频次大于 <code>t</code> 的词</li>
-                  <li>特别的，Word2Vec 使用如下公式计算 <code>p(w)</code>，效果是类似的<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806193111.png" height=""></div>
+                  <li>特别的，Word2Vec 使用如下公式计算 <code>p(w)</code>，效果是类似的<div align="center"><img src="/images/assets/公式_20180806193111.png" height=""></div>
                   </li>
                 </ul>
                 <h3 id="自适应学习率">自适应学习率</h3>
                 <ul>
                   <li>
                     <p>预先设置一个初始的学习率 <code>η_0</code>（默认 0.025），每处理完 <code>M</code>（默认 10000）个词，就根据以下公式调整学习率</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180806200601.png" height=""></div>
+                    <div align="center"><img src="/images/assets/公式_20180806200601.png" height=""></div>
                   </li>
                   <li>
                     <p>随着训练的进行，学习率会主键减小，并趋向于 0</p>
@@ -556,7 +556,7 @@
                       </li>
                       <li>
                         <p>基于窗口 - 类似 skip-gram 模型中的方法</p>
-                        <div align="center"><img src="http://www.meng.uno/images/assets/共现矩阵.png" height="300"></div>
+                        <div align="center"><img src="/images/assets/共现矩阵.png" height="300"></div>
                         <blockquote>
                           <p><code>skip_window = 1</code> 的共现矩阵</p>
                         </blockquote>
@@ -594,7 +594,7 @@
                   </li>
                   <li>
                     <p>GloVe 认为共现矩阵可以通过一些统计信息得到词之间的关系，这些关系可以一定程度上表达词的含义</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807144435.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807144435.png" height=""></div>
                     <ul>
                       <li><strong>solid</strong> related to <strong>ice</strong> but not <strong>steam</strong></li>
                       <li><strong>gas</strong> related to <strong>stream</strong> but not <strong>ice</strong></li>
@@ -614,7 +614,7 @@
                   </li>
                 </ul>
                 <h2 id="glove-的目标函数">GloVe 的目标函数</h2>
-                <div align="center"><img src="http://www.meng.uno/images/assets/公式_20180807150747.png" height=""></div>
+                <div align="center"><img src="/images/assets/公式_20180807150747.png" height=""></div>
                 <p>其中</p>
                 <ul>
                   <li>
@@ -625,9 +625,9 @@
                   </li>
                   <li>
                     <p><code>f(x)</code> 是一个权重函数，为了限制高频词和防止 <code>x_ij = 0</code></p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807151212.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807151212.png" height=""></div>
                     <ul>
-                      <li>当 <code>x_ij = 0</code> 时，有<div align="center"><img src="http://www.meng.uno/images/assets/公式_20180807151738.png" height=""></div>
+                      <li>当 <code>x_ij = 0</code> 时，有<div align="center"><img src="/images/assets/公式_20180807151738.png" height=""></div>
                       </li>
                     </ul>
                   </li>
@@ -639,15 +639,15 @@
                 <ul>
                   <li>
                     <p>目标函数</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152158.png" height=""></div>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152241.png" height=""></div>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152306.png" height=""></div>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152431.png" height=""></div>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152459.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152158.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152241.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152306.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152431.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152459.png" height=""></div>
                   </li>
                   <li>
                     <p><code>w_i</code> 的权重函数</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807152530.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807152530.png" height=""></div>
                   </li>
                 </ul>
                 <h2 id="glove-与-word2vec-的区别">GloVe 与 Word2Vec 的区别</h2>
@@ -673,7 +673,7 @@
                     <p>FastText 是从 Word2Vec 的 CBOW 模型演化而来的；<br>
                       从网络的角度来看，两者的模型基本一致；区别仅在于两者的分类目标不同；<br>
                       具体来说，FastText 的分类目标是文档的标签，CBOW 则是中心词的标签</p>
-                    <div align="center"><img src="http://www.meng.uno/images/assets/TIM截图20180807094759.png" height=""></div>
+                    <div align="center"><img src="/images/assets/TIM截图20180807094759.png" height=""></div>
                   </li>
                   <li>
                     <p>FastText 与 CBOW 的相同点：</p>
@@ -1003,7 +1003,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

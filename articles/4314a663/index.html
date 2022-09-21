@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="buffer cache/page cache linux中存在有两个缓存，buffer cache是针对设备的缓存，而page cache是针对文件的缓存。对于一个ext4文件系统来说，每个文件都有一棵radix树管理文件的缓存页，这些缓存页就是page cache；而对于每个块设备来说，都有一棵radix树来管理数据的缓存块，这些缓存块被称为buffer cache。在常见的linux系统中，">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/read.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/mmap.png">
-  <meta property="og:updated_time" content="2020-12-02T02:00:52.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/read.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/mmap.png">
+  <meta property="og:updated_time" content="2022-09-21T16:04:10.303Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="页缓存（Page Cache）">
   <meta name="twitter:description" content="buffer cache/page cache linux中存在有两个缓存，buffer cache是针对设备的缓存，而page cache是针对文件的缓存。对于一个ext4文件系统来说，每个文件都有一棵radix树管理文件的缓存页，这些缓存页就是page cache；而对于每个块设备来说，都有一棵radix树来管理数据的缓存块，这些缓存块被称为buffer cache。在常见的linux系统中，">
-  <meta name="twitter:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -286,9 +286,9 @@
                 <p>如果只是研究一般文件的读写，那么就只需要在意page cache，不用去关心buffer cache。</p>
                 <h1>关系</h1>
                 <p>现在我们知道，在linux中，大部分文件都采用了page cache的形式来进行缓存。但是块设备的读写，却是以块的形式来进行的。前面有提到，page cache通常以4kb为单位，而buffer cache则通常是512B的。实际上，一个或多个buffer cache组成了一个page cache。</p>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/cache.jpg" alt="page&amp;amp;buffer"></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/cache.jpg" alt="page&amp;amp;buffer"></p>
                 <p>linux支持的文件系统，大多以块的形式组织文件。在文件以块的形式调入内存后，就以buffer cache的形式，对它们进行管理。buffer cache由两个部分组成，分别是缓冲区的首部buffer_head，和实际的缓冲区内容。buffer_head中，有一个指向数据的指针，和一个缓冲区长度的字段，这两个部分并不相邻。每当以块的形式，将数据读入内存时，它就要被存储在一个缓冲区当中，而buffer_head则起到一个描述符的作用。</p>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg" alt="bufferhead"></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg" alt="bufferhead"></p>
                 <p>在从块设备中读写文件页的时候，会根据不同情况，来构造bio。bio中，io_vec中，bv_page字段，会指向page。在2.6版本后，buffer_head只给上层提供有关其描述的块的当前状态，描述磁盘块到物理内存的映射关系，而bio则负责所有块I/O操作。</p>
                 <p>在linux中，mpage_readpage试图读取文件中一个page大小的数据。最理想的情况下，这个page大小的数据都在连续的物理磁盘上吗，函数只需要提交一个bio就可以获取所有的数据。这里使用get block函数，检查物理块是否连续。如果连续，则直接调用mpage_bio_submit函数请求整个page的数据，不连续则调用block_read_full_page逐个block读取，建立bh和bio之间的关系。mpage从来不回把不完整的页放进bio中，除非是文件的结尾。</p>
                 <h1>页高速缓存到用户空间</h1>
@@ -298,9 +298,9 @@
                   <li>第一次是从磁盘中读取来填充页缓存中的页；</li>
                   <li>第二次是将是从内存中的页缓存，读取到进程堆空间的内存中。</li>
                 </ul>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/read.png" alt="read"></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/read.png" alt="read"></p>
                 <p>映射，只有一次复制：从磁盘中复制到缓存中。mmap会创建一个虚拟内存区域vm_area_struct，进程的task_struct包含了进程页表项，让这些页表项指向页缓存所在的物理页page。</p>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/mmap.png" alt="mmap"></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/mmap.png" alt="mmap"></p>
                 <p>由于程序的代码段必然是通过mmap来实现的，因此它们在使用时，其实是保存在页缓存中的。</p>
                 <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/4314a663/">http://blog.mkuang.hk/articles/4314a663/</a> . Welcome to reproduce it!</p>
 
@@ -417,7 +417,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

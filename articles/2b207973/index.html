@@ -26,7 +26,7 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="Ajax页面跳转并传入数据 在暑假进行的项目 医疗文本处理平台 中，我需要将队友的Ajax写好的功能整合到我的界面上，因为他之前是一个界面，而我想做成像搜索引擎那种，在一个页面上输入搜索词，跳转到另一个页面显示结果（后跳转界面还可以继续通过Ajax获得新的搜索结果）  在我们把后台服务化后，前端跨平台化之前，我们还需要了解前台和后台之间怎么通讯。从现有的一些技术上来看，Ajax是比较受欢迎的。">
   <meta property="og:locale" content="EN">
-  <meta property="og:updated_time" content="2021-01-06T18:37:43.000Z">
+  <meta property="og:updated_time" content="2022-09-21T16:00:43.903Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="前端开发小细节">
   <meta name="twitter:description" content="Ajax页面跳转并传入数据 在暑假进行的项目 医疗文本处理平台 中，我需要将队友的Ajax写好的功能整合到我的界面上，因为他之前是一个界面，而我想做成像搜索引擎那种，在一个页面上输入搜索词，跳转到另一个页面显示结果（后跳转界面还可以继续通过Ajax获得新的搜索结果）  在我们把后台服务化后，前端跨平台化之前，我们还需要了解前台和后台之间怎么通讯。从现有的一些技术上来看，Ajax是比较受欢迎的。">
@@ -638,7 +638,7 @@
                         <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
                       </td>
                       <td class="code">
-                        <pre><span class="line">&lt;script&gt;</span><br><span class="line">    function _iframe() &#123;</span><br><span class="line">        zeroModal.show(&#123;</span><br><span class="line">            title: <span class="string">'我的博客'</span>,</span><br><span class="line">            <span class="selector-tag">iframe</span>: true,</span><br><span class="line">            url: <span class="string">'http://www.meng.uno'</span>,</span><br><span class="line">            <span class="attribute">width</span>: <span class="string">'60%'</span>,</span><br><span class="line">            <span class="attribute">height</span>: <span class="string">'60%'</span>,</span><br><span class="line">            cancel: true</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre>
+                        <pre><span class="line">&lt;script&gt;</span><br><span class="line">    function _iframe() &#123;</span><br><span class="line">        zeroModal.show(&#123;</span><br><span class="line">            title: <span class="string">'我的博客'</span>,</span><br><span class="line">            <span class="selector-tag">iframe</span>: true,</span><br><span class="line">            url: <span class="string">''</span>,</span><br><span class="line">            <span class="attribute">width</span>: <span class="string">'60%'</span>,</span><br><span class="line">            <span class="attribute">height</span>: <span class="string">'60%'</span>,</span><br><span class="line">            cancel: true</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -667,7 +667,7 @@
                   <p>Hexo + GitHub 可能是一组比较简单的搭建博客的方式了。在使用Hexo的这么长的时间里，我发现很多不舒适的问题，通过搜索与探索，基本解决，现在分享出来。</p>
                 </blockquote>
                 <h2 id="添加404页面">添加404页面</h2>
-                <p>有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加<code>404.html</code>，就可以实现出错自动跳转到404界面了，关于404界面的书写，大家可以直接下载我的404页面：<a href="http://www.meng.uno/404.html" target="_blank" rel="noopener">http://www.meng.uno/404.html</a></p>
+                <p>有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加<code>404.html</code>，就可以实现出错自动跳转到404界面了，关于404界面的书写，大家可以直接下载我的404页面：/404.html</p>
                 <h2 id="排除编译某文件">排除编译某文件</h2>
                 <h3 id="排除html等格式">排除HTML等格式</h3>
                 <p>在添加了404页面后，最简单的方法就是将<code>404.html</code>放到本地博客的<code>public</code>目录下。但是有个问题，也是最重要的，就是每次<code>hexo clean</code>之后，<code>public/</code>文件夹就会被删除，这样的话每次都需要粘贴进去，自然费时费力。</p>
@@ -964,7 +964,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

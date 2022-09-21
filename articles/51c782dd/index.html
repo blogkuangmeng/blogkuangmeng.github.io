@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="文章内容理解 作者写作背景 在I/O设备开始与CPU异步直接与主存交换信息（DMA时代）开始时，DMA使用物理地址直接存取，这就给系统带来了很多诸如劣质甚至恶意设备影响，造成系统崩溃……等麻烦，在这种情况下，对I/O设备的存取统一管理的单元——输入输出存储管理单元（IOMMU）应运而生。随着设备带宽的提高，那些像网卡和PCIe SSD控制器等高带宽设备可以与系统通过一个环型缓冲器相互影响，于是一种">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/iommu/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/iommu/4.png">
-  <meta property="og:image" content="http://www.meng.uno/images/iommu/1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/iommu/2.png">
-  <meta property="og:updated_time" content="2020-12-02T02:04:19.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/iommu/3.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/iommu/4.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/iommu/1.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/iommu/2.png">
+  <meta property="og:updated_time" content="2022-09-21T16:04:34.030Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="rIOMMU：Efficient IOMMU for I&#x2F;O Devices that Employ Ring Buffers">
   <meta name="twitter:description" content="文章内容理解 作者写作背景 在I/O设备开始与CPU异步直接与主存交换信息（DMA时代）开始时，DMA使用物理地址直接存取，这就给系统带来了很多诸如劣质甚至恶意设备影响，造成系统崩溃……等麻烦，在这种情况下，对I/O设备的存取统一管理的单元——输入输出存储管理单元（IOMMU）应运而生。随着设备带宽的提高，那些像网卡和PCIe SSD控制器等高带宽设备可以与系统通过一个环型缓冲器相互影响，于是一种">
-  <meta name="twitter:image" content="http://www.meng.uno/images/iommu/3.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/iommu/3.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -319,10 +319,10 @@
                 <p>下面直接进入文章的设计部分：</p>
                 <h2 id="数据结构">数据结构</h2>
                 <p>作者从软件、硬件两种方式来组合实现rIOMMU,所以数据结构不得不是最先介绍的东西了。我将以代码与文字结合的方式介绍：
-                  <img src="http://www.meng.uno/images/iommu/3.png" alt="IOMMU">
+                  <img src="/images/iommu/3.png" alt="IOMMU">
                 </p>
                 <p>以上四个结构体所展示的数据结构，都是硬件软件公用的，他们都被rIOMMU用来转换虚拟地址，被操作系统调用。接下来定义一个只有硬件会使用的结构体：</p>
-                <p><img src="http://www.meng.uno/images/iommu/4.png" alt="IOMMU">
+                <p><img src="/images/iommu/4.png" alt="IOMMU">
                   ## 硬件处理</p>
                 <p>首先，在与rRING相连的rIOTLB_entry的IOVA中寻找e，如果e不存在rIOMMU就搜索表，用上面定义的数据结构，找到rPTE，并插入rIOTLB一个匹配的entry，同时使表移动确保e.rpte是rPTE中给定的rIOVA。</p>
                 <p>其次，如果e已经初始化在rIOTLB被找到，rIOMMU匹配每一个IOVA和e，并且实时更新e。</p>
@@ -340,8 +340,8 @@
                 <h2 id="可行性评估">可行性评估</h2>
                 <p>在读了这一篇关于优化IOMMU的文章后，我在网上寻找了一下，相关的研究进展情况，发现早在很多年前像Intel、AMD等处理器生产商早就有关于IOMMU的应用，但是在像本文所讲的rIOMMU还没有得到应用过，也就是说文章现在所言皆是理想的情况。</p>
                 <p>在文章的后半部分，作者也从“方法”、“实验执行”、“基准”等方面做了很多测试，其中在“方法”模块采用：①strict，②strict+，③defer，④defer+，⑤riommu-，⑥riommu，⑦none其中模式，可以说是比较准确的了下图及下表展示所有测试结果：</p>
-                <p><img src="http://www.meng.uno/images/iommu/1.png" alt="IOMMU"></p>
-                <p><img src="http://www.meng.uno/images/iommu/2.png" alt="IOMMU"></p>
+                <p><img src="/images/iommu/1.png" alt="IOMMU"></p>
+                <p><img src="/images/iommu/2.png" alt="IOMMU"></p>
                 <p>通过结果可见，当运行“需求-响应”（RR）模式是，相对于普通IOMMU，提升不是多么的明显，但是在其他方面，结果还是挺理想的。</p>
                 <h2 id="创新之处">创新之处</h2>
                 <p>作者在测试部分将模拟方法分成7个等级，基本上模拟了所有的正常可能情况，有力证明了本次实验的成功。</p>
@@ -507,7 +507,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

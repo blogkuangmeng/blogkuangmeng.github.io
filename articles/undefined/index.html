@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/noises/1.jpeg">
-  <meta property="og:image" content="http://www.meng.uno/images/noises/2.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/noises/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/noises/4.png">
-  <meta property="og:updated_time" content="2021-01-01T15:12:05.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/noises/1.jpeg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/noises/2.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/noises/3.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/noises/4.png">
+  <meta property="og:updated_time" content="2022-09-21T16:03:43.183Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="误差(Error)，偏差(Bias)，方差(Variance)与噪声(Noise)">
   <meta name="twitter:description" content="“什么是偏差、方差与噪声，以及他们是什么关系？”是机器学习中经常遇到的问题。机器学习模型的泛化性能由算法的能力、数据的充分性以及学习任务本身的难度共同决定。对于给定的学习任务，为了取得更好的泛化性能，则需要使模型预测结果与真实值之间的偏差较小（即能够充分拟合数据），并且使不同测试集输出的方差较小（即使得数据扰动所造成的影响小）。  偏差（Bias） Bias是用所有可能的训练数据集训练出的所有模型">
-  <meta name="twitter:image" content="http://www.meng.uno/images/noises/1.jpeg">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/noises/1.jpeg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -297,7 +297,7 @@
                 <p>其中，<code>h(x)</code>指的是某一次训练的输出值。</p>
                 <h2 id="偏差与方差的关系">偏差与方差的关系</h2>
                 <p>两者的关系可以由下图表示：</p>
-                <p><img src="http://www.meng.uno/images/noises/1.jpeg" alt="bias and variance"></p>
+                <p><img src="/images/noises/1.jpeg" alt="bias and variance"></p>
                 <p>这幅图可以看出，两者可以组成四种关系，这四种关系也对应着机器学习模型的四种不同表现。</p>
                 <ul>
                   <li>Low Bias, Low Variance: 好模型；</li>
@@ -331,7 +331,7 @@
                 </ol>
                 <h2 id="偏差-方差窘境-bias-variance-dilemma">偏差-方差窘境（bias-variance dilemma）</h2>
                 <p>能得到方差和偏差都很小的模型当然是最好的结果，但是事实是我们总是要取得两者的一个平衡，两者的关系可以用下图表示，这也被称为偏差-方差窘境。</p>
-                <p><img src="http://www.meng.uno/images/noises/2.jpg" alt="bias-variance dilemma"></p>
+                <p><img src="/images/noises/2.jpg" alt="bias-variance dilemma"></p>
                 <p>随着模型复杂度的提升，Bias会不断减小，但是Variance会不断增大，泛化误差将会呈现出先减小后增大的趋势，这个泛化误差的最小值点当然是我们的追求，所以我们在训练一个机器学习模型的时候需要平衡偏差与方差。</p>
                 <h2 id="噪声-noise">噪声（Noise）</h2>
                 <p>噪声的数学期望可以由下式表示：</p>
@@ -344,7 +344,7 @@
                   <li>数据平滑法</li>
                 </ol>
                 <p>当我们将<code>t</code>时刻前后<code>n</code>个值求平均，作为当前时刻的平滑之后的值时，得：</p>
-                <p><img src="http://www.meng.uno/images/noises/3.png" alt="Average"></p>
+                <p><img src="/images/noises/3.png" alt="Average"></p>
                 <p>因为根据我们的假设，噪声服从0为均值的正态分布，其期望为0：</p>
                 <p>$$\sum_{i=1}^{n}\left(\varepsilon_{t-i}+\varepsilon_{t+i}\right)+\varepsilon_{t} = 0$$</p>
                 <ol start="2">
@@ -367,7 +367,7 @@
                 </figure>
                 <h2 id="泛化误差与三者的关系">泛化误差与三者的关系</h2>
                 <p>可以证明泛化误差与偏差、方差以及噪声的数学期望的关系为：</p>
-                <p><img src="http://www.meng.uno/images/noises/4.png" alt="Relation"></p>
+                <p><img src="/images/noises/4.png" alt="Relation"></p>
 
               </div>
               <footer class="article-footer">
@@ -495,7 +495,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

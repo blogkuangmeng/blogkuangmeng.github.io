@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="Simple Deterministic Algorithms for Fully Dynamic Maximal Matching  解决的问题 这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/match/1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/match/2.png">
-  <meta property="og:image" content="http://www.meng.uno/images/match/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/match/4.png">
-  <meta property="og:updated_time" content="2020-12-02T01:41:28.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/match/1.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/match/2.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/match/3.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/match/4.png">
+  <meta property="og:updated_time" content="2022-09-21T15:57:58.160Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="完全动态最大匹配的简单确定性算法">
   <meta name="twitter:description" content="Simple Deterministic Algorithms for Fully Dynamic Maximal Matching  解决的问题 这篇文章介绍了什么是“完全动态最大匹配”，然后介绍了他们提供的在最坏情况下更新时间为平摊O(√m)（m表示图中的边数）时间复杂度、O(n+m)空间复杂度内完成的“3/2-近似最大基数匹配（MCM）”算法。这篇文章是为了处理图论中的“匹配”问题，作者将“">
-  <meta name="twitter:image" content="http://www.meng.uno/images/match/1.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/match/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -335,7 +335,7 @@
                 </ul>
                 <h2 id="对于低荫度图">对于低荫度图</h2>
                 <p>在这部分中，考虑的是荫度不大于c的图，而c由下式确定：</p>
-                <p><img src="http://www.meng.uno/images/match/1.png" alt="Match"></p>
+                <p><img src="/images/match/1.png" alt="Match"></p>
                 <p>其中E(U)表示U中的边数。</p>
                 <p>由于图较稀疏，所以将每条边都带上方向，构成△-方向无向图</p>
                 <h3 id="数据结构-v2">数据结构</h3>
@@ -355,7 +355,7 @@
                 <h1>用一个例子说明相关算法</h1>
                 <p>为了较好的说明这个算法，我仅就自己画的一个图做些简要的分析，有遗漏之处实属算法没理解透：</p>
                 <p>（图如下，分别由6个顶点、7条边组成，由于算法本身要求图中点、边数目较多，而简短的语言无法描述清楚，所以选择这样一个简单的图来叙述）</p>
-                <p><img src="http://www.meng.uno/images/match/2.png" alt="Match"></p>
+                <p><img src="/images/match/2.png" alt="Match"></p>
                 <p>以下模拟算法过程：（只举例说明）</p>
                 <p>由文章知，该算法要处理动态图的最大匹配问题，首先初始化G0为空，我们按e0—e6的顺序向图中添加边，然后删除边。</p>
                 <ul>
@@ -368,7 +368,7 @@
                   <li>将e6加入，将此边加入M，同时将e3从M中删除，将e4加入，将e0删除，将e1加入M。</li>
                 </ul>
                 <p>得到如下的最大匹配：</p>
-                <p><img src="http://www.meng.uno/images/match/3.png" alt="Match"></p>
+                <p><img src="/images/match/3.png" alt="Match"></p>
                 <p>删除边时：</p>
                 <p>（由于删边不容易看出来，所以仅将出现可见变化时的情况列出。）</p>
                 <ul>
@@ -377,7 +377,7 @@
                   <li>删除e4，将e2加入M，将e4删除。</li>
                 </ul>
                 <p>得到的匹配如下：</p>
-                <p><img src="http://www.meng.uno/images/match/4.png" alt="Match"></p>
+                <p><img src="/images/match/4.png" alt="Match"></p>
                 <p>通过以上两个实例（一个删除、一个插入），基本能模拟本文关于动态最大匹配的一般算法。</p>
                 <h1>认识与看法</h1>
                 <h2 id="已有算法的问题所在">已有算法的问题所在</h2>
@@ -583,7 +583,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="I/O体系结构 虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。 我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为总线。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg">
   <meta property="og:image" content="http://ww.meng.uno/images/%E7%A3%81%E7%9B%98IO/%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/biovec.gif">
-  <meta property="og:updated_time" content="2020-12-08T10:13:10.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/biovec.gif">
+  <meta property="og:updated_time" content="2022-09-21T16:02:04.653Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="I&#x2F;O体系结构">
   <meta name="twitter:description" content="I/O体系结构 虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。 我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为总线。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O">
-  <meta name="twitter:image" content="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -281,7 +281,7 @@
                 <h1>I/O体系结构</h1>
                 <p>虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。<br>
                   我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为<strong>总线</strong>。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O设备之间通信的<strong>数据总线</strong>。I/O体系的通用结构如图所示：</p>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png" alt=""></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png" alt=""></p>
                 <p>那么CPU是如何通过I/O总线和I/O设备交互呢？这首先得从内存和外设的编址方式说起。第一种是“独立编址”，也就是内存和外设分开编址，I/O端口有独立的地址空间，这也被称为<strong>I/O映射方式</strong>。每个连接到I/O总线上的设备，都分配了自己的I/O地址集（在I/O地址空间中），它被称为I/O端口。<code>in</code>、<code>out</code>等指令用语CPU对I/O端口进行读写。在执行其中一条指令时，CPU使用地址总线选择所请求的I/O端口，使用数据总线在CPU寄存器和端口之间传送数据。这种方式编码逻辑清晰，速度快，但空间有限。</p>
                 <p>第二种是“统一编址”，也被称为<strong>内存映射方式</strong>，I/O端口还可以被映射到内存地址空间（这也正是现代硬件设备倾向于使用的方式），这样CPU就可以通过对内存操作的指令，来访问I/O设备，并且和DMA结合起来。这种方式更加统一，易于使用。它实际上使用了<code>ioremap()</code>。<strong>自从PCI总线出现后，不论采用I/O映射还是内存映射方式，都需要将I/O端口映射到内存地址空间</strong>。</p>
                 <p>每个I/O设备的I/O端口都是一组寄存器：控制寄存器、状态寄存器、输入寄存器和输出寄存器。内核会纪录分配给每个硬件设备的I/O端口。</p>
@@ -404,7 +404,7 @@
                     </tr>
                   </table>
                 </figure>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg" alt=""></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg" alt=""></p>
                 <p>不过到现在为止，我们都还没有说明，程序在访问字符设备时，是如何去调用正确的方法的。我们曾提到过，<code>open()</code>系统调用会改变字符文件对象的f_op字段，将默认文件操作替换为驱动的操作。在字符设备文件创建时，会调用<code>init_special_inode</code>来进行索引节点对象的初始化。其inode的操作(def_chr_fops)只包含一个默认的文件打开操作，也即<code>chrdev_open</code>。它会根据inode，首先利用<code>cdev_map</code>，找到对应的kobject，随后再进一步找到cdev，然后从中提取出文件操作的函数<code>fops</code>，并把它填充到file当中去。</p>
                 <figure class="highlight plain">
                   <table>
@@ -448,7 +448,7 @@
                   </table>
                 </figure>
                 <p>在这个数据结构中，还包含了一个<code>bio_vec</code>。这是什么意思呢？在linux中，相邻数据块被称为一个段，每个<code>bio_vec</code>对应一个内存页中的段。在io操作期间，bio是会一直更新的，其中的<code>bi_iter</code>用来在数组中遍历，按每个段来执行下一步的操作。</p>
-                <p><img src="http://www.meng.uno/images/%E7%A3%81%E7%9B%98IO/biovec.gif" alt=""></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/biovec.gif" alt=""></p>
                 <p>那么当通用块层收到一个I/O请求操作时，会发生什么呢？首先内核会为这次操作分配<code>bio</code>描述符，并对它进行填充。随后通用块层会调用<code>generic_make_request</code>，这个函数的作用很明确：它会进行一系列检查和设置，保证bio中的信息是<strong>针对整个磁盘，而不是磁盘分区的</strong>；随后获取这个块设备相关的请求队列q，调用<code>q-&gt;make_request_fn</code>，把bio插入请求队列中去。</p>
                 <h1>I/O调度层</h1>
                 <p>在块设备上，每个I/O请求操作都是异步处理的，通用块层的请求会被加入块设备的请求队列中，每个块设备都会单独地进行I/O的调度，这样能够有效提高磁盘的性能。</p>
@@ -611,7 +611,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

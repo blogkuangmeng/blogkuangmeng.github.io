@@ -26,15 +26,15 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="简介 Java GC（Garbage Collection，垃圾收集，垃圾回收）机制，是Java与C++/C的主要区别之一，作为Java开发者，一般不需要专门编写内存回收和垃圾清理代码，对内存泄露和溢出的问题，也不需要像C程序员那样战战兢兢。这是因为在Java虚拟机中，存在自动内存管理和垃圾清扫机制。概括地说，该机制对JVM（Java Virtual Machine）中的内存进行标记，并确定哪些内">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/gc/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/gc/4.png">
-  <meta property="og:image" content="http://www.meng.uno/images/gc/1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/gc/2.png">
-  <meta property="og:updated_time" content="2020-12-02T01:50:00.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/gc/3.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/gc/4.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/gc/1.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/gc/2.png">
+  <meta property="og:updated_time" content="2022-09-21T16:02:32.067Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JVM的垃圾回收机制">
   <meta name="twitter:description" content="简介 Java GC（Garbage Collection，垃圾收集，垃圾回收）机制，是Java与C++/C的主要区别之一，作为Java开发者，一般不需要专门编写内存回收和垃圾清理代码，对内存泄露和溢出的问题，也不需要像C程序员那样战战兢兢。这是因为在Java虚拟机中，存在自动内存管理和垃圾清扫机制。概括地说，该机制对JVM（Java Virtual Machine）中的内存进行标记，并确定哪些内">
-  <meta name="twitter:image" content="http://www.meng.uno/images/gc/3.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/gc/3.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -392,8 +392,8 @@
                 <p>这是最基础的垃圾回收算法，之所以说它是最基础的是因为它最容易实现，思想也是最简单的。标记-清除算法分为两个阶段：标记阶段和清除阶段。标记阶段的任务是标记出所有需要被回收的对象，清除阶段就是回收被标记的对象所占用的空间。</p>
                 <p>标记—清除算法是最基础的收集算法，它分为“标记”和“清除”两个阶段：首先标记出所需回收的对象，在标记完成后统一回收掉所有被标记的对象，它的标记过程其实就是前面的根搜索算法中判定垃圾对象的标记过程。</p>
                 <p>最基础的收集算法是“标记-清除”（Mark-Sweep）算法，如同它的名字一样，算法分为“标记”和“清除”两个阶段。</p>
-                <p><img src="http://www.meng.uno/images/gc/3.png" alt=""></p>
-                <p><img src="http://www.meng.uno/images/gc/4.png" alt=""></p>
+                <p><img src="/images/gc/3.png" alt=""></p>
+                <p><img src="/images/gc/4.png" alt=""></p>
                 <p>标记-清除算法实现起来比较容易，但是有一个比较严重的问题就是容易产生内存碎片，碎片太多可能会导致后续过程中需要为大对象分配空间时无法找到足够的空间而提前触发新的一次垃圾收集动作。</p>
                 <p>该算法有如下缺点：</p>
                 <ul>
@@ -418,7 +418,7 @@
                   <li>内存回收时不用考虑内存碎片的出现。</li>
                 </ul>
                 <p>它的缺点是：可一次性分配的最大内存缩小了一半。</p>
-                <p><img src="http://www.meng.uno/images/gc/1.png" alt=""></p>
+                <p><img src="/images/gc/1.png" alt=""></p>
                 <p>这种算法虽然实现简单，运行高效且不容易产生内存碎片，但是却对内存空间的使用做出了高昂的代价，因为能够使用的内存缩减到原来的一半。</p>
                 <p>很显然，Copying算法的效率跟存活对象的数目多少有很大的关系，如果存活对象很多，那么Copying算法的效率将会大大降低。</p>
                 <p>我们首先一起来看一下复制算法的做法，复制算法将内存划分为两个区间，在任意时间点，所有动态分配的对象都只能分配在其中一个区间（称为活动区间），而另外一个区间（称为空闲区间）则是空闲的。</p>
@@ -440,7 +440,7 @@
                   <li>整理：移动所有存活的对象，且按照内存地址次序依次排列，然后将末端内存地址以后的内存全部回收。因此，第二阶段才称为整理阶段。</li>
                 </ul>
                 <p>复制算法比较适合于新生代，在老年代中，对象存活率比较高，如果执行较多的复制操作，效率将会变低，所以老年代一般会选用其他算法，如标记—整理算法。该算法标记的过程与标记—清除算法中的标记过程一样，但对标记后出的垃圾对象的处理情况有所不同，它不是直接对可回收对象进行清理，而是让所有的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
-                <p><img src="http://www.meng.uno/images/gc/2.png" alt=""></p>
+                <p><img src="/images/gc/2.png" alt=""></p>
                 <p>不难看出，标记/整理算法不仅可以弥补标记/清除算法当中，内存区域分散的缺点，也消除了复制算法当中，内存减半的高额代价，可谓是一举两得，一箭双雕，一石两鸟。</p>
                 <p>不过任何算法都会有其缺点，标记/整理算法唯一的缺点就是效率也不高，不仅要标记所有存活对象，还要整理所有存活对象的引用地址。从效率上来说，标记/整理算法要低于复制算法。</p>
                 <h3 id="generational-collection-分代收集-算法">Generational Collection（分代收集）算法</h3>
@@ -603,7 +603,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

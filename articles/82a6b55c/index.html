@@ -26,21 +26,21 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="PageRank算法 PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。  另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）  接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/13.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/14.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/15.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/16.png">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/7.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/8.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/9.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/10.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/11.jpg">
-  <meta property="og:image" content="http://www.meng.uno/images/recommend/12.jpg">
-  <meta property="og:updated_time" content="2020-12-02T02:10:31.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/13.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/14.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/15.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/16.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/7.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/8.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/9.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/10.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/11.jpg">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/recommend/12.jpg">
+  <meta property="og:updated_time" content="2022-09-21T16:04:19.623Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="几个常见的社区推荐算法">
   <meta name="twitter:description" content="PageRank算法 PageRank算法预先给每个网页一个PR值（PR值指代PageRank值），PR值在物理意义上为一个网页被访问的概率，所以一般是1/N，其中N为网页总数。  另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）  接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。">
-  <meta name="twitter:image" content="http://www.meng.uno/images/recommend/13.jpg">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/recommend/13.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -289,17 +289,17 @@
                 <p>另外，所有网页的PR值的和一般为1。（如果实在不为1也不是不行，最后算出来的不同网页之间PR值的大小关系仍然是正确的，只是这个数值不能直接地反映概率罢了。）</p>
                 <p>接着，运用下面的算法不断迭代计算，直至达到平稳分布为止。</p>
                 <h2 id="普通情况">普通情况</h2>
-                <p><img src="http://www.meng.uno/images/recommend/13.jpg" alt=""></p>
+                <p><img src="/images/recommend/13.jpg" alt=""></p>
                 <p>互联网中的众多网页可以看成一个有向图，箭头的指向即为链接的链入，根据上图，我们得到A的PR值为：PR(A)=PR(B)/2+PR©/1。</p>
                 <h2 id="没有出链">没有出链</h2>
-                <p><img src="http://www.meng.uno/images/recommend/14.jpg" alt=""></p>
+                <p><img src="/images/recommend/14.jpg" alt=""></p>
                 <p>网络中不乏一些没有出链的网页，如上图，其中，网页C没有出链，也就是说网页C对其他网页没有PR值的贡献，我们不喜欢这种“自私”的网页（其实是为了满足 Markov 链的收敛性），于是设定其对所有网页（包括它自己）都有出链，则此图中A的PR值表示为：PR(A)=PR(B)/2+PR©/4。</p>
                 <h2 id="出链循环圈">出链循环圈</h2>
-                <p><img src="http://www.meng.uno/images/recommend/15.jpg" alt=""></p>
+                <p><img src="/images/recommend/15.jpg" alt=""></p>
                 <p>网络中还存在这样的网页：只对自己有出链，或者几个网页的出链形成一个循环圈。那么在不断迭代的过程中，这一个或几个网页的PR值将只增不减，这显然是不合理的。</p>
                 <p>那么如何解决这个问题呢？我们假设某人正在浏览网页C，显然他不会一直停留在网页C，他可能会随机地输入一个网址从而去往另一个网页，并且其跳转到每个网页的概率是一样的。于是此图中A的PR值表示为：PR(A)=∂(PR(B)/2)+(1-∂)/4。</p>
                 <p>综上，一般情况下，一个网页的PR值计算公式如下：</p>
-                <p><img src="http://www.meng.uno/images/recommend/16.png" alt=""></p>
+                <p><img src="/images/recommend/16.png" alt=""></p>
                 <p>其中，Mpi是所有对pi网页有出链的网页集合，L(pj)是网页pj的出链数目，N是网页总数，α一般取0.85。</p>
                 <p>根据上面的公式，我们就可以计算出每个网页的PR值，在不断迭代并趋于平稳的时候，即为最终结果。</p>
                 <h1>HITS算法</h1>
@@ -307,11 +307,11 @@
                 <p>首先把那些根据关键相关返回网页作为根集合S，再由S集合网页节点的链入和链出网页节点派生出结合C，结合C包括S，链入和链出节点集合。</p>
                 <p>C中的每个节点分配一对权重&lt;h(s),a(s)&gt;, 节点h(s)权重由节点链出的节点的a(s)决定，a(s)由节点的链入节点的h(s)决定。</p>
                 <p>算法过程：</p>
-                <p><img src="http://www.meng.uno/images/recommend/7.jpg" alt=""></p>
+                <p><img src="/images/recommend/7.jpg" alt=""></p>
                 <p>网页的a权重向量：</p>
-                <p><img src="http://www.meng.uno/images/recommend/8.jpg" alt=""></p>
+                <p><img src="/images/recommend/8.jpg" alt=""></p>
                 <p>关于HITS算法收敛性，可以从如下变换形式来得出：</p>
-                <p><img src="http://www.meng.uno/images/recommend/9.jpg" alt=""></p>
+                <p><img src="/images/recommend/9.jpg" alt=""></p>
                 <p>当算法收敛时候，a其实就是对应矩阵A那个最大特征值对应的特征向量的归一化形式，同样，h也是H矩阵那个最大特征值对应的特征向量的归一化形式。</p>
                 <p>算法实现：</p>
                 <figure class="highlight python">
@@ -329,12 +329,12 @@
                 <h1>SALSA算法</h1>
                 <p>SALSA算法和HITS算法初始部分一样，构建相同的集合集C和彼此的链接关系。</p>
                 <p>SALSA一种随机游走过程，但是不同经典的随机游走。它涉及到把一个网页节点看成2种不同类型节点：hub和authority，随机游走对应着这样两种不用类型的Markov链：hub链和authority链，状态转移为网页前向和后向。</p>
-                <p><img src="http://www.meng.uno/images/recommend/10.jpg" alt=""></p>
+                <p><img src="/images/recommend/10.jpg" alt=""></p>
                 <p>首先是把构建一个无向图，原图节点分为2类，然后构建边。</p>
                 <p>这样从某个节点出发，进行两个方向的随机游走。h和a方向的状态转移矩阵：</p>
-                <p><img src="http://www.meng.uno/images/recommend/11.jpg" alt=""></p>
+                <p><img src="/images/recommend/11.jpg" alt=""></p>
                 <p>对于以上的形式可以通过如下的矩阵相乘的方式展现：</p>
-                <p><img src="http://www.meng.uno/images/recommend/12.jpg" alt=""></p>
+                <p><img src="/images/recommend/12.jpg" alt=""></p>
                 <p>有了H和A矩阵，就可以知道节点集合最终的h和a向量：和HITS一样，h和a对应H和A的最大特征值对应的归一化特征向量。其实，计算h和a可以参照HITS，进行迭代求解。</p>
                 <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/82a6b55c/">http://blog.mkuang.hk/articles/82a6b55c/</a> . Welcome to reproduce it!</p>
 
@@ -457,7 +457,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

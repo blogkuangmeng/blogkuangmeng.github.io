@@ -26,29 +26,29 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="什么是中断？ 中断是能够打断CPU指令序列的事件，它是在CPU内外，由硬件产生的电信号。CPU接收到中断后，就会向OS反映这个信号，从而由OS就会对新到来的数据进行处理。不同的事件，其对应的中断不同，而OS则是通过中断号(也即IRQ线)来找到对应的处理方法。不同体系中，中断可能是固定好的，也可能是动态分配的。  中断产生后，首先会告诉中断控制器。中断控制器负责收集所有中断源的中断，它能够控制中断源">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E5%AF%BB%E5%9D%80.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/GDT&LDT.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitIDT.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitLDT.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IA-32.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IA-32e.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/Int.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/Stackswitch.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E4%BB%A3%E7%A0%81%E6%AE%B5.png?raw=true">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/gate.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitTSS.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/TaskRegister.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/APIC.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/table1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/table2.png">
-  <meta property="og:updated_time" content="2020-12-08T10:10:34.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E5%AF%BB%E5%9D%80.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/GDT&LDT.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/64bitIDT.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/64bitLDT.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/IA-32.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/IA-32e.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/Int.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/Stackswitch.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/%E4%BB%A3%E7%A0%81%E6%AE%B5.png?raw=true">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/gate.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/64bitTSS.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/TaskRegister.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/APIC.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/table1.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/table2.png">
+  <meta property="og:updated_time" content="2022-09-21T16:01:53.452Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="中断">
   <meta name="twitter:description" content="什么是中断？ 中断是能够打断CPU指令序列的事件，它是在CPU内外，由硬件产生的电信号。CPU接收到中断后，就会向OS反映这个信号，从而由OS就会对新到来的数据进行处理。不同的事件，其对应的中断不同，而OS则是通过中断号(也即IRQ线)来找到对应的处理方法。不同体系中，中断可能是固定好的，也可能是动态分配的。  中断产生后，首先会告诉中断控制器。中断控制器负责收集所有中断源的中断，它能够控制中断源">
-  <meta name="twitter:image" content="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -305,7 +305,7 @@
                   <li>陷阱门：适宜处理异常，和中断门类似，但它不会屏蔽中断。</li>
                 </ul>
                 <p>以下是<strong>32bit</strong>中的IDT表项。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif" alt="IDT门"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/IDT%E9%97%A8.gif" alt="IDT门"></p>
                 <p>值得注意的是，CPU还提供一种门，<strong>调用门</strong>，它是linux内核特别设置的，通常通过CALL和JMP指令来使用，能够转移特权级。</p>
                 <h1>实模式和保护模式</h1>
                 <p>在了解CPU是如何通过中断向量表调用具体的服务程序之前，首先需要了解CPU的工作方式。</p>
@@ -327,9 +327,9 @@
                 </ol>
                 <p>在IA-32e模式下(64bit)，逻辑地址的翻译步骤和上述过程类似，唯一不同的是，其段基地址和偏移量，都是64bit，而不是32bit的。线性地址同理也是32bit的。</p>
                 <p>段寻址，也即将内存分成不同的段，利用段寄存器能够找到其对应的段描述符，从而获得相关的段基址、大小、权限等信息。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E5%AF%BB%E5%9D%80.png" alt="段寻址"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E5%AF%BB%E5%9D%80.png" alt="段寻址"></p>
                 <p>段选择子Segment selector的示意图如下：</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90.png" alt="段选择子"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90.png" alt="段选择子"></p>
                 <p>段选择子会被存在段寄存器当中，其中最低两位为RPL(cs寄存器不同，最低位位CPL)。而第三位Table Indicator则是表示该从GDT还是LDT寻找对应的段描述符，后面的bits就是对应的index了。</p>
                 <p>为了减少地址翻译的开销，处理器提供了6个段寄存器，CS，SS，DS，ES，FS，GS。通常来说一个程序至少有CS、DS、SS三个selector。假设程序要使用段来访问地址，那么必须将segment selector载入段寄存器当中。对此，Intel是提供了特殊的指令的，直接载入的指令包括MOV，POP，LDS，LES等。而隐含的载入则包括CALL，JMP，RET，SYSENTER等等。它们会改变CS寄存器(有时也会改变其它段寄存器)的内容。</p>
                 <p>而在IA-32e模式下(64bit mode)，ES，DS，SS段寄存器都不会使用了，因此它们的域会被忽视掉，而且某些load指令也被视为违法的，例如LDS。与ES，DS，SS段有关的地址计算，会被视为segment base为0。为了保证兼容性，在64bit mode当中，段load指令会正常执行，从GDT、LDT中读取时，也会读取寄存器的隐藏部分，并且值都会正常的载入。但是data、stack的segment selector和描述符都会被忽略掉。<br>
@@ -337,27 +337,27 @@
                 <h1>IDT，LDT和GDT</h1>
                 <p>中断向量表提供了一个入口，但这个入口还需要进一步的计算。这个入口的计算，是通过段寻址来实现的。而段的信息，则是保存在LDT和GDT当中。</p>
                 <p>段描述符的结构如下图：</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6.png" alt="段描述符"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6.png" alt="段描述符"></p>
                 <p>段描述符最重要的部分是DPL位，它会在权限检查的时候使用。在进程需要装载一个新的段选择子时，会判断当前的CPL和RPL是否都比相应的DPL权限高，如果是则允许加载新的段选择子，否则产生GP。</p>
                 <p>在操作系统中，全局描述符只有一张，也即一个CPU对应一个GDT。GDT可以存放在内存中的任何地址，但CPU必须知道GDT的入口，因此有一个寄存器GDTR用来存放GDT的入口地址，它存放了GDT在内存中的基址和表长。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/GDT&amp;LDT.png" alt="GDT&amp;amp;LDT"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/GDT&amp;LDT.png" alt="GDT&amp;amp;LDT"></p>
                 <p>但是在64位系统当中，段机制就被取代了，而页表项也能够达到数据访问的保护目的。但是对于不同特权级之间的控制流转移，还是和原来的机制一样。在64-bit模式中，GDT依然存在，但不会改变，而其寄存器被拓展到了80bit。</p>
                 <p>而GDT中会包含一个LDT段的段描述符，LDT是通过它的段描述符来访问的。</p>
                 <p>在IA-32e模式下，段描述符表可以包含2^13个8-byte描述符。这里，描述符分为两种，段描述符会占据一个entry(8bit)，而系统描述符会占据两个entry(16bit)。而GDTR和LDTR被拓展为能够保存64bit的基地址。其中，IDT描述符、LDT、TSS描述符和调用门描述符都被拓展称为了16bytes。</p>
                 <p>64bit IDT描述符的格式如下</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitIDT.png" alt="64bit IDT"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/64bitIDT.png" alt="64bit IDT"></p>
                 <p>64bit LDT描述符的格式如下</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitLDT.png" alt="64 bit LDT"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/64bitLDT.png" alt="64 bit LDT"></p>
                 <h1>中断的处理过程</h1>
                 <p>在intel 手册上看到的大图，很详细的解释了IA-32模式和IA-32e模式下的系统架构，它也就包含了中断处理和线性地址的翻译过程。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IA-32.png" alt="IA-32"></p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/IA-32e.png" alt="IA-32e"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/IA-32.png" alt="IA-32"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/IA-32e.png" alt="IA-32e"></p>
                 <p>在中断产生之后，处理器会将中断向量号作为索引，在IDT表中找到对应的处理程序。IDT表将每个中断/异常向量和一个门描述符关联起来。在保护模式下，它是一个8-byte的描述符（与GDT，LDT类似），IDT最大有256项。IDT能够保存在内存中的任何位置，处理器用IDTR寄存器来保存它的值。</p>
                 <p>在中断/陷阱门描述符中，segment selector指向了GDT或当前LDT中的代码段描述符，而offser域指向了exception/interrupt的处理过程。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/Int.png" alt="IA-32e"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/Int.png" alt="IA-32e"></p>
                 <p>在执行call这一步的时候，倘若handler过程会在一个更低的权限执行，那么就会涉及到stack switch。当stack switch发生时，segment selector和新的栈指针都需要通过TSS来获取，在这个栈上，处理器会把之前的segment selector和栈指针压入栈中。处理器还将保存当前的状态寄存器在新的栈上。</p>
                 <p>如果handler过程会在相同的权限执行，处理器会把状态寄存器的值保存在当前的栈上。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/Stackswitch.png" alt="IA-32e"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/Stackswitch.png" alt="IA-32e"></p>
                 <p>从中断处理程序返回时，handler必须使用IRET指令。它与RET类似，但它会将保存的标志位恢复到EFLAGS寄存器中。如果stack switch在调用过程中发生了那么IRET会切换到中断前的stack上。在中断过程中，权限级的保护与CALL调用过程类似，会对CPL进行检查。</p>
                 <h1>64-bit模式下的中断处理</h1>
                 <p>在64bit模式下，中断和异常的处理与非64bit模式下几本一致，但也存在一些不同的地方。包括有：</p>
@@ -387,7 +387,7 @@
                 </ul>
                 <p>通过CR0寄存器当中的PE flag能够开启保护模式，打开段保护机制；而页保护机制则是在分页机制启用时，自动开启的。虽然64bit中，不再使用分段机制了，但<strong>代码段</strong>依然存在。对于地址计算来说，其段地址被视为0，CS描述符当中的内容被忽略，但其余部分保持一致。代码段描述符、selector依然存在，它们在处理器的操作模式、执行权限级上依然发挥作用。其工作方式如下：</p>
                 <p>CS描述符中会使用一个保留位，Bit 53被定义为64 bit flag位(L)，并且被用来在64bit/兼容模式之间切换。当CS.L ＝ 0时，CPU处于兼容模式，CS.D则决定了数据和地址的位数为16/32bit。如果CS.L为1，那么只有CS.D = 1是合法的，并且地址和数据的位数是64bit。在IA-32e模式下，CS描述符当中的DPL位被用来做执行权限的检查(与32bit模式一样)。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/%E4%BB%A3%E7%A0%81%E6%AE%B5.png?raw=true" alt="代码段"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/%E4%BB%A3%E7%A0%81%E6%AE%B5.png?raw=true" alt="代码段"></p>
                 <h2 id="limit-checking">Limit Checking</h2>
                 <p>在段描述符当中，有一个limit field，它防止程序访问某个段之外的的内存位置，其有效值由G flag来决定，对于数据段来说，其limit还由E flag和B flag决定。在64bit模式下，处理器不会对代码段活着数据段进行limit check，但是会对<strong>描述符表</strong>的limit进行检查。</p>
                 <h2 id="type-checking">Type checking</h2>
@@ -406,7 +406,7 @@
                   <li>RPL：与segment selector有关的，能够对权限进行覆盖的权限级。它保存在segment selector的bit 0-1中。处理器会通过CPL和RPL来判断对segment的访问是否合法。即使请求访问某个段的程序，拥有比段更高的权限，如果RPL不是有效的，访问还是会被拒绝。也就是说如果RPL把CPL高，那么RPL会覆盖CPL。RPL能够保证提权的代码，不能随意访问一个segment段，除非它自身有这个权限。直观的说，必须CPL和RPL都比DPL要高，只有这种情况下，才会允许这个段的访问。其主要目的，是允许高权限为低权限提供服务的时候，能够通过较低的权限来加载段。</li>
                 </ul>
                 <p>门调用符与权限检查：</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/gate.png" alt="gate"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/gate.png" alt="gate"></p>
                 <h1>TSS</h1>
                 <p>处理器执行工作的单位，被称为task。一个task分为两个部分，task的执行空间和task-state segment(TSS)。前者指的是code/stack/data segment，而后者则定义了组成前者的各个段。task是由TSS的segment selector来识别的。当一个任务被加载到处理器中执行时，segment selector、基址、limit、TSS的段描述符等都会被加载到**task register(TR)**当中去。分页启动时，页目录的基址还会载入到控制寄存器CR3当中去。</p>
                 <p>一个任务的状态，由一系列的寄存器和TSS来定义。这里，处理器定义了5个数据结构，来处理任务相关的活动。</p>
@@ -418,19 +418,19 @@
                   <li>EFLAGS寄存器中的NT flag</li>
                 </ul>
                 <p>为了恢复一个task，处理器所需要的信息，保存在一个系统段中，它被称为TSS。在64bit模式下，它的格式如下：</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/64bitTSS.png" alt="gate"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/64bitTSS.png" alt="gate"></p>
                 <p>而TSS描述符，则和其他的段一样，是由一个段描述符来定义的，它的结构在上文中已经给出了（与LDT是一致的），它只能放在GDT当中，不能放在LDT或者IDT当中。</p>
                 <p>Task寄存器保存了当前TSS的段选择子和整个段描述符。它包含可见和不可见两个部分（能否被软件修改）。段选择子位于可见部分，指向GDT当中的TSS描述符。不可见部分则是用来保存TSS的段描述符（能够提高执行效率）。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/TaskRegister.png" alt="gate"></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/TaskRegister.png" alt="gate"></p>
                 <h1>中断的发生</h1>
                 <p>中断指的是CPU在运行时，系统内发生了需要“急需处理”的事件，于是乎CPU暂停了当前正在执行对程序，转而去执行相应的时间处理程序，在处理完之后返回原来的地方执行。那么这些事件包含：（1）外部中断指的是那些CPU外的周边原件引发的中断，例如I/O中断，I/O设备异常（接下来我们把它称为“中断”）；（2）内部中断指的是在CPU内部执行时，由程序自身、异常、陷阱（例如程序中的断点）产生的中断（包括硬件中断和软件中断，其中软件中断是指一系列的指令）（接下来我们把它称作“异常”）。</p>
                 <p>这两种中断类型不同，产生方式也不一样：</p>
                 <p>（1）中断因为是由外设硬件发出的，所以需要由中断控制器（APIC）参与其中。在中断发出后，首先由APIC来进行处理。这种方式解决两个问题：（a）有大量的外设，而CPU的引脚资源有限，所以不能满足所有的直连需要；（b）如果设备中断和CPU直连，那么在MP系统中，中断负载等需求就无法实现了。</p>
                 <p>可以看到，在x86_64系统下，local APIC通过I/O APIC接受链接，I/O APIC把中断处理成中断消息，并按照规则转发给local APIC。APIC决定了由哪个CPU来处理中断，为某个引脚产生特定的中断向量（中断投递协议），并把中断请求发送给对应的CPU处理。CPU之间的中断通信，也是通过APIC来完成的。</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/APIC.png" alt=""></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/APIC.png" alt=""></p>
                 <p>I/O设备通过IRQ线与APIC相连，APIC将信号转化为对应的向量，并把这个向量放在它的I/O端口上，允许CPU通过数据总线来读这个向量；随后它发送一个信息给CPU的INTR引脚，从而触发中断，当CPU通过把中断信号写进APIC的I/O端口时，把INTR线清除。目前，外部中断的编号是从32开始，这是由于0-31号中断是留给异常和内部中断使用的，INTEL手册上也给出了这样一个表，详细说明了中断号的对应关系（新的CPU确实用的编号也变多了，就比如#VE）：</p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/table1.png" alt=""></p>
-                <p><img src="http://www.meng.uno/images/%E4%B8%AD%E6%96%AD/table2.png" alt=""></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/table1.png" alt=""></p>
+                <p><img src="/images/%E4%B8%AD%E6%96%AD/table2.png" alt=""></p>
                 <p>（2）异常则是由CPU自身产生的中断。那么这种中断是否需要APIC介入呢？除了I/O APIC的中断信号外，local APIC还会接收其他来源的中断，例如CPU LINT0/LINT1中断（本地连接的I/O），性能计数器中断、APIC内部错误中断等。但这不意味着所有异常都需要中断控制器的参与；软件中断的中断号是可以由指令直接给出的，因此是不需要中断控制器的参与的。</p>
                 <h1>中断的屏蔽</h1>
                 <p>注意，这里的中断屏蔽指的是对外部中断的屏蔽（mask）。CPU内部的中断（异常）是不能屏蔽的。在内核同步中，通常采用这种方式来屏蔽外部的中断；并结合自旋锁来保证中断不被打断。</p>
@@ -586,7 +586,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->

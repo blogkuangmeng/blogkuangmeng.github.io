@@ -26,19 +26,19 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="背景 在优化算法中，用于评估候选解决方案的函数（即一组权重）称为目标函数（Objective Function）。我们可能会寻求最大化或最小化目标函数，这意味着我们正在搜索分别具有最高或最低得分的候选解决方案。通常，使用神经网络，我们试图将误差最小化。这样，目标函数通常被称为成本函数（Cost Function）或损失函数（Loss Function），而由损失函数计算出的值简称为“损失（Loss">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/1.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/2.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/3.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/4.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/5.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/6.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/7.png">
-  <meta property="og:image" content="http://www.meng.uno/images/loss-func/8.png">
-  <meta property="og:updated_time" content="2021-01-04T18:49:56.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/1.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/2.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/3.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/4.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/5.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/6.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/7.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/loss-func/8.png">
+  <meta property="og:updated_time" content="2022-09-21T16:02:50.443Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Loss Functions">
   <meta name="twitter:description" content="背景 在优化算法中，用于评估候选解决方案的函数（即一组权重）称为目标函数（Objective Function）。我们可能会寻求最大化或最小化目标函数，这意味着我们正在搜索分别具有最高或最低得分的候选解决方案。通常，使用神经网络，我们试图将误差最小化。这样，目标函数通常被称为成本函数（Cost Function）或损失函数（Loss Function），而由损失函数计算出的值简称为“损失（Loss">
-  <meta name="twitter:image" content="http://www.meng.uno/images/loss-func/1.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/loss-func/1.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -289,16 +289,16 @@
                 <h2 id="0-1损失函数-zero-one-loss">0-1损失函数(zero-one loss)</h2>
                 <h3 id="形式">形式</h3>
                 <p>0-1损失函数的计算是<code>预测值</code>和<code>目标值</code>不相等为<code>1</code>， 否则为<code>0</code>，数学形式为：</p>
-                <p><img src="http://www.meng.uno/images/loss-func/1.png" alt="0-1 loss"></p>
+                <p><img src="/images/loss-func/1.png" alt="0-1 loss"></p>
                 <p>当然，这个条件有点太严苛，通常也可以方宽条件到<code>|Y - f(x)| &lt; T</code>，即：</p>
-                <p><img src="http://www.meng.uno/images/loss-func/2.png" alt="soft 0-1 loss"></p>
+                <p><img src="/images/loss-func/2.png" alt="soft 0-1 loss"></p>
                 <h3 id="出处">出处</h3>
                 <ul>
                   <li>感知机</li>
                 </ul>
                 <h2 id="平均绝对值损失函数-mean-absolute-error-mae">平均绝对值损失函数（Mean Absolute Error, MAE）</h2>
                 <h3 id="形式-v2">形式</h3>
-                <p><img src="http://www.meng.uno/images/loss-func/3.png" alt="MAE"></p>
+                <p><img src="/images/loss-func/3.png" alt="MAE"></p>
                 <h3 id="实现">实现</h3>
                 <figure class="highlight plain">
                   <table>
@@ -314,7 +314,7 @@
                 </figure>
                 <h2 id="平均平方损失函数-mean-squared-error-mse">平均平方损失函数（Mean Squared Error, MSE）</h2>
                 <h3 id="形式-v3">形式</h3>
-                <p><img src="http://www.meng.uno/images/loss-func/4.png" alt="MSE"></p>
+                <p><img src="/images/loss-func/4.png" alt="MSE"></p>
                 <h3 id="出处-v2">出处</h3>
                 <ul>
                   <li>回归问题</li>
@@ -335,9 +335,9 @@
                 <h2 id="交叉熵损失函数-cross-entropy-loss-or-log-loss">交叉熵损失函数（Cross-Entropy Loss or Log Loss）</h2>
                 <h3 id="形式-v4">形式</h3>
                 <p>多个类别的交叉熵一般形式为：</p>
-                <p><img src="http://www.meng.uno/images/loss-func/5.png" alt="Cross-Entropy"></p>
+                <p><img src="/images/loss-func/5.png" alt="Cross-Entropy"></p>
                 <p>对于二分类问题，因为<code>i</code>只有1个值，所以也写成：</p>
-                <p><img src="http://www.meng.uno/images/loss-func/6.png" alt="Cross-Entropy"></p>
+                <p><img src="/images/loss-func/6.png" alt="Cross-Entropy"></p>
                 <h3 id="出处-v3">出处</h3>
                 <ul>
                   <li>分类问题</li>
@@ -376,7 +376,7 @@
                 <h2 id="合页损失函数-hinge-loss">合页损失函数（Hinge Loss）</h2>
                 <h3 id="形式-v5">形式</h3>
                 <p>其标准形式为：</p>
-                <p><img src="http://www.meng.uno/images/loss-func/7.png" alt="Hinge Loss"></p>
+                <p><img src="/images/loss-func/7.png" alt="Hinge Loss"></p>
                 <p>因为其在坐标系中的图形形状像书页，所以称之为合页损失。</p>
                 <h3 id="出处-v4">出处</h3>
                 <ul>
@@ -384,7 +384,7 @@
                 </ul>
                 <h2 id="感知机损失函数-perceptron-loss">感知机损失函数（Perceptron Loss）</h2>
                 <h3 id="形式-v6">形式</h3>
-                <p><img src="http://www.meng.uno/images/loss-func/8.png" alt="Perceptron Loss"></p>
+                <p><img src="/images/loss-func/8.png" alt="Perceptron Loss"></p>
                 <p>其可以看成是简化版的Hinge Loss。</p>
                 <h3 id="出处-v5">出处</h3>
                 <ul>
@@ -544,7 +544,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.21 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.22 <a href="http://www.meng.uno/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
