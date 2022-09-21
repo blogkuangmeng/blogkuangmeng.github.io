@@ -26,13 +26,13 @@
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content=".length与length()的区别 当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道.length与length()的区别喻原因呢？  上面问题的答案是：   * 数组使用.length属性  * 字符串使用length()方法  为什么数组有.length属性？ 在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
-  <meta property="og:image" content="http://www.meng.uno/images/substring/substring_jdk7.png">
-  <meta property="og:updated_time" content="2021-01-06T18:11:18.000Z">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/substring/substring_jdk.png">
+  <meta property="og:image" content="http://blog.mkuang.hk/images/substring/substring_jdk7.png">
+  <meta property="og:updated_time" content="2022-09-21T15:53:56.992Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Java开发中的小细节">
   <meta name="twitter:description" content=".length与length()的区别 当我们需要使用数组或者字符串长度时，习惯了使用IDE自动补全的我们是否知道.length与length()的区别喻原因呢？  上面问题的答案是：   * 数组使用.length属性  * 字符串使用length()方法  为什么数组有.length属性？ 在Java中，数组是容器对象，其中包含了固定数量的同一类型的值，一旦数组创建，其长度就是固定的了，于是，">
-  <meta name="twitter:image" content="http://www.meng.uno/images/substring/substring_jdk.png">
+  <meta name="twitter:image" content="http://blog.mkuang.hk/images/substring/substring_jdk.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -325,11 +325,11 @@
                 </blockquote>
                 <h3 id="jdk6版本">JDK6版本</h3>
                 <p>在这个版本中，每次执行substring()方法时并不会新建新的string，仅仅只是将上述三个域中的offset，count做必要的修改。返回对象仍指向原来的数据。</p>
-                <p><img src="http://www.meng.uno/images/substring/substring_jdk.png" alt="Substring()实现版本一"></p>
+                <p><img src="/images/substring/substring_jdk.png" alt="Substring()实现版本一"></p>
                 <p>这样一来，<strong><em>缺点</em></strong>就比较明显：当原始字符串比较长，而截取的子串比较短时，在后续的使用中就会浪费大量的空间。</p>
                 <h3 id="jdk7-版本">JDK7+版本</h3>
                 <p>在上一个版本基础上，这个方法进行了改进，每次使用这个方法都会新建一个string对象，并将其返回。</p>
-                <p><img src="http://www.meng.uno/images/substring/substring_jdk7.png" alt="Substring()实现版本二"></p>
+                <p><img src="/images/substring/substring_jdk7.png" alt="Substring()实现版本二"></p>
                 <h1>String<code>+</code>操作分析</h1>
                 <h2 id="背景">背景</h2>
                 <p>昨天，我和队友讨论字符串拼接问题时，他提到了这个问题：直接“+”操作好像是生成了临时的一个新String，然后拼接，再复制给原来的String。带着这个问题，我查了下，得出以下的结论。</p>
