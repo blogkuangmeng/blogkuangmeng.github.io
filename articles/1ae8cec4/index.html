@@ -22,18 +22,18 @@
   <meta name="keywords" content="Linux,虚拟化,Virtio">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Virtio原理">
-  <meta property="og:url" content="http://blog.mkuang.hk/articles/1ae8cec4/index.html">
+  <meta property="og:url" content="https://blog.mkuang.tk/articles/1ae8cec4/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="Virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/virtio/qemu.jpg">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/virtio/virtio.jpg">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/virtio/liftcycle.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/virtio/qemu.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/virtio/virtio.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/virtio/liftcycle.jpg">
   <meta property="og:updated_time" content="2022-09-21T16:06:00.946Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Virtio原理">
   <meta name="twitter:description" content="Virtio简介 virtio是KVM虚拟环境下，针对I/O虚拟化的通用框架。virtio是一个半虚拟化驱动。首先说明一下全虚拟化和半虚拟化的区别。全虚拟化是指guest操作系统运行在物理机器上的hypervisor上，它不知道自己已被虚拟化，不需要任何更改就可以工作。半虚拟化指的是guest操作系统不仅知道它运行在hypervisor上，还包括让guest操作系统更高效与hyperviosr交互">
-  <meta name="twitter:image" content="http://blog.mkuang.hk/images/virtio/qemu.jpg">
+  <meta name="twitter:image" content="https://blog.mkuang.tk/images/virtio/qemu.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.mkuang.hk/articles/1ae8cec4/">
+  <link rel="canonical" href="https://blog.mkuang.tk/articles/1ae8cec4/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -182,7 +182,7 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
+                  <li> <a class="main-nav-link" href="https://blog.mkuang.tk">Home</a> </li>
 
                   <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
 
@@ -190,7 +190,7 @@
 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
+                  <li> <a class="main-nav-link" href="https://mkuang.tk">About</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -289,7 +289,7 @@
                   QEMU处理过vdr之后，会将它加入到virtio_ring的request队列，并发一个中断给队列，队列的中断响应函数vring_interrupt调用队列的回调函数virtblk_done。<br>
                   最后由request_queue注册的complete函数virtblk_request_done处理，通过blk_mq_end_io通告块设备层IO结束。</p>
                 <p><img src="/images/virtio/liftcycle.jpg" alt=""></p>
-                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/1ae8cec4/">http://blog.mkuang.hk/articles/1ae8cec4/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="https://blog.mkuang.tk/articles/1ae8cec4/">https://blog.mkuang.tk/articles/1ae8cec4/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -323,8 +323,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
-                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
+                    wechatImage: 'https://blog.mkuang.tk/money/wechat.JPG',
+                    alipayImage: 'https://blog.mkuang.tk/money/alipay.JPG'
                   });
                 </script>
 
@@ -406,7 +406,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.24 <a href="http://mkuang.hk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2023.08.27 <a href="https://mkuang.tk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -466,7 +466,7 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
+  <a href="https://blog.mkuang.tk" class="mobile-nav-link">Home</a>
 
   <a href="/archives" class="mobile-nav-link">Archives</a>
 
@@ -474,7 +474,7 @@
 
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
+  <a href="https://mkuang.tk" class="mobile-nav-link">About</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
@@ -582,7 +582,7 @@
               An MPhil graduate in Computer Science from HKU
             </div>
             <div class="panel-body">
-              © 2022 Mengmeng Kuang All Rights Reserved.
+              © 2023 Mengmeng Kuang All Rights Reserved.
             </div>
           </div>
         </div>

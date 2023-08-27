@@ -22,19 +22,19 @@
   <meta name="keywords" content="Linux,I&#x2F;O">
   <meta property="og:type" content="article">
   <meta property="og:title" content="页缓存（Page Cache）">
-  <meta property="og:url" content="http://blog.mkuang.hk/articles/4314a663/index.html">
+  <meta property="og:url" content="https://blog.mkuang.tk/articles/4314a663/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="buffer cache/page cache linux中存在有两个缓存，buffer cache是针对设备的缓存，而page cache是针对文件的缓存。对于一个ext4文件系统来说，每个文件都有一棵radix树管理文件的缓存页，这些缓存页就是page cache；而对于每个块设备来说，都有一棵radix树来管理数据的缓存块，这些缓存块被称为buffer cache。在常见的linux系统中，">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/read.png">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/mmap.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/bufferhead.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/read.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/mmap.png">
   <meta property="og:updated_time" content="2022-09-21T16:04:10.303Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="页缓存（Page Cache）">
   <meta name="twitter:description" content="buffer cache/page cache linux中存在有两个缓存，buffer cache是针对设备的缓存，而page cache是针对文件的缓存。对于一个ext4文件系统来说，每个文件都有一棵radix树管理文件的缓存页，这些缓存页就是page cache；而对于每个块设备来说，都有一棵radix树来管理数据的缓存块，这些缓存块被称为buffer cache。在常见的linux系统中，">
-  <meta name="twitter:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
+  <meta name="twitter:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/cache.jpg">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.mkuang.hk/articles/4314a663/">
+  <link rel="canonical" href="https://blog.mkuang.tk/articles/4314a663/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -183,7 +183,7 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
+                  <li> <a class="main-nav-link" href="https://blog.mkuang.tk">Home</a> </li>
 
                   <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
 
@@ -191,7 +191,7 @@
 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
+                  <li> <a class="main-nav-link" href="https://mkuang.tk">About</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -300,7 +300,7 @@
                 <p>映射，只有一次复制：从磁盘中复制到缓存中。mmap会创建一个虚拟内存区域vm_area_struct，进程的task_struct包含了进程页表项，让这些页表项指向页缓存所在的物理页page。</p>
                 <p><img src="/images/%E7%A3%81%E7%9B%98IO/mmap.png" alt="mmap"></p>
                 <p>由于程序的代码段必然是通过mmap来实现的，因此它们在使用时，其实是保存在页缓存中的。</p>
-                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/4314a663/">http://blog.mkuang.hk/articles/4314a663/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="https://blog.mkuang.tk/articles/4314a663/">https://blog.mkuang.tk/articles/4314a663/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -334,8 +334,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
-                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
+                    wechatImage: 'https://blog.mkuang.tk/money/wechat.JPG',
+                    alipayImage: 'https://blog.mkuang.tk/money/alipay.JPG'
                   });
                 </script>
 
@@ -415,7 +415,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.24 <a href="http://mkuang.hk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2023.08.27 <a href="https://mkuang.tk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -475,7 +475,7 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
+  <a href="https://blog.mkuang.tk" class="mobile-nav-link">Home</a>
 
   <a href="/archives" class="mobile-nav-link">Archives</a>
 
@@ -483,7 +483,7 @@
 
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
+  <a href="https://mkuang.tk" class="mobile-nav-link">About</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
@@ -591,7 +591,7 @@
               An MPhil graduate in Computer Science from HKU
             </div>
             <div class="panel-body">
-              © 2022 Mengmeng Kuang All Rights Reserved.
+              © 2023 Mengmeng Kuang All Rights Reserved.
             </div>
           </div>
         </div>

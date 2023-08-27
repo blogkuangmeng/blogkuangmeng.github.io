@@ -22,7 +22,7 @@
   <meta name="keywords" content="Linux,内核同步">
   <meta property="og:type" content="article">
   <meta property="og:title" content="内核同步">
-  <meta property="og:url" content="http://blog.mkuang.hk/articles/e41a0c57/index.html">
+  <meta property="og:url" content="https://blog.mkuang.tk/articles/e41a0c57/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="内核同步 对于内核，其实有一个很形象的理解：我们可以把内核理解成一个服务器，它为自身和用户提供各种服务。因此它必须要保证每项服务在处理时，不会互相造成影响，也就是解决“并发”的问题。自身的请求，也即中断；客户的请求，也即用户态的系统调用或异常。内核的同步，就是对内核中的任务进行调度，使它们按照正确的方式运行。  内核抢占 这里，“内核抢占”指的是进程A在内核态运行时，被具有更高优先级的进程B取代，">
   <meta property="og:locale" content="EN">
@@ -112,7 +112,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.mkuang.hk/articles/e41a0c57/">
+  <link rel="canonical" href="https://blog.mkuang.tk/articles/e41a0c57/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -178,7 +178,7 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
+                  <li> <a class="main-nav-link" href="https://blog.mkuang.tk">Home</a> </li>
 
                   <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
 
@@ -186,7 +186,7 @@
 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
+                  <li> <a class="main-nav-link" href="https://mkuang.tk">About</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -423,7 +423,7 @@
                 <p>在前面提到的原语中，很多在实现的时候，都禁止了了本地的中断，这就保证了当前内核控制路径能够继续执行，例如<code>raw_spin_lock_irqsave</code>和<code>raw_spin_lock_irqrestore</code>。不过禁止本地中断不能阻止其他CPU
                   访问共享数据，因此通常和自旋锁结合使用。</p>
                 <p>而可延迟函数同样可以禁止和激活，这是由preempt_count字段中的值决定的。</p>
-                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/e41a0c57/">http://blog.mkuang.hk/articles/e41a0c57/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="https://blog.mkuang.tk/articles/e41a0c57/">https://blog.mkuang.tk/articles/e41a0c57/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -457,8 +457,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
-                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
+                    wechatImage: 'https://blog.mkuang.tk/money/wechat.JPG',
+                    alipayImage: 'https://blog.mkuang.tk/money/alipay.JPG'
                   });
                 </script>
 
@@ -546,7 +546,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.24 <a href="http://mkuang.hk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2023.08.27 <a href="https://mkuang.tk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -606,7 +606,7 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
+  <a href="https://blog.mkuang.tk" class="mobile-nav-link">Home</a>
 
   <a href="/archives" class="mobile-nav-link">Archives</a>
 
@@ -614,7 +614,7 @@
 
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
+  <a href="https://mkuang.tk" class="mobile-nav-link">About</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
@@ -722,7 +722,7 @@
               An MPhil graduate in Computer Science from HKU
             </div>
             <div class="panel-body">
-              © 2022 Mengmeng Kuang All Rights Reserved.
+              © 2023 Mengmeng Kuang All Rights Reserved.
             </div>
           </div>
         </div>

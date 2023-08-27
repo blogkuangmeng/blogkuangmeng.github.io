@@ -22,18 +22,18 @@
   <meta name="keywords" content="Intel,虚拟化,VT-x,EPT">
   <meta property="og:type" content="article">
   <meta property="og:title" content="VT-x&#x2F;EPT解读">
-  <meta property="og:url" content="http://blog.mkuang.hk/articles/18c2ca64/index.html">
+  <meta property="og:url" content="https://blog.mkuang.tk/articles/18c2ca64/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="1 VT-x VT-x是intel针对硬件辅助虚拟化的技术，它解决x86指令集不能被虚拟化的问题，并且简化了VMM软件，减少了软件虚拟化的需求。Virtual Machine Extensions定义了一系列新的操作，称为VMX操作，来提供处理器级别的支持。同时它提供了一个新的特权等级VMX root给VMM，从而避免了ring deprivileging方法(让操作系统运行于ring 1，VMM">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/VT-x/VMCS.png">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/VT-x/EPT.png">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/VT-x/violate.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/VT-x/VMCS.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/VT-x/EPT.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/VT-x/violate.png">
   <meta property="og:updated_time" content="2022-09-21T16:06:09.777Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="VT-x&#x2F;EPT解读">
   <meta name="twitter:description" content="1 VT-x VT-x是intel针对硬件辅助虚拟化的技术，它解决x86指令集不能被虚拟化的问题，并且简化了VMM软件，减少了软件虚拟化的需求。Virtual Machine Extensions定义了一系列新的操作，称为VMX操作，来提供处理器级别的支持。同时它提供了一个新的特权等级VMX root给VMM，从而避免了ring deprivileging方法(让操作系统运行于ring 1，VMM">
-  <meta name="twitter:image" content="http://blog.mkuang.hk/images/VT-x/VMCS.png">
+  <meta name="twitter:image" content="https://blog.mkuang.tk/images/VT-x/VMCS.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.mkuang.hk/articles/18c2ca64/">
+  <link rel="canonical" href="https://blog.mkuang.tk/articles/18c2ca64/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -182,7 +182,7 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
+                  <li> <a class="main-nav-link" href="https://blog.mkuang.tk">Home</a> </li>
 
                   <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
 
@@ -190,7 +190,7 @@
 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
+                  <li> <a class="main-nav-link" href="https://mkuang.tk">About</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -298,7 +298,7 @@
                 <p>在这个架构中，页可以分为两种：物理页(physical page)和页表页(MMU page)。物理页就是真正存放数据的页，页表页是存放EPT页表的页。这两种页创建的方式也不同，物理页可以通过内核提供的__get_free_page来创建，而页表页则是通过mmu_page_cache获得。这个page cache是在KVM初始化vcpu时通过linux内核中的slab机制分配的，它作为之后的MMU pages的cache来使用。在KVM中，每个MMU page对应一个数据结构kvm_mmu_page，在EPT处理过程中，它是极为重要的一个数据结构。</p>
                 <p>一条地址如何翻译？首先non-root状态下的CPU加载guest CR3，由于guest CR3是一条GPA，CPU需要通过EPT来实现GPA-&gt;HPA的转换。但首先，MMU会先查询硬件的TLB，来判断有没有GPA到HPA的映射。如果没有GPA到HPA的映射，那么在cache中查询EPT/NPT。如果cache里面没有缓存，则逐层向下层存储查询，最终获得guest CR3所映射的物理地址单元内容，作为下一级guest页表的索引基址。当CPU访问EPT页表，查找HPA，发现相应的页表项不存在时，就会抛出EPT Violation，由VMM截获处理它。随后通过GVA的偏移量，计算出下一条GPA，依次循环下去，直到最终获得客户机请求的页。整个过程如下图所示。</p>
                 <p><img src="/images/VT-x/violate.png" alt="violate"></p>
-                <p><br><br>The link of this page is <a href="http://blog.mkuang.hk/articles/18c2ca64/">http://blog.mkuang.hk/articles/18c2ca64/</a> . Welcome to reproduce it!</p>
+                <p><br><br>The link of this page is <a href="https://blog.mkuang.tk/articles/18c2ca64/">https://blog.mkuang.tk/articles/18c2ca64/</a> . Welcome to reproduce it!</p>
 
               </div>
               <footer class="article-footer">
@@ -332,8 +332,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
-                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
+                    wechatImage: 'https://blog.mkuang.tk/money/wechat.JPG',
+                    alipayImage: 'https://blog.mkuang.tk/money/alipay.JPG'
                   });
                 </script>
 
@@ -415,7 +415,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.24 <a href="http://mkuang.hk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2023.08.27 <a href="https://mkuang.tk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -475,7 +475,7 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
+  <a href="https://blog.mkuang.tk" class="mobile-nav-link">Home</a>
 
   <a href="/archives" class="mobile-nav-link">Archives</a>
 
@@ -483,7 +483,7 @@
 
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
+  <a href="https://mkuang.tk" class="mobile-nav-link">About</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
@@ -591,7 +591,7 @@
               An MPhil graduate in Computer Science from HKU
             </div>
             <div class="panel-body">
-              © 2022 Mengmeng Kuang All Rights Reserved.
+              © 2023 Mengmeng Kuang All Rights Reserved.
             </div>
           </div>
         </div>

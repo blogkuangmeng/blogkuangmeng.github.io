@@ -22,19 +22,19 @@
   <meta name="keywords" content="Linux,I&#x2F;O">
   <meta property="og:type" content="article">
   <meta property="og:title" content="I&#x2F;O体系结构">
-  <meta property="og:url" content="http://blog.mkuang.hk/articles/d0c0e94a/index.html">
+  <meta property="og:url" content="https://blog.mkuang.tk/articles/d0c0e94a/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
   <meta property="og:description" content="I/O体系结构 虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。 我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为总线。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O">
   <meta property="og:locale" content="EN">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg">
   <meta property="og:image" content="http://ww.meng.uno/images/%E7%A3%81%E7%9B%98IO/%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.png">
-  <meta property="og:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/biovec.gif">
+  <meta property="og:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/biovec.gif">
   <meta property="og:updated_time" content="2022-09-21T16:02:04.653Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="I&#x2F;O体系结构">
   <meta name="twitter:description" content="I/O体系结构 虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。 我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为总线。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O">
-  <meta name="twitter:image" content="http://blog.mkuang.hk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
+  <meta name="twitter:image" content="https://blog.mkuang.tk/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png">
   <meta name="twitter:creator" content="@kuangmengmeng">
   <link rel="publisher" href="mengmengkuang">
   <meta property="fb:admins" content="kuangmengmeng">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.mkuang.hk/articles/d0c0e94a/">
+  <link rel="canonical" href="https://blog.mkuang.tk/articles/d0c0e94a/">
 
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/loading.css">
@@ -183,7 +183,7 @@
               <div class="navbar-collapse collapse">
                 <ul class="hnav navbar-nav">
 
-                  <li> <a class="main-nav-link" href="http://blog.mkuang.hk">Home</a> </li>
+                  <li> <a class="main-nav-link" href="https://blog.mkuang.tk">Home</a> </li>
 
                   <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
 
@@ -191,7 +191,7 @@
 
                   <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
 
-                  <li> <a class="main-nav-link" href="http://mkuang.hk">About</a> </li>
+                  <li> <a class="main-nav-link" href="https://mkuang.tk">About</a> </li>
 
                   <li>
                     <div id="search-form-wrap">
@@ -489,7 +489,7 @@
 - 中断：设备发出中断信号，告知I/O操作已经完成了，数据放在对应的端口，当数据缓冲满了时，由CPU去取，CPU需要控制数据传输的过程。  
 - DMA：由CPU的DMA电路来辅助数据的传输，CPU不需要参与内存和IO之间的传输过程，只需要通过DMA的中断来获取信息。DMA能够在所有数据处理完时才通知CPU处理。  
 
-&lt;br&gt;&lt;br&gt;The link of this page is [http://blog.mkuang.hk/articles/d0c0e94a/](http://blog.mkuang.hk/articles/d0c0e94a/) . Welcome to reproduce it!</code></pre>
+&lt;br&gt;&lt;br&gt;The link of this page is [https://blog.mkuang.tk/articles/d0c0e94a/](https://blog.mkuang.tk/articles/d0c0e94a/) . Welcome to reproduce it!</code></pre>
 
               </div>
               <footer class="article-footer">
@@ -523,8 +523,8 @@
                     title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
                     btnText: 'Donate', // 可选参数，打赏按钮文字
                     el: document.getElementById('donation_div'),
-                    wechatImage: 'http://blog.mkuang.hk/money/wechat.JPG',
-                    alipayImage: 'http://blog.mkuang.hk/money/alipay.JPG'
+                    wechatImage: 'https://blog.mkuang.tk/money/wechat.JPG',
+                    alipayImage: 'https://blog.mkuang.tk/money/alipay.JPG'
                   });
                 </script>
 
@@ -609,7 +609,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2022.09.24 <a href="http://mkuang.hk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2023.08.27 <a href="https://mkuang.tk/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -669,7 +669,7 @@
     </div>
     <!-- <nav id="mobile-nav">
 
-  <a href="http://blog.mkuang.hk" class="mobile-nav-link">Home</a>
+  <a href="https://blog.mkuang.tk" class="mobile-nav-link">Home</a>
 
   <a href="/archives" class="mobile-nav-link">Archives</a>
 
@@ -677,7 +677,7 @@
 
   <a href="/tags" class="mobile-nav-link">Tags</a>
 
-  <a href="http://mkuang.hk" class="mobile-nav-link">About</a>
+  <a href="https://mkuang.tk" class="mobile-nav-link">About</a>
 
 </nav> -->
     <!-- mathjax config similar to math.stackexchange -->
@@ -785,7 +785,7 @@
               An MPhil graduate in Computer Science from HKU
             </div>
             <div class="panel-body">
-              © 2022 Mengmeng Kuang All Rights Reserved.
+              © 2023 Mengmeng Kuang All Rights Reserved.
             </div>
           </div>
         </div>
