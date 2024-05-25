@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Linux中的Namespace | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。   Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Linux中的Namespace">
+  <meta property="og:url" content="https://blog.nooa.tech/articles/e81ea9b1/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。   Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统">
+  <meta property="og:locale">
+  <meta property="article:published_time" content="2016-06-10T03:44:56.000Z">
+  <meta property="article:modified_time" content="2020-12-08T10:24:18.000Z">
+  <meta property="article:author" content="Mengmeng Kuang">
+  <meta property="article:tag" content="Linux">
+  <meta property="article:tag" content="Namespace">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="https://blog.nooa.tech/articles/e81ea9b1/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+  <meta name="generator" content="Hexo 7.2.0">
+</head>
+
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="https://blog.nooa.tech">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" target="_blank" rel="noopener" href="https://mkuang.nooa.tech">About</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+
+                      <script src="/js/insight.js"></script>
+
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-namespace" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+
+
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Linux中的Namespace
+                </h1>
+
+
+              </header>
+
+              <div class="article-meta">
+
+                <a href="/articles/e81ea9b1/" class="article-date">
+                  <time datetime="2016-06-10T03:44:56.000Z" itemprop="datePublished">2016-06-10</time>
+                </a>
+
+
+                <a class="article-category-link" href="/categories/Operation-System/">Operation System</a>
+
+
+
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>当前，linux实现了6种不同类型的namespaces。每种namespace，都用来<strong>包含一类特定的系统资源</strong>，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是<strong>容器</strong>，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。</p>
+                </blockquote>
+                <h1 id="mount-namespaces"><a class="markdownIt-Anchor" href="#mount-namespaces"></a> Mount namespaces</h1>
+                <p>mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统mount点。在不同mount namespaces中的进程，对于文件系统有不同的视图。在使用了mount namespaces之后，mount和umount系统调用不再对所有进程可见的，全局的mount points进行操作，而是只会影响和发起调用的进程相关的mount namespace。<br />
+                  利用主从关系，还可以让一个mount namespace自动拥有另一个mount namespace的内容，例如一个硬盘设备挂在到某个namespace中后会自动显示在另一个namespace中。<br />
+                  mount namespace是linux上实现的第一种namespace。</p>
+                <h1 id="uts-namespaces"><a class="markdownIt-Anchor" href="#uts-namespaces"></a> UTS namespaces</h1>
+                <p>UTS namespace(CLONE_NEWUTS)隔离两种系统标识符：nodename和domainname。在容器的上下文环境中，UTS namespaces特性允许每个容器拥有自身的hostname和NIS domain name。这允许了根据容器的name来定义它们的行为，uts指的是UNIX Time-sharing System，它是传递给uname系统调用的参数。</p>
+                <h1 id="ipc-namespaces"><a class="markdownIt-Anchor" href="#ipc-namespaces"></a> IPC namespaces</h1>
+                <p>IPC namespaces(CLONE_NEWIPC)隔离inter-process communication resources，也即跨进程的通讯资源，System V IPC，以及POSIX message queues。这些IPC机制的共性时，IPC objects是由特殊机制来进行识别的，而不是文件系统的路径。在每个namespaces当中，又有其自身所拥有的System V IPC标识符和POSIX message queue filesystem。</p>
+                <h1 id="pid-namespaces"><a class="markdownIt-Anchor" href="#pid-namespaces"></a> PID namespaces</h1>
+                <p>PID namespaces(CLONE_NEWPID)隔离进程ID空间，也就是说，不同PID命名空间的进程，可以拥有相同的PID。这样做的一个好处是，容器能够在不同的hosts之间转移，但是又能够保持其中的进程ID不变。而且PID namespace能够允许每个容器拥有自己的init(pid 1)，对初始化、孤儿进程等事件进行处理。</p>
+                <p>从一个PID namespace的角度来看，一个进程拥有两个PID：namespace内部的PID，以及namespace外部的，host上的PID。PID namespaces也是可以层叠的，从进程所归属的PID命名空间开始，一直到根PID namespace，它都有一个PID；一个进程只能看到处于它所在PID namespace当中的，以及更下层的其他进程。</p>
+                <h2 id="userspace-api"><a class="markdownIt-Anchor" href="#userspace-api"></a> Userspace API</h2>
+                <p>为了创建一个新的namespace，进程需要调用clone系统调用，并且使用CLONE_NEWPID标识位。<br />
+                  在一个新的namespace当中，第一个task的PID是1，它也就是这个namespace的init，以及child_reaper。但这个init是可以死亡的，此时这个namespace都会终止。<br />
+                  在把tasks分割出来之后，还必须对proc进行处理，让它只显示当前task可见的PID。为了实现这个目的，procfs应该在每个namespace被使用一次。</p>
+                <h2 id="internal-api"><a class="markdownIt-Anchor" href="#internal-api"></a> Internal API</h2>
+                <p>一个task所拥有的所有PID都在struct pid中被描述了。这个数据结构如下：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">struct upid &#123;</span><br><span class="line">int nr;					/* moved from struct pid */</span><br><span class="line">struct pid_namespace *ns;		/* the namespace this value is visible in */</span><br><span class="line">struct hlist_node pid_chain;		/* moved from struct pid */</span><br><span class="line">   &#125;;</span><br><span class="line">   struct pid &#123;</span><br><span class="line">atomic_t count;</span><br><span class="line">struct hlist_head tasks[PIDTYPE_MAX];</span><br><span class="line">struct rcu_head rcu;</span><br><span class="line">int level;				/* the number of upids */</span><br><span class="line">struct upid numbers[0];</span><br><span class="line">   &#125;;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这里，struct upid表示PID值，它储存在hash当中，并且拥有PID值。为了转换得到这个pid值，可以使用task_pid_nr,pid_nr_ns(),find_task_by_vpid等函数。<br />
+                  这些函数的后缀有一些规律：<br />
+                  __nr()：对“全局”的PID进行操作，这里全局指的是在整个系统中也是独一无二的。pid_nr会告诉你struct pid的global PID，这只在PID值不会离开kernel时使用。<br />
+                  __vnr()：对“virtual”PID进行操作，也就是进程可见的ID，例如task_pid_vnr会告诉你一个task的PID。<br />
+                  _nr_ns()：对指定namespace中的PID进行处理，如果希望得到某个task的PID，可以通过task_pid_nr_ns来获得pid number，在用find_task_by_pid_ns来找到这个task。这个方法在系统调用中很常见，特别是当PID来自用户空间时。在这种情况下，task可能是在另一个namespace中的。</p>
+                <h1 id="network-namespaces"><a class="markdownIt-Anchor" href="#network-namespaces"></a> network namespaces</h1>
+                <p>network namespaces(CLONE_NEWNET)将系统中与网络相关的资源隔离。也就是说，每个namespace当中拥有自身的网络设备、IP地址、IP路由表，端口号等。</p>
+                <p>network namespaces让containers能够被应用到网络的层面上。每个container能够拥有自身的网络设备、并且其应用能够被绑定到namespace中特有的端口号上，对于特定的container，还可以设置特殊的路由规则。例如，可以在同一个host系统上，运行多个用container包含的servers，并且它们都绑定了80端口。</p>
+                <h1 id="user-namespaces"><a class="markdownIt-Anchor" href="#user-namespaces"></a> User namespaces</h1>
+                <p>user namespaces(CLONE_NEWUSER)将用户和group ID空间隔离。这也就是说，在一个user namespace内外，同一个进程点user和group id可以是不同的。例如，一个进程可以在一个user namespace外部，拥有一个普通的、无特权的user ID；而在在namespace中拥有UID 0。也就是说在namespace当中拥有root权限，但在namespace外部则不行。</p>
+                <p>从Linux 3.8开始，无特权的进程能够创建它们自身的user namespaces，这为应用提供了新的可能：由于一个进程能够在其user namespaces中拥有root权限，那么它们就能够去使用那些本身只能由root用户使用的功能。但这确实会带来一些安全问题。</p>
+                <h1 id="c中的namespace"><a class="markdownIt-Anchor" href="#c中的namespace"></a> C++中的namespace</h1>
+                <p>编程语言中的namespace，虽然拥有相同的名称，其含义是完全不同的。但主要的思想是一致的，这里的命名空间也就是将空间内定义的内容放在一个盒子里，而命名空间也就是这个区域，using namespace 空间名，就将区域引入到了操作范围之内。<br />
+                  这里，namespace是一种描述逻辑分组的机制，比如可以将某些属于同一个任务的类声明在同一个命名空间当中。标准C++库当中的所有内容，都被定义在命名空间std当中了。</p>
+                <h1 id="namespace-api"><a class="markdownIt-Anchor" href="#namespace-api"></a> Namespace API</h1>
+                <p>namespace的API包含3个系统调用——clone，unshare，setns，以及一系列的/proc文件。为了指定操作的namespace类型，这3个系统调用都使用了一个CLONE_NEW常量(CLONE_NEWIPC,CLONE_NEWNS,etc)。</p>
+                <h2 id="clone"><a class="markdownIt-Anchor" href="#clone"></a> Clone</h2>
+                <p>通过clone，可以创建一个namespace，它是一个创建新的process的系统调用。其函数原型为：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>clone可以看作fork()的通用版本，其功能能够通过flags参数CLONE_*来控制，这些参数包含了parent和child是否共享虚拟内存、打开文件描述符等。而如果参数中CLONE_NEW位被指定了，那么就会创建一个新的，对应类型的namespace，而新的进程则成为这个namespace中的一个成员。</p>
+                <p>和大多数其他的namespaces一样，创建一个UTS namespace是需要特权的，例如CAP_SYS_ADMIN，这对于避免需要设置user ID的应用来说是有必要的：如果能够使用任意的hostname，那么一个非特权用户就能够破坏lock file的作用，或者能够改变应用的行为。</p>
+                <h2 id="proc里的文件"><a class="markdownIt-Anchor" href="#proc里的文件"></a> /proc/里的文件</h2>
+                <p>对于每一个进程来说，都有一个/proc/PID/ns目录，这其中每一种类型的namespace，都对应了一个文件。从linux 3.9开始，这些文件都被符号链接，作为处理这个进程相关namespace的handler。</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">$ ls -l /proc/$$/ns         # $$ is replaced by shell&#x27;s PID</span><br><span class="line">   total 0</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 ipc -&gt; ipc:[4026531839]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 mnt -&gt; mnt:[4026531840]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 net -&gt; net:[4026531956]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 pid -&gt; pid:[4026531836]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 user -&gt; user:[4026531837]</span><br><span class="line">   lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 uts -&gt; uts:[4026531838]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>这些符号链接的作用之一，就是用来检查两个进程是否处于同一个命名空间当中。kernel保证如果两个进程在同一个namespace当中，那么/proc/PID/ns中的inode number就会是一致的。inode numbers能够通过stat()系统调用来得到。</p>
+                <p>但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。 <br />
+                  如果这个符号链接被打开，那么即使namespace中的进程全部终止了，namespace也不会消被清除。</p>
+                <h2 id="setns"><a class="markdownIt-Anchor" href="#setns"></a> setns</h2>
+                <p>setns可以被用来加入一个已存在的namespace。保持一个没有任何进程的namespace，是因为随时可以加入新的进程到这个namespace当中去，这也是setns系统调用的作用。其函数原型为：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">int setns(int fd, int nstype);</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>更准确的说，setns解除一个进程和之前对应nstype的namespace的联系，并且将其关联到新的，对应类型的namespace中去。这里，fd指定了对应的namespace，它是/proc/PID/ns目录下的一个文件描述符。而nstype则会用来检查fd指向的namespace的类型。<br />
+                  利用setns和execve，能够构造一个很有效的工具：一个加入指定namespace然后再namespace中执行一条命令的程序。<br />
+                  从linux 3.8开始，setns能够加入任何类型的namespace。</p>
+                <h2 id="unshare"><a class="markdownIt-Anchor" href="#unshare"></a> unshare</h2>
+                <p>unshare用来离开namespace。<br />
+                  unshare的功能类似于clone，它创建一个新的namespaces，并且让调用者称为这个命名空间的一部分。它的主要目的，是在不创建新的进程或线程的前提下，完成namespace的分离工作。</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">clone()</span><br><span class="line">和</span><br><span class="line">if(fork() == 0)</span><br><span class="line">	unshare()</span><br><span class="line">是等价的</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/e81ea9b1/">https://blog.nooa.tech/articles/e81ea9b1/</a> . Welcome to reproduce it!</p>
+
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+
+                <script src="/js/vdonate.js"></script>
+
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'https://blog.nooa.tech/money/wechat.JPG',
+                    alipayImage: 'https://blog.nooa.tech/money/alipay.JPG'
+                  });
+                </script>
+
+
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+
+
+
+
+                <ul class="article-tag-list" itemprop="keywords">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Namespace/" rel="tag">Namespace</a></li>
+                </ul>
+
+
+              </footer>
+            </div>
+
+
+            <nav id="article-nav">
+
+              <a href="/articles/87267df0/" id="article-nav-newer" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  HTTPS
+
+                </div>
+              </a>
+
+
+              <a href="/articles/dbf56532/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Matlab基本函数</div>
+              </a>
+
+            </nav>
+
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#mount-namespaces"><span class="nav-number">1.</span> <span class="nav-text"> Mount namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#uts-namespaces"><span class="nav-number">2.</span> <span class="nav-text"> UTS namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#ipc-namespaces"><span class="nav-number">3.</span> <span class="nav-text"> IPC namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#pid-namespaces"><span class="nav-number">4.</span> <span class="nav-text"> PID namespaces</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#userspace-api"><span class="nav-number">4.1.</span> <span class="nav-text"> Userspace API</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#internal-api"><span class="nav-number">4.2.</span> <span class="nav-text"> Internal API</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#network-namespaces"><span class="nav-number">5.</span> <span class="nav-text"> network namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#user-namespaces"><span class="nav-number">6.</span> <span class="nav-text"> User namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#c%E4%B8%AD%E7%9A%84namespace"><span class="nav-number">7.</span> <span class="nav-text"> C++中的namespace</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#namespace-api"><span class="nav-number">8.</span> <span class="nav-text"> Namespace API</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#clone"><span class="nav-number">8.1.</span> <span class="nav-text"> Clone</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#proc%E9%87%8C%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text"> &#x2F;proc&#x2F;里的文件</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#setns"><span class="nav-number">8.3.</span> <span class="nav-text"> setns</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#unshare"><span class="nav-number">8.4.</span> <span class="nav-text"> unshare</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2024.05.25 <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="https://blog.nooa.tech" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech" class="mobile-nav-link">About</a>
+  
+</nav> -->
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2024 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

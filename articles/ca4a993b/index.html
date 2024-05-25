@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Docker的基本使用 | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="本博文在观看网易蜂巢推出的玩转Docker镜像视频教程之后总结而成。   基本使用 谈到使用Docker，首先，我们必须要了解Dockerfile。（命名为Dockerfile，不要后缀）   Dockerfile的解读 首先引入一个例子：  1 2 3 4 5 6   FROM hub.c.163.com&#x2F;bingohuang&#x2F;debian:163 MAINTAINER bingohuang">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Docker的基本使用">
+  <meta property="og:url" content="https://blog.nooa.tech/articles/ca4a993b/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="本博文在观看网易蜂巢推出的玩转Docker镜像视频教程之后总结而成。   基本使用 谈到使用Docker，首先，我们必须要了解Dockerfile。（命名为Dockerfile，不要后缀）   Dockerfile的解读 首先引入一个例子：  1 2 3 4 5 6   FROM hub.c.163.com&#x2F;bingohuang&#x2F;debian:163 MAINTAINER bingohuang">
+  <meta property="og:locale">
+  <meta property="og:image" content="https://blog.nooa.tech/images/docker/1.png">
+  <meta property="article:published_time" content="2017-03-09T03:17:06.000Z">
+  <meta property="article:modified_time" content="2022-09-21T16:00:07.882Z">
+  <meta property="article:author" content="Mengmeng Kuang">
+  <meta property="article:tag" content="Docker">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://blog.nooa.tech/images/docker/1.png">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="https://blog.nooa.tech/articles/ca4a993b/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+  <meta name="generator" content="Hexo 7.2.0">
+</head>
+
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="https://blog.nooa.tech">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" target="_blank" rel="noopener" href="https://mkuang.nooa.tech">About</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+
+                      <script src="/js/insight.js"></script>
+
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-docker-using" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+
+
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Docker的基本使用
+                </h1>
+
+
+              </header>
+
+              <div class="article-meta">
+
+                <a href="/articles/ca4a993b/" class="article-date">
+                  <time datetime="2017-03-09T03:17:06.000Z" itemprop="datePublished">2017-03-09</time>
+                </a>
+
+
+                <a class="article-category-link" href="/categories/Software-Engineering/">Software Engineering</a>
+
+
+
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <blockquote>
+                  <p>本博文在观看网易蜂巢推出的<a target="_blank" rel="noopener" href="http://study.163.com/course/courseMain.htm?courseId=1003188013">玩转Docker镜像</a>视频教程之后总结而成。</p>
+                </blockquote>
+                <h1 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h1>
+                <p>谈到使用Docker，首先，我们必须要了解Dockerfile。（命名为<code>Dockerfile</code>，不要后缀）</p>
+                <h2 id="dockerfile的解读"><a class="markdownIt-Anchor" href="#dockerfile的解读"></a> Dockerfile的解读</h2>
+                <p>首先引入一个例子：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">FROM hub<span class="selector-class">.c</span>.<span class="number">163</span>.com/bingohuang/debian:<span class="number">163</span></span><br><span class="line">MAINTAINER bingohuang &lt;me@bingohuang.com&gt;</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y nginx</span><br><span class="line">COPY docker-mario /usr/share/nginx/www</span><br><span class="line">EXPOSE <span class="number">80</span></span><br><span class="line">ENTRYPOINT <span class="selector-attr">[<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-g&quot;</span>, <span class="string">&quot;daemon off;&quot;</span>]</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>逐句解释：</p>
+                <ul>
+                  <li>关键字 <code>FROM</code>，选用包含163更新源的Debian镜像，版本7.9</li>
+                  <li>关键字 <code>MAINTAINER</code>，添加作者信息和联系方式（有任何问题或反馈欢迎发邮件沟通）</li>
+                  <li>关键字 <code>RUN</code>，运行命令，这里是更新程序列表并安装 Nginx 程序</li>
+                  <li>关键字 <code>COPY</code>，将 <code>docker-mario</code> 源码拷贝到容器的 <code>/usr/share/nginx/www</code> 目录下（这是第三步安装好 Nginx 程序后自动生成的目录</li>
+                  <li>关键字 <code>EXPOSE</code>，暴露端口，这里是 Nginx 的默认端口：<code>80</code></li>
+                  <li>关键字 <code>ENTRYPOINT</code>，指定容器运行的默认指令（不会被用户指令覆盖）</li>
+                </ul>
+                <h2 id="构建镜像"><a class="markdownIt-Anchor" href="#构建镜像"></a> 构建镜像</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker build -t XXX:1.0 .</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="查看镜像"><a class="markdownIt-Anchor" href="#查看镜像"></a> 查看镜像</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker images</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>输出样式：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">REPOSITORY                              TAG                 DIGEST              IMAGE ID            CREATED             SIZE</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="本地运行"><a class="markdownIt-Anchor" href="#本地运行"></a> 本地运行</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker run --name docker-mario -d -p 1989:80 XXX:1.0</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>查看运行的镜像：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker ps</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>访问镜像：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">open http://127/0/0/1:1989/</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="上传镜像"><a class="markdownIt-Anchor" href="#上传镜像"></a> 上传镜像</h2>
+                <p>登录网易蜂巢：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker login -u &#123;你的网易云邮箱账号或手机号码&#125; -p &#123;你的网易云密码&#125; hub.c.163.com</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>标记本地镜像：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker tag &#123;镜像名或ID&#125; hub.c.163.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>推送至网易云镜像仓库：</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker push hub.c.163.com/&#123;你的用户名&#125;/&#123;标签名&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><strong>附一张Docker操作流程图</strong></p>
+                <p><img src="/images/docker/1.png" alt="" /></p>
+                <h2 id="其他未列出的docker指令"><a class="markdownIt-Anchor" href="#其他未列出的docker指令"></a> 其他未列出的Docker指令</h2>
+                <ul>
+                  <li>帮助</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker -h </span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>获取镜像</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker pull NAME[:TAG]</span><br><span class="line">sudo docker pull centos:latest</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>启动Container盒子</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line">sudo docker run -t -i contos /bin/bash</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>查看镜像列表，列出本地的所有images</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker images [OPTIONS] [NAME]</span><br><span class="line">sudo docker images centos</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>查看容器列表，可看到我们创建过的所有container</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker ps [OPTIONS]</span><br><span class="line">sudo docker ps -a</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>删除镜像，从本地删除一个已经下载的镜像</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker rmi IMAGE [IMAGE...]</span><br><span class="line">sudo docker rmi centos:latest</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>移除一个或多个容器实例</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker rm [OPTIONS] CONTAINER [CONTAINER...]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>移除所有微运行的容器</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker rm sudo docker ps -aq</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>停止一个正在运行的容器</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker kill [OPTIONS] CONTAINER [CONTAINNER...]</span><br><span class="line">sudo docker kill 026e</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>重启一个正在运行的容器</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker restart [OPTIONS] contains[CONTAINER]</span><br><span class="line">sudo docker restart 026e</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <ul>
+                  <li>停止一个已经停止的容器</li>
+                </ul>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">sudo docker start [OPTIONS] CONTAINER [CONTAINER..]</span><br><span class="line">sudo docker start 026e</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h1 id="制作镜像"><a class="markdownIt-Anchor" href="#制作镜像"></a> 制作镜像</h1>
+                <h2 id="ldd-打印共享依赖库"><a class="markdownIt-Anchor" href="#ldd-打印共享依赖库"></a> ldd: 打印共享依赖库</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">ldd  redis-3.0.0/src/redis-server</span><br><span class="line">    linux-vdso.so.1 =&gt;  (0x00007fffde365000)</span><br><span class="line">    libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f307d5aa000)</span><br><span class="line">    libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f307d38c000)</span><br><span class="line">    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f307cfc6000)</span><br><span class="line">    /lib64/ld-linux-x86-64.so.2 (0x00007f307d8b9000)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="打包so文件"><a class="markdownIt-Anchor" href="#打包so文件"></a> 打包<code>.so</code>文件</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">tar ztvf rootfs.tar.gz</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>##制成Dockerfile</p>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">FROM scratch</span><br><span class="line">ADD  rootfs.tar.gz  /</span><br><span class="line">COPY redis.conf     /etc/redis/redis.conf</span><br><span class="line">EXPOSE 6379</span><br><span class="line">CMD [&quot;redis-server&quot;]</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="执行构建"><a class="markdownIt-Anchor" href="#执行构建"></a> 执行构建</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker build -t redis .</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h2>
+                <figure class="highlight plaintext">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">docker run -d --name redis redis</span><br><span class="line"></span><br><span class="line">redis-cli -h $(docker inspect -f &#x27;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&#x27; redis)</span><br><span class="line"></span><br><span class="line">redis-benchmark  -h $(docker inspect -f &#x27;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&#x27; redis-05)</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/ca4a993b/">https://blog.nooa.tech/articles/ca4a993b/</a> . Welcome to reproduce it!</p>
+
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+
+                <script src="/js/vdonate.js"></script>
+
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'https://blog.nooa.tech/money/wechat.JPG',
+                    alipayImage: 'https://blog.nooa.tech/money/alipay.JPG'
+                  });
+                </script>
+
+
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+
+
+
+
+                <ul class="article-tag-list" itemprop="keywords">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li>
+                </ul>
+
+
+              </footer>
+            </div>
+
+
+            <nav id="article-nav">
+
+              <a href="/articles/83c0afa5/" id="article-nav-newer" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  MongDB的使用
+
+                </div>
+              </a>
+
+
+              <a href="/articles/63b8fab5/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Annotation Compile Tool</div>
+              </a>
+
+            </nav>
+
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> 基本使用</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile%E7%9A%84%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.1.</span> <span class="nav-text"> Dockerfile的解读</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="nav-number">1.2.</span> <span class="nav-text"> 构建镜像</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F"><span class="nav-number">1.3.</span> <span class="nav-text"> 查看镜像</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text"> 本地运行</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E9%95%9C%E5%83%8F"><span class="nav-number">1.5.</span> <span class="nav-text"> 上传镜像</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%9C%AA%E5%88%97%E5%87%BA%E7%9A%84docker%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text"> 其他未列出的Docker指令</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E9%95%9C%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text"> 制作镜像</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#ldd-%E6%89%93%E5%8D%B0%E5%85%B1%E4%BA%AB%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text"> ldd: 打印共享依赖库</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85so%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text"> 打包.so文件</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%9E%84%E5%BB%BA"><span class="nav-number">2.3.</span> <span class="nav-text"> 执行构建</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">2.4.</span> <span class="nav-text"> 测试</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2024.05.25 <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="https://blog.nooa.tech" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech" class="mobile-nav-link">About</a>
+  
+</nav> -->
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2024 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>

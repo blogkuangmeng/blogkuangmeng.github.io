@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Android开发中的小细节 | Mengmeng Kuang&#39;s Blog!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="keywords" content="匡盟盟, Mengmeng Kuang, Blog, 博客" />
+
+
+  <meta name="google-site-verification" content="3YclHsmiu1_poywYScAg4jt4RGqoHUoIXQJFV5vEZ1I" />
+
+
+  <meta name="baidu-site-verification" content="d6tIQA0tgL" />
+
+
+  <meta name="description" content="Android的ListView的使用 可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？  首先还是显示界面activity_main.xml:  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Android开发中的小细节">
+  <meta property="og:url" content="https://blog.nooa.tech/articles/5d6c9819/index.html">
+  <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
+  <meta property="og:description" content="Android的ListView的使用 可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？  首先还是显示界面activity_main.xml:  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19">
+  <meta property="og:locale">
+  <meta property="article:published_time" content="2016-12-15T05:58:11.000Z">
+  <meta property="article:modified_time" content="2021-01-07T06:59:53.000Z">
+  <meta property="article:author" content="Mengmeng Kuang">
+  <meta property="article:tag" content="Android">
+  <meta property="article:tag" content="ListView">
+  <meta property="article:tag" content="toolBar">
+  <meta property="article:tag" content="ActionItem">
+  <meta property="article:tag" content="页面跳转">
+  <meta property="article:tag" content="回车输入">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@kuangmengmeng">
+  <meta property="fb:admins" content="kuangmengmeng">
+  <meta property="fb:app_id" content="1559086807462632">
+
+  <link rel="alternate" href="/atom.xml" title="Mengmeng Kuang&#39;s Blog!" type="application/atom+xml">
+
+
+
+
+  <link rel="icon" id="myid" href="/css/images/logo.png">
+  <link rel="apple-touch-icon" id="myid" href="/css/images/logo.png">
+
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");
+      font-weight: lighter;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/prism-duotone-sea.css">
+
+
+
+  <link rel="stylesheet" href="/css/dialog.css">
+
+
+
+
+
+
+  <link rel="stylesheet" href="/css/header-post.css">
+
+
+
+
+
+  <link rel="stylesheet" href="/css/vdonate.css">
+
+
+
+
+  <!-- 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["copy","weixin","linkedin","sqq","tsina","twi","fbook","mail"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"left","bdTop":"100"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+ -->
+
+
+
+
+
+  <link rel="canonical" href="https://blog.nooa.tech/articles/5d6c9819/" />
+
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/css/loading.css">
+
+  <script>
+    var linkEle = document.getElementById("myid");
+    var tmplink = linkEle.href;
+
+    var tmptitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+      var isHidden = document.hidden;
+      if (isHidden) {
+        document.title = '喔唷，崩溃啦！';
+        linkEle.href = '/css/images/err_logo.png';
+      } else {
+        document.title = tmptitle;
+        linkEle.href = tmplink;
+
+      }
+    });
+
+
+    function Hide() {
+      var mychar = document.getElementById("homelogoback").style.display = "none";
+    }
+  </script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+
+  <meta name="generator" content="Hexo 7.2.0">
+</head>
+
+
+
+<body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <header>
+        <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+
+              <a class="brand" style="
+                 border-width: 0px;  margin-top: 0px;" href="#" data-toggle="modal" data-target="#myModal">
+                <img class="img-rotate" style="box-shadow:1px 1px 10px 3px #e5e5e5; border-radius: 50%;" width="100px" height="100px" alt="匡盟盟的博客" src="/css/images/logo.png">
+              </a>
+
+
+              <div class="navbar-collapse collapse">
+                <ul class="hnav navbar-nav">
+
+                  <li> <a class="main-nav-link" href="https://blog.nooa.tech">Home</a> </li>
+
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+
+                  <li> <a class="main-nav-link" target="_blank" rel="noopener" href="https://mkuang.nooa.tech">About</a> </li>
+
+                  <li>
+                    <div id="search-form-wrap">
+
+                      <form class="search-form">
+                        <input type="text" style="width=0;" class="ins-search-input search-form-input" placeholder="" />
+                        <button type="submit" class="search-form-submit"></button>
+                      </form>
+                      <div class="ins-search">
+                        <div class="ins-search-mask"></div>
+                        <div class="ins-search-container">
+                          <div class="ins-input-wrapper">
+                            <input type="text" class="ins-search-input" placeholder="Type something..." />
+                            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+                          </div>
+                          <div class="ins-section-wrapper">
+                            <div class="ins-section-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <script>
+                        (function(window) {
+                          var INSIGHT_CONFIG = {
+                            TRANSLATION: {
+                              POSTS: 'Posts',
+                              PAGES: 'Pages',
+                              CATEGORIES: 'Categories',
+                              TAGS: 'Tags',
+                              UNTITLED: '(Untitled)',
+                            },
+                            ROOT_URL: '/',
+                            CONTENT_URL: '/content.json',
+                          };
+                          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+                        })(window);
+                      </script>
+
+                      <script src="/js/insight.js"></script>
+
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <script>
+        (function(w, i, d, g, e, t, s) {
+          w[d] = w[d] || [];
+          t = i.createElement(g);
+          t.async = 1;
+          t.src = e;
+          s = i.getElementsByTagName(g)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/125646/script.js');
+      </script>
+
+
+
+
+
+      <div id="content" class="outer">
+
+        <section id="main" style="float:none;">
+          <article id="post-android" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+            <div id="articleInner" class="article-inner">
+
+
+              <header class="article-header">
+
+
+                <h1 class="thumb" class="article-title" itemprop="name">
+                  Android开发中的小细节
+                </h1>
+
+
+              </header>
+
+              <div class="article-meta">
+
+                <a href="/articles/5d6c9819/" class="article-date">
+                  <time datetime="2016-12-15T05:58:11.000Z" itemprop="datePublished">2016-12-15</time>
+                </a>
+
+
+                <a class="article-category-link" href="/categories/Application/">Application</a>
+
+
+
+
+              </div>
+              <div class="article-entry" itemprop="articleBody">
+
+                <h1 id="android的listview的使用"><a class="markdownIt-Anchor" href="#android的listview的使用"></a> Android的ListView的使用</h1>
+                <p>可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？</p>
+                <p>首先还是显示界面activity_main.xml:</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">    android:id=<span class="string">&quot;@+id/activity_main&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:paddingBottom=<span class="string">&quot;@dimen/activity_vertical_margin&quot;</span></span><br><span class="line">    android:paddingTop=<span class="string">&quot;@dimen/activity_vertical_margin&quot;</span></span><br><span class="line">    tools:context=<span class="string">&quot;com.example.lpf.test.MainActivity&quot;</span>&gt;</span><br><span class="line">    &lt;ListView</span><br><span class="line">        android:id=<span class="string">&quot;@+id/listview&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_alignParentBottom=<span class="string">&quot;true&quot;</span></span><br><span class="line">        android:layout_alignParentStart=<span class="string">&quot;true&quot;</span></span><br><span class="line">        android:<span class="attribute">background</span>=<span class="string">&quot;@color/bg&quot;</span></span><br><span class="line">        android:divider=<span class="string">&quot;@color/item_item&quot;</span></span><br><span class="line">        android:dividerHeight=<span class="string">&quot;10dp&quot;</span>/&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>之后是其对应的MainActivity.java文件：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class MainActivity extends AppCompatActivity&#123;</span><br><span class="line">    private ListView listview;</span><br><span class="line">    <span class="comment">//private ArrayAdapter&lt;String&gt;arr_adapter;</span></span><br><span class="line">    private SimpleAdapter simp_Adapter;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt;datalist;</span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="built_in">onCreate</span>(Bundle savedInstanceState) &#123;</span><br><span class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</span><br><span class="line">        <span class="built_in">setContentView</span>(R<span class="selector-class">.layout</span>.activity_main);</span><br><span class="line">        listview = (ListView)<span class="built_in">findViewById</span>(R<span class="selector-class">.id</span>.listview);</span><br><span class="line">        datalist = new ArrayList&lt;Map&lt;String,String&gt;&gt;();</span><br><span class="line">        simp_Adapter = new <span class="built_in">SimpleAdapter</span>(this,<span class="built_in">getData</span>(),R<span class="selector-class">.layout</span><span class="selector-class">.item</span>,</span><br><span class="line">                new String<span class="selector-attr">[]</span>&#123;<span class="string">&quot;title&quot;</span>,<span class="string">&quot;text&quot;</span>&#125;,new int<span class="selector-attr">[]</span>&#123;R<span class="selector-class">.id</span><span class="selector-class">.title</span>,R<span class="selector-class">.id</span>.text&#125;);</span><br><span class="line">        listview<span class="selector-class">.setAdapter</span>(simp_Adapter);</span><br><span class="line">    &#125;</span><br><span class="line">    private List&lt;Map&lt;String,String&gt;&gt; <span class="built_in">getData</span>()&#123;</span><br><span class="line">        String<span class="selector-attr">[]</span> data_text = <span class="built_in">getResources</span>()<span class="selector-class">.getStringArray</span>(R<span class="selector-class">.array</span>.text_arr);</span><br><span class="line">        String<span class="selector-attr">[]</span> data_title = <span class="built_in">getResources</span>()<span class="selector-class">.getStringArray</span>(R<span class="selector-class">.array</span>.title_arr);</span><br><span class="line">        <span class="built_in">for</span>(int i=<span class="number">0</span>;i&lt;data_text.length;i++)&#123;</span><br><span class="line">            Map&lt;String,String&gt;map = new HashMap&lt;String,String&gt;();</span><br><span class="line">            map<span class="selector-class">.put</span>(<span class="string">&quot;title&quot;</span>,data_title<span class="selector-attr">[i]</span>);</span><br><span class="line">            map<span class="selector-class">.put</span>(<span class="string">&quot;text&quot;</span>,data_text<span class="selector-attr">[i]</span>);</span><br><span class="line">            datalist<span class="selector-class">.add</span>(map);</span><br><span class="line">        &#125;</span><br><span class="line">        return datalist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>其他文件保持不变即可。<br />
+                  至此，一个Android列表程序就实现了。</p>
+                <h1 id="android实现输入框回车输入"><a class="markdownIt-Anchor" href="#android实现输入框回车输入"></a> Android实现输入框回车输入</h1>
+                <p>用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">    android:orientation=<span class="string">&quot;vertical&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:weightSum=<span class="string">&quot;1&quot;</span>&gt;</span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">&quot;@+id/edit_message&quot;</span></span><br><span class="line">        android:layout_margin=<span class="string">&quot;30dp&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;80dp&quot;</span></span><br><span class="line">        android:hint=<span class="string">&quot;请输入文本信息 ...&quot;</span></span><br><span class="line">        android:imeOptions=<span class="string">&quot;actionSearch&quot;</span></span><br><span class="line">        android:singleLine=<span class="string">&quot;true&quot;</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>在EditText中加入了imeOptions就可以将回车符转变成各种各样的功能：</p>
+                <ul>
+                  <li>actionDone——回车符–&gt;完成</li>
+                  <li>actionSend——回车符–&gt;发送</li>
+                  <li>actionGo——回车符–&gt;前进</li>
+                  <li>actionNext——回车符–&gt;下一项</li>
+                  <li>actionNone——回车符–&gt;无动作</li>
+                  <li>actionPrevious——回车符–&gt;上一项</li>
+                  <li>actionSearch——回车符–&gt;搜索</li>
+                  <li>actionUnspecified——回车符–&gt;未指定</li>
+                  <li>actionSend——回车符–&gt;发送</li>
+                </ul>
+                <p>又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上<code>android:inputType</code> 或者 <code>android:singleline=&quot;true&quot;</code><br />
+                  至此，就完成了Android回车符向iOS的转化！</p>
+                <h1 id="android页面跳转"><a class="markdownIt-Anchor" href="#android页面跳转"></a> Android页面跳转</h1>
+                <h2 id="前情提要"><a class="markdownIt-Anchor" href="#前情提要"></a> 前情提要</h2>
+                <p>开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了别人的博客之后，才总结出如下的这点精华步骤！</p>
+                <h2 id="编写androidmanifestxml"><a class="markdownIt-Anchor" href="#编写androidmanifestxml"></a> 编写AndroidManifest.xml</h2>
+                <p>首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在AndroidManifest.xml中，我们需要这样写：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;manifest xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    package=<span class="string">&quot;uno.meng.download&quot;</span>&gt;</span><br><span class="line">    &lt;application</span><br><span class="line">        android:allowBackup=<span class="string">&quot;true&quot;</span></span><br><span class="line">        android:<span class="attribute">icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span><br><span class="line">        android:theme=<span class="string">&quot;@style/AppTheme&quot;</span>&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=<span class="string">&quot;.MainActivity&quot;</span></span><br><span class="line">           android:label=<span class="string">&quot;@string/app_name&quot;</span>&gt;</span><br><span class="line">            &lt;intent-<span class="attribute">filter</span>&gt;</span><br><span class="line">                &lt;action android:name=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><span class="line">                &lt;category android:name=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br><span class="line">            &lt;/intent-<span class="attribute">filter</span>&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=<span class="string">&quot;.ResultActivity&quot;</span></span><br><span class="line">            android:label=<span class="string">&quot;@string/comeback&quot;</span></span><br><span class="line">            android:parentActivityName=<span class="string">&quot;.MainActivity&quot;</span> &gt;</span><br><span class="line">            &lt;meta-data</span><br><span class="line">                android:name=<span class="string">&quot;android.support.PARENT_ACTIVITY&quot;</span></span><br><span class="line">                android:value=<span class="string">&quot;.MainActivity&quot;</span>/&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">    &lt;/application&gt;</span><br><span class="line">&lt;/manifest&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>其中，每个<activity>对应一个界面，从代码中可见，我将后一个页面加了一个返回前一个页面的“返回符”。</p>
+                <h2 id="编写跳转前界面searchxml"><a class="markdownIt-Anchor" href="#编写跳转前界面searchxml"></a> 编写跳转前界面search.xml</h2>
+                <p>由于我在此将介绍怎么使用按钮跳转（带输入），所以直接在主界面search.xml（名称随意）中声明这两个组件（按钮，输入框）：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">    android:orientation=<span class="string">&quot;vertical&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:weightSum=<span class="string">&quot;1&quot;</span>&gt;</span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=<span class="string">&quot;@+id/edit_message&quot;</span></span><br><span class="line">        android:layout_margin=<span class="string">&quot;30dp&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;80dp&quot;</span></span><br><span class="line">        android:hint=<span class="string">&quot;请输入文本信息 ...&quot;</span>/&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=<span class="string">&quot;@+id/button&quot;</span></span><br><span class="line">        android:text=<span class="string">&quot;点击提交 &quot;</span></span><br><span class="line">        android:layout_margin=<span class="string">&quot;100dp&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;127dp&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:onClick=<span class="string">&quot;sendMessage&quot;</span> /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>我对按钮加了一个onClick事件。</p>
+                <h2 id="编写对应的mainactivityjava"><a class="markdownIt-Anchor" href="#编写对应的mainactivityjava"></a> 编写对应的MainActivity.java</h2>
+                <p>在search.xml对应的MainActivity.java文件中我们写好onCreate方法（每个文件都会有）以及sendMessage方法：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    public final static String EXTRA_MESSAGE = <span class="string">&quot;uno.meng.download.MESSAGE&quot;</span>;</span><br><span class="line">    public void <span class="built_in">sendMessage</span>()&#123;</span><br><span class="line">        EditText editText = (EditText)<span class="built_in">findViewById</span>(R<span class="selector-class">.id</span>.edit_message);</span><br><span class="line">        String message = editText<span class="selector-class">.getText</span>()<span class="selector-class">.toString</span>();</span><br><span class="line">        Intent intent = new <span class="built_in">Intent</span>(this, ResultActivity.class);</span><br><span class="line">        intent<span class="selector-class">.putExtra</span>(EXTRA_MESSAGE,message);</span><br><span class="line">        <span class="built_in">startActivity</span>(intent);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="built_in">onCreate</span>(Bundle savedInstanceState)&#123;</span><br><span class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</span><br><span class="line">        <span class="built_in">setContentView</span>(R<span class="selector-class">.layout</span>.search);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="编写接收界面resultxml"><a class="markdownIt-Anchor" href="#编写接收界面resultxml"></a> 编写接收界面result.xml</h2>
+                <p>然后到result.xml接收（我用的一个框来接收）：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">    android:orientation=<span class="string">&quot;vertical&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:weightSum=<span class="string">&quot;1&quot;</span>&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_margin=<span class="string">&quot;30dp&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;80dp&quot;</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="编写接收对应的resultactivityjava"><a class="markdownIt-Anchor" href="#编写接收对应的resultactivityjava"></a> 编写接收对应的ResultActivity.java</h2>
+                <p>编写对应的ResultActivity.java文件，<br />
+                  将从MainActivity.java接收来的文字打印到result.xml的框中：</p>
+                <figure class="highlight stylus">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line">public class ResultActivity extends AppCompatActivity&#123;</span><br><span class="line">    private Intent intent;</span><br><span class="line">    @Override</span><br><span class="line">    protected void <span class="built_in">onCreate</span>(Bundle savedInstanceState) &#123;</span><br><span class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</span><br><span class="line">        <span class="built_in">setContentView</span>(R<span class="selector-class">.layout</span>.result);</span><br><span class="line">        intent = <span class="built_in">getIntent</span>();</span><br><span class="line">        String message = intent<span class="selector-class">.getStringExtra</span>(MainActivity.EXTRA_MESSAGE);</span><br><span class="line">        System<span class="selector-class">.out</span><span class="selector-class">.println</span>(message);</span><br><span class="line">       TextView textview = new <span class="built_in">TextView</span>(this);</span><br><span class="line">       textview<span class="selector-class">.setTextSize</span>(<span class="number">100</span>);</span><br><span class="line">       textview<span class="selector-class">.setText</span>(message);</span><br><span class="line">       <span class="built_in">setContentView</span>(textview);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>到此为止，已经完成了Android页面跳转！</p>
+                <h1 id="android-自定义toolbar上的-action-item"><a class="markdownIt-Anchor" href="#android-自定义toolbar上的-action-item"></a> Android 自定义toolBar上的 action item</h1>
+                <h2 id="自定义的viewaction_view_auto_likexml"><a class="markdownIt-Anchor" href="#自定义的viewaction_view_auto_likexml"></a> 自定义的view，action_view_auto_like.xml</h2>
+                <figure class="highlight xml">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageButton</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/action_auto_like_button&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;70dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:scaleType</span>=<span class="string">&quot;centerInside&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;@android:color/transparent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">&quot;@drawable/btn_nav_autoliker&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ImageButton</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="自定义的menumenu_tinder_likerxml"><a class="markdownIt-Anchor" href="#自定义的menumenu_tinder_likerxml"></a> 自定义的menu，menu_tinder_liker.xml</h2>
+                <figure class="highlight xml">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tinder</span>=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/action_auto&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:actionLayout</span>=<span class="string">&quot;@layout/action_view_auto_like&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@drawable/btn_nav_autoliker&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orderInCategory</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">&quot;@string/action_auto_like&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tinder:actionLayout</span>=<span class="string">&quot;@layout/action_view_auto_like&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tinder:showAsAction</span>=<span class="string">&quot;always&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br><span class="line"></span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <h2 id="在fragment-中配置"><a class="markdownIt-Anchor" href="#在fragment-中配置"></a> 在fragment 中配置</h2>
+                <p>现在<code>onCreateView</code>中加上<code>setHasOptionsMenu(true);</code>，让系统在fragment中初始化menu。</p>
+                <figure class="highlight java">
+                  <table>
+                    <tr>
+                      <td class="gutter">
+                        <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                      </td>
+                      <td class="code">
+                        <pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> &#123;</span><br><span class="line">    inflater.inflate(R.menu.menu_tinder_like, menu);</span><br><span class="line">    <span class="type">MenuItem</span> <span class="variable">searchItem</span> <span class="operator">=</span> menu.findItem(R.id.action_auto);</span><br><span class="line">    <span class="type">FrameLayout</span> <span class="variable">layout</span> <span class="operator">=</span> (FrameLayout) MenuItemCompat</span><br><span class="line">            .getActionView(searchItem);</span><br><span class="line">    layout.findViewById(R.id.action_auto_like_button)</span><br><span class="line">            .setOnClickListener(<span class="built_in">this</span>);</span><br><span class="line">    <span class="built_in">super</span>.onCreateOptionsMenu(menu, inflater);</span><br><span class="line">&#125;</span><br></pre>
+                      </td>
+                    </tr>
+                  </table>
+                </figure>
+                <p>然后在<code>onClick</code>中加入你的逻辑。</p>
+                <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/5d6c9819/">https://blog.nooa.tech/articles/5d6c9819/</a> . Welcome to reproduce it!</p>
+
+
+              </div>
+              <footer class="article-footer">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div id="wpac-rating" style="margin: 10px auto; text-align:center;"></div>
+                <script type="text/javascript">
+                  wpac_init = window.wpac_init || [];
+                  wpac_init.push({
+                    widget: 'Rating',
+                    id: 9986
+                  });
+                  (function() {
+                    if ('WIDGETPACK_LOADED' in window) return;
+                    WIDGETPACK_LOADED = true;
+                    var mc = document.createElement('script');
+                    mc.type = 'text/javascript';
+                    mc.async = true;
+                    mc.src = 'https://embed.widgetpack.com/widget.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(mc, s.nextSibling);
+                  })();
+                </script>
+
+                <div id="donation_div"></div>
+
+
+                <script src="/js/vdonate.js"></script>
+
+                <script>
+                  var a = new Donate({
+                    title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+                    btnText: 'Donate', // 可选参数，打赏按钮文字
+                    el: document.getElementById('donation_div'),
+                    wechatImage: 'https://blog.nooa.tech/money/wechat.JPG',
+                    alipayImage: 'https://blog.nooa.tech/money/alipay.JPG'
+                  });
+                </script>
+
+
+
+
+                <div id="comment">
+                  <!-- 来必力City版安装代码 -->
+                  <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDA2OC8xMDYwNg==">
+                    <script type="text/javascript">
+                      (function(d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+
+                        if (typeof LivereTower === 'function') {
+                          return;
+                        }
+
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+
+                        e.parentNode.insertBefore(j, e);
+                      })(document, 'script');
+                    </script>
+                    <noscript>为正常使用评论功能请激活JavaScript</noscript>
+                  </div>
+                  <!-- City版安装代码已完成 -->
+                </div>
+
+
+
+
+
+                <ul class="article-tag-list" itemprop="keywords">
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActionItem/" rel="tag">ActionItem</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ListView/" rel="tag">ListView</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/toolBar/" rel="tag">toolBar</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9E%E8%BD%A6%E8%BE%93%E5%85%A5/" rel="tag">回车输入</a></li>
+                  <li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC/" rel="tag">页面跳转</a></li>
+                </ul>
+
+
+              </footer>
+            </div>
+
+
+            <nav id="article-nav">
+
+              <a href="/articles/6c138ff9/" id="article-nav-newer" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Newer</strong>
+                <div class="article-nav-title">
+
+                  Linux 0.11启动引导
+
+                </div>
+              </a>
+
+
+              <a href="/articles/7725d215/" id="article-nav-older" class="article-nav-link-wrap">
+                <strong class="article-nav-caption">Older</strong>
+                <div class="article-nav-title">Java导出Excel</div>
+              </a>
+
+            </nav>
+
+
+          </article>
+
+          <!-- Table of Contents -->
+
+          <aside id="toc-sidebar">
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">Contents</strong>
+
+              <ol class="nav">
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E7%9A%84listview%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> Android的ListView的使用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E6%A1%86%E5%9B%9E%E8%BD%A6%E8%BE%93%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text"> Android实现输入框回车输入</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC"><span class="nav-number">3.</span> <span class="nav-text"> Android页面跳转</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="nav-number">3.1.</span> <span class="nav-text"> 前情提要</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99androidmanifestxml"><span class="nav-number">3.2.</span> <span class="nav-text"> 编写AndroidManifest.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%B7%B3%E8%BD%AC%E5%89%8D%E7%95%8C%E9%9D%A2searchxml"><span class="nav-number">3.3.</span> <span class="nav-text"> 编写跳转前界面search.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%AF%B9%E5%BA%94%E7%9A%84mainactivityjava"><span class="nav-number">3.4.</span> <span class="nav-text"> 编写对应的MainActivity.java</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E7%95%8C%E9%9D%A2resultxml"><span class="nav-number">3.5.</span> <span class="nav-text"> 编写接收界面result.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E5%AF%B9%E5%BA%94%E7%9A%84resultactivityjava"><span class="nav-number">3.6.</span> <span class="nav-text"> 编写接收对应的ResultActivity.java</span></a></li>
+                  </ol>
+                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android-%E8%87%AA%E5%AE%9A%E4%B9%89toolbar%E4%B8%8A%E7%9A%84-action-item"><span class="nav-number">4.</span> <span class="nav-text"> Android 自定义toolBar上的 action item</span></a>
+                  <ol class="nav-child">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84viewaction_view_auto_likexml"><span class="nav-number">4.1.</span> <span class="nav-text"> 自定义的view，action_view_auto_like.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84menumenu_tinder_likerxml"><span class="nav-number">4.2.</span> <span class="nav-text"> 自定义的menu，menu_tinder_liker.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8fragment-%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">4.3.</span> <span class="nav-text"> 在fragment 中配置</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+
+            </div>
+          </aside>
+
+        </section>
+
+      </div>
+
+
+      <footer id="footer">
+
+
+        <div class="container">
+          <div class="row">
+            <p id="copyRightEn">&copy; 2018.02.08 - 2024.05.25 <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+
+            <p id="hitokoto">:D 获取中...</p>
+            <!-- 以下写法，选取一种即可 -->
+
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+            <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(data) {
+                  var hitokoto = document.getElementById('hitokoto');
+                  hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function(err) {
+                  console.error(err);
+                })
+            </script>
+
+            <!-- <img border="0" height=27px width=109px style="background-color:white;"src="/css/images/kaba.png"/> -->
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" height=27px style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+            <script type="text/javascript">
+              var locationUrl = escape(document.location.href);
+              document.write(unescape("%3Cscript") + " height='27px' width='74px' charset='utf-8' src='http://union.rising.com.cn//InfoManage/TrojanInspect.aspx?p1=XNk3xHG5v8uxFHYb4KaGpnyWjJlbHp7K&p2=RqCQt7iMKRw=&p3=XNk3xHG5v8vv3Z1xqd/V8w==&url=" + locationUrl + "' type='text/javascript'" + unescape("%3E%3C/script%3E"));
+            </script>
+          </div>
+
+        </div>
+      </footer>
+
+
+      <!-- min height -->
+
+      <script>
+        var wrapdiv = document.getElementById("wrap");
+        var contentdiv = document.getElementById("content");
+        var allheader = document.getElementById("allheader");
+
+        wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+        if (allheader != null) {
+          contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        } else {
+          contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+        }
+      </script>
+
+      <script>
+        (function() {
+          var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11" : "https://jspassport.ssl.qhimg.com/11.0.1.js?5d3bca9f7d6a95532f3ebb56e3c6bf11";
+          document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+      </script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="https://blog.nooa.tech" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech" class="mobile-nav-link">About</a>
+  
+</nav> -->
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+    <script src="/js/scripts.js"></script>
+
+
+
+
+
+
+    <script src="/js/dialog.js"></script>
+
+
+
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-113947925-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">设置</h2>
+        </div>
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              您已调整页面字体大小
+            </div>
+          </div>
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              夜间模式已经开启，再次单击按钮即可关闭
+            </div>
+          </div>
+
+          <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+              Mengmeng Kuang&#39;s Blog!
+            </div>
+            <div class="panel-body">
+              An MPhil graduate in Computer Science from HKU
+            </div>
+            <div class="panel-body">
+              © 2024 Mengmeng Kuang All Rights Reserved.
+            </div>
+          </div>
+        </div>
+
+
+        <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+        <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+  <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>
