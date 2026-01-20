@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。  注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。   原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是">
+  <meta name="description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。  注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。  原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是U">
   <meta property="og:type" content="article">
   <meta property="og:title" content="简单的Python3爬虫">
   <meta property="og:url" content="https://blog.nooa.tech/articles/51d32f19/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。  注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。   原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是">
+  <meta property="og:description" content="我们先从分析原理入手，然后再使用Python提供的基本的库urllib。  注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。  原理 网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是U">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/crawl/1.png">
   <meta property="article:published_time" content="2018-02-12T12:18:15.000Z">
@@ -299,9 +299,9 @@
                   <p>我们先从分析原理入手，然后再使用Python提供的基本的库urllib。</p>
                   <p>注意，我全程使用的是Python3，如果你必须使用不同版本，请自行百度某些库及函数的转换，需要使用的库不一定你的电脑上预装了，所以请自行百度安装。</p>
                 </blockquote>
-                <h1 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h1>
+                <h1>原理</h1>
                 <p>网络爬虫，也叫网络蜘蛛(Web Spider)，如果把互联网比喻成一个蜘蛛网，Spider就是一只在网上爬来爬去的蜘蛛。网络爬虫就是根据网页的地址来寻找网页的，也就是URL。</p>
-                <h2 id="url"><a class="markdownIt-Anchor" href="#url"></a> URL</h2>
+                <h2 id="URL">URL</h2>
                 <p>URL就是统一资源定位符(Uniform Resource Locator)，它的一般格式如下(带方括号[]的为可选项)：</p>
                 <p><code>protocol ://hostname[:port]/path/[;parameters][?query]#fragment</code></p>
                 <p>可见，一个URL包含三个部分：</p>
@@ -312,9 +312,9 @@
                 </ol>
                 <p>爬虫就是向URL发送请求，然后得到响应，基本就实现了爬取网页的功能。</p>
                 <p><strong>URI可以分为URL,URN或同时具备locators 和names特性的一个东西。URN作用就好像一个人的名字，URL就像一个人的地址。换句话说：URN确定了东西的身份，URL提供了找到它的方式。</strong></p>
-                <h2 id="从浏览器发送和接收数据看起"><a class="markdownIt-Anchor" href="#从浏览器发送和接收数据看起"></a> 从浏览器发送和接收数据看起</h2>
+                <h2 id="从浏览器发送和接收数据看起">从浏览器发送和接收数据看起</h2>
                 <p>进入我的首页<code>www.meng.uno</code>，打开浏览器的“检查”功能，选项卡选到“Network”，然后点击所有文章，随便选择一条，我们可以发现如下截图的&quot;Headers&quot;</p>
-                <p><img src="/images/crawl/1.png" alt="Headers" /></p>
+                <p><img src="/images/crawl/1.png" alt="Headers"></p>
                 <p>我们可以发现最明显的有两个区域（我已经圈出来了）：“request”和“response”。从字面意思上来看，我们就知道分别是（发送的）请求和（收到的）回复。</p>
                 <p>接收的信息是我们请求的网页给的，不用我们管，但是“请求的网页”是我们需要提前设定的，当然最简单的方式就是什么都不设置。爬虫会增加网站的负荷，所以很多网站希望大家通过API的方式使用其开放的资源而禁止爬虫，其中的一个做法就是判断你的请求内容（不全的基本都是爬虫）。于是，为了做到一个完整的可用的爬虫，我们需要模拟真实用户的请求，这就要求我们伪造“User Agent”。</p>
                 <p>常见的“User Agent”列举如下：</p>
@@ -357,7 +357,7 @@
                   <li>安装Opener；</li>
                 </ul>
                 <p><strong>这个网站提供了很多代理主机：<a target="_blank" rel="noopener" href="http://www.xicidaili.com/">http://www.xicidaili.com/</a></strong></p>
-                <h2 id="正则表达式"><a class="markdownIt-Anchor" href="#正则表达式"></a> 正则表达式</h2>
+                <h2 id="正则表达式">正则表达式</h2>
                 <p>我直接以表格的形式呈现好了：</p>
                 <table>
                   <thead>
@@ -469,8 +469,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-                <h2 id="简单带错误信息的获取网页内所有url的爬虫"><a class="markdownIt-Anchor" href="#简单带错误信息的获取网页内所有url的爬虫"></a> 简单带错误信息的获取网页内所有URL的爬虫</h2>
+                <h1>代码</h1>
+                <h2 id="简单带错误信息的获取网页内所有URL的爬虫">简单带错误信息的获取网页内所有URL的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -483,7 +483,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="模拟真实环境的爬虫"><a class="markdownIt-Anchor" href="#模拟真实环境的爬虫"></a> 模拟真实环境的爬虫</h2>
+                <h2 id="模拟真实环境的爬虫">模拟真实环境的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -496,7 +496,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="通过队列获取网站所有url的爬虫"><a class="markdownIt-Anchor" href="#通过队列获取网站所有url的爬虫"></a> 通过队列获取网站所有URL的爬虫</h2>
+                <h2 id="通过队列获取网站所有URL的爬虫">通过队列获取网站所有URL的爬虫</h2>
                 <figure class="highlight python">
                   <table>
                     <tr>
@@ -621,18 +621,18 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text"> 原理</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">1.1.</span> <span class="nav-text"> URL</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE%E7%9C%8B%E8%B5%B7"><span class="nav-number">1.2.</span> <span class="nav-text"> 从浏览器发送和接收数据看起</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text"> 正则表达式</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#URL"><span class="nav-number">1.1.</span> <span class="nav-text">URL</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE%E7%9C%8B%E8%B5%B7"><span class="nav-number">1.2.</span> <span class="nav-text">从浏览器发送和接收数据看起</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">正则表达式</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text"> 代码</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B8%A6%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E5%86%85%E6%89%80%E6%9C%89url%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.1.</span> <span class="nav-text"> 简单带错误信息的获取网页内所有URL的爬虫</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.2.</span> <span class="nav-text"> 模拟真实环境的爬虫</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E9%98%9F%E5%88%97%E8%8E%B7%E5%8F%96%E7%BD%91%E7%AB%99%E6%89%80%E6%9C%89url%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.3.</span> <span class="nav-text"> 通过队列获取网站所有URL的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B8%A6%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E5%86%85%E6%89%80%E6%9C%89URL%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.1.</span> <span class="nav-text">简单带错误信息的获取网页内所有URL的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.2.</span> <span class="nav-text">模拟真实环境的爬虫</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E9%98%9F%E5%88%97%E8%8E%B7%E5%8F%96%E7%BD%91%E7%AB%99%E6%89%80%E6%9C%89URL%E7%9A%84%E7%88%AC%E8%99%AB"><span class="nav-number">2.3.</span> <span class="nav-text">通过队列获取网站所有URL的爬虫</span></a></li>
                   </ol>
                 </li>
               </ol>

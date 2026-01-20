@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.   神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   * 简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
+  <meta name="description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   * 简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
   <meta property="og:type" content="article">
   <meta property="og:title" content="神经网络、梯度下降和反向传播">
   <meta property="og:url" content="https://blog.nooa.tech/articles/8193f764/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.   神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   * 简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
+  <meta property="og:description" content="神经网络的结构 示例：一个用于手写数字识别的神经网络    这个示例相当于深度学习领域中的 “Hello World”.  神经元（隐藏单元）与隐藏层 神经元（隐藏单元）   * 简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值        需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是正值                  如果使用 sigmoid">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211429.png">
@@ -375,19 +375,19 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="神经网络的结构"><a class="markdownIt-Anchor" href="#神经网络的结构"></a> 神经网络的结构</h1>
+                <h1>神经网络的结构</h1>
                 <p><strong>示例：一个用于手写数字识别的神经网络</strong></p>
-                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png" alt="" /></p>
+                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png" alt=""></p>
                 <blockquote>
                   <p>这个示例相当于深度学习领域中的 “Hello World”.</p>
                 </blockquote>
-                <h2 id="神经元隐藏单元与隐藏层"><a class="markdownIt-Anchor" href="#神经元隐藏单元与隐藏层"></a> 神经元（隐藏单元）与隐藏层</h2>
+                <h2 id="神经元（隐藏单元）与隐藏层">神经元（隐藏单元）与隐藏层</h2>
                 <p><strong>神经元（隐藏单元）</strong></p>
                 <ul>
                   <li>
                     <p>简单来说，神经元可以理解为一个用来装数字的容器，而这个数称为激活值</p>
                     <p>需要强调的是，激活值的值域取决于使用的激活函数，大多数激活函数的值域都是<strong>正值</strong></p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211429.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211429.png" alt=""></p>
                   </li>
                 </ul>
                 <blockquote>
@@ -396,8 +396,8 @@
                 <ul>
                   <li>
                     <p>输入层也可以看做是一组神经元，它的激活值就是输入本身</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211850.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701214914.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701211850.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701214914.png" alt="">
                     </p>
                     <blockquote>
                       <p>基本的神经网络只能处理向量型的输入，所以需要将这个 28*28 的像素图（矩阵），重排成长为 784 的向量</p>
@@ -412,28 +412,28 @@
                   </li>
                   <li>
                     <p>所谓的“<strong>神经元被激活</strong>”实际上就是它获得了一个较大的激活值</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701212340.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701212340.png" alt=""></p>
                   </li>
                 </ul>
                 <p><strong>隐藏层</strong></p>
                 <ul>
                   <li>
                     <p>包含于输入层与输出层之间的网络层统称为“隐藏层”</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701212657.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701212657.png" alt=""></p>
                   </li>
                 </ul>
                 <blockquote>
                   <p>在这个简单的网络中，有两个隐藏层，每层有 16 个神经元</p>
                   <p>为什么是两层和 16 个？——层数的大小与问题的复杂度有关，而神经元的数量目前来看是随机的——网络的结构在实验时有很大的调整余地</p>
                 </blockquote>
-                <h2 id="神经网络的运作机制"><a class="markdownIt-Anchor" href="#神经网络的运作机制"></a> 神经网络的运作机制</h2>
+                <h2 id="神经网络的运作机制">神经网络的运作机制</h2>
                 <ul>
                   <li>
                     <p>神经网络在运作的时候，隐藏层可以视为一个“黑箱”</p>
                   </li>
                   <li>
                     <p>每一层的激活值将通过某种方式计算出下一层的激活值——神经网络处理信息的核心机制</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701213151.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701213151.png" alt=""></p>
                     <blockquote>
                       <p>每一层被激活的神经元不同，（可能）会导致下一层被激活的神经元也不同</p>
                     </blockquote>
@@ -443,11 +443,11 @@
                 <ul>
                   <li>
                     <p>人在初识数字时是如何区分的？——<strong>组合</strong>数字的各个部分</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702092532.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702092532.png" alt=""></p>
                   </li>
                   <li>
                     <p><strong>在理想情况下</strong>，我们希望神经网络倒数第二层中的各隐藏单元能对应上每个<strong>基本笔画</strong>（pattern）</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702093050.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702093050.png" alt=""></p>
                     <ul>
                       <li>当输入是 9 或 8 这种<strong>顶部带有圆圈</strong>的数字时，某个神经元将被激活（激活值接近 1）</li>
                       <li>不光是 9 和 8，所有顶部带有圆圈的图案都能激活这个隐藏单元</li>
@@ -456,11 +456,11 @@
                   </li>
                   <li>
                     <p>类似的，基本笔画也可以由更基础的部件构成</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094246.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094246.png" alt=""></p>
                   </li>
                   <li>
                     <p><strong>理想情况下</strong>，神经网络的处理过程</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094455.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094455.png" alt=""></p>
                     <blockquote>
                       <p>从输入层到输出层，<strong>网络的抽象程度越来越高</strong></p>
                     </blockquote>
@@ -470,7 +470,7 @@
                 <ul>
                   <li>
                     <p>神经网络是不是这么做的，我们不得而知（所以是一个“黑箱”），但大量实验表明：神经网络确实在做类似的工作——<strong>通过组合简单的概念来表达复杂的事物</strong></p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702095428.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702095428.png" alt=""></p>
                     <blockquote>
                       <p>语音识别：原始音频 → 音素 → 音节 → 单词</p>
                     </blockquote>
@@ -488,9 +488,9 @@
                   </li>
                   <li>
                     <p><strong>怎样的数学公式能够表达出这个含义？</strong></p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702112135.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113031.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113631.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702112135.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113031.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702113631.png" alt="">
                     </p>
                     <ul>
                       <li>
@@ -510,7 +510,7 @@
                       </li>
                       <li>
                         <p>早期最常用的激活函数是 <code>sigmoid</code> 函数（又称 logistic/逻辑斯蒂曲线）</p>
-                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702114132.png" alt="" /></p>
+                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702114132.png" alt=""></p>
                         <blockquote>
                           <p>从 <code>sigmoid</code> 的角度看，它实际上在对加权和到底有多“正”进行打分</p>
                         </blockquote>
@@ -524,7 +524,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h3 id="权重和偏置"><a class="markdownIt-Anchor" href="#权重和偏置"></a> 权重和偏置</h3>
+                <h3 id="权重和偏置">权重和偏置</h3>
                 <ul>
                   <li>
                     <p>每个隐藏单元都会和<strong>上一层的所有单元</strong>相连，每条连线上都关联着一个<strong>权重</strong>；</p>
@@ -534,8 +534,8 @@
                     <blockquote>
                       <p>偏置和权重统称为网络参数</p>
                     </blockquote>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702150309.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702150309.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt="">
                     </p>
                     <blockquote>
                       <p>每一层都带有自己的权重与偏置，这样一个小小的网络，就有 13002 个参数</p>
@@ -564,7 +564,7 @@
                   </li>
                   <li>
                     <p>最后，将 <code>Wa + b</code> 一起传入激活函数</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702155142.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702155142.png" alt=""></p>
                     <blockquote>
                       <p><code>sigmoid</code>会对结果向量中的每个值都取一次<code>sigmoid</code></p>
                     </blockquote>
@@ -578,8 +578,8 @@
                 </ul>
                 <p><strong>机器“学习”的实质</strong></p>
                 <p>当我们在讨论机器如何“学习”时，实际上指的是机器如何正确设置这些参数</p>
-                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702152216.png" alt="" /></p>
-                <h2 id="非线性激活函数"><a class="markdownIt-Anchor" href="#非线性激活函数"></a> 非线性激活函数</h2>
+                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702152216.png" alt=""></p>
+                <h2 id="非线性激活函数">非线性激活函数</h2>
                 <p><strong>神经网络本质上是一个函数</strong></p>
                 <ul>
                   <li>
@@ -587,7 +587,7 @@
                   </li>
                   <li>
                     <p>宏观来看，神经网络也是一个函数</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702151423.png" alt=""></p>
                     <blockquote>
                       <p>一个输入 784 个值，输出 10 个值的函数；其中有 13000 个参数</p>
                     </blockquote>
@@ -627,7 +627,7 @@
                 <ul>
                   <li>
                     <p><code>sigmoid</code> 函数在输入取绝对值非常大的正值或负值时会出现<strong>饱和现象</strong>，此时函数会对输入的微小改变会变得不敏感</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702114132.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702114132.png" alt=""></p>
                     <blockquote>
                       <p>饱和现象：在图像上表现为函数值随自变量的变化区域平缓（斜率接近 0）</p>
                     </blockquote>
@@ -637,8 +637,8 @@
                   </li>
                 </ul>
                 <p><strong>线性整流单元 ReLU</strong></p>
-                <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180702171411.png" alt="" /></p>
-                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702171146.png" alt="" /></p>
+                <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180702171411.png" alt=""></p>
+                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702171146.png" alt=""></p>
                 <ul>
                   <li>
                     <p><code>ReLU</code> 取代 <code>sigmoid</code> 的主要原因就是：使神经网络更容易训练（<strong>减缓梯度消失</strong>）</p>
@@ -648,9 +648,9 @@
                     <p>而 <code>ReLU</code> 比 <code>sigmoid</code> 更接近这一过程。</p>
                   </li>
                 </ul>
-                <h1 id="梯度下降"><a class="markdownIt-Anchor" href="#梯度下降"></a> 梯度下降</h1>
+                <h1>梯度下降</h1>
                 <p>依然是那个手写识别的例子：</p>
-                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png" alt="" /></p>
+                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180701210407.png" alt=""></p>
                 <p><strong>神经网络是怎样学习的？</strong></p>
                 <ul>
                   <li>
@@ -669,7 +669,7 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h2 id="损失函数loss-function"><a class="markdownIt-Anchor" href="#损失函数loss-function"></a> 损失函数（Loss Function）</h2>
+                <h2 id="损失函数（Loss-Function）">损失函数（Loss Function）</h2>
                 <ul>
                   <li>
                     <p>显然，随机初始化不会有多好的表现</p>
@@ -679,8 +679,8 @@
                   </li>
                   <li>
                     <p>比如这样定义单个样本的损失：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702194825.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195301.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702194825.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195301.png" alt="">
                     </p>
                     <ul>
                       <li>当网络分类正确时，这个值就越小</li>
@@ -700,7 +700,7 @@
                 <ul>
                   <li>
                     <p>神经网络本身相当于一个函数</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195902.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702195902.png" alt=""></p>
                     <blockquote>
                       <p>输入是一个向量，输出是一个向量，参数是所有权重和偏置</p>
                     </blockquote>
@@ -708,13 +708,13 @@
                   <li>
                     <p>损失函数在神经网络的基础上，还要再抽象一层：</p>
                     <p>所有权重和偏置作为它的输入，输出是单个数值，表示当前网络的性能；参数是所有训练样例（？）</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702201513.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702201513.png" alt=""></p>
                   </li>
                   <li>
                     <p>从这个角度看，损失函数并不是神经网络的一部分，而是训练神经网络时需要用到的工具</p>
                   </li>
                 </ul>
-                <h2 id="梯度下降法gradient-descent"><a class="markdownIt-Anchor" href="#梯度下降法gradient-descent"></a> 梯度下降法（Gradient Descent）</h2>
+                <h2 id="梯度下降法（Gradient-Descent）">梯度下降法（Gradient Descent）</h2>
                 <p><strong>如何优化这些网络参数？</strong></p>
                 <ul>
                   <li>能够判断网络的“糟糕程度”并不重要，关键是如何利用它来<strong>优化</strong>网络参数</li>
@@ -724,8 +724,8 @@
                   <li>
                     <p>如果函数只有一个极值点，那么直接利用微积分即可</p>
                     <p>如果函数很复杂的话，问题就不那么直接了，更遑论上万个参数的情况</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702202810.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203041.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702202810.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203041.png" alt="">
                     </p>
                   </li>
                   <li>
@@ -733,13 +733,13 @@
                     <p>准确的说，如果你找到了函数在该点的斜率，<strong>斜率为正就向左移动一小步，反之向右</strong>；</p>
                     <p>然后每新到一个点就重复上述过程——计算新的斜率，根据斜率更新位置；</p>
                     <p>最后，就可能逼近函数的某个<strong>局部极小值</strong>点</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203401.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702203401.png" alt=""></p>
                   </li>
                   <li>
                     <p>这个想法最明显的问题是：由于无法预知最开始的值在什么位置，导致最终会到达不同的局部极小值；</p>
                     <p>关键是无法保证落入的局部极小值就是损失函数可能达到的全局最小值；</p>
                     <p>这也是神经网络最大的问题：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702204047.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702204047.png" alt=""></p>
                   </li>
                 </ul>
                 <p><strong>示例 2：考虑两个参数的情况</strong></p>
@@ -747,7 +747,7 @@
                   <li>
                     <p>输入空间是一个 XY 平面，代价函数是平面上方的曲面</p>
                     <p>此时的问题是：在输入空间沿哪个方向移动，能使输出结果下降得最快</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702210202.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702210202.png" alt=""></p>
                   </li>
                   <li>
                     <p>如果你熟悉<strong>多元微积分</strong>，那么应该已经有了答案：</p>
@@ -761,17 +761,17 @@
                   </li>
                   <li>
                     <p>直观来看，梯度下降法能够让函数值收敛到损失函数图像中的某一个“坑”中</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703102940.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703102940.png" alt=""></p>
                   </li>
                 </ul>
-                <h3 id="理解梯度下降法的另一种思路"><a class="markdownIt-Anchor" href="#理解梯度下降法的另一种思路"></a> 理解梯度下降法的另一种思路</h3>
+                <h3 id="理解梯度下降法的另一种思路">理解梯度下降法的另一种思路</h3>
                 <ul>
                   <li>
                     <p>梯度下降法的一般处理方式：</p>
                     <ul>
                       <li>
                         <p>将所有网络参数放在一个列向量中，那么损失函数的负梯度也是一个向量</p>
-                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103735.png" alt="" /></p>
+                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103735.png" alt=""></p>
                       </li>
                     </ul>
                   </li>
@@ -783,8 +783,8 @@
                       </li>
                       <li>
                         <p>每一项的相对大小表明每个输入值对函数值的影响程度；换言之，也就是调整各权重对于网络的影响</p>
-                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt="" /><br />
-                          <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703104845.png" alt="" />
+                        <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt="">
+                          <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703104845.png" alt="">
                         </p>
                       </li>
                     </ol>
@@ -795,7 +795,7 @@
                   </li>
                   <li>
                     <p>这个理解思路同样可以反馈到图像中</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703105249.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703105249.png" alt=""></p>
                     <ul>
                       <li>
                         <p>一种思路是在点 <code>(1,1)</code> 处沿着 <code>[3,1]</code> 方向移动，函数值增长最快</p>
@@ -840,7 +840,7 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h3 id="随机梯度下降stochastic-gradient-descent"><a class="markdownIt-Anchor" href="#随机梯度下降stochastic-gradient-descent"></a> 随机梯度下降（Stochastic Gradient Descent）</h3>
+                <h3 id="随机梯度下降（Stochastic-Gradient-Descent）">随机梯度下降（Stochastic Gradient Descent）</h3>
                 <ul>
                   <li>
                     <p>基本的梯度下降法要求每次使用<strong>所有训练样本</strong>的平均损失来更新参数，也称为“<strong>批量梯度下降</strong>”</p>
@@ -899,17 +899,17 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h2 id="再谈神经网络的运作机制"><a class="markdownIt-Anchor" href="#再谈神经网络的运作机制"></a> 再谈神经网络的运作机制</h2>
+                <h2 id="再谈神经网络的运作机制">再谈神经网络的运作机制</h2>
                 <ul>
                   <li>
                     <p>我们对神经网络的<strong>期望</strong>是：</p>
                     <p>第一个隐藏层能够识别短边，第二个隐藏层能够将短边拼成圆圈等基本笔画，最后将这些部件拼成数字</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094455.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180702094455.png" alt=""></p>
                   </li>
                   <li>
                     <p>利用<strong>权重与所有输入像素对应相乘</strong>的方法，可以还原每个神经元对应的图案</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115843.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115823.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115843.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703115823.png" alt="">
                     </p>
                     <blockquote>
                       <p>期望（左）与现实（右）</p>
@@ -924,7 +924,7 @@
                     <p>一个明显的例子：传入一张随机的图案</p>
                     <p>如果神经网络真的很“智能”，它应该对这个输入感到困惑——10个输出单元都没有明确的激活值</p>
                     <p>但实际上，它总会会给出一个确切的答案</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703121303.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703121303.png" alt=""></p>
                     <blockquote>
                       <p>它能将一张真正的 “5” 识别成 5，也能把一张随机的噪声识别成 5</p>
                     </blockquote>
@@ -941,11 +941,11 @@
                     <p>但是，有些观点认为神经网络确实学到了某些更智能的东西：</p>
                     <p>如果训练时使用的是随机的数据，那么损失函数的下降会很慢，而且是接近线性的过程；也就是说网络很难找到可能存在的局部最小值点；</p>
                     <p>但如果你使用了<strong>结构化</strong>的数据，虽然一开始的损失会上下浮动，但接下来会快速下降；也就是很容易就找到了某个局部最小值——这表明神经网络能更快学习<strong>结构化的数据</strong>。</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703143800.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703143800.png" alt=""></p>
                   </li>
                 </ul>
-                <h1 id="反向传播backpropagation-bp"><a class="markdownIt-Anchor" href="#反向传播backpropagation-bp"></a> 反向传播（Backpropagation, BP）</h1>
-                <h2 id="反向传播的直观理解"><a class="markdownIt-Anchor" href="#反向传播的直观理解"></a> 反向传播的直观理解</h2>
+                <h1>反向传播（Backpropagation, BP）</h1>
+                <h2 id="反向传播的直观理解">反向传播的直观理解</h2>
                 <ul>
                   <li>
                     <p>梯度下降法中需要用到损失函数的梯度来决定下降的方向，</p>
@@ -954,7 +954,7 @@
                   <li>
                     <p>在阐述 BP 算法之前，记住——</p>
                     <p><strong>梯度向量中的每一项不光告诉我们每个参数应该增大还是减小，还指示了调整每个参数的“性价比”</strong></p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703103757.png" alt=""></p>
                   </li>
                 </ul>
                 <p><strong>示例：单个训练样本对参数调整的影响</strong></p>
@@ -969,8 +969,8 @@
                   </li>
                   <li>
                     <p>一个简单的<strong>直觉</strong>是：激活值<strong>变动的幅度</strong>应该与<strong>当前值和目标值之间的误差</strong>成正比</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210401.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210941.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210401.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180703210941.png" alt="">
                     </p>
                     <blockquote>
                       <p>我们希望第三个输出值增大，其他减小</p>
@@ -979,7 +979,7 @@
                   </li>
                   <li>
                     <p>激活值的计算公式指明了调整的方向</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704095607.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704095607.png" alt=""></p>
                   </li>
                   <li>
                     <p>以 “2” 对应的神经元为例，如果需要<strong>增大当前激活值</strong>，可以：</p>
@@ -1026,7 +1026,7 @@
                     <p>除了需要增大正确的激活值，同时还要减小错误的。而这些神经元对于如何改变上一层的激活值都有各自的想法；</p>
                     <p>因此，需要将这些神经元的期待全部相加，作为改变上层神经元的指示；</p>
                     <p>这些期待变化，不仅对应权重的倍数，也是每个神经元激活值改变量的倍数。</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704111141.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704111141.png" alt=""></p>
                   </li>
                   <li>
                     <p>这其实就是在实现“反向传播”的理念了——</p>
@@ -1035,15 +1035,15 @@
                   <li>
                     <p>上面只是讨论了单个样本对所有参数的影响，实践时，需要同时考虑每个样本对权重与偏置的修改，然后将它们期望的平均作为每个参数的变化量；</p>
                     <p>不严格的来说，这就是梯度下降中的需要的“<strong>负梯度</strong>”</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704111911.png" alt="" /><br />
-                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704112743.png" alt="" />
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704111911.png" alt="">
+                      <img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704112743.png" alt="">
                     </p>
                     <blockquote>
                       <p><code>η</code> 表示倍数</p>
                     </blockquote>
                   </li>
                 </ul>
-                <h3 id="bp-算法小结"><a class="markdownIt-Anchor" href="#bp-算法小结"></a> BP 算法小结</h3>
+                <h3 id="BP-算法小结">BP 算法小结</h3>
                 <ul>
                   <li>
                     <p>反向传播算法计算的是<strong>单个训练样本</strong>对所有权重和偏置的调整——包括每个参数的正负变化以及<strong>变化的比例</strong>——使其能最快的降低损失。</p>
@@ -1063,26 +1063,26 @@
                     <p>最终神经网络将会收敛到某个局部最小值上。</p>
                   </li>
                 </ul>
-                <h2 id="反向传播的微积分原理"><a class="markdownIt-Anchor" href="#反向传播的微积分原理"></a> 反向传播的微积分原理</h2>
+                <h2 id="反向传播的微积分原理">反向传播的微积分原理</h2>
                 <p>从数学的角度看，反向传播本质上就是<strong>利用链式法则求导</strong>的过程；</p>
                 <p>本节的目标是展示机器学习领域是如何理解链式法则的。</p>
-                <h3 id="示例每层只有一个神经元的网络"><a class="markdownIt-Anchor" href="#示例每层只有一个神经元的网络"></a> 示例：每层只有一个神经元的网络</h3>
-                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704161115.png" alt="" /></p>
+                <h3 id="示例：每层只有一个神经元的网络">示例：每层只有一个神经元的网络</h3>
+                <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704161115.png" alt=""></p>
                 <ul>
                   <li>
                     <p>从最后两个神经元开始：</p>
                     <p>记最后一个神经元的激活值为 <code>a^(L)</code> 表示在第 L 层，上层的激活值为 <code>a^(L-1)</code>；</p>
                     <p>给定一个训练样本，其目标值记为 <code>y</code>；</p>
                     <p>则该网络对于单个训练样本的损失，可以表示为：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193558.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193558.png" alt=""></p>
                     <p>其中</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193742.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193742.png" alt=""></p>
                     <p>为了方便，记加权和为 <code>z</code>，于是有</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193955.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704193955.png" alt=""></p>
                   </li>
                   <li>
                     <p>整个流程可以概括为：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704164022.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704164022.png" alt=""></p>
                     <ul>
                       <li>先使用前一个激活值和权重 <code>w</code> 以及偏置 <code>b</code> 计算出 <code>z</code></li>
                       <li>再将 <code>z</code> 传入激活函数计算出 <code>a</code></li>
@@ -1095,7 +1095,7 @@
                   </li>
                   <li>
                     <p>以 <code>w^(L)</code> 为例，求 <code>C</code> 对 <code>w^(L)</code>的（偏）导数，记作：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194111.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194111.png" alt=""></p>
                     <blockquote>
                       <p>把 <code>∂w^(L)</code> 看作对 <code>w</code> 的微小扰动，比如 0.001；把 <code>∂C</code> 看作“<strong>改变 <code>w</code> 对 <code>C</code> 造成的变化</strong>”</p>
                     </blockquote>
@@ -1103,25 +1103,25 @@
                   </li>
                   <li>
                     <p>根据链式法则，有</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194548.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194548.png" alt=""></p>
                   </li>
                   <li>
                     <p>进一步分解到每个比值，有</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194635.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194635.png" alt=""></p>
                   </li>
                   <li>
                     <p>类似的，对偏置的偏导：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194726.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194726.png" alt=""></p>
                     <p>对上层激活值的偏导：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200743.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200743.png" alt=""></p>
                   </li>
                   <li>
                     <p>更上层的权重与偏置也是类似的方法，只是链的长度会更长而已</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704174134.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704174134.png" alt=""></p>
                   </li>
                   <li>
                     <p>一个直观的理解，考虑将它们分别对应到一个数轴上；</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704165624.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704165624.png" alt=""></p>
                     <ul>
                       <li><code>w^(L)</code> 的微小变化会导致 <code>z^(L)</code> 的微小变化</li>
                       <li><code>z^(L)</code> 的微小变化会导致 <code>a^(L)</code> 的微小变化</li>
@@ -1131,31 +1131,31 @@
                   </li>
                   <li>
                     <p>以上只是单个训练的损失对 <code>w^(L)</code> 的导数，实践中需要求出一个 mini-batch 中所有样本的平均损失</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194944.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704194944.png" alt=""></p>
                   </li>
                   <li>
                     <p>进一步的，<code>∂C/∂w^(L)</code> 只是梯度向量 <code>▽C</code> 的一个分量；</p>
                     <p>而梯度向量本身有损失函数对每个参数的偏导构成：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704172524.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704172524.png" alt=""></p>
                   </li>
                 </ul>
                 <blockquote>
                   <p>本系列视频称损失函数为“代价函数”，所以使用 <code>C</code> 表示代价（Cost）；更多会用 <code>L</code> 表示损失（Loss）；二者没有区别，但这里已经使用 L 表示网络的层数，所以使用 <code>C</code> 表示损失函数</p>
                 </blockquote>
-                <h3 id="更复杂的示例"><a class="markdownIt-Anchor" href="#更复杂的示例"></a> 更复杂的示例</h3>
+                <h3 id="更复杂的示例">更复杂的示例</h3>
                 <ul>
                   <li>
                     <p>更复杂的神经网络在公式上并没有复杂很多，只有少量符号的变化</p>
                   </li>
                   <li>
                     <p>首先，利用<strong>下标</strong>来区分同一层不同的神经元和权重</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704195120.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704195120.png" alt=""></p>
                     <p>以下的推导过程几乎只是符号的改变：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704195859.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704195859.png" alt=""></p>
                     <p>然后求偏导：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200316.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200316.png" alt=""></p>
                     <p>唯一改变的是，对 <code>(L-1)</code> 层的偏导：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200453.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180704200453.png" alt=""></p>
                     <blockquote>
                       <p>此时激活值可以通过不同的途径影响损失函数</p>
                     </blockquote>
@@ -1168,7 +1168,7 @@
                     <p>链式法则给出了决定梯度每个分量的偏导，使我们能不断下探，最小化神经网络的损失。</p>
                   </li>
                 </ul>
-                <h3 id="反向传播的-4-个基本公式"><a class="markdownIt-Anchor" href="#反向传播的-4-个基本公式"></a> 反向传播的 4 个基本公式</h3>
+                <h3 id="反向传播的-4-个基本公式">反向传播的 4 个基本公式</h3>
                 <ul>
                   <li>
                     <p><strong>问题描述</strong>：</p>
@@ -1177,34 +1177,34 @@
                   </li>
                   <li>
                     <p><strong>标量形式</strong>：</p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190236.png" alt="" /></p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705134851.png" alt="" /><br />
-                      <img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705154543.png" alt="" /><br />
-                      <img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png" alt="" />
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190236.png" alt=""></p>
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705134851.png" alt="">
+                      <img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705154543.png" alt="">
+                      <img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705154650.png" alt="">
                     </p>
                     <blockquote>
                       <p>其中，上标 <code>(l)</code> 表示网络的层次，<code>(L)</code> 表示输出层（最后一层）；下标 <code>j</code> 和 <code>k</code> 指示神经元的位置；</p>
                       <p><code>w_jk</code> 表示 <code>l</code> 层的第 <code>j</code> 个神经元与<code>(l-1)</code>层第 <code>k</code> 个神经元连线上的权重</p>
                     </blockquote>
                     <p>以 <strong>均方误差（MSE）</strong> 损失函数为例，有</p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png" alt="" /><br />
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190536.png" alt=""><br>
                       根据以上公式，就可以反向求出所有损失函数对所有参数的偏导了</p>
                   </li>
                   <li>
                     <p><strong>矢量形式</strong>：</p>
                     <p>在标量形式的基础上，修改下标即可</p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190657.png" alt="" /></p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162428.png" alt="" /></p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162521.png" alt="" /></p>
-                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162633.png" alt="" /></p>
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705190657.png" alt=""></p>
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162428.png" alt=""></p>
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162521.png" alt=""></p>
+                    <p><img src="/images/assets/%E5%85%AC%E5%BC%8F_20180705162633.png" alt=""></p>
                     <p><strong>注意</strong>：其中向量相乘都是以<strong>按元素相乘</strong>的形式，一般用 <code>⊙</code> 符号表示。</p>
                   </li>
                   <li>
                     <p>以上是纯微积分形式的表达，一些机器学习相关书籍上总结了更简洁的形式，比如：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180705162841.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180705162841.png" alt=""></p>
                     <p><strong>注意</strong>：前两个公式为<strong>矢量形式</strong>，后两个具体到单个参数的是<strong>标量形式</strong>。</p>
                     <p>其中，符号 <code>⊙</code> 表示按元素相乘，例如：</p>
-                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180705164018.png" alt="" /></p>
+                    <p><img src="/images/assets/TIM%E6%88%AA%E5%9B%BE20180705164018.png" alt=""></p>
                   </li>
                 </ul>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/8193f764/">https://blog.nooa.tech/articles/8193f764/</a> . Welcome to reproduce it!</p>
@@ -1319,41 +1319,41 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text"> 神经网络的结构</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">神经网络的结构</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E5%85%83%E9%9A%90%E8%97%8F%E5%8D%95%E5%85%83%E4%B8%8E%E9%9A%90%E8%97%8F%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text"> 神经元（隐藏单元）与隐藏层</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text"> 神经网络的运作机制</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E5%85%83%EF%BC%88%E9%9A%90%E8%97%8F%E5%8D%95%E5%85%83%EF%BC%89%E4%B8%8E%E9%9A%90%E8%97%8F%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">神经元（隐藏单元）与隐藏层</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">神经网络的运作机制</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%92%8C%E5%81%8F%E7%BD%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 权重和偏置</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%92%8C%E5%81%8F%E7%BD%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">权重和偏置</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text"> 非线性激活函数</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">非线性激活函数</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">2.</span> <span class="nav-text"> 梯度下降</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">梯度下降</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function"><span class="nav-number">2.1.</span> <span class="nav-text"> 损失函数（Loss Function）</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95gradient-descent"><span class="nav-number">2.2.</span> <span class="nav-text"> 梯度下降法（Gradient Descent）</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%88Loss-Function%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">损失函数（Loss Function）</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%EF%BC%88Gradient-Descent%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">梯度下降法（Gradient Descent）</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 理解梯度下降法的另一种思路</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8Dstochastic-gradient-descent"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 随机梯度下降（Stochastic Gradient Descent）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.1.</span> <span class="nav-text">理解梯度下降法的另一种思路</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Stochastic-Gradient-Descent%EF%BC%89"><span class="nav-number">2.2.2.</span> <span class="nav-text">随机梯度下降（Stochastic Gradient Descent）</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E8%B0%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text"> 再谈神经网络的运作机制</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E8%B0%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">再谈神经网络的运作机制</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%ADbackpropagation-bp"><span class="nav-number">3.</span> <span class="nav-text"> 反向传播（Backpropagation, BP）</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">反向传播（Backpropagation, BP）</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3"><span class="nav-number">3.1.</span> <span class="nav-text"> 反向传播的直观理解</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3"><span class="nav-number">3.1.</span> <span class="nav-text">反向传播的直观理解</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#bp-%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93"><span class="nav-number">3.1.1.</span> <span class="nav-text"> BP 算法小结</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#BP-%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93"><span class="nav-number">3.1.1.</span> <span class="nav-text">BP 算法小结</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E5%BE%AE%E7%A7%AF%E5%88%86%E5%8E%9F%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text"> 反向传播的微积分原理</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E5%BE%AE%E7%A7%AF%E5%88%86%E5%8E%9F%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">反向传播的微积分原理</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E6%AF%8F%E5%B1%82%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E5%85%83%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-number">3.2.1.</span> <span class="nav-text"> 示例：每层只有一个神经元的网络</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.2.2.</span> <span class="nav-text"> 更复杂的示例</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84-4-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F"><span class="nav-number">3.2.3.</span> <span class="nav-text"> 反向传播的 4 个基本公式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%AF%8F%E5%B1%82%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E5%85%83%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-number">3.2.1.</span> <span class="nav-text">示例：每层只有一个神经元的网络</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.2.2.</span> <span class="nav-text">更复杂的示例</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84-4-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F"><span class="nav-number">3.2.3.</span> <span class="nav-text">反向传播的 4 个基本公式</span></a></li>
                       </ol>
                     </li>
                   </ol>

@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="常见的卷积结构  基本卷积 No padding, no strides Arbitrary padding, no strides Half padding, no strides Full padding, no strides No padding, strides Padding, strides Padding, strides (odd)  转置卷积  * 转置卷积（Transpose">
+  <meta name="description" content="常见的卷积结构 基本卷积 No padding, no strides Arbitrary padding, no strides Half padding, no strides Full padding, no strides No padding, strides Padding, strides Padding, strides (odd) 转置卷积  * 转置卷积（Transposed">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Coverlutional Neural Networks (CNNs)">
   <meta property="og:url" content="https://blog.nooa.tech/articles/7203e497/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="常见的卷积结构  基本卷积 No padding, no strides Arbitrary padding, no strides Half padding, no strides Full padding, no strides No padding, strides Padding, strides Padding, strides (odd)  转置卷积  * 转置卷积（Transpose">
+  <meta property="og:description" content="常见的卷积结构 基本卷积 No padding, no strides Arbitrary padding, no strides Half padding, no strides Full padding, no strides No padding, strides Padding, strides Padding, strides (odd) 转置卷积  * 转置卷积（Transposed">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/cnn/no_padding_no_strides.gif">
   <meta property="og:image" content="https://blog.nooa.tech/images/cnn/arbitrary_padding_no_strides.gif">
@@ -316,8 +316,8 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="常见的卷积结构"><a class="markdownIt-Anchor" href="#常见的卷积结构"></a> 常见的卷积结构</h1>
-                <h2 id="基本卷积"><a class="markdownIt-Anchor" href="#基本卷积"></a> 基本卷积</h2>
+                <h1>常见的卷积结构</h1>
+                <h2 id="基本卷积">基本卷积</h2>
                 <table style="width:100%; table-layout:fixed;">
                   <tr>
                     <td>No padding, no strides</td>
@@ -342,7 +342,7 @@
                     <td><img width="150px" src="/images/cnn/padding_strides_odd.gif"></td>
                   </tr>
                 </table>
-                <h2 id="转置卷积"><a class="markdownIt-Anchor" href="#转置卷积"></a> 转置卷积</h2>
+                <h2 id="转置卷积">转置卷积</h2>
                 <ul>
                   <li>转置卷积（Transposed Convolution），又称反卷积（Deconvolution）、Fractionally Strided Convolution</li>
                   <li>转置卷积是卷积的<strong>逆过程</strong>，如果把基本的卷积（+池化）看做“缩小分辨率”的过程，那么转置卷积就是“<strong>扩充分辨率</strong>”的过程。</li>
@@ -375,7 +375,7 @@
                     <td><img width="150px" src="/images/cnn/padding_strides_odd_transposed.gif"></td>
                   </tr>
                 </table>
-                <h2 id="空洞卷积"><a class="markdownIt-Anchor" href="#空洞卷积"></a> 空洞卷积</h2>
+                <h2 id="空洞卷积">空洞卷积</h2>
                 <ul>
                   <li>空洞卷积（Atrous Convolutions）也称扩张卷积（Dilated Convolutions）、膨胀卷积。</li>
                 </ul>
@@ -387,21 +387,21 @@
                 </ul>
                 <p>示例：Conv1D + 空洞卷积</p>
                 <div align="center"><img src="/images/cnn/普通卷积与膨胀卷积.png" height="200" /></div>
-                <h2 id="可分离卷积"><a class="markdownIt-Anchor" href="#可分离卷积"></a> 可分离卷积</h2>
+                <h2 id="可分离卷积">可分离卷积</h2>
                 <ul>
                   <li>逐通道卷积</li>
                 </ul>
                 <p>Depthwise Convolution的一个卷积核负责一个通道，一个通道只被一个卷积核卷积。</p>
                 <p>一张5×5像素、三通道彩色输入图片（shape为5×5×3），Depthwise Convolution首先经过第一次卷积运算，DW完全是在二维平面内进行。卷积核的数量与上一层的通道数相同（通道和卷积核一一对应）。所以一个三通道的图像经过运算后生成了3个Feature map(如果有same padding则尺寸与输入层相同为5×5)，如下图所示。</p>
-                <p><img src="/images/cnn/1.jpg" alt="逐通道卷积" /></p>
+                <p><img src="/images/cnn/1.jpg" alt="逐通道卷积"></p>
                 <p>Depthwise Convolution完成后的Feature map数量与输入层的通道数相同，无法扩展Feature map。而且这种运算对输入层的每个通道独立进行卷积运算，没有有效的利用不同通道在相同空间位置上的feature信息。因此需要Pointwise Convolution来将这些Feature map进行组合生成新的Feature map。</p>
                 <ul>
                   <li>逐点卷积</li>
                 </ul>
                 <p>Pointwise Convolution的运算与常规卷积运算非常相似，它的卷积核的尺寸为 1×1×M，M为上一层的通道数。所以这里的卷积运算会将上一步的map在深度方向上进行加权组合，生成新的Feature map。有几个卷积核就有几个输出Feature map。</p>
-                <p><img src="/images/cnn/2.jpg" alt="逐点卷积" /></p>
+                <p><img src="/images/cnn/2.jpg" alt="逐点卷积"></p>
                 <p>经过Pointwise Convolution之后，同样输出了4张Feature map，与常规卷积的输出维度相同。</p>
-                <h2 id="门卷积"><a class="markdownIt-Anchor" href="#门卷积"></a> 门卷积</h2>
+                <h2 id="门卷积">门卷积</h2>
                 <ul>
                   <li>
                     <p>类似 LSTM 的过滤机制，实际上是卷积网络与<strong>门控线性单元</strong>（Gated Linear Unit）的组合。</p>
@@ -424,12 +424,12 @@
                     <p>实践中，为了防止梯度消失，还会在每个 Block 中加入残差</p>
                   </li>
                 </ul>
-                <h3 id="门卷积的作用"><a class="markdownIt-Anchor" href="#门卷积的作用"></a> 门卷积的作用</h3>
+                <h3 id="门卷积的作用">门卷积的作用</h3>
                 <ul>
                   <li>减缓梯度消失</li>
                   <li>解决语言顺序依存问题</li>
                 </ul>
-                <h3 id="门卷积是如何防止梯度消失的"><a class="markdownIt-Anchor" href="#门卷积是如何防止梯度消失的"></a> 门卷积是如何防止梯度消失的</h3>
+                <h3 id="门卷积是如何防止梯度消失的">门卷积是如何防止梯度消失的</h3>
                 <ul>
                   <li>
                     <p>因为公式中有一个卷积没有经过激活函数，所以对这部分求导是个常数，所以梯度消失的概率很小。</p>
@@ -445,8 +445,8 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h1 id="cnns与dnns"><a class="markdownIt-Anchor" href="#cnns与dnns"></a> CNNs与DNNs</h1>
-                <h2 id="cnns相对于dnns的优点"><a class="markdownIt-Anchor" href="#cnns相对于dnns的优点"></a> CNNs相对于DNNs的优点</h2>
+                <h1>CNNs与DNNs</h1>
+                <h2 id="CNNs相对于DNNs的优点">CNNs相对于DNNs的优点</h2>
                 <ul>
                   <li>
                     <p>CNNs的特征就是共享卷积核，对高维数据处理无压力。图像通过卷积操作后仍然保留原先的位置关系。</p>
@@ -455,7 +455,7 @@
                     <p>DNNs的输入是向量形式，并未考虑到平面的结构信息，在图像和NLP领域这一结构信息尤为重要，例如识别图像中的数字，同一数字与所在位置无关（换句话说任一位置的权重都应相同），CNNs的输入可以是tensor，例如二维矩阵，通过filter获得局部特征，较好的保留了平面结构信息。</p>
                   </li>
                 </ul>
-                <h2 id="cnns结构总结"><a class="markdownIt-Anchor" href="#cnns结构总结"></a> CNNs结构总结</h2>
+                <h2 id="CNNs结构总结">CNNs结构总结</h2>
                 <ul>
                   <li>卷积层：对图像元素的矩阵变换，是提取图像特征的方法，多种卷积核可以提取多种特征。一个卷积核覆盖的原始图像的范围叫做感受野（权值共享）。一次卷积运算(哪怕是多个卷积核)提取的特征往往是局部的，难以提取出比较全局的特征，因此需要在一层卷积基础上继续做卷积计算 ，这也就是多层卷积。</li>
                   <li>池化层：降维的方法，按照卷积计算得出的特征向量维度大的惊人，不但会带来非常大的计算量，而且容易出现过拟合，解决过拟合的办法就是让模型尽量“泛化”，也就是再“模糊”一点，那么一种方法就是把图像中局部区域的特征做一个平滑压缩处理，这源于局部图像一些特征的相似性(即局部相关性原理)。</li>
@@ -574,24 +574,24 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%B7%E7%A7%AF%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text"> 常见的卷积结构</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">常见的卷积结构</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.1.</span> <span class="nav-text"> 基本卷积</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.</span> <span class="nav-text"> 转置卷积</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.3.</span> <span class="nav-text"> 空洞卷积</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%88%86%E7%A6%BB%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.4.</span> <span class="nav-text"> 可分离卷积</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.5.</span> <span class="nav-text"> 门卷积</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">基本卷积</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">转置卷积</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">空洞卷积</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%88%86%E7%A6%BB%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">可分离卷积</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.5.</span> <span class="nav-text">门卷积</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text"> 门卷积的作用</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF%E6%98%AF%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E7%9A%84"><span class="nav-number">1.5.2.</span> <span class="nav-text"> 门卷积是如何防止梯度消失的</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">门卷积的作用</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%A8%E5%8D%B7%E7%A7%AF%E6%98%AF%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E7%9A%84"><span class="nav-number">1.5.2.</span> <span class="nav-text">门卷积是如何防止梯度消失的</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#cnns%E4%B8%8Ednns"><span class="nav-number">2.</span> <span class="nav-text"> CNNs与DNNs</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">CNNs与DNNs</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#cnns%E7%9B%B8%E5%AF%B9%E4%BA%8Ednns%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text"> CNNs相对于DNNs的优点</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#cnns%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93"><span class="nav-number">2.2.</span> <span class="nav-text"> CNNs结构总结</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#CNNs%E7%9B%B8%E5%AF%B9%E4%BA%8EDNNs%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">CNNs相对于DNNs的优点</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#CNNs%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93"><span class="nav-number">2.2.</span> <span class="nav-text">CNNs结构总结</span></a></li>
                   </ol>
                 </li>
               </ol>

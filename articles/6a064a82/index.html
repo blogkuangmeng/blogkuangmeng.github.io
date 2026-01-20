@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="通知  通知创建和使用的流程  * 创建Notification.Builder的实例  * 通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知  * 获取NotificationManager来发送通知.  1 2 3 4 5   Notification.Builder builder &#x3D; new Notification.Builder(getApplic">
+  <meta name="description" content="通知 通知创建和使用的流程  * 创建Notification.Builder的实例  * 通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知  * 获取NotificationManager来发送通知.  1 2 3 4 5   Notification.Builder builder &#x3D; new Notification.Builder(getApplica">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Android通知及RemoteViews">
   <meta property="og:url" content="https://blog.nooa.tech/articles/6a064a82/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="通知  通知创建和使用的流程  * 创建Notification.Builder的实例  * 通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知  * 获取NotificationManager来发送通知.  1 2 3 4 5   Notification.Builder builder &#x3D; new Notification.Builder(getApplic">
+  <meta property="og:description" content="通知 通知创建和使用的流程  * 创建Notification.Builder的实例  * 通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知  * 获取NotificationManager来发送通知.  1 2 3 4 5   Notification.Builder builder &#x3D; new Notification.Builder(getApplica">
   <meta property="og:locale">
   <meta property="article:published_time" content="2017-02-27T08:53:59.000Z">
   <meta property="article:modified_time" content="2020-12-02T02:03:54.000Z">
@@ -293,8 +293,8 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="通知"><a class="markdownIt-Anchor" href="#通知"></a> 通知</h1>
-                <h2 id="通知创建和使用的流程"><a class="markdownIt-Anchor" href="#通知创建和使用的流程"></a> 通知创建和使用的流程</h2>
+                <h1>通知</h1>
+                <h2 id="通知创建和使用的流程">通知创建和使用的流程</h2>
                 <ul>
                   <li>创建Notification.Builder的实例</li>
                   <li>通过Builder来设置通知的相关属性,并通过builder()方法来获取设置好的通知</li>
@@ -328,7 +328,7 @@
                 <p>使用<code>NotificationCompact</code>和<code>NotificationManagerCompat</code>两个类来提供兼容性.实际上底层的实现还是一样的。</p>
                 <p><code>NotificationManagerCompat</code>通过静态方法from(Context Context)创建了一个自身的实例.实例中通过参数Context获取了一个<code>NotificationManager</code>,实际上通知还是通过它来发送。</p>
                 <p>实际上这两个工具类内部会根据应用运行机器的版本来创建对应的实现类来提供兼容性。</p>
-                <h2 id="通知的设置"><a class="markdownIt-Anchor" href="#通知的设置"></a> 通知的设置</h2>
+                <h2 id="通知的设置">通知的设置</h2>
                 <p>通知是通过Builder来设置的。常见的设置如下：</p>
                 <ul>
                   <li>设置标题 setContentTitle(CharSequence)</li>
@@ -342,7 +342,7 @@
                   <li>设置闪灯 setLight(int,int,int) 第一个int为颜色的资源id,第二个和第三个是闪灯开启和关闭的时间,单位为毫秒</li>
                   <li>设置点击后是否自动取消 setAutoCancel(boolean)</li>
                 </ul>
-                <h3 id="进度条"><a class="markdownIt-Anchor" href="#进度条"></a> 进度条</h3>
+                <h3 id="进度条">进度条</h3>
                 <p>从4.1开始通知里自带进度条.通过<code>setProgress(in max,int progress,boolean indeterminate)</code>来设置进度</p>
                 <ul>
                   <li>max 进度最大值</li>
@@ -350,12 +350,12 @@
                   <li>indeterminate 是否是无限循环 true表示无限循环进度条,不需要进度及最大值.false反之</li>
                 </ul>
                 <p>当进度条加载完毕后可以能过<code>setProgress(0,0,false)</code>来隐藏进度条。</p>
-                <h2 id="消息发送"><a class="markdownIt-Anchor" href="#消息发送"></a> 消息发送</h2>
+                <h2 id="消息发送">消息发送</h2>
                 <p>发送通知需要一个id和一个Notification。通过NotificationManager发送到远程的NotificationService上.用Notification里的数据更新远程的UI。</p>
                 <p>使用notify(int id,Notification notify)可以不断的更新同一个通知.另外此方法可以有个重载的方法可以设置一个Tag。</p>
-                <h3 id="id"><a class="markdownIt-Anchor" href="#id"></a> ID</h3>
+                <h3 id="ID">ID</h3>
                 <p>id需要自己设置,一个Id对应一个通知.NotificationService收到Notification后会根据Id去查找对应的View.如果不存在则创建一个。如果存在则更新UI也就是说如果id相同时,后续的通知会把之前的通知替换掉,如果id不同时会弹出多个通知。</p>
-                <h2 id="pendingintent"><a class="markdownIt-Anchor" href="#pendingintent"></a> PendingIntent</h2>
+                <h2 id="PendingIntent">PendingIntent</h2>
                 <p>PendingIntent用与处理通知的交互事件(也就是点击事件).PendingIntent表示的是一个待定的意图。</p>
                 <p>可以用来开启一个Activity,Service或广播接收者,它是对Intent的包装.对外部提供这个Intent.通知被点击时系统会按照PendingIntent设置的方法及Intent设置的目标去开启对应的Activity,Service或广播接收者。</p>
                 <p>创建PendingIntent的方法如下：</p>
@@ -384,17 +384,17 @@
                 <p>当两个intent内部的ComponentName和intent-filter相同,这两个intent就算是匹配的.ComponentName相同指的是这个intent希望开启的组件是相同的。</p>
                 <p>多个通知的PendingIntent如果不匹配是互不干扰的.如果是匹配的.则根据flag有不同的处理方式。</p>
                 <ul>
-                  <li>FLAG_ONE_SHOT<br />
+                  <li>FLAG_ONE_SHOT
                     PendingIntent只执行一次,也就是说多个含有匹配的PendingIntent的通知,只要有一个被点击了,那么其它的就点击无效.通知里如果还含有其它的PendingIntent,还是可以被点击的.</li>
-                  <li>FLAG_NO_CREAT<br />
+                  <li>FLAG_NO_CREAT
                     如果PendingIntent不存在时并不创建新的实例,而是返回null.这个很少用.</li>
-                  <li>FLAG_CANCEL_CURRENT<br />
+                  <li>FLAG_CANCEL_CURRENT
                     如果PendingIntent已经存在,则取消前者,创建新的实例以保持数据为最新.多个含有匹配PendingIntent的通知,只有最新的可以被点击,其它的点击无效.</li>
-                  <li>FLAG_UPDATE_CURRENT<br />
+                  <li>FLAG_UPDATE_CURRENT
                     多个含有PendingIntent的通知都会更新其Intent中的Extra数据与最新的通知中保持一至.</li>
                 </ul>
-                <h2 id="action"><a class="markdownIt-Anchor" href="#action"></a> Action</h2>
-                <p>通知的点击交互被称为Action。<br />
+                <h2 id="Action">Action</h2>
+                <p>通知的点击交互被称为Action。
                   通知自身的点击交互设置方法是<code>setContentIntent(PendingIntent)</code>。</p>
                 <p>在新版本中通知可以添加不同的按钮来对应不同的Action,添加Action的方法有两种：</p>
                 <figure class="highlight java">
@@ -415,7 +415,7 @@
                   <li>Title 按钮的文字</li>
                   <li>PendingIntent 按钮的点击处理</li>
                 </ul>
-                <h2 id="style通知样式"><a class="markdownIt-Anchor" href="#style通知样式"></a> Style通知样式</h2>
+                <h2 id="Style通知样式">Style通知样式</h2>
                 <p>在4.0版本后通知可以被拉伸,通知可以设置不同的扩展样式。</p>
                 <figure class="highlight java">
                   <table>
@@ -490,15 +490,15 @@
                     </tr>
                   </table>
                 </figure>
-                <h1 id="remoteviews"><a class="markdownIt-Anchor" href="#remoteviews"></a> RemoteViews</h1>
+                <h1>RemoteViews</h1>
                 <p>RemoteViews是Android提供的一种远程服务,可以跨进程显示及更新UI,通知及桌面小部件就是基与它封装的。</p>
                 <p>其核心是跨进程传递数据.把UI的布局及对其View的操作封装到RemoteViews里,传递给其它进程.其它进程收到RemoteViews后调用RemoteViews的方法创建或更新UI并显示。</p>
-                <h2 id="remoteviews的原理"><a class="markdownIt-Anchor" href="#remoteviews的原理"></a> RemoteViews的原理</h2>
-                <p>RemoteViews本身并不是个View.它是个Pacelable,是个可以跨进程传递的一个数据.它携带了UI的布局及对应的数据。<br />
-                  其它进程收到这个RemoteViews后会在其进程中根据这个布局inflat出对应的View.然后根据RemoteViews里的属性反射设置到对应的View上,然后根据设置点击监听.监听的处理就是调用对应的PendingIntent。<br />
-                  因为是跨进程,所以无法直接操作View,所以系统把对view的一个操作定义为Action对象.Action对象本身也是个Pacelable,所以可以跨进程.其封装了操作View的数据.远程进程遍历所有的Action并执行其apply方法通过反射更新View。<br />
+                <h2 id="RemoteViews的原理">RemoteViews的原理</h2>
+                <p>RemoteViews本身并不是个View.它是个Pacelable,是个可以跨进程传递的一个数据.它携带了UI的布局及对应的数据。
+                  其它进程收到这个RemoteViews后会在其进程中根据这个布局inflat出对应的View.然后根据RemoteViews里的属性反射设置到对应的View上,然后根据设置点击监听.监听的处理就是调用对应的PendingIntent。
+                  因为是跨进程,所以无法直接操作View,所以系统把对view的一个操作定义为Action对象.Action对象本身也是个Pacelable,所以可以跨进程.其封装了操作View的数据.远程进程遍历所有的Action并执行其apply方法通过反射更新View。
                   向先前说的设置view的属性,设置点击监听,都是一个Action。</p>
-                <h2 id="remoteviews的创建"><a class="markdownIt-Anchor" href="#remoteviews的创建"></a> RemoteViews的创建</h2>
+                <h2 id="RemoteViews的创建">RemoteViews的创建</h2>
                 <figure class="highlight java">
                   <table>
                     <tr>
@@ -512,7 +512,7 @@
                   </table>
                 </figure>
                 <p>packageName表示的是客户端的包名,layoutId表示布局Id。</p>
-                <h2 id="remoteviews的设置"><a class="markdownIt-Anchor" href="#remoteviews的设置"></a> RemoteViews的设置</h2>
+                <h2 id="RemoteViews的设置">RemoteViews的设置</h2>
                 <p>RemoteViews对View的操作是在远程进行的.所以客户端只是封装了操作.通过RemoteViews提供的一系列set方法,RemoteViews把所有设置都封装成Action保存到集合中。</p>
                 <ul>
                   <li>
@@ -565,14 +565,14 @@
                   </li>
                 </ul>
                 <p>因为Action操作View是通过反射的.所以不能使用自定义控件,只能用有限的系统控件。</p>
-                <h3 id="layout"><a class="markdownIt-Anchor" href="#layout"></a> Layout</h3>
+                <h3 id="Layout">Layout</h3>
                 <ul>
                   <li>FramgLayout</li>
                   <li>LinearLayout</li>
                   <li>RelativeLayout</li>
                   <li>GridLayout</li>
                 </ul>
-                <h3 id="view"><a class="markdownIt-Anchor" href="#view"></a> View</h3>
+                <h3 id="View">View</h3>
                 <ul>
                   <li>Button</li>
                   <li>ImageView</li>
@@ -588,13 +588,13 @@
                   <li>AdapterViewFlipper</li>
                   <li>ViewStub</li>
                 </ul>
-                <h2 id="发送remoteviews到其它进程"><a class="markdownIt-Anchor" href="#发送remoteviews到其它进程"></a> 发送RemoteViews到其它进程</h2>
-                <p>可以使用任何IPC方式把本地设置好的RemoteViews发送到其它进程<br />
+                <h2 id="发送RemoteViews到其它进程">发送RemoteViews到其它进程</h2>
+                <p>可以使用任何IPC方式把本地设置好的RemoteViews发送到其它进程
                   是通过NotificationManager发送到系统进程,小部件是通过AppWidgetManager发送到系统进程.都是通过Binder机制。</p>
                 <p>因为RemoteViews是个Parcelable,所以可以通过很多系统提供的方式来传递,如Intent,Message,或其它IPC方式。</p>
-                <h2 id="远程的ui操作"><a class="markdownIt-Anchor" href="#远程的ui操作"></a> 远程的UI操作</h2>
+                <h2 id="远程的UI操作">远程的UI操作</h2>
                 <p>远程收到RemoteViews后通过调用其 <code>apply()</code>或<code>reApply()</code> 方法创建或更新UI。</p>
-                <h3 id="apply"><a class="markdownIt-Anchor" href="#apply"></a> Apply</h3>
+                <h3 id="Apply">Apply</h3>
                 <figure class="highlight java">
                   <table>
                     <tr>
@@ -609,15 +609,15 @@
                 </figure>
                 <p>其中parent是父布局,这个方法会创建一个View并根据Action设置属性,返回这个设置好的View：</p>
                 <ul>
-                  <li>创建布局<br />
-                    从RemoteViews里获取布局文件的id,根据id填充出对应的View.因为是根据ID来填充布局的,所以必须保证远程进程能根据id获取到布局文件。<br />
+                  <li>创建布局
+                    从RemoteViews里获取布局文件的id,根据id填充出对应的View.因为是根据ID来填充布局的,所以必须保证远程进程能根据id获取到布局文件。
                     系统是根据RemoteViews里的包名来获取包内的布局文件的,同一个应用内不同的线程也可以根据id来获取布局文件.但如果是两个不同的应用是不能根据id来获取布局文件的。</li>
-                  <li>设置属性<br />
-                    RemoteViews会调用<code>perfomApply(View view,ViewGroup parent,OnClickHandler handler)</code>来设置填充好的View<br />
+                  <li>设置属性
+                    RemoteViews会调用<code>perfomApply(View view,ViewGroup parent,OnClickHandler handler)</code>来设置填充好的View
                     其实就是遍历Action.调用其 <code>apply()</code> 方法操作View.反射设置属性,或通过OnClickHandler设置点击交互。</li>
                   <li>把填充并设置好的View添加到父布局中。</li>
                 </ul>
-                <h3 id="reapply"><a class="markdownIt-Anchor" href="#reapply"></a> ReApply</h3>
+                <h3 id="ReApply">ReApply</h3>
                 <figure class="highlight java">
                   <table>
                     <tr>
@@ -633,9 +633,9 @@
                 <p><strong>reApply()</strong> 方法只是更新UI,也是调用 <strong>perfomApply()</strong> 方法。</p>
                 <p>如果是两个不同的应用间使用RemoteViews,是不能使用 <strong>apply()</strong> 方法来创建UI的。</p>
                 <p>这时需要两边约定好布局文件,远程端在需要创建UI时在使用本地的布局文件填充View.然后调用 <strong>reApply()</strong> 方法来更新UI,最后再添加到父布局。</p>
-                <h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+                <h1>总结</h1>
                 <p>通知是由RemoteViews来实现的,通过Notification类来封装一个RemoteViews。</p>
-                <p>设置不同的style实际上是设置RemoteViews里的layoutId.<br />
+                <p>设置不同的style实际上是设置RemoteViews里的layoutId.
                   通过NotificationManager的 <strong>notify()</strong> 方法发送到系统的NotificationService中。</p>
                 <p>系统的NotificationService里维护着各种Notification,实际上一个id对应着一个RemoteViews。</p>
                 <p>系统在自己的进程里创建和更新通知.当通知被点击时,在系统进程中会根据PendingIntent来启动指定的Activity,Service,及BroadcasterReceiver。</p>
@@ -750,44 +750,44 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5"><span class="nav-number">1.</span> <span class="nav-text"> 通知</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">通知</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text"> 通知创建和使用的流程</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text"> 通知的设置</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">通知创建和使用的流程</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">通知的设置</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 进度条</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">进度条</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%8F%91%E9%80%81"><span class="nav-number">1.3.</span> <span class="nav-text"> 消息发送</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%8F%91%E9%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">消息发送</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#id"><span class="nav-number">1.3.1.</span> <span class="nav-text"> ID</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#ID"><span class="nav-number">1.3.1.</span> <span class="nav-text">ID</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#pendingintent"><span class="nav-number">1.4.</span> <span class="nav-text"> PendingIntent</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#action"><span class="nav-number">1.5.</span> <span class="nav-text"> Action</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#style%E9%80%9A%E7%9F%A5%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text"> Style通知样式</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#PendingIntent"><span class="nav-number">1.4.</span> <span class="nav-text">PendingIntent</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Action"><span class="nav-number">1.5.</span> <span class="nav-text">Action</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Style%E9%80%9A%E7%9F%A5%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">Style通知样式</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#remoteviews"><span class="nav-number">2.</span> <span class="nav-text"> RemoteViews</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">RemoteViews</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#remoteviews%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text"> RemoteViews的原理</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#remoteviews%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">2.2.</span> <span class="nav-text"> RemoteViews的创建</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#remoteviews%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text"> RemoteViews的设置</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#RemoteViews%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">RemoteViews的原理</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#RemoteViews%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">2.2.</span> <span class="nav-text">RemoteViews的创建</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#RemoteViews%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text">RemoteViews的设置</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#layout"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Layout</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#view"><span class="nav-number">2.3.2.</span> <span class="nav-text"> View</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#Layout"><span class="nav-number">2.3.1.</span> <span class="nav-text">Layout</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">2.3.2.</span> <span class="nav-text">View</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E9%80%81remoteviews%E5%88%B0%E5%85%B6%E5%AE%83%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text"> 发送RemoteViews到其它进程</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E7%9A%84ui%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.</span> <span class="nav-text"> 远程的UI操作</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E9%80%81RemoteViews%E5%88%B0%E5%85%B6%E5%AE%83%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">发送RemoteViews到其它进程</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E7%9A%84UI%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.</span> <span class="nav-text">远程的UI操作</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">2.5.1.</span> <span class="nav-text"> Apply</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#reapply"><span class="nav-number">2.5.2.</span> <span class="nav-text"> ReApply</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#Apply"><span class="nav-number">2.5.1.</span> <span class="nav-text">Apply</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#ReApply"><span class="nav-number">2.5.2.</span> <span class="nav-text">ReApply</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text"> 总结</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li>
               </ol>
 
             </div>

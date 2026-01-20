@@ -307,14 +307,14 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="实验要求"><a class="markdownIt-Anchor" href="#实验要求"></a> 实验要求</h2>
-                <h3 id="实验目标"><a class="markdownIt-Anchor" href="#实验目标"></a> 实验目标</h3>
+                <h2 id="实验要求">实验要求</h2>
+                <h3 id="实验目标">实验目标</h3>
                 <p>实现一个混合高斯模型，并且用EM算法估计模型中的参数。</p>
-                <h3 id="实验过程"><a class="markdownIt-Anchor" href="#实验过程"></a> 实验过程</h3>
-                <p>用混合高斯模型产生k个高斯分布的数据（其中参数自己设定），然后用你实现的EM算法估计参数，看看每次迭代后似然值变化情况，考察EM算法是否可以获得正确的结果（与你设定的结果比较）。<br />
+                <h3 id="实验过程">实验过程</h3>
+                <p>用混合高斯模型产生k个高斯分布的数据（其中参数自己设定），然后用你实现的EM算法估计参数，看看每次迭代后似然值变化情况，考察EM算法是否可以获得正确的结果（与你设定的结果比较）。
                   可以UCI上找一个简单问题数据，用你实现的GMM进行聚类。</p>
-                <h2 id="算法原理"><a class="markdownIt-Anchor" href="#算法原理"></a> 算法原理</h2>
-                <h3 id="gmm算法"><a class="markdownIt-Anchor" href="#gmm算法"></a> GMM算法</h3>
+                <h2 id="算法原理">算法原理</h2>
+                <h3 id="GMM算法">GMM算法</h3>
                 <p>高斯模型就是用高斯概率密度函数（正态分布曲线）精确地量化事物，将一个事物分解为若干的基于高斯概率密度函数（正态分布曲线）形成的模型。</p>
                 <p>对图像背景建立高斯模型的原理及过程：图像灰度直方图反映的是图像中某个灰度值出现的频次，也可以认为是图像灰度概率密度的估计。如果图像所包含的目标区域和背景区域相比比较大，且背景区域和目标区域在灰度上有一定的差异，那么该图像的灰度直方图呈现双峰-谷形状，其中一个峰对应于目标，另一个峰对应于背景的中心灰度。对于复杂的图像，尤其是医学图像，一般是多峰的。通过将直方图的多峰特性看作是多个高斯分布的叠加，可以解决图像的分割问题。 在智能监控系统中，对于运动目标的检测是中心内容，而在运动目标检测提取中，背景目标对于目标的识别和跟踪至关重要。而建模正是背景目标提取的一个重要环节。</p>
                 <p>我们首先要提起背景和前景的概念，前景是指在假设背景为静止的情况下，任何有意义的运动物体即为前景。建模的基本思想是从当前帧中提取前景，其目的是使背景更接近当前视频帧的背景。即利用当前帧和视频序列中的当前背景帧进行加权平均来更新背景,但是由于光照突变以及其他外界环境的影响，一般的建模后的背景并非十分干净清晰，而高斯混合模型是是建模最为成功的方法之一。</p>
@@ -324,7 +324,7 @@
                 <ol>
                   <li>为图像的每个像素点指定一个初始的均值、标准差以及权重。</li>
                   <li>收集N（一般取200以上，否则很难得到像样的结果）帧图像利用在线EM算法得到每个像 素点的均值、标准差以及权重。</li>
-                  <li>从N+1帧开始检测，检测的方法：<br />
+                  <li>从N+1帧开始检测，检测的方法：
                     对每个像素点：
                     <ol>
                       <li>将所有的高斯核按照 ω / σ 降序排序</li>
@@ -334,7 +334,7 @@
                   </li>
                   <li>更新背景图像，用EM算法。</li>
                 </ol>
-                <h3 id="em算法"><a class="markdownIt-Anchor" href="#em算法"></a> EM算法</h3>
+                <h3 id="EM算法">EM算法</h3>
                 <p>EM 算法是 Dempster，Laind，Rubin 于 1977 年提出的求参数极大似然估计的一种方法，它可以从非完整数据集中对参数进行 MLE 估计，是一种非常简单实用的学习算法。这种方法可以广泛地应用于处理缺损数据，截尾数据，带有噪声等所谓的不完全数据(incomplete data)。</p>
                 <p>最大期望算法经过两个步骤交替进行计算：</p>
                 <ul>
@@ -351,15 +351,15 @@
                   <li>计算每个数据点对于k个高斯分布的似然，选择似然最大的一类作为数据的最终分类。</li>
                 </ul>
                 <p>其他的混合模型，例如朴素贝叶斯混合模型也是可以使用EM算法推出使用的，这一算法虽然在GMM中作为参数使用，但是其仍然可以单独发挥作用。我觉得EM算法就是相互迭代（毕竟其由E和M两部分组成嘛），求出一个稳定值，而这种相互迭代的方法用的范围挺广的，例如混合模型，K-means等都需要使用。</p>
-                <h3 id="与k-means的区别"><a class="markdownIt-Anchor" href="#与k-means的区别"></a> 与K-means的区别</h3>
+                <h3 id="与K-means的区别">与K-means的区别</h3>
                 <p>在上文我也已经提到了EM算法可以用在K-means等其他需要迭代的方法上的事实，其实，我觉得GMM 和 K-means 很像，只不过后者要简单，而且相对来说实现并不是很高效。不过 GMM 是学习出一些概率密度函数来（所以 GMM 除了用在 clustering 上之外，还经常被用于 density estimation ），简单地说，K-means 的结果是每个数据点被 assign 到其中某一个 cluster 了，而 GMM 则给出这些数据点被 assign 到每个 cluster 的概率，又称作 soft assignment。</p>
-                <h2 id="实验环境"><a class="markdownIt-Anchor" href="#实验环境"></a> 实验环境</h2>
-                <p>Spyder 作为Python开发的集成开发环境；<br />
-                  编程语言：Python 3.5；<br />
+                <h2 id="实验环境">实验环境</h2>
+                <p>Spyder 作为Python开发的集成开发环境；
+                  编程语言：Python 3.5；
                   操作系统：macOS Sierra。</p>
-                <h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+                <h2 id="小结">小结</h2>
                 <p>GMM算法作为EM算法族的一个例子，它指定了各个参与杂合的分布都是高斯分布，即分布参数表现为均值Mu和方差Sigma。通过EM算法作为计算使用的框架，迭代地算出各个高斯分布的参数。</p>
-                <h3 id="gmm与k-means的思考"><a class="markdownIt-Anchor" href="#gmm与k-means的思考"></a> GMM与K-means的思考</h3>
+                <h3 id="GMM与K-means的思考">GMM与K-means的思考</h3>
                 <p>提到GMM不得不提K-means，总结了网上的资料以及老师上课的课件，我将两者的区别与联系陈述如下：</p>
                 <ul>
                   <li>两者的联系:</li>
@@ -369,7 +369,7 @@
                   <li>两者的区别:</li>
                 </ul>
                 <p>首先，两者需要计算的参数不同：K-means是簇心位置；GMM是各个高斯分布的参数；其次，两者计算目标参数的方法不同：K-means是计算当前簇中所有元素的位置的均值；GMM是基于概率的算法，是通过计算似然函数的最大值实现分布参数的求解的。</p>
-                <h3 id="关于gmm引发的过拟合的思考"><a class="markdownIt-Anchor" href="#关于gmm引发的过拟合的思考"></a> 关于GMM引发的过拟合的思考</h3>
+                <h3 id="关于GMM引发的过拟合的思考">关于GMM引发的过拟合的思考</h3>
                 <p>首先我想提到这样的一个“人辨认其他生物（例如鱼）”的例子。当我们被告知水里游的那个生物是鱼之后，我们会使用“在同样的地方生活的是同一种东西”这类似的假设，归纳出“在水里游的都是鱼”这样一个结论。当然这个过程是完全“本能”的，如果不仔细去想，我们也不会了解自己是怎样“认识鱼”的。另一个值得注意的地方是这样的假设并不总是完全正确的，甚至可以说总是会有这样那样的缺陷的，因为我们有可能会把虾、龟、甚至是潜水员当做鱼。也许你觉得可以通过修改前提假设来解决这个问题，例如，基于“生活在同样的地方并且穿着同样衣服的是同一种东西”这个假设，你得出结论：在水里有并且身上长有鳞片的是鱼。可是这样还是有问题，因为有些没有长鳞片的鱼现在又被你排除在外了。</p>
                 <p>机器在识别方面面临着和人一样的问题，在机器学习中，一个学习算法也会有一个前提假设，这里被称作“归纳偏执”。例如线性回归，目的是要找一个函数尽可能好地拟合给定的数据点，它的归纳偏执就是“满足要求的函数必须是线性函数”。一个没有归纳偏执的学习算法从某种意义上来说毫无用处，就像一个完全没有归纳能力的人一样，在第一次看到鱼的时候有人告诉他那是鱼，下次看到另一条鱼了，他并不知道那也是鱼，因为两条鱼总有一些地方不一样的，或者就算是同一条鱼，在河里不同的地方看到，或者只是看到的时间不一样，也会被他认为是不同的，因为他无法归纳，无法提取主要矛盾、忽略次要因素，只好要求所有的条件都完全一样──然而哲学家已经告诉过我们了：世界上不会有任何样东西是完全一样的，所以这个人即使是有无比强悍的记忆力，也绝学不到任何一点知识。</p>
                 <p>于是有了上面的铺垫，我们就可以引出论题——“过拟合 ”，就像前面的回归的问题，如果去掉“线性函数”这个归纳偏执，因为对于 N 个点，我们总是可以构造一个 N-1 次多项式函数，让它完美地穿过所有的这 N 个点，或者如果我用任何大于 N-1 次的多项式函数的话，我们甚至可以构造出无穷多个满足条件的函数出来。如果假定特定领域里的问题所给定的数据个数总是有个上限的话，我可以取一个足够大的 N ，从而得到一个（或者无穷多个）“超级函数”，能够拟合这个领域内所有的问题。</p>
@@ -487,24 +487,24 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text"> 实验要求</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">实验要求</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text"> 实验目标</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> 实验过程</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">实验目标</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">实验过程</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> 算法原理</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">算法原理</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#gmm%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text"> GMM算法</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#em%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text"> EM算法</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Ek-means%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.3.</span> <span class="nav-text"> 与K-means的区别</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#GMM%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">GMM算法</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#EM%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">EM算法</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8EK-means%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.3.</span> <span class="nav-text">与K-means的区别</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text"> 实验环境</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text"> 小结</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">实验环境</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#gmm%E4%B8%8Ek-means%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">4.1.</span> <span class="nav-text"> GMM与K-means的思考</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Egmm%E5%BC%95%E5%8F%91%E7%9A%84%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">4.2.</span> <span class="nav-text"> 关于GMM引发的过拟合的思考</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#GMM%E4%B8%8EK-means%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">4.1.</span> <span class="nav-text">GMM与K-means的思考</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EGMM%E5%BC%95%E5%8F%91%E7%9A%84%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">4.2.</span> <span class="nav-text">关于GMM引发的过拟合的思考</span></a></li>
                   </ol>
                 </li>
               </ol>

@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。   Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统">
+  <meta name="description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Linux中的Namespace">
   <meta property="og:url" content="https://blog.nooa.tech/articles/e81ea9b1/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。   Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统">
+  <meta property="og:description" content="当前，linux实现了6种不同类型的namespaces。每种namespace，都用来包含一类特定的系统资源，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是容器，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。  Mount namespaces mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统m">
   <meta property="og:locale">
   <meta property="article:published_time" content="2016-06-10T03:44:56.000Z">
   <meta property="article:modified_time" content="2020-12-08T10:24:18.000Z">
@@ -296,22 +296,22 @@
                 <blockquote>
                   <p>当前，linux实现了6种不同类型的namespaces。每种namespace，都用来<strong>包含一类特定的系统资源</strong>，这样从命名空间内部的进程来看，它们就拥有了隔离的全局资源。namespaces的一个目标就是<strong>容器</strong>，一种轻量级的虚拟化工具，让一组进程认为它们是系统上仅有的一组进程。</p>
                 </blockquote>
-                <h1 id="mount-namespaces"><a class="markdownIt-Anchor" href="#mount-namespaces"></a> Mount namespaces</h1>
-                <p>mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统mount点。在不同mount namespaces中的进程，对于文件系统有不同的视图。在使用了mount namespaces之后，mount和umount系统调用不再对所有进程可见的，全局的mount points进行操作，而是只会影响和发起调用的进程相关的mount namespace。<br />
-                  利用主从关系，还可以让一个mount namespace自动拥有另一个mount namespace的内容，例如一个硬盘设备挂在到某个namespace中后会自动显示在另一个namespace中。<br />
+                <h1>Mount namespaces</h1>
+                <p>mount namespace(CLONE_NEWNS)隔离一组进程所能看到文件系统mount点。在不同mount namespaces中的进程，对于文件系统有不同的视图。在使用了mount namespaces之后，mount和umount系统调用不再对所有进程可见的，全局的mount points进行操作，而是只会影响和发起调用的进程相关的mount namespace。<br>
+                  利用主从关系，还可以让一个mount namespace自动拥有另一个mount namespace的内容，例如一个硬盘设备挂在到某个namespace中后会自动显示在另一个namespace中。<br>
                   mount namespace是linux上实现的第一种namespace。</p>
-                <h1 id="uts-namespaces"><a class="markdownIt-Anchor" href="#uts-namespaces"></a> UTS namespaces</h1>
+                <h1>UTS namespaces</h1>
                 <p>UTS namespace(CLONE_NEWUTS)隔离两种系统标识符：nodename和domainname。在容器的上下文环境中，UTS namespaces特性允许每个容器拥有自身的hostname和NIS domain name。这允许了根据容器的name来定义它们的行为，uts指的是UNIX Time-sharing System，它是传递给uname系统调用的参数。</p>
-                <h1 id="ipc-namespaces"><a class="markdownIt-Anchor" href="#ipc-namespaces"></a> IPC namespaces</h1>
+                <h1>IPC namespaces</h1>
                 <p>IPC namespaces(CLONE_NEWIPC)隔离inter-process communication resources，也即跨进程的通讯资源，System V IPC，以及POSIX message queues。这些IPC机制的共性时，IPC objects是由特殊机制来进行识别的，而不是文件系统的路径。在每个namespaces当中，又有其自身所拥有的System V IPC标识符和POSIX message queue filesystem。</p>
-                <h1 id="pid-namespaces"><a class="markdownIt-Anchor" href="#pid-namespaces"></a> PID namespaces</h1>
+                <h1>PID namespaces</h1>
                 <p>PID namespaces(CLONE_NEWPID)隔离进程ID空间，也就是说，不同PID命名空间的进程，可以拥有相同的PID。这样做的一个好处是，容器能够在不同的hosts之间转移，但是又能够保持其中的进程ID不变。而且PID namespace能够允许每个容器拥有自己的init(pid 1)，对初始化、孤儿进程等事件进行处理。</p>
                 <p>从一个PID namespace的角度来看，一个进程拥有两个PID：namespace内部的PID，以及namespace外部的，host上的PID。PID namespaces也是可以层叠的，从进程所归属的PID命名空间开始，一直到根PID namespace，它都有一个PID；一个进程只能看到处于它所在PID namespace当中的，以及更下层的其他进程。</p>
-                <h2 id="userspace-api"><a class="markdownIt-Anchor" href="#userspace-api"></a> Userspace API</h2>
-                <p>为了创建一个新的namespace，进程需要调用clone系统调用，并且使用CLONE_NEWPID标识位。<br />
-                  在一个新的namespace当中，第一个task的PID是1，它也就是这个namespace的init，以及child_reaper。但这个init是可以死亡的，此时这个namespace都会终止。<br />
+                <h2 id="Userspace-API">Userspace API</h2>
+                <p>为了创建一个新的namespace，进程需要调用clone系统调用，并且使用CLONE_NEWPID标识位。<br>
+                  在一个新的namespace当中，第一个task的PID是1，它也就是这个namespace的init，以及child_reaper。但这个init是可以死亡的，此时这个namespace都会终止。<br>
                   在把tasks分割出来之后，还必须对proc进行处理，让它只显示当前task可见的PID。为了实现这个目的，procfs应该在每个namespace被使用一次。</p>
-                <h2 id="internal-api"><a class="markdownIt-Anchor" href="#internal-api"></a> Internal API</h2>
+                <h2 id="Internal-API">Internal API</h2>
                 <p>一个task所拥有的所有PID都在struct pid中被描述了。这个数据结构如下：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -325,23 +325,23 @@
                     </tr>
                   </table>
                 </figure>
-                <p>这里，struct upid表示PID值，它储存在hash当中，并且拥有PID值。为了转换得到这个pid值，可以使用task_pid_nr,pid_nr_ns(),find_task_by_vpid等函数。<br />
-                  这些函数的后缀有一些规律：<br />
-                  __nr()：对“全局”的PID进行操作，这里全局指的是在整个系统中也是独一无二的。pid_nr会告诉你struct pid的global PID，这只在PID值不会离开kernel时使用。<br />
-                  __vnr()：对“virtual”PID进行操作，也就是进程可见的ID，例如task_pid_vnr会告诉你一个task的PID。<br />
+                <p>这里，struct upid表示PID值，它储存在hash当中，并且拥有PID值。为了转换得到这个pid值，可以使用task_pid_nr,pid_nr_ns(),find_task_by_vpid等函数。<br>
+                  这些函数的后缀有一些规律：<br>
+                  __nr()：对“全局”的PID进行操作，这里全局指的是在整个系统中也是独一无二的。pid_nr会告诉你struct pid的global PID，这只在PID值不会离开kernel时使用。<br>
+                  __vnr()：对“virtual”PID进行操作，也就是进程可见的ID，例如task_pid_vnr会告诉你一个task的PID。<br>
                   _nr_ns()：对指定namespace中的PID进行处理，如果希望得到某个task的PID，可以通过task_pid_nr_ns来获得pid number，在用find_task_by_pid_ns来找到这个task。这个方法在系统调用中很常见，特别是当PID来自用户空间时。在这种情况下，task可能是在另一个namespace中的。</p>
-                <h1 id="network-namespaces"><a class="markdownIt-Anchor" href="#network-namespaces"></a> network namespaces</h1>
+                <h1>network namespaces</h1>
                 <p>network namespaces(CLONE_NEWNET)将系统中与网络相关的资源隔离。也就是说，每个namespace当中拥有自身的网络设备、IP地址、IP路由表，端口号等。</p>
                 <p>network namespaces让containers能够被应用到网络的层面上。每个container能够拥有自身的网络设备、并且其应用能够被绑定到namespace中特有的端口号上，对于特定的container，还可以设置特殊的路由规则。例如，可以在同一个host系统上，运行多个用container包含的servers，并且它们都绑定了80端口。</p>
-                <h1 id="user-namespaces"><a class="markdownIt-Anchor" href="#user-namespaces"></a> User namespaces</h1>
+                <h1>User namespaces</h1>
                 <p>user namespaces(CLONE_NEWUSER)将用户和group ID空间隔离。这也就是说，在一个user namespace内外，同一个进程点user和group id可以是不同的。例如，一个进程可以在一个user namespace外部，拥有一个普通的、无特权的user ID；而在在namespace中拥有UID 0。也就是说在namespace当中拥有root权限，但在namespace外部则不行。</p>
                 <p>从Linux 3.8开始，无特权的进程能够创建它们自身的user namespaces，这为应用提供了新的可能：由于一个进程能够在其user namespaces中拥有root权限，那么它们就能够去使用那些本身只能由root用户使用的功能。但这确实会带来一些安全问题。</p>
-                <h1 id="c中的namespace"><a class="markdownIt-Anchor" href="#c中的namespace"></a> C++中的namespace</h1>
-                <p>编程语言中的namespace，虽然拥有相同的名称，其含义是完全不同的。但主要的思想是一致的，这里的命名空间也就是将空间内定义的内容放在一个盒子里，而命名空间也就是这个区域，using namespace 空间名，就将区域引入到了操作范围之内。<br />
+                <h1>C++中的namespace</h1>
+                <p>编程语言中的namespace，虽然拥有相同的名称，其含义是完全不同的。但主要的思想是一致的，这里的命名空间也就是将空间内定义的内容放在一个盒子里，而命名空间也就是这个区域，using namespace 空间名，就将区域引入到了操作范围之内。<br>
                   这里，namespace是一种描述逻辑分组的机制，比如可以将某些属于同一个任务的类声明在同一个命名空间当中。标准C++库当中的所有内容，都被定义在命名空间std当中了。</p>
-                <h1 id="namespace-api"><a class="markdownIt-Anchor" href="#namespace-api"></a> Namespace API</h1>
+                <h1>Namespace API</h1>
                 <p>namespace的API包含3个系统调用——clone，unshare，setns，以及一系列的/proc文件。为了指定操作的namespace类型，这3个系统调用都使用了一个CLONE_NEW常量(CLONE_NEWIPC,CLONE_NEWNS,etc)。</p>
-                <h2 id="clone"><a class="markdownIt-Anchor" href="#clone"></a> Clone</h2>
+                <h2 id="Clone">Clone</h2>
                 <p>通过clone，可以创建一个namespace，它是一个创建新的process的系统调用。其函数原型为：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -357,7 +357,7 @@
                 </figure>
                 <p>clone可以看作fork()的通用版本，其功能能够通过flags参数CLONE_*来控制，这些参数包含了parent和child是否共享虚拟内存、打开文件描述符等。而如果参数中CLONE_NEW位被指定了，那么就会创建一个新的，对应类型的namespace，而新的进程则成为这个namespace中的一个成员。</p>
                 <p>和大多数其他的namespaces一样，创建一个UTS namespace是需要特权的，例如CAP_SYS_ADMIN，这对于避免需要设置user ID的应用来说是有必要的：如果能够使用任意的hostname，那么一个非特权用户就能够破坏lock file的作用，或者能够改变应用的行为。</p>
-                <h2 id="proc里的文件"><a class="markdownIt-Anchor" href="#proc里的文件"></a> /proc/里的文件</h2>
+                <h2 id="proc-里的文件">/proc/里的文件</h2>
                 <p>对于每一个进程来说，都有一个/proc/PID/ns目录，这其中每一种类型的namespace，都对应了一个文件。从linux 3.9开始，这些文件都被符号链接，作为处理这个进程相关namespace的handler。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -372,9 +372,9 @@
                   </table>
                 </figure>
                 <p>这些符号链接的作用之一，就是用来检查两个进程是否处于同一个命名空间当中。kernel保证如果两个进程在同一个namespace当中，那么/proc/PID/ns中的inode number就会是一致的。inode numbers能够通过stat()系统调用来得到。</p>
-                <p>但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。 <br />
+                <p>但是，kernel还是会构造/proc/PID/ns的符号链接，并使得它指向字符串，这个字符串包含了namespace的类型和inode number。
                   如果这个符号链接被打开，那么即使namespace中的进程全部终止了，namespace也不会消被清除。</p>
-                <h2 id="setns"><a class="markdownIt-Anchor" href="#setns"></a> setns</h2>
+                <h2 id="setns">setns</h2>
                 <p>setns可以被用来加入一个已存在的namespace。保持一个没有任何进程的namespace，是因为随时可以加入新的进程到这个namespace当中去，这也是setns系统调用的作用。其函数原型为：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -388,11 +388,11 @@
                     </tr>
                   </table>
                 </figure>
-                <p>更准确的说，setns解除一个进程和之前对应nstype的namespace的联系，并且将其关联到新的，对应类型的namespace中去。这里，fd指定了对应的namespace，它是/proc/PID/ns目录下的一个文件描述符。而nstype则会用来检查fd指向的namespace的类型。<br />
-                  利用setns和execve，能够构造一个很有效的工具：一个加入指定namespace然后再namespace中执行一条命令的程序。<br />
+                <p>更准确的说，setns解除一个进程和之前对应nstype的namespace的联系，并且将其关联到新的，对应类型的namespace中去。这里，fd指定了对应的namespace，它是/proc/PID/ns目录下的一个文件描述符。而nstype则会用来检查fd指向的namespace的类型。<br>
+                  利用setns和execve，能够构造一个很有效的工具：一个加入指定namespace然后再namespace中执行一条命令的程序。<br>
                   从linux 3.8开始，setns能够加入任何类型的namespace。</p>
-                <h2 id="unshare"><a class="markdownIt-Anchor" href="#unshare"></a> unshare</h2>
-                <p>unshare用来离开namespace。<br />
+                <h2 id="unshare">unshare</h2>
+                <p>unshare用来离开namespace。<br>
                   unshare的功能类似于clone，它创建一个新的namespaces，并且让调用者称为这个命名空间的一部分。它的主要目的，是在不创建新的进程或线程的前提下，完成namespace的分离工作。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -517,24 +517,24 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#mount-namespaces"><span class="nav-number">1.</span> <span class="nav-text"> Mount namespaces</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#uts-namespaces"><span class="nav-number">2.</span> <span class="nav-text"> UTS namespaces</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#ipc-namespaces"><span class="nav-number">3.</span> <span class="nav-text"> IPC namespaces</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#pid-namespaces"><span class="nav-number">4.</span> <span class="nav-text"> PID namespaces</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Mount namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">UTS namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">IPC namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">PID namespaces</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#userspace-api"><span class="nav-number">4.1.</span> <span class="nav-text"> Userspace API</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#internal-api"><span class="nav-number">4.2.</span> <span class="nav-text"> Internal API</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Userspace-API"><span class="nav-number">4.1.</span> <span class="nav-text">Userspace API</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Internal-API"><span class="nav-number">4.2.</span> <span class="nav-text">Internal API</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#network-namespaces"><span class="nav-number">5.</span> <span class="nav-text"> network namespaces</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#user-namespaces"><span class="nav-number">6.</span> <span class="nav-text"> User namespaces</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#c%E4%B8%AD%E7%9A%84namespace"><span class="nav-number">7.</span> <span class="nav-text"> C++中的namespace</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#namespace-api"><span class="nav-number">8.</span> <span class="nav-text"> Namespace API</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">network namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">User namespaces</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">C++中的namespace</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">Namespace API</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#clone"><span class="nav-number">8.1.</span> <span class="nav-text"> Clone</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#proc%E9%87%8C%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text"> &#x2F;proc&#x2F;里的文件</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#setns"><span class="nav-number">8.3.</span> <span class="nav-text"> setns</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#unshare"><span class="nav-number">8.4.</span> <span class="nav-text"> unshare</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Clone"><span class="nav-number">8.1.</span> <span class="nav-text">Clone</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#proc-%E9%87%8C%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text">&#x2F;proc&#x2F;里的文件</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#setns"><span class="nav-number">8.3.</span> <span class="nav-text">setns</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#unshare"><span class="nav-number">8.4.</span> <span class="nav-text">unshare</span></a></li>
                   </ol>
                 </li>
               </ol>

@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。   异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理">
+  <meta name="description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。  异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Java异常与处理原则">
   <meta property="og:url" content="https://blog.nooa.tech/articles/1164dab2/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。   异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理">
+  <meta property="og:description" content="异常结构层次 在Java中，异常分为checked与unchecked，他们都在一个分类层次中，如下图。    其中，红色的异常是checked异常，意味着在一个方法中，他们throw后必须catch或者declare。  另一种颜色的为unchecked异常，他们的异常不需要被recover。  异常处理 在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/exception/ehd.jpeg">
   <meta property="article:published_time" content="2018-02-09T14:11:15.000Z">
@@ -295,14 +295,14 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="异常结构层次"><a class="markdownIt-Anchor" href="#异常结构层次"></a> 异常结构层次</h1>
+                <h1>异常结构层次</h1>
                 <p>在Java中，异常分为<code>checked</code>与<code>unchecked</code>，他们都在一个分类层次中，如下图。</p>
-                <p><img src="/images/exception/ehd.jpeg" alt="DEH" /></p>
+                <p><img src="/images/exception/ehd.jpeg" alt="DEH"></p>
                 <p>其中，红色的异常是<code>checked</code>异常，意味着在一个方法中，他们<code>throw</code>后必须<code>catch</code>或者<code>declare</code>。</p>
                 <p>另一种颜色的为<code>unchecked</code>异常，他们的异常不需要被<code>recover</code>。</p>
-                <h1 id="异常处理"><a class="markdownIt-Anchor" href="#异常处理"></a> 异常处理</h1>
+                <h1>异常处理</h1>
                 <p>在Java中，调用某方法，就必须处理被调用方法抛出的异常，同时超类也可以用来捕获或者处理子类异常。</p>
-                <h2 id="调用方法必须处理被调用方法抛出的异常"><a class="markdownIt-Anchor" href="#调用方法必须处理被调用方法抛出的异常"></a> 调用方法必须处理被调用方法抛出的异常</h2>
+                <h2 id="调用方法必须处理被调用方法抛出的异常">调用方法必须处理被调用方法抛出的异常</h2>
                 <p>下面是一个处理异常的程序。我们可以测试一下，如果在一个方法中抛出一个异常，不仅是该方法，而且所有调用该方法的方法都必须声明或抛出异常。</p>
                 <figure class="highlight java">
                   <table>
@@ -316,7 +316,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="超类可以用来捕获或处理子类异常"><a class="markdownIt-Anchor" href="#超类可以用来捕获或处理子类异常"></a> 超类可以用来捕获或处理子类异常</h2>
+                <h2 id="超类可以用来捕获或处理子类异常">超类可以用来捕获或处理子类异常</h2>
                 <p>可以使用如下代码验证。</p>
                 <figure class="highlight java">
                   <table>
@@ -442,11 +442,11 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E7%BB%93%E6%9E%84%E5%B1%82%E6%AC%A1"><span class="nav-number">1.</span> <span class="nav-text"> 异常结构层次</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> 异常处理</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">异常结构层次</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%E5%BF%85%E9%A1%BB%E5%A4%84%E7%90%86%E8%A2%AB%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%E6%8A%9B%E5%87%BA%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">2.1.</span> <span class="nav-text"> 调用方法必须处理被调用方法抛出的异常</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%B1%BB%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E6%8D%95%E8%8E%B7%E6%88%96%E5%A4%84%E7%90%86%E5%AD%90%E7%B1%BB%E5%BC%82%E5%B8%B8"><span class="nav-number">2.2.</span> <span class="nav-text"> 超类可以用来捕获或处理子类异常</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%E5%BF%85%E9%A1%BB%E5%A4%84%E7%90%86%E8%A2%AB%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%E6%8A%9B%E5%87%BA%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">2.1.</span> <span class="nav-text">调用方法必须处理被调用方法抛出的异常</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%B1%BB%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E6%8D%95%E8%8E%B7%E6%88%96%E5%A4%84%E7%90%86%E5%AD%90%E7%B1%BB%E5%BC%82%E5%B8%B8"><span class="nav-number">2.2.</span> <span class="nav-text">超类可以用来捕获或处理子类异常</span></a></li>
                   </ol>
                 </li>
               </ol>

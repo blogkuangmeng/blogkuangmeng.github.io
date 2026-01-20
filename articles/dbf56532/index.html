@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="求矩阵行数&#x2F;列数&#x2F;维数的函数 ndims(A) 返回A的维数 size(A) 返回A各个维的最大元素个数 length(A) 返回max(size(A)) [m,n]&#x3D;size(A) 如果A是二维数组，返回行数和列数 nnz(A) 返回A中非0元素的个数   取整函数 fix(x) 截尾取整  floor(x) 不超过x 的最大整数(高斯取整)  ceil(x) 大于x 的最小整数   生成随机数">
+  <meta name="description" content="求矩阵行数&#x2F;列数&#x2F;维数的函数 ndims(A) 返回A的维数 size(A) 返回A各个维的最大元素个数 length(A) 返回max(size(A)) [m,n]&#x3D;size(A) 如果A是二维数组，返回行数和列数 nnz(A) 返回A中非0元素的个数  取整函数 fix(x) 截尾取整  floor(x) 不超过x 的最大整数(高斯取整)  ceil(x) 大于x 的最小整数  生成随机数函数">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Matlab基本函数">
   <meta property="og:url" content="https://blog.nooa.tech/articles/dbf56532/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="求矩阵行数&#x2F;列数&#x2F;维数的函数 ndims(A) 返回A的维数 size(A) 返回A各个维的最大元素个数 length(A) 返回max(size(A)) [m,n]&#x3D;size(A) 如果A是二维数组，返回行数和列数 nnz(A) 返回A中非0元素的个数   取整函数 fix(x) 截尾取整  floor(x) 不超过x 的最大整数(高斯取整)  ceil(x) 大于x 的最小整数   生成随机数">
+  <meta property="og:description" content="求矩阵行数&#x2F;列数&#x2F;维数的函数 ndims(A) 返回A的维数 size(A) 返回A各个维的最大元素个数 length(A) 返回max(size(A)) [m,n]&#x3D;size(A) 如果A是二维数组，返回行数和列数 nnz(A) 返回A中非0元素的个数  取整函数 fix(x) 截尾取整  floor(x) 不超过x 的最大整数(高斯取整)  ceil(x) 大于x 的最小整数  生成随机数函数">
   <meta property="og:locale">
   <meta property="article:published_time" content="2016-06-07T11:02:10.000Z">
   <meta property="article:modified_time" content="2020-12-02T01:55:05.000Z">
@@ -292,132 +292,132 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="求矩阵行数列数维数的函数"><a class="markdownIt-Anchor" href="#求矩阵行数列数维数的函数"></a> 求矩阵行数/列数/维数的函数</h1>
-                <p>ndims(A) 返回A的维数<br />
-                   size(A) 返回A各个维的最大元素个数<br />
-                   length(A) 返回max(size(A))<br />
-                   [m,n]=size(A) 如果A是二维数组，返回行数和列数<br />
+                <h1>求矩阵行数/列数/维数的函数</h1>
+                <p>ndims(A) 返回A的维数
+                   size(A) 返回A各个维的最大元素个数
+                   length(A) 返回max(size(A))
+                   [m,n]=size(A) 如果A是二维数组，返回行数和列数
                    nnz(A) 返回A中非0元素的个数</p>
-                <h1 id="取整函数"><a class="markdownIt-Anchor" href="#取整函数"></a> 取整函数</h1>
+                <h1>取整函数</h1>
                 <p>fix(x) 截尾取整</p>
                 <p>floor(x) 不超过x 的最大整数(高斯取整)</p>
                 <p>ceil(x) 大于x 的最小整数</p>
-                <h1 id="生成随机数函数"><a class="markdownIt-Anchor" href="#生成随机数函数"></a> 生成随机数函数</h1>
+                <h1>生成随机数函数</h1>
                 <p>rand(n):生成0到1之间的n阶随机数方阵</p>
                 <p>rand(m,n):生成0到1之间的m×n的随机数矩阵</p>
-                <p>## 其他随机数生成函数<br />
-                   betarnd 贝塔分布的随机数生成器<br />
-                   binornd 二项分布的随机数生成器<br />
-                   chi2rnd 卡方分布的随机数生成器<br />
-                   exprnd 指数分布的随机数生成器<br />
-                   frndf分布的随机数生成器<br />
-                   gamrnd 伽玛分布的随机数生成器<br />
-                   geornd 几何分布的随机数生成器<br />
-                   hygernd 超几何分布的随机数生成器<br />
-                   lognrnd 对数正态分布的随机数生成器<br />
-                   nbinrnd 负二项分布的随机数生成器<br />
-                   ncfrnd 非中心f分布的随机数生成器<br />
-                   nctrnd 非中心t分布的随机数生成器<br />
-                   ncx2rnd 非中心卡方分布的随机数生成器<br />
-                   normrnd 正态（高斯）分布的随机数生成器<br />
-                   poissrnd 泊松分布的随机数生成器<br />
-                   raylrnd 瑞利分布的随机数生成器<br />
-                   trnd 学生氏t分布的随机数生成器<br />
-                   unidrnd 离散均匀分布的随机数生成器<br />
-                   unifrnd 连续均匀分布的随机数生成器<br />
+                <p>## 其他随机数生成函数
+                   betarnd 贝塔分布的随机数生成器
+                   binornd 二项分布的随机数生成器
+                   chi2rnd 卡方分布的随机数生成器
+                   exprnd 指数分布的随机数生成器
+                   frndf分布的随机数生成器
+                   gamrnd 伽玛分布的随机数生成器
+                   geornd 几何分布的随机数生成器
+                   hygernd 超几何分布的随机数生成器
+                   lognrnd 对数正态分布的随机数生成器
+                   nbinrnd 负二项分布的随机数生成器
+                   ncfrnd 非中心f分布的随机数生成器
+                   nctrnd 非中心t分布的随机数生成器
+                   ncx2rnd 非中心卡方分布的随机数生成器
+                   normrnd 正态（高斯）分布的随机数生成器
+                   poissrnd 泊松分布的随机数生成器
+                   raylrnd 瑞利分布的随机数生成器
+                   trnd 学生氏t分布的随机数生成器
+                   unidrnd 离散均匀分布的随机数生成器
+                   unifrnd 连续均匀分布的随机数生成器
                    weibrnd 威布尔分布的随机数生成器</p>
-                <h1 id="基本数学函数"><a class="markdownIt-Anchor" href="#基本数学函数"></a> 基本数学函数</h1>
-                <p>abs(x)：纯量的绝对值或向量的长度<br />
-                   angle(z)：复数z的相角(Phase angle)<br />
-                   sqrt(x)：开平方<br />
-                   real(z)：复数z的实部<br />
-                   imag(z)：复数z的虚部<br />
+                <h1>基本数学函数</h1>
+                <p>abs(x)：纯量的绝对值或向量的长度
+                   angle(z)：复数z的相角(Phase angle)
+                   sqrt(x)：开平方
+                   real(z)：复数z的实部
+                   imag(z)：复数z的虚部
                    conj(z)：复数z的共轭复数</p>
-                <p>round(x)：四舍五入至最近整数<br />
-                   fix(x)：无论正负，舍去小数至最近整数<br />
-                   floor(x)：地板函数，即舍去正小数至最近整数<br />
-                   ceil(x)：天花板函数，即加入正小数至最近整数<br />
-                   rat(x)：将实数x化为分数表示<br />
-                   rats(x)：将实数x化为多项分数展开<br />
-                   sign(x)：符号函数<br />
+                <p>round(x)：四舍五入至最近整数
+                   fix(x)：无论正负，舍去小数至最近整数
+                   floor(x)：地板函数，即舍去正小数至最近整数
+                   ceil(x)：天花板函数，即加入正小数至最近整数
+                   rat(x)：将实数x化为分数表示
+                   rats(x)：将实数x化为多项分数展开
+                   sign(x)：符号函数
                     - 当x&lt;0时，sign(x)=-1</p>
                 <ul>
                   <li>当x=0时，sign(x)=0</li>
-                  <li>当x&gt;0时，sign(x)=1<br />
-                     rem(x,y)：求x除以y的馀数<br />
-                     gcd(x,y)：整数x和y的最大公因数<br />
-                     lcm(x,y)：整数x和y的最小公倍数<br />
-                     exp(x)：自然指数<br />
-                     pow2(x)：2的指数<br />
-                     log(x)：以e为底的对数，即自然对数或<br />
-                     log2(x)：以2为底的对数<br />
+                  <li>当x&gt;0时，sign(x)=1
+                     rem(x,y)：求x除以y的馀数
+                     gcd(x,y)：整数x和y的最大公因数
+                     lcm(x,y)：整数x和y的最小公倍数
+                     exp(x)：自然指数
+                     pow2(x)：2的指数
+                     log(x)：以e为底的对数，即自然对数或
+                     log2(x)：以2为底的对数
                      log10(x)：以10为底的对数</li>
                 </ul>
-                <p># 常用的三角函数<br />
-                   sin(x)：正弦函数<br />
-                   cos(x)：馀弦函数  <br />
-                  tan(x)：正切函数  <br />
-                  asin(x)：反正弦函数  <br />
-                  acos(x)：反馀弦函数  <br />
-                  atan(x)：反正切函数  <br />
-                  atan2(x,y)：四象限的反正切函数  <br />
-                  sinh(x)：超越正弦函数  <br />
-                  cosh(x)：超越馀弦函数  <br />
-                  tanh(x)：超越正切函数  <br />
-                  asinh(x)：反超越正弦函数  <br />
-                  acosh(x)：反超越馀弦函数  <br />
-                  atanh(x)：反超越正切函数<br />
-                   # 向量的常用函数<br />
-                   min(x): 向量x的元素的最小值  <br />
-                  max(x): 向量x的元素的最大值  <br />
-                  mean(x): 向量x的元素的平均值  <br />
-                  median(x): 向量x的元素的中位数  <br />
-                  std(x): 向量x的元素的标准差  <br />
-                  diff(x): 向量x的相邻元素的差  <br />
-                  sort(x): 对向量x的元素进行排序（Sorting）  <br />
-                  length(x): 向量x的元素个数  <br />
-                  norm(x): 向量x的欧氏（Euclidean）长度  <br />
-                  sum(x): 向量x的元素总和  <br />
-                  prod(x): 向量x的元素总乘积  <br />
-                  cumsum(x): 向量x的累计元素总和  <br />
-                  cumprod(x): 向量x的累计元素总乘积  <br />
-                  dot(x, y): 向量x和y的内积  <br />
+                <p># 常用的三角函数
+                   sin(x)：正弦函数
+                   cos(x)：馀弦函数  
+                  tan(x)：正切函数  
+                  asin(x)：反正弦函数  
+                  acos(x)：反馀弦函数  
+                  atan(x)：反正切函数  
+                  atan2(x,y)：四象限的反正切函数  
+                  sinh(x)：超越正弦函数  
+                  cosh(x)：超越馀弦函数  
+                  tanh(x)：超越正切函数  
+                  asinh(x)：反超越正弦函数  
+                  acosh(x)：反超越馀弦函数  
+                  atanh(x)：反超越正切函数
+                   # 向量的常用函数
+                   min(x): 向量x的元素的最小值  
+                  max(x): 向量x的元素的最大值  
+                  mean(x): 向量x的元素的平均值  
+                  median(x): 向量x的元素的中位数  
+                  std(x): 向量x的元素的标准差  
+                  diff(x): 向量x的相邻元素的差  
+                  sort(x): 对向量x的元素进行排序（Sorting）  
+                  length(x): 向量x的元素个数  
+                  norm(x): 向量x的欧氏（Euclidean）长度  
+                  sum(x): 向量x的元素总和  
+                  prod(x): 向量x的元素总乘积  
+                  cumsum(x): 向量x的累计元素总和  
+                  cumprod(x): 向量x的累计元素总乘积  
+                  dot(x, y): 向量x和y的内积  
                   cross(x, y): 向量x和y的外积</p>
-                <h1 id="永久常数"><a class="markdownIt-Anchor" href="#永久常数"></a> 永久常数</h1>
-                <p>i或j：基本虚数单位（即）  <br />
-                  eps：系统的浮点（Floating-point）精确度  <br />
-                  inf：无限大， 例如1/0  <br />
-                  nan或NaN：非数值（Not a number），例如0/0  <br />
-                  pi：圆周率 <br />
-                  realmax：系统所能表示的最大数值  <br />
-                  realmin：系统所能表示的最小数值  <br />
-                  nargin: 函数的输入引数个数  <br />
+                <h1>永久常数</h1>
+                <p>i或j：基本虚数单位（即）  
+                  eps：系统的浮点（Floating-point）精确度  
+                  inf：无限大， 例如1/0  
+                  nan或NaN：非数值（Not a number），例如0/0  
+                  pi：圆周率 
+                  realmax：系统所能表示的最大数值  
+                  realmin：系统所能表示的最小数值  
+                  nargin: 函数的输入引数个数  
                   nargout: 函数的输出引数个数</p>
-                <h1 id="基本绘图函数"><a class="markdownIt-Anchor" href="#基本绘图函数"></a> 基本绘图函数</h1>
-                <p>plot: x轴和y轴均为线性刻度（Linear scale）  <br />
-                  loglog: x轴和y轴均为对数刻度（Logarithmic scale）  <br />
-                  semilogx: x轴为对数刻度，y轴为线性刻度  <br />
+                <h1>基本绘图函数</h1>
+                <p>plot: x轴和y轴均为线性刻度（Linear scale）  
+                  loglog: x轴和y轴均为对数刻度（Logarithmic scale）  
+                  semilogx: x轴为对数刻度，y轴为线性刻度  
                   semilogy: x轴为线性刻度，y轴为对数刻度</p>
-                <h2 id="plot绘图函数的参数"><a class="markdownIt-Anchor" href="#plot绘图函数的参数"></a> plot绘图函数的参数</h2>
-                <pre class="highlight"><code class="stylus"></code></pre>
-                <h2 id="注解"><a class="markdownIt-Anchor" href="#注解"></a> 注解</h2>
+                <h2 id="plot绘图函数的参数">plot绘图函数的参数</h2>
+                <pre><code class="language-stylus"></code></pre>
+                <h2 id="注解">注解</h2>
                 <p>xlabel(‘Input Value’); % x轴注解</p>
-                <p>ylabel(‘Function Value’); % y轴注解  <br />
-                  title(‘Two Trigonometric Functions’); % 图形标题  <br />
-                  legend(‘y = sin(x)’,‘y = cos(x)’); % 图形注解  <br />
-                  grid on; % 显示格线<br />
-                   # 二维绘图函数 <br />
-                  bar 长条图  <br />
-                  errorbar 图形加上误差范围  <br />
-                  fplot 较精确的函数图形  <br />
-                  polar 极座标图  <br />
-                  hist 累计图  <br />
-                  rose 极座标累计图  <br />
-                  stairs 阶梯图  <br />
-                  stem 针状图  <br />
-                  fill 实心图  <br />
-                  feather 羽毛图  <br />
-                  compass 罗盘图  <br />
+                <p>ylabel(‘Function Value’); % y轴注解  
+                  title(‘Two Trigonometric Functions’); % 图形标题  
+                  legend(‘y = sin(x)’,‘y = cos(x)’); % 图形注解  
+                  grid on; % 显示格线
+                   # 二维绘图函数 
+                  bar 长条图  
+                  errorbar 图形加上误差范围  
+                  fplot 较精确的函数图形  
+                  polar 极座标图  
+                  hist 累计图  
+                  rose 极座标累计图  
+                  stairs 阶梯图  
+                  stem 针状图  
+                  fill 实心图  
+                  feather 羽毛图  
+                  compass 罗盘图  
                   quiver 向量场图</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/dbf56532/">https://blog.nooa.tech/articles/dbf56532/</a> . Welcome to reproduce it!</p>
 
@@ -529,15 +529,15 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E7%9F%A9%E9%98%B5%E8%A1%8C%E6%95%B0%E5%88%97%E6%95%B0%E7%BB%B4%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text"> 求矩阵行数&#x2F;列数&#x2F;维数的函数</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text"> 取整函数</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text"> 生成随机数函数</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text"> 基本数学函数</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E5%B8%B8%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text"> 永久常数</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text"> 基本绘图函数</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">求矩阵行数&#x2F;列数&#x2F;维数的函数</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">取整函数</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">生成随机数函数</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">基本数学函数</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">永久常数</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">基本绘图函数</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#plot%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">6.1.</span> <span class="nav-text"> plot绘图函数的参数</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">6.2.</span> <span class="nav-text"> 注解</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#plot%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">6.1.</span> <span class="nav-text">plot绘图函数的参数</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">6.2.</span> <span class="nav-text">注解</span></a></li>
                   </ol>
                 </li>
               </ol>

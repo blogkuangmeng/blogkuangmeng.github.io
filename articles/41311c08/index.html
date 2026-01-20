@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="GCC的工作，到生成汇编代码为止。剩下的工作，交给了Binutils来完成：assembler和static linker。linker主要完成的是静态链接，目标文件合并的工作。例如，把多个.o文件合并成一个可执行文件。   两步链接 两步链接指的是：   1. 空间与地址的分配     链接器会首先扫描所有的输入文件，获得各个段的长度、属性和位置，将段合并；并将输入目标文件中的符号表合并为全局符">
+  <meta name="description" content="GCC的工作，到生成汇编代码为止。剩下的工作，交给了Binutils来完成：assembler和static linker。linker主要完成的是静态链接，目标文件合并的工作。例如，把多个.o文件合并成一个可执行文件。  两步链接 两步链接指的是：   1. 空间与地址的分配     链接器会首先扫描所有的输入文件，获得各个段的长度、属性和位置，将段合并；并将输入目标文件中的符号表合并为全局符号">
   <meta property="og:type" content="article">
   <meta property="og:title" content="静态链接">
   <meta property="og:url" content="https://blog.nooa.tech/articles/41311c08/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="GCC的工作，到生成汇编代码为止。剩下的工作，交给了Binutils来完成：assembler和static linker。linker主要完成的是静态链接，目标文件合并的工作。例如，把多个.o文件合并成一个可执行文件。   两步链接 两步链接指的是：   1. 空间与地址的分配     链接器会首先扫描所有的输入文件，获得各个段的长度、属性和位置，将段合并；并将输入目标文件中的符号表合并为全局符">
+  <meta property="og:description" content="GCC的工作，到生成汇编代码为止。剩下的工作，交给了Binutils来完成：assembler和static linker。linker主要完成的是静态链接，目标文件合并的工作。例如，把多个.o文件合并成一个可执行文件。  两步链接 两步链接指的是：   1. 空间与地址的分配     链接器会首先扫描所有的输入文件，获得各个段的长度、属性和位置，将段合并；并将输入目标文件中的符号表合并为全局符号">
   <meta property="og:locale">
   <meta property="article:published_time" content="2017-06-11T04:14:23.000Z">
   <meta property="article:modified_time" content="2020-12-02T02:05:11.000Z">
@@ -296,20 +296,20 @@
                 <blockquote>
                   <p>GCC的工作，到生成汇编代码为止。剩下的工作，交给了Binutils来完成：assembler和static linker。linker主要完成的是静态链接，目标文件合并的工作。例如，把多个.o文件合并成一个可执行文件。</p>
                 </blockquote>
-                <h1 id="两步链接"><a class="markdownIt-Anchor" href="#两步链接"></a> 两步链接</h1>
+                <h1>两步链接</h1>
                 <p>两步链接指的是：</p>
                 <ol>
                   <li>
-                    <p>空间与地址的分配<br />
+                    <p>空间与地址的分配<br>
                       链接器会首先扫描所有的输入文件，获得各个段的长度、属性和位置，将段合并；并将输入目标文件中的符号表合并为全局符号表。</p>
                   </li>
                   <li>
-                    <p>符号解析与重定位<br />
-                      使用上一步中收集到的信息，进行符号解析和重定位，调整代码中的地址等。这一步也是链接过程的核心，特别是重定位过程。<br />
+                    <p>符号解析与重定位<br>
+                      使用上一步中收集到的信息，进行符号解析和重定位，调整代码中的地址等。这一步也是链接过程的核心，特别是重定位过程。<br>
                       链接器首先获取各个段的虚拟地址；在确定段的虚拟地址之后，也就能确定各个符号的虚拟地址了。</p>
                   </li>
                 </ol>
-                <h1 id="重定位与符号解析"><a class="markdownIt-Anchor" href="#重定位与符号解析"></a> 重定位与符号解析</h1>
+                <h1>重定位与符号解析</h1>
                 <p>在完成空间和地址的分配之后，链接器开始进行符号解析和重定位的过程。在链接之前，各个段中的符号地址，都是以0为基地址的，对于未知的地址，也通通用0进行替代。编译器在编译时，对于不知道的符号地址，全部用一个假值替代，把真正的工作留给链接器去做。</p>
                 <p>而链接器在分配了虚拟地址之后，就可以修正每一个需要重定位的入口。这个工作是借助于重定位表来实现的。重定位表包括：<strong>重定位入口</strong>（也就是需要重定位的地方），<strong>偏移</strong>表示入口在被重定位的段中的位置。</p>
                 <p>在x86_64下，重定位表的结构也很简单（定义在elf.h当中）：</p>
@@ -325,22 +325,22 @@ typedef struct&#123;
 &#125;Elf64_Rela
 </code></pre>
                 <p>这里，<code>r_offset</code>指定应用重定位操作的位置；<code>r_info</code>则指定必须对其进行重定位的符号表索引以及要应用的重定位类型。其低位表示重定位入口的类型；高位表示重定位入口的符号，在符号表中的下标。（不同处理器的格式不一样）</p>
-                <p>符号解析则是为符号的重定位提供帮助，根据多个目标文件中的符号表，生成全局符号表，找到相应的符号并进行重定位。对于未定义的符号，链接器都应该能在全局符号表中找到，否则就报出符号未定义的错误。<br />
+                <p>符号解析则是为符号的重定位提供帮助，根据多个目标文件中的符号表，生成全局符号表，找到相应的符号并进行重定位。对于未定义的符号，链接器都应该能在全局符号表中找到，否则就报出符号未定义的错误。<br>
                   PS：x86_64只使用Elf64_Rela。</p>
-                <h1 id="指令修正"><a class="markdownIt-Anchor" href="#指令修正"></a> 指令修正</h1>
-                <p>在x86_64中，call、jmp、mov、lea等指令的寻址方式千差万别。对于重定位来说，修正指令的寻址方式定义在binutils/elfcpp/x86_64.h当中。这其中主要包括：<code>R_X86_64_64</code>和<code>R_X86_64_PC32</code>两种。这是因为X86_64上，相对寻址依然只支持32位（实际上这也很科学；因为一个可执行文件通常不会有4G那么大）。<br />
+                <h1>指令修正</h1>
+                <p>在x86_64中，call、jmp、mov、lea等指令的寻址方式千差万别。对于重定位来说，修正指令的寻址方式定义在binutils/elfcpp/x86_64.h当中。这其中主要包括：<code>R_X86_64_64</code>和<code>R_X86_64_PC32</code>两种。这是因为X86_64上，相对寻址依然只支持32位（实际上这也很科学；因为一个可执行文件通常不会有4G那么大）。<br>
                   两种寻址方式的修正方法分别为：<code>符号地址 + 保存在被修正位置的值</code>和<code>符号地址 + 保存在被修正位置的值 - 被修正的位置相对于段开始的偏移量</code></p>
-                <h1 id="源码分析"><a class="markdownIt-Anchor" href="#源码分析"></a> 源码分析</h1>
-                <h2 id="初始化parsing-command-line-script-file"><a class="markdownIt-Anchor" href="#初始化parsing-command-line-script-file"></a> 初始化，parsing command line &amp; script file</h2>
+                <h1>源码分析</h1>
+                <h2 id="初始化，parsing-command-line-script-file">初始化，parsing command line &amp; script file</h2>
                 <p>linker的入口，在ldmain.c当中(通常在链接的时候，通过编译器内部直接进行调用)。首先，linker会调用bfd库，识别二进制文件的格式，生成各个段的描述符，并且转换为<code>canonical form</code>。（例如linker中的符号表识别工作，就是首先由BFD来进行分析和转化，然后linker直接在<code>canonical form</code>上进行操作，再由BFD来进行输出）因此在ldmain.c的<code>main</code>中，首先进行的也是bfd的初始化<code>bfd_init</code>。随后linker进行了一系列的设置，包括路径，回调函数、初始化，加载插件、读取命令、linker script等。</p>
-                <h2 id="文件和符号的加载"><a class="markdownIt-Anchor" href="#文件和符号的加载"></a> 文件和符号的加载</h2>
+                <h2 id="文件和符号的加载">文件和符号的加载</h2>
                 <p>随后，<code>lang_process</code>中，linker会对每个输入文件进行处理。对于每个输入文件，linker都会分配一个bfd，对输入文件进行扫描，识别出其中的符号。首先<code>open_input_bfds</code>为所有文件建立了bfd，随后载入文件中的所有符号。每个符号对应一个<code>bfd_link_hash_entry</code>，它们保存在<code>bfd_link_hash_table</code>当中。</p>
                 <p><code>bfd_link_add_symbols</code>将符号添加到hash_table当中。</p>
-                <h2 id="输入文件的分析和合并"><a class="markdownIt-Anchor" href="#输入文件的分析和合并"></a> 输入文件的分析和合并</h2>
+                <h2 id="输入文件的分析和合并">输入文件的分析和合并</h2>
                 <p>在链接的第一部分完成后，第二部分开始前，链接器首先调用了<code>ldctor_build_sets</code>函数，它主要为C++中的constructor/dectructor提供支持。随后链接器<code>lang_do_memory_region</code>计算出内存区域（它们保存在<code>lang_memory_region_list</code>当中）。再通过<code>lang_common</code>处理全局符号，将它们添加到对应的section，移除没有被使用的sections等。随后链接器建立输入section和输出section之间的映射关系，并且将文件的section合并，以及设置段的属性等。</p>
-                <h2 id="重定位"><a class="markdownIt-Anchor" href="#重定位"></a> 重定位</h2>
+                <h2 id="重定位">重定位</h2>
                 <p>第四步是符号的重定位工作。这里<code>lang_size_section</code>首先获取所有section的大小，然后<code>lang_set_startof</code>会修正section的大小和位置。在确定了sections的信息之后，就可以对符号进行重定位了，这便是<code>lang_do_assignments</code>和<code>ldexp_finalize_syms</code>的工作。它们会按照前面提到的方法，对符号进行重定位。最后链接器还会检查符号和section的正确性。</p>
-                <h2 id="交给bfd输出文件"><a class="markdownIt-Anchor" href="#交给bfd输出文件"></a> 交给bfd，输出文件</h2>
+                <h2 id="交给bfd，输出文件">交给bfd，输出文件</h2>
                 <p>在完成重定位之后，如果没有出现异常，linker就把工作交给bfd了。<code>ldwrite</code>负责把链接好的文件输出。完成一些清理工作后，整个链接过程就结束了。</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/41311c08/">https://blog.nooa.tech/articles/41311c08/</a> . Welcome to reproduce it!</p>
 
@@ -453,16 +453,16 @@ typedef struct&#123;
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E6%AD%A5%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text"> 两步链接</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D%E4%B8%8E%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text"> 重定位与符号解析</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E4%BF%AE%E6%AD%A3"><span class="nav-number">3.</span> <span class="nav-text"> 指令修正</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text"> 源码分析</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">两步链接</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">重定位与符号解析</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">指令修正</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">源码分析</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96parsing-command-line-script-file"><span class="nav-number">4.1.</span> <span class="nav-text"> 初始化，parsing command line &amp; script file</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%8A%A0%E8%BD%BD"><span class="nav-number">4.2.</span> <span class="nav-text"> 文件和符号的加载</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%92%8C%E5%90%88%E5%B9%B6"><span class="nav-number">4.3.</span> <span class="nav-text"> 输入文件的分析和合并</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.4.</span> <span class="nav-text"> 重定位</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E7%BB%99bfd%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text"> 交给bfd，输出文件</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%8Cparsing-command-line-script-file"><span class="nav-number">4.1.</span> <span class="nav-text">初始化，parsing command line &amp; script file</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%8A%A0%E8%BD%BD"><span class="nav-number">4.2.</span> <span class="nav-text">文件和符号的加载</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%92%8C%E5%90%88%E5%B9%B6"><span class="nav-number">4.3.</span> <span class="nav-text">输入文件的分析和合并</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.4.</span> <span class="nav-text">重定位</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E7%BB%99bfd%EF%BC%8C%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text">交给bfd，输出文件</span></a></li>
                   </ol>
                 </li>
               </ol>

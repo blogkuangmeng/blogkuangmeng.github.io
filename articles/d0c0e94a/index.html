@@ -298,17 +298,17 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1 id="io体系结构"><a class="markdownIt-Anchor" href="#io体系结构"></a> I/O体系结构</h1>
-                <p>虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。<br />
+                <h1>I/O体系结构</h1>
+                <p>虚拟文件系统利用底层函数，调用每个设备的操作，那么这些操作是如何在设备上执行的，操作系统又是如何知道设备的操作是什么的呢？这些是由操作系统决定的。<br>
                   我们知道，操作系统的工作，是依赖于数据通路的，它们让信息得以在CPU、RAM、I/O设备之间传递。这些数据通路称为<strong>总线</strong>。这就包括数据总线（PCI、ISA、EISA、SCSI等）、地址总线、控制总线。I/O总线，指的就是用于CPU和I/O设备之间通信的<strong>数据总线</strong>。I/O体系的通用结构如图所示：</p>
-                <p><img src="/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png" alt="" /></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/IO%E7%BB%93%E6%9E%84.png" alt=""></p>
                 <p>那么CPU是如何通过I/O总线和I/O设备交互呢？这首先得从内存和外设的编址方式说起。第一种是“独立编址”，也就是内存和外设分开编址，I/O端口有独立的地址空间，这也被称为<strong>I/O映射方式</strong>。每个连接到I/O总线上的设备，都分配了自己的I/O地址集（在I/O地址空间中），它被称为I/O端口。<code>in</code>、<code>out</code>等指令用语CPU对I/O端口进行读写。在执行其中一条指令时，CPU使用地址总线选择所请求的I/O端口，使用数据总线在CPU寄存器和端口之间传送数据。这种方式编码逻辑清晰，速度快，但空间有限。</p>
                 <p>第二种是“统一编址”，也被称为<strong>内存映射方式</strong>，I/O端口还可以被映射到内存地址空间（这也正是现代硬件设备倾向于使用的方式），这样CPU就可以通过对内存操作的指令，来访问I/O设备，并且和DMA结合起来。这种方式更加统一，易于使用。它实际上使用了<code>ioremap()</code>。<strong>自从PCI总线出现后，不论采用I/O映射还是内存映射方式，都需要将I/O端口映射到内存地址空间</strong>。</p>
                 <p>每个I/O设备的I/O端口都是一组寄存器：控制寄存器、状态寄存器、输入寄存器和输出寄存器。内核会纪录分配给每个硬件设备的I/O端口。</p>
-                <h1 id="设备驱动程序模型"><a class="markdownIt-Anchor" href="#设备驱动程序模型"></a> 设备驱动程序模型</h1>
+                <h1>设备驱动程序模型</h1>
                 <p>在内核中，设备不仅仅需要完成相应的操作，还要对其电源管理、资源分配、生命周期等等行为进行统一的管理。因此，内核建立了一个统一的设备模型，提取设备操作的共同属性，进行抽象，并且为添加设备、安装驱动提供统一的接口。它们本身并不代表具体的对象，只是用来维持对象间的层次关系。</p>
                 <p>这里首先要提的是<strong>sysfs</strong>文件系统。和/proc类似，安装于/sys目录，其目的是表现出设备驱动程序模型间的层次关系。在驱动程序模型当中，有三种重要的数据结构（旧版本），自上到下分别是<code>subsystem</code>、<code>kset</code>、<code>kobject</code>。如果要理解这个模型中，每个数据结构的作用，就必须理解它们和操作系统中的什么东西相对应。它们均对应着**/sys中的目录**。<code>kobject</code>是这个对象模型中，所有对象的基类。<code>kset</code>本身首先是一个<code>kobject</code>，而它又承担着一个<code>kobject</code>容器的作用，它把<code>kobject</code>组织成有序的目录；subsys则是更高的一层抽象，它本身首先是一个<code>kset</code>。驱动、总线、设备都能够用设备驱动程序模型中的对象表示。</p>
-                <h1 id="设备驱动程序模型中的组件"><a class="markdownIt-Anchor" href="#设备驱动程序模型中的组件"></a> 设备驱动程序模型中的组件</h1>
+                <h1>设备驱动程序模型中的组件</h1>
                 <p>设备驱动程序模型建立在几个基本数据结构之上，它们描述了总线、设备、设备驱动器等等。这里，我们来看看它们的数据结构。首先，<code>device</code>用来描述设备驱动程序模型中的设备。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -323,7 +323,7 @@
                   </table>
                 </figure>
                 <p>首先，可以看到<code>device</code>中包含有一个<code>kobject</code>，还包含有它相关驱动对象。所有的device对象，全部收集在devices_kset中，它对应着/sys/devices中。设备的引用计数则是由kobject来完成的。device还会被嵌入到一个更大的描述符中，例如<code>pci_dev</code>，它除了包含<code>dev</code>之外，还有PCI所特有的一些数据结构。<code>device_add</code>完成了新的device的添加工作。我注意到，<code>error = bus_add_device(dev); </code>，也就是说device的添加会把它和bus关联起来。</p>
-                <hr />
+                <hr>
                 <p>再来看看驱动程序的结构。其数据结构为<code>device_driver</code>。相对于设备的数据结构来说，它相对较为简单：对于每个设备驱动，都有几个通用的方法，分别用语处理热插拔、即插即用、电源管理、探查设备等。同样，驱动也会被嵌入到一个更大的描述符中，例如<code>pci_driver</code>。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -351,7 +351,7 @@
                   </table>
                 </figure>
                 <p>driver的添加，通过调用<code>driver_register()</code>来完成，它同样包含一个函数：<code>bus_add_driver()</code>，也就是将driver添加到某个bus。</p>
-                <hr />
+                <hr>
                 <p>再来看看总线的结构。bus是连接device和driver的桥梁，bus中的很多代码，都是为了让device找到driver来设计的。总线的数据结构如下：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -366,11 +366,11 @@
                   </table>
                 </figure>
                 <p>同样，总线也有一个<code>subsys_private</code>，它保存了kobject。<code>but_type</code>中定义了一系列的方法。例如，当内核检查一个给定的设备是否可以由给定的驱动程序处理时，就会执行<code>match</code>方法。可以用<code>bus_for_each_drv()</code>和<code>bus_for_each_dev()</code>函数分别循环扫描drivers和device两个链表中的所有元素，来进行match。</p>
-                <h1 id="设备文件"><a class="markdownIt-Anchor" href="#设备文件"></a> 设备文件</h1>
+                <h1>设备文件</h1>
                 <p>设备驱动程序使得硬件设备，能以特定方式，响应控制设备的编程接口（一组规范的VFS函数，open，read，lseek，ioctl等），这些函数都是由驱动程序来具体实现的。在设备文件上发出的系统调用，都会由内核转化为对应的设备驱动程序函数，因此设备驱动必须被注册，也即构造一个<code>device_driver</code>，并且加入到设备驱动程序模型中。在注册时，内核会试图进行一次match。注意，这个注册的过程基本<code>driver_register</code>通常不会在驱动中直接调用，但我们但驱动通常都会间接的调用它来完成注册。</p>
                 <p>遵循linux“一切皆文件”的原则，I/O设备同样可以当作设备文件来处理，它和磁盘上的普通文件的交互方式一样，例如都可以通过<code>write()</code>系统调用写入数据。设备文件可以通过<code>mknod()</code>节点来创建，它们保存在/dev/目录下。</p>
                 <p>linux当中，硬件设备可以花费为两种：字符设备和块设备。其中，块设备指的是可以随机访问的设备，例如硬盘、软盘等；而字符设备则指的是声卡、键盘这样的设备。设备文件同样在VFS当中，但它的索引节点没有指向磁盘数据的指针，相反地它对应一个标识符（包含一个主设备号和一个次设备号）。VFS会在设备文件打开时，改变一个设备文件的缺省文件操作，让它去调用和设备相关的操作。</p>
-                <h1 id="字符设备驱动程序"><a class="markdownIt-Anchor" href="#字符设备驱动程序"></a> 字符设备驱动程序</h1>
+                <h1>字符设备驱动程序</h1>
                 <p>这里我们以字符设备驱动程序为例。首先，字符设备的驱动，在linux系统中，是以<code>cdev</code>结构来表示的：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -424,7 +424,7 @@
                     </tr>
                   </table>
                 </figure>
-                <p><img src="/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg" alt="" /></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/kobjmap.jpg" alt=""></p>
                 <p>不过到现在为止，我们都还没有说明，程序在访问字符设备时，是如何去调用正确的方法的。我们曾提到过，<code>open()</code>系统调用会改变字符文件对象的f_op字段，将默认文件操作替换为驱动的操作。在字符设备文件创建时，会调用<code>init_special_inode</code>来进行索引节点对象的初始化。其inode的操作(def_chr_fops)只包含一个默认的文件打开操作，也即<code>chrdev_open</code>。它会根据inode，首先利用<code>cdev_map</code>，找到对应的kobject，随后再进一步找到cdev，然后从中提取出文件操作的函数<code>fops</code>，并把它填充到file当中去。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -438,13 +438,13 @@
                     </tr>
                   </table>
                 </figure>
-                <p>这里很奇怪的是，我们并没有看到类似前面提到的<code>driver_register()</code>、<code>device_register()</code>这样的函数。实际上这里并没有真正创建一个设备，而只是说创建了一个接口，所以有这样一个这个问题：<a target="_blank" rel="noopener" href="http://blog.csdn.net/luckywang1103/article/details/47860805">为什么cdev_add没有产生设备节点？</a>对于这个问题，我们应该理解为<code>cdev</code>和<code>driver/device</code>二者是配套工作的，cdev用来和用户交互，而device则是内核中的结构。<br />
+                <p>这里很奇怪的是，我们并没有看到类似前面提到的<code>driver_register()</code>、<code>device_register()</code>这样的函数。实际上这里并没有真正创建一个设备，而只是说创建了一个接口，所以有这样一个这个问题：<a target="_blank" rel="noopener" href="http://blog.csdn.net/luckywang1103/article/details/47860805">为什么cdev_add没有产生设备节点？</a>对于这个问题，我们应该理解为<code>cdev</code>和<code>driver/device</code>二者是配套工作的，cdev用来和用户交互，而device则是内核中的结构。<br>
                   另一个问题是，在上面的过程中，似乎没有提及设备文件的创建。实际上，作为一个rookie，那么设备文件常常是用<code>mknod</code>命令手动创建的。当然，linux自然也提供了自动创建的借口，那就是利用udev来实现，调用<code>device_create()</code>函数。</p>
                 <p>当然，这个例子只是为了说明，操作系统的驱动程序是如何工作的，为什么对I/O设备的操作可以抽象成对设备文件的操作，程序在操作I/O文件时，是如何使用正确的操作的。</p>
-                <h1 id="块设备的驱动"><a class="markdownIt-Anchor" href="#块设备的驱动"></a> 块设备的驱动</h1>
-                <p>和字符设备类似，操作系统中的块设备，也是以文件的形式来访问。这里有一个很拗口的问题：磁盘是一个块设备，块设备有一个块设备文件。那么访问块设备文件和访问普通的磁盘上的文件有什么关系呢？<br />
+                <h1>块设备的驱动</h1>
+                <p>和字符设备类似，操作系统中的块设备，也是以文件的形式来访问。这里有一个很拗口的问题：磁盘是一个块设备，块设备有一个块设备文件。那么访问块设备文件和访问普通的磁盘上的文件有什么关系呢？<br>
                   不论是块设备文件还是普通的文件，它们都是通过VFS来统一访问的。只不过对于一个普通文件，它可能已经在RAM中了（高速缓存机制），因此它的访问可能会直接在RAM中进行；但如果说要修改磁盘上的内容，或者文件内容不在RAM中，则也会间接地，通过块设备文件进行访问。这个驱动模型可以用这样一个图表示：</p>
-                <p><img src="http://ww.meng.uno/images/%E7%A3%81%E7%9B%98IO/%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.png" alt="" /></p>
+                <p><img src="http://ww.meng.uno/images/%E7%A3%81%E7%9B%98IO/%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8.png" alt=""></p>
                 <p>这里我们只考虑最底层的情况：内核从块设备读取数据。为了从块设备中读取数据，内核必须知道数据的物理位置，而这正是<strong>映射层</strong>的工作。映射层的工作包括两步：</p>
                 <ul>
                   <li>根据文件所在文件系统的块，将文件拆分成块，然后内核能够确定请求数据所在的块号；</li>
@@ -453,7 +453,7 @@
                 <p>随后的工作在<strong>通用块层</strong>进行，内核在这一层，启动I/O操作。通常一个I/O操作对应一组连续的块，我们把它称为<code>bio</code>，它用来搜集底层需要的信息。</p>
                 <p><strong>I/O调度层</strong>负责根据内核中的各种策略，把待处理的I/O数据传送请求，进行归类。它的作用是把物理介质上相邻的数据请求，进行合并，一并处理。</p>
                 <p>最后一层也就是通过块设备的驱动来完成了，它向I/O接口发送适当的命令，从而进行实际的数据传送。</p>
-                <h1 id="通用块层"><a class="markdownIt-Anchor" href="#通用块层"></a> 通用块层</h1>
+                <h1>通用块层</h1>
                 <p>通用块层负责处理所有块设备的请求，其核心数据结构就是<code>bio</code>。它代表<strong>一次块设备I/O请求</strong>。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -468,9 +468,9 @@
                   </table>
                 </figure>
                 <p>在这个数据结构中，还包含了一个<code>bio_vec</code>。这是什么意思呢？在linux中，相邻数据块被称为一个段，每个<code>bio_vec</code>对应一个内存页中的段。在io操作期间，bio是会一直更新的，其中的<code>bi_iter</code>用来在数组中遍历，按每个段来执行下一步的操作。</p>
-                <p><img src="/images/%E7%A3%81%E7%9B%98IO/biovec.gif" alt="" /></p>
+                <p><img src="/images/%E7%A3%81%E7%9B%98IO/biovec.gif" alt=""></p>
                 <p>那么当通用块层收到一个I/O请求操作时，会发生什么呢？首先内核会为这次操作分配<code>bio</code>描述符，并对它进行填充。随后通用块层会调用<code>generic_make_request</code>，这个函数的作用很明确：它会进行一系列检查和设置，保证bio中的信息是<strong>针对整个磁盘，而不是磁盘分区的</strong>；随后获取这个块设备相关的请求队列q，调用<code>q-&gt;make_request_fn</code>，把bio插入请求队列中去。</p>
-                <h1 id="io调度层"><a class="markdownIt-Anchor" href="#io调度层"></a> I/O调度层</h1>
+                <h1>I/O调度层</h1>
                 <p>在块设备上，每个I/O请求操作都是异步处理的，通用块层的请求会被加入块设备的请求队列中，每个块设备都会单独地进行I/O的调度，这样能够有效提高磁盘的性能。</p>
                 <p>前面提到，通用块层会调用一个<code>q-&gt;make_request_fn</code>，向I/O调度程序发送一个请求，该函数会进一步调用<code>__make_request()</code>。这个函数的目的，就是把<code>bio</code>放进请求队列当中：（1）如果请求队列是空的，就构造一个新的请求插入；（2）如果请求队列不是空的，但是<code>bio</code>不能合并（不能合并到某个请求的头和尾），也构造一个新的请求插入；（3）请求队列不是空的，并且<code>bio</code>可以合并，就合并到对应的请求中去。注意，bio，请求和请求队列的关系如下：</p>
                 <figure class="highlight plaintext">
@@ -503,7 +503,7 @@
 .splice_write	= iter_file_splice_write,
 &#125;;
 </code></pre>
-                <pre class="highlight"><code class="">
+                <pre><code>
 `dentry_open()`方法会调用`blkdev_open()`。它（1）首先会获取块设备的描述符：如果块设备已经打开，则可以通过inode-&gt;i_bdev直接获取，否则则需要根据设备号去查找块设备描述符。（2）获取块设备相关的`gendisk`地址，`get_gendisk`是通过设备号来找到gendisk的。（3）如果是第一次打开块设备，则要根据它是整盘还是分区，进行相应的设置和初始化。（4）如果不是第一次打开，只需要按需要执行自定义的`open()`函数就行了。  
 
 # 补充：I/O的监控方式
@@ -622,14 +622,14 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#io%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text"> I&#x2F;O体系结构</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text"> 设备驱动程序模型</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text"> 设备驱动程序模型中的组件</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text"> 设备文件</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text"> 字符设备驱动程序</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9D%97%E8%AE%BE%E5%A4%87%E7%9A%84%E9%A9%B1%E5%8A%A8"><span class="nav-number">6.</span> <span class="nav-text"> 块设备的驱动</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%9D%97%E5%B1%82"><span class="nav-number">7.</span> <span class="nav-text"> 通用块层</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link" href="#io%E8%B0%83%E5%BA%A6%E5%B1%82"><span class="nav-number">8.</span> <span class="nav-text"> I&#x2F;O调度层</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">I&#x2F;O体系结构</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">设备驱动程序模型</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">设备驱动程序模型中的组件</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">设备文件</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">字符设备驱动程序</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">块设备的驱动</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">通用块层</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">I&#x2F;O调度层</span></a></li>
               </ol>
 
             </div>
