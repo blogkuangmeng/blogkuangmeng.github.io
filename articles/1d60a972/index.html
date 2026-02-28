@@ -296,7 +296,7 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>信号</h1>
+                <h1 id="信号"><a class="markdownIt-Anchor" href="#信号"></a> 信号</h1>
                 <p>信号用来通知进程异步事件，可以把它理解为对中断的一种模拟。它是一个很小的消息，用来达到两个目的：</p>
                 <ul>
                   <li>告知进程发生了一个特定的事件；</li>
@@ -316,8 +316,8 @@
                     </tr>
                   </table>
                 </figure>
-                <p><img src="/images/%E8%BF%9B%E7%A8%8B/%E4%BF%A1%E5%8F%B7.gif" alt=""></p>
-                <h1>信号的产生</h1>
+                <p><img src="/images/%E8%BF%9B%E7%A8%8B/%E4%BF%A1%E5%8F%B7.gif" alt="" /></p>
+                <h1 id="信号的产生"><a class="markdownIt-Anchor" href="#信号的产生"></a> 信号的产生</h1>
                 <p>信号是由内核函数产生的，它们完成信号处理的第一步，也即更新一个/多个进程的描述符。产生的信号并不直接传递，而是根据信号的类型、目标进程的状态唤醒进程，让它们来接收信号。内核提供了一组产生信号的函数，包括为进程、线程组产生信号等，但它们最终都会调用<code>__send_signal()</code>。当然，在调用<code>__send_signal()</code>之前，会检查这个信号是否应该被忽略（进程没有被跟踪、信号被阻塞，显示忽略信号）</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -332,7 +332,7 @@
                   </table>
                 </figure>
                 <p>在信号产生之后，linux会调用<code>signal_wake_up()</code>通知进程，告知有新的挂起信号到来，如果当前进程占有了CPU，那么就可以立即执行；否则则要强制进行重新调度。</p>
-                <h1>信号的传递</h1>
+                <h1 id="信号的传递"><a class="markdownIt-Anchor" href="#信号的传递"></a> 信号的传递</h1>
                 <p>在信号产生之后，如何确保挂起的信号被正确的处理呢？进程在信号产生时，可能并不在CPU上运行。在进程恢复用户态执行时，会进行检查，如果存在非阻塞的挂起信号，就调用<code>do_signal()</code>，这个函数会逐个助理挂起的非阻塞信号，而信号的处理则进一步调用<code>handle_signal()</code>。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -347,9 +347,9 @@
                   </table>
                 </figure>
                 <p>这里存在一个问题：<code>handle_signal()</code>处于内核态中，但信号处理程序是在用户态定义的，因此这里存在着堆栈转换的问题。linux采用的方法是：把内核态堆栈中的硬件上下文，拷贝到当前进程的用户态堆栈中。而当信号处理程序完成时，会自动调用<code>sigreturn()</code>把硬件上下文拷贝回内核态堆栈中，并且恢复用户态堆栈中的内容。这里需要构造一个用户态栈帧：</p>
-                <p><img src="/images/%E8%BF%9B%E7%A8%8B/%E6%A0%88.gif" alt=""></p>
+                <p><img src="/images/%E8%BF%9B%E7%A8%8B/%E6%A0%88.gif" alt="" /></p>
                 <p>首先内核需要把内核栈中的内容复制到用户态堆栈中去，把内核态堆栈的返回地址修改为信号处理程序的入口。注意，为了让信号处理程序结束时，能够清除栈上的内容，用户态堆栈还应该放入一个信号处理程序的返回地址，它指向<code>__kernel_sigreturn()</code>，把硬件上下文拷贝到内核态堆栈，然后把这个栈帧删除，随后从内核态返回到用户态继续执行。</p>
-                <h1>信号的接口</h1>
+                <h1 id="信号的接口"><a class="markdownIt-Anchor" href="#信号的接口"></a> 信号的接口</h1>
                 <p><code>kill</code>/<code>tkill</code>/<code>kgill</code>系统调用分别用来给某个进程、线程组发送信号。其中，<code>kill(pid, sig)</code>分别接受一个进程的pid号，以及一个所发送的信号。</p>
                 <p>实时信号的发送则应该使用<code>rt_sigqueueinfo()</code>来进行发送。如果用户需要为信号指定一个操作，那么则应该使用<code>sigaction(sig, &amp;act, &amp;oact)</code>系统调用，<code>act</code>为指定的操作，而<code>old_act</code>用来记录以前的信号。</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/1d60a972/">https://blog.nooa.tech/articles/1d60a972/</a> . Welcome to reproduce it!</p>
@@ -463,10 +463,10 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">信号</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">信号的产生</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">信号的传递</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">信号的接口</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text"> 信号</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text"> 信号的产生</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E4%BC%A0%E9%80%92"><span class="nav-number">3.</span> <span class="nav-text"> 信号的传递</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text"> 信号的接口</span></a></li>
               </ol>
 
             </div>

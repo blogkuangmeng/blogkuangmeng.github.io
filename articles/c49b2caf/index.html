@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="自己开发一个搜索引擎，可能是每一个计算机爱好者的梦想，但是当我们看到网上开源搜索引擎那么庞大时，未免有点害怕。那么开发一个搜索引擎真的很难么？  本博文在阅读了《How to Develop a Search Engineer》之后，总结而成。  代码下载：Wiser  搜索引擎简介 搜索引擎（Search Engine）是指根据一定的策略、运用计算机技术从互联网上搜集信息，在对信息进行组织和处理">
+  <meta name="description" content="自己开发一个搜索引擎，可能是每一个计算机爱好者的梦想，但是当我们看到网上开源搜索引擎那么庞大时，未免有点害怕。那么开发一个搜索引擎真的很难么？  本博文在阅读了《How to Develop a Search Engineer》之后，总结而成。  代码下载：Wiser   搜索引擎简介 搜索引擎（Search Engine）是指根据一定的策略、运用计算机技术从互联网上搜集信息，在对信息进行组织和处">
   <meta property="og:type" content="article">
   <meta property="og:title" content="自制简单搜索引擎及Wiser的使用">
   <meta property="og:url" content="https://blog.nooa.tech/articles/c49b2caf/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="自己开发一个搜索引擎，可能是每一个计算机爱好者的梦想，但是当我们看到网上开源搜索引擎那么庞大时，未免有点害怕。那么开发一个搜索引擎真的很难么？  本博文在阅读了《How to Develop a Search Engineer》之后，总结而成。  代码下载：Wiser  搜索引擎简介 搜索引擎（Search Engine）是指根据一定的策略、运用计算机技术从互联网上搜集信息，在对信息进行组织和处理">
+  <meta property="og:description" content="自己开发一个搜索引擎，可能是每一个计算机爱好者的梦想，但是当我们看到网上开源搜索引擎那么庞大时，未免有点害怕。那么开发一个搜索引擎真的很难么？  本博文在阅读了《How to Develop a Search Engineer》之后，总结而成。  代码下载：Wiser   搜索引擎简介 搜索引擎（Search Engine）是指根据一定的策略、运用计算机技术从互联网上搜集信息，在对信息进行组织和处">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/se/1.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/se/4.png">
@@ -308,9 +308,9 @@
                 <blockquote>
                   <p>代码下载：<a href="/utils/wiser.zip">Wiser</a></p>
                 </blockquote>
-                <h1>搜索引擎简介</h1>
+                <h1 id="搜索引擎简介"><a class="markdownIt-Anchor" href="#搜索引擎简介"></a> 搜索引擎简介</h1>
                 <p>搜索引擎（Search Engine）是指根据一定的策略、运用计算机技术从互联网上搜集信息，在对信息进行组织和处理后，为用户提供检索服务。在日常生活中，可以看到 Google 等 Web 检索网站，还有邮件检索和专利检索等各种应用程序。</p>
-                <h2 id="背景知识">背景知识</h2>
+                <h2 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h2>
                 <p>在自己写一个搜索引擎之前，需要先了解基本的原理和概念。比如分词，倒排索引，排序算法（BM25、PageRank）等。</p>
                 <p>搜索引擎工作步骤分为这几步：</p>
                 <ul>
@@ -328,24 +328,24 @@
                   <li>索引检索器(Index Searcher)</li>
                 </ul>
                 <p>组件关系图：</p>
-                <p><img src="/images/se/1.png" alt=""></p>
-                <h1>Wiser使用</h1>
-                <h3 id="编译运行">编译运行</h3>
+                <p><img src="/images/se/1.png" alt="" /></p>
+                <h1 id="wiser使用"><a class="markdownIt-Anchor" href="#wiser使用"></a> Wiser使用</h1>
+                <h3 id="编译运行"><a class="markdownIt-Anchor" href="#编译运行"></a> 编译运行</h3>
                 <p>下载好<code>wiser.zip</code>文件，并解压缩到相应位置，进入文件夹，运行<code>make wiser</code>，稍待片刻，即可完成编译。</p>
-                <p><img src="/images/se/4.png" alt=""></p>
-                <h3 id="收集数据">收集数据</h3>
+                <p><img src="/images/se/4.png" alt="" /></p>
+                <h3 id="收集数据"><a class="markdownIt-Anchor" href="#收集数据"></a> 收集数据</h3>
                 <p>在本次使用wiser的实验中，直接从<code>https://dumps.wikimedia.org/zhwiki/latest/</code>下载相应的<code>xml</code>文件即可（省去了实际的爬虫过程）。</p>
                 <p><strong>使用wiser存入sqlite使用命令：<code>wiser -x XXX.xml -m 100 wiki.db</code></strong></p>
-                <p><img src="/images/se/2.png" alt=""></p>
+                <p><img src="/images/se/2.png" alt="" /></p>
                 <p>此时，我们已经将10条数据存入<code>.db</code>文件中了。</p>
-                <h3 id="构建倒排索引">构建倒排索引</h3>
+                <h3 id="构建倒排索引"><a class="markdownIt-Anchor" href="#构建倒排索引"></a> 构建倒排索引</h3>
                 <p>*在上一步已经完成。</p>
-                <h3 id="检索文档">检索文档</h3>
+                <h3 id="检索文档"><a class="markdownIt-Anchor" href="#检索文档"></a> 检索文档</h3>
                 <p><strong>使用wiser搜索一个关键词使用命令：<code>wiser -q &quot;XXX&quot; wiki.db</code></strong></p>
-                <h3 id="排序并呈现">排序并呈现</h3>
-                <p><img src="/images/se/3.png" alt=""></p>
+                <h3 id="排序并呈现"><a class="markdownIt-Anchor" href="#排序并呈现"></a> 排序并呈现</h3>
+                <p><img src="/images/se/3.png" alt="" /></p>
                 <p>从截图中可见，score代表匹配指数，已经计算好，并返回给我们。</p>
-                <h1>Wiser代码剖析</h1>
+                <h1 id="wiser代码剖析"><a class="markdownIt-Anchor" href="#wiser代码剖析"></a> Wiser代码剖析</h1>
                 <p>在此先简单的介绍各个主要的<code>.c</code>文件实现的功能：</p>
                 <ul>
                   <li><code>wiser.c</code>: 主程序，接收命令行输入，并相应的调用其他函数；</li>
@@ -469,23 +469,23 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">搜索引擎简介</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text"> 搜索引擎简介</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">背景知识</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text"> 背景知识</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Wiser使用</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#wiser%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text"> Wiser使用</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">2.0.1.</span> <span class="nav-text">编译运行</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">2.0.2.</span> <span class="nav-text">收集数据</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="nav-number">2.0.3.</span> <span class="nav-text">构建倒排索引</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E6%96%87%E6%A1%A3"><span class="nav-number">2.0.4.</span> <span class="nav-text">检索文档</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E5%B9%B6%E5%91%88%E7%8E%B0"><span class="nav-number">2.0.5.</span> <span class="nav-text">排序并呈现</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">2.0.1.</span> <span class="nav-text"> 编译运行</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">2.0.2.</span> <span class="nav-text"> 收集数据</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="nav-number">2.0.3.</span> <span class="nav-text"> 构建倒排索引</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E6%96%87%E6%A1%A3"><span class="nav-number">2.0.4.</span> <span class="nav-text"> 检索文档</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E5%B9%B6%E5%91%88%E7%8E%B0"><span class="nav-number">2.0.5.</span> <span class="nav-text"> 排序并呈现</span></a></li>
                   </ol>
                 </li>
               </ol>
               </li>
-              <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Wiser代码剖析</span></a></li>
+              <li class="nav-item nav-level-1"><a class="nav-link" href="#wiser%E4%BB%A3%E7%A0%81%E5%89%96%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text"> Wiser代码剖析</span></a></li>
               </ol>
 
             </div>

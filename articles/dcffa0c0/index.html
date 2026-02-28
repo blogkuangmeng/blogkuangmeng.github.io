@@ -298,12 +298,12 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>虚函数与多态</h1>
+                <h1 id="虚函数与多态"><a class="markdownIt-Anchor" href="#虚函数与多态"></a> 虚函数与多态</h1>
                 <p>继承和多态，是面向对象中老生常谈的话题。C++中，我们也可以经常看到<code>virtaul</code>、<code>override</code>这样的关键字；这正是虚函数的标志。虚函数就是为了解决多态的问题：如果要使用一个基类的指针，根据对象的不同类型去调用相应的函数，就需要使用虚函数了。通俗的说也就是同一个入口，却能够调用不同的方法。</p>
-                <p>通常，对于虚函数的调用，往往在运行时才能确定调用哪个版本的函数。这是由于基类的指针或者引用，其动态类型必须在运行的时候才能确定（它具体指向了什么类型）。而“动态绑定”就指的在运行时，根据对象的类型，调用具体方法的过程，这个过程正是通过<strong>虚函数表</strong>实现的。<br>
+                <p>通常，对于虚函数的调用，往往在运行时才能确定调用哪个版本的函数。这是由于基类的指针或者引用，其动态类型必须在运行的时候才能确定（它具体指向了什么类型）。而“动态绑定”就指的在运行时，根据对象的类型，调用具体方法的过程，这个过程正是通过<strong>虚函数表</strong>实现的。<br />
                   <strong>抽象基类</strong>指的是有<strong>纯虚函数</strong>的类。纯虚函数，指的是没有函数体的函数，通常通过在函数体的位置写上<code>=0</code>来表示。对于抽象基类，是不能直接创建一个对象的；但是可以创建它它们的派生类的对象：只要它们覆盖了纯虚函数。纯虚函数表示这个函数的具体实现全部交给派生类去做。
                 </p>
-                <h1>虚函数表与虚函数的调用</h1>
+                <h1 id="虚函数表与虚函数的调用"><a class="markdownIt-Anchor" href="#虚函数表与虚函数的调用"></a> 虚函数表与虚函数的调用</h1>
                 <p>那么，“动态绑定”是如何实现的呢？这便是借助于虚函数表来实现。对于每个具有虚函数的类，都会有一个对应的虚函数表vtable，其代码和对应内存结构如下所示：</p>
                 <pre><code>class A &#123;
 	int varA;
@@ -355,9 +355,9 @@ class C : public A, public B &#123;
 	&#125;
 &#125;;
 </code></pre>
-                <p><img src="/images/c++/%E8%99%9A%E8%A1%A8.png" alt="虚函数表"></p>
+                <p><img src="/images/c++/%E8%99%9A%E8%A1%A8.png" alt="虚函数表" /></p>
                 <p>这个表中的每一项，都是一个虚函数的地址，也就是虚函数的指针。而每个对象的第一个值都是虚标指针，它指向了了所对应虚函数表的第一个表项（也就是虚函数表的基址）。每次调用虚函数时，都会首先通过这个虚表指针，找到虚函数表，然后再在虚函数表中，找到真正的虚函数的地址，并进行调用。假设存在有多继承的情况，那么就会有多个vptr，分别放在对应的基类对象的开头位置。</p>
-                <h1>虚继承</h1>
+                <h1 id="虚继承"><a class="markdownIt-Anchor" href="#虚继承"></a> 虚继承</h1>
                 <p>对于“菱形继承”情况（也即两个子类继承同一个父类，而新的子类又同时继承这两个子类），则可能产生二义性问题。例如下面的情况，那么D中就会保存两次A中的变量和函数，并且在使用时也会很不方便，必须利用域作用符来使用变量和函数。</p>
                 <pre><code>	A
   /   \
@@ -365,7 +365,7 @@ class C : public A, public B &#123;
   \   /
     D
 </code></pre>
-                <p>虚继承是在继承时，在基类类型前面加上<code>virtual</code>关键字。虚继承能够解决基类多副本的问题：在任何派生类当中，虚基类都是通过一个共享对象来表示的，它们通过指针去访问这个基类中的内容；它不用去保存多份基类的拷贝，而是只需要多出一个指向基类子对象的指针。从内存布局上来说，在虚表的负offset位置，会保存一个指针指向虚基类对象。<br>
+                <p>虚继承是在继承时，在基类类型前面加上<code>virtual</code>关键字。虚继承能够解决基类多副本的问题：在任何派生类当中，虚基类都是通过一个共享对象来表示的，它们通过指针去访问这个基类中的内容；它不用去保存多份基类的拷贝，而是只需要多出一个指向基类子对象的指针。从内存布局上来说，在虚表的负offset位置，会保存一个指针指向虚基类对象。<br />
                   也就是说继承自A的虚函数和对象，全部只保存一份在D自身的子对象中，相比不使用虚继承，它删除了B1和B2当中的（2份）基类成员；它自己则需要保存一份基类成员和偏移指针；而如果要用B1和B2的指针或者引用去访问一个D对象时，那么访问A的成员则需要通过间接引用来访问；也就是说子对象需要有一个<strong>偏移量</strong>，指示在内存中，基类的位置。其内存布局一般如下：</p>
                 <table>
                   <thead>
@@ -409,15 +409,15 @@ class C : public A, public B &#123;
                     </tr>
                   </tbody>
                 </table>
-                <h1>虚表与劫持攻击</h1>
+                <h1 id="虚表与劫持攻击"><a class="markdownIt-Anchor" href="#虚表与劫持攻击"></a> 虚表与劫持攻击</h1>
                 <p>在C<ins>程序中，%90以上的间接调用都是vcall。篡改程序中的虚函数调用，是劫持C</ins>程序的一种常见手段。这里简单说说常见手段。</p>
                 <p>一种方法是<strong>虚表注入</strong>。众所周知，虚表保存在程序的.rodata段中，它是可读，不可写的；而对象当中的虚表指针却是可读写的状态；因此篡改虚表指针是较为直接的方式。</p>
-                <p><img src="/images/c++/%E8%99%9A%E8%A1%A8%E6%B3%A8%E5%85%A5.png" alt="虚表注入"></p>
+                <p><img src="/images/c++/%E8%99%9A%E8%A1%A8%E6%B3%A8%E5%85%A5.png" alt="虚表注入" /></p>
                 <p>如图，如果利用漏洞（overflow、use-after-free等）在内存中构造一个虚假的虚表，并且将对象中的虚函数指针指向注入的虚假的虚表，那么在虚函数调用时，就会调用虚假的虚函数。甚至只需要一次虚函数调用就能够通过shellcode完成攻击。</p>
                 <p>当然，如果程序进行了一定程度的保护，例如检查虚表指针是否属于.rodata段，攻击就只能依赖于现有的虚表来构造了。<a target="_blank" rel="noopener" href="http://syssec.rub.de/media/emma/veroeffentlichungen/2015/03/28/COOP-Oakland15.pdf">Counterfeit Object-oriented Programming</a>就提出了这样一种方法。</p>
-                <p><img src="/images/c++/coop%E6%94%BB%E5%87%BB.png" alt="COOP"></p>
+                <p><img src="/images/c++/coop%E6%94%BB%E5%87%BB.png" alt="COOP" /></p>
                 <p>可以看到，这种方法没有注入新的虚表，而是将vptr的值，指向了虚表中的不同位置（而不是虚表的起始地址）。如果能够构造一系列的虚假对象，那么就可以在一次循环中（比如某个对象数组的依次析构），在调用同一个虚函数时，实际上调用不同的函数，从而构造一个虚假的执行链。看到这里，也许你会有疑问：仅仅用有限的虚函数，能够构造图灵计算的攻击吗？答案是肯定的：有兴趣的话可以阅读一下原文，通过拼凑虚函数，是能够组合出各种语义的。</p>
-                <h1>小结</h1>
+                <h1 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h1>
                 <p>可见，虚函数是面向对象语言中，十分巧妙而又必不可少的设计；但它的特点也使得它成为黑客滥用、攻击的目标。指的庆幸的是，目前已经有一些开销较小的方法，能够保护虚表和虚函数了。</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/dcffa0c0/">https://blog.nooa.tech/articles/dcffa0c0/</a> . Welcome to reproduce it!</p>
 
@@ -531,11 +531,11 @@ class C : public A, public B &#123;
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">虚函数与多态</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">虚函数表与虚函数的调用</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">虚继承</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">虚表与劫持攻击</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0%E4%B8%8E%E5%A4%9A%E6%80%81"><span class="nav-number">1.</span> <span class="nav-text"> 虚函数与多态</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text"> 虚函数表与虚函数的调用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E7%BB%A7%E6%89%BF"><span class="nav-number">3.</span> <span class="nav-text"> 虚继承</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E8%A1%A8%E4%B8%8E%E5%8A%AB%E6%8C%81%E6%94%BB%E5%87%BB"><span class="nav-number">4.</span> <span class="nav-text"> 虚表与劫持攻击</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text"> 小结</span></a></li>
               </ol>
 
             </div>

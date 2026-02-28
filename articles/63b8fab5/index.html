@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="APT: 注解编译工具Annotation Compile Tool,用来在编译时根据注解自动生成Java代码。像ButterKnife,EventBus等库都为了避免因为反射带来的性能损失,都使用了APT注解方式。  使用APT需要的组件 通常一个库有三个以下部分组成：   * 核心包 用来对外提供使用,及库的逻辑部分  * Anntation包 用来存放自定义的注解  * Compiler包">
+  <meta name="description" content="APT: 注解编译工具Annotation Compile Tool,用来在编译时根据注解自动生成Java代码。像ButterKnife,EventBus等库都为了避免因为反射带来的性能损失,都使用了APT注解方式。   使用APT需要的组件 通常一个库有三个以下部分组成：   * 核心包 用来对外提供使用,及库的逻辑部分  * Anntation包 用来存放自定义的注解  * Compiler包">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Annotation Compile Tool">
   <meta property="og:url" content="https://blog.nooa.tech/articles/63b8fab5/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="APT: 注解编译工具Annotation Compile Tool,用来在编译时根据注解自动生成Java代码。像ButterKnife,EventBus等库都为了避免因为反射带来的性能损失,都使用了APT注解方式。  使用APT需要的组件 通常一个库有三个以下部分组成：   * 核心包 用来对外提供使用,及库的逻辑部分  * Anntation包 用来存放自定义的注解  * Compiler包">
+  <meta property="og:description" content="APT: 注解编译工具Annotation Compile Tool,用来在编译时根据注解自动生成Java代码。像ButterKnife,EventBus等库都为了避免因为反射带来的性能损失,都使用了APT注解方式。   使用APT需要的组件 通常一个库有三个以下部分组成：   * 核心包 用来对外提供使用,及库的逻辑部分  * Anntation包 用来存放自定义的注解  * Compiler包">
   <meta property="og:locale">
   <meta property="article:published_time" content="2017-03-07T06:32:53.000Z">
   <meta property="article:modified_time" content="2021-01-01T18:29:07.000Z">
@@ -297,7 +297,7 @@
                 <blockquote>
                   <p>APT: 注解编译工具<code>Annotation Compile Tool</code>,用来在编译时根据注解自动生成Java代码。像<code>ButterKnife</code>,<code>EventBus</code>等库都为了避免因为反射带来的性能损失,都使用了APT注解方式。</p>
                 </blockquote>
-                <h1>使用APT需要的组件</h1>
+                <h1 id="使用apt需要的组件"><a class="markdownIt-Anchor" href="#使用apt需要的组件"></a> 使用APT需要的组件</h1>
                 <p>通常一个库有三个以下部分组成：</p>
                 <ul>
                   <li>核心包 用来对外提供使用,及库的逻辑部分</li>
@@ -305,12 +305,12 @@
                   <li>Compiler包 这是APT运行所必需的,用来解释注解,告诉APT注解的意思及使用</li>
                 </ul>
                 <p>对与一个使用APT的库来说,Compiler包是必须的.Anntation包有时会包含在核心包里面。</p>
-                <h1>APT Plugin</h1>
+                <h1 id="apt-plugin"><a class="markdownIt-Anchor" href="#apt-plugin"></a> APT Plugin</h1>
                 <p>虽然Java提供了APT,但在使用Gradle2.2之前的版本在编译时并不会调用APT,所以通过插件来调用。</p>
                 <p>这个插件也只能用Javac的方式进行编译。</p>
                 <p>从Gradle2.2开始,内置了APT的插件,不需要再进行声明,而且还支持以Jack的方式编译。</p>
-                <h1>APT的使用</h1>
-                <h2 id="2-2之前的版本">2.2之前的版本</h2>
+                <h1 id="apt的使用"><a class="markdownIt-Anchor" href="#apt的使用"></a> APT的使用</h1>
+                <h2 id="22之前的版本"><a class="markdownIt-Anchor" href="#22之前的版本"></a> 2.2之前的版本</h2>
                 <ol>
                   <li>在工程的Gradle中声明APT插件的依赖</li>
                 </ol>
@@ -357,7 +357,7 @@
                   </table>
                 </figure>
                 <p>任何Module,只要需要使用APT,就必须在Gradle中声明使用APT插件及添加Compiler包的依赖。</p>
-                <h2 id="2-2之后的版本">2.2之后的版本</h2>
+                <h2 id="22之后的版本"><a class="markdownIt-Anchor" href="#22之后的版本"></a> 2.2之后的版本</h2>
                 <ol>
                   <li>工程的Gradle中不需要声明APT插件,除非是库指定.</li>
                 </ol>
@@ -516,12 +516,12 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">使用APT需要的组件</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">APT Plugin</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">APT的使用</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apt%E9%9C%80%E8%A6%81%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text"> 使用APT需要的组件</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#apt-plugin"><span class="nav-number">2.</span> <span class="nav-text"> APT Plugin</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#apt%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text"> APT的使用</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#2-2%E4%B9%8B%E5%89%8D%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text">2.2之前的版本</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#2-2%E4%B9%8B%E5%90%8E%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">2.2之后的版本</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#22%E4%B9%8B%E5%89%8D%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text"> 2.2之前的版本</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#22%E4%B9%8B%E5%90%8E%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text"> 2.2之后的版本</span></a></li>
                   </ol>
                 </li>
               </ol>

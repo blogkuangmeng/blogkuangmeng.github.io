@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="背景知识 什么是词向量&#x2F;词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
+  <meta name="description" content="背景知识  什么是词向量&#x2F;词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等   词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Word2Vec and GloVe">
   <meta property="og:url" content="https://blog.nooa.tech/articles/5a3aed16/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="背景知识 什么是词向量&#x2F;词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等  词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所以首">
+  <meta property="og:description" content="背景知识  什么是词向量&#x2F;词嵌入  * 词向量（word embedding）是一个固定长度的实值向量  * 词向量是神经语言模型的副产品。  * 词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等   词向量的理解 word2vec 中的数学原理详解（三）背景知识 - CSDN博客   * 在 NLP 任务中，因为机器无法直接理解自然语言，所">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/assets/%E5%85%AC%E5%BC%8F_20180806115820.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/assets/%E5%85%AC%E5%BC%8F_20180806120054.png">
@@ -326,14 +326,14 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>背景知识</h1>
-                <h2 id="什么是词向量-词嵌入">什么是词向量/词嵌入</h2>
+                <h1 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h1>
+                <h2 id="什么是词向量词嵌入"><a class="markdownIt-Anchor" href="#什么是词向量词嵌入"></a> 什么是词向量/词嵌入</h2>
                 <ul>
                   <li>词向量（word embedding）是一个固定长度的实值向量</li>
                   <li>词向量是神经语言模型的<strong>副产品</strong>。</li>
                   <li>词向量是针对“词”提出的。事实上，也可以针对更细或更粗的粒度来进行推广——比如字向量、句向量、文档向量等</li>
                 </ul>
-                <h2 id="词向量的理解">词向量的理解</h2>
+                <h2 id="词向量的理解"><a class="markdownIt-Anchor" href="#词向量的理解"></a> 词向量的理解</h2>
                 <blockquote>
                   <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/itplus/article/details/37969817">word2vec 中的数学原理详解（三）背景知识</a> - CSDN博客</p>
                 </blockquote>
@@ -355,7 +355,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h1>Word2Vec</h1>
+                <h1 id="word2vec"><a class="markdownIt-Anchor" href="#word2vec"></a> Word2Vec</h1>
                 <ul>
                   <li>Word2Vec 本质上也是一个神经语言模型，但是它的目标并不是语言模型本身，而是词向量；因此，其所作的一系列优化，都是为了更快更好的得到词向量</li>
                   <li>Word2Vec 提供了两套模型：<strong>CBOW</strong> 和 <strong>Skip-Gram</strong>(SG)
@@ -387,7 +387,7 @@
                   </li>
                   <li>除了两套模型，Word2Vec 还提供了两套优化方案，分别基于 Hierarchical Softmax (层次SoftMax) 和 Negative Sampling (负采样)</li>
                 </ul>
-                <h2 id="基于层次-SoftMax-的-CBOW-模型">基于层次 SoftMax 的 CBOW 模型</h2>
+                <h2 id="基于层次-softmax-的-cbow-模型"><a class="markdownIt-Anchor" href="#基于层次-softmax-的-cbow-模型"></a> 基于层次 SoftMax 的 CBOW 模型</h2>
                 <ul>
                   <li>
                     <p>【<strong>输入层</strong>】将 <code>context(w)</code> 中的词映射为 <code>m</code> 维词向量，共 <code>2c</code> 个</p>
@@ -416,7 +416,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h3 id="层次-SoftMax-的正向传播">层次 SoftMax 的正向传播</h3>
+                <h3 id="层次-softmax-的正向传播"><a class="markdownIt-Anchor" href="#层次-softmax-的正向传播"></a> 层次 SoftMax 的正向传播</h3>
                 <ul>
                   <li>
                     <p>层 Softmax 实际上是把一个超大的多分类问题转化成一系列二分类问题</p>
@@ -442,16 +442,16 @@
                     </ul>
                   </li>
                 </ul>
-                <h4 id="为什么层次-SoftMax-能加速">为什么层次 SoftMax 能加速</h4>
+                <h4 id="为什么层次-softmax-能加速"><a class="markdownIt-Anchor" href="#为什么层次-softmax-能加速"></a> 为什么层次 SoftMax 能加速</h4>
                 <ul>
                   <li>Softmax 大部分的计算量在于分母部分，它需要求出所有分量的和</li>
                   <li>而层次 SoftMax 每次只需要计算两个分量，因此极大的提升了速度</li>
                 </ul>
-                <h3 id="层次-Softmax-的反向传播-TODO">层次 Softmax 的反向传播 TODO</h3>
+                <h3 id="层次-softmax-的反向传播-todo"><a class="markdownIt-Anchor" href="#层次-softmax-的反向传播-todo"></a> 层次 Softmax 的反向传播 TODO</h3>
                 <blockquote>
                   <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/itplus/article/details/37969979">word2vec 中的数学原理详解（四）基于 Hierarchical Softmax 的模型</a> - CSDN博客</p>
                 </blockquote>
-                <h2 id="基于层次-Softmax-的-Skip-gram-模型">基于层次 Softmax 的 Skip-gram 模型</h2>
+                <h2 id="基于层次-softmax-的-skip-gram-模型"><a class="markdownIt-Anchor" href="#基于层次-softmax-的-skip-gram-模型"></a> 基于层次 Softmax 的 Skip-gram 模型</h2>
                 <ul>
                   <li>
                     <p>这里保留了【投影层】，但实际上只是一个恒等变换</p>
@@ -464,7 +464,7 @@
                     <p>虽然 SG 模型用中心词做特征，上下文词做类标，但实际上两者的地位是等价的</p>
                   </li>
                 </ul>
-                <h2 id="基于负采样的-CBOW-和-Skip-gram">基于负采样的 CBOW 和 Skip-gram</h2>
+                <h2 id="基于负采样的-cbow-和-skip-gram"><a class="markdownIt-Anchor" href="#基于负采样的-cbow-和-skip-gram"></a> 基于负采样的 CBOW 和 Skip-gram</h2>
                 <ul>
                   <li>层次 Softmax 还不够简单，于是提出了基于负采样的方法进一步提升性能</li>
                   <li>负采样（Negative Sampling）是 NCE(Noise Contrastive Estimation) 的简化版本 &gt; <a target="_blank" rel="noopener" href="https://blog.csdn.net/littlely_ll/article/details/79252064">噪音对比估计（NCE）</a> - CSDN博客</li>
@@ -473,7 +473,7 @@
                   <li>负采样相当于选取所有负例中的一部分作为负样本，从而减少计算量</li>
                   <li>Skip-gram 模型同理</li>
                 </ul>
-                <h2 id="负采样算法">负采样算法</h2>
+                <h2 id="负采样算法"><a class="markdownIt-Anchor" href="#负采样算法"></a> 负采样算法</h2>
                 <ul>
                   <li>负采样算法，即对给定的 <code>w</code> ，生成相应负样本的方法</li>
                   <li>最简单的方法是随机采样，但这会产生一点问题，词表中的词出现频率并不相同
@@ -485,7 +485,7 @@
                   <li>因此，负采样算法实际上就是一个<strong>带权采样</strong>过程<div align="center"><img src="/images/assets/TIM截图20180806161221.png" height="200" /></div>
                   </li>
                 </ul>
-                <h3 id="Word2Vec-中的做法">Word2Vec 中的做法</h3>
+                <h3 id="word2vec-中的做法"><a class="markdownIt-Anchor" href="#word2vec-中的做法"></a> Word2Vec 中的做法</h3>
                 <ul>
                   <li>
                     <p>记</p>
@@ -506,7 +506,7 @@
                     <div align="center"><img src="/images/assets/公式_20180806170618.png" height="" /></div>
                   </li>
                   <li>
-                    <p>采样时，每次生成一个 <code>[1, M-1]</code> 之间的整数 <code>i</code>，则 <code>Table(i)</code> 就对应一个样本；<br />
+                    <p>采样时，每次生成一个 <code>[1, M-1]</code> 之间的整数 <code>i</code>，则 <code>Table(i)</code> 就对应一个样本；<br /><br />
                       当采样到正例时，跳过</p>
                   </li>
                   <li>
@@ -514,8 +514,8 @@
                     <div align="center"><img src="/images/assets/公式_20180806162119.png" height="" /></div>
                   </li>
                 </ul>
-                <h2 id="一些源码细节">一些源码细节</h2>
-                <h3 id="σ-x-的近似计算"><code>σ(x)</code> 的近似计算</h3>
+                <h2 id="一些源码细节"><a class="markdownIt-Anchor" href="#一些源码细节"></a> 一些源码细节</h2>
+                <h3 id="σx-的近似计算"><a class="markdownIt-Anchor" href="#σx-的近似计算"></a> <code>σ(x)</code> 的近似计算</h3>
                 <ul>
                   <li>
                     <p>类似带权采样的策略，用<strong>查表</strong>来代替计算</p>
@@ -529,11 +529,11 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h3 id="低频词的处理">低频词的处理</h3>
+                <h3 id="低频词的处理"><a class="markdownIt-Anchor" href="#低频词的处理"></a> 低频词的处理</h3>
                 <ul>
                   <li>对于低频词，会设置阈值（默认 5），对于出现频次低于该阈值的词会直接舍弃，同时训练集中也会被删除</li>
                 </ul>
-                <h3 id="高频词的处理">高频词的处理</h3>
+                <h3 id="高频词的处理"><a class="markdownIt-Anchor" href="#高频词的处理"></a> 高频词的处理</h3>
                 <ul>
                   <li>高频词提供的信息相对较少，为了提高低频词的词向量质量，有必要对高频词进行限制</li>
                   <li>高频词对应的词向量在训练时，不会发生明显的变化，因此在训练是可以减少对这些词的训练，从而提升速度</li>
@@ -550,7 +550,7 @@
                   <li>特别的，Word2Vec 使用如下公式计算 <code>p(w)</code>，效果是类似的<div align="center"><img src="/images/assets/公式_20180806193111.png" height="" /></div>
                   </li>
                 </ul>
-                <h3 id="自适应学习率">自适应学习率</h3>
+                <h3 id="自适应学习率"><a class="markdownIt-Anchor" href="#自适应学习率"></a> 自适应学习率</h3>
                 <ul>
                   <li>
                     <p>预先设置一个初始的学习率 <code>η_0</code>（默认 0.025），每处理完 <code>M</code>（默认 10000）个词，就根据以下公式调整学习率</p>
@@ -563,13 +563,13 @@
                     <p>为了方式学习率过小，Word2Vec 设置了一个阈值 <code>η_min</code>（默认 <code>0.0001 * η_0</code>）；当学习率小于 <code>η_min</code>，则固定为 <code>η_min</code>。</p>
                   </li>
                 </ul>
-                <h3 id="参数初始化">参数初始化</h3>
+                <h3 id="参数初始化"><a class="markdownIt-Anchor" href="#参数初始化"></a> 参数初始化</h3>
                 <ul>
                   <li>词向量服从均匀分布 <code>[-0.5/m, 0.5/m]</code>，其中 <code>m</code> 为词向量的维度</li>
                   <li>所有网络参数初始化为 <code>0</code></li>
                 </ul>
-                <h1>GloVe</h1>
-                <h2 id="共现矩阵">共现矩阵</h2>
+                <h1 id="glove"><a class="markdownIt-Anchor" href="#glove"></a> GloVe</h1>
+                <h2 id="共现矩阵"><a class="markdownIt-Anchor" href="#共现矩阵"></a> 共现矩阵</h2>
                 <ul>
                   <li>共现矩阵的实现方式
                     <ul>
@@ -586,7 +586,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h3 id="构架共现矩阵的细节">构架共现矩阵的细节</h3>
+                <h3 id="构架共现矩阵的细节"><a class="markdownIt-Anchor" href="#构架共现矩阵的细节"></a> 构架共现矩阵的细节</h3>
                 <ul>
                   <li><strong>功能词的处理</strong>
                     <ul>
@@ -609,7 +609,7 @@
                     </blockquote>
                   </li>
                 </ul>
-                <h2 id="GloVe-的基本思想">GloVe 的基本思想</h2>
+                <h2 id="glove-的基本思想"><a class="markdownIt-Anchor" href="#glove-的基本思想"></a> GloVe 的基本思想</h2>
                 <ul>
                   <li>
                     <p>GloVe 模型的是基于<strong>共现矩阵</strong>构建的</p>
@@ -635,7 +635,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h2 id="GloVe-的目标函数">GloVe 的目标函数</h2>
+                <h2 id="glove-的目标函数"><a class="markdownIt-Anchor" href="#glove-的目标函数"></a> GloVe 的目标函数</h2>
                 <div align="center"><img src="/images/assets/公式_20180807150747.png" height="" /></div>
                 <p>其中</p>
                 <ul>
@@ -654,7 +654,7 @@
                     </ul>
                   </li>
                 </ul>
-                <h3 id="GloVe-目标函数的推导过程">GloVe 目标函数的推导过程</h3>
+                <h3 id="glove-目标函数的推导过程"><a class="markdownIt-Anchor" href="#glove-目标函数的推导过程"></a> GloVe 目标函数的推导过程</h3>
                 <blockquote>
                   <p>以前整理在 OneNote 上的，有时间在整理</p>
                 </blockquote>
@@ -672,10 +672,10 @@
                     <div align="center"><img src="/images/assets/TIM截图20180807152530.png" height="" /></div>
                   </li>
                 </ul>
-                <h2 id="GloVe-与-Word2Vec-的区别">GloVe 与 Word2Vec 的区别</h2>
+                <h2 id="glove-与-word2vec-的区别"><a class="markdownIt-Anchor" href="#glove-与-word2vec-的区别"></a> GloVe 与 Word2Vec 的区别</h2>
                 <ul>
                   <li>
-                    <p>Word2Vec 本质上是一个神经网络；<br />
+                    <p>Word2Vec 本质上是一个神经网络；<br /><br />
                       Glove 也利用了<strong>反向传播</strong>来更新词向量，但是结构要更简单，所以 GloVe 的速度更快</p>
                   </li>
                   <li>
@@ -684,16 +684,16 @@
                       <p>实际 Word2Vec 已结有了一些对高频词的措施</p>
                     </blockquote>
                     <ul>
-                      <li>从效果上看，虽然 GloVe 的训练速度更快，但是<strong>词向量的性能</strong>在通用性上要弱一些：<br />
+                      <li>从效果上看，虽然 GloVe 的训练速度更快，但是<strong>词向量的性能</strong>在通用性上要弱一些：<br /><br />
                         在一些任务上表现优于 Word2Vec，但是在更多的任务上要比 Word2Vec 差</li>
                     </ul>
                   </li>
                 </ul>
-                <h1>FastText</h1>
+                <h1 id="fasttext"><a class="markdownIt-Anchor" href="#fasttext"></a> FastText</h1>
                 <ul>
                   <li>
-                    <p>FastText 是从 Word2Vec 的 CBOW 模型演化而来的；<br />
-                      从网络的角度来看，两者的模型基本一致；区别仅在于两者的分类目标不同；<br />
+                    <p>FastText 是从 Word2Vec 的 CBOW 模型演化而来的；<br /><br />
+                      从网络的角度来看，两者的模型基本一致；区别仅在于两者的分类目标不同；<br /><br />
                       具体来说，FastText 的分类目标是文档的标签，CBOW 则是中心词的标签</p>
                     <div align="center"><img src="/images/assets/TIM截图20180807094759.png" height="" /></div>
                   </li>
@@ -746,7 +746,7 @@
                     <p><strong>具体来说</strong>，<strong>未登录词</strong>的词向量等于其 N-gram 向量的叠加</p>
                   </li>
                 </ul>
-                <h2 id="gensim-models-FastText-使用示例"><code>gensim.models.FastText</code> 使用示例</h2>
+                <h2 id="gensimmodelsfasttext-使用示例"><a class="markdownIt-Anchor" href="#gensimmodelsfasttext-使用示例"></a> <code>gensim.models.FastText</code> 使用示例</h2>
                 <ul>
                   <li>
                     <p>构建 FastText 以及获取词向量</p>
@@ -764,7 +764,7 @@
                     </figure>
                   </li>
                 </ul>
-                <h3 id="获取单个词的-ngrams-表示">获取单个词的 ngrams 表示</h3>
+                <h3 id="获取单个词的-ngrams-表示"><a class="markdownIt-Anchor" href="#获取单个词的-ngrams-表示"></a> 获取单个词的 ngrams 表示</h3>
                 <ul>
                   <li>
                     <p>利用源码中 <code>compute_ngrams</code> 方法，gensim 提供了该方法的 Python 接口</p>
@@ -782,7 +782,7 @@
                     </figure>
                   </li>
                 </ul>
-                <h3 id="计算一个未登录词的词向量">计算一个未登录词的词向量</h3>
+                <h3 id="计算一个未登录词的词向量"><a class="markdownIt-Anchor" href="#计算一个未登录词的词向量"></a> 计算一个未登录词的词向量</h3>
                 <ul>
                   <li>
                     <p>未登录词实际上是已知 n-grams 向量的叠加平均</p>
@@ -818,15 +818,15 @@
                     </figure>
                   </li>
                 </ul>
-                <h1>CharCNN 字向量</h1>
+                <h1 id="charcnn-字向量"><a class="markdownIt-Anchor" href="#charcnn-字向量"></a> CharCNN 字向量</h1>
                 <ul>
                   <li>CharCNN 的思想是通过字符向量得到词向量</li>
                 </ul>
                 <blockquote>
                   <p>[1509] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1509.01626">Character-level Convolutional Networks for Text Classification</a></p>
                 </blockquote>
-                <h1>其他实践</h1>
-                <h2 id="一般-embedding-维度的选择">一般 embedding 维度的选择</h2>
+                <h1 id="其他实践"><a class="markdownIt-Anchor" href="#其他实践"></a> 其他实践</h1>
+                <h2 id="一般-embedding-维度的选择"><a class="markdownIt-Anchor" href="#一般-embedding-维度的选择"></a> 一般 embedding 维度的选择</h2>
                 <blockquote>
                   <p><a target="_blank" rel="noopener" href="https://www.tensorflow.org/versions/master/guide/feature_columns#indicator_and_embedding_columns">Feature Columns</a>  |  TensorFlow</p>
                 </blockquote>
@@ -954,72 +954,72 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text"> 背景知识</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%8D%E5%90%91%E9%87%8F-%E8%AF%8D%E5%B5%8C%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">什么是词向量&#x2F;词嵌入</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">词向量的理解</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%8D%E5%90%91%E9%87%8F%E8%AF%8D%E5%B5%8C%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text"> 什么是词向量&#x2F;词嵌入</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text"> 词向量的理解</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Word2Vec</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#word2vec"><span class="nav-number">2.</span> <span class="nav-text"> Word2Vec</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1-SoftMax-%E7%9A%84-CBOW-%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">基于层次 SoftMax 的 CBOW 模型</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1-softmax-%E7%9A%84-cbow-%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text"> 基于层次 SoftMax 的 CBOW 模型</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1-SoftMax-%E7%9A%84%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">2.1.1.</span> <span class="nav-text">层次 SoftMax 的正向传播</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1-softmax-%E7%9A%84%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 层次 SoftMax 的正向传播</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B1%82%E6%AC%A1-SoftMax-%E8%83%BD%E5%8A%A0%E9%80%9F"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">为什么层次 SoftMax 能加速</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B1%82%E6%AC%A1-softmax-%E8%83%BD%E5%8A%A0%E9%80%9F"><span class="nav-number">2.1.1.1.</span> <span class="nav-text"> 为什么层次 SoftMax 能加速</span></a></li>
                           </ol>
                         </li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1-Softmax-%E7%9A%84%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-TODO"><span class="nav-number">2.1.2.</span> <span class="nav-text">层次 Softmax 的反向传播 TODO</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1-softmax-%E7%9A%84%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-todo"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 层次 Softmax 的反向传播 TODO</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1-Softmax-%E7%9A%84-Skip-gram-%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">基于层次 Softmax 的 Skip-gram 模型</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%B4%9F%E9%87%87%E6%A0%B7%E7%9A%84-CBOW-%E5%92%8C-Skip-gram"><span class="nav-number">2.3.</span> <span class="nav-text">基于负采样的 CBOW 和 Skip-gram</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E9%87%87%E6%A0%B7%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">负采样算法</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1-softmax-%E7%9A%84-skip-gram-%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text"> 基于层次 Softmax 的 Skip-gram 模型</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%B4%9F%E9%87%87%E6%A0%B7%E7%9A%84-cbow-%E5%92%8C-skip-gram"><span class="nav-number">2.3.</span> <span class="nav-text"> 基于负采样的 CBOW 和 Skip-gram</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E9%87%87%E6%A0%B7%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text"> 负采样算法</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#Word2Vec-%E4%B8%AD%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text">Word2Vec 中的做法</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#word2vec-%E4%B8%AD%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Word2Vec 中的做法</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E7%BB%86%E8%8A%82"><span class="nav-number">2.5.</span> <span class="nav-text">一些源码细节</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E7%BB%86%E8%8A%82"><span class="nav-number">2.5.</span> <span class="nav-text"> 一些源码细节</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%CF%83-x-%E7%9A%84%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97"><span class="nav-number">2.5.1.</span> <span class="nav-text">σ(x) 的近似计算</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E9%A2%91%E8%AF%8D%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.5.2.</span> <span class="nav-text">低频词的处理</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%A2%91%E8%AF%8D%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.5.3.</span> <span class="nav-text">高频词的处理</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">2.5.4.</span> <span class="nav-text">自适应学习率</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.5.5.</span> <span class="nav-text">参数初始化</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%CF%83x-%E7%9A%84%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97"><span class="nav-number">2.5.1.</span> <span class="nav-text"> σ(x) 的近似计算</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E9%A2%91%E8%AF%8D%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.5.2.</span> <span class="nav-text"> 低频词的处理</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%A2%91%E8%AF%8D%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.5.3.</span> <span class="nav-text"> 高频词的处理</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">2.5.4.</span> <span class="nav-text"> 自适应学习率</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.5.5.</span> <span class="nav-text"> 参数初始化</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">GloVe</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#glove"><span class="nav-number">3.</span> <span class="nav-text"> GloVe</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5"><span class="nav-number">3.1.</span> <span class="nav-text">共现矩阵</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5"><span class="nav-number">3.1.</span> <span class="nav-text"> 共现矩阵</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E6%9E%B6%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-number">3.1.1.</span> <span class="nav-text">构架共现矩阵的细节</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E6%9E%B6%E5%85%B1%E7%8E%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-number">3.1.1.</span> <span class="nav-text"> 构架共现矩阵的细节</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#GloVe-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">3.2.</span> <span class="nav-text">GloVe 的基本思想</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#GloVe-%E7%9A%84%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">GloVe 的目标函数</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#glove-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">3.2.</span> <span class="nav-text"> GloVe 的基本思想</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#glove-%E7%9A%84%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text"> GloVe 的目标函数</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#GloVe-%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text">GloVe 目标函数的推导过程</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#glove-%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text"> GloVe 目标函数的推导过程</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#GloVe-%E4%B8%8E-Word2Vec-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.4.</span> <span class="nav-text">GloVe 与 Word2Vec 的区别</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#glove-%E4%B8%8E-word2vec-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.4.</span> <span class="nav-text"> GloVe 与 Word2Vec 的区别</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">FastText</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#fasttext"><span class="nav-number">4.</span> <span class="nav-text"> FastText</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#gensim-models-FastText-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text">gensim.models.FastText 使用示例</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#gensimmodelsfasttext-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text"> gensim.models.FastText 使用示例</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E8%AF%8D%E7%9A%84-ngrams-%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.1.1.</span> <span class="nav-text">获取单个词的 ngrams 表示</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%80%E4%B8%AA%E6%9C%AA%E7%99%BB%E5%BD%95%E8%AF%8D%E7%9A%84%E8%AF%8D%E5%90%91%E9%87%8F"><span class="nav-number">4.1.2.</span> <span class="nav-text">计算一个未登录词的词向量</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E8%AF%8D%E7%9A%84-ngrams-%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.1.1.</span> <span class="nav-text"> 获取单个词的 ngrams 表示</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%80%E4%B8%AA%E6%9C%AA%E7%99%BB%E5%BD%95%E8%AF%8D%E7%9A%84%E8%AF%8D%E5%90%91%E9%87%8F"><span class="nav-number">4.1.2.</span> <span class="nav-text"> 计算一个未登录词的词向量</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">CharCNN 字向量</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">其他实践</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#charcnn-%E5%AD%97%E5%90%91%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text"> CharCNN 字向量</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%AE%9E%E8%B7%B5"><span class="nav-number">6.</span> <span class="nav-text"> 其他实践</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC-embedding-%E7%BB%B4%E5%BA%A6%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">6.1.</span> <span class="nav-text">一般 embedding 维度的选择</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC-embedding-%E7%BB%B4%E5%BA%A6%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">6.1.</span> <span class="nav-text"> 一般 embedding 维度的选择</span></a></li>
                   </ol>
                 </li>
               </ol>

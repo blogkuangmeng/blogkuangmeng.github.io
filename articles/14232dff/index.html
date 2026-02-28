@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="循环神经网络（RNNs） 背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq2">
+  <meta name="description" content="循环神经网络（RNNs）  背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Recurrent Neural Networks (RNNs)">
   <meta property="og:url" content="https://blog.nooa.tech/articles/14232dff/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="循环神经网络（RNNs） 背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq2">
+  <meta property="og:description" content="循环神经网络（RNNs）  背景 RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。    其按时间片展开的形式如下图。    因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/1.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/2.png">
@@ -32,17 +32,6 @@
   <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/f4.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/3.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/4.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/5.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/6.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/f5.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/7.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/8.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/12.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/13.jpg">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/14.jpg">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/9.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/10.png">
-  <meta property="og:image" content="https://blog.nooa.tech/images/rnn-lstm/11.png">
   <meta property="article:published_time" content="2019-01-03T16:09:04.000Z">
   <meta property="article:modified_time" content="2022-09-21T16:04:42.496Z">
   <meta property="article:author" content="Mengmeng Kuang">
@@ -315,33 +304,79 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>循环神经网络（RNNs）</h1>
-                <h2 id="背景">背景</h2>
+                <h1 id="循环神经网络rnns"><a class="markdownIt-Anchor" href="#循环神经网络rnns"></a> 循环神经网络（RNNs）</h1>
+                <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
                 <p>RNNs在多种与序列相关的任务中都起到了很好的作用，其也是在处理时序问题的最常用的一类模型，这都归因于其计算当前时间片的时候，除了像普通DNNs使用到当前的输入信息之外，还使用到了前一个时间片的信息，其一般结构如下图所示。</p>
-                <p><img src="/images/rnn-lstm/1.png" alt="RNN Structure"></p>
+                <p><img src="/images/rnn-lstm/1.png" alt="RNN Structure" /></p>
                 <p>其按时间片展开的形式如下图。</p>
-                <p><img src="/images/rnn-lstm/2.png" alt="RNN Structure"></p>
+                <p><img src="/images/rnn-lstm/2.png" alt="RNN Structure" /></p>
                 <p>因为RNNs的考虑序列化信息的特性，使得其在许多序列化任务中发挥比较不错的效果，例如语音识别，Seq2Seq，甚至OCR（Computer Vision领域）。</p>
-                <h2 id="形式">形式</h2>
+                <h2 id="形式"><a class="markdownIt-Anchor" href="#形式"></a> 形式</h2>
                 <p>其数学形式可以表示为：</p>
-                <p>$$
-                  h_{t}=\sigma\left(x_{t} \times W_{x t}+h_{t-1} \times W_{h t}+b\right)
-                  $$</p>
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mi>h</mi>
+                                <mi>t</mi>
+                              </msub>
+                              <mo>=</mo>
+                              <mi>σ</mi>
+                              <mrow>
+                                <mo fence="true">(</mo>
+                                <msub>
+                                  <mi>x</mi>
+                                  <mi>t</mi>
+                                </msub>
+                                <mo>×</mo>
+                                <msub>
+                                  <mi>W</mi>
+                                  <mrow>
+                                    <mi>x</mi>
+                                    <mi>t</mi>
+                                  </mrow>
+                                </msub>
+                                <mo>+</mo>
+                                <msub>
+                                  <mi>h</mi>
+                                  <mrow>
+                                    <mi>t</mi>
+                                    <mo>−</mo>
+                                    <mn>1</mn>
+                                  </mrow>
+                                </msub>
+                                <mo>×</mo>
+                                <msub>
+                                  <mi>W</mi>
+                                  <mrow>
+                                    <mi>h</mi>
+                                    <mi>t</mi>
+                                  </mrow>
+                                </msub>
+                                <mo>+</mo>
+                                <mi>b</mi>
+                                <mo fence="true">)</mo>
+                              </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">h_{t}=\sigma\left(x_{t} \times W_{x t}+h_{t-1} \times W_{h t}+b\right)
+                            </annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">b</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
                 <p>其时间片<code>t - 1</code>的输出不仅作为该时刻的预测值，同时也作为<code>t</code>时间片的隐状态。</p>
                 <p>(当然，也可以将传递状态和输出分开，这时预测值的形式为：$$y_{t}=\sigma(W_{t} \times h_{t})$$)</p>
-                <h2 id="反向传播">反向传播</h2>
+                <h2 id="反向传播"><a class="markdownIt-Anchor" href="#反向传播"></a> 反向传播</h2>
                 <p>RNN中反向传播使用的是名为<code>Back Propagation Through Time (BPTT)</code>方法，损失<code>loss</code>对参数<code>W</code>的梯度等于<code>loss</code>在各时间步对<code>w</code>偏导数的之和。用公式表示如下。</p>
-                <p><img src="/images/rnn-lstm/f1.png" alt="F1"></p>
+                <p><img src="/images/rnn-lstm/f1.png" alt="F1" /></p>
                 <p>同时还有：</p>
-                <p><img src="/images/rnn-lstm/f2.png" alt="F2"></p>
+                <p><img src="/images/rnn-lstm/f2.png" alt="F2" /></p>
                 <p>与</p>
-                <p><img src="/images/rnn-lstm/f3.png" alt="F3"></p>
+                <p><img src="/images/rnn-lstm/f3.png" alt="F3" /></p>
                 <p>详细的反向传播过程参考 <a href="/utils/rnn-grad.pdf">RNN BPTT</a>。</p>
-                <h2 id="问题">问题</h2>
+                <h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
                 <p>在反向传播的时候，在求时间片<code>t</code>到<code>i</code>的偏导时，结合以上两个式子，可以得到：</p>
-                <p><img src="/images/rnn-lstm/f4.png" alt="F4"></p>
+                <p><img src="/images/rnn-lstm/f4.png" alt="F4" /></p>
                 <p>当<code>t - i</code>比较大时，问题来了，当$$\sigma^{\prime} W^{h} &gt; 1$$时，连乘的结果会比较大（梯度爆炸），相反，如果$$\sigma^{\prime} W^{h} &lt; 1$$，则会得到一个很小的值（梯度消失）。这种现象叫做RNNs的“长期依赖”。</p>
-                <h3 id="解决方案">解决方案</h3>
+                <h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
                 <ol>
                   <li>
                     <p>针对“梯度爆炸”</p>
@@ -356,7 +391,7 @@
                     </ul>
                   </li>
                 </ol>
-                <h3 id="针对此问题的拓展">针对此问题的拓展</h3>
+                <h3 id="针对此问题的拓展"><a class="markdownIt-Anchor" href="#针对此问题的拓展"></a> 针对此问题的拓展</h3>
                 <p>在深度学习发展的进程中，梯度弥散是一直存在的问题，正是因为这一问题使得深度学习模型的深度无法太深。在这个问题上也有各种不同的比较好的解决方案，例如：</p>
                 <ul>
                   <li>LSTM中的遗忘门</li>
@@ -364,62 +399,143 @@
                   <li>Residual Connection (Skip Connection)</li>
                   <li>Batch Normalization</li>
                 </ul>
-                <h1>长短期记忆网络（Long Short Term Memory Network, LSTM）</h1>
+                <h1 id="长短期记忆网络long-short-term-memory-network-lstm"><a class="markdownIt-Anchor" href="#长短期记忆网络long-short-term-memory-network-lstm"></a> 长短期记忆网络（Long Short Term Memory Network, LSTM）</h1>
                 <p>LSTM提出的动机是为了解决上面提到的“长期依赖”问题。传统的RNNs节点输出仅由权值，偏置以及激活函数决定，也就是说RNNs是一个链式结构，每个时间片使用的是相同的参数。而LSTM之所以能够一定程度上解决“长期依赖”问题，是因为LSTM引入了门（gate）机制用于控制特征的流通和遗忘。其形象化的展示如下图。</p>
-                <p><img src="/images/rnn-lstm/3.png" alt="LSTM Structure"></p>
+                <p><img src="/images/rnn-lstm/3.png" alt="LSTM Structure" /></p>
                 <p>相对于RNNs，LSTM增加了一个cell state。只看LSTM一个cell state部分，如下图。</p>
-                <p><img src="/images/rnn-lstm/4.png" alt="LSTM Structure"></p>
+                <p><img src="/images/rnn-lstm/4.png" alt="LSTM Structure" /></p>
                 <p>其形式可表述为：</p>
-                <p>$$
-                  C_{t}=f_{t} \times C_{t-1}+i_{t} \times \tilde{C}_{t}
-                  $$</p>
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mi>C</mi>
+                                <mi>t</mi>
+                              </msub>
+                              <mo>=</mo>
+                              <msub>
+                                <mi>f</mi>
+                                <mi>t</mi>
+                              </msub>
+                              <mo>×</mo>
+                              <msub>
+                                <mi>C</mi>
+                                <mrow>
+                                  <mi>t</mi>
+                                  <mo>−</mo>
+                                  <mn>1</mn>
+                                </mrow>
+                              </msub>
+                              <mo>+</mo>
+                              <msub>
+                                <mi>i</mi>
+                                <mi>t</mi>
+                              </msub>
+                              <mo>×</mo>
+                              <msub>
+                                <mover accent="true">
+                                  <mi>C</mi>
+                                  <mo>~</mo>
+                                </mover>
+                                <mi>t</mi>
+                              </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">C_{t}=f_{t} \times C_{t-1}+i_{t} \times \tilde{C}_{t}
+                            </annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0701899999999998em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201899999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span><span style="top:-3.6023300000000003em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
                 <p>其中$$f_t$$和$$i_t$$分别控制遗忘门和输入门参与计算的比例（他们经过了Sigmoid函数，输出结果在0 - 1之间。）</p>
-                <p>$$f_t$$的计算可以表示为：</p>
-                <p>$$
-                  f_{t}=\sigma\left(W_{f} \cdot\left[h_{t-1}, x_{t}\right]+b_{f}\right)
-                  $$</p>
-                <p>在图示中的位置如下图：</p>
-                <p><img src="/images/rnn-lstm/5.png" alt="LSTM Structure"></p>
-                <p>$$i_t$$的计算可以表示为：</p>
-                <p>$$
-                  i_{t}=\sigma\left(W_{i} \cdot\left[h_{t-1}, x_{t}\right]+b_{i}\right)
-                  $$</p>
-                <p>在图示中的位置如下：</p>
-                <p><img src="/images/rnn-lstm/6.png" alt="LSTM Structure"></p>
-                <p>状态更新值$$\tilde{C}_{t}$$的数学表达式以及图示如下：</p>
-                <p><img src="/images/rnn-lstm/f5.png" alt="F5"></p>
-                <p><img src="/images/rnn-lstm/7.png" alt="LSTM Structure"></p>
-                <p>最后，预测值$$y_t$$和生成下个时间片的输入$$h_t$$，我们需要如下计算：</p>
-                <p>$$
-                  o_{t}=\sigma\left(W_{o}\left[h_{t-1}, x_{t}\right]+b_{o}\right)
-                  $$</p>
-                <p>$$
-                  h_{t}=o_{t} * \tanh \left(C_{t}\right)
-                  $$</p>
-                <h2 id="History总结">History总结</h2>
-                <p>截止此处，RNNs，LSTM的发展脉络可以由下图总结。</p>
-                <p><img src="/images/rnn-lstm/8.png" alt="History"></p>
-                <h2 id="参数计算">参数计算</h2>
-                <p>LSTM中参数的计算公式如下：</p>
-                <p><code>4 * [(embedding_size + hidden_size) * hidden_size + hidden_size]</code></p>
-                <h1>其他RNNs的变型</h1>
-                <h2 id="双向RNNs-Bi-RNNs">双向RNNs (Bi-RNNs)</h2>
-                <p>有时候，为了更好地理解上下文和消除歧义，可能需要从将来的时间步中学习，于是有学者提出了双向的循环神经网络，其结构如下图所示。</p>
-                <p><img src="/images/rnn-lstm/12.png" alt="Bi-RNNs Structure"></p>
-                <p>原理上讲，所有的循环神经网络及其变型都可以有双向形式。而且对于多层的RNNs，双向形式还可以有两种不同的形式，如下图所示。</p>
-                <p><img src="/images/rnn-lstm/13.jpg" alt="Multi-layer Bi-RNNs Structure 1"></p>
-                <p><img src="/images/rnn-lstm/14.jpg" alt="Multi-layer Bi-RNNs Structure 2"></p>
-                <h2 id="GRU">GRU</h2>
-                <p>Gated Recurrent Unit (GRU)将LSTM中的遗忘门和输入门合成了一个单一的“更新门”。同样还混合了细胞状态<code>C</code>和隐藏状态<code>h</code>，和其他一些改动。最终的模型比标准的LSTM模型要简单，也是非常流行的变体。其形式化结构和数学形式如下：</p>
-                <p><img src="/images/rnn-lstm/9.png" alt="GRU Structure"></p>
-                <h2 id="Peephole-Connection-LSTM">Peephole Connection LSTM</h2>
-                <p>其网络结构及数学形式如下：</p>
-                <p><img src="/images/rnn-lstm/10.png" alt="PCLSTM Structure"></p>
-                <p>实际上是为LSTM中的每个门的输入增加一个cell state的信号。</p>
-                <h2 id="耦合输入和遗忘门-Coupled-Input-and-Forget-Gate-CIFG">耦合输入和遗忘门 (Coupled Input and Forget Gate, CIFG)</h2>
-                <p>相比于原来的LSTM，输入门和遗忘门的因子$$i_t$$与$$f_t$$值没有太大的相互关系，在此使$$i_t + f_t = 1$$，于是其形式变为了：</p>
-                <p><img src="/images/rnn-lstm/11.png" alt="CIFG Structure"></p>
-                <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/14232dff/">https://blog.nooa.tech/articles/14232dff/</a> . Welcome to reproduce it!</p>
+                <p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 4: f_t$̲$的计算可以表示为：
+
+'>f_t$$的计算可以表示为：
+
+                </p>
+                <p>f_{t}=\sigma\left(W_{f} \cdot\left[h_{t-1}, x_{t}\right]+b_{f}\right)</p>
+                <p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 58: …n-lstm/5.png)
+
+$̲$i_t$$的计算可以表示为：…'>
+                  在图示中的位置如下图：
+
+                  ![LSTM Structure](/images/rnn-lstm/5.png)
+
+                  $$i_t$$的计算可以表示为：
+
+                </p>
+                <p>i_{t}=\sigma\left(W_{i} \cdot\left[h_{t-1}, x_{t}\right]+b_{i}\right)</p>
+                <p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 62: …m/6.png)
+
+状态更新值$̲$\tilde{C}_{t}$…'>
+                  在图示中的位置如下：
+
+                  ![LSTM Structure](/images/rnn-lstm/6.png)
+
+                  状态更新值$$\tilde{C}_{t}$$的数学表达式以及图示如下：
+
+                  ![F5](/images/rnn-lstm/f5.png)
+
+                  ![LSTM Structure](/images/rnn-lstm/7.png)
+
+                  最后，预测值$$y_t$$和生成下个时间片的输入$$h_t$$，我们需要如下计算：
+
+                </p>
+                <p>o_{t}=\sigma\left(W_{o}\left[h_{t-1}, x_{t}\right]+b_{o}\right)</p>
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                          <semantics>
+                            <mrow></mrow>
+                            <annotation encoding="application/x-tex">
+                            </annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"></span></span></span></p>
+                <p>h_{t}=o_{t} * \tanh \left(C_{t}\right)</p>
+                <p class='katex-block katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;#&#039; at position 2: 
+#̲# History总结
+截止此…'>
+                  ## History总结
+                  截止此处，RNNs，LSTM的发展脉络可以由下图总结。
+
+                  ![History](/images/rnn-lstm/8.png)
+
+                  ## 参数计算
+                  LSTM中参数的计算公式如下：
+
+                  `4 * [(embedding_size + hidden_size) * hidden_size + hidden_size]`
+
+
+                  # 其他RNNs的变型
+                  ## 双向RNNs (Bi-RNNs)
+
+                  有时候，为了更好地理解上下文和消除歧义，可能需要从将来的时间步中学习，于是有学者提出了双向的循环神经网络，其结构如下图所示。
+
+                  ![Bi-RNNs Structure](/images/rnn-lstm/12.png)
+
+                  原理上讲，所有的循环神经网络及其变型都可以有双向形式。而且对于多层的RNNs，双向形式还可以有两种不同的形式，如下图所示。
+
+                  ![Multi-layer Bi-RNNs Structure 1](/images/rnn-lstm/13.jpg)
+
+                  ![Multi-layer Bi-RNNs Structure 2](/images/rnn-lstm/14.jpg)
+
+
+
+                  ## GRU
+                  Gated Recurrent Unit (GRU)将LSTM中的遗忘门和输入门合成了一个单一的“更新门”。同样还混合了细胞状态`C`和隐藏状态`h`，和其他一些改动。最终的模型比标准的LSTM模型要简单，也是非常流行的变体。其形式化结构和数学形式如下：
+
+                  ![GRU Structure](/images/rnn-lstm/9.png)
+
+                  ## Peephole Connection LSTM
+
+                  其网络结构及数学形式如下：
+
+                  ![PCLSTM Structure](/images/rnn-lstm/10.png)
+
+                  实际上是为LSTM中的每个门的输入增加一个cell state的信号。
+
+                  ## 耦合输入和遗忘门 (Coupled Input and Forget Gate, CIFG)
+
+                  相比于原来的LSTM，输入门和遗忘门的因子$$i_t$$与$$f_t$$值没有太大的相互关系，在此使$$i_t + f_t = 1$$，于是其形式变为了：
+
+                  ![CIFG Structure](/images/rnn-lstm/11.png)
+
+                  &lt;br&gt;&lt;br&gt;The link of this page is [https://blog.nooa.tech/articles/14232dff/](https://blog.nooa.tech/articles/14232dff/) . Welcome to reproduce it!</p>
 
 
               </div>
@@ -532,33 +648,20 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">循环神经网络（RNNs）</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Crnns"><span class="nav-number">1.</span> <span class="nav-text"> 循环神经网络（RNNs）</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">形式</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">1.3.</span> <span class="nav-text">反向传播</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">问题</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text"> 背景</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text"> 形式</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">1.3.</span> <span class="nav-text"> 反向传播</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text"> 问题</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.</span> <span class="nav-text">解决方案</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E6%AD%A4%E9%97%AE%E9%A2%98%E7%9A%84%E6%8B%93%E5%B1%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">针对此问题的拓展</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.</span> <span class="nav-text"> 解决方案</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E6%AD%A4%E9%97%AE%E9%A2%98%E7%9A%84%E6%8B%93%E5%B1%95"><span class="nav-number">1.4.2.</span> <span class="nav-text"> 针对此问题的拓展</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">长短期记忆网络（Long Short Term Memory Network, LSTM）</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#History%E6%80%BB%E7%BB%93"><span class="nav-number">2.1.</span> <span class="nav-text">History总结</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">2.2.</span> <span class="nav-text">参数计算</span></a></li>
-                  </ol>
-                </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">其他RNNs的变型</span></a>
-                  <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E5%90%91RNNs-Bi-RNNs"><span class="nav-number">3.1.</span> <span class="nav-text">双向RNNs (Bi-RNNs)</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#GRU"><span class="nav-number">3.2.</span> <span class="nav-text">GRU</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Peephole-Connection-LSTM"><span class="nav-number">3.3.</span> <span class="nav-text">Peephole Connection LSTM</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%A6%E5%90%88%E8%BE%93%E5%85%A5%E5%92%8C%E9%81%97%E5%BF%98%E9%97%A8-Coupled-Input-and-Forget-Gate-CIFG"><span class="nav-number">3.4.</span> <span class="nav-text">耦合输入和遗忘门 (Coupled Input and Forget Gate, CIFG)</span></a></li>
-                  </ol>
-                </li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9Clong-short-term-memory-network-lstm"><span class="nav-number">2.</span> <span class="nav-text"> 长短期记忆网络（Long Short Term Memory Network, LSTM）</span></a></li>
               </ol>
 
             </div>

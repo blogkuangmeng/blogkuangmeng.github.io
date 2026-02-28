@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。  关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下">
+  <meta name="description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。   关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如">
   <meta property="og:type" content="article">
   <meta property="og:title" content="商品推荐：协同过滤">
   <meta property="og:url" content="https://blog.nooa.tech/articles/6f93935a/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。  关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下">
+  <meta property="og:description" content="过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。   关于推荐系统 根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/recommend/6.jpg">
   <meta property="og:image" content="https://blog.nooa.tech/images/recommend/3.jpg">
@@ -304,16 +304,16 @@
                 <blockquote>
                   <p>过去很长时间以及现今，电商都在蓬勃发展，支持电商越做越大的一个很重要的因素就是“商品推荐”。当我们打开天猫，我们发现不同的用户，一般而言，首页是不一样的，原因就是，它为不同的用户推荐了不同的商品。我们为什么要用某一个购物网站或者APP，我觉得很大程度上取决于其推荐的准确与否。本篇博客我将向大家介绍协同过滤在商品推荐上的应用。</p>
                 </blockquote>
-                <h1>关于推荐系统</h1>
+                <h1 id="关于推荐系统"><a class="markdownIt-Anchor" href="#关于推荐系统"></a> 关于推荐系统</h1>
                 <p>根据推荐引擎的数据源不同，一般而言，推荐系统可以分为如下三类：</p>
                 <ul>
                   <li>基于人口统计学的推荐机制（Demographic-based Recommendation）：根据系统用户的基本信息发现用户的相关程度。</li>
                 </ul>
-                <p><img src="/images/recommend/6.jpg" alt=""></p>
+                <p><img src="/images/recommend/6.jpg" alt="" /></p>
                 <ul>
                   <li>基于内容的推荐机制（Content-based Recommendation）：根据推荐物品或内容的元数据，发现物品或者内容的相关性。</li>
                 </ul>
-                <p><img src="/images/recommend/3.jpg" alt=""></p>
+                <p><img src="/images/recommend/3.jpg" alt="" /></p>
                 <ul>
                   <li>协同过滤的推荐机制（Collaborative Filtering-based Recommendation）：根据用户对物品或者信息的偏好，发现物品或者内容本身的相关性，或者是发现用户的相关性。</li>
                 </ul>
@@ -323,39 +323,39 @@
                   <li>基于关联规则的推荐（Rule-based Recommendation）。关联规则的挖掘已经是数据挖掘中的一个经典的问题，主要是挖掘一些数据的依赖关系，典型的场景就是“购物篮问题”，通过关联规则的挖掘，我们可以找到哪些物品经常被同时购买，或者用户购买了一些物品后通常会购买哪些其他的物品，当我们挖掘出这些关联规则之后，我们可以基于这些规则给用户进行推荐。</li>
                   <li>基于模型的推荐（Model-based Recommendation）。这是一个典型的机器学习的问题，可以将已有的用户喜好信息作为训练样本，训练出一个预测用户喜好的模型，这样以后用户在进入系统，可以基于此模型计算推荐。这种方法的问题在于如何将用户实时或者近期的喜好信息反馈给训练好的模型，从而提高推荐的准确度。</li>
                 </ul>
-                <h1>协同过滤</h1>
+                <h1 id="协同过滤"><a class="markdownIt-Anchor" href="#协同过滤"></a> 协同过滤</h1>
                 <p>关于协同过滤的一个最经典的例子就是看电影，有时候不知道哪一部电影是我们喜欢的或者评分比较高的，那么通常的做法就是问问周围的朋友，看看最近有什么好的电影推荐。在问的时候，都习惯于问跟自己口味差不多的朋友，这就是协同过滤的核心思想。</p>
-                <h2 id="步骤">步骤</h2>
+                <h2 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h2>
                 <p>要实现协同过滤，一般需要这样三步：</p>
                 <ul>
                   <li>收集用户偏好</li>
                   <li>找到相似物或人</li>
                   <li>计算并推荐</li>
                 </ul>
-                <h3 id="收集用户偏好">收集用户偏好</h3>
+                <h3 id="收集用户偏好"><a class="markdownIt-Anchor" href="#收集用户偏好"></a> 收集用户偏好</h3>
                 <p>从用户的行为和偏好中发现规律，并基于此进行推荐，所以如何收集用户的偏好信息成为系统推荐效果最基础的决定因素。用户有很多种方式向系统提供自己的偏好信息，比如：评分，投票，转发，保存书签，购买，点击流，页面停留时间等等。</p>
                 <p>当然，得到原始数据之后，我们总是需要进行降噪、归一化等，在此不再赘述。</p>
-                <h3 id="找到相似物或人">找到相似物或人</h3>
+                <h3 id="找到相似物或人"><a class="markdownIt-Anchor" href="#找到相似物或人"></a> 找到相似物或人</h3>
                 <p>既然是找相似，我们就需要设定一个计算相似度的指标，一般而言，余弦相似度与皮尔逊相关系数是很好的选择。</p>
-                <h4 id="余弦相似度">余弦相似度</h4>
-                <p><img src="/images/recommend/4.gif" alt=""></p>
-                <h4 id="皮尔逊相关系数">皮尔逊相关系数</h4>
+                <h4 id="余弦相似度"><a class="markdownIt-Anchor" href="#余弦相似度"></a> 余弦相似度</h4>
+                <p><img src="/images/recommend/4.gif" alt="" /></p>
+                <h4 id="皮尔逊相关系数"><a class="markdownIt-Anchor" href="#皮尔逊相关系数"></a> 皮尔逊相关系数</h4>
                 <p>皮尔逊相关也称为积差相关（或积矩相关）是英国统计学家皮尔逊于20世纪提出的一种计算直线相关的方法。</p>
                 <p>假设有两个变量X、Y，那么两变量间的皮尔逊相关系数可通过以下公式计算：</p>
-                <p><img src="/images/recommend/5.gif" alt=""></p>
-                <h3 id="计算并推荐">计算并推荐</h3>
+                <p><img src="/images/recommend/5.gif" alt="" /></p>
+                <h3 id="计算并推荐"><a class="markdownIt-Anchor" href="#计算并推荐"></a> 计算并推荐</h3>
                 <ul>
                   <li>基于用户的协同过滤推荐</li>
                 </ul>
                 <p>基于用户的协同过滤推荐的基本原理是，根据所有用户对物品或者信息的偏好，发现与当前用户口味和偏好相似的“邻居”用户群，在一般的应用中是采用计算“K- 邻居”的算法；然后，基于这 K 个邻居的历史偏好信息，为当前用户进行推荐。</p>
-                <p><img src="/images/recommend/1.jpg" alt=""></p>
+                <p><img src="/images/recommend/1.jpg" alt="" /></p>
                 <p>上图示意出基于用户的协同过滤推荐机制的基本原理，假设用户 A 喜欢物品 A，物品 C，用户 B 喜欢物品 B，用户 C 喜欢物品 A ，物品 C 和物品 D；从这些用户的历史喜好信息中，我们可以发现用户 A 和用户 C 的口味和偏好是比较类似的，同时用户 C 还喜欢物品 D，那么我们可以推断用户 A 可能也喜欢物品 D，因此可以将物品 D 推荐给用户 A。</p>
                 <p>基于用户的协同过滤推荐机制和基于人口统计学的推荐机制都是计算用户的相似度，并基于“邻居”用户群计算推荐，但它们所不同的是如何计算用户的相似度，基于人口统计学的机制只考虑用户本身的特征，而基于用户的协同过滤机制可是在用户的历史偏好的数据上计算用户的相似度，它的基本假设是，喜欢类似物品的用户可能有相同或者相似的口味和偏好。</p>
                 <ul>
                   <li>基于项目的协同过滤推荐</li>
                 </ul>
                 <p>基于项目的协同过滤推荐的基本原理也是类似的，只是说它使用所有用户对物品或者信息的偏好，发现物品和物品之间的相似度，然后根据用户的历史偏好信息，将类似的物品推荐给用户。</p>
-                <p><img src="/images/recommend/2.jpg" alt=""></p>
+                <p><img src="/images/recommend/2.jpg" alt="" /></p>
                 <p>假设用户 A 喜欢物品 A 和物品 C，用户 B 喜欢物品 A，物品 B 和物品 C，用户 C 喜欢物品 A，从这些用户的历史喜好可以分析出物品 A 和物品 C 时比较类似的，喜欢物品 A 的人都喜欢物品 C，基于这个数据可以推断用户 C 很有可能也喜欢物品 C，所以系统会将物品 C 推荐给用户 C。</p>
                 <p>与上面讲的类似，基于项目的协同过滤推荐和基于内容的推荐其实都是基于物品相似度预测推荐，只是相似度计算的方法不一样，前者是从用户历史的偏好推断，而后者是基于物品本身的属性特征信息。</p>
                 <ul>
@@ -363,15 +363,15 @@
                 </ul>
                 <p>基于模型的协同过滤推荐就是基于样本的用户喜好信息，训练一个推荐模型，然后根据实时的用户喜好的信息进行预测，计算推荐。</p>
                 <p>基于协同过滤的推荐机制是现今应用最为广泛的推荐机制，它有以下几个显著的优点：</p>
-                <p>它不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可理解的，所以这种方法也是领域无关的。
-                  这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好
+                <p>它不需要对物品或者用户进行严格的建模，而且不要求物品的描述是机器可理解的，所以这种方法也是领域无关的。<br />
+                  这种方法计算出来的推荐是开放的，可以共用他人的经验，很好的支持用户发现潜在的兴趣偏好<br />
                   而它也存在以下几个问题：</p>
-                <p>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”的问题。
-                  推荐的效果依赖于用户历史偏好数据的多少和准确性。
-                  在大部分的实现中，用户历史偏好是用稀疏矩阵进行存储的，而稀疏矩阵上的计算有些明显的问题，包括可能少部分人的错误偏好会对推荐的准确度有很大的影响等等。
-                  对于一些特殊品味的用户不能给予很好的推荐。
+                <p>方法的核心是基于历史数据，所以对新物品和新用户都有“冷启动”的问题。<br />
+                  推荐的效果依赖于用户历史偏好数据的多少和准确性。<br />
+                  在大部分的实现中，用户历史偏好是用稀疏矩阵进行存储的，而稀疏矩阵上的计算有些明显的问题，包括可能少部分人的错误偏好会对推荐的准确度有很大的影响等等。<br />
+                  对于一些特殊品味的用户不能给予很好的推荐。<br />
                   由于以历史数据为基础，抓取和建模用户的偏好后，很难修改或者根据用户的使用演变，从而导致这个方法不够灵活。</p>
-                <h2 id="代码实现">代码实现</h2>
+                <h2 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h2>
                 <p>基于用户的CF：</p>
                 <figure class="highlight java">
                   <table>
@@ -510,22 +510,22 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">关于推荐系统</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">协同过滤</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text"> 关于推荐系统</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4"><span class="nav-number">2.</span> <span class="nav-text"> 协同过滤</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">步骤</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text"> 步骤</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E7%94%A8%E6%88%B7%E5%81%8F%E5%A5%BD"><span class="nav-number">2.1.1.</span> <span class="nav-text">收集用户偏好</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E7%9B%B8%E4%BC%BC%E7%89%A9%E6%88%96%E4%BA%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">找到相似物或人</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E7%94%A8%E6%88%B7%E5%81%8F%E5%A5%BD"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 收集用户偏好</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E7%9B%B8%E4%BC%BC%E7%89%A9%E6%88%96%E4%BA%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 找到相似物或人</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">余弦相似度</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">皮尔逊相关系数</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="nav-number">2.1.2.1.</span> <span class="nav-text"> 余弦相似度</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="nav-number">2.1.2.2.</span> <span class="nav-text"> 皮尔逊相关系数</span></a></li>
                           </ol>
                         </li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%B9%B6%E6%8E%A8%E8%8D%90"><span class="nav-number">2.1.3.</span> <span class="nav-text">计算并推荐</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%B9%B6%E6%8E%A8%E8%8D%90"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 计算并推荐</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text"> 代码实现</span></a></li>
                   </ol>
                 </li>
               </ol>

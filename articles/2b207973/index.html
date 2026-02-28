@@ -307,14 +307,14 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>Ajax页面跳转并传入数据</h1>
+                <h1 id="ajax页面跳转并传入数据"><a class="markdownIt-Anchor" href="#ajax页面跳转并传入数据"></a> Ajax页面跳转并传入数据</h1>
                 <blockquote>
                   <p>在暑假进行的项目 <a target="_blank" rel="noopener" href="https://github.com/kuangmeng/MedicalTextInfo">医疗文本处理平台</a> 中，我需要将队友的Ajax写好的功能整合到我的界面上，因为他之前是一个界面，而我想做成像搜索引擎那种，在一个页面上输入搜索词，跳转到另一个页面显示结果（后跳转界面还可以继续通过Ajax获得新的搜索结果）</p>
                 </blockquote>
                 <p>在我们把后台服务化后，前端跨平台化之前，我们还需要了解前台和后台之间怎么通讯。从现有的一些技术上来看，Ajax是比较受欢迎的。</p>
-                <h2 id="Ajax">Ajax</h2>
+                <h2 id="ajax"><a class="markdownIt-Anchor" href="#ajax"></a> Ajax</h2>
                 <p>AJAX 即 “Asynchronous JavaScript And XML”（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发技术。这个功能在之前的很多年来一直被 Web 开发者所忽视，直到最近 Gmail、Google Suggest 和 Google Maps 的出现，才使人们开始意识到其重要性。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。传统的网页如果需要更新内容，必须重载整个网页页面。</p>
-                <h3 id="Ajax-请求">Ajax 请求</h3>
+                <h3 id="ajax-请求"><a class="markdownIt-Anchor" href="#ajax-请求"></a> Ajax 请求</h3>
                 <p>说起 Ajax，我们就需要用 JavaScript 向服务器发送一个 HTTP 请求。这个过程要从 XMLHttpRequest 开始说起，它是一个 JavaScript 对象。它最初由微软设计，随后被 Mozilla、Apple 和 Google 采纳。如今，该对象已经被 W3C 组织标准化。</p>
                 <p>如下的所示的是一个 Ajax 请求的示例代码：</p>
                 <figure class="highlight javascript">
@@ -331,9 +331,9 @@
                 </figure>
                 <p>我们只需要简单的创建一个请求对象实例，打开一个 URL，然后发送这个请求。当传输完毕后，结果的 HTTP 状态以及返回的响应内容也可以从请求对象中获取。</p>
                 <p>而这个返回的内容可以是多种格式，如 XML 和 JSON，但是从近年的趋势来看，XML 基本上已经很少看到了。这里我们以 JSON 为主，来简单地介绍一下返回数据的解析。</p>
-                <h3 id="JSON">JSON</h3>
+                <h3 id="json"><a class="markdownIt-Anchor" href="#json"></a> JSON</h3>
                 <p>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。它基于 ECMAScript 的一个子集。 JSON采用完全独立于语言的文本格式，但是也使用了类似于 C 语言家族的习惯（包括 C、C++、C#、Java、JavaScript、Perl、Python等）。这些特性使 JSON 成为理想的数据交换语言。易于人阅读和编写，同时也易于机器解析和生成(一般用于提升网络传输速率)。</p>
-                <h4 id="XML-VS-JSON">XML VS JSON</h4>
+                <h4 id="xml-vs-json"><a class="markdownIt-Anchor" href="#xml-vs-json"></a> XML VS JSON</h4>
                 <p>JSON 格式的数据具有以下的一些特点：</p>
                 <ul>
                   <li>容易阅读</li>
@@ -393,13 +393,13 @@
                   </table>
                 </figure>
                 <p>对比一下，我们可以发现XML的数据不仅仅解析上比较麻烦，而且还繁琐。而且还有个问题，XML解析的时候，一般<code>xml</code>的起始语句前不能有空行。</p>
-                <h3 id="JSON-WEB-Tokens">JSON WEB Tokens</h3>
+                <h3 id="json-web-tokens"><a class="markdownIt-Anchor" href="#json-web-tokens"></a> JSON WEB Tokens</h3>
                 <p>JSON Web Token (JWT) 是一种基于 token 的认证方案。</p>
                 <p>在人们大规模地开始 Web 应用的时候，我们在授权的时候遇到了一些问题，而这些问题不是 Cookie 所能解决的。Cookie 存在一些明显的问题：不能支持跨域、并且不是无状态的、不能使用CDN、与系统耦合等等。除了解决上面的问题，它还可以提高性能等等。基于 Session 的授权机制需要服务端来保存这个状态，而使用 JWT 则可以跳过这个问题，并且使我们设计出来的 API 满足 RESTful 规范。即，我们 API 的状态应该是没有状态的。因此人们提出了 JWT 来解决这一系列的问题。</p>
                 <p>通过 JWT 我们可以更方便地写出适用于前端应用的认证方案，如登陆、注册这些功能。当我们使用 JWT 来实现我们的注册、登陆功能时，我们在登陆的时候将向我们的服务器发送我们的用户名和密码，服务器验证后将生成对应的 Token。在下次我们进行页面操作的时候，如访问 /Dashboard 时，发出的 HTTP 请求的 Header 中会包含这个 Token。服务器在接收到请求后，将对这个 Token 进行验证并判断这个 Token 是否已经过期了。</p>
-                <h2 id="实例">实例</h2>
+                <h2 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h2>
                 <p>在这里将前一个页面命名为A，后一个为B（什么文件格式不重要，只要是静态页面就成）。</p>
-                <h3 id="A中的JavaScript代码">A中的JavaScript代码</h3>
+                <h3 id="a中的javascript代码"><a class="markdownIt-Anchor" href="#a中的javascript代码"></a> A中的JavaScript代码</h3>
                 <figure class="highlight plaintext">
                   <table>
                     <tr>
@@ -413,7 +413,7 @@
                   </table>
                 </figure>
                 <p>在A中，我将调用放到了按钮的onclick中。</p>
-                <h3 id="B中的JavaScript代码">B中的JavaScript代码</h3>
+                <h3 id="b中的javascript代码"><a class="markdownIt-Anchor" href="#b中的javascript代码"></a> B中的JavaScript代码</h3>
                 <figure class="highlight plaintext">
                   <table>
                     <tr>
@@ -430,7 +430,7 @@
                 <blockquote>
                   <p>至此完成上述功能，并且保证了在后跳入页面上刷新时，不会因为保留了跳入内容而无法刷新的情况。</p>
                 </blockquote>
-                <h1>H5网页失去焦点Title改变的方法</h1>
+                <h1 id="h5网页失去焦点title改变的方法"><a class="markdownIt-Anchor" href="#h5网页失去焦点title改变的方法"></a> H5网页失去焦点Title改变的方法</h1>
                 <blockquote>
                   <p>这里要分享的其实是一个API：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange">visibilitychange</a></p>
                 </blockquote>
@@ -457,8 +457,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h1>JavaScript操作DOM</h1>
-                <h2 id="创建节点">创建节点</h2>
+                <h1 id="javascript操作dom"><a class="markdownIt-Anchor" href="#javascript操作dom"></a> JavaScript操作DOM</h1>
+                <h2 id="创建节点"><a class="markdownIt-Anchor" href="#创建节点"></a> 创建节点</h2>
                 <p>除了可以使用<code>createElement</code>创建元素，也可以使用<code>createTextNode</code>创建文本节点。<code>document.body</code>指向的是<code>&lt;body&gt;</code>元素，<code>document.documentElement</code>则指向<code>&lt;html&gt;</code>元素。</p>
                 <figure class="highlight javascript">
                   <table>
@@ -472,7 +472,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="插入节点">插入节点</h2>
+                <h2 id="插入节点"><a class="markdownIt-Anchor" href="#插入节点"></a> 插入节点</h2>
                 <p>可以使用appendChild，insertBefore，insertBefore接收两个参数，第一个是插入的节点，第二个是参照节点，如insertBefore(a,b)，则a会插入在b的前面</p>
                 <figure class="highlight javascript">
                   <table>
@@ -486,7 +486,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="替换和删除元素">替换和删除元素</h2>
+                <h2 id="替换和删除元素"><a class="markdownIt-Anchor" href="#替换和删除元素"></a> 替换和删除元素</h2>
                 <p>从replaceChild和removeChild的字面意思看，就是删除子节点，因此调用者，需要包含子节点div1，不然调用会报错。返回的节点是替换的或删除的元素，被替换/删除的元素仍然存在，但document中已经没有他们的位置了。</p>
                 <figure class="highlight javascript">
                   <table>
@@ -500,7 +500,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="节点的属性">节点的属性</h2>
+                <h2 id="节点的属性"><a class="markdownIt-Anchor" href="#节点的属性"></a> 节点的属性</h2>
                 <ul>
                   <li>firstChild:第一个子节点</li>
                   <li>lastChild:最后一个子节点</li>
@@ -535,7 +535,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="文档片段">文档片段</h2>
+                <h2 id="文档片段"><a class="markdownIt-Anchor" href="#文档片段"></a> 文档片段</h2>
                 <p>好处在于减少dom的渲染次数，可以优化性能。</p>
                 <figure class="highlight javascript">
                   <table>
@@ -549,7 +549,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="克隆元素">克隆元素</h2>
+                <h2 id="克隆元素"><a class="markdownIt-Anchor" href="#克隆元素"></a> 克隆元素</h2>
                 <ul>
                   <li>someNode.cloneNode(true):深度克隆，会复制节点及整个子节点</li>
                   <li>someNode.cloneNode(false):浅克隆，会复制节点，但不复制子节点</li>
@@ -566,8 +566,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="需要注意的问题">需要注意的问题</h2>
-                <h3 id="childNodes-length存在跨浏览器的问题">childNodes.length存在跨浏览器的问题</h3>
+                <h2 id="需要注意的问题"><a class="markdownIt-Anchor" href="#需要注意的问题"></a> 需要注意的问题</h2>
+                <h3 id="childnodeslength存在跨浏览器的问题"><a class="markdownIt-Anchor" href="#childnodeslength存在跨浏览器的问题"></a> childNodes.length存在跨浏览器的问题</h3>
                 <p>可以看到有关列表的html片段没有用</p>
                 <figure class="highlight vbscript-html">
                   <table>
@@ -584,16 +584,16 @@
                 <p>这种书写格式而是使用没有换行的格式书写，是因为在不同的浏览器中，获取<code>ul.childNodes.length</code>的结果有差异：</p>
                 <ul>
                   <li>在ie中，ul.childNodes.length不会计算li之间的换行空格，从而得到数值为4</li>
-                  <li>在ff、chrome,safari中，会有包含li之间的空白符的5个文本节点，因此ul.childNodes.length为9
+                  <li>在ff、chrome,safari中，会有包含li之间的空白符的5个文本节点，因此ul.childNodes.length为9<br />
                     若要解决跨浏览器问题，可以将li之间的换行去掉，改成一行书写格式。</li>
                 </ul>
-                <h3 id="cloneNode存在跨浏览器的问题">cloneNode存在跨浏览器的问题</h3>
+                <h3 id="clonenode存在跨浏览器的问题"><a class="markdownIt-Anchor" href="#clonenode存在跨浏览器的问题"></a> cloneNode存在跨浏览器的问题</h3>
                 <ul>
                   <li>在IE中，通过cloneNode方法复制的元素，会复制事件处理程序，比如，var b = a.cloneNode(true).若a存在click,mouseover等事件监听，则b也会拥有这些事件监听。</li>
-                  <li>在ff,chrome,safari中，通过cloneNode方法复制的元素，只会复制特性，其他一切都不会复制
+                  <li>在ff,chrome,safari中，通过cloneNode方法复制的元素，只会复制特性，其他一切都不会复制<br />
                     因此，若要解决跨浏览器问题，在复制前，最好先移除事件处理程序。</li>
                 </ul>
-                <h1>JavaScript将页面导出为图片</h1>
+                <h1 id="javascript将页面导出为图片"><a class="markdownIt-Anchor" href="#javascript将页面导出为图片"></a> JavaScript将页面导出为图片</h1>
                 <p>2016-12-12那天心血来潮，突然想将我们组开发的网站上的“导出Excel”功能做一点拓展，于是就想能不能直接将网页表格导出为图片！</p>
                 <p>在我的不懈搜索后（搜索过程中绝大部分博客上的博文要么相互抄袭要么没什么用），终于得到了“canvas2image.js”这个神奇的JavaScript脚本，具体使用办法见如下代码：</p>
                 <figure class="highlight stylus">
@@ -608,7 +608,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h1>Web表格搜索</h1>
+                <h1 id="web表格搜索"><a class="markdownIt-Anchor" href="#web表格搜索"></a> Web表格搜索</h1>
                 <p>虽然表格的排列相当困难，但表格的搜索却非常容易。增加一个搜索输入，如果那里的值匹配到了任意一行的文本，则显示该行，并隐藏其他所有的行。使用jQuery来实现就像下面这么简单：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -622,7 +622,7 @@
                     </tr>
                   </table>
                 </figure>
-                <p>没有看错，就是这么简单，如果是在实际应用中，可以这样来写：
+                <p>没有看错，就是这么简单，如果是在实际应用中，可以这样来写：<br />
                   先声明一个按钮：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -649,7 +649,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h1>浮出层使用</h1>
+                <h1 id="浮出层使用"><a class="markdownIt-Anchor" href="#浮出层使用"></a> 浮出层使用</h1>
                 <p>进行<a target="_blank" rel="noopener" href="https://github.com/HITAmigos/WebDataExtraction/">《软件工程》大项目</a>时，遇到想在主页上仿Google首页上的那种“一个输入框+两个按钮”，同时一个按钮搜索、一个按钮上传文件，于是到网上查了好久，都没有关于“一个按钮实现文件上传”的功能介绍，最后只能使用“通过一个浮出层弹出上传文件”这种方式，下面贴出JavaScript代码。</p>
                 <p>在按钮中使用时只需要这样使用就行：</p>
                 <figure class="highlight stylus">
@@ -677,10 +677,10 @@
                     </tr>
                   </table>
                 </figure>
-                <h1>多个input合并提交到后台</h1>
-                <h2 id="需求">需求</h2>
+                <h1 id="多个input合并提交到后台"><a class="markdownIt-Anchor" href="#多个input合并提交到后台"></a> 多个input合并提交到后台</h1>
+                <h2 id="需求"><a class="markdownIt-Anchor" href="#需求"></a> 需求</h2>
                 <p>我在做我们的《软件工程》作业时，遇到了这样一个问题：我们需要打开一个表，这个表的列数不确定，但要增加增加行的操作。</p>
-                <h2 id="实现">实现</h2>
+                <h2 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h2>
                 <p>于是，需求产生了，我需要将前端的多个input标签内容合并成一个字符串来进行提交，我看了几个比较牛的方法（json、ognl……）但是好像与我们的需求偏的有点远（如果可以实现，欢迎留言），最后，没办法只能自己想，由于我还是会一点JavaScript的，所以我就想用JavaScript实现，在尝试了很多次之后，终于成功了，在此先贴上代码。</p>
                 <figure class="highlight stylus">
                   <table>
@@ -694,16 +694,16 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="分析">分析</h2>
+                <h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
                 <p>最后来分析，到底是怎么实现的，其实道理特别简单，就是JavaScript获取input的个数，然后一个循环，将所有input合并，并且给到一个“hidden”的input里，在后台接收这个input就可以了。</p>
-                <h1>Hexo搭建博客中的小技巧</h1>
+                <h1 id="hexo搭建博客中的小技巧"><a class="markdownIt-Anchor" href="#hexo搭建博客中的小技巧"></a> Hexo搭建博客中的小技巧</h1>
                 <blockquote>
                   <p>Hexo + GitHub 可能是一组比较简单的搭建博客的方式了。在使用Hexo的这么长的时间里，我发现很多不舒适的问题，通过搜索与探索，基本解决，现在分享出来。</p>
                 </blockquote>
-                <h2 id="添加404页面">添加404页面</h2>
+                <h2 id="添加404页面"><a class="markdownIt-Anchor" href="#添加404页面"></a> 添加404页面</h2>
                 <p>有人可能也有这个疑问，通过GitHub发布的静态网页，没有路由，怎么识别404错误呢？GitHub已经替我们想到了这些，我们只需要在我们的网站主目录添加<code>404.html</code>，就可以实现出错自动跳转到404界面了，关于404界面的书写，大家可以直接下载我的404页面：/404.html</p>
-                <h2 id="排除编译某文件">排除编译某文件</h2>
-                <h3 id="排除HTML等格式">排除HTML等格式</h3>
+                <h2 id="排除编译某文件"><a class="markdownIt-Anchor" href="#排除编译某文件"></a> 排除编译某文件</h2>
+                <h3 id="排除html等格式"><a class="markdownIt-Anchor" href="#排除html等格式"></a> 排除HTML等格式</h3>
                 <p>在添加了404页面后，最简单的方法就是将<code>404.html</code>放到本地博客的<code>public</code>目录下。但是有个问题，也是最重要的，就是每次<code>hexo clean</code>之后，<code>public/</code>文件夹就会被删除，这样的话每次都需要粘贴进去，自然费时费力。</p>
                 <p>一个简单方法就是，将<code>404.html</code>等html文件，直接放到博客source或者主题source目录下，再<code>hexo g</code>生成，就自动生成了，但是又有个问题，虽然我们的html已经是完整的网页了，但是还是被hexo嵌入到系统的主题下。那怎么办呢？方法如下：</p>
                 <figure class="highlight plaintext">
@@ -719,7 +719,7 @@
                   </table>
                 </figure>
                 <p>将上述三行代码添加到不想被嵌入的HTML等文件的最前面。</p>
-                <h3 id="排除-md格式">排除.md格式</h3>
+                <h3 id="排除md格式"><a class="markdownIt-Anchor" href="#排除md格式"></a> 排除.md格式</h3>
                 <p>在不跟踪了HTML文件后，我们是不是又想用同样的方法，让hexo不要编译readme.md文件呢？</p>
                 <p>从网上的信息看，大致有三种方法：</p>
                 <ul>
@@ -727,18 +727,18 @@
                   <li>将<code>Readme.md</code>改名<code>Read.mdown</code>；（完美）</li>
                   <li>在<code>_config.yml</code>文件中添加<code>skip_render:\n - README.md</code>。（这种方法也适用于其他文件）</li>
                 </ul>
-                <h1>JavaScript加载图片</h1>
+                <h1 id="javascript加载图片"><a class="markdownIt-Anchor" href="#javascript加载图片"></a> JavaScript加载图片</h1>
                 <blockquote>
                   <p><code>&lt;img src=&quot;xx.jpg&quot; /&gt;</code>是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。</p>
                 </blockquote>
-                <h2 id="滚屏加载">滚屏加载</h2>
+                <h2 id="滚屏加载"><a class="markdownIt-Anchor" href="#滚屏加载"></a> 滚屏加载</h2>
                 <p>这是最容易想到的点，也是一开始就准备做的。</p>
                 <p>随web体验的进步，滚屏加载代替分页加载的情形越来越多。也就是先预留图片位置，而不去加载图片，直到这个预留区域滚动到屏幕中，用户能看见了，才去加载图片。如此一来，有“按需加载”的意味，由于图片加载延后，不抢占带宽，在打开页面的首屏会快很多。我们称之为“懒加载(lazyload)”。</p>
                 <p>其实现也很简单，在html里面写<code>&lt;img lazy-src=&quot;xx.jpg&quot; /&gt;</code>，然后用js去判断这个节点是否出现在屏幕中，如果是，则取出<code>lazy-src</code>属性，赋值成<code>&lt;img lazy-src=&quot;xx.jpg&quot; src=&quot;xx.jpg&quot;/&gt;</code>，触发此节点onload，这就实现最简单的滚屏加载了。</p>
-                <h2 id="特殊状态处理">特殊状态处理</h2>
+                <h2 id="特殊状态处理"><a class="markdownIt-Anchor" href="#特殊状态处理"></a> 特殊状态处理</h2>
                 <p>特殊状态有两种：加载中与加载失败。这两种情况的处理逻辑相类似，拿加载中的逻辑做例子。</p>
                 <p>图片触发加载，到图片加载完成（或失败）之间，肯定会有一段时间。不做处理的话，用户在等待的过程中，就只能看到空白的区域，非常的奇怪。在低网速，以及用户非常快的拉滚动条的情形下，这种现象将更加明显。</p>
-                <p>那么在触发onload之前，就需要补一些逻辑，展示对应的loading图。
+                <p>那么在触发onload之前，就需要补一些逻辑，展示对应的loading图。<br />
                   将需要处理的img节点作为参数，调用tempImg函数，克隆一个节点强行插在img之前，用于loading中的展示。</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -752,7 +752,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="上报监控">上报监控</h2>
+                <h2 id="上报监控"><a class="markdownIt-Anchor" href="#上报监控"></a> 上报监控</h2>
                 <p>这一步在大型前端项目中非常重要，也是经常被忽略的地方。尽管需要简易的后台配合，但不算麻烦的上报监控，能让产品更加稳定和健壮。</p>
                 <p>我在两个地方用到了上报。其一是图片加载失败，触发<code>onerror</code>时，这样一来我们能知道每天图片拉取失败的量；其二是图片加载的时间，能够帮助我们分析cdn服务是否异常，分析全国慢速用户比例等等。</p>
                 <p>而所谓的上报其实就是一个http请求，我会大概把这些信息带上：</p>
@@ -768,7 +768,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="居中截取">居中截取</h2>
+                <h2 id="居中截取"><a class="markdownIt-Anchor" href="#居中截取"></a> 居中截取</h2>
                 <p>这是前端无可避免的一个问题，先来说下此问题的背景。</p>
                 <p>由于我们是先用一个空白的img标签占位，再去加载图片，如果图片的高度特别长（比如新浪长微博），加载完成时就会撑开节点，引起滚动条的跳动。由于移动端屏幕较PC窄，一个跳动就可能让你找不到前一秒正在浏览的内容，这种体验尤其严重。在移动端的web设计中，可以看到许多知名互联网公司的产品，也经常忽略这一点。</p>
                 <p>因此我们可以限定占位区域的size，以此区域来做居中截取。当占位区域与图片最终展示同宽同高时，就不会引起跳动，而且也保持了视觉的一致性。</p>
@@ -785,9 +785,9 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="支持-webp">支持<code>.webp</code></h2>
+                <h2 id="支持webp"><a class="markdownIt-Anchor" href="#支持webp"></a> 支持<code>.webp</code></h2>
                 <p><code>.webp</code>格式图片是Google开发的一种旨在加快图片加载速度的图片格式，压缩提交大概只有jpg的2/3。随chrome的比例越来越多，其实让更多用户体验到<code>.webp</code>也是一件好事。</p>
-                <p>那么问题来了，怎么去判断用户的浏览器是否支持webp呢？
+                <p>那么问题来了，怎么去判断用户的浏览器是否支持webp呢？<br />
                   根据ua去判断是个好方法，但不太靠谱，因为chrome中其实也有设置，让它不能去支持webp，而且webkit本身就开源，会衍生出很多你不知道名字的浏览器。</p>
                 <p>最终我使用的是特性检测：</p>
                 <figure class="highlight plaintext">
@@ -929,72 +929,72 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Ajax页面跳转并传入数据</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#ajax%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E5%B9%B6%E4%BC%A0%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text"> Ajax页面跳转并传入数据</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">1.1.</span> <span class="nav-text">Ajax</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#ajax"><span class="nav-number">1.1.</span> <span class="nav-text"> Ajax</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-%E8%AF%B7%E6%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">Ajax 请求</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">1.1.2.</span> <span class="nav-text">JSON</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#ajax-%E8%AF%B7%E6%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text"> Ajax 请求</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#json"><span class="nav-number">1.1.2.</span> <span class="nav-text"> JSON</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#XML-VS-JSON"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">XML VS JSON</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#xml-vs-json"><span class="nav-number">1.1.2.1.</span> <span class="nav-text"> XML VS JSON</span></a></li>
                           </ol>
                         </li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-WEB-Tokens"><span class="nav-number">1.1.3.</span> <span class="nav-text">JSON WEB Tokens</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#json-web-tokens"><span class="nav-number">1.1.3.</span> <span class="nav-text"> JSON WEB Tokens</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">实例</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> 实例</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#A%E4%B8%AD%E7%9A%84JavaScript%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">A中的JavaScript代码</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#B%E4%B8%AD%E7%9A%84JavaScript%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">B中的JavaScript代码</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#a%E4%B8%AD%E7%9A%84javascript%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text"> A中的JavaScript代码</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#b%E4%B8%AD%E7%9A%84javascript%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text"> B中的JavaScript代码</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">H5网页失去焦点Title改变的方法</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">JavaScript操作DOM</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#h5%E7%BD%91%E9%A1%B5%E5%A4%B1%E5%8E%BB%E7%84%A6%E7%82%B9title%E6%94%B9%E5%8F%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text"> H5网页失去焦点Title改变的方法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#javascript%E6%93%8D%E4%BD%9Cdom"><span class="nav-number">3.</span> <span class="nav-text"> JavaScript操作DOM</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9"><span class="nav-number">3.1.</span> <span class="nav-text">创建节点</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">插入节点</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%92%8C%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">3.3.</span> <span class="nav-text">替换和删除元素</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">节点的属性</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E7%89%87%E6%AE%B5"><span class="nav-number">3.5.</span> <span class="nav-text">文档片段</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E9%9A%86%E5%85%83%E7%B4%A0"><span class="nav-number">3.6.</span> <span class="nav-text">克隆元素</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.</span> <span class="nav-text">需要注意的问题</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9"><span class="nav-number">3.1.</span> <span class="nav-text"> 创建节点</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text"> 插入节点</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%92%8C%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">3.3.</span> <span class="nav-text"> 替换和删除元素</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text"> 节点的属性</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E7%89%87%E6%AE%B5"><span class="nav-number">3.5.</span> <span class="nav-text"> 文档片段</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E9%9A%86%E5%85%83%E7%B4%A0"><span class="nav-number">3.6.</span> <span class="nav-text"> 克隆元素</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.</span> <span class="nav-text"> 需要注意的问题</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#childNodes-length%E5%AD%98%E5%9C%A8%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.1.</span> <span class="nav-text">childNodes.length存在跨浏览器的问题</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#cloneNode%E5%AD%98%E5%9C%A8%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.2.</span> <span class="nav-text">cloneNode存在跨浏览器的问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#childnodeslength%E5%AD%98%E5%9C%A8%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.1.</span> <span class="nav-text"> childNodes.length存在跨浏览器的问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#clonenode%E5%AD%98%E5%9C%A8%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.7.2.</span> <span class="nav-text"> cloneNode存在跨浏览器的问题</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">JavaScript将页面导出为图片</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Web表格搜索</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">浮出层使用</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">多个input合并提交到后台</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#javascript%E5%B0%86%E9%A1%B5%E9%9D%A2%E5%AF%BC%E5%87%BA%E4%B8%BA%E5%9B%BE%E7%89%87"><span class="nav-number">4.</span> <span class="nav-text"> JavaScript将页面导出为图片</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#web%E8%A1%A8%E6%A0%BC%E6%90%9C%E7%B4%A2"><span class="nav-number">5.</span> <span class="nav-text"> Web表格搜索</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%AE%E5%87%BA%E5%B1%82%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text"> 浮出层使用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AAinput%E5%90%88%E5%B9%B6%E6%8F%90%E4%BA%A4%E5%88%B0%E5%90%8E%E5%8F%B0"><span class="nav-number">7.</span> <span class="nav-text"> 多个input合并提交到后台</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">7.1.</span> <span class="nav-text">需求</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.2.</span> <span class="nav-text">实现</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">7.3.</span> <span class="nav-text">分析</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">7.1.</span> <span class="nav-text"> 需求</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.2.</span> <span class="nav-text"> 实现</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">7.3.</span> <span class="nav-text"> 分析</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">Hexo搭建博客中的小技巧</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">8.</span> <span class="nav-text"> Hexo搭建博客中的小技巧</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="nav-number">8.1.</span> <span class="nav-text">添加404页面</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E9%99%A4%E7%BC%96%E8%AF%91%E6%9F%90%E6%96%87%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text">排除编译某文件</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="nav-number">8.1.</span> <span class="nav-text"> 添加404页面</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E9%99%A4%E7%BC%96%E8%AF%91%E6%9F%90%E6%96%87%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text"> 排除编译某文件</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4HTML%E7%AD%89%E6%A0%BC%E5%BC%8F"><span class="nav-number">8.2.1.</span> <span class="nav-text">排除HTML等格式</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4-md%E6%A0%BC%E5%BC%8F"><span class="nav-number">8.2.2.</span> <span class="nav-text">排除.md格式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4html%E7%AD%89%E6%A0%BC%E5%BC%8F"><span class="nav-number">8.2.1.</span> <span class="nav-text"> 排除HTML等格式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4md%E6%A0%BC%E5%BC%8F"><span class="nav-number">8.2.2.</span> <span class="nav-text"> 排除.md格式</span></a></li>
                       </ol>
                     </li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">JavaScript加载图片</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#javascript%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87"><span class="nav-number">9.</span> <span class="nav-text"> JavaScript加载图片</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%B1%8F%E5%8A%A0%E8%BD%BD"><span class="nav-number">9.1.</span> <span class="nav-text">滚屏加载</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%8A%B6%E6%80%81%E5%A4%84%E7%90%86"><span class="nav-number">9.2.</span> <span class="nav-text">特殊状态处理</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E6%8A%A5%E7%9B%91%E6%8E%A7"><span class="nav-number">9.3.</span> <span class="nav-text">上报监控</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%85%E4%B8%AD%E6%88%AA%E5%8F%96"><span class="nav-number">9.4.</span> <span class="nav-text">居中截取</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81-webp"><span class="nav-number">9.5.</span> <span class="nav-text">支持.webp</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%B1%8F%E5%8A%A0%E8%BD%BD"><span class="nav-number">9.1.</span> <span class="nav-text"> 滚屏加载</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%8A%B6%E6%80%81%E5%A4%84%E7%90%86"><span class="nav-number">9.2.</span> <span class="nav-text"> 特殊状态处理</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E6%8A%A5%E7%9B%91%E6%8E%A7"><span class="nav-number">9.3.</span> <span class="nav-text"> 上报监控</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%85%E4%B8%AD%E6%88%AA%E5%8F%96"><span class="nav-number">9.4.</span> <span class="nav-text"> 居中截取</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81webp"><span class="nav-number">9.5.</span> <span class="nav-text"> 支持.webp</span></a></li>
                   </ol>
                 </li>
               </ol>

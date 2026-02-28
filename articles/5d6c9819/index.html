@@ -297,7 +297,7 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>Android的ListView的使用</h1>
+                <h1 id="android的listview的使用"><a class="markdownIt-Anchor" href="#android的listview的使用"></a> Android的ListView的使用</h1>
                 <p>可能我们在手机APP上使用的最多的视图就是列表了，那么Android列表（ListView）该怎么使用呢？</p>
                 <p>首先还是显示界面activity_main.xml:</p>
                 <figure class="highlight stylus">
@@ -325,9 +325,9 @@
                     </tr>
                   </table>
                 </figure>
-                <p>其他文件保持不变即可。
+                <p>其他文件保持不变即可。<br />
                   至此，一个Android列表程序就实现了。</p>
-                <h1>Android实现输入框回车输入</h1>
+                <h1 id="android实现输入框回车输入"><a class="markdownIt-Anchor" href="#android实现输入框回车输入"></a> Android实现输入框回车输入</h1>
                 <p>用惯了iOS的各位在开发安卓程序或者使用安卓手机时，都会遇到这样一个问题：原本在iOS上都是回车输入，而到了Android上却需要点击按钮完成输入（对比两个系统上的QQ就发现了）。我一直在使用iOS系统，因为《软设》才着手Android开发，所以我就想能不能像iOS上的那样实现一个输入框+回车符完成输入呢？经过我查找资料，发现确实可以：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -353,12 +353,12 @@
                   <li>actionUnspecified——回车符–&gt;未指定</li>
                   <li>actionSend——回车符–&gt;发送</li>
                 </ul>
-                <p>又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上<code>android:inputType</code> 或者 <code>android:singleline=&quot;true&quot;</code>
+                <p>又查阅资料发现：ime是Input Method Editors的缩写，也就是输入法编辑器，原来如此，不过想使用这个属性，必须加上<code>android:inputType</code> 或者 <code>android:singleline=&quot;true&quot;</code><br />
                   至此，就完成了Android回车符向iOS的转化！</p>
-                <h1>Android页面跳转</h1>
-                <h2 id="前情提要">前情提要</h2>
+                <h1 id="android页面跳转"><a class="markdownIt-Anchor" href="#android页面跳转"></a> Android页面跳转</h1>
+                <h2 id="前情提要"><a class="markdownIt-Anchor" href="#前情提要"></a> 前情提要</h2>
                 <p>开发安卓单页面程序久了，必然会思考怎么开发像现在一般Android应用程序那样的多页面（指页面有跳转）程序，我也是在搜索了别人的博客之后，才总结出如下的这点精华步骤！</p>
-                <h2 id="编写AndroidManifest-xml">编写AndroidManifest.xml</h2>
+                <h2 id="编写androidmanifestxml"><a class="markdownIt-Anchor" href="#编写androidmanifestxml"></a> 编写AndroidManifest.xml</h2>
                 <p>首先，我们要确定我们需要怎样的跳转，既然跳转，无非就是自动跳转或者点击按钮，无论哪种，首先我们必须有两个界面（至少），所以在AndroidManifest.xml中，我们需要这样写：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -373,7 +373,7 @@
                   </table>
                 </figure>
                 <p>其中，每个<activity>对应一个界面，从代码中可见，我将后一个页面加了一个返回前一个页面的“返回符”。</p>
-                <h2 id="编写跳转前界面search-xml">编写跳转前界面search.xml</h2>
+                <h2 id="编写跳转前界面searchxml"><a class="markdownIt-Anchor" href="#编写跳转前界面searchxml"></a> 编写跳转前界面search.xml</h2>
                 <p>由于我在此将介绍怎么使用按钮跳转（带输入），所以直接在主界面search.xml（名称随意）中声明这两个组件（按钮，输入框）：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -388,7 +388,7 @@
                   </table>
                 </figure>
                 <p>我对按钮加了一个onClick事件。</p>
-                <h2 id="编写对应的MainActivity-java">编写对应的MainActivity.java</h2>
+                <h2 id="编写对应的mainactivityjava"><a class="markdownIt-Anchor" href="#编写对应的mainactivityjava"></a> 编写对应的MainActivity.java</h2>
                 <p>在search.xml对应的MainActivity.java文件中我们写好onCreate方法（每个文件都会有）以及sendMessage方法：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -402,7 +402,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="编写接收界面result-xml">编写接收界面result.xml</h2>
+                <h2 id="编写接收界面resultxml"><a class="markdownIt-Anchor" href="#编写接收界面resultxml"></a> 编写接收界面result.xml</h2>
                 <p>然后到result.xml接收（我用的一个框来接收）：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -416,8 +416,8 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="编写接收对应的ResultActivity-java">编写接收对应的ResultActivity.java</h2>
-                <p>编写对应的ResultActivity.java文件，
+                <h2 id="编写接收对应的resultactivityjava"><a class="markdownIt-Anchor" href="#编写接收对应的resultactivityjava"></a> 编写接收对应的ResultActivity.java</h2>
+                <p>编写对应的ResultActivity.java文件，<br />
                   将从MainActivity.java接收来的文字打印到result.xml的框中：</p>
                 <figure class="highlight stylus">
                   <table>
@@ -432,8 +432,8 @@
                   </table>
                 </figure>
                 <p>到此为止，已经完成了Android页面跳转！</p>
-                <h1>Android 自定义toolBar上的 action item</h1>
-                <h2 id="自定义的view，action-view-auto-like-xml">自定义的view，action_view_auto_like.xml</h2>
+                <h1 id="android-自定义toolbar上的-action-item"><a class="markdownIt-Anchor" href="#android-自定义toolbar上的-action-item"></a> Android 自定义toolBar上的 action item</h1>
+                <h2 id="自定义的viewaction_view_auto_likexml"><a class="markdownIt-Anchor" href="#自定义的viewaction_view_auto_likexml"></a> 自定义的view，action_view_auto_like.xml</h2>
                 <figure class="highlight xml">
                   <table>
                     <tr>
@@ -446,7 +446,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="自定义的menu，menu-tinder-liker-xml">自定义的menu，menu_tinder_liker.xml</h2>
+                <h2 id="自定义的menumenu_tinder_likerxml"><a class="markdownIt-Anchor" href="#自定义的menumenu_tinder_likerxml"></a> 自定义的menu，menu_tinder_liker.xml</h2>
                 <figure class="highlight xml">
                   <table>
                     <tr>
@@ -459,7 +459,7 @@
                     </tr>
                   </table>
                 </figure>
-                <h2 id="在fragment-中配置">在fragment 中配置</h2>
+                <h2 id="在fragment-中配置"><a class="markdownIt-Anchor" href="#在fragment-中配置"></a> 在fragment 中配置</h2>
                 <p>现在<code>onCreateView</code>中加上<code>setHasOptionsMenu(true);</code>，让系统在fragment中初始化menu。</p>
                 <figure class="highlight java">
                   <table>
@@ -589,23 +589,23 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Android的ListView的使用</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Android实现输入框回车输入</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Android页面跳转</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E7%9A%84listview%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> Android的ListView的使用</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E6%A1%86%E5%9B%9E%E8%BD%A6%E8%BE%93%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text"> Android实现输入框回车输入</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC"><span class="nav-number">3.</span> <span class="nav-text"> Android页面跳转</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="nav-number">3.1.</span> <span class="nav-text">前情提要</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99AndroidManifest-xml"><span class="nav-number">3.2.</span> <span class="nav-text">编写AndroidManifest.xml</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%B7%B3%E8%BD%AC%E5%89%8D%E7%95%8C%E9%9D%A2search-xml"><span class="nav-number">3.3.</span> <span class="nav-text">编写跳转前界面search.xml</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%AF%B9%E5%BA%94%E7%9A%84MainActivity-java"><span class="nav-number">3.4.</span> <span class="nav-text">编写对应的MainActivity.java</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E7%95%8C%E9%9D%A2result-xml"><span class="nav-number">3.5.</span> <span class="nav-text">编写接收界面result.xml</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E5%AF%B9%E5%BA%94%E7%9A%84ResultActivity-java"><span class="nav-number">3.6.</span> <span class="nav-text">编写接收对应的ResultActivity.java</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="nav-number">3.1.</span> <span class="nav-text"> 前情提要</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99androidmanifestxml"><span class="nav-number">3.2.</span> <span class="nav-text"> 编写AndroidManifest.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%B7%B3%E8%BD%AC%E5%89%8D%E7%95%8C%E9%9D%A2searchxml"><span class="nav-number">3.3.</span> <span class="nav-text"> 编写跳转前界面search.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%AF%B9%E5%BA%94%E7%9A%84mainactivityjava"><span class="nav-number">3.4.</span> <span class="nav-text"> 编写对应的MainActivity.java</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E7%95%8C%E9%9D%A2resultxml"><span class="nav-number">3.5.</span> <span class="nav-text"> 编写接收界面result.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E6%94%B6%E5%AF%B9%E5%BA%94%E7%9A%84resultactivityjava"><span class="nav-number">3.6.</span> <span class="nav-text"> 编写接收对应的ResultActivity.java</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Android 自定义toolBar上的 action item</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#android-%E8%87%AA%E5%AE%9A%E4%B9%89toolbar%E4%B8%8A%E7%9A%84-action-item"><span class="nav-number">4.</span> <span class="nav-text"> Android 自定义toolBar上的 action item</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84view%EF%BC%8Caction-view-auto-like-xml"><span class="nav-number">4.1.</span> <span class="nav-text">自定义的view，action_view_auto_like.xml</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84menu%EF%BC%8Cmenu-tinder-liker-xml"><span class="nav-number">4.2.</span> <span class="nav-text">自定义的menu，menu_tinder_liker.xml</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8fragment-%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">4.3.</span> <span class="nav-text">在fragment 中配置</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84viewaction_view_auto_likexml"><span class="nav-number">4.1.</span> <span class="nav-text"> 自定义的view，action_view_auto_like.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84menumenu_tinder_likerxml"><span class="nav-number">4.2.</span> <span class="nav-text"> 自定义的menu，menu_tinder_liker.xml</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8fragment-%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">4.3.</span> <span class="nav-text"> 在fragment 中配置</span></a></li>
                   </ol>
                 </li>
               </ol>

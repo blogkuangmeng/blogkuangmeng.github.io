@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。  激活函数的主">
+  <meta name="description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。   激活函数的">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Activation Functions">
   <meta property="og:url" content="https://blog.nooa.tech/articles/7af9d25d/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。  激活函数的主">
+  <meta property="og:description" content="背景 在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。   激活函数的">
   <meta property="og:locale">
   <meta property="og:image" content="https://blog.nooa.tech/images/activation-func/1.png">
   <meta property="og:image" content="https://blog.nooa.tech/images/activation-func/7.png">
@@ -311,66 +311,112 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>背景</h1>
+                <h1 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h1>
                 <p>在不使用激活函数的情况下，神经网络的每一层节点的输入都是上层输出的线性函数。很容易验证，无论神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron），此时的神经网络拟合能力相当有限。正因为这个原因，我们需要引入非线性函数作为激活函数，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。</p>
-                <h1>激活函数的主要形式</h1>
+                <h1 id="激活函数的主要形式"><a class="markdownIt-Anchor" href="#激活函数的主要形式"></a> 激活函数的主要形式</h1>
                 <p>在此从形式以及存在的问题方面介绍几种常用的激活函数，<code>Sigmoid</code>，<code>tanh</code>，<code>ReLU</code>（包括<code>LeakyReLU</code>，<code>pReLU</code>，<code>ELU</code>），<code>Maxout</code>，<code>Softmax</code>以及<code>Softplus</code>。</p>
-                <h2 id="Sigmoid">Sigmoid</h2>
-                <h3 id="形式">形式</h3>
+                <h2 id="sigmoid"><a class="markdownIt-Anchor" href="#sigmoid"></a> Sigmoid</h2>
+                <h3 id="形式"><a class="markdownIt-Anchor" href="#形式"></a> 形式</h3>
                 <p>我们从Sigmoid（S形曲线）激活函数说起，刚开始认识Sigmoid可能是从Logistic Regression开始，它的形式如下：</p>
-                <p>$$
-                  f(z)=\frac{1}{1+e^{-z}}
-                  $$</p>
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                          <semantics>
+                            <mrow>
+                              <mi>f</mi>
+                              <mo stretchy="false">(</mo>
+                              <mi>z</mi>
+                              <mo stretchy="false">)</mo>
+                              <mo>=</mo>
+                              <mfrac>
+                                <mn>1</mn>
+                                <mrow>
+                                  <mn>1</mn>
+                                  <mo>+</mo>
+                                  <msup>
+                                    <mi>e</mi>
+                                    <mrow>
+                                      <mo>−</mo>
+                                      <mi>z</mi>
+                                    </mrow>
+                                  </msup>
+                                </mrow>
+                              </mfrac>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f(z)=\frac{1}{1+e^{-z}}
+                            </annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.697331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
                 <p>对应的坐标系表示为：</p>
-                <p><img src="/images/activation-func/1.png" alt="Sigmoid"></p>
-                <h3 id="问题">问题</h3>
+                <p><img src="/images/activation-func/1.png" alt="Sigmoid" /></p>
+                <h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
                 <ol>
                   <li>有饱和区域，是软饱和，在大的正数和负数作为输入的时候，梯度就会变成零，使得神经元基本不能更新。</li>
                   <li>只有正数输出（不是zero-centered），这就导致所谓的zigzag现象。</li>
                   <li>计算量较大</li>
                 </ol>
-                <h2 id="tanh">tanh</h2>
-                <h3 id="形式-v2">形式</h3>
+                <h2 id="tanh"><a class="markdownIt-Anchor" href="#tanh"></a> tanh</h2>
+                <h3 id="形式-2"><a class="markdownIt-Anchor" href="#形式-2"></a> 形式</h3>
                 <p>其作为改进版的Sigmoid，数学形式及对应的曲线如下：</p>
-                <p><img src="/images/activation-func/7.png" alt="tanh"></p>
-                <p><img src="/images/activation-func/2.png" alt="tanh"></p>
-                <h3 id="问题-v2">问题</h3>
+                <p><img src="/images/activation-func/7.png" alt="tanh" /></p>
+                <p><img src="/images/activation-func/2.png" alt="tanh" /></p>
+                <h3 id="问题-2"><a class="markdownIt-Anchor" href="#问题-2"></a> 问题</h3>
                 <ol>
                   <li>tanh是zero-centered，但是还是会饱和，这就导致在输入值较大或者较小时，倒数趋近于0。</li>
                 </ol>
-                <h2 id="ReLU（Rectified-Linear-Unit）">ReLU（Rectified Linear Unit）</h2>
-                <h3 id="形式-v3">形式</h3>
-                <p><img src="/images/activation-func/3.png" alt="ReLU"></p>
+                <h2 id="relurectified-linear-unit"><a class="markdownIt-Anchor" href="#relurectified-linear-unit"></a> ReLU（Rectified Linear Unit）</h2>
+                <h3 id="形式-3"><a class="markdownIt-Anchor" href="#形式-3"></a> 形式</h3>
+                <p><img src="/images/activation-func/3.png" alt="ReLU" /></p>
                 <p>ReLU的形式比较简单，省去了<code>exp</code>的计算，因而计算量小，收敛较快。当输入大于0的时候返回原输入值，当输入小于0的时候返回0，即<code>f(x) = max(0, x)</code>。</p>
-                <h3 id="问题-v3">问题</h3>
+                <h3 id="问题-3"><a class="markdownIt-Anchor" href="#问题-3"></a> 问题</h3>
                 <ol>
                   <li>非zero-centered。</li>
                   <li>在负数区域被killed的现象叫做Dying ReLU。</li>
                 </ol>
-                <h3 id="针对ReLU的改进">针对ReLU的改进</h3>
+                <h3 id="针对relu的改进"><a class="markdownIt-Anchor" href="#针对relu的改进"></a> 针对ReLU的改进</h3>
                 <p>为了解决Dying ReLU问题，有三种比较常用的解决方案。</p>
-                <h4 id="LeakyReLU">LeakyReLU</h4>
+                <h4 id="leakyrelu"><a class="markdownIt-Anchor" href="#leakyrelu"></a> LeakyReLU</h4>
                 <p>LeakyReLU的思想是直接将<code>x ≤ 0</code>的部分修改为较小的<code>0.01x</code>，于是整体的形式就变成了<code>f(x) = max(0.01x, x)</code>。</p>
-                <p><img src="/images/activation-func/4.png" alt="LeakyReLU"></p>
-                <h4 id="pReLU-Parametric-ReLU">pReLU (Parametric ReLU)</h4>
+                <p><img src="/images/activation-func/4.png" alt="LeakyReLU" /></p>
+                <h4 id="prelu-parametric-relu"><a class="markdownIt-Anchor" href="#prelu-parametric-relu"></a> pReLU (Parametric ReLU)</h4>
                 <p>其形式为<code>f(x) = max(ax, x)</code>，其中<code>a</code>通过学习得到，而不是固定的。</p>
-                <h4 id="ELU（Exponential-Linear-Unit）">ELU（Exponential Linear Unit）</h4>
-                <p><img src="/images/activation-func/5.png" alt="ELU"></p>
+                <h4 id="eluexponential-linear-unit"><a class="markdownIt-Anchor" href="#eluexponential-linear-unit"></a> ELU（Exponential Linear Unit）</h4>
+                <p><img src="/images/activation-func/5.png" alt="ELU" /></p>
                 <p>其形式表示为：<code>f(x) = max(α(exp(x) - 1), x)</code>。</p>
-                <h2 id="Maxout">Maxout</h2>
+                <h2 id="maxout"><a class="markdownIt-Anchor" href="#maxout"></a> Maxout</h2>
                 <p>Maxout是通过分段线性函数来拟合所有可能的凸函数来作为激活函数的，但是由于线性函数是可学习，所以实际上是可以学出来的激活函数。具体操作是对所有线性取最大，也就是把若干直线的交点作为分段的界，然后每一段取最大。</p>
                 <p>其形式为：</p>
-                <p><img src="/images/activation-func/8.png" alt="Maxout"></p>
-                <h2 id="Softmax">Softmax</h2>
+                <p><img src="/images/activation-func/8.png" alt="Maxout" /></p>
+                <h2 id="softmax"><a class="markdownIt-Anchor" href="#softmax"></a> Softmax</h2>
                 <p>也称归一化指数函数，其一般形式为：</p>
-                <p><img src="/images/activation-func/9.png" alt="Softmax"></p>
+                <p><img src="/images/activation-func/9.png" alt="Softmax" /></p>
                 <p>Sigmoid函数如果用来分类的话，只能进行二分类，而Softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
-                <h2 id="Softplus">Softplus</h2>
+                <h2 id="softplus"><a class="markdownIt-Anchor" href="#softplus"></a> Softplus</h2>
                 <p>其一般形式为：</p>
-                <p>$$
-                  f(x) = \ln \left(1+e^{x}\right)
-                  $$</p>
-                <p><img src="/images/activation-func/6.png" alt="Softplus"></p>
+                <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                          <semantics>
+                            <mrow>
+                              <mi>f</mi>
+                              <mo stretchy="false">(</mo>
+                              <mi>x</mi>
+                              <mo stretchy="false">)</mo>
+                              <mo>=</mo>
+                              <mi>ln</mi>
+                              <mo>⁡</mo>
+                              <mrow>
+                                <mo fence="true">(</mo>
+                                <mn>1</mn>
+                                <mo>+</mo>
+                                <msup>
+                                  <mi>e</mi>
+                                  <mi>x</mi>
+                                </msup>
+                                <mo fence="true">)</mo>
+                              </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f(x) = \ln \left(1+e^{x}\right)
+                            </annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
+                <p><img src="/images/activation-func/6.png" alt="Softplus" /></p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/7af9d25d/">https://blog.nooa.tech/articles/7af9d25d/</a> . Welcome to reproduce it!</p>
 
 
@@ -490,37 +536,37 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">激活函数的主要形式</span></a>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text"> 背景</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%BB%E8%A6%81%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text"> 激活函数的主要形式</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Sigmoid"><span class="nav-number">2.1.</span> <span class="nav-text">Sigmoid</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#sigmoid"><span class="nav-number">2.1.</span> <span class="nav-text"> Sigmoid</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text">形式</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.2.</span> <span class="nav-text">问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 形式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 问题</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#tanh"><span class="nav-number">2.2.</span> <span class="nav-text">tanh</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#tanh"><span class="nav-number">2.2.</span> <span class="nav-text"> tanh</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F-v2"><span class="nav-number">2.2.1.</span> <span class="nav-text">形式</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-v2"><span class="nav-number">2.2.2.</span> <span class="nav-text">问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F-2"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 形式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-2"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 问题</span></a></li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU%EF%BC%88Rectified-Linear-Unit%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">ReLU（Rectified Linear Unit）</span></a>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#relurectified-linear-unit"><span class="nav-number">2.3.</span> <span class="nav-text"> ReLU（Rectified Linear Unit）</span></a>
                       <ol class="nav-child">
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F-v3"><span class="nav-number">2.3.1.</span> <span class="nav-text">形式</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-v3"><span class="nav-number">2.3.2.</span> <span class="nav-text">问题</span></a></li>
-                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B9ReLU%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">2.3.3.</span> <span class="nav-text">针对ReLU的改进</span></a>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F-3"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 形式</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-3"><span class="nav-number">2.3.2.</span> <span class="nav-text"> 问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B9relu%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">2.3.3.</span> <span class="nav-text"> 针对ReLU的改进</span></a>
                           <ol class="nav-child">
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#LeakyReLU"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">LeakyReLU</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#pReLU-Parametric-ReLU"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">pReLU (Parametric ReLU)</span></a></li>
-                            <li class="nav-item nav-level-4"><a class="nav-link" href="#ELU%EF%BC%88Exponential-Linear-Unit%EF%BC%89"><span class="nav-number">2.3.3.3.</span> <span class="nav-text">ELU（Exponential Linear Unit）</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#leakyrelu"><span class="nav-number">2.3.3.1.</span> <span class="nav-text"> LeakyReLU</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#prelu-parametric-relu"><span class="nav-number">2.3.3.2.</span> <span class="nav-text"> pReLU (Parametric ReLU)</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link" href="#eluexponential-linear-unit"><span class="nav-number">2.3.3.3.</span> <span class="nav-text"> ELU（Exponential Linear Unit）</span></a></li>
                           </ol>
                         </li>
                       </ol>
                     </li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Maxout"><span class="nav-number">2.4.</span> <span class="nav-text">Maxout</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax"><span class="nav-number">2.5.</span> <span class="nav-text">Softmax</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Softplus"><span class="nav-number">2.6.</span> <span class="nav-text">Softplus</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#maxout"><span class="nav-number">2.4.</span> <span class="nav-text"> Maxout</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#softmax"><span class="nav-number">2.5.</span> <span class="nav-text"> Softmax</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#softplus"><span class="nav-number">2.6.</span> <span class="nav-text"> Softplus</span></a></li>
                   </ol>
                 </li>
               </ol>

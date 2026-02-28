@@ -297,9 +297,9 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>页框管理与伙伴系统</h1>
+                <h1 id="页框管理与伙伴系统"><a class="markdownIt-Anchor" href="#页框管理与伙伴系统"></a> 页框管理与伙伴系统</h1>
                 <p>这里的内存管理，指的是内核如何分配（为自己）动态内存。linux把页框作为一个管理的基本单位，用数据结构<code>page</code>对其进行描述。而所有的<code>page</code>则放在一个<code>mem_map</code>数组当中，进行管理。但计算机存在着一些限制，因此linux把内存划分为了几个管理区，包括ZONE_DMA、ZONE_NORMAL、ZONE_HIGHMEM等；而对页框的分配和释放，也是按照分区来进行管理的：</p>
-                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%A1%B5%E6%A1%86%E5%88%86%E9%85%8D.jpg" alt=""></p>
+                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/%E9%A1%B5%E6%A1%86%E5%88%86%E9%85%8D.jpg" alt="" /></p>
                 <p>在每个分区之内，页框由<strong>伙伴系统</strong>来进行处理。伙伴系统主要是为了解决“外碎片”的问题：当请求和释放不断发生的时候，就很有可能导致操作系统中发生存在空闲的小块页框，但是没有大块连续页框的问题。伙伴系统把空闲页分组成11个块链表，分别包含1，2，4，6,…,1024个连续的页框。每当有两个连续的大小为b的页框出现时（并且起始地址满足一个倍数条件），它们就被视为伙伴，伙伴系统就会把它们合并成大小为2b的页框。在页分配时，如果当前大小b的<code>free_list</code>中找不到空闲的页框，就会从2b的链表中寻找空闲页块，并且进行分割，将它分为两个大小为b的页块。</p>
                 <p>每个伙伴系统，管理的是<code>mem_map</code>的一个子集。在管理区描述符中，有一个<code>struct free_area</code>，它用来辅助伙伴系统：</p>
                 <figure class="highlight plaintext">
@@ -315,16 +315,16 @@
                   </table>
                 </figure>
                 <p><code>free_list</code>是用来连接空闲页的链表数组，而nr_free则是当前内存区中空闲页块的个数。</p>
-                <h1>反碎片</h1>
+                <h1 id="反碎片"><a class="markdownIt-Anchor" href="#反碎片"></a> 反碎片</h1>
                 <p>当然，上面说到的只是最基本的伙伴系统，但它并没有完全解决碎片的问题。linux中还采用了一种反碎片的机制，它根据已内存页的类型来工作：</p>
                 <ul>
                   <li>不可移动页：在内存中有固定的位置，不能移动到其他地方（kernel的大多数内存页）</li>
                   <li>可移动页：用户空间的页，只要更新页表项即可</li>
-                  <li>可回收页：在内存缺少时，可以进行回收的页，例如从文件映射的页
+                  <li>可回收页：在内存缺少时，可以进行回收的页，例如从文件映射的页<br />
                     （以及一些其他类型）</li>
                 </ul>
                 <p>如果根据页的可移动性，将其进行分组，避免可回收页和不可回收页的交叉组织（例如在可移动页中间有不可移动页），并且在某个类型的页分配失败时，会从备用列表中寻找相应的页，这个顺序定义在page_alloc.c当中。</p>
-                <h1>内存分配方法</h1>
+                <h1 id="内存分配方法"><a class="markdownIt-Anchor" href="#内存分配方法"></a> 内存分配方法</h1>
                 <p>分配内存通常可以调用一下几个函数：</p>
                 <ul>
                   <li>alloc_pages/alloc_page：分配若干个页，返回第一个struct page</li>
@@ -339,12 +339,12 @@
                   <li>free_page/free_pages：以struct page为参数</li>
                   <li>__free_page/__free_pages：以虚拟地址为参数</li>
                 </ul>
-                <h1>页框高速缓存</h1>
+                <h1 id="页框高速缓存"><a class="markdownIt-Anchor" href="#页框高速缓存"></a> 页框高速缓存</h1>
                 <p>（为了避免混淆，我把所有硬件的高速缓存称为cache）</p>
                 <p>内核经常会请求、释放单个页框，为了提高系统的性能，每个内存管理区都有一个每CPU的页框高速缓存，它包含一些预先分配的页框，能够用来满足CPU发出的单个页框请求。注意，这个页框高速缓存，和硬件上的cache的概念不同，但它们有一点小小的关联。由于每个CPU有自己的cache，那么假设一个进程刚刚释放了一个页，那么这个页就有很大概率还在cache当中。页框高速缓存保存热页（刚释放的，很可能在cache当中的页）和冷页（释放时间比较长的页）。其实对于分配热页来说，很好理解：用在cache中的页可以减少开销；但如果说是DMA设备使用，就要分配冷页了，因为它不会用到cache。</p>
-                <h1>slab分配器</h1>
+                <h1 id="slab分配器"><a class="markdownIt-Anchor" href="#slab分配器"></a> slab分配器</h1>
                 <p>前面所说的伙伴系统，是用“页”为单位来进行，显然太大了；所以需要把页进一步拆分，变成更小的单位。slab分配器不仅仅提供小内存块，它还作为一个缓存使用，主要是针对那些经常分配、释放的对象：例如内核中的<code>fs_struct</code>数据结构，可能经常会分配和释放；那么slab就将释放的内存块保存在一个列表里面，而不是返回给伙伴系统。这样一来，再次分配新的内存块时，就不需要经过伙伴系统了，而且这些内存块还很可能在cache里面。</p>
-                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E5%88%86%E9%85%8D%E5%99%A8.png" alt=""></p>
+                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E5%88%86%E9%85%8D%E5%99%A8.png" alt="" /></p>
                 <p>slab分配器包含几个部分：高速缓存<code>kmem_cache</code>，slab，以及slab中所包含的对象。每个高速缓存只负责一种对象类型，它由多个<code>slab</code>构成。<code>kmem_cache</code>当中有三个slab链表，分别对应用尽的slab、部分空闲的slab，和空闲的slab，还有一个<code>array_cache *</code>数组，它保存cpu最后释放的那些很可能处于“热”状态的对象。</p>
                 <p>而对于每个slab，则组织了一系列的object；它包含了空闲对象，正在使用的对象。那么为什么不直接用<code>kmem_cache</code>管理对象，要增加出<code>slab</code>这一层呢？这明显是为了更好的管理内存：通过<code>slab</code>，可以让内存的使用更平均，或者能够更好的管理空闲的页。</p>
                 <p>在新版本的内核中，<code>slab</code>由<code>kmem_cache_node</code>来管理，它包含3个链表<code>slabs_partial</code>，<code>slabs_full</code>和<code>slabs_free</code>。每个slab是一个或多个连续页帧的集合，每个objects由链表串联，现在slab中的object直接由<code>page</code>中的<code>freelist</code>来管理了。</p>
@@ -360,9 +360,9 @@
                     </tr>
                   </table>
                 </figure>
-                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E7%AE%A1%E7%90%86.png" alt=""></p>
+                <p><img src="/images/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/slab%E7%AE%A1%E7%90%86.png" alt="" /></p>
                 <p>值得一提的是，<code>kmalloc</code>的实现也是也是基于slab来实现的，它包含一个数组，存放了一些用于不同长度的slab缓存，这也就是我们所说的“内存池”。</p>
-                <h1>slab着色</h1>
+                <h1 id="slab着色"><a class="markdownIt-Anchor" href="#slab着色"></a> slab着色</h1>
                 <p>slab着色与颜色并没有关系，它要解决的问题与硬件高速缓存有关。硬件高速缓存倾向于把大小一样的对象放在高速缓存内的相同偏移位置；而不同slab当中相同偏移量的对象，就会映射在高速缓存的同一行当中；这样高速缓存可能就会频繁的对同一高速缓存行进行更新，从而造成性能损失。</p>
                 <p>slab着色就是给每个slab分配一个随机的“颜色”，把它作为slab中对象需要移动的特定偏移量来使用，这样对象就会被放置到不同的缓存行。</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/41e39f2b/">https://blog.nooa.tech/articles/41e39f2b/</a> . Welcome to reproduce it!</p>
@@ -476,12 +476,12 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">页框管理与伙伴系统</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">反碎片</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">内存分配方法</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">页框高速缓存</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">slab分配器</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">slab着色</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B5%E6%A1%86%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text"> 页框管理与伙伴系统</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E7%A2%8E%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text"> 反碎片</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text"> 内存分配方法</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B5%E6%A1%86%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text"> 页框高速缓存</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#slab%E5%88%86%E9%85%8D%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text"> slab分配器</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#slab%E7%9D%80%E8%89%B2"><span class="nav-number">6.</span> <span class="nav-text"> slab着色</span></a></li>
               </ol>
 
             </div>

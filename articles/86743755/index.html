@@ -17,12 +17,12 @@
   <meta name="baidu-site-verification" content="d6tIQA0tgL" />
 
 
-  <meta name="description" content="哈工大《操作系统》六次实验每次需要修改的文件见：修改文件列表本实验总结源自github项目：MIC  操作系统引导 bootsect.s  * 实现屏幕输出  * 修改打印的字符串（空白也算作一个字符）  * 读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）  setup.s  * （和bootsect.s中部分代码相同）打印相关信息  *">
+  <meta name="description" content="哈工大《操作系统》六次实验每次需要修改的文件见：修改文件列表 本实验总结源自github项目：MIC   操作系统引导  bootsect.s  * 实现屏幕输出  * 修改打印的字符串（空白也算作一个字符）  * 读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）   setup.s  * （和bootsect.s中部分代码相同）打印相关信息">
   <meta property="og:type" content="article">
   <meta property="og:title" content="HIT操作系统实验总结">
   <meta property="og:url" content="https://blog.nooa.tech/articles/86743755/index.html">
   <meta property="og:site_name" content="Mengmeng Kuang&#39;s Blog!">
-  <meta property="og:description" content="哈工大《操作系统》六次实验每次需要修改的文件见：修改文件列表本实验总结源自github项目：MIC  操作系统引导 bootsect.s  * 实现屏幕输出  * 修改打印的字符串（空白也算作一个字符）  * 读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）  setup.s  * （和bootsect.s中部分代码相同）打印相关信息  *">
+  <meta property="og:description" content="哈工大《操作系统》六次实验每次需要修改的文件见：修改文件列表 本实验总结源自github项目：MIC   操作系统引导  bootsect.s  * 实现屏幕输出  * 修改打印的字符串（空白也算作一个字符）  * 读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）   setup.s  * （和bootsect.s中部分代码相同）打印相关信息">
   <meta property="og:locale">
   <meta property="article:published_time" content="2017-01-04T12:50:26.000Z">
   <meta property="article:modified_time" content="2022-09-21T16:03:53.614Z">
@@ -293,90 +293,90 @@
               <div class="article-entry" itemprop="articleBody">
 
                 <blockquote>
-                  <p>哈工大《操作系统》六次实验每次需要修改的文件见：<a href="/os.html">修改文件列表</a>
+                  <p>哈工大《操作系统》六次实验每次需要修改的文件见：<a href="/os.html">修改文件列表</a><br />
                     本实验总结源自github项目：<a target="_blank" rel="noopener" href="https://github.com/HITAmigos/MIC">MIC</a></p>
                 </blockquote>
-                <h2 id="操作系统引导">操作系统引导</h2>
-                <h3 id="bootsect-s">bootsect.s</h3>
+                <h2 id="操作系统引导"><a class="markdownIt-Anchor" href="#操作系统引导"></a> 操作系统引导</h2>
+                <h3 id="bootsects"><a class="markdownIt-Anchor" href="#bootsects"></a> bootsect.s</h3>
                 <ul>
                   <li>实现屏幕输出</li>
                   <li>修改打印的字符串（空白也算作一个字符）</li>
                   <li>读入setup.s代码（包括：设置驱动器、磁头，读取setup.s的磁道和扇区，并跳到相应位置开始执行）</li>
                 </ul>
-                <h3 id="setup-s">setup.s</h3>
+                <h3 id="setups"><a class="markdownIt-Anchor" href="#setups"></a> setup.s</h3>
                 <ul>
                   <li>（和bootsect.s中部分代码相同）打印相关信息</li>
                   <li>（原代码已经可以部分打印硬件信息）需要在相关位置嵌入msg实现打印提示信息功能</li>
                 </ul>
-                <h3 id="build-c">build.c</h3>
+                <h3 id="buildc"><a class="markdownIt-Anchor" href="#buildc"></a> build.c</h3>
                 <ul>
                   <li>将bootsect.s、setup.s、system.s编译、链接生成Image文件</li>
                 </ul>
-                <h2 id="系统调用">系统调用</h2>
+                <h2 id="系统调用"><a class="markdownIt-Anchor" href="#系统调用"></a> 系统调用</h2>
                 <ul>
                   <li>unistd.h文件：添加系统调用功能号</li>
                   <li>sys.h声明新的系统调用处理函数；添加系统调用处理程序索引值到指针数组表中</li>
                   <li>system_call.s中增加系统调用总数</li>
                   <li>makefile添加新的系统调用所在文件的编译链接规则（依赖关系）</li>
                 </ul>
-                <h2 id="进程运行轨迹的跟踪与统计">进程运行轨迹的跟踪与统计</h2>
-                <h3 id="process-c">process.c</h3>
+                <h2 id="进程运行轨迹的跟踪与统计"><a class="markdownIt-Anchor" href="#进程运行轨迹的跟踪与统计"></a> 进程运行轨迹的跟踪与统计</h2>
+                <h3 id="processc"><a class="markdownIt-Anchor" href="#processc"></a> process.c</h3>
                 <ul>
                   <li>涉及到fork()和wait()系统调用</li>
                   <li>主要实现了一个函数——cpuio_bound()</li>
                   <li>用fork()建立若干个同时运行的子程序</li>
                   <li>父P等待所有子P退出后才退出，每个子P性质通过cpuio_bound()控制性质</li>
                 </ul>
-                <h3 id="fork-c">fork.c</h3>
+                <h3 id="forkc"><a class="markdownIt-Anchor" href="#forkc"></a> fork.c</h3>
                 <ul>
                   <li>fork系统调用函数</li>
                 </ul>
-                <h3 id="main-c">main.c</h3>
+                <h3 id="mainc"><a class="markdownIt-Anchor" href="#mainc"></a> main.c</h3>
                 <ul>
                   <li>内核的入口函数main()，对它的修改是增加日志创建语句，并将log文件关联到文件描述符log文件记录进程状态转换轨迹</li>
                 </ul>
-                <h3 id="kernel">kernel</h3>
+                <h3 id="kernel"><a class="markdownIt-Anchor" href="#kernel"></a> kernel</h3>
                 <p>主要寻找进程状态转换点：</p>
                 <ul>
                   <li>printk.c</li>
                   <li>sched.c</li>
                   <li>exit.c</li>
                 </ul>
-                <h2 id="信号量的实现和应用">信号量的实现和应用</h2>
-                <h3 id="sem-open">sem_open</h3>
+                <h2 id="信号量的实现和应用"><a class="markdownIt-Anchor" href="#信号量的实现和应用"></a> 信号量的实现和应用</h2>
+                <h3 id="sem_open"><a class="markdownIt-Anchor" href="#sem_open"></a> sem_open</h3>
                 <ul>
                   <li>打开信号量</li>
                 </ul>
-                <h3 id="sem-wait">sem_wait</h3>
+                <h3 id="sem_wait"><a class="markdownIt-Anchor" href="#sem_wait"></a> sem_wait</h3>
                 <ul>
                   <li>信号量P操作——value–</li>
                 </ul>
-                <h3 id="sem-post">sem_post</h3>
+                <h3 id="sem_post"><a class="markdownIt-Anchor" href="#sem_post"></a> sem_post</h3>
                 <ul>
                   <li>信号量V操作——value++</li>
                 </ul>
-                <h3 id="sem-unlink">sem_unlink</h3>
+                <h3 id="sem_unlink"><a class="markdownIt-Anchor" href="#sem_unlink"></a> sem_unlink</h3>
                 <ul>
                   <li>释放信号量</li>
                 </ul>
-                <h2 id="地址映射与共享">地址映射与共享</h2>
-                <h3 id="shm-c">shm.c</h3>
+                <h2 id="地址映射与共享"><a class="markdownIt-Anchor" href="#地址映射与共享"></a> 地址映射与共享</h2>
+                <h3 id="shmc"><a class="markdownIt-Anchor" href="#shmc"></a> shm.c</h3>
                 <ul>
                   <li>shmget()：得到一个共享内存标识符或创建一个共享内存对象并返回共享内存标识符</li>
                   <li>shmat()：连接共享内存标识符为shmid的共享内存，连接成功后把共享内存区对象映射到调用进程的地址空间，随后可像本地空间一样访问</li>
                 </ul>
-                <h3 id="sem-c">sem.c</h3>
+                <h3 id="semc"><a class="markdownIt-Anchor" href="#semc"></a> sem.c</h3>
                 <p>实现信号量的四种操作，与实验四相同</p>
-                <h2 id="字符显示的控制">字符显示的控制</h2>
-                <h3 id="keyboard-S">keyboard.S</h3>
+                <h2 id="字符显示的控制"><a class="markdownIt-Anchor" href="#字符显示的控制"></a> 字符显示的控制</h2>
+                <h3 id="keyboards"><a class="markdownIt-Anchor" href="#keyboards"></a> keyboard.S</h3>
                 <ul>
                   <li>添加对字符F12的输入判断</li>
                 </ul>
-                <h3 id="console-c">console.c</h3>
+                <h3 id="consolec"><a class="markdownIt-Anchor" href="#consolec"></a> console.c</h3>
                 <ul>
                   <li>添加输出到控制台的字符控制</li>
                 </ul>
-                <h3 id="file-dev-c">file_dev.c</h3>
+                <h3 id="file_devc"><a class="markdownIt-Anchor" href="#file_devc"></a> file_dev.c</h3>
                 <ul>
                   <li>添加输出到文件的字符控制</li>
                 </ul>
@@ -490,41 +490,41 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text">操作系统引导</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text"> 操作系统引导</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#bootsect-s"><span class="nav-number">1.1.</span> <span class="nav-text">bootsect.s</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#setup-s"><span class="nav-number">1.2.</span> <span class="nav-text">setup.s</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#build-c"><span class="nav-number">1.3.</span> <span class="nav-text">build.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#bootsects"><span class="nav-number">1.1.</span> <span class="nav-text"> bootsect.s</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#setups"><span class="nav-number">1.2.</span> <span class="nav-text"> setup.s</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#buildc"><span class="nav-number">1.3.</span> <span class="nav-text"> build.c</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">系统调用</span></a></li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C%E8%BD%A8%E8%BF%B9%E7%9A%84%E8%B7%9F%E8%B8%AA%E4%B8%8E%E7%BB%9F%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">进程运行轨迹的跟踪与统计</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text"> 系统调用</span></a></li>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C%E8%BD%A8%E8%BF%B9%E7%9A%84%E8%B7%9F%E8%B8%AA%E4%B8%8E%E7%BB%9F%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text"> 进程运行轨迹的跟踪与统计</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#process-c"><span class="nav-number">3.1.</span> <span class="nav-text">process.c</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#fork-c"><span class="nav-number">3.2.</span> <span class="nav-text">fork.c</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#main-c"><span class="nav-number">3.3.</span> <span class="nav-text">main.c</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#kernel"><span class="nav-number">3.4.</span> <span class="nav-text">kernel</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#processc"><span class="nav-number">3.1.</span> <span class="nav-text"> process.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#forkc"><span class="nav-number">3.2.</span> <span class="nav-text"> fork.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#mainc"><span class="nav-number">3.3.</span> <span class="nav-text"> main.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#kernel"><span class="nav-number">3.4.</span> <span class="nav-text"> kernel</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">信号量的实现和应用</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text"> 信号量的实现和应用</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem-open"><span class="nav-number">4.1.</span> <span class="nav-text">sem_open</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem-wait"><span class="nav-number">4.2.</span> <span class="nav-text">sem_wait</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem-post"><span class="nav-number">4.3.</span> <span class="nav-text">sem_post</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem-unlink"><span class="nav-number">4.4.</span> <span class="nav-text">sem_unlink</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem_open"><span class="nav-number">4.1.</span> <span class="nav-text"> sem_open</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem_wait"><span class="nav-number">4.2.</span> <span class="nav-text"> sem_wait</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem_post"><span class="nav-number">4.3.</span> <span class="nav-text"> sem_post</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem_unlink"><span class="nav-number">4.4.</span> <span class="nav-text"> sem_unlink</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84%E4%B8%8E%E5%85%B1%E4%BA%AB"><span class="nav-number">5.</span> <span class="nav-text">地址映射与共享</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84%E4%B8%8E%E5%85%B1%E4%BA%AB"><span class="nav-number">5.</span> <span class="nav-text"> 地址映射与共享</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#shm-c"><span class="nav-number">5.1.</span> <span class="nav-text">shm.c</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#sem-c"><span class="nav-number">5.2.</span> <span class="nav-text">sem.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#shmc"><span class="nav-number">5.1.</span> <span class="nav-text"> shm.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#semc"><span class="nav-number">5.2.</span> <span class="nav-text"> sem.c</span></a></li>
                   </ol>
                 </li>
-                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">字符显示的控制</span></a>
+                <li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text"> 字符显示的控制</span></a>
                   <ol class="nav-child">
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#keyboard-S"><span class="nav-number">6.1.</span> <span class="nav-text">keyboard.S</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#console-c"><span class="nav-number">6.2.</span> <span class="nav-text">console.c</span></a></li>
-                    <li class="nav-item nav-level-3"><a class="nav-link" href="#file-dev-c"><span class="nav-number">6.3.</span> <span class="nav-text">file_dev.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#keyboards"><span class="nav-number">6.1.</span> <span class="nav-text"> keyboard.S</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#consolec"><span class="nav-number">6.2.</span> <span class="nav-text"> console.c</span></a></li>
+                    <li class="nav-item nav-level-3"><a class="nav-link" href="#file_devc"><span class="nav-number">6.3.</span> <span class="nav-text"> file_dev.c</span></a></li>
                   </ol>
                 </li>
               </ol>

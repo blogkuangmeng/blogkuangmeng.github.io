@@ -293,7 +293,7 @@
               </div>
               <div class="article-entry" itemprop="articleBody">
 
-                <h1>x64寄存器</h1>
+                <h1 id="x64寄存器"><a class="markdownIt-Anchor" href="#x64寄存器"></a> x64寄存器</h1>
                 <p>x64体系提供了16个通用寄存器，以及16个通用寄存器，以及16个浮点寄存器XMM/YMM寄存器。这些寄存器分为两类：</p>
                 <ul>
                   <li>易失寄存器：由调用方假想的临时寄存器，并要在调用过程中销毁。</li>
@@ -426,7 +426,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <h1>参数传递</h1>
+                <h1 id="参数传递"><a class="markdownIt-Anchor" href="#参数传递"></a> 参数传递</h1>
                 <p>可以看出，在Linux中，前6个参数都是利用寄存器来进行传递的。那么参数多于6个的情况下，是如何传递的呢？首先<strong>参数按照从左到右的顺序，依次使用寄存器</strong>，在寄存器被使用完后，参数<strong>从右到左依次入栈，使用堆栈进行参数的传递</strong>。此处有一个例子：</p>
                 <figure class="highlight plaintext">
                   <table>
@@ -483,7 +483,7 @@
                   </tbody>
                 </table>
                 <p>此处存在两个疑问:第一、s.a,s.b为什么使用同一个寄存器；第二、ld为什么直接使用了栈帧传递？第一个是在结构体中，s.a，s.b是对齐可合并的，因此可以使用一个寄存器来传递这两个参数（此处存在疑问，是我自己的理解）；第二个是因为long double被归为X87类，这类参数是必须通过内存来传递的。</p>
-                <h1>Red zone</h1>
+                <h1 id="red-zone"><a class="markdownIt-Anchor" href="#red-zone"></a> Red zone</h1>
                 <p>在linux中，red zone是函数栈帧中，返回地址之下的一片区域，被调用函数可以使用red zone来储存局部变量，来避免对栈指针进行过多的修改。这大概就是在某些函数中，rsp直接被sub某个很大值的原因。</p>
                 <p><br><br>The link of this page is <a href="https://blog.nooa.tech/articles/bc46dabc/">https://blog.nooa.tech/articles/bc46dabc/</a> . Welcome to reproduce it!</p>
 
@@ -596,9 +596,9 @@
               <strong class="toc-title">Contents</strong>
 
               <ol class="nav">
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">x64寄存器</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">参数传递</span></a></li>
-                <li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Red zone</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#x64%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text"> x64寄存器</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">2.</span> <span class="nav-text"> 参数传递</span></a></li>
+                <li class="nav-item nav-level-1"><a class="nav-link" href="#red-zone"><span class="nav-number">3.</span> <span class="nav-text"> Red zone</span></a></li>
               </ol>
 
             </div>
