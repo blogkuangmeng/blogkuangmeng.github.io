@@ -310,7 +310,7 @@
 
         <div class="container">
           <div class="row">
-            <p id="copyRightEn">&copy; 2018.02.08 - 2026.01.20 <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
+            <p id="copyRightEn">&copy; 2018.02.08 - 2026.02.28 <a target="_blank" rel="noopener" href="https://mkuang.nooa.tech/">Mengmeng Kuang</a>&nbsp;<i class="fas fa-cogs"></i> 保留所有权利！</p>
 
             <p id="hitokoto">:D 获取中...</p>
             <!-- 以下写法，选取一种即可 -->
@@ -520,6 +520,53 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
       </div>
+    </div>
+  </div>
+
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+
+
+
+</body>
+<style>
+  .test-div {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+    position: relative;
+  }
+</style>
+
+<script src="/js/loading.js"></script>
+<script>
+  function loading7() {
+    $('body').loading({
+      loadingWidth: 240,
+      title: '请稍等!',
+      name: 'test',
+      discription: '精彩马上就来...',
+      direction: 'row',
+      type: 'origin',
+      originBg: '#71EA71',
+      originDivWidth: 30,
+      originDivHeight: 30,
+      originWidth: 4,
+      originHeight: 4,
+      smallLoading: false,
+      titleColor: '#388E7A',
+      loadingBg: '#312923',
+      loadingMaskBg: 'rgba(22,22,22,0.2)'
+    });
+    setTimeout(function() {
+      removeLoading('test');
+    }, 1000);
+  }
+</script>
+
+</html>  </div>
     </div>
   </div>
 
